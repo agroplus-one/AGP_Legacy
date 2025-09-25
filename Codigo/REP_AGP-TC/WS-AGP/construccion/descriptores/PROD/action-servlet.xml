@@ -1,0 +1,2066 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"  
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:ws="http://jax-ws.dev.java.net/spring/core"
+    xmlns:wss="http://jax-ws.dev.java.net/spring/servlet"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+		http://www.springframework.org/schema/context
+		http://www.springframework.org/schema/context/spring-context-2.5.xsd
+		http://jax-ws.dev.java.net/spring/core
+        http://jax-ws.dev.java.net/spring/core.xsd
+        http://jax-ws.dev.java.net/spring/servlet
+        http://jax-ws.dev.java.net/spring/servlet.xsd">
+        
+    <wss:binding url="/ContratacionExt">
+        <wss:service>
+            <ws:service bean="#contratacionExtWS"/>
+        </wss:service>
+    </wss:binding>
+    
+    <bean id="contratacionExtWS" class="com.rsi.agp.serviciosweb.contratacionextconfirmacion.ContratacionExtConfirmacionImpl">
+    	<property name="bo" ref="contratacionExtBO" />
+    </bean>
+    
+    <bean id="contratacionExtBO" class="com.rsi.agp.main.contratacionext.ContratacionExtBO">
+		<property name="manager" ref="contratacionExtConfirmacionManager"/>	
+	</bean>
+	
+	<bean id="contratacionExtConfirmacionManager" class="com.rsi.agp.core.managers.confirmarext.ContratacionExtConfirmacionManager">
+		<property name="polizasPctComisionesDao" ref="polizasPctComisionesDao"/>	
+		<property name="importacionPolizasExtDao" ref="importacionPolizasExtDao"/>
+		<property name="correduriaExternaDao" ref="correduriaExternaDao"/>
+		<property name="auditoriaConfirmacionExtDao" ref="auditoriaConfirmacionExtDao"/>
+		<!-- P0079313 [BEGIN] -->
+		<property name="simulacionSbpManager" ref="simulacionSbpManager"/>
+		<property name="solicitudModificacionManager" ref="solicitudModificacionManager"/>
+		<property name="anexoModificacionDao" ref="anexoModificacionDao"/>
+		<property name="cuponDao" ref="cuponDao"/>
+		<property name="polizaDao" ref="polizaDao"/>
+		<property name="enviosSWSolicitudDao" ref="enviosSWSolicitudDao"/>
+		<property name="tipoCapitalDao" ref="tipoCapitalDao"/>
+		<property name="terminoDao" ref="terminoDao"/>
+		<property name="cargaExplotacionesDao" ref="cargaExplotacionesDao"/>
+		<property name="diccionarioDatosDao" ref="diccionarioDatosDao"/>
+		<property name="datosParcelaAnexoDao" ref="datosParcelaAnexoDao" />
+		<property name="subvencionesDeclarablesModificacionPolizaDao" ref="subvencionesDeclarablesModificacionPolizaDao" />
+		<property name="declaracionModificacionPolizaDao" ref="declaracionModificacionPolizaDao" />
+		<property name="datosExplotacionAnexoDao" ref="datosExplotacionAnexoDao" />
+		<!-- P0079313 [END] -->
+		<!-- P0079361 [BEGIN] -->
+		<property name="solicitudReduccionCapManager" ref="solicitudReduccionCapManager"/>
+		<property name="reduccionCapitalDao" ref="reduccionCapitalDao"/>
+		<property name="cuponRCDao" ref="cuponRCDao"/>
+		<property name="enviosSWRCSolicitudDao" ref="enviosSWRCSolicitudDao"/>
+		<!-- P0079361 [END] -->
+	</bean>
+	
+	<bean id="datosExplotacionAnexoDao" parent="baseTransactionProxy">
+		<property name="target">
+			<bean class="com.rsi.agp.dao.models.poliza.ganado.DatosExplotacionAnexoDao">
+				<property name="sessionFactory">
+					<ref local="sessionFactory" />
+				</property>
+			</bean>
+		</property>
+	</bean>
+	
+	<bean id="enviosSWSolicitudDao" parent="baseTransactionProxy">
+		<property name="target">
+			<bean class="com.rsi.agp.dao.models.anexo.EnviosSWSolicitudDao">
+				<property name="sessionFactory">
+					<ref local="sessionFactory" />
+				</property>
+			</bean>
+		</property>
+	</bean>
+	
+	<!-- P0079313 [BEGIN] -->
+	<bean id="simulacionSbpManager" class="com.rsi.agp.core.managers.impl.sbp.SimulacionSbpManager">
+		<property name="simulacionSbpDao" ref="simulacionSbpDao" />
+		<property name="seleccionPolizaManager" ref="seleccionPolizaManager" />
+		<property name="sobrePrecioDao" ref="sobrePrecioDao" />
+		<property name="historicoEstadosManager" ref="historicoEstadosManager" />
+		<property name="consultaSbpManager" ref="consultaSbpManager" />
+		<property name="polizaComplementariaDao" ref="polizaComplementariaDao" />
+		<property name="documentacionGedManager" ref="documentacionGedManager" />
+	</bean>
+	
+	<bean id="subvencionesDeclarablesModificacionPolizaDao" parent="baseTransactionProxy">
+		<property name="target">
+			<bean
+				class="com.rsi.agp.dao.models.anexo.SubvencionesDeclarablesModificacionPolizaDao">
+				<property name="sessionFactory">
+					<ref local="sessionFactory" />
+				</property>
+			</bean>
+		</property>
+	</bean>
+	
+	<bean id="polizaComplementariaDao" parent="baseTransactionProxy">
+		<property name="target">
+			<bean class="com.rsi.agp.dao.models.poliza.PolizaComplementariaDao">
+				<property name="sessionFactory">
+					<ref local="sessionFactory" />
+				</property>
+			</bean>
+		</property>
+	</bean>
+	
+	<bean id="consultaSbpManager" class="com.rsi.agp.core.managers.impl.sbp.ConsultaSbpManager">
+		<property name="seleccionPolizaManager" ref="seleccionPolizaManager" />
+		<property name="consultaSbpDao" ref="consultaSbpDao" />
+		<property name="simulacionSbpManager" ref="simulacionSbpManager" />
+		<property name="simulacionSbpDao" ref="simulacionSbpDao" />
+	</bean>
+	
+	<bean id="consultaSbpDao" parent="baseTransactionProxy">
+		<property name="target">
+			<bean class="com.rsi.agp.dao.models.sbp.ConsultaSbpDao">
+				<property name="sessionFactory">
+					<ref local="sessionFactory" />
+				</property>
+			</bean>
+		</property>
+	</bean>
+	
+	<bean id="historicoEstadosManager" class="com.rsi.agp.core.managers.impl.HistoricoEstadosManager">
+		<property name="historicoEstadosDao" ref="historicoEstadosDao" />
+	</bean>
+	
+	<bean id="historicoEstadosDao" parent="baseTransactionProxy">
+		<property name="target">
+			<bean class="com.rsi.agp.dao.models.commons.HistoricoEstadosDao">
+				<property name="sessionFactory">
+					<ref local="sessionFactory" />
+				</property>
+			</bean>
+		</property>
+	</bean>
+	
+	<bean id="sobrePrecioDao" parent="baseTransactionProxy">
+		<property name="target">
+			<bean class="com.rsi.agp.dao.models.sbp.SobrePrecioDao">
+				<property name="sessionFactory">
+					<ref local="sessionFactory" />
+				</property>
+				<property name="databaseManager" ref="databaseManager" />
+			</bean>
+		</property>
+	</bean>
+	
+	<bean id="seleccionPolizaManager" class="com.rsi.agp.core.managers.impl.SeleccionPolizaManager">
+		<property name="seleccionPolizaDao" ref="seleccionPolizaDao" />
+		<property name="polizaDao" ref="polizaDao" />
+		<property name="aseguradoDao" ref="aseguradoDao" />
+		<property name="databaseManager" ref="databaseManager" />
+		<property name="consultaSbpManager" ref="consultaSbpManager" />
+		<property name="simulacionSbpManager" ref="simulacionSbpManager" />
+		<property name="historicoEstadosManager" ref="historicoEstadosManager" />
+		<property name="pantallaConfigurableDao" ref="pantallaConfigurableDao" />
+		<property name="distribucionCosteDAO" ref="distribucionCosteDAO" />
+		<property name="polizaManager" ref="polizaManager" />
+		<property name="cpmTipoCapitalDao" ref="CPMTipoCapitalDAO" />
+		<property name="capitalAseguradoDao" ref="capitalAseguradoDao" />
+		<property name="polizaCopyDao" ref="polizaCopyDao" />
+		<property name="xmlAnexoModDao" ref="xmlAnexoModDao" />
+		<property name="calculoPrecioProduccionManager" ref="calculoPrecioProduccionManager" />
+	</bean>
+	
+	<bean id="calculoPrecioProduccionManager"
+		class="com.rsi.agp.core.managers.impl.CalculoPrecioProduccionManager">
+		<property name="calculoProduccionDao" ref="calculoProduccionDao" />
+		<property name="calculoPrecioDao" ref="calculoPrecioDao" />
+		<property name="aseguradoAutorizadoDao" ref="aseguradoAutorizadoDao" />
+		<property name="modulosDao" ref="modulosDao" />
+		<property name="datosParcelaDao" ref="datosParcelaDao" />
+		<property name="datosParcelaAnexoDao" ref="datosParcelaAnexoDao" />
+		<property name="rendParcelaPolizaWSDao" ref="rendParcelaPolizaWSDao" />
+		<property name="rendParcelaAnexoWSDao" ref="rendParcelaAnexoWSDao" />
+		<property name="cpmTipoCapitalDao" ref="CPMTipoCapitalDAO" />
+		<property name="polizaDao" ref="polizaDao" />
+		<property name="xmlAnexoModDao" ref="xmlAnexoModDao" />
+		<property name="polizaCopyDao" ref="polizaCopyDao" />
+		<property name="datosParcelaManager" ref="datosParcelaManager" />
+		<property name="datosParcelaAnexoManager" ref="datosParcelaAnexoManager" />
+	</bean>
+	
+	<bean id="datosParcelaAnexoManager" class="com.rsi.agp.core.managers.impl.DatosParcelaAnexoManager">
+		<property name="datosParcelaAnexoDao" ref="datosParcelaAnexoDao" />
+		<property name="parcelaModificacionPolizaDao" ref="parcelaModificacionPolizaDao" />
+		<property name="lineaDao" ref="lineaDao" />
+	</bean>
+	
+	<bean id="parcelaModificacionPolizaDao" parent="baseTransactionProxy">
+		<property name="target">
+			<bean class="com.rsi.agp.dao.models.anexo.ParcelaModificacionPolizaDao">
+				<property name="sessionFactory">
+					<ref local="sessionFactory" />
+				</property>
+				<property name="databaseManager" ref="databaseManager" />
+			</bean>
+		</property>
+	</bean>
+	
+	<bean id="datosParcelaManager" class="com.rsi.agp.core.managers.impl.DatosParcelaManager">
+		<property name="ajaxManager" ref="ajaxManager" />
+		<property name="datosParcelaDao" ref="datosParcelaDao" />
+		<property name="terminoDao" ref="terminoDao" />
+		<property name="polizaDao" ref="polizaDao" />
+	</bean>
+	
+	<bean id="ajaxManager" class="com.rsi.agp.core.managers.impl.AjaxManager">
+		<property name="commonDao" ref="commonDao" />
+		<property name="ajaxDao" ref="ajaxDao" />
+	</bean>
+	
+	<bean id="ajaxDao" parent="baseTransactionProxy">
+		<property name="target">
+			<bean class="com.rsi.agp.dao.models.commons.AjaxDao">
+				<property name="sessionFactory">
+					<ref local="sessionFactory" />
+				</property>
+			</bean>
+		</property>
+	</bean>
+	
+	<bean id="commonDao" parent="baseTransactionProxy">
+		<property name="target">
+			<bean class="com.rsi.agp.dao.models.commons.CommonDao">
+				<property name="sessionFactory">
+					<ref local="sessionFactory" />
+				</property>
+			</bean>
+		</property>
+	</bean>
+	
+	<bean id="rendParcelaPolizaWSDao" parent="baseTransactionProxy">
+		<property name="target">
+			<bean class="com.rsi.agp.dao.models.poliza.ParcelaSWRendimientosDao">
+				<property name="sessionFactory">
+					<ref local="sessionFactory" />
+				</property>
+				<property name="databaseManager" ref="databaseManager" />
+			</bean>
+		</property>
+	</bean>
+	
+	<bean id="rendParcelaAnexoWSDao" parent="baseTransactionProxy">
+		<property name="target">
+			<bean class="com.rsi.agp.dao.models.anexo.ParcelaAMSWRendimientosDao">
+				<property name="sessionFactory">
+					<ref local="sessionFactory" />
+				</property>
+				<property name="databaseManager" ref="databaseManager" />
+			</bean>
+		</property>
+	</bean>
+	
+	<bean id="datosParcelaAnexoDao" parent="baseTransactionProxy">
+		<property name="target">
+			<bean class="com.rsi.agp.dao.models.poliza.DatosParcelaAnexoDao">
+				<property name="sessionFactory">
+					<ref local="sessionFactory" />
+				</property>
+			</bean>
+		</property>
+	</bean>
+	
+	<bean id="modulosDao" parent="baseTransactionProxy">
+		<property name="target">
+			<bean class="com.rsi.agp.dao.models.cpl.ModulosDao">
+				<property name="sessionFactory">
+					<ref local="sessionFactory" />
+				</property>
+			</bean>
+		</property>
+	</bean>
+	
+	<bean id="aseguradoAutorizadoDao" parent="baseTransactionProxy">
+		<property name="target">
+			<bean class="com.rsi.agp.dao.models.cpl.AseguradoAutorizadoDao">
+				<property name="sessionFactory">
+					<ref local="sessionFactory" />
+				</property>
+			</bean>
+		</property>
+	</bean>
+	
+	<bean id="calculoPrecioDao" parent="baseTransactionProxy">
+		<property name="target">
+			<bean class="com.rsi.agp.dao.models.poliza.CalculoPrecioDao">
+				<property name="sessionFactory">
+					<ref local="sessionFactory" />
+				</property>
+				<property name="databaseManager" ref="databaseManager" />
+			</bean>
+		</property>
+	</bean>
+	
+	<bean id="calculoProduccionDao" parent="baseTransactionProxy">
+		<property name="target">
+			<bean class="com.rsi.agp.dao.models.poliza.CalculoProduccionDao">
+				<property name="sessionFactory">
+					<ref local="sessionFactory" />
+				</property>
+				<property name="databaseManager" ref="databaseManager" />
+			</bean>
+		</property>
+	</bean>
+	
+	<bean id="polizaManager" class="com.rsi.agp.core.managers.impl.PolizaManager">
+		<property name="polizaDao" ref="polizaDao" />
+		<property name="seleccionPolizaDao" ref="seleccionPolizaDao" />
+		<property name="claseDao" ref="claseDao" />
+		<property name="claseDetalleDao" ref="claseDetalleDao" />
+		<property name="fechaContratacionDao" ref="fechaContratacionDao" />
+		<property name="cpmTipoCapitalDao" ref="CPMTipoCapitalDAO" />
+		<property name="calculoPrecioProduccionManager" ref="calculoPrecioProduccionManager" />
+		<property name="seleccionPolizaManager" ref="seleccionPolizaManager" />
+		<property name="datosAvalDao" ref="datosAvalDao" />
+		<property name="webServicesManager" ref="webServicesManager" />
+		<property name="seleccionComparativaSWDao" ref="seleccionComparativaSWDao" />
+	</bean>
+	
+	<bean id="seleccionComparativaSWDao" parent="baseTransactionProxy">
+		<property name="target">
+			<bean
+				class="com.rsi.agp.dao.models.poliza.ganado.SeleccionComparativaSWDao">
+				<property name="sessionFactory">
+					<ref local="sessionFactory" />
+				</property>
+			</bean>
+		</property>
+	</bean>
+	
+	<bean id="webServicesManager" class="com.rsi.agp.core.managers.impl.WebServicesManager">
+		<property name="polizaDao" ref="polizaDao" />
+		<property name="distribucionCosteDAO" ref="distribucionCosteDAO" />
+		<property name="comparativaDao" ref="comparativaDao" />
+		<property name="caracteristicaExplotacionDao" ref="caracteristicaExplotacionDao" />
+		<property name="cpmTipoCapitalDao" ref="CPMTipoCapitalDAO" />
+		<property name="cuadroCoberturasManager" ref="cuadroCoberturasManager" />
+		<property name="caracteristicaExplotacionManager" ref="caracteristicaExplotacionManager" />
+		<property name="polizasPctComisionesDao" ref="polizasPctComisionesDao" />
+		<property name="pagoPolizaManager" ref="pagoPolizaManager" />
+		<property name="polizasPctComisionesManager" ref="polizasPctComisionesManager" />
+		<property name="condicionesFraccionamientoDao" ref="condicionesFraccionamientoDao" />
+		<property name="historicoWSManager" ref="historicoWSManager" />
+		<property name="seleccionComparativasSWManager" ref="seleccionComparativasSWManager" />
+		<property name="importesFraccDao" ref="importesFraccDao" />
+		<property name="errorWsAccionDao" ref="errorWsAccionDao"></property>
+		<property name="historicoEstadosManager" ref="historicoEstadosManager"></property>
+		<property name="seleccionPolizaDao" ref="seleccionPolizaDao"></property>
+		<property name="mtoComisionesRenovService" ref="mtoComisionesRenovService" />
+	</bean>
+	
+	<bean id="historicoWSManager" class="com.rsi.agp.core.managers.impl.HistoricoWSManager">
+		<property name="polizasSWFinanciacionDao" ref="polizasSWFinanciacionDao" />
+	</bean>
+	
+	<bean id="polizasSWFinanciacionDao" parent="baseTransactionProxy">
+		<property name="target">
+			<bean class="com.rsi.agp.dao.models.poliza.PolizasSWFinanciacionDao">
+				<property name="sessionFactory">
+					<ref local="sessionFactory" />
+				</property>
+			</bean>
+		</property>
+	</bean>
+	
+	<bean id="polizasPctComisionesManager"
+		class="com.rsi.agp.core.managers.impl.PolizasPctComisionesManager">
+		<property name="polizasPctComisionesDao" ref="polizasPctComisionesDao" />
+	</bean>
+	
+	<bean id="pagoPolizaManager" class="com.rsi.agp.core.managers.impl.PagoPolizaManager">
+		<property name="pagoPolizaDao" ref="pagoPolizaDao" />
+		<property name="polizaManager" ref="polizaManager" />
+	</bean>
+	
+	<bean id="pagoPolizaDao" parent="baseTransactionProxy">
+		<property name="target">
+			<bean class="com.rsi.agp.dao.models.poliza.PagoPolizaDao">
+				<property name="sessionFactory">
+					<ref local="sessionFactory" />
+				</property>
+			</bean>
+		</property>
+	</bean>
+	
+	<bean id="caracteristicaExplotacionManager"
+		class="com.rsi.agp.core.managers.impl.CaracteristicaExplotacionManager">
+		<property name="polizaDao" ref="polizaDao" />
+		<property name="caracteristicaExplotacionDao" ref="caracteristicaExplotacionDao" />
+		<property name="cpmTipoCapitalDao" ref="CPMTipoCapitalDAO" />
+	</bean>
+	
+	<bean id="mtoComisionesRenovService"
+		class="com.rsi.agp.core.jmesa.service.impl.MtoComisionesRenovService">
+		<property name="mtoComisionesRenovDao" ref="mtoComisionesRenovDao" />
+		<property name="polizasRenovablesDao" ref="polizasRenovablesDao" />
+		<property name="lineaDao" ref="lineaDao" />
+		<property name="id" value="consultaComisionesRenov" />
+	</bean>
+	
+	<bean id="mtoComisionesRenovDao" parent="baseTransactionProxy">
+		<property name="target">
+			<bean class="com.rsi.agp.core.jmesa.dao.impl.MtoComisionesRenovDao">
+				<property name="sessionFactory">
+					<ref local="sessionFactory" />
+				</property>
+				<property name="databaseManager" ref="databaseManager" />
+			</bean>
+		</property>
+	</bean>
+	
+	<bean id="polizasRenovablesDao" parent="baseTransactionProxy">
+		<property name="target">
+			<bean class="com.rsi.agp.core.jmesa.dao.impl.PolizasRenovablesDao">
+				<property name="sessionFactory">
+					<ref local="sessionFactory" />
+				</property>
+			</bean>
+		</property>
+	</bean>
+	
+	<bean id="errorWsAccionDao" parent="baseTransactionProxy">
+		<property name="target">
+			<bean class="com.rsi.agp.dao.models.config.ErrorWsAccionDao">
+				<property name="sessionFactory">
+					<ref local="sessionFactory" />
+				</property>
+				<property name="databaseManager" ref="databaseManager" />
+			</bean>
+		</property>
+	</bean>
+	
+	<bean id="importesFraccDao" parent="baseTransactionProxy">
+		<property name="target">
+			<bean class="com.rsi.agp.core.jmesa.dao.impl.ImportesFraccDao">
+				<property name="sessionFactory">
+					<ref local="sessionFactory" />
+				</property>
+				<property name="databaseManager" ref="databaseManager" />
+			</bean>
+		</property>
+	</bean>
+	
+	<bean id="condicionesFraccionamientoDao" parent="baseTransactionProxy">
+		<property name="target">
+			<bean class="com.rsi.agp.dao.models.poliza.CondicionesFraccionamientoDao">
+				<property name="sessionFactory">
+					<ref local="sessionFactory" />
+				</property>
+				<property name="databaseManager" ref="databaseManager" />
+			</bean>
+		</property>
+	</bean>
+	
+	<bean id="cuadroCoberturasManager"
+		class="com.rsi.agp.core.managers.impl.coberturas.CuadroCoberturasManager">
+		<property name="claseDao" ref="claseDao" />
+		<property name="claseDetalleDao" ref="claseDetalleDao" />
+		<property name="aseguradoAutorizadoDao" ref="aseguradoAutorizadoDao" />
+		<property name="cpmTipoCapitalDao" ref="CPMTipoCapitalDAO" />
+		<property name="riesgoCubiertoModuloDao" ref="riesgoCubiertoModuloDao" />
+		<property name="caracteristicaModuloDao" ref="caracteristicaModuloDao" />
+		<property name="cuadroCoberturasDao" ref="cuadroCoberturasDao" />
+		<property name="moduloManager" ref="moduloManager" />
+		<property name="polizaDao" ref="polizaDao" />
+		<property name="solicitudModificacionManager" ref="solicitudModificacionManager"/>
+		<property name="seleccionComparativaSWDao" ref="seleccionComparativaSWDao" />
+		<property name="seleccionComparativasSWManager" ref="seleccionComparativasSWManager" />
+	</bean>
+	
+	<bean id="seleccionComparativasSWManager"
+		class="com.rsi.agp.core.managers.impl.SeleccionComparativasSWManager">
+		<property name="seleccionPolizaManager" ref="seleccionPolizaManager" />
+		<property name="moduloManager" ref="moduloManager" />
+		<property name="polizaDao" ref="polizaDao" />
+		<property name="seleccionComparativaSWDao" ref="seleccionComparativaSWDao" />
+		<property name="cpmTipoCapitalDao" ref="CPMTipoCapitalDAO" />
+	</bean>
+	
+	<bean id="moduloManager" class="com.rsi.agp.core.managers.impl.ModuloManager">
+		<property name="coberturasModificacionPolizaManager" ref="coberturasModificacionPolizaManager" />
+		<property name="polizaDao" ref="polizaDao" />
+	</bean>
+	
+	<bean id="coberturasModificacionPolizaManager"
+		class="com.rsi.agp.core.managers.impl.CoberturasModificacionPolizaManager">
+		<property name="coberturasModificacionPolizaDao" ref="coberturasModificacionPolizaDao" />
+		<property name="declaracionModificacionPolizaDao" ref="declaracionModificacionPolizaDao" />
+		<property name="polizaCopyDao" ref="polizaCopyDao" />
+		<property name="xmlAnexoModDao" ref="xmlAnexoModDao" />
+		<property name="polizaManager" ref="polizaManager" />
+		<property name="moduloManager" ref="moduloManager" />
+		<property name="cpmTipoCapitalDao" ref="CPMTipoCapitalDAO" />
+		<property name="cuadroCoberturasManager" ref="cuadroCoberturasManager" />
+		<property name="lineaDao" ref="lineaDao" />
+		<property name="solicitudModificacionManager" ref="solicitudModificacionManager" />
+		<property name="seleccionComparativasAnexoSWManager" ref="seleccionComparativasAnexoSWManager" />
+	</bean>
+	
+	<bean id="coberturasModificacionPolizaDao" parent="baseTransactionProxy">
+		<property name="target">
+			<bean class="com.rsi.agp.dao.models.anexo.CoberturasModificacionPolizaDao">
+				<property name="sessionFactory">
+					<ref local="sessionFactory" />
+				</property>
+			</bean>
+		</property>
+	</bean>
+	
+	<bean id="seleccionComparativasAnexoSWManager"
+		class="com.rsi.agp.core.managers.impl.anexoMod.SeleccionComparativasAnexoSWManager">
+		<property name="solicitudModificacionManager" ref="solicitudModificacionManager" />
+		<property name="declaracionesModificacionPolizaManager" ref="declaracionesModificacionPolizaManager" />
+		<property name="moduloManager" ref="moduloManager" />
+		<property name="polizaDao" ref="polizaDao" />
+		<property name="seleccionComparativaSWDao" ref="seleccionComparativaSWDao" />
+		<property name="xmlAnexoModDao" ref="xmlAnexoModDao" />
+	</bean>
+	
+	<bean id="declaracionesModificacionPolizaManager"
+		class="com.rsi.agp.core.managers.impl.DeclaracionesModificacionPolizaManager">
+		<property name="declaracionModificacionPolizaDao" ref="declaracionModificacionPolizaDao" />
+		<property name="subvDeclaradaDao" ref="subvDeclaradaDao" />
+		<property name="polizaDao" ref="polizaDao" />
+		<property name="polizaCopyDao" ref="polizaCopyDao" />
+		<property name="polizaCopyManager" ref="polizaCopyManager" />
+		<property name="xmlAnexoModDao" ref="xmlAnexoModDao" />
+		<property name="cpmTipoCapitalDao" ref="CPMTipoCapitalDAO" />
+		<property name="lineaDao" ref="lineaDao" />
+		<property name="historicoEstadosManager" ref="historicoEstadosManager" />
+		<property name="estadoCuponDao" ref="estadoCuponDao" />
+		<property name="solicitudModificacionManager" ref="solicitudModificacionManager" />
+		<property name="cuponDao" ref="cuponDao" />
+	</bean>
+	
+	<bean id="subvDeclaradaDao" parent="baseTransactionProxy">
+		<property name="target">
+			<bean class="com.rsi.agp.dao.models.anexo.SubvDeclaradaDao">
+				<property name="sessionFactory">
+					<ref local="sessionFactory" />
+				</property>
+			</bean>
+		</property>
+	</bean>
+	
+	<bean id="polizaCopyManager" class="com.rsi.agp.core.managers.impl.PolizaCopyManager">
+		<property name="polizaCopyDao" ref="polizaCopyDao" />
+		<property name="polizaDao" ref="polizaDao" />
+		<property name="webServicesManager" ref="webServicesManager" />
+		<property name="diccionarioDatosDao" ref="diccionarioDatosDao" />
+	</bean>
+	
+	<bean id="estadoCuponDao" parent="baseTransactionProxy">
+		<property name="target">
+			<bean class="com.rsi.agp.dao.models.anexo.EstadoCuponDao">
+				<property name="sessionFactory">
+					<ref local="sessionFactory" />
+				</property>
+			</bean>
+		</property>
+	</bean>
+	
+	<bean id="cuadroCoberturasDao" parent="baseTransactionProxy">
+		<property name="target">
+			<bean class="com.rsi.agp.dao.models.coberturas.CuadroCoberturasDao">
+				<property name="sessionFactory">
+					<ref local="sessionFactory" />
+				</property>
+			</bean>
+		</property>
+	</bean>
+	
+	<bean id="caracteristicaModuloDao" parent="baseTransactionProxy">
+		<property name="target">
+			<bean class="com.rsi.agp.dao.models.cpl.CaracteristicasModuloDao">
+				<property name="sessionFactory">
+					<ref local="sessionFactory" />
+				</property>
+			</bean>
+		</property>
+	</bean>
+	
+	<bean id="riesgoCubiertoModuloDao" parent="baseTransactionProxy">
+		<property name="target">
+			<bean class="com.rsi.agp.dao.models.poliza.RiesgoCubiertoModuloDao">
+				<property name="sessionFactory">
+					<ref local="sessionFactory" />
+				</property>
+			</bean>
+		</property>
+	</bean>
+	
+	<bean id="caracteristicaExplotacionDao" parent="baseTransactionProxy">
+		<property name="target">
+			<bean class="com.rsi.agp.dao.models.poliza.CaracteristicaExplotacionDao">
+				<property name="sessionFactory">
+					<ref local="sessionFactory" />
+				</property>
+			</bean>
+		</property>
+	</bean>
+	
+	<bean id="comparativaDao" parent="baseTransactionProxy">
+		<property name="target">
+			<bean class="com.rsi.agp.dao.models.poliza.ComparativaDao">
+				<property name="sessionFactory">
+					<ref local="sessionFactory" />
+				</property>
+			</bean>
+		</property>
+	</bean>
+	
+	<bean id="datosAvalDao" parent="baseTransactionProxy">
+		<property name="target">
+			<bean class="com.rsi.agp.dao.models.poliza.DatosAvalDao">
+				<property name="sessionFactory">
+					<ref local="sessionFactory" />
+				</property>
+				<property name="databaseManager" ref="databaseManager" />
+			</bean>
+		</property>
+	</bean>
+	
+	<bean id="fechaContratacionDao" parent="baseTransactionProxy">
+		<property name="target">
+			<bean class="com.rsi.agp.dao.models.poliza.FechaContratacionDao">
+				<property name="sessionFactory">
+					<ref local="sessionFactory" />
+				</property>
+			</bean>
+		</property>
+	</bean>
+	
+	<bean id="claseDao" parent="baseTransactionProxy">
+		<property name="target">
+			<bean class="com.rsi.agp.dao.models.admin.ClaseDao">
+				<property name="sessionFactory">
+					<ref local="sessionFactory" />
+				</property>
+			</bean>
+		</property>
+	</bean>
+	
+	<bean id="claseDetalleDao" parent="baseTransactionProxy">
+		<property name="target">
+			<bean class="com.rsi.agp.dao.models.config.ClaseDetalleDao">
+				<property name="sessionFactory">
+					<ref local="sessionFactory" />
+				</property>
+			</bean>
+		</property>
+	</bean>
+	
+	<bean id="seleccionPolizaDao" parent="baseTransactionProxy">
+		<property name="target">
+			<bean class="com.rsi.agp.dao.models.poliza.SeleccionPolizaDao">
+				<property name="sessionFactory">
+					<ref local="sessionFactory" />
+				</property>
+				<property name="calculoPrecioProduccionManager" ref="calculoPrecioProduccionManager" />
+				<property name="datosParcelaDao" ref="datosParcelaDao" />
+				<property name="databaseManager" ref="databaseManager" />
+			</bean>
+		</property>
+	</bean>
+	
+	<bean id="datosParcelaDao" parent="baseTransactionProxy">
+		<property name="target">
+			<bean class="com.rsi.agp.dao.models.poliza.DatosParcelaDao">
+				<property name="sessionFactory">
+					<ref local="sessionFactory" />
+				</property>
+				<property name="databaseManager" ref="databaseManager" />
+			</bean>
+		</property>
+	</bean>
+	
+	<bean id="capitalAseguradoDao" parent="baseTransactionProxy">
+		<property name="target">
+			<bean class="com.rsi.agp.dao.models.poliza.CapitalAseguradoDao">
+				<property name="sessionFactory">
+					<ref local="sessionFactory" />
+				</property>
+			</bean>
+		</property>
+	</bean>
+	
+	<bean id="CPMTipoCapitalDAO" parent="baseTransactionProxy">
+		<property name="target">
+			<bean class="com.rsi.agp.dao.models.cpm.CPMTipoCapitalDAO">
+				<property name="sessionFactory">
+					<ref local="sessionFactory" />
+				</property>
+				<property name="databaseManager" ref="databaseManager" />
+			</bean>
+		</property>
+	</bean>
+	
+	<bean id="distribucionCosteDAO" parent="baseTransactionProxy">
+		<property name="target">
+			<bean class="com.rsi.agp.dao.models.poliza.DistribucionCosteDao">
+				<property name="sessionFactory">
+					<ref local="sessionFactory" />
+				</property>
+			</bean>
+		</property>
+	</bean>
+	
+	<bean id="pantallaConfigurableDao" parent="baseTransactionProxy">
+		<property name="target">
+			<bean class="com.rsi.agp.dao.models.config.PantallaConfigurableDao">
+				<property name="sessionFactory">
+					<ref local="sessionFactory" />
+				</property>
+			</bean>
+		</property>
+	</bean>
+	
+	<bean id="polizaCopyDao" parent="baseTransactionProxy">
+		<property name="target">
+			<bean class="com.rsi.agp.dao.models.copy.PolizaCopyDao">
+				<property name="sessionFactory">
+					<ref local="sessionFactory" />
+				</property>
+				<property name="databaseManager" ref="databaseManager" />
+				<property name="polizaDao" ref="polizaDao" />
+			</bean>
+		</property>
+	</bean>
+	
+	<bean id="xmlAnexoModDao" parent="baseTransactionProxy">
+		<property name="target">
+			<bean class="com.rsi.agp.dao.models.anexo.XmlAnexoModificacionDao">
+				<property name="sessionFactory">
+					<ref local="sessionFactory" />
+				</property>
+				<property name="databaseManager" ref="databaseManager" />
+				<property name="dataSource" ref="dataSource" />
+				<property name="lobHandler" ref="lobHandler" />
+			</bean>
+		</property>
+	</bean>
+	
+	<bean id="aseguradoDao" parent="baseTransactionProxy">
+		<property name="target">
+			<bean class="com.rsi.agp.dao.models.admin.AseguradoDao">
+				<property name="sessionFactory">
+					<ref local="sessionFactory" />
+				</property>
+				<property name="databaseManager" ref="databaseManager" />
+			</bean>
+		</property>
+	</bean>
+	
+	<bean id="simulacionSbpDao" parent="baseTransactionProxy">
+        <property name="target">
+            <bean class="com.rsi.agp.dao.models.sbp.SimulacionSbpDao">
+                <property name="sessionFactory">
+                    <ref local="sessionFactory" />
+                </property>
+                <property name="databaseManager" ref="databaseManager" />
+                <property name="declaracionModificacionPolizaDao" ref="declaracionModificacionPolizaDao" />
+            </bean>
+        </property>
+    </bean>
+    
+    <bean id="declaracionModificacionPolizaDao" parent="baseTransactionProxy">
+		<property name="target">
+			<bean class="com.rsi.agp.dao.models.anexo.DeclaracionModificacionPolizaDao">
+				<property name="sessionFactory">
+					<ref local="sessionFactory" />
+				</property>
+			</bean>
+		</property>
+	</bean>
+	
+	<bean id="documentacionGedManager"
+		class="com.rsi.agp.core.managers.ged.impl.DocumentacionGedManager">
+		<property name="documentacionGedDao" ref="documentacionGedDao" />
+	</bean>
+	
+	<bean id="solicitudModificacionManager"
+		class="com.rsi.agp.core.managers.impl.anexoMod.solicitud.SolicitudModificacionManager">
+		<property name="enviosSWAnulacionDao" ref="enviosSWAnulacionDao"></property>
+		<property name="enviosSWSolicitudDao" ref="enviosSWSolicitudDao"></property>
+		<property name="cuponDao" ref="cuponDao" />
+		<property name="polizaDao" ref="polizaDao" />
+	</bean>
+	
+	<bean id="cuponDao" parent="baseTransactionProxy">
+		<property name="target">
+			<bean class="com.rsi.agp.dao.models.anexo.CuponDao">
+				<property name="sessionFactory">
+					<ref local="sessionFactory" />
+				</property>
+			</bean>
+		</property>
+	</bean>
+	
+	<bean id="polizaDao" parent="baseTransactionProxy">
+		<property name="target">
+			<bean class="com.rsi.agp.dao.models.poliza.PolizaDao">
+				<property name="sessionFactory">
+					<ref local="sessionFactory" />
+				</property>
+				<property name="databaseManager" ref="databaseManager" />
+				<property name="dataSource" ref="dataSource" />
+				<property name="lobHandler" ref="lobHandler" />
+			</bean>
+		</property>
+	</bean>
+	
+	<bean id="enviosSWAnulacionDao" parent="baseTransactionProxy">
+		<property name="target">
+			<bean class="com.rsi.agp.dao.models.anexo.EnviosSWAnulacionDao">
+				<property name="sessionFactory">
+					<ref local="sessionFactory" />
+				</property>
+			</bean>
+		</property>
+	</bean>
+	
+	<bean id="documentacionGedDao" parent="baseTransactionProxy">
+		<property name="target">
+			<bean class="com.rsi.agp.dao.models.ged.DocumentacionGedDao">
+				<property name="sessionFactory">
+					<ref local="sessionFactory" />
+				</property>
+				<property name="databaseManager" ref="databaseManager" />
+			</bean>
+		</property>
+	</bean>
+	
+	<bean id="anexoModificacionDao" parent="baseTransactionProxy">
+		<property name="target">
+			<bean class="com.rsi.agp.dao.models.poliza.AnexoModificacionDao">
+				<property name="sessionFactory">
+					<ref local="sessionFactory" />
+				</property>
+			</bean>
+		</property>
+	</bean>
+	
+	<bean id="tipoCapitalDao" parent="baseTransactionProxy">
+		<property name="target">
+			<bean class="com.rsi.agp.dao.models.poliza.TipoCapitalDao">
+				<property name="sessionFactory">
+					<ref local="sessionFactory" />
+				</property>
+			</bean>
+		</property>
+	</bean>
+	
+	<bean id="terminoDao" parent="baseTransactionProxy">
+		<property name="target">
+			<bean class="com.rsi.agp.dao.models.commons.TerminoDao">
+				<property name="sessionFactory">
+					<ref local="sessionFactory" />
+				</property>
+			</bean>
+		</property>
+	</bean>
+	
+	<bean id="cargaExplotacionesDao" parent="baseTransactionProxy">
+		<property name="target">
+			<bean class="com.rsi.agp.dao.models.poliza.ganado.CargaExplotacionesDao">
+				<property name="sessionFactory">
+					<ref local="sessionFactory" />
+				</property>
+			</bean>
+		</property>
+	</bean>
+	
+	<bean id="diccionarioDatosDao" parent="baseTransactionProxy">
+		<property name="target">
+			<bean class="com.rsi.agp.dao.models.config.DiccionarioDatosDao">
+				<property name="sessionFactory">
+					<ref local="sessionFactory" />
+				</property>
+			</bean>
+		</property>
+	</bean>
+	<!-- P0079313 [END] -->
+	
+	<bean id="auditoriaConfirmacionExtDao" parent="baseTransactionProxy">
+		<property name="target">
+			<bean class="com.rsi.agp.dao.models.contratacionext.AuditoriaConfirmacionExtDao">
+				<property name="sessionFactory">
+					<ref local="sessionFactory"/>
+				</property>
+			</bean>
+		</property>
+	</bean>
+	
+	<bean id="polizasPctComisionesDao" parent="baseTransactionProxy">
+		<property name="target">
+			<bean class="com.rsi.agp.dao.models.comisiones.PolizasPctComisionesDao">
+				<property name="sessionFactory">
+					<ref local="sessionFactory"/>
+				</property>
+				<property name="lineaDao" ref="lineaDao"/>
+			</bean>
+		</property>
+	</bean>
+	
+	<bean id="importacionPolizasExtDao" parent="baseTransactionProxy">
+		<property name="target">
+			<bean class="com.rsi.agp.dao.models.poliza.ImportacionPolizasExtDao">
+				<property name="sessionFactory">
+					<ref local="sessionFactory"/>
+				</property>
+			</bean>
+		</property>
+	</bean>
+	
+	<bean id="correduriaExternaDao" parent="baseTransactionProxy">
+		<property name="target">
+			<bean class="com.rsi.agp.dao.models.contratacionext.CorreduriaExternaDao">
+				<property name="sessionFactory">
+					<ref local="sessionFactory"/>
+				</property>
+			</bean>
+		</property>
+	</bean>
+	
+	<bean id="lineaDao" parent="baseTransactionProxy">
+		<property name="target">
+			<bean			
+				class="com.rsi.agp.dao.models.poliza.LineaDao">
+				<property name="sessionFactory">
+					<ref local="sessionFactory" />
+				</property>
+			</bean>
+		</property>
+	</bean>
+
+	<!-- P0079361 [BEGIN] -->
+	<bean id="solicitudReduccionCapManager"
+		class="com.rsi.agp.core.manager.impl.anexoRC.solicitudModificacion.SolicitudReduccionCapManager">
+		<property name="swAnexoRCHelper" ref="swAnexoRCHelper" />
+		<property name="enviosSWRCAnulacionDao" ref="enviosSWRCAnulacionDao" />
+		<property name="enviosSWRCSolicitudDao" ref="enviosSWRCSolicitudDao" />
+		<property name="cuponRCDao" ref="cuponRCDao" />
+	</bean>
+	
+	<bean id="enviosSWRCAnulacionDao" parent="baseTransactionProxy">
+		<property name="target">
+			<bean class="com.rsi.agp.dao.models.rc.EnviosSWAnulacionDao">
+				<property name="sessionFactory">
+					<ref local="sessionFactory" />
+				</property>
+			</bean>
+		</property>
+	</bean>
+	
+	<bean id="enviosSWRCSolicitudDao" parent="baseTransactionProxy">
+		<property name="target">
+			<bean class="com.rsi.agp.dao.models.rc.EnviosSWSolicitudDao">
+				<property name="sessionFactory">
+					<ref local="sessionFactory" />
+				</property>
+			</bean>
+		</property>
+	</bean>
+	
+	<bean id="cuponRCDao" parent="baseTransactionProxy">
+		<property name="target">
+			<bean class="com.rsi.agp.dao.models.rc.CuponDao">
+				<property name="sessionFactory">
+					<ref local="sessionFactory" />
+				</property>
+			</bean>
+		</property>
+	</bean>
+	
+	<bean id="swAnexoRCHelper" class="com.rsi.agp.core.manager.impl.anexoRC.SWAnexoRCHelper"></bean>
+	
+	<bean id="reduccionCapitalDao" parent="baseTransactionProxy">
+		<property name="target">
+			<bean class="com.rsi.agp.dao.models.poliza.ReduccionCapitalDao">
+				<property name="sessionFactory">
+					<ref local="sessionFactory" />
+				</property>
+			</bean>
+		</property>
+	</bean>
+	<!-- P0079361 [END] -->
+		
+	<bean id="baseDaoHibernate" parent="baseTransactionProxy">
+		<property name="target">		                  
+			<bean class="com.rsi.agp.dao.models.BaseDaoHibernate">
+				<property name="sessionFactory">
+					<ref local="sessionFactory" />
+				</property>
+				<property name="databaseManager" ref="databaseManager"/>
+			</bean>			
+		</property>		
+	</bean>
+	
+	<bean id="databaseManager" class="com.rsi.agp.dao.models.impl.DatabaseManager">
+		<property name="sessionFactory" ref="asyncSessionFactory"/>
+		<property name="sessionFactoryImportacion" ref="sessionFactoryImportacion"/>
+	</bean>
+	
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="lobHandler" ref="lobHandler" />
+		<property name="mappingResources">
+			<list>
+				<value>
+					com/rsi/agp/dao/tables/importacion/AuditoriaConfirmacionExt.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/importacion/AuditoriaAnexosExt.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/importacion/AuditoriaCalcAnxExt.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/importacion/AuditoriaSiniestrosExt.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/importacion/AuditoriaCalculoExt.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/importacion/AuditoriaValidarExt.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/importacion/CuponExt.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/importacion/ImportacionPolizasExt.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/batch/comunicacionesExternas/CorreduriaExterna.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/batch/comunicacionesExternas/ComunicacionExterna.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/poliza/PolizaPctComisiones.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/poliza/Poliza.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/commons/Usuario.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/commons/Oficina.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/commons/OficinasZona.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/admin/Entidad.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/admin/CorreoGrupo.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/commons/GrupoEntidades.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/admin/Clase.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/poliza/Linea.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/admin/Colectivo.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/admin/Tomador.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/commons/Localidad.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/commons/Comarca.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/commons/Provincia.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/commons/Comunidad.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/commons/Via.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/admin/SubentidadMediadora.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/admin/TipoMediadorAgro.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/admin/TipoMediador.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/admin/EntidadMediadora.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/admin/Asegurado.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/poliza/EstadoPoliza.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/poliza/EstadoAgroseguro.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/poliza/RelacionEstados.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/poliza/EstadoPagoAgp.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/poliza/DatosAval.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/poliza/HistoricoEstados.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/poliza/SubAseguradoCCAA.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/cpl/SubvencionCCAA.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/cgen/Garantizado.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/cpl/Modulo.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/cpl/Descuento.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/org/DiccionarioDatos.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/config/GrupoFactores.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/org/TipoNaturaleza.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/cpl/Variedad.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/cpl/Cultivo.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/cgen/TipoSubvencionCCAA.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/cgen/Organismo.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/cgen/TipoRendimiento.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/poliza/SubAseguradoCCAAGanado.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/cpl/gan/SubvencionCCAAGanado.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/cpl/gan/RegimenManejo.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/commons/Termino.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/cgen/TipoCapitalConGrupoNegocio.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/cgen/GruposNegocio.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/cpl/gan/GruposRazas.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/cpl/gan/Especie.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/cpl/gan/TiposAnimalGanado.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/poliza/ParcelaSWRendimiento.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/poliza/explotaciones/Explotacion.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/poliza/ModuloPoliza.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/cpl/RiesgoCubierto.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/poliza/ModuloPolizaCoberturaSW.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/poliza/CoberturaPoliza.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/cpl/RiesgoCubiertoModulo.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/cgen/ConceptoPpalModulo.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/sbp/PolizaSbp.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/sbp/EstadoPlzSbp.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/copy/Poliza.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/sbp/TipoEnvio.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/poliza/PagoPoliza.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/anexo/AnexoModificacion.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/anexo/Cupon.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/anexo/EstadoCupon.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/anexo/CuponPrevio.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/anexo/EstadoCuponPrevio.hbm.xml
+				</value>
+				<!-- P0079361 [BEGIN] -->
+				<value>
+					com/rsi/agp/dao/tables/reduccionCap/CuponRC.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/reduccionCap/EstadoCuponRC.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/reduccionCap/HistoricoCuponRC.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/reduccionCap/CuponPrevioRC.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/reduccionCap/EstadoCuponPrevioRC.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/reduccionCap/RedCapitalDistribucionCostes.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/reduccionCap/RedCapitalBonifRecargos.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/reduccionCap/RedCapitalSubvEnesa.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/reduccionCap/RedCapitalSubvCCAA.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/reduccionCap/EnviosSWXMLRC.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/reduccionCap/EnviosSWSolicitudRC.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/reduccionCap/EnviosSWAnulacionRC.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/reduccionCap/EnviosSWImpresionRC.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/reduccionCap/EnviosSWConfirmacionRC.hbm.xml
+				</value>
+				<!-- P0079361 [END] -->
+				<value>
+					com/rsi/agp/dao/tables/poliza/Comunicaciones.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/anexo/Estado.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/poliza/Parcela.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/siniestro/Siniestro.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/siniestro/EstadoSiniestro.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/poliza/SubAseguradoENESA.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/cpl/SubvencionEnesa.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/cgen/TipoSubvencionEnesa.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/poliza/SubAseguradoENESAGanado.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/cpl/gan/SubvencionEnesaGanado.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/poliza/SubvencionSocio.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/admin/Socio.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/poliza/SubvencionSocioGanado.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/reduccionCap/ReduccionCapital.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/reduccionCap/Estado.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/poliza/ComparativaPoliza.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/cpl/gan/RiesgoCubiertoModuloGanado.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/poliza/dc2015/DistribucionCoste2015.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/poliza/PolizaSocio.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/poliza/DistribucionCoste.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/poliza/EnvioAgroseguro.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/mtoinf/EntidadAccesoRestringido.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/admin/Correo.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/commons/PerfilesGrupoEntidades.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/commons/Perfil.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/admin/ClaseDetalle.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/cgen/TipoPlantacion.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/cgen/SistemaCultivo.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/cgen/CicloCultivo.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/admin/ClaseDetalleGanado.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/poliza/LineaGrupoNegocio.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/admin/HistoricoColectivos.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/comisiones/Descuentos.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/admin/TipoMediadorEntMed.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/admin/AseguradoSWDatPerMed.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/admin/DatoAsegurado.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/cgen/LineaCondicionado.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/poliza/SubvParcelaCCAA.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/cpl/VinculacionValoresModulo.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/cgen/TipoFranquicia.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/cgen/MinimoIndemnizableElegible.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/cgen/CalculoIndemnizacion.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/cgen/PctFranquiciaElegible.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/cgen/CapitalAseguradoElegible.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/cpl/CaracteristicaModulo.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/cpl/ConceptoCubiertoModulo.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/cpl/LimiteRendimiento.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/cgen/PracticaCultural.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/cgen/CaracteristicaExplotacion.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/cgen/SistemaConduccion.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/cgen/SistemaProduccion.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/cpl/GrupoTasaRiesgo.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/cpl/GrupoTasas.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/cgen/NumAniosDesdeDescorche.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/cgen/CertificadoInstalacion.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/cgen/TipoInstalacion.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/cgen/HistorialAsegurado.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/cgen/TipoTerreno.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/cgen/TipoMasa.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/cgen/GastoSalvamento.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/cgen/NivelRiesgo.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/cgen/Destino.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/cgen/SistemaProteccion.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/cgen/MaterialCubierta.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/cgen/TipoCapital.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/cgen/ProteccionCultivo.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/cgen/DenominacionOrigen.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/cgen/Alternativa.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/cgen/DanioCubierto.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/cpl/AsegSubvAdicionalEnesa.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/cpl/ReduccionRdtoAmbito.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/cgen/CodigoReduccionRendimiento.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/cpl/ValorEspecieAmbito.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/cpl/SistemaReduccionSubvCCAA.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/cpl/MascaraGrupoTasas.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/cpl/RelRiesgoCubiertoTarificable.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/cpl/RiesgoTarificable.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/cpl/MascaraLimiteRendimiento.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/cpl/ComisionAgraria.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/cpl/MascaraRendimientoCaracteristicaEspecifica.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/cpl/Precio.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/cpl/CodigoDenominacionOrigen.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/cgen/MaterialEstructura.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/cpl/RelEspeciesSCEspeciesST.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/cpl/AseguradoAutorizado.hbm.xml
+				</value>				
+				<value>
+					com/rsi/agp/dao/tables/cesp/ModuloCompatibleCe.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/cesp/PeriodoGarantiaCe.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/cpl/FechaFinGarantia.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/cpl/EstadoFenologico.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/cpl/RendimientoCaracteristicaEspecifica.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/cpl/TablaExternaCultivo.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/cpl/FechaContratacionAgricola.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/cpl/BonificacionMedidaPreventiva.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/cgen/MedidaPreventiva.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/cpl/CondicionesComisiones.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/cgen/Condicion.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/cpl/MascaraPrecio.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/cpl/FechaRecoleccion.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/cpl/MascaraFechaContrataAgricola.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/cpl/MedidasAsociadasHistorialAsegurado.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/cpl/Factor.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/cpl/MedidaFranquicia.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/org/OrganizadorInformacion.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/org/Ubicacion.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/org/Uso.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/org/NaturalezaAlternativa.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/org/Formularios.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/masc/CampoMascara.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/cgen/TablaCondicionado.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/config/RelacionCampo.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/poliza/DatoVariableParcela.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/poliza/ParcelaCobertura.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/cpl/TiposSubvIncompCalculadas.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/cgen/AseguradoNoSubvencionable.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/poliza/SubvExplotacionCCAA.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/cpl/gan/ObligatoriedadTiposAnimal.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/poliza/SubvExplotacionENESA.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/poliza/explotaciones/GrupoRaza.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/poliza/explotaciones/ExplotacionCobertura.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/anexo/CapitalDTSVariable.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/anexo/CapitalAsegurado.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/anexo/Parcela.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/sbp/ParcelaSbp.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/copy/Asegurado.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/copy/SubvencionOrganismo.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/copy/PagoPoliza.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/copy/Colectivo.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/copy/Parcela.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/copy/SubvencionEnesa.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/copy/CoberturaPoliza.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/copy/SubvencionDeclarada.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/poliza/explotaciones/ExplotacionAnexo.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/anexo/SubvDeclarada.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/anexo/ParcelaAMSWRendimiento.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/anexo/Cobertura.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/anexo/EnviosSWConfirmacion.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/anexo/AnexoModSWCalculo.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/anexo/AnexoModDistribucionCostes.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/anexo/AnexoModSWComparativas.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/anexo/HistoricoCupon.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/poliza/SubvParcelaENESA.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/poliza/ParcelaSWZonifSIGPAC.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/poliza/CapitalAsegurado.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/siniestro/ParcelaSiniestro.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/reduccionCap/Parcela.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/cpl/gan/VinculacionFilasModuloG.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/poliza/dc2015/DistCosteParcela2015.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/poliza/dc2015/DistCosteParcela2015GrupoNegocio.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/poliza/dc2015/DistCosteParcela2015BonifRec.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/poliza/dc2015/DistCosteParcela2015Subvencion.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/poliza/dc2015/DistCosteSubvencion2015.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/poliza/dc2015/BonificacionRecargo2015.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/poliza/dc2015/DistCosteExplotaciones.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/poliza/dc2015/DistCosteExplotacionesBonifRec.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/poliza/dc2015/DistCosteExplotacionesGrupoNegocio.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/poliza/dc2015/DistCosteExplotacionesSubvencion.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/poliza/DistCosteSubvencion.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/poliza/DistCosteParcela.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/commons/ErrorPerfiles.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/comisiones/DescuentosHistorico.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/cgen/ZonificacionGrupoCultivoDetalle.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/cpl/TablaBonus.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/cpl/CondicionesAsociadasTipologiaExplotacion.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/cpl/RiesgoTasable.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/config/ConfiguracionCampo.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/config/TipoCampo.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/config/PantallaConfigurable.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/config/Pantalla.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/config/OrigenDatos.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/config/Seccion.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/log/ImportacionTabla.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/log/HistImportaciones.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/log/TipoImportacion.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/poliza/explotaciones/DatosVariable.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/poliza/explotaciones/PrecioAnimalesModulo.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/poliza/explotaciones/ExplotacionCoberturaVinculacion.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/anexo/ParcelaAMSWZonifSIGPAC.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/copy/CapitalAsegurado.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/poliza/explotaciones/GrupoRazaAnexo.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/poliza/explotaciones/ExplotacionCoberturaAnexo.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/anexo/AnexoModBonifRecargos.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/anexo/AnexoModSubvEnesa.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/anexo/AnexoModSubvCCAA.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/poliza/CapAsegRelModulo.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/siniestro/CapAsegSiniestro.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/reduccionCap/CapitalAsegurado.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/copy/DatoVariableParcela.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/poliza/explotaciones/DatosVarExplotacionAnexo.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/poliza/explotaciones/PrecioAnimalesModuloAnexo.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/poliza/explotaciones/ExplotacionCoberturaVincAnexo.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/siniestro/DatVarCapAsegSiniestro.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/anexo/EstadoPlzAgroseguro.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/anexo/EnviosSWXML.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/anexo/EnviosSWSolicitud.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/anexo/EnviosSWAnulacion.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/anexo/EnviosSWImpresion.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/commons/ErrorWsAccion.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/commons/ErrorWs.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/commons/ErrorWsTipo.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/cgen/GrupoSeguro.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/cgen/Riesgo.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/cgen/Pendiente.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/cgen/ZonificacionFamilia.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/cgen/ZonificacionSIGPAC.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/cgen/ZonificacionGrupoCultivo.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/sbp/ErrorPlzSbp.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/sbp/ErrorSbp.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/renovables/EstadoRenovacionAgroseguro.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/renovables/PolizaRenovable.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/renovables/PolizaRenovableHistoricoEstados.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/renovables/PolizaRenovableEnvioIBANHistoricoEstados.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/renovables/GastosRenovacion.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/renovables/GastosRenovacionAplicados.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/renovables/CosteGrupoNegocioRen.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/renovables/BonificacionRecargoRen.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/renovables/EstadoRenovacionAgroplus.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/renovables/PolizaRenovableEstadoEnvioIBAN.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/renovables/ColectivosRenovacion.hbm.xml
+				</value>
+				<value>
+					com/rsi/agp/dao/tables/renovables/FraccionamientoRen.hbm.xml
+				</value>
+				<!-- Incidencias Agroseguro P50775 -->
+				<value>com/rsi/agp/dao/tables/inc/AsuntosInc.hbm.xml</value>
+				<value>com/rsi/agp/dao/tables/inc/Motivos.hbm.xml</value>
+				<value>com/rsi/agp/dao/tables/inc/DocsAfectadosInc.hbm.xml</value>
+				<value>com/rsi/agp/dao/tables/inc/DocumentosInc.hbm.xml</value>
+				<value>com/rsi/agp/dao/tables/inc/EstadosInc.hbm.xml</value>
+				<value>com/rsi/agp/dao/tables/inc/Incidencias.hbm.xml</value>
+				<value>com/rsi/agp/dao/tables/inc/IncidenciasHist.hbm.xml</value>
+				<value>com/rsi/agp/dao/tables/inc/LlamadaWSInc.hbm.xml</value>
+				<value>com/rsi/agp/dao/tables/inc/TiposDocInc.hbm.xml</value>
+				<value>com/rsi/agp/dao/tables/inc/VistaIncidenciasAgro.hbm.xml</value>
+				
+				<!-- GED -->
+				<value>com/rsi/agp/dao/tables/ged/GedDocPoliza.hbm.xml</value>
+				<!-- P0073325 RQ.04, RQ.05, RQ.06, RQ.10, RQ.11 y RQ.12 -->
+                <value>com/rsi/agp/dao/tables/poliza/CanalFirma.hbm.xml</value>
+                <value>com/rsi/agp/dao/tables/ged/GedDocPolizaSbp.hbm.xml</value>
+                
+                <!-- FAMILIAS -->
+				<value>com/rsi/agp/dao/tables/familias/Familia.hbm.xml</value>
+				<value>com/rsi/agp/dao/tables/familias/GrupoFamilia.hbm.xml</value>
+				<value>com/rsi/agp/dao/tables/familias/LineaFamilia.hbm.xml</value>
+			</list>
+		</property>
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">
+					org.hibernate.dialect.Oracle10gDialect
+				</prop>
+				<prop key="hibernate.show_sql">true</prop>
+				<prop key="hibernate.query.substitutions">
+					true 1, false 0
+				</prop>
+				<prop key="hibernate.query.factory_class">org.hibernate.hql.classic.ClassicQueryTranslatorFactory</prop>
+				<prop key="hibernate.generate_statistics">true</prop>
+				<prop key="hibernate.connection.isolation">2</prop>
+				<!-- MPM - Prueba para errores de nodo en producción -->
+				<prop key="hibernate.jndi.weblogic.jndi.replicateBindings">false</prop>
+			</props>
+		</property>
+	</bean>
+	
+	<bean id="asyncSessionFactory" class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">
+					org.hibernate.dialect.Oracle10gDialect
+				</prop>
+				<prop key="hibernate.show_sql">true</prop>
+				<prop key="hibernate.query.substitutions">
+					true 1, false 0
+				</prop>
+			</props>
+		</property>
+	</bean>
+	
+	<bean id="sessionFactoryImportacion" class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		<property name="dataSource" ref="dataSourceImport" />
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">
+					org.hibernate.dialect.Oracle10gDialect
+				</prop>
+				<prop key="hibernate.show_sql">true</prop>
+				<prop key="hibernate.query.substitutions">
+					true 1, false 0
+				</prop>
+			</props>
+		</property>
+	</bean>
+	
+	<bean id="baseTransactionProxy" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+		<property name="transactionManager">
+			<ref bean="transactionManager" />
+		</property>
+		<property name="target">
+			<bean class="java.lang.Object" />
+		</property>
+		<property name="transactionAttributes">
+			<props>
+				<prop key="*">PROPAGATION_REQUIRED</prop> 
+			</props>
+		</property>
+	</bean>
+	
+	<!-- Transaction manager for a single Hibernate SessionFactory (alternative to JTA) -->
+	<bean id="transactionManager"
+		class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	
+	<bean id="dataSource" class="org.springframework.jndi.JndiObjectFactoryBean">
+	    <property name="jndiName"><value>java:comp/env/jdbc/RSIAGP_DataSource_DEV</value></property>
+	</bean>
+	
+	<!-- Data source para las importaciones -->
+	<bean id="dataSourceImport" class="org.springframework.jndi.JndiObjectFactoryBean">
+		<property name="jndiName"><value>java:comp/env/jdbc/RSIAGP2_DataSource_DEV</value></property>					
+	</bean>
+	
+	<!--  LOB Support -->
+	<bean id="lobHandler" class="org.springframework.jdbc.support.lob.OracleLobHandler">
+        <property name="nativeJdbcExtractor" ref="nativeJdbcExtractor"/>
+    </bean>
+
+    <bean id="nativeJdbcExtractor" class="org.springframework.jdbc.support.nativejdbc.CommonsDbcpNativeJdbcExtractor"/>
+    
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"/>
+
+    <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+</beans>

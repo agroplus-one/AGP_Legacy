@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<x:schema elementFormDefault="qualified"
+	attributeFormDefault="unqualified"
+	targetNamespace="http://www.agroseguro.es/AcuseRecibo"
+	xmlns="http://www.agroseguro.es/AcuseRecibo"
+	xmlns:x="http://www.w3.org/2001/XMLSchema"
+>
+
+	<x:element name="AcuseRecibo" type="AcuseRecibo" />
+	
+	<x:complexType name="AcuseRecibo">
+		<x:sequence>
+			<x:element name="Documento" type="Documento" minOccurs="1" maxOccurs="unbounded" />
+		</x:sequence>
+		<x:attribute name="documentosRecibidos" type="x:int" use="required" >
+			<x:annotation>
+				<x:documentation>
+					<dd>Docs Recibidos Envio Com.</dd>
+				</x:documentation>
+			</x:annotation>
+		</x:attribute>
+		<x:attribute name="documentosAceptados" type="x:int" use="required" >
+			<x:annotation>
+				<x:documentation>
+					<dd>Docs Aceptados.</dd>
+				</x:documentation>
+			</x:annotation>
+		</x:attribute>
+		<x:attribute name="fechaRecepcion" type="x:dateTime" use="required" >
+			<x:annotation>
+				<x:documentation>
+					<dd>Fec. Recepcion Envio Com.</dd>
+				</x:documentation>
+			</x:annotation>
+		</x:attribute>
+		<x:attribute name="fechaRespuesta" type="x:dateTime" use="required" >
+			<x:annotation>
+				<x:documentation>
+					<dd>Fec. Respuesta Envio Com.</dd>
+				</x:documentation>
+			</x:annotation>
+		</x:attribute>
+		<x:attribute name="tipoDocumento" type="x:token" use="required" >
+			<x:annotation>
+				<x:documentation>
+					<dd>Fec. Respuesta Envio Com.</dd>
+				</x:documentation>
+			</x:annotation>
+		</x:attribute>
+		<x:attribute name="id" type="x:token" use="optional" >
+			<x:annotation>
+				<x:documentation>
+					<dd>Identificador Envio Com.</dd>
+				</x:documentation>
+			</x:annotation>
+		</x:attribute>
+	</x:complexType>
+
+	<x:complexType name="Documento">
+		<x:sequence>
+			<x:element name="DatosAsociados" type="DatosAsociados" minOccurs="0" maxOccurs="1" />
+			<x:element name="Error" type="Error" minOccurs="0" maxOccurs="unbounded" />
+		</x:sequence>
+		<x:attribute name="id" type="x:token" use="optional" >
+			<x:annotation>
+				<x:documentation>
+					<dd>Identificador Envio Com.</dd>
+				</x:documentation>
+			</x:annotation>
+		</x:attribute>
+		<x:attribute name="estado" use="required" type="x:int" />
+	</x:complexType>
+
+	<x:complexType name="Error">
+		<x:sequence>
+			<x:element name="Localizacion" type="Localizacion" minOccurs="0" maxOccurs="1" />
+		</x:sequence>
+		<x:attribute name="codigo" type="x:token" use="required" />
+		<x:attribute name="descripcion" type="x:token" use="required" />
+		<x:attribute name="tipo" use="required" type="x:int" />
+	</x:complexType>
+	
+	<x:complexType name="Localizacion" >
+		<x:attribute name="xpath" type="x:token" use="required" />
+		<x:attribute name="fila" type="x:int" use="optional" />
+		<x:attribute name="columna" type="x:int" use="optional" />
+	</x:complexType>
+
+	<x:complexType name="DatosAsociados" >
+		<x:sequence>
+			<x:any minOccurs="0" maxOccurs="unbounded" processContents="skip"/>
+		</x:sequence>
+		<x:anyAttribute namespace="##any" processContents="lax"/>
+	</x:complexType>
+
+</x:schema>

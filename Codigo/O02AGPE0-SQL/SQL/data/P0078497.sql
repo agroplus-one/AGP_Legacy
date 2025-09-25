@@ -1,0 +1,2 @@
+insert into o02agpe0.tb_config_agp values ('CARGA_COMS_HORA_LIMITE','12:00','Hora limite para la repeticion del proceso de obtencion de fichero de comisiones');
+insert into o02agpe0.tb_config_agp values ('CARGA_COMS_REINTENTOS_MS','600000','Tiempo de espera para el siguiente intento de obtencion de fichero de comisiones');

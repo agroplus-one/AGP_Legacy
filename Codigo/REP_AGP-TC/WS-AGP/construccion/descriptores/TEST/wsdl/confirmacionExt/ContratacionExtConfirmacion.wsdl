@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions name="ContratacionExtConfirmacionImplService"
+	targetNamespace="http://agp.rsi.com/serviciosweb/ContratacionExtConfirmacion/"
+	xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	xmlns:tns="http://agp.rsi.com/serviciosweb/ContratacionExtConfirmacion/"
+	xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata"
+	xmlns:wsp1_2="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsp="http://www.w3.org/ns/ws-policy"
+	xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd">
+	<wsp:Policy wsu:Id="ContratacionExtConfirmacionPortBinding_MTOM_Policy">
+		<ns1:OptimizedMimeSerialization
+			wsp:Optional="true"
+			xmlns:ns1="http://schemas.xmlsoap.org/ws/2004/09/policy/optimizedmimeserialization" />
+	</wsp:Policy>
+	<types>
+		<xsd:schema>
+			<xsd:import schemaLocation="http://localhost:8080/WS-AGP/ContratacionExt?xsd=1"
+				namespace="http://www.w3.org/2005/05/xmlmime" />
+		</xsd:schema>
+		<xsd:schema>
+			<xsd:import schemaLocation="http://localhost:8080/WS-AGP/ContratacionExt?xsd=2"
+				namespace="http://agp.rsi.com/serviciosweb/ContratacionExtConfirmacion/" />
+		</xsd:schema>
+	</types>
+	<message name="confirmar">
+		<part name="parameters" element="tns:confirmarRequest" />
+	</message>
+	<message name="confirmarResponse">
+		<part name="parameters" element="tns:confirmarResponse" />
+	</message>
+	<message name="anularCupon">
+		<part name="parameters" element="tns:anularCuponRequest" />
+	</message>
+	<message name="anularCuponResponse">
+		<part name="parameters" element="tns:anularCuponResponse" />
+	</message>
+	<message name="solicitarCupon">
+		<part name="parameters" element="tns:solicitudCuponRequest" />
+	</message>
+	<message name="solicitarCuponResponse">
+		<part name="parameters" element="tns:solicitudCuponResponse" />
+	</message>
+	<portType name="ContratacionExtConfirmacion">
+		<operation name="confirmar">
+			<input message="tns:confirmar"
+				wsam:Action="http://agp.rsi.com/serviciosweb/ContratacionExtConfirmacion/confirmar" />
+			<output message="tns:confirmarResponse"
+				wsam:Action="http://agp.rsi.com/serviciosweb/ContratacionExtConfirmacion/ContratacionExtConfirmacion/confirmarResponse" />
+		</operation>
+		<operation name="anularCupon">
+			<input message="tns:anularCupon"
+				wsam:Action="http://agp.rsi.com/serviciosweb/ContratacionExtConfirmacion/anularCupon" />
+			<output message="tns:anularCuponResponse"
+				wsam:Action="http://agp.rsi.com/serviciosweb/ContratacionExtConfirmacion/ContratacionExtConfirmacion/anularCuponResponse" />
+		</operation>
+		<operation name="solicitarCupon">
+			<input message="tns:solicitarCupon"
+				wsam:Action="http://agp.rsi.com/serviciosweb/ContratacionExtConfirmacion/solicitarCupon" />
+			<output message="tns:solicitarCuponResponse"
+				wsam:Action="http://agp.rsi.com/serviciosweb/ContratacionExtConfirmacion/ContratacionExtConfirmacion/solicitarCuponResponse" />
+		</operation>
+	</portType>
+	<binding name="ContratacionExtConfirmacionPortBinding" type="tns:ContratacionExtConfirmacion">
+		<wsp:PolicyReference
+			URI="#ContratacionExtConfirmacionPortBinding_MTOM_Policy" />
+		<soap:binding style="document"
+			transport="http://schemas.xmlsoap.org/soap/http" />
+		<operation name="confirmar">
+			<soap:operation
+				soapAction="http://agp.rsi.com/serviciosweb/ContratacionExtConfirmacion/confirmar" />
+			<input>
+				<soap:body use="literal" />
+			</input>
+			<output>
+				<soap:body use="literal" />
+			</output>
+		</operation>
+		<operation name="anularCupon">
+			<soap:operation
+				soapAction="http://agp.rsi.com/serviciosweb/ContratacionExtConfirmacion/anularCupon" />
+			<input>
+				<soap:body use="literal" />
+			</input>
+			<output>
+				<soap:body use="literal" />
+			</output>
+		</operation>
+		<operation name="solicitarCupon">
+			<soap:operation
+				soapAction="http://agp.rsi.com/serviciosweb/ContratacionExtConfirmacion/solicitarCupon" />
+			<input>
+				<soap:body use="literal" />
+			</input>
+			<output>
+				<soap:body use="literal" />
+			</output>
+		</operation>
+	</binding>
+	<service name="ContratacionExtConfirmacionImplService">
+		<port name="ContratacionExtConfirmacionPort" binding="tns:ContratacionExtConfirmacionPortBinding">
+			<soap:address location="https://agp.test.risa/WS-AGP/ContratacionExt" />
+		</port>
+	</service>
+</definitions>

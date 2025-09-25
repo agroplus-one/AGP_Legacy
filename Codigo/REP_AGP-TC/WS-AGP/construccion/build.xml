@@ -1,0 +1,143 @@
+<project name="WS AGROPLUS" default="all">
+
+	<property file="${basedir}/build.general.properties"/>
+	<property file="${basedir}/libraries.properties"/>
+	<property name="carpetaWS" value="${basedir}/descriptores/${entorno}/wsdl"/>
+	<filter filtersfile="${basedir}/build.general.properties"/>
+
+	<target name="all" depends="clean, init, copiardescriptores, copiar_librerias, compile, dist_ws_project" />
+	
+	<path id="path.classpath">
+		<fileset dir="${ws_content}/WEB-INF/lib" >
+			<include name="**/*.jar"/>
+		</fileset>
+	</path>
+	
+	<target name="compile" depends="init">
+	    <javac target="1.6" source="1.6" includeantruntime="false" srcdir="${src}" destdir="${ws_content}/WEB-INF/classes" includes="**/*.java,**/*.xml,**/*.properties" debug="true">
+			<classpath refid="path.classpath"/>
+		</javac>
+	</target>
+
+	<target name="init" depends="clean">
+		<echo message="*******************************************************" />
+		<echo message="****************** WS AGROPLUS ***********************" />
+		<echo message="*******************************************************" />
+		<mkdir dir="${ws_content}/WEB-INF/attachments"/>
+		<mkdir dir="${ws_content}/WEB-INF/classes"/>
+	</target>
+
+	<target name="copiardescriptores" depends="init">
+		<echo message="Copiando ficheros desde ${path_descr_entorno} a ${ws_content}/WEB-INF/classes" />
+		<copy todir="${ws_content}/WEB-INF/classes">
+			<fileset dir="${path_descr_entorno}">
+			    <include name="*.properties"/>
+			</fileset>
+		</copy>
+		<copy todir="${ws_content}/WEB-INF">
+			<fileset dir="${path_descr_entorno}" includes="*.xml, log4j.properties" />
+		</copy>
+		<mkdir dir="${ws_content}/WEB-INF/wsdl"/>
+		<copy todir="${ws_content}/WEB-INF/wsdl">
+			<fileset dir="${carpetaWS}" includes="**/*.*" />
+		</copy>
+		<tstamp>
+			<format property="build_date" pattern="yyyyMMdd-HHmm" offset="1"/>
+		</tstamp>
+		<filter token="build_date" value="${build_date}"/>
+		<copy todir="${ws_content}" filtering="on" overwrite="yes">
+			<fileset dir="${base}" includes="version.txt" />
+		</copy>
+	</target>
+
+	<target name="clean">
+		<delete dir="${ws_content}/WEB-INF/classes"/>
+		<delete dir="${ws_content}/WEB-INF/lib"/>
+		<delete dir="${ws_content}/WEB-INF/wsdl"/>
+		<delete dir="${ws_content}/WEB-INF/attachments"/>
+	</target>
+
+	<target name="copiar_librerias" depends="copiardescriptores">
+		<mkdir dir="${ws_content}/WEB-INF/lib" />
+		<copy todir="${ws_content}/WEB-INF/lib" flatten="true">
+			<fileset file="${hibernate.jar}" />
+			<fileset file="${persistence-api.jar}" />
+			<fileset file="${jta.jar}" />
+			<fileset file="${oracle.jar}" />
+			<fileset dir="${log4j.dir}" >
+				<include name="**/*.jar"/>
+			</fileset>
+			<fileset dir="${bsh.dir}" >
+				<include name="**/*.jar"/>
+			</fileset>
+			<fileset dir="${dom4j.dir}" >
+				<include name="**/*.jar"/>
+			</fileset>
+			<fileset dir="${cglib.dir}" >
+				<include name="**/*.jar"/>
+			</fileset>
+			<fileset dir="${asm.dir}" >
+				<include name="**/*.jar"/>
+			</fileset>
+			<fileset dir="${hibernate.tools.dir}" >
+				<include name="hibernate-tools-3.3.0.jar"/>
+				<include name="freemarker.jar"/>
+			</fileset>
+			<fileset file="${commons-logging.jar}" />
+			<fileset file="${commons-collections.jar}" />
+			<fileset file="${commons-beanutils.jar}" />
+			<fileset file="${commons-dbcp.jar}" />
+			<fileset file="${commons-pool.jar}" />
+			<fileset file="${commons-lang.jar}" />
+			<fileset file="${commons-io.jar}" />
+			<fileset file="${commons-fileupload.jar}" />
+			<fileset file="${commons-digester.jar}" />
+			<fileset file="${commons-el.jar}"/>
+			<fileset file="${jmesa.jar}" />
+			<fileset file="${poi.jar}" />		
+			<fileset file="${iText.jar}" />
+			<fileset dir="${slf4j-api.dir}" >
+				<include name="**/*.jar"/>
+			</fileset>
+			<fileset dir="${slf4j-simple.dir}" >
+				<include name="**/*.jar"/>
+			</fileset>
+			<fileset dir="${spring.dir}" >
+				<include name="**/*.jar"/>
+			</fileset>
+			<fileset dir="${jakarta-standard.dir}" >
+				<include name="**/*.jar"/>
+			</fileset>
+			<fileset dir="${javassist.dir}" >
+				<include name="**/*.jar"/>
+			</fileset>
+			<fileset dir="${blazeds.dir}" >
+				<include name="**/*.jar"/>
+			</fileset>
+			<fileset dir="${xmlbeans.dir}" >
+				<include name="**/*.jar"/>
+			</fileset>
+			<fileset file="${jaxws.ws.jar}" />
+			<fileset file="${displaytag.ws.jar}" />
+		</copy>
+		<copy file="${basedir}/lib/schemas.jar" todir="${ws_content}/WEB-INF/lib" flatten="true"/>
+		<copy file="${basedir}/lib/wsAgroseguro.jar" todir="${ws_content}/WEB-INF/lib" flatten="true"/>
+		<copy file="${basedir}/lib/JAVA_AGP.jar" todir="${ws_content}/WEB-INF/lib" flatten="true"/>
+	</target>
+	
+	<target name="dist_ws_project" depends="compile" description="Crea el empaquetado ${ws_project_name}.war">
+		<delete file="${dist}/${ws_project_name}.war" failonerror="false" />
+		<war warfile="${dist}/${ws_project_name}.war" webxml="${ws_content}/WEB-INF/web.xml">
+			<fileset dir="${ws_content}">
+				<include name="jsp/**/*"/>
+				<include name="plantillas/**/*"/>
+			</fileset>
+			<webinf dir="${ws_content}/WEB-INF">
+				<include name="**" />
+				<exclude name="construccion/**.xml,**/*.xmi,**/*harvest.sig" />
+				<include name="${basedir}/../META-INF/**/*"/>
+				<include name="WEB-INF/**/*"/>
+			</webinf>
+		</war>
+	</target>	
+</project>

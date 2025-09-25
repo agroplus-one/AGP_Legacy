@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<x:schema
+	targetNamespace="http://www.agroseguro.es/CostePoliza/Explotacion"
+	xmlns="http://www.agroseguro.es/CostePoliza/Explotacion"
+	xmlns:x="http://www.w3.org/2001/XMLSchema"
+	xmlns:ti="http://www.agroseguro.es/Tipos"
+	xmlns:co="http://www.agroseguro.es/CostePoliza/CosteObjetoAsegurado"
+	xmlns:e="http://www.agroseguro.es/Contratacion/Explotacion"
+	elementFormDefault="qualified">
+
+	<x:import namespace="http://www.agroseguro.es/Tipos"
+		schemaLocation="Tipos.xsd" />
+	<x:import namespace="http://www.agroseguro.es/CostePoliza/CosteObjetoAsegurado"
+		schemaLocation="CosteObjetoAsegurado.xsd" />
+	<x:import namespace="http://www.agroseguro.es/Contratacion/Explotacion"
+		schemaLocation="Explotacion.xsd" />
+	<x:import namespace="http://www.agroseguro.es/DistribucionCoste/DatosAdicionalesObjetoAsegurado"
+		schemaLocation="DatosAdicionalesObjetoAseguradoUnificado.xsd" />
+
+	<x:element name="Explotacion" >
+		
+		<x:complexType>
+			<x:sequence>
+				<x:element name="Animales" type="e:Animales" minOccurs="1" maxOccurs="1" />
+				<x:element name="Movimiento" type="Movimiento" minOccurs="0" maxOccurs="1" />
+				<x:element name="CosteExplotacion" type="co:CosteObjetoAsegurado" />
+			</x:sequence>
+			<x:attribute name="numero" type="x:integer" use="optional"/>
+			<x:attribute name="especie" type="ti:Especie" use="required"/>
+			<x:attribute name="regimen" type="ti:Regimen" use="required"/>
+			<x:attribute name="grupoRaza" type="ti:GrupoRaza" use="required"/>
+			<x:attribute name="tipoCapital" type="ti:TipoCapital" use="required"/>
+			<x:anyAttribute namespace="http://www.agroseguro.es/DistribucionCoste/DatosAdicionalesObjetoAsegurado" processContents="lax" />
+		</x:complexType>
+	
+	</x:element>
+	
+	<x:complexType name="DatosAdicionales">
+		<x:sequence>
+			<x:any minOccurs="1" maxOccurs="unbounded" namespace="http://www.agroseguro.es/DistribucionCoste/DatosAdicionalesObjetoAsegurado"
+				processContents="lax" />
+		</x:sequence>
+		<x:anyAttribute namespace="http://www.agroseguro.es/DistribucionCoste/DatosAdicionalesObjetoAsegurado" processContents="lax" />
+	</x:complexType>	
+	
+	<x:complexType name="Movimiento">
+		<x:attribute name="fechaInicioMovimiento" type="x:date" use="required"/>
+		<x:attribute name="fechaFinMovimiento" type="x:date" use="required"/>
+		<x:attribute name="numeroDias" type="x:int" use="required"/>
+	</x:complexType>
+	
+</x:schema>

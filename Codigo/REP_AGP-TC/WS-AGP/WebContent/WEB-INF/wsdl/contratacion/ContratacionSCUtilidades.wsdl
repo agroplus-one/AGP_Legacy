@@ -1,0 +1,479 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="ContratacionSCUtilidades"
+	targetNamespace="http://www.agroseguro.es/serviciosweb/ContratacionSCUtilidades/"
+	xmlns:agr="http://www.agroseguro.es/serviciosweb/ContratacionSCUtilidades/"
+	xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:ti="http://www.agroseguro.es/Tipos"
+	xmlns:xmime="http://www.w3.org/2005/05/xmlmime"
+	xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd"
+	xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd">
+	<wsdl:types>
+		<xsd:schema elementFormDefault="qualified"
+			targetNamespace="http://www.agroseguro.es/serviciosweb/ContratacionSCUtilidades/"
+			xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+			<xsd:import
+				namespace="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd"
+				schemaLocation="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd" />
+			<xsd:import namespace="http://www.agroseguro.es/Tipos"
+				schemaLocation="Tipos.xsd" />
+			<xsd:import namespace="http://www.w3.org/2005/05/xmlmime"
+				schemaLocation="xmime.xsd" />
+			<xsd:element name="validarRequest">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="poliza"
+							xmime:expectedContentTypes="text/xml" type="xmime:base64Binary" />
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="validarResponse">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="acuseRecibo"
+							xmime:expectedContentTypes="text/xml" type="xmime:base64Binary" />
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="calcularRequest">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:annotation>
+							El descuento colectivo es un parámetro
+							opcional. Si se indica será el porcentaje
+							utilizado en el cálculo en vez del descuento
+							que corresponda según condicionado.
+						</xsd:annotation>
+						<xsd:element name="poliza"
+							xmime:expectedContentTypes="text/xml" type="xmime:base64Binary" />
+						<xsd:element name="descuentoColectivo"
+							nillable="true" minOccurs="0" type="ti:TantoPorCien" />
+						<xsd:element name="datosAdicionales"
+							nillable="true" minOccurs="0" type="xsd:boolean" />
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="calcularResponse">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="acuseRecibo"
+							xmime:expectedContentTypes="text/xml" type="xmime:base64Binary" />
+						<xsd:element name="calculo"
+							xmime:expectedContentTypes="text/xml" type="xmime:base64Binary" />
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:complexType name="Fraccionamiento">
+				<xsd:choice minOccurs="1" maxOccurs="1">
+					<xsd:element name="pctCosteTomador" type="ti:TantoPorCien" />
+					<xsd:element name="importe" type="ti:ImportePositivo" />
+				</xsd:choice>
+			</xsd:complexType>
+			<xsd:element name="financiarRequest">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="costeTomador" type="ti:ImportePositivo" />
+						<xsd:element name="plan" type="ti:Plan" />
+						<xsd:element name="linea" type="ti:Linea_Codigo" />
+						<xsd:element name="modulo" type="ti:Cobertura_Modulo" nillable="true" minOccurs="0" />
+						<xsd:element name="periodo" type="ti:PeriodoFraccionamiento" nillable="true" minOccurs="0"/>
+						<xsd:choice minOccurs="0" maxOccurs="1">
+							<xsd:element name="Fraccionamiento1" type="agr:Fraccionamiento" nillable="true" minOccurs="0"/>
+							<xsd:element name="importeAval" type="ti:ImportePositivo" nillable="true" minOccurs="0"/>
+						</xsd:choice>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="financiarResponse">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="financiacion"
+							xmime:expectedContentTypes="text/xml" type="xmime:base64Binary" />
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="validacionObjetoAseguradoRequest">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="poliza"
+							xmime:expectedContentTypes="text/xml" type="xmime:base64Binary" />
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="validacionObjetoAseguradoResponse">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="acuseRecibo"
+							xmime:expectedContentTypes="text/xml" type="xmime:base64Binary" />
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="agrFallo"
+				xmlns:agr="http://www.agroseguro.es/serviciosweb/ContratacionSCUtilidades/">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:annotation>
+							Lista de mensajes de error de AGROSEGURO
+						</xsd:annotation>
+						<xsd:element name="error" type="agr:Error"
+							maxOccurs="unbounded" minOccurs="0" />
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:complexType name="Error"
+				xmlns:agr="http://www.agroseguro.es/serviciosweb/ContratacionSCUtilidades/">
+				<xsd:sequence>
+					<xsd:element name="codigo" type="xsd:int" />
+					<xsd:element name="mensaje" type="xsd:string" />
+				</xsd:sequence>
+			</xsd:complexType>
+		</xsd:schema>
+	</wsdl:types>
+	<wsdl:message name="Header">
+		<wsdl:part name="Security" element="wsse:Security" />
+	</wsdl:message>
+	<wsdl:message name="AgrException">
+		<wsdl:part name="parameters" element="agr:agrFallo"></wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="validarRequest">
+		<wsdl:part name="parameters" element="agr:validarRequest">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="validarResponse">
+		<wsdl:part name="parameters" element="agr:validarResponse">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="calcularRequest">
+		<wsdl:part name="parameters" element="agr:calcularRequest">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="calcularResponse">
+		<wsdl:part name="parameters" element="agr:calcularResponse">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="financiarRequest">
+		<wsdl:part name="parameters" element="agr:financiarRequest">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="financiarResponse">
+		<wsdl:part name="parameters" element="agr:financiarResponse">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="validacionObjetoAseguradoRequest">
+		<wsdl:part name="parameters" element="agr:validacionObjetoAseguradoRequest">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="validacionObjetoAseguradoResponse">
+		<wsdl:part name="parameters" element="agr:validacionObjetoAseguradoResponse">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:portType name="ContratacionSCUtilidades">
+		<wsdl:operation name="validar">
+			<wsdl:documentation>
+				Se realizará una validación global de la póliza (tanto
+				estructural como de los datos de la póliza).
+
+				En la petición se deberá facilitar:
+
+				- Fichero XML de la póliza. La validación de estructura
+				del XML está determinada por el correspondiente esquema
+				XSD: "ContratacionSeguroAgrario.xsd". El fichero XML de
+				la póliza correctamente formado, y validado
+				estructuralmente según su esquema XSD, deberá cumplir
+				los requisitos de validación de las Pólizas del Seguro
+				Creciente. La definición y jerarquía de etiquetas del
+				fichero XML de la Póliza que sirve de entrada aparece
+				publicado en la Web de Agroseguro, en la última versión
+				del documento: "Seguro Creciente: Norma de Grabación de
+				Seguros Agrícolas DES-N-0043".
+
+				No es necesario cumplimentar el campo "Referencia
+				Póliza" dentro de la etiqueta "Póliza" para su
+				validación, ya que solo se usa de forma opcional cuando
+				va a realizarse la confirmación de la contratación de la
+				póliza, así como tampoco el "Digito Control Póliza"
+				asociado.
+
+				Se devolverá la siguiente información :
+
+				- Fichero XML de acuse de recibo. El esquema XSD del
+				acuse de recibo se denomina: "AcuseRecibo.xsd". El
+				procesamiento del fichero XML de la póliza determinará
+				si es completamente correcta o da lugar a errores de
+				diferentes tipos que ordenamos de menor a mayor gravedad
+				y aparecen en el atributo "tipo" de la etiqueta "Error"
+				del acuse de recibo:
+
+				• Informativos -código 3-: son errores menores que no
+				impiden su tramitación. Una póliza exclusivamente con
+				errores informativos es tratada a todos los efectos de
+				la misma manera que una completamente correcta.
+
+				• De trámite -código 2-: son errores que permiten la
+				confirmación de la póliza pero dificultan su gestión,
+				impidiendo la generación del correspondiente recibo
+				hasta que sean corregidos.
+
+				• De rechazo -código 1-: son errores de estructura o de
+				lógica que impiden la confirmación de la póliza, es
+				decir la aceptación de ésta en Agroseguro.
+
+				En el XML acuse de recibo se indicará el "estado" del
+				"Documento", informando del resultado global de la
+				validación de la póliza en función de los tipos de error
+				anteriores. El estado podrá ser:
+
+				• "Con errores" -código 3- si existe algún error de
+				trámite y ningún error de rechazo.
+
+				• "Rechazado" -código 2- si existe algún error de
+				rechazo.
+
+				• "Correcto" -código 1- si no aparecen errores o solo
+				aparecen errores de tipo informativo.
+			</wsdl:documentation>
+			<wsdl:input message="agr:validarRequest"></wsdl:input>
+			<wsdl:output message="agr:validarResponse"></wsdl:output>
+			<wsdl:fault name="AgrException"
+				message="agr:AgrException">
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="calcular">
+			<wsdl:documentation>
+				Método de Cálculo de Costes de la Póliza: Se realizarán
+				los cálculos de los costes de una póliza completamenente
+				formulada o no.
+
+				En la petición se deberá facilitar:
+
+				- Fichero XML de la póliza. La validación en estructura
+				del XML está determinado por un esquema específico para
+				el servicio de Cálculo de Costes de la Póliza. Dicho
+				esquema XSD se llama "CalculoSeguroAgrario.xsd" y es
+				diferente al esquema del método de validación, con el
+				objeto de permitir cumplimentar exclusivamente los datos
+				necesarios para el cálculo.
+
+				Se devolverá la siguiente información :
+
+				- Fichero XML de acuse de recibo. El esquema XSD del
+				acuse de recibo se denomina: "AcuseRecibo.xsd". El
+				procesamiento del fichero XML de la póliza determinará
+				si es completamente correcta o da lugar a errores de
+				estructura que aparecen en el atributo "tipo" de la
+				etiqueta "Error" del acuse de recibo:
+
+				• De rechazo -código 1-: son errores de estructura que
+				impiden el cálculo de la póliza.
+
+				En el XML acuse de recibo se indicará el "estado" del
+				"Documento", informando del resultado del cálculo. El
+				estado podrá ser:
+
+				• "Rechazado" -código 2- si existe algún error de
+				estructura que impide el cálculo.
+
+				• "Correcto" -código 1- si no aparecen errores.
+
+				- Fichero XML de distribución de costes. Cuando no se
+				hayan producido errores de estructura ni de cálculo, la
+				respuesta XML cumple la estructura definida en el
+				esquema XSD "DistribucionCostesSeguroAgrario.xsd".
+
+				- Un error en el cálculo se comunica con los mensajes de
+				código / error que correspondan mediante el mecanismo
+				SOAPFault y no se genera ningún adjunto XML.
+			</wsdl:documentation>
+			<wsdl:input message="agr:calcularRequest"></wsdl:input>
+			<wsdl:output message="agr:calcularResponse"></wsdl:output>
+			<wsdl:fault name="AgrException"
+				message="agr:AgrException">
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="financiar">
+			<wsdl:documentation>
+				Método de Cálculo de Costes de financiación de la Póliza: Se realizarán
+				los cálculos de los costes de financiación de una póliza a partir del
+				coste de la propia póliza que se haya obtenido previamente.
+
+				En la petición se deberá facilitar:
+
+				•	Coste Tomador: numérico de nueve posiciones enteras y dos decimales. Obligatorio
+				•	Plan: numérico de cuatro posiciones. Obligatorio
+				•	Línea: numérico de tres posiciones. Obligatorio
+				•	Módulo: carácter de 5 posiciones. Opcional
+				•	Periodo (meses): numérico de dos posiciones. Opcional.
+				•	Uno de los dos parámetros siguientes:
+					+	Fraccionamiento  1º expresado mediante uno de los dos parámetros opcionales siguientes
+						-	% Coste Tomador. Tres posiciones enteras y dos decimales. 
+						-	Importe: numérico de nueve posiciones enteras y dos decimales.
+					+	Importe Aval: numérico de nueve posiciones enteras y dos decimales. Opcional.
+
+				Se devolverá la siguiente información :
+
+				- Fichero XML de financiación. El esquema XSD del fichero se 
+				denomina: "Financiacion.xsd".
+				- Un error en el cálculo de la financiación se comunica con 
+				los mensajes de	código / error que correspondan mediante el mecanismo
+				SOAPFault y no se genera ningún adjunto XML.
+			</wsdl:documentation>
+			<wsdl:input message="agr:financiarRequest"></wsdl:input>
+			<wsdl:output message="agr:financiarResponse"></wsdl:output>
+			<wsdl:fault name="AgrException"
+				message="agr:AgrException">
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="validacionObjetoAsegurado">
+			<wsdl:documentation>
+				Se realizará una validación de un objeto asegurado de la póliza (tanto
+				estructural como de los datos).
+
+				En la petición se deberá facilitar:
+
+				- Fichero XML de la póliza. La validación de estructura
+				del XML está determinada por el correspondiente esquema
+				XSD: "Contratacion.xsd". El fichero XML de
+				la póliza correctamente formado, y validado
+				estructuralmente según su esquema XSD, deberá cumplir
+				los requisitos de validación de las Pólizas unificadas
+				de ganado.
+
+				Se devolverá la siguiente información :
+
+				- Fichero XML de acuse de recibo. El esquema XSD del
+				acuse de recibo se denomina: "AcuseRecibo.xsd". El
+				procesamiento del fichero XML de la póliza determinará
+				si los objetos asegurados son correctos o da lugar a errores de
+				diferentes tipos que ordenamos de menor a mayor gravedad
+				y aparecen en el atributo "tipo" de la etiqueta "Error"
+				del acuse de recibo:
+
+				• Informativos -código 3-: son errores menores que no
+				impiden su tramitación. Una póliza exclusivamente con
+				errores informativos es tratada a todos los efectos de
+				la misma manera que una completamente correcta.
+
+				• De trámite -código 2-: son errores que permiten la
+				confirmación de la póliza pero dificultan su gestión,
+				impidiendo la generación del correspondiente recibo
+				hasta que sean corregidos.
+
+				• De rechazo -código 1-: son errores de estructura o de
+				lógica que impiden la confirmación de la póliza, es
+				decir la aceptación de ésta en Agroseguro.
+
+				En el XML acuse de recibo se indicará el "estado" del
+				"Documento", informando del resultado global de la
+				validación de la póliza en función de los tipos de error
+				anteriores. El estado podrá ser:
+
+				• "Con errores" -código 3- si existe algún error de
+				trámite y ningún error de rechazo.
+
+				• "Rechazado" -código 2- si existe algún error de
+				rechazo.
+
+				• "Correcto" -código 1- si no aparecen errores o solo
+				aparecen errores de tipo informativo.
+			</wsdl:documentation>
+			<wsdl:input message="agr:validacionObjetoAseguradoRequest"></wsdl:input>
+			<wsdl:output message="agr:validacionObjetoAseguradoResponse"></wsdl:output>
+			<wsdl:fault name="AgrException"
+				message="agr:AgrException">
+			</wsdl:fault>
+		</wsdl:operation>
+	</wsdl:portType>
+	<wsdl:binding name="ContratacionSCUtilidadesSOAP"
+		type="agr:ContratacionSCUtilidades">
+		<soap:binding style="document"
+			transport="http://schemas.xmlsoap.org/soap/http" />
+		<wsdl:operation name="validar">
+			<soap:operation
+				soapAction="validar" />
+			<wsdl:input>
+				<soap:header use="literal" message="agr:Header"	part="Security" wsdl:required="true" />
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+			<wsdl:fault name="AgrException">
+				<soap:fault name="AgrException" use="literal" />
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="calcular">
+			<soap:operation
+				soapAction="calcular" />
+			<wsdl:input>
+				<soap:header use="literal" message="agr:Header"	part="Security" wsdl:required="true" />
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+			<wsdl:fault name="AgrException">
+				<soap:fault name="AgrException" use="literal" />
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="financiar">
+			<soap:operation
+				soapAction="financiar" />
+			<wsdl:input>
+				<soap:header use="literal" message="agr:Header"	part="Security" wsdl:required="true" />
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+			<wsdl:fault name="AgrException">
+				<soap:fault name="AgrException" use="literal" />
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="validacionObjetoAsegurado">
+			<soap:operation
+				soapAction="validacionObjetoAsegurado" />
+			<wsdl:input>
+				<soap:header use="literal" message="agr:Header"	part="Security" wsdl:required="true" />
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+			<wsdl:fault name="AgrException">
+				<soap:fault name="AgrException" use="literal" />
+			</wsdl:fault>
+		</wsdl:operation>
+	</wsdl:binding>
+
+	<wsdl:service name="ContratacionSCUtilidades">
+		<wsdl:documentation>
+			Mediante este proceso se podrá solicitar la validación
+			global o el cálculo de costes de una Póliza de manera
+			independiente.
+
+			Estos dos métodos conforman un servicio auxiliar que
+			complementa al servicio de "Confirmación de la Contratación
+			de una Póliza". El presente documento WSDL podrá utilizarse
+			tanto en remoto (Agroseguro) como en local (Entidades).
+
+			La información devuelta será un archivo XML de acuse de
+			recibo, y un archivo XML de cálculo de costes en el caso de
+			la operación "calcular", enviados o recibidos como Adjuntos
+			(Attachment) en formato MTOM.
+		</wsdl:documentation>
+		<wsdl:port name="ContratacionSCUtilidadesSOAP"
+			binding="agr:ContratacionSCUtilidadesSOAP">
+			<wsdl:documentation>
+				La primera dirección es el entorno de pruebas y no tiene
+				una resolución asignada en Internet por lo que se deberá
+				incluir en la máquina local o en el servidor de nombres
+				local con la siguiente dirección: 195.235.42.35
+				agrinfo.agroseguro.com. La segunda dirección es el
+				entorno real de ejecución.
+			</wsdl:documentation>			
+			<soap:address
+				location="http://www.agroseguro.es/contratacionSCUtilidades/V1R1/services/ContratacionSCUtilidades" />
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>

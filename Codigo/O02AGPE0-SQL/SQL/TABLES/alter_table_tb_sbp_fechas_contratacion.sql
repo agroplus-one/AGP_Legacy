@@ -1,0 +1,16 @@
+--- P0063697 
+--- Add columns   
+ALTER TABLE o02agpe0.TB_SBP_FECHAS_CONTRATACION   
+	ADD FECHA_FIN_SUPL DATE;  
+  
+-- Fill colums  
+UPDATE o02agpe0.TB_SBP_FECHAS_CONTRATACION   
+	SET FECHA_FIN_SUPL = FECHAFIN;  
+  
+-- Modify columns  
+ALTER TABLE o02agpe0.TB_SBP_FECHAS_CONTRATACION   
+	MODIFY FECHA_FIN_SUPL DATE NOT NULL;  
+  
+-- Add comments to columns  
+COMMENT ON COLUMN o02agpe0.TB_SBP_FECHAS_CONTRATACION.FECHA_FIN_SUPL  
+  IS 'Fecha de fin de envio de suplementos'; 

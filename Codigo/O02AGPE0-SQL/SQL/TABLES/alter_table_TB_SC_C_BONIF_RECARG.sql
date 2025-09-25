@@ -1,0 +1,1 @@
+grant select, insert, update, delete on o02agpe0.TB_SC_C_BONIF_RECARG to O02AGPE1;

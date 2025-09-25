@@ -1,0 +1,8 @@
+-- Petición MoDa: SMD000731
+-- Producto: Seguros
+-- Esquema: O02AGPE1
+-- Tabla: TB_POLIZAS_BAK
+
+-- Alter TABLE: 
+
+ALTER TABLE O02AGPE1.TB_POLIZAS_BAK ADD FECHA_VTO DATE NULL;

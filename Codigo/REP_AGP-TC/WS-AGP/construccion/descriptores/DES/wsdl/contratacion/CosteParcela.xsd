@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<x:schema
+	targetNamespace="http://www.agroseguro.es/SeguroAgrario/DistribucionCoste/Parcela"
+	xmlns="http://www.agroseguro.es/SeguroAgrario/DistribucionCoste/Parcela"
+	xmlns:x="http://www.w3.org/2001/XMLSchema"
+	xmlns:ti="http://www.agroseguro.es/Tipos"
+	xmlns:dc="http://www.agroseguro.es/SeguroAgrario/DistribucionCoste"
+	elementFormDefault="qualified">
+
+	<x:import namespace="http://www.agroseguro.es/Tipos"
+		schemaLocation="Tipos.xsd" />
+	<x:import namespace="http://www.agroseguro.es/SeguroAgrario/DistribucionCoste"
+		schemaLocation="DistribucionCoste.xsd" />
+	<x:import namespace="http://www.agroseguro.es/SeguroAgrario/DistribucionCoste/DatosAdicionalesObjetoAsegurado"
+		schemaLocation="DatosAdicionalesObjetoAsegurado.xsd" />
+
+	<x:element name="Parcela" >
+		
+		<x:complexType>
+			<x:sequence>
+				<x:element name="DistribucionCoste1" type="dc:DistribucionCoste"
+					maxOccurs="1" minOccurs="1" />
+				<x:element name="Medida" type="Medida" minOccurs="0"
+					maxOccurs="unbounded" />
+				<x:element name="SubvencionParcelaCCAA"
+					type="SubvencionParcelaCCAA" minOccurs="0" maxOccurs="unbounded" />
+				<x:element name="DatosAdicionales"
+					type="DatosAdicionales" minOccurs="0" maxOccurs="1" />
+			</x:sequence>
+			<x:attribute name="hoja" use="required" type="ti:Parcela_Hoja" />
+			<x:attribute name="numero" use="required"
+				type="ti:Parcela_Numero" />
+			<x:attribute name="tipo" use="required" type="ti:TipoCapital" />
+			<x:attribute name="precio" type="ti:Precio" use="required" />
+			<x:attribute name="produccion" type="ti:ProduccionKG"
+				use="required" />
+			<x:attribute name="capitalAsegurado"
+				type="ti:ImportePositivo" use="required" />
+			<x:attribute name="tasaComercialBase" type="ti:TantoPorCien"
+				use="required" />
+			<x:attribute name="tasaComercial" type="ti:TantoPorCien"
+				use="required" />
+			<x:attribute name="tasaComercialBaseNeta" type="ti:TantoPorCien"
+				use="required" />
+			<x:anyAttribute namespace="http://www.agroseguro.es/SeguroAgrario/DistribucionCoste/DatosAdicionalesObjetoAsegurado" processContents="lax" />
+		</x:complexType>
+	
+	</x:element>
+	
+	<x:complexType name="DatosAdicionales">
+		<x:sequence>
+			<x:any minOccurs="1" maxOccurs="unbounded" namespace="http://www.agroseguro.es/SeguroAgrario/DistribucionCoste/DatosAdicionalesObjetoAsegurado"
+				processContents="lax" />
+		</x:sequence>
+		<x:anyAttribute namespace="http://www.agroseguro.es/SeguroAgrario/DistribucionCoste/DatosAdicionalesObjetoAsegurado" processContents="lax" />
+	</x:complexType>	
+		
+	<x:complexType name="Medida">
+		<x:attribute name="medidaPreventiva" use="required"
+			type="ti:MedidaPreventiva" />
+		<x:attribute name="pctBonifMed" use="required"
+			type="ti:TantoPorCien" />
+		<x:attribute name="primaComercial" use="required"
+			type="ti:ImportePositivo" />
+	</x:complexType>
+
+	<x:complexType name="SubvencionParcelaCCAA">
+		<x:attribute name="codigoOrganismo" type="ti:Organismo_Codigo"
+			use="required" />
+		<x:attribute name="tipo" use="required"
+			type="ti:Subvencion_Tipo" />
+		<x:attribute name="subvencionCA" use="required"
+			type="ti:ImportePositivo" />
+	</x:complexType>
+	
+</x:schema>

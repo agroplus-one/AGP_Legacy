@@ -1,0 +1,741 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema 
+	targetNamespace="http://www.agroseguro.es/SeguroCreciente/Condicionado/Tipos" 	
+	attributeFormDefault="unqualified"		
+	elementFormDefault="qualified"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+	xmlns:ti="http://www.agroseguro.es/SeguroCreciente/Condicionado/Tipos" 
+>
+
+	<xs:simpleType name="Plan" >
+		<xs:restriction base="xs:decimal" >
+			<xs:totalDigits value="4" />
+			<xs:fractionDigits value="0" />
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="Linea" >
+		<xs:restriction base="xs:decimal" >
+			<xs:totalDigits value="3" />
+			<xs:fractionDigits value="0" />
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="Cultivo" >
+		<xs:restriction base="xs:decimal" >
+			<xs:totalDigits value="3" />
+			<xs:fractionDigits value="0" />
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="Variedad" >
+		<xs:restriction base="xs:decimal" >
+			<xs:totalDigits value="3" />
+			<xs:fractionDigits value="0" />
+		</xs:restriction>
+	</xs:simpleType>
+	
+	<xs:simpleType name="Modulo" >
+		<xs:restriction base="xs:string" >
+			<xs:length value="5" />
+		</xs:restriction>
+	</xs:simpleType>
+	
+	<xs:simpleType name="CodigoDenominacionOrigen" >
+		<xs:restriction base="ti:Codigo3" />
+	</xs:simpleType>
+
+	<xs:simpleType name="GrupoTasa" >
+		<xs:restriction base="xs:decimal" >
+			<xs:totalDigits value="5" />
+			<xs:fractionDigits value="0" />
+		</xs:restriction>
+	</xs:simpleType>
+	
+	<xs:simpleType name="Provincia" >
+		<xs:restriction base="xs:decimal" >
+			<xs:totalDigits value="2" />
+			<xs:fractionDigits value="0" />			
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="Comarca" >
+		<xs:restriction base="xs:decimal" >
+			<xs:totalDigits value="2" />
+			<xs:fractionDigits value="0" />			
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="TerminoMunicipal" >
+		<xs:restriction base="xs:decimal" >
+			<xs:totalDigits value="3" />
+			<xs:fractionDigits value="0" />			
+		</xs:restriction>
+	</xs:simpleType>
+	
+	<xs:simpleType name="Subtermino" >
+		<xs:restriction base="xs:string" >
+			<xs:length value="1" />
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="TipoSubvencion" >
+		<xs:restriction base="xs:decimal" >
+			<xs:totalDigits value="2" />
+			<xs:fractionDigits value="0" />
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="CodigoGrupoSeguro" >
+		<xs:restriction base="xs:string" >
+			<xs:length value="3" />
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="CodigoRiesgo" >
+		<xs:restriction base="xs:string" >
+			<xs:length value="2" />
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="Codigo1">
+		<xs:restriction base="xs:decimal">
+			<xs:totalDigits value="1" />
+			<xs:fractionDigits value="0" />
+    	</xs:restriction>
+    </xs:simpleType>
+
+	<xs:simpleType name="Codigo3">
+		<xs:restriction base="xs:decimal">
+			<xs:totalDigits value="3" />
+			<xs:fractionDigits value="0" />
+    	</xs:restriction>
+    </xs:simpleType>
+
+	<xs:simpleType name="Codigo5">
+		<xs:restriction base="xs:decimal">
+			<xs:totalDigits value="5" />
+			<xs:fractionDigits value="0" />
+    	</xs:restriction>
+    </xs:simpleType>
+
+	<xs:simpleType name="Coeficiente">
+		<xs:restriction base="xs:decimal">
+			<xs:totalDigits value="3" />
+			<xs:fractionDigits value="2" />
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="Coeficiente4">
+		<xs:restriction base="xs:decimal">
+			<xs:totalDigits value="5" />
+			<xs:fractionDigits value="4" />
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="Porcentaje">
+		<xs:restriction base="xs:decimal">
+			<xs:totalDigits value="5" />
+			<xs:fractionDigits value="2" />
+		</xs:restriction>
+	</xs:simpleType>
+	
+	<xs:simpleType name="Precio">
+		<xs:restriction base="xs:decimal">
+			<xs:totalDigits value="9" />
+			<xs:fractionDigits value="4" />
+			<xs:minInclusive value="0" />
+    	</xs:restriction>
+    </xs:simpleType>
+    
+    <xs:simpleType name="SN">
+    	<xs:restriction base="xs:token">
+    		<xs:length value="1" />
+    		<xs:pattern value="[SN]" />
+    	</xs:restriction>
+    </xs:simpleType>
+    
+	<xs:simpleType name="CodigoOrganismo">
+		<xs:restriction base="xs:token">
+			<xs:length value="1" />
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="Descripcion20">
+		<xs:restriction base="xs:token">
+			<xs:maxLength value="20" />
+		</xs:restriction>
+	</xs:simpleType>    
+
+	<xs:simpleType name="Descripcion25">
+		<xs:restriction base="xs:token">
+			<xs:maxLength value="25" />
+		</xs:restriction>
+	</xs:simpleType>    
+
+	<xs:simpleType name="Descripcion30">
+		<xs:restriction base="xs:token">
+			<xs:maxLength value="30" />
+		</xs:restriction>
+	</xs:simpleType>    
+	
+	<xs:simpleType name="Descripcion40">
+		<xs:restriction base="xs:token">
+			<xs:maxLength value="40" />
+		</xs:restriction>
+	</xs:simpleType>    
+
+	<xs:simpleType name="Descripcion45">
+		<xs:restriction base="xs:token">
+			<xs:maxLength value="45" />
+		</xs:restriction>
+	</xs:simpleType>    
+
+	<xs:simpleType name="Descripcion50">
+		<xs:restriction base="xs:token">
+			<xs:maxLength value="50" />
+		</xs:restriction>
+	</xs:simpleType>    
+
+	<xs:simpleType name="Descripcion60">
+		<xs:restriction base="xs:token">
+			<xs:maxLength value="60" />
+		</xs:restriction>
+	</xs:simpleType>
+	
+	<xs:simpleType name="Descripcion100">
+		<xs:restriction base="xs:token">
+			<xs:maxLength value="100" />
+		</xs:restriction>
+	</xs:simpleType>    
+
+	<xs:simpleType name="Descripcion200">
+		<xs:restriction base="xs:token">
+			<xs:maxLength value="200" />
+		</xs:restriction>
+	</xs:simpleType>    
+	
+	<xs:simpleType name="NivelEleccion" >
+		<xs:restriction base="xs:string">
+			<xs:length value="1" />
+			<xs:pattern value="[CD\s]" />
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="NivelDeclaracionTipoSubvencion">
+    	<xs:restriction base="xs:decimal">
+    		<xs:totalDigits value="1" />
+    		<xs:fractionDigits value="0" />
+    		<xs:pattern value="[012]" />		    		
+    	</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="NivelDependenciaTipoSubvencion" >
+		<xs:restriction base="xs:token">
+			<xs:length value="1" />
+			<xs:pattern value="[SJ]" />
+		</xs:restriction>
+	</xs:simpleType>
+
+<!--  FACTORES DIFERENCIADORES -->
+
+	<xs:simpleType name="Rotacion">
+		<xs:restriction base="ti:Codigo3" />
+	</xs:simpleType>
+
+	<xs:simpleType name="CalculoIndemnizacion">
+		<xs:restriction base="ti:Codigo3" />
+	</xs:simpleType>
+
+	<xs:simpleType name="CapitalAsegurado">
+		<xs:restriction base="ti:Codigo3" />
+	</xs:simpleType>
+
+	<xs:simpleType name="CaracteristicasExplotacion">
+		<xs:restriction base="ti:Codigo3" />
+	</xs:simpleType>
+
+	<xs:simpleType name="HistorialAsegurado">
+		<xs:restriction base="ti:Codigo3" />
+	</xs:simpleType>
+
+	<xs:simpleType name="DanosCubiertos">
+		<xs:restriction base="xs:token" >
+			<xs:length value="1" />
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="IndicDenominacionOrigen">
+		<xs:restriction base="ti:SN" />
+	</xs:simpleType>
+
+	<xs:simpleType name="Densidad">
+		<xs:restriction base="xs:decimal">
+			<xs:totalDigits value="8" />
+			<xs:fractionDigits value="0" />
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="Destino">
+		<xs:restriction base="ti:Codigo3" />
+	</xs:simpleType>
+
+	<xs:simpleType name="Edad" >
+		<xs:restriction base="xs:decimal">
+			<xs:totalDigits value="3" />
+			<xs:fractionDigits value="0" />
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="EdadEstructura" >
+		<xs:restriction base="xs:decimal">
+			<xs:totalDigits value="2" />
+			<xs:fractionDigits value="0" />
+		</xs:restriction>
+	</xs:simpleType>
+	
+	<xs:simpleType name="EstadoFenologico">
+		<xs:restriction base="xs:string" >
+			<xs:length value="1" />
+		</xs:restriction>
+	</xs:simpleType>
+	
+	<xs:simpleType name="FechaRecoleccion">
+		<xs:restriction base="xs:date" />
+	</xs:simpleType>
+
+	<xs:simpleType name="Franquicia">
+		<xs:restriction base="ti:Codigo3" />
+	</xs:simpleType>
+
+	<xs:simpleType name="Garantizado">
+		<xs:restriction base="ti:Codigo3" />
+	</xs:simpleType>
+
+	<xs:simpleType name="NumeroAnosDesdePoda">
+		<xs:restriction base="ti:Codigo3" />
+	</xs:simpleType>
+
+	<xs:simpleType name="SistemaConduccion">
+		<xs:restriction base="ti:Codigo3" />
+	</xs:simpleType>
+	
+	<xs:simpleType name="IndicGastosSalvamento">
+		<xs:restriction base="ti:SN" />
+	</xs:simpleType>
+
+	<xs:simpleType name="IndicProteccionCultivo">
+		<xs:restriction base="ti:SN" />
+	</xs:simpleType>
+	
+	<xs:simpleType name="TipoMarcoPlantacion">
+		<xs:restriction base="ti:Codigo3" />
+	</xs:simpleType>
+	
+	<xs:simpleType name="MinimoIndemnizable">
+		<xs:restriction base="ti:Codigo3" />
+	</xs:simpleType>
+	
+	<xs:simpleType name="NivelRiesgo">
+		<xs:restriction base="ti:Codigo3" />
+	</xs:simpleType>
+
+	<xs:simpleType name="DuracionMaximaGarantiasDias">
+		<xs:restriction base="xs:decimal" >
+			<xs:totalDigits value="3" />
+			<xs:fractionDigits value="0" />
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="DuracionMaximaGarantiasMeses">
+		<xs:restriction base="xs:decimal" >
+			<xs:totalDigits value="3" />
+			<xs:fractionDigits value="1" />
+		</xs:restriction>
+	</xs:simpleType>
+	
+	<xs:simpleType name="DiasPeriodoGarantias">
+		<xs:restriction base="xs:decimal" >
+			<xs:totalDigits value="3" />
+			<xs:fractionDigits value="0" />
+		</xs:restriction>
+	</xs:simpleType>
+	
+	<xs:simpleType name="MesesPeriodoGarantias">
+		<xs:restriction base="xs:decimal" >
+			<xs:totalDigits value="3" />
+			<xs:fractionDigits value="1" />
+		</xs:restriction>
+	</xs:simpleType>
+	
+	<xs:simpleType name="NumeroUnidades">
+		<xs:restriction base="xs:decimal" >
+			<xs:totalDigits value="8" />
+			<xs:fractionDigits value="0" />			
+		</xs:restriction>
+	</xs:simpleType>
+	
+	<xs:simpleType name="TipoRendimiento">
+		<xs:restriction base="ti:Codigo3" />
+	</xs:simpleType>
+
+	<xs:simpleType name="CodigoReduccionRendimientos">
+		<xs:restriction base="ti:Codigo3" />
+	</xs:simpleType>
+	
+	<xs:simpleType name="SistemaCultivo">
+		<xs:restriction base="ti:Codigo3" />
+	</xs:simpleType>
+
+	<xs:simpleType name="MedidaPreventiva">
+		<xs:restriction base="ti:Codigo3" />
+	</xs:simpleType>
+
+	<xs:simpleType name="SistemaProteccion">
+		<xs:restriction base="ti:Codigo3" />
+	</xs:simpleType>
+
+	<xs:simpleType name="SistemaProduccion">
+		<xs:restriction base="ti:Codigo3" />
+	</xs:simpleType>
+	
+	<xs:simpleType name="TablaValoracion">
+		<xs:restriction base="ti:Codigo3" />
+	</xs:simpleType>
+	
+	<xs:simpleType name="TipoCapital">
+		<xs:restriction base="ti:Codigo3" />
+	</xs:simpleType>
+	
+	<xs:simpleType name="TipoFranquicia">
+		<xs:restriction base="xs:token" >
+			<xs:length value="1" />
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="TipoPlantacion">
+		<xs:restriction base="ti:Codigo3" />
+	</xs:simpleType>
+
+	<xs:simpleType name="TipoSubDeclaradaParcela">
+		<xs:restriction base="xs:decimal" >
+			<xs:totalDigits value="2" />
+			<xs:fractionDigits value="0" />
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="PracticaCultural">
+		<xs:restriction base="ti:Codigo3" />
+	</xs:simpleType>
+
+	<xs:simpleType name="ConceptoPrincipalModulo">
+		<xs:restriction base="ti:Codigo3" />
+	</xs:simpleType>	
+
+	<xs:simpleType name="CodigoRiesgosCubiertos">
+		<xs:restriction base="ti:Codigo3" />
+	</xs:simpleType>	
+	
+	<xs:simpleType name="FilaModulo">
+		<xs:restriction base="xs:decimal" >
+			<xs:totalDigits value="3" />
+			<xs:fractionDigits value="0" />
+		</xs:restriction>
+	</xs:simpleType>
+	
+	<xs:simpleType name="ColumnaModulo">
+		<xs:restriction base="xs:decimal" >
+			<xs:totalDigits value="3" />
+			<xs:fractionDigits value="0" />			
+		</xs:restriction>
+	</xs:simpleType>	
+	
+	<xs:simpleType name="CodigoConcepto">
+		<xs:restriction base="ti:Codigo5" />
+	</xs:simpleType>	
+	
+	<xs:simpleType name="RiesgoCubiertoElegido">
+		<xs:restriction base="ti:SN" />
+	</xs:simpleType>
+	
+	<xs:simpleType name="Rendimiento" >
+		<xs:restriction base="xs:decimal" >
+			<xs:totalDigits value="5" />
+			<xs:fractionDigits value="0" />
+		</xs:restriction>
+	</xs:simpleType>
+	
+	<xs:simpleType name="RendimientoPermitido" >
+		<xs:restriction base="xs:decimal" >
+			<xs:totalDigits value="7" />
+			<xs:fractionDigits value="0" />
+		</xs:restriction>
+	</xs:simpleType>
+	
+	<xs:simpleType name="NIF" >
+		<xs:restriction base="xs:token">
+			<xs:maxLength value="9" />
+		</xs:restriction>
+	</xs:simpleType>
+	
+	<xs:simpleType name="AgregadoSIGPAC">
+		<xs:restriction base="xs:decimal">
+			<xs:totalDigits value="3" />
+			<xs:fractionDigits value="0" />			
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="ParcelaSIGPAC">
+		<xs:restriction base="xs:decimal">
+			<xs:totalDigits value="5" />
+			<xs:fractionDigits value="0" />			
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="PoligonoSIGPAC">
+		<xs:restriction base="xs:decimal">
+			<xs:totalDigits value="3" />
+			<xs:fractionDigits value="0" />			
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="RecintoSIGPAC">
+		<xs:restriction base="xs:decimal">
+			<xs:totalDigits value="5" />
+			<xs:fractionDigits value="0" />			
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="ZonaSIGPAC">
+		<xs:restriction base="xs:decimal">
+			<xs:totalDigits value="2" />
+			<xs:fractionDigits value="0" />			
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="ProvinciaSIGPAC">
+		<xs:restriction base="xs:decimal">
+			<xs:totalDigits value="2" />
+			<xs:fractionDigits value="0" />			
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="TerminoMunicipalSIGPAC">
+		<xs:restriction base="xs:decimal">
+			<xs:totalDigits value="3" />
+			<xs:fractionDigits value="0" />			
+		</xs:restriction>
+	</xs:simpleType>
+	
+	<xs:simpleType name="NumeroTabla">
+		<xs:restriction base="xs:decimal">
+			<xs:totalDigits value="4" />
+			<xs:fractionDigits value="0" />
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="EtiquetaXML">
+		<xs:restriction base="xs:token">
+			<xs:maxLength value="30" />
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="Longitud" >
+		<xs:restriction base="xs:decimal">
+			<xs:totalDigits value="4" />
+			<xs:fractionDigits value="0" />
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="Decimales" >
+		<xs:restriction base="xs:decimal">
+			<xs:totalDigits value="2" />
+			<xs:fractionDigits value="0" />					
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="SistemaReduccionSubvenciones">
+		<xs:restriction base="xs:decimal">
+			<xs:totalDigits value="2" />
+			<xs:fractionDigits value="0" />
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="CodigoBaseCalculoSubvenciones">
+		<xs:restriction base="xs:string">
+			<xs:length value="1" />
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="TipoExclusionSubvenciones">
+		<xs:restriction base="xs:decimal">
+			<xs:totalDigits value="1" />
+			<xs:fractionDigits value="0" />
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="DatoAsociadoBaseCalculoSubvenciones">
+		<xs:restriction base="xs:decimal">
+			<xs:totalDigits value="8" />
+			<xs:fractionDigits value="2" />			
+		</xs:restriction>
+	</xs:simpleType>
+	
+	<xs:simpleType name="TipoMedidaClub" >
+		<xs:restriction base="xs:string">
+			<xs:length value="1" />
+			<xs:pattern value="[012]">
+				<xs:annotation>
+					<xs:documentation>
+						0 : General
+						1 : Asegurados con Bonificacion
+						2 : Asegurados con Recargo
+					</xs:documentation>
+				</xs:annotation>
+			</xs:pattern>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="SubvencionAplicable" >
+		<xs:restriction base="xs:token">
+			<xs:length value="1" />
+			<xs:pattern value="[ICA]">
+				<xs:annotation>
+					<xs:documentation>
+						I : Contratacion Individual
+						C : Contratacion Colectiva
+						A : Ambos tipos de Contratacion
+					</xs:documentation>
+				</xs:annotation>
+			</xs:pattern>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="TasaCoste">
+		<xs:restriction base="ti:Porcentaje" />
+	</xs:simpleType>
+
+	<xs:simpleType name="DatoAsociadoBaseCalculo">
+		<xs:restriction base="xs:decimal">
+			<xs:totalDigits value="8" />
+			<xs:fractionDigits value="2" />
+		</xs:restriction>
+	</xs:simpleType>
+	
+	<xs:simpleType name="CodigoFamiliaZonificacion">
+		<xs:restriction base="xs:string">
+			<xs:length value="5" />
+		</xs:restriction>
+	</xs:simpleType>
+	
+	<xs:simpleType name="CodigoGrupoCultivoZonificacion">
+		<xs:restriction base="xs:string">
+			<xs:length value="5" />
+		</xs:restriction>
+	</xs:simpleType>	
+	
+	<xs:simpleType name="ZonaZonificacion">
+		<xs:restriction base="xs:decimal">
+			<xs:totalDigits value="1" />
+			<xs:fractionDigits value="0" />
+		</xs:restriction>
+	</xs:simpleType>	
+
+	<xs:simpleType name="AplicacionRendimiento">
+		<xs:restriction base="xs:string">
+			<xs:length value="1" />
+			<xs:pattern value="[PSU\W]">
+				<xs:annotation>
+					<xs:documentation>
+						P : Porcentaje
+						S : Superficie
+						U : Unidades
+						  : No aplica
+					</xs:documentation>
+				</xs:annotation>
+			</xs:pattern>
+		</xs:restriction>
+	</xs:simpleType>
+	
+	<xs:simpleType name="CodigoIGP">
+		<xs:restriction base="xs:decimal">
+			<xs:totalDigits value="3" />
+			<xs:fractionDigits value="0" />
+		</xs:restriction>
+	</xs:simpleType>
+	
+	<xs:simpleType name="ValorConcepto">
+		<xs:restriction base="xs:decimal">
+			<xs:totalDigits value="3" />
+			<xs:fractionDigits value="0" />
+		</xs:restriction>
+	</xs:simpleType>
+	
+	<xs:simpleType name="GrupoMedida">
+		<xs:restriction base="xs:string">
+			<xs:length value="2" />
+		</xs:restriction>
+	</xs:simpleType>
+	
+	<xs:simpleType name="ValorAtributo">
+		<xs:restriction base="xs:decimal">
+			<xs:totalDigits value="9" />
+			<xs:fractionDigits value="2" />
+		</xs:restriction>
+	</xs:simpleType>
+	
+	<xs:simpleType name="CodigoGrupoSubvencion">
+		<xs:restriction base="xs:decimal">
+			<xs:totalDigits value="2" />
+			<xs:fractionDigits value="0" />
+		</xs:restriction>
+	</xs:simpleType>
+	
+	<xs:simpleType name="CantidadMaxSubvAcumulables">
+		<xs:restriction base="xs:decimal">
+			<xs:totalDigits value="2" />
+			<xs:fractionDigits value="0" />
+		</xs:restriction>
+	</xs:simpleType>
+	
+	<xs:simpleType name="Prioridad">
+		<xs:restriction base="xs:decimal">
+			<xs:totalDigits value="2" />
+			<xs:fractionDigits value="0" />
+		</xs:restriction>
+	</xs:simpleType>
+	
+	<xs:simpleType name="ClaseMedida" >
+		<xs:restriction base="xs:decimal" >
+			<xs:totalDigits value="1" />
+			<xs:fractionDigits value="0" />
+		</xs:restriction>
+	</xs:simpleType>
+	
+	<xs:simpleType name="PrimaBaseComisiones">
+		<xs:restriction base="xs:decimal">
+			<xs:totalDigits value="11" />
+			<xs:fractionDigits value="2" />
+		</xs:restriction>
+	</xs:simpleType>
+	
+	<xs:simpleType name="PeriodoFraccionamiento" >
+		<xs:restriction base="xs:decimal">
+			<xs:totalDigits value="2" />
+			<xs:fractionDigits value="0" />					
+		</xs:restriction>
+	</xs:simpleType>
+	
+	<xs:simpleType name="ImporteMinimoRecargoAval">
+		<xs:restriction base="xs:decimal">
+			<xs:totalDigits value="11" />
+			<xs:fractionDigits value="2" />
+		</xs:restriction>
+	</xs:simpleType>
+	
+	<xs:simpleType name="TipoBonificacionRecargo">
+		<xs:restriction base="xs:string" >
+			<xs:length value="1" />
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>

@@ -1,0 +1,155 @@
+CONTRATACIONSCCONFIRMACION
+--------------------------
+
+
+archivo				                namespace		                      version
+
+- ContratacionSeguroAgrario.xsd                 SeguroAgrario/Contratacion        	      9.0
+- ContratacionSeguroAgrarioComplementario.xsd   SeguroAgrario/Contratacion/Complementario     1.0
+- DatosVariables.xsd                            SeguroAgrario/Contratacion/DatosVariables     9.0
+- CostesFijos_OP				SeguroAgrario/Contratacion/OP/CostesFijos     1.0
+- RelacionSocios_OP				SeguroAgrario/Contratacion/OP/RelacionSocios  1.0
+- Tipos.xsd          		                Tipos		                              9.0
+
+
+DESCRIPCION DE LOS FICHEROS
+---------------------------
+	
+- ContratacionSCConfirmacion.wsdl
+
+Descriptor del servicio Web que permite confirmar la contratación 
+de una Póliza del Seguro Creciente.
+
+- ContratacionSeguroAgrario.xsd
+
+Esquema entrante de validación de la Póliza del Seguro Creciente
+donde se definen los registros de esa Póliza.
+
+- ContratacionSeguroAgrarioComplementario.xsd
+
+Esquema entrante de validación de la Póliza del Seguro Creciente
+para los módulos complementarios.
+
+- CostesFijos_OP.xsd
+Anexo con la declaración de gastos fijos de la explotación agrícola en el seguro
+de Costes Fijos de OP (Organización de Productores)
+
+- RelacionSocios_OP
+Anexo con la lista de socios que suscriben el seguro de OP (Organización de Productores)
+
+- DatosVariables.xsd
+
+Esquema que contiene definiciones de datos variables de la Póliza
+del Seguro Creciente.
+
+- Tipos.xsd
+
+Esquema que contiene las definiciones de tipos que se emplean en 
+los registros.
+
+- AcuseRecibo.xsd
+
+Esquema saliente obtenido como respuesta a cualquier llamada y donde
+se indica el estado en el que queda el proceso.
+
+
+VERSIONES
+---------
+
+1.0.5 : 30-05-2011.
+---------------------------------------------------------------------------
+
+Alteraciones en los siguientes esquemas:
+
+- DatosVariables.xsd
+La etiqueta Alt pasa a llamarse Rot
+
+- Tipos.xsd
+El tipo Alternativa pasa a llamarse Rotacion
+
+
+1.0.4 : 18-03-2011.
+---------------------------------------------------------------------------
+
+Incluido el esquema ContratacionSeguroAgrarioComplementario.xsd. Por error no se encontraba
+empaquetado en el ZIP.
+
+
+1.0.3 : 21-02-2011.
+---------------------------------------------------------------------------
+
+Alteraciones en los siguientes esquemas:
+
+- ContratacionSeguroAgrarioComplementario.xsd
+Nuevo esquema para recibir pólizas de módulo complementario
+
+- CostesFijos_OP.xsd
+Nuevo esquema con el anexo de la declaración de gastos fijos de la explotación agrícola en el
+seguro de Costes Fijos de OP (Organización de Productores)
+
+- RelacionSocios_OP
+Nuevo esquema con el anexo de la lista de socios que suscriben el seguro de OP (Organización de Productores)
+
+- ContratacionSeguroAgrario.xsd
+
+Nuevas etiquetas CostesFijosOP y RelacionSociosOP
+
+- DatosVariables.xsd
+Nuevas etiquetas de datos variables CodCert, EdadCubi, EdadEstr, MatCubi, MatEstr, TipInst	
+
+- Tipos.xsd
+
+Valor minimo 1 para SIGPAC@parcela y SIGPAC@poligono
+Nuevos tipos para dar soporte a los Datos variables añadidos.
+
+
+
+1.0.2 : 22-11-2010.
+---------------------------------------------------------------------------
+
+Alteraciones en los siguientes esquemas:
+
+- ContratacionSeguroAgrario.xsd
+
+Etiqueta Poliza: desaparece el atributo justificanteSubvencionPersonaJuridica.
+Etiqueta Pago: los atributos fecha, importe y banco pasan a ser obligatorios.
+Etiqueta Descuentos: todos sus atributos pasan a ser obligatorios.
+Etiqueta Consorcio: los atributos recargo y reaseguro pasan a ser de tipo ImportePositivo.
+Etiqueta Socio / SubvencionesDeclaradas: la multiplicidad del elemento SubvencionDeclarada 
+pasa de 1 a varios (unbounded).
+
+- DatosVariables.xsd
+
+Nuevas etiquetas de DatosVariables: CodIGP, Met, Met2, ValFij.
+Se quita IGP en la Denominación de Origen.
+
+- Tipos.xsd
+
+Tipo Modulo_ConceptoPrincial pasa a tener minInclusive = 1.
+Valor mínimo 0 para TipoAlternativa, CicloCultivo, DenominacionOrigen, 
+Densidad, Destino, Edad, NumeroAniosDesdePoda, PracticaCultural, 
+SistemaConduccion, SistemaCultivo, SistemaProduccion, SitemaProteccion, 
+MarcoPlantacion, TipoPlantacion.
+Se quitan las anotaciones.
+
+
+1.0.1 : 10-03-2010.
+---------------------------------------------------------------------------
+
+Alteraciones en los siguientes esquemas:
+
+- ContratacionSeguroAgrario.xsd
+
+Se ha cambiado el tipo de referencia a Poliza_Referencia_Creciente.
+Se ha cambiado la cardinalidad y definición de SubvencionEnesa.
+
+- DatosVariables.xsd
+
+- Tipos.xsd
+
+
+1.0.0 : 11-01-2010.
+---------------------------------------------------------------------------
+
+Versión inicial.
+

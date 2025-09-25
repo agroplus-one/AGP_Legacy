@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<x:schema xmlns:x="http://www.w3.org/2001/XMLSchema"
+	targetNamespace="http://www.agroseguro.es/SeguroAgrario/Contratacion/OP/CostesFijos"
+	xmlns="http://www.agroseguro.es/SeguroAgrario/Contratacion/OP/CostesFijos"
+	xmlns:ti="http://www.agroseguro.es/Tipos">
+
+	<x:import namespace="http://www.agroseguro.es/Tipos"
+		schemaLocation="Tipos.xsd" />
+
+	<x:complexType name="CostesFijosOP">
+		<x:sequence>
+			<x:element maxOccurs="1" minOccurs="1" name="Produccion"
+				type="Produccion" />
+			<x:element maxOccurs="1" minOccurs="1" name="Asegurables"
+				type="Asegurables" />
+		</x:sequence>
+		<x:attribute name="porcentajeAjuste" type="ti:TantoPorCien"
+			use="required" />
+		<x:attribute name="costeReal" type="ti:ImportePositivo"
+			use="required" />
+		<x:attribute name="costeUnitario" type="ti:Precio" use="required" />
+	</x:complexType>
+
+	<x:complexType name="Produccion">
+		<x:sequence>
+			<x:element maxOccurs="1" minOccurs="1" name="ProduccionAnio-1"
+				type="ProduccionAnio" />
+			<x:element maxOccurs="1" minOccurs="0" name="ProduccionAnio-2"
+				type="ProduccionAnio" />
+			<x:element maxOccurs="1" minOccurs="0" name="ProduccionAnio-3"
+				type="ProduccionAnio" />
+			<x:element maxOccurs="1" minOccurs="0" name="ProduccionAnio-4"
+				type="ProduccionAnio" />
+			<x:element maxOccurs="1" minOccurs="0" name="ProduccionAnio-5"
+				type="ProduccionAnio" />
+		</x:sequence>
+		<x:attribute name="media" type="ti:ProduccionKG" use="required" />
+	</x:complexType>
+
+	<x:complexType name="ProduccionCultivo">
+		<x:attribute name="cultivo" type="ti:Descripcion40" use="required" />
+		<x:attribute name="produccion" type="ti:ProduccionKG" use="required" />
+	</x:complexType>
+
+	<x:complexType name="ProduccionAnio">
+		<x:sequence>
+			<x:element maxOccurs="unbounded" minOccurs="1"
+				name="ProduccionCultivo" type="ProduccionCultivo" />
+		</x:sequence>
+		<x:attribute name="socios" type="ti:Socio_Numero" use="required" />
+	</x:complexType>
+
+	<x:complexType name="Asegurables">
+		<x:sequence>
+			<x:element maxOccurs="1" minOccurs="1" name="PersonalFijo"
+				type="PersonalFijo" />
+			<x:element maxOccurs="1" minOccurs="1" name="InmovilizadoMaterial"
+				type="InmovilizadoMaterial" />
+		</x:sequence>
+		<x:attribute name="tributos" type="ti:ImportePositivo"
+			use="required" />
+		<x:attribute name="seguros" type="ti:ImportePositivo" use="required" />
+		<x:attribute name="otrosCostes" type="ti:ImportePositivo"
+			use="required" />
+		<x:attribute name="total" type="ti:ImportePositivo" use="required" />
+	</x:complexType>
+
+	<x:complexType name="PersonalFijo">
+		<x:attribute name="numero" type="ti:Socio_Numero" use="required" />
+		<x:attribute name="salarios" type="ti:ImportePositivo"
+			use="required" />
+		<x:attribute name="s_social" type="ti:ImportePositivo"
+			use="required" />
+	</x:complexType>
+
+	<x:complexType name="InmovilizadoMaterial">
+		<x:sequence>
+			<x:element maxOccurs="unbounded" minOccurs="0" name="Interes"
+				type="Interes" />
+			<x:element maxOccurs="unbounded" minOccurs="0" name="Amortizacion"
+				type="Amortizacion" />
+		</x:sequence>
+		<x:attribute name="t_intereses" type="ti:ImportePositivo"
+			use="required" />
+		<x:attribute name="t_gastos" type="ti:ImportePositivo"
+			use="required" />
+		<x:attribute name="t_amortizacion" type="ti:ImportePositivo"
+			use="required" />
+	</x:complexType>
+
+	<x:complexType name="Interes">
+		<x:sequence>
+			<x:element maxOccurs="1" minOccurs="1" name="Prestamo"
+				type="Prestamo" />
+		</x:sequence>
+		<x:attribute name="tipo" type="ti:TantoPorCien" use="required" />
+		<x:attribute name="anualidad" type="ti:ImportePositivo"
+			use="required" />
+	</x:complexType>
+
+	<x:complexType name="Prestamo">
+		<x:attribute name="finalidad" type="ti:Descripcion40" use="required" />
+		<x:attribute name="importe" type="ti:ImportePositivo" use="required" />
+		<x:attribute name="anios" type="ti:VidaUtil" use="required" />
+		<x:attribute name="fec1Amortizacion" type="x:date" use="required" />
+		<x:attribute name="saldo" type="ti:ImportePositivo" use="required" />
+	</x:complexType>
+
+	<x:complexType name="Amortizacion">
+		<x:attribute name="concepto" type="ti:Descripcion40" use="required" />
+		<x:attribute name="vidaUtil" type="ti:VidaUtil" use="required" />
+		<x:attribute name="inicio" type="x:date" use="required" />
+		<x:attribute name="anualidad" type="ti:ImportePositivo"
+			use="required" />
+	</x:complexType>
+
+</x:schema>

@@ -1,0 +1,39 @@
+<project name="WSDLs_AGP" default="all">
+
+	<property file="${basedir}/../../PRJ_AGP/construccion/build.general.properties"/>
+	<property file="${basedir}/../../PRJ_AGP/construccion/libraries.properties"/>
+	<property file="${basedir}/${path_descr_entorno}/webservices.properties"/>
+	<filter filtersfile="${basedir}/../../PRJ_AGP/construccion/build.general.properties"/>
+	
+	<property name="wsdl_confirmacionExt" value="${basedir}/${path_descr_entorno}/${confirmacion_ext.wsdl}"/>
+
+	<target name="all" depends="wsdl2java"/>
+
+    <target name="init" depends="clean">
+        <echo message="*************************************************************" />
+		<echo message="** Creacion de las clases servicio de los WSDLs de Agroseguro **" />
+		<echo message="*************************************************************" />
+    </target>
+	
+	<target name="clean">
+		<delete dir="${basedir}/../../${ws_project_name}/src" />
+	</target>
+
+    <path id="rutaLibrerias" >
+    	<fileset dir="${jaxws.dir}" >
+			<include name="**/*.jar"/>
+		</fileset>
+    </path>
+	
+	<taskdef name="wsimport" classname="com.sun.tools.ws.ant.WsImport">
+		<classpath refid="rutaLibrerias"/>
+	</taskdef>
+
+    <target name="wsdl2java" depends="init" description="Crea los fuentes del servicio a partir del wsdl">
+        <mkdir dir="${basedir}/../../${ws_project_name}/src"/>     
+    	<echo message="Creando los fuentes de ${wsdl_confirmacionExt}"/>
+    	<wsimport wsdl="${wsdl_confirmacionExt}" sourcedestdir="${basedir}/../../${ws_project_name}/src" 
+        	verbose="true" xnocompile="true" keep="true" xendorsed="true"/>
+    </target>
+
+</project>
