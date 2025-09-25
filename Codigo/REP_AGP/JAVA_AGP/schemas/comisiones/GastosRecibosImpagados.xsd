@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<x:schema 
+	targetNamespace="http://www.agroseguro.es/Recibos/GastosRecibosImpagados" 
+	xmlns="http://www.agroseguro.es/Recibos/GastosRecibosImpagados" 
+	xmlns:ti="http://www.agroseguro.es/ITipos" 
+	xmlns:x="http://www.w3.org/2001/XMLSchema">
+
+	<!-- Importacion de la definicion de tipos genericos -->
+	<x:import namespace="http://www.agroseguro.es/ITipos" schemaLocation="../commons/Tipos.xsd" />
+
+	<x:element name="Fase" type="Fase"/>
+
+	<x:complexType name="Fase">
+		<x:sequence>
+			<x:element maxOccurs="unbounded" minOccurs="1" name="Recibo" type="Recibo"/>
+		</x:sequence>
+		<x:attribute name="ejercicioPago" type="ti:Recibo_Ejercicio" use="required"/>
+		<x:attribute name="fase" type="ti:Fase_Codigo" use="required"/>
+		<x:attribute name="fechaFaseCobros" type="x:date" use="required"/>
+	</x:complexType>
+
+	<x:group name="NombrePersona">
+		<x:choice>
+			<x:element maxOccurs="1" minOccurs="1" name="NombreApellidos" type="ti:NombreApellidos"/>
+			<x:element maxOccurs="1" minOccurs="1" name="RazonSocial" type="ti:RazonSocial"/>
+		</x:choice>	
+	</x:group>
+
+	<x:complexType name="Recibo">
+		<x:sequence>
+			<x:choice maxOccurs="1" minOccurs="1">
+				<x:element maxOccurs="1" minOccurs="0" name="Individual" type="Individual"/>
+				<x:element maxOccurs="1" minOccurs="0" name="Colectivo" type="Colectivo"/>
+			</x:choice>
+			<x:element maxOccurs="1" minOccurs="1" name="Aplicacion" type="Aplicacion"/>
+		</x:sequence>
+		<x:attribute name="recibo" type="ti:Recibo_Codigo" use="required"/>
+		<x:attribute name="plan" type="ti:Plan" use="required"/>		
+		<x:attribute name="linea" type="ti:Linea_Codigo" use="required"/>
+	</x:complexType>
+
+	<x:complexType name="Individual">
+		<x:group ref="NombrePersona"/>
+	</x:complexType>
+
+	<x:complexType name="Colectivo">
+		<x:sequence>
+			<x:group ref="NombrePersona"/>
+		</x:sequence>
+		<x:attribute name="referencia" type="ti:Colectivo_Referencia" use="required"/>
+		<x:attribute name="digitoControl" type="ti:DigitoControl" use="required"/>
+		<x:attribute name="codigoInterno" type="ti:CodigoInternoEntidad" use="required"/>		
+	</x:complexType>
+
+	<x:complexType name="Aplicacion">
+		<x:sequence>
+			<x:group ref="NombrePersona"/>
+			<x:element maxOccurs="unbounded" minOccurs="1" name="GrupoNegocio" type="GrupoNegocio"/>
+		</x:sequence>
+		<x:attribute name="referencia" type="ti:Poliza_Referencia_Unificada" use="required"/>
+		<x:attribute name="digitoControl" type="ti:DigitoControl" use="required"/>
+		<x:attribute name="tipoReferencia" type="ti:Referencia_Tipo" use="required"/>
+		<x:attribute name="codigoInterno" type="ti:CodigoInternoEntidad" use="required"/>		
+		<x:attribute name="importeSaldoPendiente" type="ti:ImporteLargo" use="required"/>
+		<x:attribute name="importeCobroRecibido" type="ti:ImporteLargo" use="required"/>
+	</x:complexType>
+
+	<x:complexType name="GrupoNegocio">
+		<x:sequence>
+			<x:element maxOccurs="1" minOccurs="1" name="GastosPendientesAbonarReciboImpagado" type="ComisionesGastos"/>
+			<x:element maxOccurs="1" minOccurs="1" name="GastosAbonarCobroActual" type="ComisionesGastos"/>
+			<x:element maxOccurs="1" minOccurs="1" name="GastosPendientesAbonar" type="ComisionesGastos"/>
+		</x:sequence>
+		<x:attribute name="grupoNegocio" type="ti:GrupoNegocio" use="required"/>
+	</x:complexType> 
+
+	<x:complexType name="ComisionesGastos">
+		<x:attribute name="gastosAdminEntidad" type="ti:ImporteLargo" use="required"/>
+		<x:attribute name="gastosAdqEntidad" type="ti:ImporteLargo" use="required"/>
+		<x:attribute name="comisionesMediador" type="ti:ImporteLargo" use="required"/>
+	</x:complexType>
+</x:schema>

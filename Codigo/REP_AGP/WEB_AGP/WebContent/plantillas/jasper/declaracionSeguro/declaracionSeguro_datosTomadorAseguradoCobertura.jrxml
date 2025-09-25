@@ -1,0 +1,439 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="declaracionSeguro_datosTomadorAseguradoCobertura" pageWidth="555" pageHeight="802" whenNoDataType="NoDataSection" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" isFloatColumnFooter="true" uuid="b8107787-1587-4504-9a1a-d975275800f7">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA[""]]></defaultValueExpression>
+	</parameter>
+	<parameter name="ID" class="java.lang.Integer"/>
+	<parameter name="tablaSubreport" class="net.sf.jasperreports.engine.JasperReport" isForPrompting="false"/>
+	<parameter name="datasource" class="net.sf.jasperreports.engine.data.JRBeanCollectionDataSource" isForPrompting="false"/>
+	<parameter name="lstCompNoElegidas" class="java.util.Map" isForPrompting="false"/>
+	<parameter name="FECHA" class="java.util.Date"/>
+	<parameter name="pintarDC2015" class="java.lang.Boolean"/>
+	<parameter name="isPagoFraccionado" class="java.lang.Boolean"/>
+	<parameter name="fechaFinContratacion" class="java.util.Date"/>
+	<parameter name="tipoPago" class="java.lang.String"/>
+	<parameter name="esRenovable" class="java.lang.String"/>
+	<parameter name="esGanado" class="java.lang.Boolean">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="lineaSup2021" class="java.lang.Boolean"/>
+	<parameter name="exentoCuentaCobroSiniestros" class="java.lang.Boolean"/>
+	<parameter name="grupoNegocio1" class="java.math.BigDecimal"/>
+	<parameter name="grupoNegocio2" class="java.math.BigDecimal"/>
+	<parameter name="IBAN_ASEG" class="java.lang.String"/>
+	<parameter name="CUENTA_1" class="java.lang.String"/>
+	<parameter name="CUENTA_2" class="java.lang.String"/>
+	<parameter name="CUENTA_3" class="java.lang.String"/>
+	<parameter name="CUENTA_4" class="java.lang.String"/>
+	<parameter name="CUENTA_5" class="java.lang.String"/>
+	<parameter name="SUBREPORT_DIR2" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA[""]]></defaultValueExpression>
+	</parameter>
+	<parameter name="SUBREPORT_DIR1" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA[""]]></defaultValueExpression>
+	</parameter>
+	<parameter name="P_BARCODE" class="java.lang.String"/>
+	<parameter name="P_BARCODE2" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[select   sum (nvl(c.COSTETOMADOR,0)) as COSTETOMADOR,
+	sum (nvl(c.RECARGOAVAL,0)) as RECARGOAVAL,
+	sum (nvl(c.RECARGOFRACCIONAMIENTO,0)) as RECARGOFRACCIONAMIENTO,
+	sum (nvl(c.TOTALCOSTETOMADOR,0)) as TOTALCOSTETOMADOR,
+	sum (nvl(c.IMPORTE_PAGO_FRACC,0)) as IMPORTE_PAGO_FRACC,
+	sum (nvl(c.IMPORTE_PAGO_FRACC_AGR,0)) as IMPORTE_PAGO_FRACC_AGR,
+  	count(c.idcomparativa) as numGrusposNegocio
+from o02agpe0.tb_distribucion_costes_2015 c,
+	o02agpe0.tb_sc_c_grupos_negocio g
+where c.idpoliza =$P{ID}
+and c.grupo_negocio = g.grupo_negocio]]>
+	</queryString>
+	<field name="RECARGOAVAL" class="java.math.BigDecimal"/>
+	<field name="RECARGOFRACCIONAMIENTO" class="java.math.BigDecimal"/>
+	<field name="TOTALCOSTETOMADOR" class="java.math.BigDecimal"/>
+	<field name="COSTETOMADOR" class="java.math.BigDecimal"/>
+	<field name="IMPORTE_PAGO_FRACC" class="java.math.BigDecimal"/>
+	<field name="IMPORTE_PAGO_FRACC_AGR" class="java.math.BigDecimal"/>
+	<field name="NUMGRUSPOSNEGOCIO" class="java.math.BigDecimal"/>
+	<variable name="HEADER" class="java.lang.String">
+		<variableExpression><![CDATA[new String("NO")]]></variableExpression>
+	</variable>
+	<variable name="recargoAval" class="java.math.BigDecimal">
+		<variableExpression><![CDATA[( $F{NUMGRUSPOSNEGOCIO}.compareTo(new BigDecimal(0) )==0 ?
+    $F{RECARGOAVAL}.divide(new BigDecimal(1)) :
+    $F{RECARGOAVAL}.divide($F{NUMGRUSPOSNEGOCIO}))]]></variableExpression>
+	</variable>
+	<variable name="recargoFraccionamiento" class="java.math.BigDecimal">
+		<variableExpression><![CDATA[( $F{NUMGRUSPOSNEGOCIO}.compareTo(new BigDecimal(0) )==0 ?
+    $F{RECARGOFRACCIONAMIENTO}.divide(new BigDecimal(1)) :
+    $F{RECARGOFRACCIONAMIENTO}.divide($F{NUMGRUSPOSNEGOCIO}))]]></variableExpression>
+	</variable>
+	<variable name="numeroGruposNegocio" class="java.math.BigDecimal">
+		<variableExpression><![CDATA[( $F{NUMGRUSPOSNEGOCIO}.compareTo(new BigDecimal(0) )==0 ? new BigDecimal(1) : $F{NUMGRUSPOSNEGOCIO})]]></variableExpression>
+	</variable>
+	<variable name="SHOW_FOOT" class="java.lang.Boolean" resetType="None">
+		<variableExpression><![CDATA[new Boolean(true)]]></variableExpression>
+		<initialValueExpression><![CDATA[]]></initialValueExpression>
+	</variable>
+	<variable name="SHOW_BACK" class="java.lang.Boolean" resetType="None">
+		<variableExpression><![CDATA[new Boolean(true)]]></variableExpression>
+		<initialValueExpression><![CDATA[]]></initialValueExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="54" splitType="Stretch">
+			<subreport>
+				<reportElement mode="Transparent" x="10" y="24" width="537" height="30" backcolor="#FFFFFF" uuid="70fa1eb2-bdbd-4c79-88e5-4bd921ba2d0f"/>
+				<subreportParameter name="SUBREPORT_DIR">
+					<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="P_BARCODE2">
+					<subreportParameterExpression><![CDATA[$P{P_BARCODE2}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="esRenovable">
+					<subreportParameterExpression><![CDATA[$P{esRenovable}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="P_BARCODE">
+					<subreportParameterExpression><![CDATA[$P{P_BARCODE}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="ID">
+					<subreportParameterExpression><![CDATA[$P{ID}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<returnValue subreportVariable="SHOW_FOOT" toVariable="SHOW_FOOT"/>
+				<returnValue subreportVariable="SHOW_BACK" toVariable="SHOW_BACK"/>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "declaracionSeguro_cabecera.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="38" splitType="Stretch">
+			<subreport runToBottom="false">
+				<reportElement mode="Transparent" x="10" y="0" width="537" height="25" backcolor="#FFFFFF" uuid="b9a2c29c-de61-4a79-a7db-5a12f6a39526"/>
+				<subreportParameter name="ID">
+					<subreportParameterExpression><![CDATA[$P{ID}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<returnValue subreportVariable="SHOW_FOOT" toVariable="SHOW_FOOT"/>
+				<returnValue subreportVariable="SHOW_BACK" toVariable="SHOW_BACK"/>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "declaracionSeguro_datosTomador.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="25">
+			<subreport runToBottom="false">
+				<reportElement mode="Transparent" x="10" y="0" width="537" height="25" backcolor="#FFFFFF" uuid="05b66fc2-2eeb-4d57-9fcf-b4f838f12063"/>
+				<subreportParameter name="ID">
+					<subreportParameterExpression><![CDATA[$P{ID}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<returnValue subreportVariable="SHOW_FOOT" toVariable="SHOW_FOOT"/>
+				<returnValue subreportVariable="SHOW_BACK" toVariable="SHOW_BACK"/>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "declaracionSeguro_datosAsegurado.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="25">
+			<subreport runToBottom="false">
+				<reportElement mode="Transparent" x="10" y="0" width="537" height="25" backcolor="#FFFFFF" uuid="940f77f6-1642-4eb1-801f-01e55ead183c"/>
+				<subreportParameter name="SUBREPORT_DIR">
+					<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="esGanado">
+					<subreportParameterExpression><![CDATA[$P{esGanado}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="ID">
+					<subreportParameterExpression><![CDATA[$P{ID}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<returnValue subreportVariable="SHOW_FOOT" toVariable="SHOW_FOOT"/>
+				<returnValue subreportVariable="SHOW_BACK" toVariable="SHOW_BACK"/>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "declaracionSeguro_datosTomadorAseguradoCobertura_subvencionDeclarable.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="25">
+			<subreport runToBottom="false">
+				<reportElement mode="Transparent" x="10" y="0" width="537" height="25" isPrintInFirstWholeBand="true" backcolor="#FFFFFF" uuid="6dae85c9-01be-422e-aff6-e07ddb368c00"/>
+				<subreportParameter name="SUBREPORT_DIR">
+					<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="ID">
+					<subreportParameterExpression><![CDATA[$P{ID}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="fechaFinContratacion">
+					<subreportParameterExpression><![CDATA[$P{fechaFinContratacion}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<returnValue subreportVariable="SHOW_FOOT" toVariable="SHOW_FOOT"/>
+				<returnValue subreportVariable="SHOW_BACK" toVariable="SHOW_BACK"/>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "declaracionSeguro_datosTomadorAseguradoCobertura_resumenCoberturas.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="14">
+			<subreport runToBottom="false">
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" mode="Transparent" x="10" y="0" width="537" height="13" isRemoveLineWhenBlank="true" backcolor="#FFFFFF" uuid="c6805b11-8f8b-44d7-b531-dd497fe0d464"/>
+				<dataSourceExpression><![CDATA[$P{datasource}]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{tablaSubreport}]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="41">
+			<staticText>
+				<reportElement positionType="Float" x="10" y="0" width="530" height="41" uuid="dab05afc-f503-462b-8845-8a7828c696fe"/>
+				<textElement textAlignment="Justified" verticalAlignment="Top">
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[El presente cuadro recoge las distintas opciones de contratación que, de entre las posibles, ha elegido voluntariamente el asegurado una vez ha sido previamente informado de las mismas, así como un resumen de las condiciones aplicables a cada una de ellas. El resto de condiciones de aplicación que forman parte del presente contrato se encuentran recogidas en las Condiciones Generales y Especiales. El tomador, en su propio nombre y representación del asegurado, acepta expresamente, mediante la firma de la presente declaración, dichas Condiciones, incluidas aquellas cláusulas que pudieran ser consideradas limitativas.]]></text>
+			</staticText>
+		</band>
+		<band height="13">
+			<subreport runToBottom="false">
+				<reportElement mode="Transparent" x="10" y="0" width="537" height="13" isRemoveLineWhenBlank="true" backcolor="#FFFFFF" uuid="9a36d199-49fb-42a3-8a71-fdd02f7991d6"/>
+				<subreportParameter name="ID">
+					<subreportParameterExpression><![CDATA[$P{ID}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="lstCompNoElegidas">
+					<subreportParameterExpression><![CDATA[$P{lstCompNoElegidas}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<returnValue subreportVariable="SHOW_FOOT" toVariable="SHOW_FOOT"/>
+				<returnValue subreportVariable="SHOW_BACK" toVariable="SHOW_BACK"/>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "declaracionSeguro_datosTomadorAseguradoCobertura_riesgosNoElegidos.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="20">
+			<subreport>
+				<reportElement mode="Transparent" x="10" y="0" width="537" height="18" backcolor="#FFFFFF" uuid="e1326a8d-b8fd-473e-9cee-5f3d88329b66"/>
+				<subreportParameter name="ID">
+					<subreportParameterExpression><![CDATA[$P{ID}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<returnValue subreportVariable="SHOW_FOOT" toVariable="SHOW_FOOT"/>
+				<returnValue subreportVariable="SHOW_BACK" toVariable="SHOW_BACK"/>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "declaracionSeguro_CoberturasGarantias.jasper"]]></subreportExpression>
+			</subreport>
+			<break>
+				<reportElement x="0" y="17" width="100" height="1" uuid="d6d04608-a200-4efa-99a2-0a42f8b09a4f"/>
+			</break>
+		</band>
+		<band height="18">
+			<subreport>
+				<reportElement isPrintRepeatedValues="false" x="10" y="4" width="537" height="14" uuid="36200e5f-eae7-44af-aa86-ac07cf47f6fc">
+					<printWhenExpression><![CDATA[new Boolean(!$P{lineaSup2021}.booleanValue())]]></printWhenExpression>
+				</reportElement>
+				<subreportParameter name="tipoPago">
+					<subreportParameterExpression><![CDATA[$P{tipoPago}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="P_BARCODE">
+					<subreportParameterExpression><![CDATA[$P{P_BARCODE}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="ID">
+					<subreportParameterExpression><![CDATA[$P{ID}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<returnValue subreportVariable="SHOW_FOOT" toVariable="SHOW_FOOT"/>
+				<returnValue subreportVariable="SHOW_BACK" toVariable="SHOW_BACK"/>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "declaracionSeguro_datosPago.jasper"]]></subreportExpression>
+			</subreport>
+			<subreport>
+				<reportElement isPrintRepeatedValues="false" x="10" y="4" width="537" height="14" uuid="0f59b9b3-573d-4dba-b697-662534cbc540">
+					<printWhenExpression><![CDATA[new Boolean($P{lineaSup2021}.booleanValue())]]></printWhenExpression>
+				</reportElement>
+				<subreportParameter name="tipoPago">
+					<subreportParameterExpression><![CDATA[$P{tipoPago}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="exentoCuentaCobroSiniestros">
+					<subreportParameterExpression><![CDATA[$P{exentoCuentaCobroSiniestros}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="P_BARCODE">
+					<subreportParameterExpression><![CDATA[$P{P_BARCODE}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="ID">
+					<subreportParameterExpression><![CDATA[$P{ID}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<returnValue subreportVariable="SHOW_FOOT" toVariable="SHOW_FOOT"/>
+				<returnValue subreportVariable="SHOW_BACK" toVariable="SHOW_BACK"/>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "declaracionSeguro_datosPago2021.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="49" splitType="Stretch">
+			<subreport>
+				<reportElement isPrintRepeatedValues="false" x="10" y="0" width="537" height="14" uuid="495bf465-2c9b-4d75-aa0b-54e8cda1dbc4">
+					<printWhenExpression><![CDATA[new Boolean(!$P{pintarDC2015}.booleanValue())]]></printWhenExpression>
+				</reportElement>
+				<subreportParameter name="esGanado">
+					<subreportParameterExpression><![CDATA[$P{esGanado}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="ID">
+					<subreportParameterExpression><![CDATA[$P{ID}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<returnValue subreportVariable="SHOW_FOOT" toVariable="SHOW_FOOT"/>
+				<returnValue subreportVariable="SHOW_BACK" toVariable="SHOW_BACK"/>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "declaracionSeguro_distribucionSeguro.jasper"]]></subreportExpression>
+			</subreport>
+			<subreport>
+				<reportElement positionType="Float" isPrintRepeatedValues="false" x="10" y="30" width="260" height="18" isRemoveLineWhenBlank="true" isPrintWhenDetailOverflows="true" uuid="7c26ce5e-a2eb-44fc-86e2-372f3f1a376b">
+					<printWhenExpression><![CDATA[new Boolean($P{pintarDC2015}.booleanValue())]]></printWhenExpression>
+				</reportElement>
+				<subreportParameter name="SUBREPORT_DIR">
+					<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="esGanado">
+					<subreportParameterExpression><![CDATA[$P{esGanado}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="ID">
+					<subreportParameterExpression><![CDATA[$P{ID}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="grupoNegocio1">
+					<subreportParameterExpression><![CDATA[$P{grupoNegocio1}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="isPagoFraccionado">
+					<subreportParameterExpression><![CDATA[$P{isPagoFraccionado}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<returnValue subreportVariable="SHOW_FOOT" toVariable="SHOW_FOOT"/>
+				<returnValue subreportVariable="SHOW_BACK" toVariable="SHOW_BACK"/>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "declaracionSeguro_distribucionSeguro2015.jasper"]]></subreportExpression>
+			</subreport>
+			<subreport>
+				<reportElement positionType="Float" isPrintRepeatedValues="false" x="270" y="30" width="270" height="18" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="4b7f1d32-6eb9-44fd-bfdc-2ac271b07b58">
+					<printWhenExpression><![CDATA[new Boolean($P{pintarDC2015}.booleanValue())]]></printWhenExpression>
+				</reportElement>
+				<subreportParameter name="SUBREPORT_DIR">
+					<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="esGanado">
+					<subreportParameterExpression><![CDATA[$P{esGanado}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="ID">
+					<subreportParameterExpression><![CDATA[$P{ID}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="grupoNegocio2">
+					<subreportParameterExpression><![CDATA[$P{grupoNegocio2}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="isPagoFraccionado">
+					<subreportParameterExpression><![CDATA[$P{isPagoFraccionado}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<returnValue subreportVariable="SHOW_FOOT" toVariable="SHOW_FOOT"/>
+				<returnValue subreportVariable="SHOW_BACK" toVariable="SHOW_BACK"/>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "declaracionSeguro_distribucionSeguro2015_B.jasper"]]></subreportExpression>
+			</subreport>
+			<staticText>
+				<reportElement x="10" y="15" width="240" height="15" uuid="3d02d94b-15ff-4b85-bf09-f8fcda4e2f61"/>
+				<textElement>
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DISTRIBUCIÓN DE COSTE DEL SEGURO]]></text>
+			</staticText>
+		</band>
+		<band height="62" splitType="Stretch">
+			<staticText>
+				<reportElement x="68" y="15" width="255" height="15" isRemoveLineWhenBlank="true" isPrintWhenDetailOverflows="true" uuid="09fab828-cd92-4997-80cf-4283e79a472a">
+					<printWhenExpression><![CDATA[new Boolean($F{IMPORTE_PAGO_FRACC}.compareTo(
+    new java.math.BigDecimal(0.00))==1 ||
+    $F{RECARGOAVAL}.compareTo(new BigDecimal(0.00))==1
+)]]></printWhenExpression>
+				</reportElement>
+				<textElement>
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[RECARGO AVAL..................................................:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="68" y="30" width="255" height="15" isRemoveLineWhenBlank="true" isPrintWhenDetailOverflows="true" uuid="223ac03d-f909-4e3c-8fff-eda7d251bcfd">
+					<printWhenExpression><![CDATA[new Boolean($F{IMPORTE_PAGO_FRACC}.compareTo(
+    new java.math.BigDecimal(0.00))==1 ||
+    $F{RECARGOFRACCIONAMIENTO}.compareTo(new BigDecimal(0.00))==1
+)]]></printWhenExpression>
+				</reportElement>
+				<textElement>
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[RECARGO FRACCIONAMIENTO.............................:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="68" y="0" width="255" height="15" isPrintWhenDetailOverflows="true" uuid="f4d9baca-8392-403d-8563-741dab51d783"/>
+				<textElement>
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[TOTAL COSTE TOMADOR...................................................:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="68" y="46" width="255" height="15" isRemoveLineWhenBlank="true" isPrintWhenDetailOverflows="true" uuid="297fddbe-8aa4-4fef-a07e-4708dac9cd6a">
+					<printWhenExpression><![CDATA[new Boolean($F{IMPORTE_PAGO_FRACC}.compareTo(
+    new java.math.BigDecimal(0.00))==1 ||
+    $F{RECARGOFRACCIONAMIENTO}.compareTo(new BigDecimal(0.00))==1 ||
+   $F{RECARGOAVAL}.compareTo(new BigDecimal(0.00))==1
+)]]></printWhenExpression>
+				</reportElement>
+				<textElement>
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[TOTAL COSTE TOMADOR A PAGAR.............................:]]></text>
+			</staticText>
+			<textField pattern="#,##0.00¤" isBlankWhenNull="true">
+				<reportElement x="323" y="46" width="80" height="15" isRemoveLineWhenBlank="true" isPrintWhenDetailOverflows="true" uuid="81465cf9-5128-4bc1-ae8a-a696a5e85a6e">
+					<printWhenExpression><![CDATA[new Boolean($F{IMPORTE_PAGO_FRACC}.compareTo(
+    new java.math.BigDecimal(0.00))==1 ||
+    $F{RECARGOFRACCIONAMIENTO}.compareTo(new BigDecimal(0.00))==1 ||
+   $F{RECARGOAVAL}.compareTo(new BigDecimal(0.00))==1
+)]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Right">
+					<font size="8" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{COSTETOMADOR}.add($V{recargoAval}).add($V{recargoFraccionamiento})]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00¤" isBlankWhenNull="true">
+				<reportElement x="323" y="15" width="80" height="15" isRemoveLineWhenBlank="true" isPrintWhenDetailOverflows="true" uuid="1e66e75f-0cd2-4e62-be43-5647ee1edfd1">
+					<printWhenExpression><![CDATA[new Boolean($F{IMPORTE_PAGO_FRACC}.compareTo(
+    new java.math.BigDecimal(0.00))==1 ||
+    $F{RECARGOAVAL}.compareTo(new BigDecimal(0.00))==1
+)]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Right">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{recargoAval}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00¤" isBlankWhenNull="true">
+				<reportElement x="323" y="0" width="80" height="15" isPrintWhenDetailOverflows="true" uuid="e74bae36-5a93-4fcf-85b9-deda97d538f4"/>
+				<textElement textAlignment="Right">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{COSTETOMADOR}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00¤" isBlankWhenNull="true">
+				<reportElement x="323" y="30" width="80" height="15" isRemoveLineWhenBlank="true" isPrintWhenDetailOverflows="true" uuid="0e4b313c-84d0-44cc-9090-bee4eb7dd353">
+					<printWhenExpression><![CDATA[new Boolean($F{IMPORTE_PAGO_FRACC}.compareTo(
+    new java.math.BigDecimal(0.00))==1 ||
+    $F{RECARGOFRACCIONAMIENTO}.compareTo(new BigDecimal(0.00))==1
+)]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Right">
+					<font size="8" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{recargoFraccionamiento}]]></textFieldExpression>
+			</textField>
+		</band>		
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

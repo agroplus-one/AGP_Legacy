@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="declaracionColectivo_cabecera" pageWidth="255" pageHeight="60" whenNoDataType="AllSectionsNoDetail" columnWidth="255" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0">
+	<property name="ireport.zoom" value="3.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="LINEASEGUROID" class="java.lang.String"/>
+	<parameter name="ID" class="java.math.BigDecimal"/>
+	<queryString>
+		<![CDATA[SELECT LI.CODLINEA,LI.NOMLINEA,LI.CODPLAN,COL.NOMCOLECTIVO
+FROM TB_LINEAS LI,TB_COLECTIVOS COL
+WHERE LI.LINEASEGUROID = COL.LINEASEGUROID
+AND LI.LINEASEGUROID = $P{LINEASEGUROID}
+AND COL.ID = $P{ID}]]>
+	</queryString>
+	<field name="CODLINEA" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="NOMLINEA" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CODPLAN" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="NOMCOLECTIVO" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<detail>
+		<band height="27" splitType="Stretch">
+			<textField>
+				<reportElement x="1" y="1" width="254" height="13"/>
+				<box>
+					<topPen lineWidth="0.25" lineStyle="Solid"/>
+					<leftPen lineWidth="0.25" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.25" lineStyle="Solid"/>
+					<rightPen lineWidth="0.25" lineStyle="Solid"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font size="8" pdfFontName="Courier"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" LÍNEA DE SEGURO: " + $F{CODLINEA}.toString() + " - " + $F{NOMLINEA}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="1" y="14" width="254" height="13"/>
+				<box>
+					<topPen lineWidth="0.25" lineStyle="Solid"/>
+					<leftPen lineWidth="0.25" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.25" lineStyle="Solid"/>
+					<rightPen lineWidth="0.25" lineStyle="Solid"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font size="8" pdfFontName="Courier"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" PLAN: " + $F{CODPLAN}.toString()]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

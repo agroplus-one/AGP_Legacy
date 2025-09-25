@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	targetNamespace="http://www.agroseguro.es/Contratacion/DeclaracionSubvenciones"
+	xmlns="http://www.agroseguro.es/Contratacion/DeclaracionSubvenciones"
+	xmlns:ti="http://www.agroseguro.es/Tipos">
+
+	<xs:import namespace="http://www.agroseguro.es/Tipos"
+		schemaLocation="Tipos.xsd" />
+
+	<xs:complexType name="RelacionSocios">
+		<xs:sequence>
+			<xs:element maxOccurs="unbounded" minOccurs="1" name="Socio"
+				type="Socio" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="Socio">
+		<xs:sequence>
+			<xs:group maxOccurs="1" minOccurs="1" ref="ti:NombrePersona" />
+			<xs:sequence>
+				<xs:element maxOccurs="1" minOccurs="0"
+					name="SubvencionesDeclaradas" type="SubvencionesDeclaradas" />
+			</xs:sequence>
+		</xs:sequence>
+		<xs:attribute name="nif" type="ti:NIFCIF" use="required" />
+		<xs:attribute name="numero" type="ti:Socio_Numero" use="required" />
+	</xs:complexType>
+
+	<xs:complexType name="SubvencionesDeclaradas">
+		<xs:sequence>
+			<xs:element maxOccurs="1" minOccurs="0" name="SeguridadSocial"
+				type="SeguridadSocial" />
+			<xs:element maxOccurs="unbounded" minOccurs="1"
+				name="SubvencionDeclarada" type="SubvencionDeclarada" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="SubvencionDeclarada">
+		<xs:attribute name="tipo" type="ti:Subvencion_Tipo" use="required" />
+	</xs:complexType>
+
+	<xs:complexType name="SeguridadSocial">
+		<xs:attribute name="codigo" type="ti:SeguridadSocial_Codigo"
+			use="required" />
+		<xs:attribute name="numero" type="ti:SeguridadSocial_Numero"
+			use="required" />
+		<xs:attribute name="regimen" type="ti:SeguridadSocial_Regimen"
+			use="required" />
+		<xs:attribute name="provincia" type="ti:SeguridadSocial_Provincia"
+			use="required" />
+	</xs:complexType>
+
+</xs:schema>

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.16.0.final using JasperReports Library version 3.6.1  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="declaracionComparativa_distribucionSeguro_subvENESA2015" pageWidth="372" pageHeight="30" whenNoDataType="AllSectionsNoDetail" columnWidth="372" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0">
+	<property name="net.sf.jasperreports.print.create.bookmarks" value="false"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="DataAdapter.xml"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<parameter name="ID" class="java.lang.Integer"/>
+	<parameter name="IDCOSTE" class="java.math.BigDecimal"/>
+	<queryString>
+		<![CDATA[select s.codtiposubv,e.destiposubvenesa,nvl(s.importesubv,0) importesubv
+from tb_distribucion_costes_2015 c
+  left join tb_dist_coste_subvs_2015 s on (c.id = s.iddistcoste and s.codorganismo = '0')
+  left join TB_SC_C_TIPO_SUBV_ENESA e on (e.codtiposubvenesa = s.codtiposubv)
+where c.idpoliza =   $P{ID} 
+and c.id =  $P{IDCOSTE}
+and nvl(s.importesubv,0) >0]]>
+	</queryString>
+	<field name="codtiposubv" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="importesubv" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="destiposubvenesa" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<variable name="TotalImporte" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{importesubv}.plus()]]></variableExpression>
+	</variable>
+	<variable name="TotalImporteString" class="java.lang.String">
+		<variableExpression><![CDATA[new DecimalFormat("#,##0.00").format($V{TotalImporte})]]></variableExpression>
+	</variable>
+	<variable name="importesubv" class="java.lang.String">
+		<variableExpression><![CDATA[new DecimalFormat("#,##0.00").format($F{importesubv})]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<columnHeader>
+		<band height="13">
+			<textField isStretchWithOverflow="true" evaluationTime="Auto" isBlankWhenNull="true">
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="0" y="0" width="100" height="13" isRemoveLineWhenBlank="true">
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right" lineSpacing="Single">
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$V{TotalImporteString}.toString()]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="15">
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="0" y="0" width="100" height="15" isRemoveLineWhenBlank="true">
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right" lineSpacing="Single">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$V{importesubv}.toString()]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

@@ -1,0 +1,184 @@
+INFORMACION DE USO RESTRINGIDO
+----------------------------------------------------------------------------------------------------------------------------
+El contenido de este documento es propiedad de AGROSEGURO, no pudiendo ser reproducido, ni comunicado total o parcialmente, 
+a personas sin la autorización expresa del propietario.
+----------------------------------------------------------------------------------------------------------------------------
+
+CONTRATACIONSCRENDIMIENTOS
+--------------------------
+
+
+archivo				                	namespace		                     			 version
+
+- RendimientosInformacionGeneral.xsd	SeguroAgrario/RendimientosInformacionGeneral	   
+- RendimientosCalculo.xsd				SeguroAgrario/RendimientosCalculo				   
+- CalculoSeguroAgrario.xsd				SeguroAgrario/CalculoSeguroAgrario				1.6
+- DistribucionCoste						SeguroAgrario/DistribucionCoste
+- DatosVariables.xsd                    SeguroAgrario/Contratacion/DatosVariables   		10.0
+- CostesFijos_OP			SeguroAgrario/Contratacion/OP/CostesFijos    					 2.0
+- RelacionSocios_OP			SeguroAgrario/Contratacion/OP/RelacionSocios 					 2.0
+- Tipos.xsd        		        Tipos			                           	   			29.0
+- xmime.xsd				http://www.w3.org/2005/05/xmlmime
+- policy.xml
+- presupuestoContratacion.xsd		PresupuestoContratacion								1.5
+
+DESCRIPCION DE LOS FICHEROS
+---------------------------
+	
+- ContratacionSCRendimientos.wsdl
+Descriptor del servicio Web que permite calcular los rendimientos
+de una Póliza del Seguro Creciente, sin especificación de seguridad.
+Pensado para manejar la seguridad delegando en los módulos de seguridad
+de los lenguajes de programación a través de políticas de aserciones.
+
+- policy.xml
+Política de seguridad según especificación WS-SecurityPolicy con UsernameToken
+de Oasis.
+
+- ContratacionSCRendimientos_con_cabeceras_seguridad.wsdl
+Descriptor del servicio Web que permite calcular los rendimientos
+de una Póliza del Seguro Creciente, con cabecera de seguridad WS-Security, para
+manejar la seguridad a través de los bindings de XML generados en cada lenguaje
+de programación.
+
+- CalculoSeguroAgrario.xsd
+Esquema entrante de cálculo de la Póliza del Seguro Creciente, que
+es como ContratacionSeguroAgrario.xsd pero con menos restricciones.
+
+- DistribucionCoste.xsd
+Esquema saliente con los costes de cabecera conforme a la nueva formulación SAC 
+vigente a partir del 2015
+
+- DatosVariables.xsd
+Esquema que contiene definiciones de datos variables de la Póliza
+del Seguro Creciente.
+
+- CostesFijos_OP.xsd
+Anexo con la declaración de gastos fijos de la explotación agrícola en el seguro
+de Costes Fijos de OP (Organización de Productores)
+
+- RelacionSocios_OP
+Anexo con la lista de socios que suscriben el seguro de OP (Organización de Productores)
+
+- RendimientosInformacionGeneral.xsd
+Esquema saliente de validación de los datos generales de Rendimientos de un Plan/Línea
+
+- RendimientosCalculo.xsd
+Esquema saliente de cálculo de Rendimientos de una Póliza.
+
+- Tipos.xsd
+Esquema que contiene el diccionario de tipos común de Agroseguro.
+
+- xmime.xsd
+Esquema de validación de tipos XMLMIME de W3C
+
+- PresupuestoContratacion.xsd
+Esquema unificado de poliza
+
+
+
+VERSIONES
+---------
+1.0.10 : 21-09-2020
+---------------------------------------------------------------------------
+- CalculoSeguroAgrario.xsd: Se añade la etiqueta opcional CuentaCobroSiniestros
+- PresupuestoContratacion.xsd: Se añade la etiqueta opcional CuentaCobroSiniestros
+
+
+1.0.9 : 04-03-2020.
+---------------------------------------------------------------------------
+- PresupuestoContratacion.xsd
+	Unificación de formatos
+
+
+1.0.8 : 05-04-2018.
+---------------------------------------------------------------------------
+- CalculoSeguroAgrario.xsd
+	Se añade el atributo opcional domiciliado a la etiqueta Pago
+	Se añaden los atributos opcionales destinatario y titular a la etiqueta Cuenta
+- Tipos.xsd
+	Actualización a última versión
+
+1.0.7 : 12-09-2017.
+-------------------------------------------------------------------------------------------
+- Infoversion.txt: inclusión párrafo legal por ISO27001.
+- RendimientosCalculo.xsd: inclusión de los atributos "codigo" en las diferentes secciones de rendimientos del esquema
+- RendimientosCalculo.xsd: inclusión de nueva sección "HistoricoNoAplicado" para informar de los rendimientos históricos
+que no se aplican automáticamente para el cultivo de Ciruela
+
+
+1.0.6 : 04-09-2016.
+-------------------------------------------------------------------------------------------
+- RendimientosCalculo.xsd: reubicación de los atributos "observaciones" después de los elementos para 
+evitar problemas en la generación de clases con JAXB
+
+
+1.0.5 : 15-07-2016.
+-------------------------------------------------------------------------------------------
+- ContratacionSCRendimientos.wsdl y ContratacionSCRendimientos_con_cabeceras_seguridad.wsdl:
+nuevo parámetro opcional ajusteHistoricos para los rendimientos de frutales.
+- RendimientosCalculo.xsd: Inclusión de atributos opcionales 'observaciones' para dar explicaciones más
+detalladas en la adopcción de un criterio de rendimientos o ccondiones en el ajuste de producciones.
+- Añadidos esquemas DistribucionCoste.xsd, RelacionSocios_OP.xsd, CostesFijos_OP.xsd, DatosVariables.xsd
+
+
+1.0.4 : 29-12-2014.
+-------------------------------------------------------------------------------------------
+Eliminado fichero ContratacionSCRendimientosPolicyBinding.wsdl empaquetado por error
+
+
+1.0.3 : 29-12-2014.
+-------------------------------------------------------------------------------------------
+- CalculoSeguroAgrario.xsd
+Cambia etiqueta Poliza: Desaparece CCC, Aparece nueva etiqueta DistribucionCoste1
+Cambia etiqueta Entidad: Nueva etiqueta Gastos
+Cambia etiqueta Pago: Nuevas etiquetas Cuenta y Fraccionamiento
+Cambia Etiqueta Parcela: Desaparece etiqueta IdentificacionCatastral 
+Nuevos tipos: Gastos, DistribucionCoste1, Cuenta, Fraccionamiento, Aval
+Cambia version documento incluido CostesFijos_OP a 2.0
+Cambia version documento incluido Tipos a 18.0 
+
+- Tipos.xsd
+Nuevos tipos para formulación SAC y fraccionamiento SAECA
+
+
+1.0.2 : 16-10-2012.
+-------------------------------------------------------------------------------------------
+RendimientosCalculo.xsd:
+- Se eliminan las secciones Individualizado y Club a nivel de póliza, y se añade una sección Club
+en la sección Criterios utilizados de la cosecha
+
+
+1.0.1 : 20-09-2012.
+-------------------------------------------------------------------------------------------
+
+ContratacionSCRendimientos.zip
+- Inclusión del fichero xmime.xsd omitido por error en la primera versión del empaquetado ZIP
+de esquemas del servicio.
+- Inclusión de una variante del fichero WSDL original con cabeceras de seguridad.
+- Inclusión del fichero de políticas de aserción.
+
+ContratacionSCRendimientos.wsdl y su variante
+- Modificación de especificación de los elementos XML de respuesta informarRendimientosResponse
+y calcularRendimientosResponse para que aunque se traten de respuestas simples vayan dentro de un
+tipo complejo con una secuencia de un solo elemento en su interior.
+La razón de este cambio se debe a la detección de problemas de compatibilidad en el manejo de
+respuestas con adjuntos MTOM por parte de los asistente de creación de clientes de SW en Microsoft .NET
+
+RendimientosCalculo.xsd:
+- Tipo complejo ControlAplicar: los límites de rendimiento y el concepto considerado ahora son opcionales,
+para el caso en el que el control a aplicar sea por Kg, como por ejemplo en el control por cosecha del Olivar.
+- Los límites de rendimiento ahora permiten decimales, debido a que en algunos casos pueden ser el resultado
+de multiplicar un límite por un porcentaje.
+- Corrección del tipo del atributo unidades en parcela. Ahora es de tipo ti:NumeroUnidadesCapital
+para permitir valores cero.
+
+
+
+
+
+
+1.0.0 : 07-09-2012.
+-------------------------------------------------------------------------------------------
+
+Versión inicial.

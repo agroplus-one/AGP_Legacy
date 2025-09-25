@@ -1,0 +1,473 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema
+	targetNamespace="http://www.agroseguro.es/Contratacion/DatosVariables"
+	xmlns="http://www.agroseguro.es/Contratacion/DatosVariables"
+	xmlns:ti="http://www.agroseguro.es/Tipos" 
+	xmlns:xs="http://www.w3.org/2001/XMLSchema"
+>
+
+	<xs:import
+		namespace="http://www.agroseguro.es/Tipos"
+		schemaLocation="Tipos.xsd" />
+
+	<xs:complexType name="DatosVariables">
+		<xs:sequence>
+			<xs:group ref="DatosQueDependenDelRiesgo" />
+			<xs:group ref="DatosQueNoDependenDelRiesgo" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:group name="DatosQueDependenDelRiesgo">
+		<xs:sequence>
+		
+			<xs:element name="CalcIndem" type="CalculoIndemnizacion" minOccurs="0" maxOccurs="unbounded" />
+			<xs:element name="DnCbtos" type="DaniosCubiertos" minOccurs="0" maxOccurs="unbounded" />
+			
+			<xs:element name="EFFGarant" type="EstadoFenologicoLimiteGarantias" minOccurs="0" maxOccurs="unbounded" />
+			<xs:element name="FecFGarant" type="FechaLimiteGarantias" minOccurs="0" maxOccurs="unbounded" />
+			<xs:element name="DurMaxGarantDias" type="DiasLimiteGarantias" minOccurs="0" maxOccurs="unbounded" />
+			<xs:element name="DurMaxGarantMeses" type="MesesLimiteGarantias" minOccurs="0" maxOccurs="unbounded" />
+		
+			<xs:element name="EFIGarant" type="EstadoFenologicoLimiteGarantias" minOccurs="0" maxOccurs="unbounded" />
+			<xs:element name="FecIGarant" type="FechaLimiteGarantias" minOccurs="0" maxOccurs="unbounded" />
+			<xs:element name="DIGarant" type="DiasLimiteGarantias" minOccurs="0" maxOccurs="unbounded" />				 
+			<xs:element name="MIGarant" type="MesesLimiteGarantias" minOccurs="0" maxOccurs="unbounded" />				 
+			
+			<xs:element name="Garant" type="Garantizado" minOccurs="0" maxOccurs="unbounded" />
+			<xs:element name="PerGarant" type="PeriodoGarantias" minOccurs="0" maxOccurs="unbounded" />			
+			<xs:element name="CapAseg" type="PorcentajeCapitalAsegurado" minOccurs="0" maxOccurs="unbounded" />			
+			<xs:element name="Franq" type="PorcentajeFranquicia" minOccurs="0" maxOccurs="unbounded" />			
+			<xs:element name="MinIndem" type="PorcentajeMinimoIndemnizable" minOccurs="0" maxOccurs="unbounded" />
+			<xs:element name="TipRdto" type="TipoRendimiento" minOccurs="0" maxOccurs="unbounded" />
+			<xs:element name="RiesgCbtoEleg" type="RiesgoCubiertoElegido" minOccurs="0" maxOccurs="unbounded" />
+			<xs:element name="TipFranq" type="TipoFranquicia" minOccurs="0" maxOccurs="unbounded" />
+		
+			<xs:element name="LimIndem" type="LimiteIndemnizacion" minOccurs="0" maxOccurs="unbounded" />
+		</xs:sequence>
+	</xs:group>
+	
+	<xs:group name="DatosQueNoDependenDelRiesgo">
+		<xs:sequence>
+
+			<xs:element name="Rot" type="Rotacion" minOccurs="0" maxOccurs="1" />
+			<xs:element name="CarExpl" type="CaracteristicasExplotacion" minOccurs="0" maxOccurs="1" />
+			<xs:element name="CiCul" type="CicloCultivo" minOccurs="0" maxOccurs="1" />
+			<xs:element name="CodDO" type="DenominacionOrigen" minOccurs="0" maxOccurs="1" />
+			<xs:element name="CodIGP" type="CodigoIGP" minOccurs="0" maxOccurs="1" />						
+			<xs:element name="CodRedRdto" type="CodigoReduccionRdtos" minOccurs="0" maxOccurs="1" />
+			<xs:element name="CodCert" type="CodigoCertificado" minOccurs="0" maxOccurs="1" />			
+			<xs:element name="Dens" type="Densidad" minOccurs="0" maxOccurs="1" />			
+			<xs:element name="Dest" type="Destino" minOccurs="0" maxOccurs="1" />
+			<xs:element name="Edad" type="Edad" minOccurs="0" maxOccurs="1" /> 
+			<xs:element name="EdadCubi" type="EdadCubierta" minOccurs="0" maxOccurs="1" /> 			
+			<xs:element name="EdadEstr" type="EdadEstructura" minOccurs="0" maxOccurs="1" /> 
+			<xs:element name="FecRecol" type="FechaRecoleccion" minOccurs="0" maxOccurs="1" />
+			<xs:element name="FecSiemTrasp" type="FechaSiembraTrasplante" minOccurs="0" maxOccurs="1" />			
+			<xs:element name="IndGastSalv" type="IndicadorGastosSalvamento" minOccurs="0" maxOccurs="1" />
+			<xs:element name="MatCubi" type="MaterialCubierta" minOccurs="0" maxOccurs="1" /> 			
+			<xs:element name="MatEstr" type="MaterialEstructura" minOccurs="0" maxOccurs="1" /> 						
+			<xs:element name="MedPrev" type="MedidaPreventiva" minOccurs="0" maxOccurs="1" />
+			<xs:element name="Met" type="MetrosLineales" minOccurs="0" maxOccurs="1" />
+			<xs:element name="Met2" type="MetrosCuadrados" minOccurs="0" maxOccurs="1" />		
+			<xs:element name="Nadd" type="NumeroAniosDesdeDescorche" minOccurs="0" maxOccurs="1" />
+			<xs:element name="Nadp" type="NumeroAniosDesdePoda" minOccurs="0" maxOccurs="1" />
+			<xs:element name="NumUnid" type="NumeroUnidades" minOccurs="0" maxOccurs="1" />
+			<xs:element name="Pend" type="Pendiente" minOccurs="0" maxOccurs="1" />
+			<xs:element name="SisCult" type="SistemaCultivo" minOccurs="0" maxOccurs="1" />
+			<xs:element name="SisProd" type="SistemaProduccion" minOccurs="0" maxOccurs="1" />
+			<xs:element name="SisProt" type="SistemaProteccion" minOccurs="0" maxOccurs="1" />
+			<xs:element name="TipInst" type="TipoInstalacion" minOccurs="0" maxOccurs="1" />
+			<xs:element name="TipMas" type="TipoMasa" minOccurs="0" maxOccurs="1" />						
+			<xs:element name="TipMcoPlant" type="TipoMarcoPlantacion" minOccurs="0" maxOccurs="1" />			
+			<xs:element name="TipPlant" type="TipoPlantacion" minOccurs="0" maxOccurs="1" />
+			<xs:element name="SisCond" type="SistemaConduccion" minOccurs="0" maxOccurs="1" />
+			<xs:element name="TipSubDecPar" type="TipoSubvencionDeclaradaParcela" minOccurs="0" maxOccurs="1" />			
+			<xs:element name="PraCult" type="PracticaCultural" minOccurs="0" maxOccurs="1" />
+			<xs:element name="TipTer" type="TipoTerreno" minOccurs="0" maxOccurs="1" />
+			<xs:element name="ValFij" type="ValorFijo" minOccurs="0" maxOccurs="1" />		
+		
+			<xs:element name="AdapRiesExpot" type="AdaptacionRiesgoExplotacion" minOccurs="0" maxOccurs="1" />
+			<xs:element name="AdapRiesGRaz" type="AdaptacionRiesgoGrupoRaza" minOccurs="0" maxOccurs="1" />
+			<xs:element name="AdapRiesTCap" type="AdaptacionRiesgoTipoCapital" minOccurs="0" maxOccurs="1" />
+			<xs:element name="Aloja" type="Alojamiento" minOccurs="0" maxOccurs="1" />
+			<xs:element name="AutEsp" type="AutorizacionEspecial" minOccurs="0" maxOccurs="1" />						
+			<xs:element name="BioMed" type="BiomasaMedia" minOccurs="0" maxOccurs="1" />
+			<xs:element name="CalPro" type="CalidadProduccion" minOccurs="0" maxOccurs="1" />			
+			<xs:element name="CalSanea" type="CalificacionSaneamiento" minOccurs="0" maxOccurs="1" />			
+			<xs:element name="CalSanit" type="CalificacionSanitaria" minOccurs="0" maxOccurs="1" />
+			<xs:element name="CapProd" type="CapacidadProductiva" minOccurs="0" maxOccurs="1" /> 
+			<xs:element name="CPartCon" type="CondicionesParticularesContratacion" minOccurs="0" maxOccurs="1" /> 			
+			<xs:element name="ConOfiLec" type="ControlOficialLechero" minOccurs="0" maxOccurs="1" /> 
+			<xs:element name="CueHidro" type="CuencaHidrografica" minOccurs="0" maxOccurs="1" />
+			<xs:element name="DurPerPro" type="DuracionPeriodoProductivo" minOccurs="0" maxOccurs="1" />			
+			<xs:element name="ExcepConExc" type="ExcepcionContratacionExplotacion" minOccurs="0" maxOccurs="1" />
+			<xs:element name="ExcepConPol" type="ExcepcionContratacionPoliza" minOccurs="0" maxOccurs="1" /> 			
+			<xs:element name="Gestora" type="Gestora" minOccurs="0" maxOccurs="1" /> 						
+			<xs:element name="IGPDOGan" type="IGPDOGanado" minOccurs="0" maxOccurs="1" />
+			<xs:element name="NuColm" type="NumeroColmenas" minOccurs="0" maxOccurs="1" />
+			<xs:element name="NuMedAni" type="NumeroMedioAnimales" minOccurs="0" maxOccurs="1" />		
+			<xs:element name="PreRetPac" type="PrecioRetiradaPactado" minOccurs="0" maxOccurs="1" />
+			<xs:element name="Pureza" type="Pureza" minOccurs="0" maxOccurs="1" />
+			<xs:element name="SisAlm" type="SistemaAlmacenamiento" minOccurs="0" maxOccurs="1" />
+			<xs:element name="TAseGan" type="TipoAseguradoGanado" minOccurs="0" maxOccurs="1" />
+			<xs:element name="TGanad" type="TipoGanaderia" minOccurs="0" maxOccurs="1" />						
+		</xs:sequence>
+	</xs:group>
+	
+	<xs:attributeGroup name="FactoresModulo">
+		<xs:attribute name="cPMod" type="ti:Modulo_ConceptoPrincipal" use="required" />	
+		<xs:attribute name="codRCub" type="ti:CodigoRiesgosCubiertos" use="required" />			
+	</xs:attributeGroup>	
+	
+	<xs:complexType name="CalculoIndemnizacion">
+		<xs:attributeGroup ref="FactoresModulo" />	
+		<xs:attribute name="valor" type="ti:CalculoIndemnizacion" use="required" />
+	</xs:complexType>
+
+	<xs:complexType name="DaniosCubiertos">
+		<xs:attributeGroup ref="FactoresModulo" />	
+		<xs:attribute name="valor" type="ti:TipoDanosCubiertos" use="required" />
+	</xs:complexType>
+
+	<xs:complexType name="EstadoFenologicoLimiteGarantias" >
+		<xs:attributeGroup ref="FactoresModulo" />	
+		<xs:attribute name="valor" type="ti:LimiteGarantias_EstadoFenologico" use="required" />
+	</xs:complexType>
+
+	<xs:complexType name="DiasLimiteGarantias" >
+		<xs:attributeGroup ref="FactoresModulo" />	
+		<xs:attribute name="valor" type="ti:LimiteGarantias_Dias" use="required" />
+	</xs:complexType>	
+
+	<xs:complexType name="FechaLimiteGarantias" >
+		<xs:attributeGroup ref="FactoresModulo" />		
+		<xs:attribute name="valor" type="xs:date" use="required" />
+	</xs:complexType>
+
+	<xs:complexType name="Garantizado">
+		<xs:attributeGroup ref="FactoresModulo" />
+		<xs:attribute name="valor" type="ti:Garantizado" use="required" />
+	</xs:complexType>
+
+    <xs:complexType name="PeriodoGarantias">
+		<xs:attributeGroup ref="FactoresModulo" />
+		<xs:attribute name="valor" type="ti:PeriodoGarantias" use="required" />  
+	</xs:complexType>
+	
+	<xs:complexType name="MesesLimiteGarantias" >
+		<xs:attributeGroup ref="FactoresModulo" />
+		<xs:attribute name="valor" type="ti:LimiteGarantias_Meses" use="required" />
+	</xs:complexType>	
+
+	<xs:complexType name="PorcentajeCapitalAsegurado">
+		<xs:attributeGroup ref="FactoresModulo" />
+		<xs:attribute name="valor" type="ti:PorcentajeCapitalAsegurado" use="required" />
+	</xs:complexType>
+
+	<xs:complexType name="PorcentajeFranquicia">
+		<xs:attributeGroup ref="FactoresModulo" />
+		<xs:attribute name="valor" type="ti:PorcentajeFranquicia" use="required" />
+	</xs:complexType>
+	
+	<xs:complexType name="PorcentajeMinimoIndemnizable">
+		<xs:attributeGroup ref="FactoresModulo" />
+		<xs:attribute name="valor" type="ti:PorcentajeMinimoIndemnizable" use="required" />
+	</xs:complexType>
+	<xs:complexType name="TipoRendimiento">
+		<xs:attributeGroup ref="FactoresModulo" />
+		<xs:attribute name="valor" type="ti:TipoRendimiento" use="required" />
+	</xs:complexType>
+
+	<xs:complexType name="RiesgoCubiertoElegido">
+		<xs:attributeGroup ref="FactoresModulo" />
+		<xs:attribute name="valor" type="ti:RiesgoCubiertoElegido" use="required" /> 
+	</xs:complexType>
+
+	<xs:complexType name="TipoFranquicia">
+		<xs:attributeGroup ref="FactoresModulo" />
+		<xs:attribute name="valor" type="ti:TipoFranquicia" use="required" />
+	</xs:complexType>
+
+	<xs:complexType name="LimiteIndemnizacion">
+		<xs:attributeGroup ref="FactoresModulo" />
+		<xs:attribute name="valor" type="ti:PorcentajeMinimoIndemnizable" use="required" />
+	</xs:complexType>
+		
+		
+	<xs:complexType name="Rotacion">
+		<xs:attribute name="valor" type="ti:Rotacion" use="required" />
+	</xs:complexType>
+
+	<xs:complexType name="CaracteristicasExplotacion">
+		<xs:attribute name="valor" type="ti:CaracteristicasExplotacion" use="required" />
+	</xs:complexType> 
+	
+	<xs:complexType name="CicloCultivo">
+		<xs:attribute name="valor" type="ti:CicloCultivo" use="required" /> 
+	</xs:complexType>
+
+	<xs:complexType name="DenominacionOrigen">
+		<xs:attribute name="valor" type="ti:DenominacionOrigen" use="required" /> 
+	</xs:complexType>
+	
+	<xs:complexType name="CodigoReduccionRdtos">
+		<xs:attribute name="valor" use="required" >
+			<xs:simpleType>
+				<xs:list itemType="ti:CodigoReduccionRdtos" />
+			</xs:simpleType>
+		</xs:attribute>  
+	</xs:complexType>
+
+	<xs:complexType name="Densidad">
+		<xs:attribute name="valor" type="ti:Densidad" use="required" />
+	</xs:complexType>
+
+	<xs:complexType name="Destino">
+		<xs:attribute name="valor" type="ti:Destino" use="required" />
+	</xs:complexType>
+	
+	<xs:complexType name="Edad">
+		<xs:attribute name="valor" type="ti:Edad" use="required" />
+	</xs:complexType>
+	
+	<xs:complexType name="MedidaPreventiva">
+		<xs:attribute name="valor" use="required" >
+			<xs:simpleType>
+				<xs:list itemType="ti:MedidaPreventiva" />
+			</xs:simpleType>
+		</xs:attribute> 
+	</xs:complexType>
+	
+	<xs:complexType name="NumeroAniosDesdePoda">
+		<xs:attribute name="valor" type="ti:NumeroAniosDesdePoda" use="required" />  
+	</xs:complexType>
+
+	<xs:complexType name="FechaRecoleccion">
+		<xs:attribute name="valor" type="xs:date" use="required" />
+	</xs:complexType>
+
+	<xs:complexType name="FechaSiembraTrasplante">
+		<xs:attribute name="valor" type="xs:date" use="required" />
+	</xs:complexType>
+
+	<xs:complexType name="IndicadorGastosSalvamento">
+		<xs:attribute name="valor" type="ti:IndicadorGastosSalvamento" use="required" />
+	</xs:complexType>
+	
+	<xs:complexType name="NumeroUnidades">
+		<xs:attribute name="valor" type="ti:NumeroUnidades" use="required" />
+	</xs:complexType>	
+	
+	<xs:complexType name="SistemaCultivo">
+		<xs:attribute name="valor" type="ti:SistemaCultivo" use="required" />  
+	</xs:complexType>
+	
+	<xs:complexType name="SistemaProduccion">
+		<xs:attribute name="valor" type="ti:SistemaProduccion" use="required" />  
+	</xs:complexType>
+
+	<xs:complexType name="SistemaProteccion">
+		<xs:attribute name="valor" type="ti:SistemaProteccion" use="required" />
+	</xs:complexType>		
+
+	<xs:complexType name="TipoMarcoPlantacion">
+		<xs:attribute name="valor" type="ti:MarcoPlantacion" use="required" />
+	</xs:complexType>
+
+	<xs:complexType name="TipoPlantacion">
+		<xs:attribute name="valor" type="ti:TipoPlantacion" use="required" />
+	</xs:complexType>
+
+	<xs:complexType name="SistemaConduccion">
+		<xs:attribute name="valor" type="ti:SistemaConduccion" use="required" />
+	</xs:complexType>
+	
+	<xs:complexType name="TipoSubvencionDeclaradaParcela">
+		<xs:attribute name="valor" use="required" >
+			<xs:simpleType>
+				<xs:list itemType="ti:Subvencion_Tipo" />
+			</xs:simpleType>
+		</xs:attribute>
+	</xs:complexType>
+	
+	<xs:complexType name="PracticaCultural">
+		<xs:attribute name="valor" type="ti:PracticaCultural" use="required" />
+	</xs:complexType>
+	
+	<xs:complexType name="CodigoIGP">
+		<xs:attribute name="valor" type="ti:IGP" use="required" />
+	</xs:complexType>
+
+	<xs:complexType name="MetrosLineales">
+		<xs:attribute name="valor" type="ti:MetrosLineales" use="required" />
+	</xs:complexType>	
+
+	<xs:complexType name="MetrosCuadrados">
+		<xs:attribute name="valor" type="ti:MetrosCuadrados" use="required" />
+	</xs:complexType>	
+
+	<xs:complexType name="ValorFijo">
+		<xs:attribute name="valor" type="ti:ImportePositivo" use="required" />
+	</xs:complexType>	
+	
+	<xs:complexType name="CodigoCertificado">
+		<xs:attribute name="valor" type="ti:CodigoCertificado" use="required" />
+	</xs:complexType>
+	
+	<xs:complexType name="MaterialEstructura">
+		<xs:attribute name="valor" type="ti:MaterialEstructura" use="required" />
+	</xs:complexType>
+
+	<xs:complexType name="MaterialCubierta">
+		<xs:attribute name="valor" type="ti:MaterialCubierta" use="required" />
+	</xs:complexType>
+
+	<xs:complexType name="EdadEstructura">
+		<xs:attribute name="valor" type="ti:EdadEstructura" use="required" />
+	</xs:complexType>
+
+	<xs:complexType name="EdadCubierta">
+		<xs:attribute name="valor" type="ti:EdadCubierta" use="required" />
+	</xs:complexType>
+
+	<xs:complexType name="TipoInstalacion">
+		<xs:attribute name="valor" type="ti:TipoInstalacion" use="required" />
+	</xs:complexType>
+
+	<xs:complexType name="NumeroAniosDesdeDescorche">
+		<xs:attribute name="valor" type="ti:NumeroAniosDesdeDescorche" use="required" />
+	</xs:complexType>
+	
+	<xs:complexType name="Pendiente">
+		<xs:attribute name="valor" type="ti:Pendiente" use="required" />
+	</xs:complexType>
+	
+	<xs:complexType name="TipoMasa">
+		<xs:attribute name="valor" type="ti:TipoMasa" use="required" />
+	</xs:complexType>
+	
+	<xs:complexType name="TipoTerreno">
+		<xs:attribute name="valor" type="ti:TipoTerreno" use="required" />
+	</xs:complexType>
+			
+	<xs:complexType name="Alojamiento">
+		<xs:attribute name="valor" type="ti:Alojamiento" use="required" />
+	</xs:complexType>
+
+	<xs:complexType name="AutorizacionEspecial">
+		<xs:attribute name="valor" type="ti:AutorizacionEspecial" use="required" />
+	</xs:complexType> 
+	
+	<xs:complexType name="BiomasaMedia">
+		<xs:attribute name="valor" type="ti:BiomasaMedia" use="required" /> 
+	</xs:complexType>
+	
+	<xs:complexType name="AdaptacionRiesgo" abstract="true">
+		<xs:annotation>
+			<xs:documentation>
+				Tipo base para todos los factores de adaptacion al riesgo
+			</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="valor" use="required" >
+			<xs:simpleType>
+				<xs:list itemType="ti:AdaptacionRiesgo" />
+			</xs:simpleType>
+		</xs:attribute>
+	</xs:complexType>
+	
+	<xs:complexType name="AdaptacionRiesgoExplotacion" >
+		<xs:complexContent>
+			<xs:extension base="AdaptacionRiesgo" />
+		</xs:complexContent>
+	</xs:complexType>
+	
+	<xs:complexType name="AdaptacionRiesgoGrupoRaza" >
+		<xs:complexContent>
+			<xs:extension base="AdaptacionRiesgo" />
+		</xs:complexContent>
+	</xs:complexType>
+	
+	<xs:complexType name="AdaptacionRiesgoTipoCapital" >
+		<xs:complexContent>
+			<xs:extension base="AdaptacionRiesgo" />
+		</xs:complexContent>
+	</xs:complexType>
+	
+	<xs:complexType name="CalidadProduccion" >
+		<xs:attribute name="valor" type="ti:CalidadProduccion" use="required" />
+	</xs:complexType>
+	
+	<xs:complexType name="CalificacionSaneamiento" >
+		<xs:attribute name="valor" type="ti:CalificacionSaneamiento" use="required" />
+	</xs:complexType>
+	
+	<xs:complexType name="CalificacionSanitaria" >
+		<xs:attribute name="valor" type="ti:CalificacionSanitaria" use="required" />
+	</xs:complexType>
+	
+	<xs:complexType name="CapacidadProductiva" >
+		<xs:attribute name="valor" type="ti:CapacidadProductiva" use="required" />
+	</xs:complexType>
+	
+	<xs:complexType name="CondicionesParticularesContratacion" >
+		<xs:attribute name="valor" type="ti:CondicionesParticularesContratacion" use="required" />
+	</xs:complexType>	
+	
+	<xs:complexType name="ControlOficialLechero" >
+		<xs:attribute name="valor" type="ti:ControlOficialLechero" use="required" />
+	</xs:complexType>	
+	
+	<xs:complexType name="CuencaHidrografica" >
+		<xs:attribute name="valor" type="ti:CuencaHidrografica" use="required" />
+	</xs:complexType>	
+
+	<xs:complexType name="DuracionPeriodoProductivo" >
+		<xs:attribute name="valor" type="ti:DuracionPeriodoProductivo" use="required" />
+	</xs:complexType>
+	
+	<xs:complexType name="ExcepcionContratacionExplotacion" >
+		<xs:attribute name="valor" type="ti:ExcepcionContratacion" use="required" />
+	</xs:complexType>
+	
+	<xs:complexType name="ExcepcionContratacionPoliza" >
+		<xs:attribute name="valor" type="ti:ExcepcionContratacion" use="required" />
+	</xs:complexType>
+	
+	<xs:complexType name="Gestora" >
+		<xs:attribute name="valor" type="ti:Gestora" use="required" />
+	</xs:complexType>
+	
+	<xs:complexType name="IGPDOGanado" >
+		<xs:attribute name="valor" type="ti:IGPDOGanado" use="required" />
+	</xs:complexType>
+		
+	<xs:complexType name="NumeroColmenas" >
+		<xs:attribute name="valor" type="ti:NumeroColmenas" use="required" />
+	</xs:complexType>
+	
+	<xs:complexType name="NumeroMedioAnimales" >
+		<xs:attribute name="valor" type="ti:Numero_Animales" use="required" />
+	</xs:complexType>
+	
+	<xs:complexType name="PrecioRetiradaPactado" >
+		<xs:attribute name="valor" type="ti:PrecioRetiradaPactado" use="required" />
+	</xs:complexType>
+	
+	<xs:complexType name="Pureza" >
+		<xs:attribute name="valor" type="ti:Pureza" use="required" />
+	</xs:complexType>
+	
+	<xs:complexType name="SistemaAlmacenamiento" >
+		<xs:attribute name="valor" type="ti:Pureza" use="required" />
+	</xs:complexType>
+	
+	<xs:complexType name="TipoAseguradoGanado" >
+		<xs:attribute name="valor" type="ti:TipoAsegurado" use="required" />
+	</xs:complexType>	
+	
+	<xs:complexType name="TipoGanaderia" >
+		<xs:attribute name="valor" type="ti:TipoGanaderia" use="required" />
+	</xs:complexType>	
+	
+							
+</xs:schema>

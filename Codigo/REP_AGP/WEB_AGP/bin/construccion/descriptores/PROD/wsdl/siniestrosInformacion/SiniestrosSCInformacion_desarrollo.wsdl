@@ -1,0 +1,520 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="SiniestrosSCInformacion"
+	targetNamespace="http://www.agroseguro.es/serviciosweb/SiniestrosSCInformacion/"
+	xmlns:agr="http://www.agroseguro.es/serviciosweb/SiniestrosSCInformacion/"
+	xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	xmlns:xmime="http://www.w3.org/2005/05/xmlmime"
+	xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:ti="http://www.agroseguro.es/Tipos"
+	xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd"
+	xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd"
+	>
+	<wsdl:types>
+		<xsd:schema elementFormDefault="qualified"
+			targetNamespace="http://www.agroseguro.es/serviciosweb/SiniestrosSCInformacion/"
+			xmlns:agr="http://www.agroseguro.es/serviciosweb/SiniestrosSCInformacion/"
+			xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+			<xsd:import namespace="http://www.w3.org/2005/05/xmlmime"
+				schemaLocation="xmime.xsd" />
+			<xsd:import	namespace="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd"
+				schemaLocation="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd" />
+			<xsd:import namespace="http://www.agroseguro.es/Tipos"
+				schemaLocation="Tipos.xsd" />
+
+			<xsd:group name="ParametrosEntradaBasicos">
+				<xsd:sequence>
+					<xsd:element name="plan" type="ti:Plan" />
+					<xsd:element name="referencia" type="ti:Poliza_Referencia_Creciente" />
+				</xsd:sequence>
+			</xsd:group>
+
+			<xsd:simpleType name="TipoHojaCampo">
+				<xsd:restriction base="xsd:string">
+					<xsd:length value="1" />
+					<xsd:enumeration value="1" />
+					<xsd:enumeration value="2" />
+				</xsd:restriction>
+			</xsd:simpleType>
+                                                                      
+			<xsd:complexType name="ParametrosEntrada">
+				<xsd:sequence>
+					<xsd:group ref="agr:ParametrosEntradaBasicos" />
+					<xsd:element name="nif" type="ti:NIF" nillable="true" minOccurs="0"/>
+				</xsd:sequence>
+			</xsd:complexType>
+
+			<xsd:complexType name="ParametrosAvisoSiniestros">
+				<xsd:sequence>
+					<xsd:element name="serieEnvioSiniestro" type="ti:Serie" maxOccurs="1" minOccurs="1"/>
+					<xsd:element name="numeroEnvioSiniestro" type="ti:Siniestro_NumeroInterno" maxOccurs="1" minOccurs="1"/>
+				</xsd:sequence>
+			</xsd:complexType>
+
+			<xsd:complexType name="ParametrosEntradaSiniestros">
+				<xsd:sequence>
+					<xsd:choice maxOccurs="1" minOccurs="1">
+						<xsd:element name="parametrosEntrada" type="agr:ParametrosEntrada" maxOccurs="1" minOccurs="1" />
+						<xsd:element name="parametrosAvisoSiniestros" type="agr:ParametrosAvisoSiniestros" maxOccurs="1" minOccurs="1" />
+					</xsd:choice>
+				</xsd:sequence>
+			</xsd:complexType>
+
+			<xsd:element name="infoBasicaSiniestrosRequest" type="agr:ParametrosEntradaSiniestros" />
+
+			<xsd:element name="infoBasicaSiniestrosResponse">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="informacionSiniestros" xmime:expectedContentTypes="text/xml" type="xmime:base64Binary" />
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+
+			<xsd:element name="pdfParteSiniestroRequest">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="serie" type="ti:Serie" />
+						<xsd:element name="numero" type="ti:Siniestro_NumeroInterno" />
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="pdfParteSiniestroResponse">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="documento" xmime:expectedContentTypes="application/pdf" type="xmime:base64Binary" />
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+
+			<xsd:element name="infoBasicaHojasCampoRequest" type="agr:ParametrosEntrada" />
+
+			<xsd:element name="infoBasicaHojasCampoResponse">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="hojasCampo" xmime:expectedContentTypes="text/xml" type="xmime:base64Binary" />
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+
+			<xsd:element name="pdfHojaCampoRequest">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:group ref="agr:ParametrosEntradaBasicos" maxOccurs="1" minOccurs="1" />
+						<xsd:element name="numero" type="ti:Numero_HojaCampo" />
+						<xsd:element name="tipo" type="agr:TipoHojaCampo" />
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="pdfHojaCampoResponse">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="documento" xmime:expectedContentTypes="application/pdf" type="xmime:base64Binary" />
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+
+			<xsd:element name="infoBasicaActasRequest" type="agr:ParametrosEntrada" />
+
+			<xsd:element name="infoBasicaActasResponse">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="actas" xmime:expectedContentTypes="text/xml" type="xmime:base64Binary" />
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+
+			<xsd:element name="pdfActaRequest">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="serie" type="ti:Serie" />
+						<xsd:element name="numero" type="ti:Acta_Numero" />
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="pdfActaResponse">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="documento" xmime:expectedContentTypes="application/pdf" type="xmime:base64Binary" />
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+
+			<xsd:element name="pdfCartaPagoRequest">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="serie" type="ti:Serie" />
+						<xsd:element name="numero" type="ti:Acta_Numero" />
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="pdfCartaPagoResponse">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="documento" xmime:expectedContentTypes="application/pdf" type="xmime:base64Binary" />
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+
+			<xsd:element name="agrFallo"
+				xmlns:agr="http://www.agroseguro.es/serviciosweb/SiniestrosSCInformacion/">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:annotation>
+							Lista de mensajes de error de AGROSEGURO
+						</xsd:annotation>
+						<xsd:element name="error" type="agr:Error"	maxOccurs="unbounded" minOccurs="0" />
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:complexType name="Error"
+				xmlns:agr="http://www.agroseguro.es/serviciosweb/SiniestrosSCInformacion/">
+				<xsd:sequence>
+					<xsd:element name="codigo" type="xsd:int" />
+					<xsd:element name="mensaje" type="xsd:string" />
+				</xsd:sequence>
+			</xsd:complexType>
+		</xsd:schema>
+	</wsdl:types>
+	<wsdl:message name="Header">
+		<wsdl:part name="Security" element="wsse:Security" />
+	</wsdl:message>
+	<wsdl:message name="AgrException">
+		<wsdl:part name="parameters" element="agr:agrFallo"/>
+	</wsdl:message>
+	<wsdl:message name="infoBasicaSiniestrosRequest">
+		<wsdl:part name="parameters" element="agr:infoBasicaSiniestrosRequest">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="infoBasicaSiniestrosResponse">
+		<wsdl:part name="parameters" element="agr:infoBasicaSiniestrosResponse">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="pdfParteSiniestroRequest">
+		<wsdl:part name="parameters" element="agr:pdfParteSiniestroRequest">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="pdfParteSiniestroResponse">
+		<wsdl:part name="parameters" element="agr:pdfParteSiniestroResponse">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="infoBasicaHojasCampoRequest">
+		<wsdl:part name="parameters" element="agr:infoBasicaHojasCampoRequest">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="infoBasicaHojasCampoResponse">
+		<wsdl:part name="parameters" element="agr:infoBasicaHojasCampoResponse">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="pdfHojaCampoRequest">
+		<wsdl:part name="parameters" element="agr:pdfHojaCampoRequest">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="pdfHojaCampoResponse">
+		<wsdl:part name="parameters" element="agr:pdfHojaCampoResponse">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="infoBasicaActasRequest">
+		<wsdl:part name="parameters" element="agr:infoBasicaActasRequest">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="infoBasicaActasResponse">
+		<wsdl:part name="parameters" element="agr:infoBasicaActasResponse">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="pdfActaRequest">
+		<wsdl:part name="parameters" element="agr:pdfActaRequest">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="pdfActaResponse">
+		<wsdl:part name="parameters" element="agr:pdfActaResponse">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="pdfCartaPagoRequest">
+		<wsdl:part name="parameters" element="agr:pdfCartaPagoRequest">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="pdfCartaPagoResponse">
+		<wsdl:part name="parameters" element="agr:pdfCartaPagoResponse">
+		</wsdl:part>
+	</wsdl:message>
+
+	<wsdl:portType name="SiniestrosSCInformacion">
+		<wsdl:operation name="infoBasicaSiniestros">
+			<wsdl:documentation>
+				Método que devuelve información básica de todos los siniestros 
+				asociados a la póliza solicitada.
+
+				En la petición se deberá facilitar:
+
+				- El plan, obligatorio.
+				- La referencia de la póliza, obligatorio.
+				- Un número de parcela, opcional y no podrá venir si envían el ámbito.
+				- Un ámbito, opcional y no podrá venir si envían el número de parcela.
+
+				Se devolverá la siguiente información :
+
+				- Fichero XML con la información básica de la lista de siniestros. 
+				El esquema XSD del documento es "InformacionSiniestros.xsd".
+
+			</wsdl:documentation>
+			<wsdl:input message="agr:infoBasicaSiniestrosRequest"/>
+			<wsdl:output message="agr:infoBasicaSiniestrosResponse"/>
+			<wsdl:fault name="AgrException"
+				message="agr:AgrException">
+			</wsdl:fault>
+		</wsdl:operation>
+
+		<wsdl:operation name="pdfParte">
+			<wsdl:documentation>
+				Método que devuelve el pdf del parte del Siniestro.
+
+				En la petición se deberá facilitar:
+
+				- La referencia del siniestro.
+
+				Se devolverá la siguiente información :
+
+				- Fichero PDF del parte del siniestro. 
+
+			</wsdl:documentation>
+			<wsdl:input message="agr:pdfParteSiniestroRequest"/>
+			<wsdl:output message="agr:pdfParteSiniestroResponse"/>
+			<wsdl:fault name="AgrException"
+				message="agr:AgrException">
+			</wsdl:fault>
+		</wsdl:operation>
+
+		<wsdl:operation name="infoBasicaHojasCampo">
+			<wsdl:documentation>
+				Método que devuelve información básica de todas las hojas 
+				de campo asociadas a la póliza solicitada.
+
+				En la petición se deberá facilitar:
+
+				- El plan, obligatorio.
+				- La referencia de la póliza, obligatorio.
+				- Un número de parcela, opcional y no podrá venir si envían el ámbito.
+				- Un ámbito, opcinal y no podrá venir si envían el número de parcela.
+
+				Se devolverá la siguiente información :
+
+				- Fichero XML con la información básica de la lista de hojas de campo. 
+				El esquema XSD del documento es "InformacionHojasCampo.xsd".
+
+			</wsdl:documentation>
+			<wsdl:input message="agr:infoBasicaHojasCampoRequest"/>
+			<wsdl:output message="agr:infoBasicaHojasCampoResponse"/>
+			<wsdl:fault name="AgrException"
+				message="agr:AgrException">
+			</wsdl:fault>
+		</wsdl:operation>
+
+		<wsdl:operation name="pdfHojaCampo">
+			<wsdl:documentation>
+				Método que devuelve el pdf de la hoja de campo.
+
+				En la petición se deberá facilitar:
+
+				- El plan, obligatorio.
+				- La referencia de la póliza, obligatorio.
+				- La referencia de la hoja de campo.
+				- El tipo de hoja de campo 1-Inmediatas, 2-definitiva. Obligatorio
+
+				Se devolverá la siguiente información :
+
+				- Fichero PDF de la hoja de campo. 
+
+			</wsdl:documentation>
+			<wsdl:input message="agr:pdfHojaCampoRequest"/>
+			<wsdl:output message="agr:pdfHojaCampoResponse"/>
+			<wsdl:fault name="AgrException"
+				message="agr:AgrException">
+			</wsdl:fault>
+		</wsdl:operation>
+
+		<wsdl:operation name="infoBasicaActas">
+			<wsdl:documentation>
+				Método que devuelve información básica de todas las actas 
+				asociadas a la póliza solicitada.
+
+				En la petición se deberá facilitar:
+
+				- El plan, obligatorio.
+				- La referencia de la póliza, obligatorio.
+				- Un número de parcela, opcional y no podrá venir si envían el ámbito.
+				- Un ámbito, opcinal y no podrá venir si envían el número de parcela.
+
+				Se devolverá la siguiente información :
+
+				- Fichero XML con la información básica de la lista de actas. 
+				El esquema XSD del documento es "InformacionActas.xsd".
+
+			</wsdl:documentation>
+			<wsdl:input message="agr:infoBasicaActasRequest"/>
+			<wsdl:output message="agr:infoBasicaActasResponse"/>
+			<wsdl:fault name="AgrException"
+				message="agr:AgrException">
+			</wsdl:fault>
+		</wsdl:operation>
+
+		<wsdl:operation name="pdfActa">
+			<wsdl:documentation>
+				Método que devuelve el pdf del acta.
+
+				En la petición se deberá facilitar:
+
+				- La referencia del acta.
+
+				Se devolverá la siguiente información :
+
+				- Fichero PDF del acta. 
+
+			</wsdl:documentation>
+			<wsdl:input message="agr:pdfActaRequest"/>
+			<wsdl:output message="agr:pdfActaResponse"/>
+			<wsdl:fault name="AgrException"
+				message="agr:AgrException">
+			</wsdl:fault>
+		</wsdl:operation>
+
+		<wsdl:operation name="pdfCartaPago">
+			<wsdl:documentation>
+				Método que devuelve el pdf de la carta de pago.
+
+				En la petición se deberá facilitar:
+
+				- La referencia del acta.
+
+				Se devolverá la siguiente información :
+
+				- Fichero PDF del acta. 
+
+			</wsdl:documentation>
+			<wsdl:input message="agr:pdfCartaPagoRequest"/>
+			<wsdl:output message="agr:pdfCartaPagoResponse"/>
+			<wsdl:fault name="AgrException"
+				message="agr:AgrException">
+			</wsdl:fault>
+		</wsdl:operation>
+
+	</wsdl:portType>
+	<wsdl:binding name="SiniestrosSCInformacionSOAP"
+		type="agr:SiniestrosSCInformacion">
+		<soap:binding style="document"
+			transport="http://schemas.xmlsoap.org/soap/http" />
+		<wsdl:operation name="infoBasicaSiniestros">
+			<soap:operation	soapAction="infoBasicaSiniestros" />
+			<wsdl:input>
+				<soap:header wsdl:required="true" message="agr:Header" part="Security" use="literal" />
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+			<wsdl:fault name="AgrException">
+				<soap:fault name="AgrException" use="literal" />
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="pdfParte">
+			<soap:operation	soapAction="pdfParte" />
+			<wsdl:input>
+				<soap:header wsdl:required="true" message="agr:Header" part="Security" use="literal" />
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+			<wsdl:fault name="AgrException">
+				<soap:fault name="AgrException" use="literal" />
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="infoBasicaHojasCampo">
+			<soap:operation	soapAction="infoBasicaHojasCampo" />
+			<wsdl:input>
+				<soap:header wsdl:required="true" message="agr:Header" part="Security" use="literal" />
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+			<wsdl:fault name="AgrException">
+				<soap:fault name="AgrException" use="literal" />
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="pdfHojaCampo">
+			<soap:operation	soapAction="pdfHojaCampo" />
+			<wsdl:input>
+				<soap:header wsdl:required="true" message="agr:Header" part="Security" use="literal" />
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+			<wsdl:fault name="AgrException">
+				<soap:fault name="AgrException" use="literal" />
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="infoBasicaActas">
+			<soap:operation	soapAction="infoBasicaActas" />
+			<wsdl:input>
+				<soap:header wsdl:required="true" message="agr:Header" part="Security" use="literal" />
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+			<wsdl:fault name="AgrException">
+				<soap:fault name="AgrException" use="literal" />
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="pdfActa">
+			<soap:operation	soapAction="pdfActa" />
+			<wsdl:input>
+				<soap:header wsdl:required="true" message="agr:Header" part="Security" use="literal" />
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+			<wsdl:fault name="AgrException">
+				<soap:fault name="AgrException" use="literal" />
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="pdfCartaPago">
+			<soap:operation	soapAction="pdfCartaPago" />
+			<wsdl:input>
+				<soap:header wsdl:required="true" message="agr:Header" part="Security" use="literal" />
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+			<wsdl:fault name="AgrException">
+				<soap:fault name="AgrException" use="literal" />
+			</wsdl:fault>
+		</wsdl:operation>
+
+	</wsdl:binding>
+	<wsdl:service name="SiniestrosSCInformacion">
+		<wsdl:documentation>
+			Mediante este proceso se podrá obtener información básica de siniestros, hojas de campo y actas, así como varias funcionalidades de apoyo 
+			como la obtención de pdfs de partes de siniestros, hojas de campo, actas y cartas de pago.
+
+			La información se devolverá dentro de archivos XML enviados como
+			Adjunto (Attachment) en formato MTOM.
+		</wsdl:documentation>
+		<wsdl:port name="SiniestrosSCInformacionSOAP"
+			binding="agr:SiniestrosSCInformacionSOAP">
+			<wsdl:documentation>
+				La primera dirección es el entorno de pruebas y no tiene
+				una resolución asignada en Internet, por lo que se deberá
+				incluir en la máquina local o en el servidor de nombres
+				local con la siguiente dirección: preproduccion.agroseguro.es
+
+				La segunda dirección es el entorno de producción.
+			</wsdl:documentation>
+			<soap:address
+				location="https://preproduccion.agroseguro.es/ssci/V1R2/services/SiniestrosSCInformacion" />			
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>

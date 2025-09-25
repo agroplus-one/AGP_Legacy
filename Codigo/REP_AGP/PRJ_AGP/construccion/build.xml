@@ -1,0 +1,48 @@
+<project name="Proyecto AGROPLUS" default="all">
+
+	<property file="build.general.properties"/>
+	<property file="build.scm.properties"/>
+
+	<target name="all" depends="lanzar_ants, dist_web_project, dist_ear"/>
+
+	<target name="init">
+		<tstamp>
+			<format property="now" pattern="dd/MM/yyyy" offset="1"/>
+		</tstamp>
+		<echo message="*******************************************************"/>
+		<echo message="************************ PRJ AGROPLUS *****************"/>
+		<echo message="*******************************************************"/>
+		<delete dir="${dist}"/>
+	</target>
+
+	<target name="lanzar_ants" depends="init">
+		<echo message="Construyendo Aplicacion Java..."/>
+		<ant inheritAll="false" antfile="${ant_java}"/>
+		<echo message="Construyendo Aplicacion Web..."/>
+		<ant inheritAll="false" antfile="${ant_web}"/>
+		<mkdir dir="${dist}"/>
+	</target>
+	
+	<target name="dist_web_project" description="Crea el empaquetado ${project_name}.war">
+		<delete file="${dist}/${project_name}.war" failonerror="false" />
+		<war warfile="${dist}/${project_name}.war" webxml="${web_content}/WEB-INF/web.xml">
+			<fileset dir="${web_content}">
+				<include name="jsp/**/*"/>
+				<include name="plantillas/**/*"/>
+			</fileset>
+			<webinf dir="${web_content}/WEB-INF">
+				<include name="**" />
+				<exclude name="construccion/**.xml,**/*.xmi,**/*harvest.sig" />
+				<include name="${basedir}/../META-INF/**/*"/>
+				<include name="WEB-INF/**/*"/>
+			</webinf>
+		</war>
+	</target>		
+
+	<target name="dist_ear" description="Crea el empaquetado REP_AGP.ear">
+	    <ear earfile="${dist}/REP_AGP.ear" appxml="${basedir}/../META-INF/${app_name}">
+			<fileset dir="${dist}" includes="${project_name}.war"/>
+		</ear>
+		<delete file="${dist}/${project_name}.war" failonerror="false" />
+	</target>
+</project>

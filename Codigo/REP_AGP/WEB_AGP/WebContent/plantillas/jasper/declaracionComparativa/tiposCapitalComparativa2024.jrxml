@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.16.0.final using JasperReports Library version 3.6.1  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="tiposCapital2024" columnCount="2" pageWidth="530" pageHeight="842" whenNoDataType="AllSectionsNoDetail" columnWidth="265" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" isSummaryWithPageHeaderAndFooter="true">
+	<property name="com.jaspersoft.studio.unit." value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageHeight" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.topMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.bottomMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.leftMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.rightMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnSpacing" value="pixel"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA[""]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select * from dual]]>
+	</queryString>
+	<field name="tipoCapital" class="java.lang.String"/>
+	<field name="descripcion" class="java.lang.String"/>
+	<field name="tiposCapital" class="java.util.ArrayList"/>
+	<detail>
+		<band height="114" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="38" width="210" height="15">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<box>
+					<rightPen lineWidth="2.0"/>
+				</box>
+				<textElement textAlignment="Left" lineSpacing="Single"/>
+				<text><![CDATA[   Produccion]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="53" width="210" height="15">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<box>
+					<rightPen lineWidth="2.0"/>
+				</box>
+				<textElement textAlignment="Left" lineSpacing="Single"/>
+				<text><![CDATA[   Valor Produccion (€)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="68" width="210" height="15">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<box>
+					<rightPen lineWidth="2.0"/>
+				</box>
+				<textElement textAlignment="Left" lineSpacing="Single"/>
+				<text><![CDATA[   Coste Tomador(€)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="83" width="210" height="15">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<box>
+					<rightPen lineWidth="2.0"/>
+				</box>
+				<textElement textAlignment="Left" lineSpacing="Single"/>
+				<text><![CDATA[   Coste Unitario(€)]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="0" y="23" width="210" height="15">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<box>
+					<rightPen lineWidth="2.0"/>
+				</box>
+				<textElement lineSpacing="Single">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{tipoCapital} + " . " + $F{descripcion}]]></textFieldExpression>
+			</textField>
+			<subreport>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="210" y="10" width="310" height="90" isPrintInFirstWholeBand="true">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{tiposCapital})]]></dataSourceExpression>
+				<subreportExpression class="java.lang.String"><![CDATA[$P{SUBREPORT_DIR} + "tiposCapital2024.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+</jasperReport>

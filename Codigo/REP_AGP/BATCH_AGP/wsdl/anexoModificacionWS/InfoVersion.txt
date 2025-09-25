@@ -1,0 +1,108 @@
+CONTRATACIONSCMODIFICACION
+--------------------------
+
+
+archivo				                				namespace		                     			version
+
+- ContratacionSeguroAgrario.xsd                     SeguroAgrario/Contratacion        	       		10.0
+- ContratacionSeguroAgrarioComplementario.xsd       SeguroAgrario/Contratacion/Complementario        2.0
+- DatosVariables.xsd                                SeguroAgrario/Contratacion/DatosVariables   	10.0
+- CostesFijos_OP									SeguroAgrario/Contratacion/OP/CostesFijos    	 1.0
+- RelacionSocios_OP									SeguroAgrario/Contratacion/OP/RelacionSocios 	 2.0
+- Tipos.xsd             		                    Tipos			            	                10.0
+- xmime.xsd											http://www.w3.org/2005/05/xmlmime
+- policy.xml
+- CuponModificacion.xsd
+- EstadoContratacion.xsd
+- AcuseRecibo.xsd
+
+
+DESCRIPCION DE LOS FICHEROS
+---------------------------
+	
+- ContratacionSCModificacion.wsdl
+Descriptor del servicio Web que permite realizar la modificación de la contratación del 
+Seguro Creciente, sin especificación de seguridad.
+Pensado para manejar la seguridad delegando en los módulos de seguridad
+de los lenguajes de programación a través de políticas de aserciones.
+
+- policy.xml
+Política de seguridad según especificación WS-SecurityPolicy con UsernameToken
+de Oasis.
+
+- ContratacionSCModificacion_con_cabeceras_seguridad.wsdl
+Descriptor del servicio Web que permite realizar la modificación de la contratación del 
+Seguro Creciente, con cabecera de seguridad WS-Security, para
+manejar la seguridad a través de los bindings de XML generados en cada lenguaje
+de programación.
+
+- ContratacionSeguroAgrario.xsd
+Esquema entrante de validación de la Póliza del Seguro Creciente
+donde se definen los registros de esa Póliza.
+
+- ContratacionSeguroAgrarioComplementario.xsd
+Esquema entrante de validación de la Póliza del Seguro Creciente
+para los módulos complementarios.
+
+- DatosVariables.xsd
+Esquema que contiene definiciones de datos variables de la Póliza
+del Seguro Creciente.
+
+- CostesFijos_OP.xsd
+Anexo con la declaración de gastos fijos de la explotación agrícola en el seguro
+de Costes Fijos de OP (Organización de Productores)
+
+- RelacionSocios_OP
+Anexo con la lista de socios que suscriben el seguro de OP (Organización de Productores)
+
+- CuponModificacion.xsd
+Identificador único que sirve como resguardo del trámite de modificación iniciado.
+
+- EstadoContratacion.xsd
+Resumen de cómo se encuentra en el momento de realizar la petición la contratación y la última
+petición de modificación que se hizo por cupón sobre la misma.
+
+- AcuseRecibo.xsd
+Esquema saliente obtenido como respuesta a cualquier llamada y donde
+se indica el estado en el que queda el proceso.
+
+- Tipos.xsd
+Esquema que contiene el diccionario de tipos común de Agroseguro.
+
+- xmime.xsd
+Esquema de validación de tipos XMLMIME de W3C
+
+
+
+VERSIONES
+---------
+
+1.0.3 : 23-01-2013.
+-------------------------------------------------------------------------------------------
+
+- ContratacionSCModificacion.wsdl:
+  Opcionalidad en el envío tanto de la póliza principal como el complementario.
+
+- ContratacionSCModificacion_con_cabeceras_seguridad.wsdl:
+  Opcionalidad en el envío tanto de la póliza principal como el complementario.
+  Corregido error en definición de seguridad. 
+
+1.0.2 : 10-01-2013.
+-------------------------------------------------------------------------------------------
+
+- Tipos.xsd: por error se empaquetó una versión obsoleta del fichero. Se actualliza el fichero.
+
+
+1.0.1 : 09-01-2013.
+-------------------------------------------------------------------------------------------
+
+- CuponModificacion.xsd: se elimina la restricción minOccurs y  maxOccurs del elemento CuponModificación
+  por problemas de compatibilidad detectados en la creación del cliente con .NET
+
+
+
+
+1.0.0 : 08-01-2013.
+-------------------------------------------------------------------------------------------
+
+Versión inicial.

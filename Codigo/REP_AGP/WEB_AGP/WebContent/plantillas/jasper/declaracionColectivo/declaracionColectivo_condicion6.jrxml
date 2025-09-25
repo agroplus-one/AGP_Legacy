@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="declaracionSeguro_condicion6" pageWidth="541" pageHeight="700" columnWidth="541" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" isIgnorePagination="true">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<variable name="SHOW_FOOT" class="java.lang.String">
+		<variableExpression><![CDATA[new String("VACIO")]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="596" splitType="Stretch">
+			<staticText>
+				<reportElement key="staticText-103" x="1" y="1" width="222" height="15" isPrintWhenDetailOverflows="true"/>
+				<textElement verticalAlignment="Bottom">
+					<font fontName="SansSerif" size="11" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[VI.- Tratamiento de Datos Personales]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="7" y="26" width="528" height="432"/>
+				<textElement textAlignment="Justified" verticalAlignment="Middle" markup="html">
+					<font size="10"/>
+				</textElement>
+				<text><![CDATA[   De acuerdo a los apartados 2 y 3 del artículo 2 del Reglamento de la Ley Orgánica 15/1999, de 13 de diciembre de
+   Protección de datos de Carácter Personal, Real Decreto 1720/2007 de 21 de diciembre, están <i><b>excluidos</b> del régimen
+   de aplicación de la protección de datos de carácter personal: los tratamientos de datos referidos a <b>personas jurídicas</b>,
+   y los relativos a <b>empresarios individuales</b> cuando hagan referencia a ellos en su calidad de comerciantes,
+   industriales o navieros.</i><br><br>
+
+   Sin perjuicio de lo anterior, y para aquellos supuestos que, por las características concretas de algún asegurado,
+   pudieran quedar subsumidos en el régimen de protección de datos, el TOMADOR, al contratar por el asegurado, y
+   actuar en su nombre y representación (Artículo 12 tres. b. del R.D. 2329/1979 de 14 de septiembre), se compromete,
+   previamente, a informar al asegurado y a obtener el consentimiento que resulte necesario para aceptar los siguientes
+   extremos en el acto de la contratación:<br><br>
+
+   Que los datos facilitados con motivo de la contratación van a ser incluidos en un fichero automatizado cuyo titular y
+   responsable es AGROSEGURO, con la finalidad de llevar a cabo la relación contractual, liquidar siniestros, tarificación,
+   prima, selección de riesgos y elaboración de estudios de técnica aseguradora. Así mismo, serán cedidos a las Enti-
+   dades Aseguradoras integrantes de la Agrupación aquellos datos que resulten estrictamente necesarios para poder
+   realizar la suscripción del seguro (Artículo 2.3. de la Ley 87/1978, de 28 de diciembre de Seguros Agrarios Combina-
+   dos, desarrollado por el artículo 12 de su Reglamento), y a las Administraciones Públicas, a efectos de rendimientos,
+   ayudas, subvenciones y otros fines a ellas atribuidas por Ley.<br><br>
+
+   Los datos recabados, su tratamiento y cesiones, son necesarios para el normal establecimiento y desarrollo de la
+   relación contractual del Seguro Agrario Combinado (Contrato de carácter normado), regulado por la Ley de Seguros
+   Agrarios, su Reglamento, el Plan Anual de Seguros Agrarios aprobado el Consejo de Ministros, las correspondientes
+   Ordenes Ministeriales de aplicación y sus Condiciones Especiales.<br><br>
+
+   EL TOMADOR/ASEGURADO autoriza a AGROSEGURO para que les envíe información sobre contratación de sus
+   productos. Si no desea que los datos sean tratados o cedidos para fines que no se refieran directamente a la relación
+   contractual, puede llamar gratuitamente al teléfono 900 900 280 o al e-mail:lopd@agroseguro.es
+
+   EL TOMADOR/ASEGURADO, de acuerdo a los artículos 15 y 16 de la Ley 15/1999,de 13 de diciembre, podrán ejercer
+   sus derechos de acceso, rectificación, cancelación y oposición a sus datos, dirigiéndose a AGROSEGURO. Dpto. de
+   Producción, C/. Gobelas 23. 28023 Madrid.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-59" x="0" y="26" width="541" height="432"/>
+				<box>
+					<topPen lineWidth="0.25" lineStyle="Solid"/>
+					<leftPen lineWidth="0.25" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.25" lineStyle="Solid"/>
+					<rightPen lineWidth="0.25" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Justified" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="8" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

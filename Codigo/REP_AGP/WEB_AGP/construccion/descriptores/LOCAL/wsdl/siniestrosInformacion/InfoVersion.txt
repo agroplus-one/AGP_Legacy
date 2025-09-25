@@ -1,0 +1,154 @@
+SINIESTROSSCINFORMACION
+-----------------------
+
+archivo	                    			namespace                      				version
+--------------------------------------  ---------------------------------------  	----------
+- InformacionSiniestros.xsd             SeguroAgrario/InformacionSiniestros  			
+- InformacionHojasCampo.xsd				SeguroAgrario/InformacionHojasCampo
+- InformacionActas.xsd					SeguroAgrario/InformacionActas
+- DatosVariablesDS.xsd                  SeguroAgrario/Siniestros/DatosVariablesDS   4.0
+- Tipos.xsd             		        Tipos			 							11.0
+- xmime.xsd								http://www.w3.org/2005/05/xmlmime
+- policy.xml
+- AcuseRecibo.xsd
+
+
+DESCRIPCION DE LOS FICHEROS
+---------------------------
+
+- SiniestrosSCInformacion.wsdl
+Descriptor del servicio Web que permite obtener la lista de los siniestros, hojas de campo y actas de tasación
+de una póliza, para posteriormente poder descarga la impresión en PDF de un documento de los recuperados en 
+dicha lista. Sin manejo de cabeceras de seguridad.
+Pensado para manejar la seguridad delegando en los módulos de seguridad
+de los lenguajes de programación a través de políticas de aserciones.
+
+- policy.xml
+Política de seguridad según especificación WS-SecurityPolicy con UsernameToken
+de Oasis.
+
+- SiniestrosSCInformacionn_con_cabeceras_seguridad.wsdl
+Idem SiniestrosSCInformacion.wsdl pero con cabecera de seguridad WS-Security, para
+manejar la seguridad a través de los bindings de XML generados en cada lenguaje
+de programación.
+
+- InformacionSiniestros.xsd 
+Esquema de la estructura de la lista de siniestros de una póliza.
+
+- InformacionHojasCampo.xsd
+Esquema de la estructura de la lista de hojas de campo de una póliza.
+
+- InformacionActas.xsd
+Esquema de la estructura de la lista de actas de una póliza.
+
+- DatosVariablesDS.xsd
+Esquema que contiene las definiciones de los datos variables del siniestro
+
+- Tipos.xsd
+Esquema que contiene el diccionario de tipos común de Agroseguro.
+
+- xmime.xsd
+Esquema de validación de tipos XMLMIME de W3C
+
+-policy.xml
+
+
+1.2.3 : 19-12-2014.
+-------------------------------------------------------------------------------------------
+InformacionSiniestros.xsd: se añaden los atributos serieEnvioSiniestro y numeroEnvioSiniestro
+para informar de los parámetros con los que se ha llamado a la operación.
+
+
+1.2.2 : 25-11-2014.
+-------------------------------------------------------------------------------------------
+Se añaden dos parámetros opcionales a la operación "consulta de siniestros".
+
+- SiniestrosSCInformacion.wsdl
+Se añade:
+	simpleType name="Siniestro_SerieAviso" 
+	complexType name="ParametrosAvisoSiniestros"
+Se cámbia:
+	element name="infoBasicaSiniestrosRequest"
+
+
+- SiniestrosSCInformacion_con_cabeceras_seguridad.wsdl
+Se añade:
+	simpleType name="Siniestro_SerieAviso" 
+	complexType name="ParametrosAvisoSiniestros"
+Se cámbia:
+	element name="infoBasicaSiniestrosRequest"
+
+
+1.2.1 : 06-05-2014.
+-------------------------------------------------------------------------------------------
+- SiniestrosSCInformacion.wsdl
+Se cambia la documentación de la dirección de la URL del Endpoint
+- SiniestrosSCInformacion_con_cabeceras_seguridad.wsdl
+Se cambia la documentación de la dirección de la URL del Endpoint
+
+
+1.2.0 : 05-05-2014.
+-------------------------------------------------------------------------------------------
+- InformacionHojasCampo.xsd
+Se cambia el atributo fechaTasación a opcional.
+- InformacionActas.xsd
+Se cambia el nombre del atributo importeRegularizado por importeADevolverPorAsegurado.
+- InformacionSiniestros.xsd
+Se cambia el nombre del atributo fechaDeclarada a fechaRecepcionAgroseguro
+- SiniestrosSCInformacion.wsdl
+Se añade un nuevo parametro de entrada (tipo de hoja campo) en la operación Descarga hoja de campo
+- SiniestrosSCInformacion_con_cabeceras_seguridad.wsdl
+Se añade un nuevo parametro de entrada (tipo de hoja campo) en la operación Descarga hoja de campo
+
+1.1.3 : 25-11-2013.
+-------------------------------------------------------------------------------------------
+- tipos.xsd 
+Se cambia el tipo de dato del numero de hoja de campo de decimal a long
+- InformacionActas.xsd
+Se eliminan los atributos: hoja, numero, provincia, comarca, termino y subtermino y se añade el atributo
+nif del socio OP
+Se elimina del elemento Acta el atributo maxOccurs
+El atributo fecha de pago pasa a ser obligatorio
+- InformacionHojasCampo.xsd
+Se eliminan los atributos: hoja, numero, provincia, comarca, termino y subtermino y se añade el atributo
+nif del socio OP
+Se elimina del elemento HojaCampo el atributo maxOccurs
+- InformacionSiniestros.xsd
+Se eliminan los atributos: hoja, numero, provincia, comarca, termino y subtermino y se añade el atributo
+nif del socio OP
+Se elimina del elemento Siniestro el atributo maxOccurs
+El atributo fecha de encargo pasa a ser opcional y se elimina el atributo: encargado
+- SiniestrosSCInformacion_con_cabeceras_seguridad.wsdl
+Se corrigen los errores en los parametros de entrada.
+
+
+
+1.1.2 : 01-10-2013.
+-------------------------------------------------------------------------------------------
+- SiniestrosSCInformacion.wsdl
+Inclusión del parámetro serie en los métodos de descarga de PDF de actas, siniestros y cartas de pago
+
+- SiniestrosSCInformacion_con_cabeceras_seguridad.wsdl
+Inclusión de cabeceras de seguridad en wsdl preparado para .NET
+
+
+
+1.1.1 : 06-09-2013.
+-------------------------------------------------------------------------------------------
+- InformacionSiniestros.xsd, InformacionHojasCampo.xsd, InformacionActas.xsd
+Corregida errata en referencia a tipo ti:plan por ti:Plan definido en Tipos.xsd
+
+- SiniestrosSCInformacion.wsdl
+Corregida versión del Endpoint (URL) del servicio.
+
+
+1.1.0 : 30-08-2013.
+-------------------------------------------------------------------------------------------
+- SiniestrosSCInformacion.wsdl
+Simplificación de los filtros de consulta.
+
+
+1.0.0 : 16-07-2013.
+-------------------------------------------------------------------------------------------
+
+Versión inicial.

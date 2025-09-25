@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<x:schema 
+	targetNamespace="http://www.agroseguro.es/Recibos/ReglamentoProduccionEmitida"
+	xmlns="http://www.agroseguro.es/Recibos/ReglamentoProduccionEmitida" 
+	xmlns:x="http://www.w3.org/2001/XMLSchema"
+	xmlns:ti="http://www.agroseguro.es/ITipos" 
+>
+
+	<!-- Importacion de la definicion de tipos genericos -->
+	<x:import
+		namespace="http://www.agroseguro.es/ITipos" 
+		schemaLocation="../commons/Tipos.xsd" />
+
+	<x:element name="Fase" type="Fase" />
+	
+	<x:complexType name="Fase">
+		<x:sequence>
+			<x:element name="IndividualAplicacion" type="IndividualAplicacion" minOccurs="1" maxOccurs="unbounded" />
+		</x:sequence>
+		<x:attribute name="plan" use="required" type="ti:Plan" />
+		<x:attribute name="fase" use="required" type="ti:Fase_Codigo" />
+		<x:attribute name="fechaEmisionRecibo" use="required" type="x:date" />
+	</x:complexType>
+	
+	<x:complexType name="IndividualAplicacion">
+		<x:sequence>
+			<x:element name="Colectivo" type="Colectivo" maxOccurs="1" minOccurs="0" />
+			<x:element name="DatosReglamento" type="DatosReglamento" maxOccurs="1" minOccurs="1" />
+			<x:element name="Situaciones" type="Situaciones" maxOccurs="1" minOccurs="1" />
+		</x:sequence>	
+		<x:attribute name="linea" use="required" type="ti:Linea_Codigo" />		
+		<x:attribute name="referencia" use="required" type="ti:Poliza_Referencia_Creciente" />
+		<x:attribute name="digitoControl" use="required" type="ti:DigitoControl" />			
+		<x:attribute name="codigoInterno" use="required" type="ti:CodigoInternoEntidad" />					
+		<x:attribute name="tipoReferencia" use="required" type="ti:Referencia_Tipo" />
+		<x:attribute name="tipoRecibo" use="required" type="ti:Recibo_Tipo" />		
+		<x:attribute name="gastosExternosEntidad" type="ti:ImporteLargo" use="required" />
+		<x:attribute name="comisiones" type="ti:ImporteLargo" use="required" />  
+		<x:attribute name="grupoNegocio" type="ti:Recibo_GrupoNegocio" use="required" />
+	</x:complexType>
+	 
+	<x:complexType name="Colectivo">
+		<x:attribute name="referencia" use="required" type="ti:Colectivo_Referencia" />	
+		<x:attribute name="digitoControl" use="required" type="ti:DigitoControl" />
+		<x:attribute name="codigoInterno" use="required" type="ti:CodigoInternoEntidad" />
+	</x:complexType>
+	
+	<x:complexType name="DatosReglamento">
+		<x:attribute name="fechaRecepcion" type="x:date" use="required" />
+		<x:attribute name="fechaEntradaVigor" type="x:date" use="required" />
+		<x:attribute name="fechaPago" type="x:date" use="required" />				
+		<x:attribute name="limite" type="ti:TantoPorCien" use="required" />  
+		<x:attribute name="codigoFechaComputoDias" type="ti:CodigoFechaComputoDias" use="required" />
+	</x:complexType>
+
+	<x:complexType name="Situaciones">
+		<x:sequence>
+			<x:element name="Situacion" type="Situacion" maxOccurs="unbounded" minOccurs="1" />
+		</x:sequence>
+	</x:complexType>	
+	
+	<x:complexType name="Situacion">
+		<x:sequence>
+			<x:element name="DatosTramitacion" type="DatosEconomicos" maxOccurs="1" minOccurs="0" />
+			<x:element name="DatosCalidad" type="DatosEconomicos" maxOccurs="1" minOccurs="0" />
+		</x:sequence>
+		<x:attribute name="codigo" type="ti:Situacion_Codigo" use="required" />
+	</x:complexType>	
+
+	<x:complexType name="DatosEconomicos">
+	    <x:attribute name="medidaReglamento" type="ti:MedidaReglamento" use="required" /> 
+		<x:attribute name="porcentaje" type="ti:TantoPorCien" use="required" />
+		<x:attribute name="codigoMedida" type="ti:Medida_Codigo" use="required" />
+		<x:attribute name="importeAplicado" type="ti:ImporteLargo" use="required" />
+		<x:attribute name="importeSinReduccion" type="ti:ImporteLargo" use="required" />
+	</x:complexType>
+	
+	 
+	
+</x:schema>

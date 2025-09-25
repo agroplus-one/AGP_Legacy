@@ -1,0 +1,100 @@
+ContratacionSCSIGPACZonificacion
+-----------------------
+
+
+archivo				                	namespace		                     			version
+--------------------------------		----------------------------------------		---------
+- EquivalenciaSIGPAC_Agroseguro.xsd		SeguroAgrario/EquivalenciaSIGPAC_Agroseguro 	3.0
+- InfoReduccionParcelaFauna.xsd			SeguroAgrario/InfoReduccionParcelaFauna 	1.0
+- InfoLimiteMaximoDanos.xsd			SeguroAgrario/InfoLimiteMaximoDanos	 	1.0
+- Tipos.xsd        		                Tipos		                           	   		18.0
+- xmime.xsd								http://www.w3.org/2005/05/xmlmime
+- policy.xml
+
+
+DESCRIPCION DE LOS FICHEROS
+---------------------------
+	
+- ContratacionSCSIGPACZonificacion.wsdl
+Este servicio sirve basicamente para saber a partir de una referencia de SIGPAC y opcionalmente un producto (línea y cultivo), qué ámbito geográfico figura en Agroseguro y si dicha parcela está zonificacada para el producto indicado, el código de zona asignado a dicha parcela.
+Sin especificación de seguridad. Pensado para manejar la seguridad delegando en
+los módulos de seguridad de los lenguajes de programación a través de políticas de aserciones.
+
+- policy.xml
+Política de seguridad según especificación WS-SecurityPolicy con UsernameToken
+de Oasis.
+
+- ContratacionSCSIGPACZonificacion_con_cabeceras_seguridad.wsdl
+Idem ContratacionSCSIGPACZonificacion.wsdl pero con cabecera de seguridad WS-Security, para
+manejar la seguridad a través de los bindings de XML generados en cada lenguaje
+de programación.
+
+- EquivalenciaSIGPAC_Agroseguro.xsd
+Esquema saliente que define la estructura del XML con los datos referentes a la equivalencia
+entre AGROSEGURO Y SIGPAC.
+
+- InfoReduccionParcelaFauna.xsd
+Esquema saliente que define la estructura del xml con los datos referentes a las reducciones de la producción de una parcela a la hora de contratarla, 
+en caso de haber tenido daños por fauna en años anteriores de forma reiterada.
+
+- InfoLimiteMaximoDanos.xsd
+Esquema saliente que define la estructura del xml con los datos referentes a la información del límite máximo de daños.
+
+- Tipos.xsd
+Esquema que contiene el diccionario de tipos común de Agroseguro.
+
+- xmime.xsd
+Esquema de validación de tipos XMLMIME de W3C
+
+
+
+VERSIONES
+---------
+1.0.9 : 21-01-2020
+-------------------------------------------------------------------------------------------
+- InfoLimiteMaximoDanios.xsd
+Corrección en la declaración de los siguientes espacios de nombres:
+	xmlns="http://www.agroseguro.es/SeguroAgrario/InfoLimiteMaximoDanos"
+	xmlns:pks="http://www.agroseguro.es/SeguroAgrario/InfoLimiteMaximoDanos"
+
+1.0.8 : 12-12-2019
+-------------------------------------------------------------------------------------------
+- InfoLimiteMaximoDanios.xsd: inclusión de nuevo xsd por nueva operación de información de límete máximo de daños.
+
+1.0.7 : 28-12-2016
+-------------------------------------------------------------------------------------------
+- InfoReduccionParcelaFauna.xsd: inclusión de nuevo xsd por nueva operación de renducciones por riesgo de fauna.
+
+1.0.6 : 15-01-2016
+-------------------------------------------------------------------------------------------
+- EquivalenciaSIGPAC_Agroseguro.xsd: modificación del tipo de dato de la superficie de la parcela a
+cuatro decimales.
+
+1.0.5 : 18-12-2015
+-------------------------------------------------------------------------------------------
+- ContratacionSCSIGPACZonificacion.wsdl: añadido parámetro infoSIGPAC a la operación única del servicio
+- EquivalenciaSIGPAC_Agroseguro.xsd: modificación de tipos de los nuevos atributos de la etiqueta SIGPAC.
+
+1.0.4 : 18-12-2015
+-------------------------------------------------------------------------------------------
+- EquivalenciaSIGPAC_Agroseguro.xsd: inclusión de nuevos datos en la etiqueta SIGPAC.
+
+1.0.3 : 29-12-2014
+-------------------------------------------------------------------------------------------
+- Tipos.xsd: se permiten polígonos a cero
+
+1.0.2 : 17-03-2014
+-------------------------------------------------------------------------------------------
+- EquivalenciaSIGPAC_Agroseguro.xsd
+Nuevo atributo "zonificacionestimada" de la etiqueta AmbitoAgroseguro.
+
+1.0.1 : 03-02-2014
+-------------------------------------------------------------------------------------------
+- EquivalenciaSIGPAC_Agroseguro.xsd
+Corrección de algunos errores sintácticos en la definición de lo elementos ComplexType
+
+
+1.0.0 : 20-01-2014
+-------------------------------------------------------------------------------------------
+
+Versión inicial.

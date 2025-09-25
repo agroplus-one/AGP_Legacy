@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="declaracionSeguro_hojaParcelas_totalInstalaciones" pageWidth="555" pageHeight="802" whenNoDataType="AllSectionsNoDetail" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<import value="com.rsi.agp.core.util.NumberUtils"/>
+	<parameter name="HOJA" class="java.math.BigDecimal"/>
+	<parameter name="IDPOLIZA" class="java.lang.Integer"/>
+	<queryString>
+		<![CDATA[select codigo, descripcion, sum(unidades) as unidades, sum(metroscuadrados) as metroscuadrados,
+       sum(metroslineales)as metroslineales,sum(superficie) as superficie, sum(totalprecio)as totalprecio from (
+--unidades
+select sum(to_number(dv1.valor)) as unidades,
+       null as produccion,
+       null as metroscuadrados,
+       null as metroslineales,
+       null as superficie,
+       sum (NVL(REL1.PRECIO * to_number(dv1.valor), 0 )) as  totalprecio,
+       tc1.codtipocapital as codigo,
+       tc1.destipocapital as descripcion
+from  o02agpe0.tb_parcelas p1, o02agpe0.tb_capitales_asegurados ca1, o02agpe0.TB_CAP_ASEG_REL_MODULO REL1,
+      o02agpe0.tb_datos_var_parcela dv1, o02agpe0.tb_sc_c_tipo_capital tc1
+where  p1.idparcela = ca1.idparcela and  ca1.idcapitalasegurado = rel1.idcapitalasegurado and  ca1.idcapitalasegurado = dv1.idcapitalasegurado
+       and  dv1.codconcepto = tc1.codconcepto and  ca1.codtipocapital = tc1.codtipocapital AND p1.HOJA = $P{HOJA} and  p1.idpoliza = $P{IDPOLIZA}
+       and  ca1.codtipocapital >= 100  and tc1.codconcepto = 117
+       group by tc1.codtipocapital, tc1.destipocapital
+union --valor fijo
+select null as unidades,
+       null as produccion,
+       null as metroscuadrados,
+       null as metroslineales,
+       null as superficie,
+       sum (NVL(to_number(dv1.valor), 0 )) as  totalprecio,
+       tc1.codtipocapital as codigo,
+       tc1.destipocapital as descripcion
+from  o02agpe0.tb_parcelas p1, o02agpe0.tb_capitales_asegurados ca1, o02agpe0.TB_CAP_ASEG_REL_MODULO REL1,
+      o02agpe0.tb_datos_var_parcela dv1, o02agpe0.tb_sc_c_tipo_capital tc1
+where  p1.idparcela = ca1.idparcela and  ca1.idcapitalasegurado = rel1.idcapitalasegurado and  ca1.idcapitalasegurado = dv1.idcapitalasegurado
+       and  dv1.codconcepto = tc1.codconcepto and  ca1.codtipocapital = tc1.codtipocapital AND p1.HOJA = $P{HOJA} and  p1.idpoliza = $P{IDPOLIZA}
+       and  ca1.codtipocapital >= 100  and tc1.codconcepto = 768
+       group by tc1.codtipocapital, tc1.destipocapital
+union --metros cuadrados
+select null as unidades,
+       null as produccion,
+       sum(to_number(dv1.valor)) as metroscuadrados,
+       null as metroslineales,
+       null as superficie,
+       sum (NVL(REL1.PRECIO * to_number(dv1.valor), 0 )) as  totalprecio,
+       tc1.codtipocapital as codigo,
+       tc1.destipocapital as descripcion
+from  o02agpe0.tb_parcelas p1, o02agpe0.tb_capitales_asegurados ca1, o02agpe0.TB_CAP_ASEG_REL_MODULO REL1,
+      o02agpe0.tb_datos_var_parcela dv1, o02agpe0.tb_sc_c_tipo_capital tc1
+where  p1.idparcela = ca1.idparcela and  ca1.idcapitalasegurado = rel1.idcapitalasegurado and  ca1.idcapitalasegurado = dv1.idcapitalasegurado
+       and  dv1.codconcepto = tc1.codconcepto and  ca1.codtipocapital = tc1.codtipocapital AND p1.HOJA = $P{HOJA} and  p1.idpoliza = $P{IDPOLIZA}
+       and  ca1.codtipocapital >= 100  and tc1.codconcepto = 767
+       group by tc1.codtipocapital, tc1.destipocapital
+union --metros lineales
+select null as unidades,
+       null as produccion,
+       null as metroscuadrados,
+       sum(to_number(dv1.valor)) as metroslineales,
+       null as superficie,
+       sum (NVL(REL1.PRECIO * to_number(dv1.valor), 0 )) as  totalprecio,
+       tc1.codtipocapital as codigo,
+       tc1.destipocapital as descripcion
+from  o02agpe0.tb_parcelas p1, o02agpe0.tb_capitales_asegurados ca1, o02agpe0.TB_CAP_ASEG_REL_MODULO REL1,
+      o02agpe0.tb_datos_var_parcela dv1, o02agpe0.tb_sc_c_tipo_capital tc1
+where  p1.idparcela = ca1.idparcela and  ca1.idcapitalasegurado = rel1.idcapitalasegurado and  ca1.idcapitalasegurado = dv1.idcapitalasegurado
+       and  dv1.codconcepto = tc1.codconcepto and  ca1.codtipocapital = tc1.codtipocapital AND p1.HOJA = $P{HOJA} and  p1.idpoliza = $P{IDPOLIZA}
+       and  ca1.codtipocapital >= 100  and tc1.codconcepto = 766
+       group by tc1.codtipocapital, tc1.destipocapital
+union --superficie
+select null as unidades,
+       null as produccion,
+       null as metroscuadrados,
+       null as metroslineales,
+       sum(to_number(ca1.superficie)) as superficie,
+       sum (NVL(REL1.PRECIO * to_number(ca1.superficie), 0 )) as  totalprecio,
+       tc1.codtipocapital as codigo,
+       tc1.destipocapital as descripcion
+from  o02agpe0.tb_parcelas p1, o02agpe0.tb_capitales_asegurados ca1, o02agpe0.TB_CAP_ASEG_REL_MODULO REL1,
+      o02agpe0.tb_sc_c_tipo_capital tc1
+where  p1.idparcela = ca1.idparcela and  ca1.idcapitalasegurado = rel1.idcapitalasegurado
+       and  ca1.codtipocapital = tc1.codtipocapital and  p1.idpoliza = $P{IDPOLIZA} and p1.hoja=$P{HOJA}
+       and  ca1.codtipocapital >= 100  and tc1.codconcepto = 258
+       group by tc1.codtipocapital, tc1.destipocapital
+union --valorfijo
+select null as unidades,
+       null as produccion,
+       null as metroscuadrados,
+       null as metroslineales,
+       null as superficie,
+       sum (NVL(REL1.PRECIO * to_number(dv1.valor), 0 )) as  totalprecio,
+       tc1.codtipocapital as codigo,
+       tc1.destipocapital as descripcion
+from  o02agpe0.tb_parcelas p1, o02agpe0.tb_capitales_asegurados ca1, o02agpe0.TB_CAP_ASEG_REL_MODULO REL1,
+      o02agpe0.tb_datos_var_parcela dv1, o02agpe0.tb_sc_c_tipo_capital tc1
+where  p1.idparcela = ca1.idparcela and  ca1.idcapitalasegurado = rel1.idcapitalasegurado and  ca1.idcapitalasegurado = dv1.idcapitalasegurado
+       and  dv1.codconcepto = tc1.codconcepto and  ca1.codtipocapital = tc1.codtipocapital AND p1.HOJA = $P{HOJA} and  p1.idpoliza = $P{IDPOLIZA}
+       and  ca1.codtipocapital >= 100  and tc1.codconcepto = 768
+       group by tc1.codtipocapital, tc1.destipocapital
+) group by codigo, descripcion order by codigo]]>
+	</queryString>
+	<field name="CODIGO" class="java.math.BigDecimal"/>
+	<field name="DESCRIPCION" class="java.lang.String"/>
+	<field name="TOTALPRECIO" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="UNIDADES" class="java.lang.String"/>
+	<field name="METROSCUADRADOS" class="java.lang.String"/>
+	<field name="METROSLINEALES" class="java.math.BigDecimal"/>
+	<field name="SUPERFICIE" class="java.math.BigDecimal"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="14" splitType="Stretch">
+			<printWhenExpression><![CDATA[new Boolean($F{DESCRIPCION} != null)]]></printWhenExpression>
+			<staticText>
+				<reportElement x="0" y="0" width="543" height="14" isRemoveLineWhenBlank="true"/>
+				<box leftPadding="2">
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font size="6" isBold="true"/>
+				</textElement>
+				<text><![CDATA[INSTALACIONES]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="14">
+			<textField isBlankWhenNull="true">
+				<reportElement x="0" y="0" width="118" height="14"/>
+				<box leftPadding="8" rightPadding="0">
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font size="6" isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{CODIGO}+" - "+$F{DESCRIPCION}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.00" isBlankWhenNull="true">
+				<reportElement x="398" y="0" width="70" height="14"/>
+				<box rightPadding="2">
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="6"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[NumberUtils.formatear($F{SUPERFICIE},2)]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.00" isBlankWhenNull="true">
+				<reportElement mode="Transparent" x="188" y="0" width="70" height="14" forecolor="#000000" backcolor="#FFFFFF"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle" rotation="None" lineSpacing="Single" markup="none">
+					<font fontName="SansSerif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+				</textElement>
+			</textField>
+			<textField pattern="###0.00" isBlankWhenNull="true">
+				<reportElement mode="Transparent" x="258" y="0" width="70" height="14" forecolor="#000000" backcolor="#FFFFFF"/>
+				<box rightPadding="2">
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle" rotation="None" lineSpacing="Single" markup="none">
+					<font fontName="SansSerif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{METROSCUADRADOS}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.00" isBlankWhenNull="true">
+				<reportElement mode="Transparent" x="328" y="0" width="70" height="14" forecolor="#000000" backcolor="#FFFFFF"/>
+				<box rightPadding="2">
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle" rotation="None" lineSpacing="Single" markup="none">
+					<font fontName="SansSerif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[NumberUtils.formatear($F{METROSLINEALES},2)]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.00" isBlankWhenNull="true">
+				<reportElement x="468" y="0" width="75" height="14"/>
+				<box rightPadding="2">
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="6"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[NumberUtils.formatear($F{TOTALPRECIO},2)]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.00" isBlankWhenNull="true">
+				<reportElement mode="Transparent" x="118" y="0" width="70" height="14" forecolor="#000000" backcolor="#FFFFFF"/>
+				<box rightPadding="2">
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle" rotation="None" lineSpacing="Single" markup="none">
+					<font fontName="SansSerif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{UNIDADES}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

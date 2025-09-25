@@ -1,0 +1,548 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="SeguimientoSCPoliza"
+	targetNamespace="http://www.agroseguro.es/serviciosweb/SeguimientoSCPoliza/"
+	xmlns:agr="http://www.agroseguro.es/serviciosweb/SeguimientoSCPoliza/"
+	xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	xmlns:xmime="http://www.w3.org/2005/05/xmlmime"
+	xmlns:ti="http://www.agroseguro.es/Tipos"
+	xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd"
+	xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd">
+	<wsdl:types>
+		<xsd:schema elementFormDefault="qualified"
+			targetNamespace="http://www.agroseguro.es/serviciosweb/SeguimientoSCPoliza/"
+			xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+			<xsd:import namespace="http://www.agroseguro.es/Tipos"
+				schemaLocation="Tipos.xsd" />
+			<xsd:import namespace="http://www.w3.org/2005/05/xmlmime"
+				schemaLocation="xmime.xsd" />
+			<xsd:import
+				namespace="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd"
+				schemaLocation="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd" />
+			<xsd:element name="consultarEstadoRequest">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="tiporeferencia"
+							type="ti:Poliza_Referencia_Tipo" />
+						<xsd:element name="codplan" type="ti:Plan" />
+						<xsd:element name="referencia"
+							type="ti:Poliza_Referencia_Unificada" />
+						<xsd:element name="recibo" nillable="true" minOccurs="0"
+							type="ti:Recibo_Codigo" />
+						<xsd:element name="fecha" nillable="true" minOccurs="0"
+							type="xsd:date" />
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="listarRecibosRequest">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="tiporeferencia"
+							type="ti:Poliza_Referencia_Tipo" />
+						<xsd:element name="codplan" type="ti:Plan" />
+						<xsd:element name="referencia"
+							type="ti:Poliza_Referencia_Unificada" />
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="consultarReciboRequest">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="tiporeferencia"
+							type="ti:Poliza_Referencia_Tipo" />
+						<xsd:element name="codplan" type="ti:Plan" />
+						<xsd:element name="referencia"
+							type="ti:Poliza_Referencia_Unificada" />
+						<xsd:element name="recibo" nillable="true" minOccurs="0"
+							type="ti:Recibo_Codigo" />
+						<xsd:element name="fecha" nillable="true" minOccurs="0"
+							type="xsd:date" />
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="consultarCostesReciboRequest">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="tiporeferencia"
+							type="ti:Poliza_Referencia_Tipo" />
+						<xsd:element name="codplan" type="ti:Plan" />
+						<xsd:element name="referencia"
+							type="ti:Poliza_Referencia_Unificada" />
+						<xsd:element name="recibo" nillable="true" minOccurs="0"
+							type="ti:Recibo_Codigo" />
+						<xsd:element name="fecha" nillable="true" minOccurs="0"
+							type="xsd:date" />
+						<xsd:element name="datosAdicionales"
+							nillable="true" minOccurs="0" type="xsd:boolean" />
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="consultarEstadoResponse">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="estado" xmime:expectedContentTypes="text/xml" type="xmime:base64Binary" minOccurs="0" maxOccurs="unbounded"/>
+						<xsd:element name="documento" xmime:expectedContentTypes="text/xml" type="xmime:base64Binary"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="listarRecibosResponse">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="listaRecibos"
+							xmime:expectedContentTypes="text/xml" type="xmime:base64Binary" />
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="consultarReciboResponse">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="recibo"
+							xmime:expectedContentTypes="text/xml" type="xmime:base64Binary" />
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="consultarCostesReciboResponse">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="costesRecibo"
+							xmime:expectedContentTypes="text/xml" type="xmime:base64Binary" />
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="seguimientoEstadoContratacionRequest">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="plan" type="ti:Plan" nillable="true" minOccurs="0" />
+						<xsd:element name="linea" type="ti:Linea_Codigo" nillable="true" minOccurs="0" />
+						<xsd:element name="referencia" type="ti:Poliza_Referencia_Unificada" nillable="true" minOccurs="0"  />
+						<xsd:element name="nifTomador" type="ti:NIF" minOccurs="0" nillable="true" />
+						<xsd:element name="colectivo" type="ti:Colectivo_Referencia" minOccurs="0" nillable="true" />
+						<xsd:element name="medidador" type="ti:CodigoInternoEntidad" minOccurs="0" nillable="true" />
+						<xsd:element name="nifAsegurado" type="ti:NIF" minOccurs="0" nillable="true" />
+						<xsd:element name="soloPrincipales" type="xsd:boolean" minOccurs="0" nillable="true" />
+						<xsd:element name="cambioEstadoDesde" type="xsd:dateTime" minOccurs="0" nillable="true" />
+						<xsd:element name="cambioEstadoHasta" type="xsd:dateTime" minOccurs="0" nillable="true" />						
+						<xsd:element name="incluirRenovaciones" type="xsd:boolean" minOccurs="0" nillable="true" />
+						<xsd:element name="incluirRecibos" type="xsd:boolean" minOccurs="0" nillable="true" />
+						<xsd:element name="incluirIncidencias" type="xsd:boolean" minOccurs="0" nillable="true" />
+						<xsd:element name="incluirInfoAdicional" type="xsd:boolean" minOccurs="0" nillable="true" />
+						<xsd:element name="historiaPoliza" type="xsd:boolean" minOccurs="0" nillable="true" />
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="seguimientoEstadoContratacionResponse">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="estadoContratacion"
+							xmime:expectedContentTypes="text/xml" type="xmime:base64Binary" />
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="agrFallo"
+				xmlns:agr="http://www.agroseguro.es/serviciosweb/SeguimientoSCPoliza/">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:annotation>
+							Lista de mensajes de error de AGROSEGURO
+						</xsd:annotation>
+						<xsd:element name="error" type="agr:Error"
+							maxOccurs="unbounded" minOccurs="0" />
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:complexType name="Error"
+				xmlns:agr="http://www.agroseguro.es/serviciosweb/SeguimientoSCPoliza/">
+				<xsd:sequence>
+					<xsd:element name="codigo" type="xsd:int" />
+					<xsd:element name="mensaje" type="xsd:string" />
+				</xsd:sequence>
+			</xsd:complexType>
+		</xsd:schema>
+	</wsdl:types>
+	<wsdl:message name="Header">
+		<wsdl:part name="Security" element="wsse:Security" />
+	</wsdl:message>
+	<wsdl:message name="AgrException">
+		<wsdl:part name="parameters" element="agr:agrFallo"></wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="consultarEstadoRequest">
+		<wsdl:part name="parameters"
+			element="agr:consultarEstadoRequest">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="consultarEstadoResponse">
+		<wsdl:part name="parameters"
+			element="agr:consultarEstadoResponse">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="listarRecibosRequest">
+		<wsdl:part name="parameters"
+			element="agr:listarRecibosRequest">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="listarRecibosResponse">
+		<wsdl:part name="parameters"
+			element="agr:listarRecibosResponse">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="consultarReciboRequest">
+		<wsdl:part name="parameters"
+			element="agr:consultarReciboRequest">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="consultarReciboResponse">
+		<wsdl:part name="parameters"
+			element="agr:consultarReciboResponse">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="consultarCostesReciboRequest">
+		<wsdl:part name="parameters"
+			element="agr:consultarCostesReciboRequest">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="consultarCostesReciboResponse">
+		<wsdl:part name="parameters"
+			element="agr:consultarCostesReciboResponse">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="seguimientoEstadoContratacionRequest">
+		<wsdl:part name="parameters"
+			element="agr:seguimientoEstadoContratacionRequest">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="seguimientoEstadoContratacionResponse">
+		<wsdl:part name="parameters"
+			element="agr:seguimientoEstadoContratacionResponse">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:portType name="SeguimientoSCPoliza">
+		<wsdl:operation name="consultarEstado">
+			<wsdl:documentation>
+				Método de consulta de la Situación Actualizada de la
+				Póliza, obteniendo toda la información del estado de la
+				Póliza a un recibo dado.
+
+				En la petición se deberá facilitar:
+
+				- Tipo de Referencia: carácter con valores P/Principal o
+				C/Complementario.
+
+				- Plan.
+
+				- Referencia de Póliza.
+
+				- Recibo. Puede venir vacío.
+
+				- Fecha Recibo. Puede venir vacío.
+
+				Se devolverá la siguiente información :
+
+				- Si no se envía ni el recibo ni la fecha de recibo se
+				generará un XML con el contenido de la póliza tal y como
+				se encuentra en la actualidad para su último recibo.
+
+				- Si se envía el recibo y no la fecha de recibo se
+				generará un XML con el contenido de la póliza tal y como
+				se encontraba para el recibo pedido.
+
+				- Si se envía la fecha de recibo pero no el recibo se
+				generará con el último de los recibos anterior o igual a
+				la fecha indicada. En caso de no existir recibo a esa
+				fecha devolverá el error: "El Recibo no existe para la
+				Póliza solicitada".
+
+				- Si se envían ambos no se validará la fecha de recibo,
+				dando idéntico resultado al caso en que se cumplimenta
+				exclusivamente el recibo.
+
+				La respuesta que se obtiene está de acuerdo al diseño de
+				registro "Seguro Creciente: Situación Actualizada de la
+				Póliza. DES-D-0083" en su última versión por lo que la
+				estructura está definida en el esquema XSD "Poliza.xsd".
+			</wsdl:documentation>
+
+			<wsdl:input message="agr:consultarEstadoRequest">
+			</wsdl:input>
+			<wsdl:output message="agr:consultarEstadoResponse">
+			</wsdl:output>
+			<wsdl:fault name="AgrException"
+				message="agr:AgrException">
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="listarRecibos">
+			<wsdl:documentation>
+				Método Lista de Recibos Emitidos.
+
+				En la petición se deberá facilitar:
+
+				- Tipo de Referencia: carácter con valores P/Principal o
+				C/Complementario.
+
+				- Plan.
+
+				- Referencia de Póliza.
+
+				Se devolverá la siguiente información :
+
+				- Fichero XML con identificadores de todos los recibos
+				emitidos de una póliza, con una estructura XML definida
+				según el esquema XSD "ListaRecibos.xsd".
+
+				Si la póliza no tuviera recibos emitidos se devolverá el
+				error: "No se han emitido Recibos para la Póliza
+				solicitada".
+			</wsdl:documentation>
+			<wsdl:input message="agr:listarRecibosRequest"></wsdl:input>
+			<wsdl:output message="agr:listarRecibosResponse">
+			</wsdl:output>
+			<wsdl:fault name="AgrException"
+				message="agr:AgrException">
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="consultarRecibo">
+			<wsdl:documentation>
+				Método Consulta de Recibo Emitido.
+
+				En la petición se deberá facilitar:
+
+				- Tipo de Referencia: carácter con valores P/Principal o
+				C/Complementario.
+
+				- Plan.
+
+				- Referencia de Póliza.
+
+				- Recibo. Puede venir vacío.
+
+				- Fecha Recibo. Puede venir vacío.
+
+				Se devolverá la siguiente información :
+
+				- Si no se envía ni el recibo ni la fecha de recibo se
+				generará un XML con los datos del último recibo emitido
+				de la póliza indicada.
+
+				- Si se envía el recibo y no la fecha de recibo se
+				generará un XML con los datos del recibo emitido
+				indicado de esa póliza.
+
+				- Si se envía la fecha de recibo pero no el número de
+				recibo, el documento XML se generará con los datos del
+				último de los recibos emitidos con una fecha anterior o
+				igual a la fecha indicada. En caso de no existir recibo
+				a esa fecha devolverá el error: "El Recibo no existe
+				para la Póliza solicitada".
+
+				- Si se envían ambos no se validará la fecha de recibo,
+				dando idéntico resultado al caso en que se cumplimenta
+				exclusivamente el recibo.
+
+				La respuesta que se obtiene sigue una estructura XML
+				definida según el esquema XSD "RecibosEmitidos.xsd".
+			</wsdl:documentation>
+			<wsdl:input message="agr:consultarReciboRequest">
+			</wsdl:input>
+			<wsdl:output message="agr:consultarReciboResponse">
+			</wsdl:output>
+			<wsdl:fault name="AgrException"
+				message="agr:AgrException">
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="consultarCostesRecibo">
+			<wsdl:documentation>
+				Método Consulta de la Distribución de Costes de un Recibo Emitido.
+
+				En la petición se deberá facilitar:
+
+				- Tipo de Referencia: carácter con valores P/Principal o
+				C/Complementario.
+
+				- Plan.
+
+				- Referencia de Póliza.
+
+				- Recibo. Puede venir vacío.
+
+				- Fecha Recibo. Puede venir vacío.
+				
+				- Datos Adicionales. Puede venir vacío.
+
+				Se devolverá la siguiente información :
+
+				- Si no se envía ni el recibo ni la fecha de recibo se
+				generará un XML con los datos de la distribución de costes del 
+				último recibo emitido de la póliza indicada.
+
+				- Si se envía el recibo y no la fecha de recibo se
+				generará un XML con los datos de la distribución de costes del 
+				recibo emitido indicado de esa póliza.
+
+				- Si se envía la fecha de recibo pero no el número de
+				recibo, el documento XML se generará con los datos de la 
+				distribución de costes del último de los recibos emitidos 
+				con una fecha anterior o igual a la fecha indicada. En caso 
+				de no existir recibo a esa fecha devolverá el error: "El Recibo no existe
+				para la Póliza solicitada".
+
+				- Si se envían ambos no se validará la fecha de recibo,
+				dando idéntico resultado al caso en que se cumplimenta
+				exclusivamente el recibo.
+				
+				- Si se envía el parámetro "datosAdicionales" con valor "true"
+				se incluirá en la distribución de costes los apartados adicionales
+				definidos en dicha distribución como apartados de información extra
+				(grupos de tasas, información de organismos, gastos, etc)
+				
+				La respuesta que se obtiene sigue una estructura XML
+				definida según el esquema XSD "DistribucionCostesSeguroAgrario.xsd".
+			</wsdl:documentation>
+			<wsdl:input message="agr:consultarCostesReciboRequest">
+			</wsdl:input>
+			<wsdl:output message="agr:consultarCostesReciboResponse">
+			</wsdl:output>
+			<wsdl:fault name="AgrException"
+				message="agr:AgrException">
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="seguimientoEstadoContratacion">
+			<wsdl:documentation>
+				Método Consulta del estado de una o varias pólizas
+
+				En la petición se deberá facilitar alguno/os de los siguientes parametros:
+
+				- Plan.
+				- Línea
+				- Referencia de Póliza.
+				- Nif del tomador.
+				- Referencia del colectivo.
+				- Medidador.
+				- Nif del asegurado
+				- Sólo pólizas principales. Por defecto tendrá el valor falso.
+				- Fecha hora desde el cambio de estado. Si se envía este parámetro y no se envia cambioHoraHasta, ésta se considerará como el dia de la petición.
+				- Fecha hora hasta el cambio de estado. Si se indica este parámetro, será obligatorio enviar cambioHoraDesde.
+				- Incluir renovaciones. Por defecto false.
+				- Incluir recibos. Por defecto true.
+				- Incluir incidencias. Por defecto true.
+				- Incluir información adicional. Por defecto true.
+				- Historia de la póliza. Por defecto falso.
+
+				Se devolverá la siguiente información :
+
+				La respuesta que se obtiene sigue una estructura XML
+				definida según el esquema XSD "SeguimientoContratacion.xsd".
+			</wsdl:documentation>
+			<wsdl:input message="agr:seguimientoEstadoContratacionRequest">
+			</wsdl:input>
+			<wsdl:output message="agr:seguimientoEstadoContratacionResponse">
+			</wsdl:output>
+			<wsdl:fault name="AgrException"
+				message="agr:AgrException">
+			</wsdl:fault>
+		</wsdl:operation>
+	</wsdl:portType>
+	<wsdl:binding name="SeguimientoSCPolizaSOAP"
+		type="agr:SeguimientoSCPoliza">
+		<soap:binding style="document"
+			transport="http://schemas.xmlsoap.org/soap/http" />
+		<wsdl:operation name="consultarEstado">
+			<soap:operation
+				soapAction="consultarEstado" />
+			<wsdl:input>
+				<soap:header use="literal" message="agr:Header"	part="Security" wsdl:required="true" />
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+			<wsdl:fault name="AgrException">
+				<soap:fault name="AgrException" use="literal" />
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="listarRecibos">
+			<soap:operation
+				soapAction="" />
+			<wsdl:input>
+				<soap:header use="literal" message="agr:Header"	part="Security" wsdl:required="true" />
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+			<wsdl:fault name="AgrException">
+				<soap:fault name="AgrException" use="literal" />
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="consultarRecibo">
+			<soap:operation
+				soapAction="consultarRecibo" />
+			<wsdl:input>
+				<soap:header use="literal" message="agr:Header"	part="Security" wsdl:required="true" />
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+			<wsdl:fault name="AgrException">
+				<soap:fault name="AgrException" use="literal" />
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="consultarCostesRecibo">
+			<soap:operation
+				soapAction="consultarCostesRecibo" />
+			<wsdl:input>
+				<soap:header use="literal" message="agr:Header"	part="Security" wsdl:required="true" />
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+			<wsdl:fault name="AgrException">
+				<soap:fault name="AgrException" use="literal" />
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="seguimientoEstadoContratacion">
+			<soap:operation
+				soapAction="seguimientoEstadoContratacion" />
+			<wsdl:input>
+				<soap:header use="literal" message="agr:Header"	part="Security" wsdl:required="true" />
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+			<wsdl:fault name="AgrException">
+				<soap:fault name="AgrException" use="literal" />
+			</wsdl:fault>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:service name="SeguimientoSCPoliza">
+		<wsdl:documentation>
+			Mediante este proceso se podrá solicitar la situación
+			actualizada de la póliza, la lista de recibos o la consulta
+			de un recibo.
+
+			El método "Lista de Recibos Emitidos" proporciona una lista
+			de todos los identificadores de los recibos emitidos de una
+			póliza, por lo que puede utilizarse para alimentar con
+			cualquiera de esos identificadores de recibo encontrados la
+			entrada de Servicios Web que requieran un recibo.
+
+			La información devuelta serán archivos XML enviados como
+			Adjunto (Attachment) en formato MTOM.
+		</wsdl:documentation>
+		<wsdl:port name="SeguimientoSCPolizaSOAP"
+			binding="agr:SeguimientoSCPolizaSOAP">
+			<wsdl:documentation>
+				La primera dirección es el entorno de pruebas y no tiene
+				una resolución asignada en Internet por lo que se deberá
+				incluir en la máquina local o en el servidor de nombres
+				local con la siguiente dirección: 195.235.42.35
+				agrinfo.agroseguro.com. La segunda dirección es el
+				entorno real de ejecución.
+			</wsdl:documentation>
+			<soap:address
+				location="https://www.agroseguro.es/seguimientoSC/V1R0/services/SeguimientoSCPoliza" />
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>

@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.rsi.agp.dao.tables.familias.LineaFamilia" table="LIN_FAMILIA_SEGURO">
+        <comment></comment>
+        <composite-id name="id" class="com.rsi.agp.dao.tables.familias.LineaFamiliaId">
+            <key-property name="codFamilia" type="java.lang.Long">
+                <column name="COD_FAMILIA_SEG" precision="3" scale="0" />
+            </key-property>
+            <key-property name="codLinea" type="java.lang.Long">
+                <column name="CODLINEA" precision="3" scale="0" />
+            </key-property>
+             <key-property name="codGrupoFamilia" type="string">
+                <column name="COD_GRUPO_FAMILIA_SEG" length="2" />
+            </key-property>
+            <key-property name="grupoNegocio" type="java.lang.Character">
+                <column name="GRUPO_NEGOCIO"  length="1" />
+            </key-property>
+        </composite-id>
+		<many-to-one name="familia" class="com.rsi.agp.dao.tables.familias.Familia" fetch="select" lazy="false" insert="false" update="false">
+            <column name="COD_FAMILIA_SEG">
+                <comment></comment>
+            </column>
+        </many-to-one>
+        
+        <many-to-one name="grupoFamilia" class="com.rsi.agp.dao.tables.familias.GrupoFamilia" fetch="select" lazy="false" insert="false" update="false">
+            <column name="COD_GRUPO_FAMILIA_SEG">
+                <comment></comment>
+            </column>
+        </many-to-one>
+        
+         <many-to-one name="gruposNegocio" class="com.rsi.agp.dao.tables.cgen.GruposNegocio" fetch="select" lazy="false" insert="false" update="false">
+            <column name="GRUPO_NEGOCIO">
+                <comment></comment>
+            </column>
+        </many-to-one>
+        
+         <many-to-one name="linea" class="com.rsi.agp.dao.tables.cgen.LineaCondicionado" fetch="select" lazy="false" insert="false" update="false">
+            <column name="CODLINEA">
+                <comment></comment>
+            </column>
+        </many-to-one>
+        
+		
+    </class>
+</hibernate-mapping>

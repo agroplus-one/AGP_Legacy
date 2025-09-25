@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+		"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+		"http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory name="agp_factory">
+    	<!-- Database connection settings -->
+        <!-- <property name="hibernate.connection.url">jdbc:oracle:thin:@172.22.3.207:1521:OA9D</property> -->
+        <property name="hibernate.connection.url">jdbc:oracle:thin:@bancadesa.risa:2521:BANCAD</property>
+        <property name="hibernate.connection.driver_class">oracle.jdbc.driver.OracleDriver</property>
+        <property name="hibernate.connection.username">o02agpe0</property>
+        <property name="hibernate.connection.password">o02agpe0</property>
+        <property name="default_schema">O02AGPE0</property>
+
+        <!-- SQL dialect -->
+        <property name="hibernate.dialect">org.hibernate.dialect.Oracle10gDialect</property>
+
+        <!-- Echo all executed SQL to stdout (Disable it on production env.)-->
+        <property name="show_sql">true</property>
+        <property name="hibernate.format_sql">true</property>
+    </session-factory>
+</hibernate-configuration>

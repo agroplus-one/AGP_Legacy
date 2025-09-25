@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<x:schema 
+	targetNamespace="http://www.agroseguro.es/ListaMotivosAnulacionRescision"
+	xmlns="http://www.agroseguro.es/ListaMotivosAnulacionRescision"
+	xmlns:x="http://www.w3.org/2001/XMLSchema"
+> 
+
+	<!-- Importacion de la definicion de tipos genericos -->
+		
+	<x:element name="ListaMotivos" type="ListaMotivosAnulacionRescision" >
+		<x:annotation>
+			<x:documentation>
+				Elemento Raiz
+			</x:documentation>
+		</x:annotation>
+	</x:element>
+	
+	<x:complexType name="ListaMotivosAnulacionRescision">
+		<x:sequence>
+            <x:element name="Motivo" type="MotivoAnulacionRescision" minOccurs="1" maxOccurs="unbounded" />		
+        </x:sequence>
+	</x:complexType>
+		
+	<x:complexType name="MotivoAnulacionRescision">
+		<x:attribute name="codigo" use="required" type="CodigoMotivoAnulacionRescision" />	
+		<x:attribute name="descriptivo" use="required" type="DescriptivoMotivoAnulacionRescision" />	
+	</x:complexType>
+	
+	<x:simpleType name="CodigoMotivoAnulacionRescision">
+		<x:restriction base="x:int">
+			<x:totalDigits value="3" />
+		</x:restriction>
+	</x:simpleType>
+	
+	<x:simpleType name="DescriptivoMotivoAnulacionRescision">
+		<x:restriction base="x:string">
+			<x:maxLength value="150" />
+		</x:restriction>
+	</x:simpleType>
+	
+</x:schema>

@@ -1,0 +1,67 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 29-nov-2010 13:49:42 by Hibernate Tools 3.3.0.GA -->
+<hibernate-mapping>
+    <class name="com.rsi.agp.dao.tables.poliza.Comunicaciones" table="TB_COMUNICACIONES">
+        <comment>Tabla que almacena los posibles movimientos de una p&#243;liza</comment>
+        <id name="idenvio" type="java.math.BigDecimal">
+            <column name="IDENVIO" precision="15" scale="0" />
+            <generator class="assigned" />
+        </id>
+        <property name="fechaEnvio" type="date">
+            <column name="FECHA_ENVIO" length="7" not-null="true">
+                <comment>Fecha del Env&#237;o</comment>
+            </column>
+        </property>
+        <property name="ficheroEnvio" type="string">
+            <column name="FICHERO_ENVIO" length="8">
+                <comment>Nombre del fichero enviado</comment>
+            </column>
+        </property>
+        <property name="tipoMov" type="string">
+            <column name="TIPO_MOV" length="10">
+                <comment>Tipo de Movimiento (ENVIO O ACUSERECIB)</comment>
+            </column>
+        </property>
+        <property name="resultado" type="string">
+            <column name="RESULTADO" length="10">
+                <comment>Resultado (CORRECTO O ERROR)</comment>
+            </column>
+        </property>
+        <property name="ficheroRecibo" type="string">
+            <column name="FICHERO_RECIBO" length="8">
+                <comment>Nombre del fichero recibido</comment>
+            </column>
+        </property>
+        <property name="fechaRecepcion" type="date">
+            <column name="FECHA_RECEPCION" length="7">
+                <comment>Fecha de recepci&#243;n</comment>
+            </column>
+        </property>
+        <property name="ficheroTipo" type="java.lang.Character">
+            <column name="FICHERO_TIPO" length="1">
+                <comment>Tipo de fichero: P-POLIZA, A-ANEXO REDUCCION, C-COPY, R-RECIBO, S-SINIESTRO, M-ANEXO MODIFICACION</comment>
+            </column>
+        </property>
+        <property name="ficheroContenido" type="clob">
+            <column name="FICHERO_CONTENIDO">
+                <comment>Contenido del fichero de Agroseguro</comment>
+            </column>
+        </property>
+        <set name="siniestros" table="TB_SINIESTROS" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDENVIO" precision="15" scale="0" />
+            </key>
+            <one-to-many class="com.rsi.agp.dao.tables.siniestro.Siniestro" />
+        </set>
+        <set name="anexoModificacions" table="TB_ANEXO_MOD" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDENVIO" precision="15" scale="0">
+                    <comment>Identificador Env&#237;o Anexo.</comment>
+                </column>
+            </key>
+            <one-to-many class="com.rsi.agp.dao.tables.anexo.AnexoModificacion" />
+        </set>
+    </class>
+</hibernate-mapping>

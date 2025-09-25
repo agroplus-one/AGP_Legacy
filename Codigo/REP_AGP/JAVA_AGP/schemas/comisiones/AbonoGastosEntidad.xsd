@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<x:schema 
+	targetNamespace="http://www.agroseguro.es/Recibos/AbonoGastosEntidad"
+	xmlns="http://www.agroseguro.es/Recibos/AbonoGastosEntidad" 
+	xmlns:ti="http://www.agroseguro.es/ITipos" 
+	xmlns:x="http://www.w3.org/2001/XMLSchema">
+
+	<x:import namespace="http://www.agroseguro.es/ITipos" schemaLocation="../commons/Tipos.xsd"/>
+
+	<x:element name="Entidad" type="Entidad"/>
+
+	<x:complexType name="Entidad">
+		<x:sequence>
+			<x:element maxOccurs="unbounded" minOccurs="1" name="Fase" type="Fase"/>
+		</x:sequence>
+		<x:attribute name="codigoEntidad" type="ti:Entidad_Codigo" use="required"/>
+		<x:attribute name="nombreEntidad" type="x:string" use="required"/>
+	</x:complexType>
+	
+	<x:complexType name="Fase">
+		<x:sequence>
+			<x:element maxOccurs="unbounded" minOccurs="1" name="Recibo" type="Recibo"/>
+		</x:sequence>
+		<x:attribute name="plan" type="ti:Plan" use="required"/>
+		<x:attribute name="tipoFase" type="Fase_Tipo" use="required"/>
+		<x:attribute name="fase" type="ti:Fase_Codigo" use="required"/>
+		<x:attribute name="fechaFase" type="x:date" use="required"/>
+		<x:attribute name="ejercicioAbono" type="ti:Plan" use="required"/>
+	</x:complexType>
+	
+	<x:simpleType name="Fase_Tipo">
+		<x:restriction base="x:token">
+			<x:length value="1" />
+			<x:pattern value="[NRPC]{1}" />
+		</x:restriction>
+	</x:simpleType>
+	
+	<x:complexType name="Recibo">
+		<x:sequence>
+			<x:element maxOccurs="1" minOccurs="1" name="CobroAplicado" type="CobroAplicado"/>
+			<x:element maxOccurs="1" minOccurs="1" name="Poliza" type="Poliza"/>
+		</x:sequence>
+		<x:attribute name="linea" type="ti:Linea_Codigo" use="required"/>		
+		<x:attribute name="recibo" type="ti:Recibo_Codigo" use="required"/>
+		<x:attribute name="tipo" type="ti:Entero3Posiciones" use="required"/>
+		<x:attribute name="totalCosteTomador" type="ti:ImporteLargo" use="required"/>
+	</x:complexType>
+	
+	<x:complexType name="CobroAplicado">
+		<x:attribute name="plazoDomiciliacion" type="ti:PeriodoFraccionamiento" use="optional"/>
+		<x:attribute name="importeCobroRecibido" type="ti:ImporteLargo" use="required"/>
+	</x:complexType>
+	
+	<x:complexType name="Poliza">
+		<x:sequence>
+			<x:choice maxOccurs="1" minOccurs="1"> 
+				<x:element maxOccurs="1" minOccurs="1" name="Colectivo" type="Colectivo"/>
+				<x:element maxOccurs="1" minOccurs="1" name="Individual" type="Individual"/>
+			</x:choice>
+			<x:element maxOccurs="1" minOccurs="1" name="Asegurado" type="Asegurado"/>
+			<x:element maxOccurs="unbounded" minOccurs="1" name="GrupoNegocio" type="GrupoNegocio"/>
+		</x:sequence>
+		<x:attribute name="referencia" type="ti:Poliza_Referencia_Unificada" use="required"/>
+		<x:attribute name="digitoControl" type="ti:DigitoControl" use="required"/>
+		<x:attribute name="tipoReferencia" type="ti:Referencia_Tipo" use="required"/>
+		<x:attribute name="codigoInterno" type="ti:CodigoInternoEntidad" use="required"/>
+		<x:attribute name="anuladaRefundida" type="ti:Aplicacion_AnuladaRefundida" use="required"/>
+        <x:attribute name="fechaEntradaVigor" use="optional" type="x:date"/>
+	</x:complexType>
+	
+	<x:complexType name="Colectivo">
+		<x:sequence>
+			<x:group maxOccurs="1" minOccurs="1" ref="ti:NombrePersona"/>
+		</x:sequence>
+		<x:attribute name="referencia" type="ti:Colectivo_Referencia" use="required"/>
+		<x:attribute name="digitoControl" type="ti:DigitoControl" use="required"/>
+		<x:attribute name="codigoInterno" type="ti:CodigoInternoEntidad" use="required"/>
+	</x:complexType>
+	
+	<x:complexType name="Individual"> 
+		<x:sequence>
+			<x:group maxOccurs="1" minOccurs="1" ref="ti:NombrePersona"/>
+		</x:sequence>
+	</x:complexType>
+	
+	<x:complexType name="Asegurado">
+		<x:sequence>
+			<x:group maxOccurs="1" minOccurs="1" ref="ti:NombrePersona"/>
+		</x:sequence>
+		<x:attribute name="nif" type="ti:NIFCIF" use="required"/>
+	</x:complexType>
+
+	<x:complexType name="GrupoNegocio">
+		<x:sequence>
+			<x:element maxOccurs="1" minOccurs="1" name="GastosDevengados" type="GastosDevengados"/>
+			<x:element maxOccurs="1" minOccurs="1" name="GastosAbonarPorCobroActual" type="ComisionesGastos"/>
+			<x:element maxOccurs="1" minOccurs="1" name="GastosPendientesAbonar" type="ComisionesGastos"/>
+		</x:sequence>
+		<x:attribute name="grupoNegocio" type="ti:GrupoNegocio" use="required"/>
+		<x:attribute name="primaComercialNeta" type="ti:ImporteLargo" use="required"/>
+		<x:attribute name="fracPriComNeta" type="ti:ImporteLargo" use="required"/>
+	</x:complexType>
+
+	<x:complexType name="GastosDevengados">
+		<x:complexContent>
+			<x:extension base="ComisionesGastos">
+				<x:attribute name="porcGastosAdmEntidad" type="ti:PorcentajeGastos" use="required"/>
+				<x:attribute name="porcGastosAdqEntidad" type="ti:PorcentajeGastos" use="required"/>
+				<x:attribute name="porcComisMediador" type="ti:PorcentajeGastos" use="required"/>
+			</x:extension>
+		</x:complexContent>
+	</x:complexType>
+	
+	<x:complexType name="ComisionesGastos">
+		<x:attribute name="gastosAdminEntidad" type="ti:ImporteLargo" use="required"/>
+		<x:attribute name="gastosAdqEntidad" type="ti:ImporteLargo" use="required"/>
+		<x:attribute name="comisionesMediador" type="ti:ImporteLargo" use="required"/>
+	</x:complexType>
+	
+</x:schema>

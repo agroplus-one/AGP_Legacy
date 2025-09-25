@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="declaracionSeguro_condicion3" pageWidth="541" pageHeight="700" columnWidth="541" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" isIgnorePagination="true">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<variable name="SHOW_FOOT" class="java.lang.String">
+		<variableExpression><![CDATA[new String("VACIO")]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="228" splitType="Stretch">
+			<staticText>
+				<reportElement key="staticText-59" x="0" y="16" width="541" height="211"/>
+				<box>
+					<topPen lineWidth="0.25" lineStyle="Solid"/>
+					<leftPen lineWidth="0.25" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.25" lineStyle="Solid"/>
+					<rightPen lineWidth="0.25" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Justified" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="8" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-103" x="1" y="1" width="540" height="15" isPrintWhenDetailOverflows="true"/>
+				<textElement verticalAlignment="Bottom">
+					<font fontName="SansSerif" size="11" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[III.- Datos del Contrato]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="11" y="18" width="520" height="208"/>
+				<textElement textAlignment="Justified" verticalAlignment="Top" markup="html">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[     La obligación de pago de la parte de la prima a cargo de los asegurados que contratan a través de un tomador 
+     colectivo le corresponde a dicho tomador (Art. 14.2 del R.D.2329/1979).<br/>
+     El pago de dicha parte de la prima se hará mediante domiciliación bancaria a la cuenta que se consigne en la póliza, o excepcionalmente, 
+	 mediante transferencia bancaria a favor de AGROSEGURO en las cuentas bancarias que en el momento de la suscripción ésta señale expresamente, 
+	 tal y como se especifica en las condiciones especiales en cada línea de seguro.<br/>
+	 Con carácter general, las pólizas entran en vigor a las 0 horas del día siguiente a la fecha de recepción de la póliza domiciliada o a la
+	 fecha del pago por transferencia, si ésta es la forma elegida para el pago de la prima.<br/>
+	 No se admitirá ninguna póliza cuya fecha de contratación sea anterior a la fecha de formalización de la presente declaración.<br/>
+	 Tampoco se admitirá ninguna póliza cuya fecha de recepción sea posterior a la fecha límite de suscripción fijada por la normativa ministerial
+	 que regula cada línea de seguro.<br/>
+	 Si por cualquier causa, la totalidad de la prima no fuera abonada, se aplicará lo previsto en las condiciones que regulan cada línea de seguro, 
+	 y en su defecto, lo previsto para el impago en la Ley de Contrato de Seguro.<br/>
+	 El tomador se compromete a facilitar a los peritos designados por AGROSEGURO, la inspección en todo momento de los bienes asegurados, así como
+	 a facilitarles aquella información que estimen necesaria para la correcta ejecución del contrato de seguro contratado.<br/>]]></text>
+			</staticText>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

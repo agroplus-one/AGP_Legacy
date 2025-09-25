@@ -1,0 +1,181 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="ContratacionSCConfirmacion"
+	targetNamespace="http://www.agroseguro.es/serviciosweb/ContratacionSCConfirmacion/"
+	xmlns:agr="http://www.agroseguro.es/serviciosweb/ContratacionSCConfirmacion/"
+	xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	xmlns:xmime="http://www.w3.org/2005/05/xmlmime"
+	xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd"
+	xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd">
+	<wsdl:types>
+		<xsd:schema elementFormDefault="qualified"
+			targetNamespace="http://www.agroseguro.es/serviciosweb/ContratacionSCConfirmacion/"
+			xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+			<xsd:import namespace="http://www.w3.org/2005/05/xmlmime"
+				schemaLocation="xmime.xsd" />
+			<xsd:import
+				namespace="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd"
+				schemaLocation="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd" />
+			<xsd:element name="confirmarRequest">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="poliza"
+							xmime:expectedContentTypes="text/xml" type="xmime:base64Binary" />
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="confirmarResponse">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="acuseRecibo" minOccurs="1"
+							xmime:expectedContentTypes="text/xml" type="xmime:base64Binary" />
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="agrFallo"
+				xmlns:agr="http://www.agroseguro.es/serviciosweb/ContratacionSCConfirmacion/">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:annotation>
+							Lista de mensajes de error de AGROSEGURO
+						</xsd:annotation>
+						<xsd:element name="error" type="agr:Error"
+							maxOccurs="unbounded" minOccurs="0" />
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:complexType name="Error"
+				xmlns:agr="http://www.agroseguro.es/serviciosweb/ContratacionSCConfirmacion/">
+				<xsd:sequence>
+					<xsd:element name="codigo" type="xsd:int" />
+					<xsd:element name="mensaje" type="xsd:string" />
+				</xsd:sequence>
+			</xsd:complexType>
+		</xsd:schema>
+	</wsdl:types>
+	<wsdl:message name="Header">
+		<wsdl:part name="Security" element="wsse:Security" />
+	</wsdl:message>
+	<wsdl:message name="AgrException">
+		<wsdl:part name="parameters" element="agr:agrFallo"></wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="confirmarRequest">
+		<wsdl:part name="parameters" element="agr:confirmarRequest">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="confirmarResponse">
+		<wsdl:part name="parameters" element="agr:confirmarResponse">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:portType name="ContratacionSCConfirmacion">
+		<wsdl:operation name="confirmar">
+			<wsdl:documentation>
+				Método de Confirmación de Contratación de la Póliza:
+				permitirá la confirmación de la contratación de una
+				póliza en el sistema de Agroseguro.
+
+				En la petición se deberá facilitar:
+
+				- Fichero XML de la póliza. El procesamiento del fichero
+				XML de la póliza incluirá una validación previa de la
+				póliza para asegurar que la póliza no se rechace, ya sea
+				porque no cumple en estructura o por cualquier otra
+				causa que produzca un rechazo de póliza. La validación
+				de la estructura del XML quedatá determinada por el
+				esquema XSD: "ContratacionSeguroAgrario.xsd". Si se
+				supera la validación previa el sistema pasará a
+				confirmar la contratación de la póliza. La definición y
+				jerarquía de etiquetas del fichero XML de la Póliza que
+				sirve de entrada aparece publicado en la Web de
+				Agroseguro, en la última versión del documento: "Seguro
+				Creciente: Norma de Grabación de Seguros Agrícolas
+				DES-N-0043".
+
+				De no indicarse la referencia del documento (en el caso
+				de una póliza Principal) esta será asignada por
+				Agroseguro.
+
+				Se devolverá la siguiente información :
+
+				- Fichero XML de acuse de recibo. Tanto si la Póliza se
+				rechazase, como si finalmente se consiguiese grabar con
+				éxito, se recibirá un acuse de recibo donde se indicará
+				si el documento de la Póliza es aceptado o es rechazado.
+				El esquema XSD del acuse de recibo es "AcuseRecibo.xsd".
+
+				El procesamiento del fichero XML de la póliza determina
+				si se acepta o da lugar a errores de rechazo que
+				aparecen en el atributo "tipo" de la etiqueta "Error"
+				del acuse de recibo:
+
+				• De rechazo -código 1-: son errores de estructura o de
+				lógica que impiden la confirmación de la póliza, es
+				decir la aceptación de ésta en Agroseguro.
+
+				En el XML acuse de recibo se indicará el "estado" del
+				"Documento", informando del resultado de la confirmación
+				de la póliza. El estado podrá ser:
+
+				• "Rechazado" -código 2- si existe algún error de
+				rechazo que impide la grabación de la póliza.
+
+				• "Aceptado" -código 1- si no aparecen errores.
+
+				Si la póliza ha sido aceptada se devolverá además en los
+				"DatosAsociados" los siguientes atributos: "directorio"
+				asignado a la póliza y, en el caso de ser asignada por
+				Agroseguro, "referencia" asignada a la póliza Principal.
+			</wsdl:documentation>
+			<wsdl:input message="agr:confirmarRequest"></wsdl:input>
+			<wsdl:output message="agr:confirmarResponse"></wsdl:output>
+			<wsdl:fault name="AgrException"
+				message="agr:AgrException">
+			</wsdl:fault>
+		</wsdl:operation>
+	</wsdl:portType>
+	<wsdl:binding name="ContratacionSCConfirmacionSOAP"
+		type="agr:ContratacionSCConfirmacion">
+		<soap:binding style="document"
+			transport="http://schemas.xmlsoap.org/soap/http" />
+		<wsdl:operation name="confirmar">
+			<soap:operation
+				soapAction="confirmar" />
+			<wsdl:input>
+				<soap:header use="literal" message="agr:Header"	part="Security" wsdl:required="true" />
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+			<wsdl:fault name="AgrException">
+				<soap:fault name="AgrException" use="literal" />
+			</wsdl:fault>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:service name="ContratacionSCConfirmacion">
+		<wsdl:documentation>
+			Mediante este proceso se podrá solicitar la confirmación de
+			la contratación de una Póliza para su tramitación en
+			Agroseguro. Recordamos que es aconsejable, aunque no es
+			obligatorio, que antes de la confirmación se invoque a los
+			procedimientos de validación y cálculo de costes.
+
+			La información devuelta será un archivo XML de acuse de
+			recibo enviado como un Adjunto (Attachment) en formato MTOM.
+		</wsdl:documentation>
+		<wsdl:port name="ContratacionSCConfirmacionSOAP"
+			binding="agr:ContratacionSCConfirmacionSOAP">
+			<wsdl:documentation>
+				La primera dirección es el entorno de pruebas y no tiene
+				una resolución asignada en Internet por lo que se deberá
+				incluir en la máquina local o en el servidor de nombres
+				local con la siguiente dirección: 195.235.42.35
+				agrinfo.agroseguro.com. La segunda dirección es el
+				entorno real de ejecución.
+			</wsdl:documentation>
+			<soap:address
+				location="https://www.agroseguro.es/contratacionSCConfirmacion/V1R0/services/ContratacionSCConfirmacion" />
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>

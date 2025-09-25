@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="declaracionSeguro_explotaciones_riesgosCubiertos" pageWidth="595" pageHeight="842" columnWidth="595" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0">
+	<parameter name="IDEXPLOTACION" class="java.math.BigDecimal"/>
+	<queryString>
+		<![CDATA[ select  cpm_descripcion,rc_descripcion,elegida,nvl(dv_descripcion,'RIESGO CUBIERTO ELEGIDO') as dv_descripcion,nvl(dv_valor_descripcion,'SI') as dv_valor_descripcion,fila,dv_columna
+from o02agpe0.tb_explotaciones_coberturas c
+ where (c.idexplotacion =$P{IDEXPLOTACION} and ((elegida ='S' and dv_elegido='S') or (elegida ='N' and elegible ='N')) and dv_elegido='S')
+ or (c.idexplotacion =$P{IDEXPLOTACION} and ((elegible ='S' and elegida='S'and dv_elegido is null)))
+order by fila,dv_columna asc nulls first]]>
+	</queryString>
+	<field name="CPM_DESCRIPCION" class="java.lang.String"/>
+	<field name="RC_DESCRIPCION" class="java.lang.String"/>
+	<field name="ELEGIDA" class="java.lang.String"/>
+	<field name="DV_VALOR_DESCRIPCION" class="java.lang.String"/>
+	<field name="DV_DESCRIPCION" class="java.lang.String"/>
+	<variable name="SHOW_FOOT" class="java.lang.Boolean" resetType="None">
+		<variableExpression><![CDATA[new Boolean(true)]]></variableExpression>
+		<initialValueExpression><![CDATA[]]></initialValueExpression>
+	</variable>
+	<variable name="SHOW_BACK" class="java.lang.Boolean" resetType="None">
+		<variableExpression><![CDATA[new Boolean(true)]]></variableExpression>
+		<initialValueExpression><![CDATA[]]></initialValueExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<detail>
+		<band height="12" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="555" height="12"/>
+				<textElement verticalAlignment="Middle">
+					<font size="6" isBold="false" isItalic="true" isUnderline="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{CPM_DESCRIPCION}+" - "+$F{RC_DESCRIPCION}+" - "+$F{DV_DESCRIPCION}+": "+ $F{DV_VALOR_DESCRIPCION}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

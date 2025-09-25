@@ -1,0 +1,53 @@
+<%@ include file="/jsp/common/static/taglibs.jsp"%>
+
+<script>
+
+    $(document).ready(function(){
+    	var item="${itemCombo}";
+    	if(item == "T") $("#parcela.tipomodificacion").val("T");
+    	if(item == "A") $("#parcela.tipomodificacion").val("A");
+    	if(item == "M") $("#parcela.tipomodificacion").val("M");
+    	if(item == "B") $("#parcela.tipomodificacion").val("B");
+    	
+    	// --------------------------------------------------
+    	//                 control de checks
+    	// --------------------------------------------------
+    	//check_checks($('#idsRowsChecked').val());
+    	//$('#sel').text(numero_check_seleccionados());
+    	//checkTodos();
+    	//alert(numero_check_seleccionados());
+    	//alert($('#idsRowsChecked').val());
+		
+    	//Para ocultar el icono de exportar si la lista de parcelas es vacía
+		<c:if test="${empty listaParcelasModificadas}">					
+			$('#divImprimir').hide();						
+		</c:if>
+    });
+
+    
+    $(function(){
+    	<c:forEach items="${listaParcelasModificadas}" var = "capitalAsegurado" varStatus="status">
+    		estadosCapitalesAsegurados[${status.index}]    = new Array(3);
+    		estadosCapitalesAsegurados[${status.index}][0] = "${capitalAsegurado.parcela.id}";
+			estadosCapitalesAsegurados[${status.index}][1] = "${capitalAsegurado.parcela.tipomodificacion}";
+			estadosCapitalesAsegurados[${status.index}][2] = "checkParcela_" + "${capitalAsegurado.parcela.id}";
+		</c:forEach>
+		$("input:text:visible:first").focus();
+	});
+    
+    function imprimirListadoParcelas(formato) {
+    	var frm = document.getElementById('main3');
+   		frm.target="_blank";
+   		frm.formato.value = formato;
+   		frm.method.value = 'doImprimirInformeListadoParcelasAnexo';
+   		frm.submit();
+   		frm.target="";
+   		frm.method.value = "";
+    }
+    
+ 	// Va a la pantalla de cálculo de modificación en modo lectura
+	function verDC () {
+		$("#formDistCoste").submit();
+	}
+	
+</script>

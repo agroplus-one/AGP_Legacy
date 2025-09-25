@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<x:schema 
+	targetNamespace="http://www.agroseguro.es/SeguroAgrario/DiferenciasCosteUnificado"
+	xmlns="http://www.agroseguro.es/SeguroAgrario/DiferenciasCosteUnificado"
+	xmlns:pks="http://www.agroseguro.es/SeguroAgrario/DiferenciasCosteUnificado"
+	xmlns:x="http://www.w3.org/2001/XMLSchema"
+	xmlns:ti="http://www.agroseguro.es/Tipos" 
+	xmlns:ec="http://www.agroseguro.es/SeguroAgrario/EstadoContratacion"
+	xmlns:cupon="http://www.agroseguro.es/SeguroAgrario/CuponModificacion"
+	xmlns:cp="http://www.agroseguro.es/Contratacion/CostePoliza"
+	
+> 
+
+	<!-- Importacion de la definicion de tipos genericos -->
+	<x:import
+		namespace="http://www.agroseguro.es/Tipos"
+		schemaLocation="Tipos.xsd" />
+	
+	<x:import
+		namespace="http://www.agroseguro.es/Contratacion/CostePoliza"
+		schemaLocation="CostePoliza.xsd" />
+		
+	<x:import 
+		namespace="http://www.agroseguro.es/SeguroAgrario/EstadoContratacion"
+		schemaLocation="EstadoContratacion.xsd" />
+	
+	<x:import 
+		namespace="http://www.agroseguro.es/SeguroAgrario/CuponModificacion" 
+		schemaLocation="CuponModificacion.xsd" />	
+					
+	<x:element name="DiferenciasCosteUnificado" type="DiferenciasCosteUnificado" >
+		<x:annotation>
+			<x:documentation>
+				Elemento Raiz
+			</x:documentation>
+		</x:annotation>
+	</x:element>
+	
+	<x:complexType name="DiferenciasCosteUnificado">
+		<x:sequence>
+			<x:element name="CostePolizaOriginal" type="cp:CostePoliza"
+					maxOccurs="1" minOccurs="1" />
+			<x:element name="CostePolizaModificada" type="cp:CostePoliza"
+						maxOccurs="1" minOccurs="1" />
+			<x:element name="DiferenciasCostePolizasOriginalModificada" type="DiferenciasCostePolizasOriginalModificada"
+						maxOccurs="1" minOccurs="1" />	
+		</x:sequence>
+		<x:attribute name="idCupon" type="cupon:idCupon" use="optional"/>
+		<x:attribute name="anioIncidencia" type="ec:AnioIncidencia" use="optional"/>
+		<x:attribute name="numeroIncidencia" type="ec:NumeroIncidencia" use="optional"/>
+		<x:attribute name="plan" type="ti:Plan" use="required"/>
+		<x:attribute name="referenciaPoliza" type="ti:Poliza_Referencia_Unificada" use="required"/>
+		<x:attribute name="tipoPoliza" type="ti:Poliza_Referencia_Tipo" use="required"/>
+		<x:attribute name="calcularSituacionActual" type="x:boolean"/>
+		<x:attributeGroup ref="ti:PeticionSW" />
+	</x:complexType>
+	
+	<x:simpleType name="ImportePositivoNegativo">
+		<x:restriction base="x:decimal">
+			<x:maxInclusive value="999999999.99" />
+			<x:minInclusive value="-999999999.99" />
+			<x:fractionDigits value="2" />
+			<x:totalDigits value="11" />
+		</x:restriction>
+	</x:simpleType>
+		
+	<x:complexType name="DiferenciasCostePolizasOriginalModificada">
+		<x:sequence>
+			<x:element name="CosteGrupoNegocio" 	type="CosteGrupoNegocio" 	minOccurs="1" maxOccurs="unbounded" />
+		</x:sequence>
+		<x:attribute name="diferenciaTotalCosteTomador" type="ImportePositivoNegativo" use="required"/>
+	</x:complexType>
+
+	<x:complexType name="CosteGrupoNegocio">
+		<x:sequence>
+			<x:element name="BonificacionRecargo" type="BonificacionRecargo" minOccurs="0" maxOccurs="unbounded" />
+			<x:element name="SubvencionEnesa" type="SubvencionEnesa" minOccurs="0" maxOccurs="unbounded" />
+			<x:element name="SubvencionCCAA" type="SubvencionCCAA" minOccurs="0" maxOccurs="unbounded" />
+		</x:sequence>
+		<x:attribute name="grupoNegocio" type="ti:GrupoNegocio" use="optional" />		
+		<x:attribute name="diferenciaPrimaComercial" type="ImportePositivoNegativo" use="required" />
+		<x:attribute name="diferenciaPrimaComercialNeta" type="ImportePositivoNegativo" use="required" />
+		<x:attribute name="diferenciaRecargoConsorcio" type="ImportePositivoNegativo" use="required" />		
+		<x:attribute name="diferenciaReciboPrima" type="ImportePositivoNegativo" use="required" />
+		<x:attribute name="diferenciaCosteTomador" type="ImportePositivoNegativo" use="required" />
+	</x:complexType>
+
+	<x:complexType name="BonificacionRecargo">
+		<x:attribute name="codigo" type="ti:BonificacionRecargo_Codigo" use="required" />
+		<x:attribute name="diferenciaImporte" type="ImportePositivoNegativo" use="required" />
+	</x:complexType>	
+	
+	<x:complexType name="SubvencionEnesa">
+		<x:attribute name="tipo" type="ti:Subvencion_Tipo" use="required" />
+		<x:attribute name="diferenciaImporte" type="ImportePositivoNegativo" use="required" />	
+	</x:complexType>
+	
+	<x:complexType name="SubvencionCCAA">
+		<x:attribute name="codigoOrganismo" type="ti:Organismo_Codigo" use="required" />
+		<x:attribute name="diferenciaImporte" type="ImportePositivoNegativo" use="required" />		
+	</x:complexType>
+	
+</x:schema>

@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report3_subreport1" columnCount="2" printOrder="Horizontal" pageWidth="555" pageHeight="802" columnWidth="277" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="IDPARCELA" class="java.math.BigDecimal"/>
+	<parameter name="IDCAPITAL" class="java.math.BigDecimal"/>
+	<parameter name="LINEA" class="java.math.BigDecimal"/>
+	<queryString>
+		<![CDATA[select dv.idcapitalasegurado, dv.codconcepto,dd.nomconcepto,dv.valor, des.desdestino as descripcion
+from o02agpe0.tb_datos_var_parcela dv, o02agpe0.tb_sc_c_destinos des, o02agpe0.tb_sc_dd_dic_datos dd
+where dv.codconcepto = dd.codconcepto
+and des.coddestino = dv.valor
+and dv.codconcepto = 110
+and dv.idcapitalasegurado = $P{IDCAPITAL}
+union
+select dv.idcapitalasegurado, dv.codconcepto,dd.nomconcepto, dv.valor, ciclo.desciclocultivo as descripcion
+from o02agpe0.tb_datos_var_parcela dv, o02agpe0.tb_sc_c_ciclo_cultivo ciclo, o02agpe0.tb_sc_dd_dic_datos dd
+where dv.codconcepto = dd.codconcepto
+and dv.codconcepto = 618
+and ciclo.codciclocultivo = dv.valor
+and dv.idcapitalasegurado = $P{IDCAPITAL}
+union
+select dv.idcapitalasegurado, dv.codconcepto, dd.nomconcepto,dv.valor, igp.descripcion as descripcion
+from o02agpe0.tb_datos_var_parcela dv, o02agpe0.tb_sc_c_igp igp, o02agpe0.tb_sc_dd_dic_datos dd
+where dv.codconcepto = dd.codconcepto
+and dv.codconcepto = 765
+and igp.codigp = dv.valor
+and dv.idcapitalasegurado = $P{IDCAPITAL}
+union
+select dv.idcapitalasegurado, dv.codconcepto, dd.nomconcepto,dv.valor, pc.despracticacultural as descripcion
+from o02agpe0.tb_datos_var_parcela dv, o02agpe0.tb_sc_c_practica_cultural pc, o02agpe0.tb_sc_dd_dic_datos dd
+where dv.codconcepto = dd.codconcepto
+and dv.codconcepto = 133
+and pc.codpracticacultural = dv.valor
+and dv.idcapitalasegurado = $P{IDCAPITAL}
+union
+select dv.idcapitalasegurado, dv.codconcepto, dd.nomconcepto,dv.valor,sp.dessistemaproduccion as descripcion
+from o02agpe0.tb_datos_var_parcela dv, o02agpe0.tb_sc_c_sistema_produccion sp, o02agpe0.tb_sc_dd_dic_datos dd
+where dv.codconcepto = dd.codconcepto
+and dv.codconcepto = 616
+and sp.codsistemaproduccion = dv.valor
+and dv.idcapitalasegurado = $P{IDCAPITAL}
+union
+select dv.idcapitalasegurado, dv.codconcepto, dd.nomconcepto,dv.valor,spt.dessistemaproteccion as descripcion
+from o02agpe0.tb_datos_var_parcela dv, o02agpe0.tb_sc_c_sistema_proteccion spt, o02agpe0.tb_sc_dd_dic_datos dd
+where dv.codconcepto = dd.codconcepto
+and dv.codconcepto = 621
+and spt.codsistemaproteccion = dv.valor
+and dv.idcapitalasegurado = $P{IDCAPITAL}
+union
+select dv.idcapitalasegurado, dv.codconcepto, dd.nomconcepto,dv.valor,mp.destipomarcoplantac as descripcion
+from o02agpe0.tb_datos_var_parcela dv, o02agpe0.tb_sc_c_marco_plantacion mp, o02agpe0.tb_sc_dd_dic_datos dd
+where dv.codconcepto = dd.codconcepto
+and dv.codconcepto = 116
+and mp.codtipomarcoplantac = dv.valor
+and dv.idcapitalasegurado = $P{IDCAPITAL}
+union
+select dv.idcapitalasegurado, dv.codconcepto, dd.nomconcepto,dv.valor,tp.destipoplantacion as descripcion
+from o02agpe0.tb_datos_var_parcela dv, o02agpe0.tb_sc_c_tipo_plantacion tp, o02agpe0.tb_sc_dd_dic_datos dd
+where dv.codconcepto = dd.codconcepto
+and dv.codconcepto = 173
+and tp.codtipoplantacion= dv.valor
+and dv.idcapitalasegurado = $P{IDCAPITAL}
+union
+select dv.idcapitalasegurado, dv.codconcepto, dd.nomconcepto,dv.valor,do.desdenomorigen as descripcion
+from o02agpe0.tb_datos_var_parcela dv, o02agpe0.tb_sc_c_cod_denom_origen do, o02agpe0.tb_sc_dd_dic_datos dd
+where dv.codconcepto = dd.codconcepto
+and dv.codconcepto = 107
+and do.coddenomorigen= dv.valor
+and dv.idcapitalasegurado = $P{IDCAPITAL}
+and do.lineaseguroid = $P{LINEA}
+union
+select dv.idcapitalasegurado, dv.codconcepto, dd.nomconcepto,dv.valor,ti.descripcion as descripcion
+from o02agpe0.tb_datos_var_parcela dv, o02agpe0.tb_sc_c_tipo_instalacion ti, o02agpe0.tb_sc_dd_dic_datos dd
+where dv.codconcepto = dd.codconcepto
+and dv.codconcepto = 778
+and ti.codtipoinstalacion= dv.valor
+and dv.idcapitalasegurado = $P{IDCAPITAL}
+union
+select dv.idcapitalasegurado, dv.codconcepto, dd.nomconcepto,dv.valor,ci.descripcion as descripcion
+from o02agpe0.tb_datos_var_parcela dv, o02agpe0.tb_sc_c_certificado_instal ci, o02agpe0.tb_sc_dd_dic_datos dd
+where dv.codconcepto = dd.codconcepto
+and dv.codconcepto = 879
+and ci.codcertificadoinstal= dv.valor
+and dv.idcapitalasegurado = $P{IDCAPITAL}
+union
+select dv.idcapitalasegurado, dv.codconcepto, dd.nomconcepto,dv.valor,me.descripcion as descripcion
+from o02agpe0.tb_datos_var_parcela dv, o02agpe0.tb_sc_c_material_estructura me, o02agpe0.tb_sc_dd_dic_datos dd
+where dv.codconcepto = dd.codconcepto
+and dv.codconcepto = 875
+and me.codmaterialestructura = dv.valor
+and dv.idcapitalasegurado = $P{IDCAPITAL}
+union
+select dv.idcapitalasegurado, dv.codconcepto, dd.nomconcepto,dv.valor,mc.descripcion as descripcion
+from o02agpe0.tb_datos_var_parcela dv, o02agpe0.tb_sc_c_material_cubierta mc, o02agpe0.tb_sc_dd_dic_datos dd
+where dv.codconcepto = dd.codconcepto
+and dv.codconcepto = 873
+and mc.codmaterialcubierta = dv.valor
+and dv.idcapitalasegurado = $P{IDCAPITAL}
+union
+select dv.idcapitalasegurado, dv.codconcepto, dd.nomconcepto,dv.valor,al.desalternativa as descripcion
+from o02agpe0.tb_datos_var_parcela dv, o02agpe0.tb_sc_c_alternativas al, o02agpe0.tb_sc_dd_dic_datos dd
+where dv.codconcepto = dd.codconcepto
+and dv.codconcepto = 144
+and al.codalternativa = dv.valor
+and dv.idcapitalasegurado = $P{IDCAPITAL}
+union
+select dv.idcapitalasegurado, dv.codconcepto, dd.nomconcepto,dv.valor, '' as descripcion
+from o02agpe0.tb_datos_var_parcela dv, o02agpe0.tb_sc_dd_dic_datos dd
+where dv.codconcepto = dd.codconcepto
+and dv.codconcepto not in(110,618,765,133,616,621,116,173,107,778,879,875,873,144)
+and dv.idcapitalasegurado = $P{IDCAPITAL}]]>
+	</queryString>
+	<field name="IDCAPITALASEGURADO" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CODCONCEPTO" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="NOMCONCEPTO" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="VALOR" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="DESCRIPCION" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="15" splitType="Stretch">
+			<textField pattern="" isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToBandHeight" isPrintRepeatedValues="false" x="0" y="0" width="94" height="15"/>
+				<textElement>
+					<font size="6" isItalic="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{NOMCONCEPTO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="94" y="0" width="180" height="15"/>
+				<textElement>
+					<font size="6"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{VALOR} + " " + ( $F{DESCRIPCION} != null ? " - " + $F{DESCRIPCION} : "" )]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

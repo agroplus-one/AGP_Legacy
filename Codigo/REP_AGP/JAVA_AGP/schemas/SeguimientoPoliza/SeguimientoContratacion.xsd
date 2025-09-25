@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<x:schema
+	targetNamespace="http://www.agroseguro.es/SeguimientoContratacion"
+	xmlns="http://www.agroseguro.es/SeguimientoContratacion"
+	xmlns:x="http://www.w3.org/2001/XMLSchema"
+	xmlns:ti="http://www.agroseguro.es/ITipos">
+
+	<x:import namespace="http://www.agroseguro.es/ITipos"
+		schemaLocation="../commons/Tipos.xsd" />
+
+	<x:element name="SeguimientoContratacion" type="SeguimientoContratacion" />
+
+	<x:complexType name="SeguimientoContratacion">
+		<x:sequence>
+			<x:element name="Contratacion" type="Contratacion" minOccurs="1" maxOccurs="unbounded" />
+		</x:sequence>
+	</x:complexType>
+
+	<x:complexType name="Contratacion">
+		<x:sequence>
+			<x:element name="EstadoContratacion" type="EstadoContratacion" minOccurs="1" maxOccurs="unbounded" />
+			<x:element name="InfoAdicional" type="InfoAdicional" minOccurs="0" maxOccurs="unbounded" />
+			<x:element name="Recibo" type="Recibo" minOccurs="0" maxOccurs="unbounded" />
+			<x:element name="Incidencia" type="Incidencia" minOccurs="0" maxOccurs="unbounded" />
+		</x:sequence>	
+		<x:attribute name="plan" use="required" type="ti:Plan" />
+		<x:attribute name="referencia" use="required" type="ti:Poliza_Referencia_Unificada" />
+		<x:attribute name="digitoControl" use="required" type="ti:DigitoControl" />
+		<x:attribute name="linea" use="required" type="ti:Linea_Codigo" />
+		<x:attribute name="tipoPoliza" use="required" type="ti:Poliza_Referencia_Tipo" />
+		<x:attribute name="nifTomador" use="required" type="ti:NIFCIF" />
+		<x:attribute name="nombreTomador" use="required" type="DenominacionTomador" />
+		<x:attribute name="colectivo" use="optional" type="ti:Colectivo_Referencia" />
+		<x:attribute name="mediador" use="required" type="ti:CodigoInternoEntidad" />
+		<x:attribute name="nifAsegurado" use="required" type="ti:NIFCIF" />
+		<x:attribute name="fechaVigor" use="optional" type="x:date" />
+		<x:attribute name="fechaVencimiento" use="optional" type="x:date" />
+		<x:attribute name="fechaComunicacion" use="optional" type="x:date" />
+		<x:attribute name="costeTomador" use="required" type="ti:ImporteLargo" />
+	</x:complexType>
+	
+	<x:complexType name="EstadoContratacion">
+		<x:attribute name="estado" use="required" type="Entero2Posiciones" />
+		<x:attribute name="descEstado" use="required" type="Descriptivo" />
+		<x:attribute name="fechaHora" use="required" type="x:dateTime" />
+		<x:attribute name="motivoAnulResc" use="optional" type="CodigoMotivo" />
+		<x:attribute name="desMotivoAnulResc" use="optional" type="Descriptivo" />
+	</x:complexType>
+	
+	<x:complexType name="InfoAdicional">
+		<x:attribute name="codigo" use="required" type="Entero2Posiciones" />
+		<x:attribute name="texto" use="required" type="Descriptivo" />
+		<x:attribute name="fechaHora" use="required" type="x:dateTime" />
+		<x:attribute name="causa" use="optional" type="CausaInfoAdicional" />
+		<x:attribute name="descCausa" use="optional" type="Descriptivo" />
+	</x:complexType>
+	
+	<x:complexType name="Recibo">
+		<x:attribute name="numero" use="required" type="ti:Recibo_Codigo" />
+		<x:attribute name="fechaEmision" use="required" type="x:date" />
+		<x:attribute name="fechaImpago" use="optional" type="x:date" />
+		<x:attribute name="fase" use="required" type="ti:Fase_Codigo" />
+		<x:attribute name="importe" use="required" type="ti:ImporteLargo" />
+	</x:complexType>
+	
+	<x:complexType name="Incidencia">
+		<x:attribute name="anio" use="required" type="ti:Plan" />
+		<x:attribute name="numero" use="required" type="NumeroIncidencia" />
+		<x:attribute name="tipo" use="required" type="Entero2Posiciones" />
+		<x:attribute name="desTipo" use="required" type="Descriptivo" />
+		<x:attribute name="asunto" use="required" type="CodigoAsunto" />
+		<x:attribute name="desAsunto" use="required" type="Descriptivo" />
+		<x:attribute name="estado" use="required" type="Alfanumerico1Posicion" />
+		<x:attribute name="desEstado" use="required" type="Descriptivo" />
+		<x:attribute name="fechaHoraEstado" use="required" type="x:dateTime" />
+		<x:attribute name="codDocumentoAfectado" use="required" type="Alfanumerico1Posicion" />
+		<x:attribute name="desDocumentoAfectado" use="required" type="Descriptivo" />
+		<x:attribute name="idEnvio" use="optional" type="x:token" />
+	</x:complexType>
+	
+	<x:simpleType name="DenominacionTomador">
+		<x:restriction base="x:token">
+			<x:maxLength value="100" />
+		</x:restriction>
+	</x:simpleType>
+	<x:simpleType name="Entero2Posiciones">
+		<x:restriction base="x:positiveInteger">
+			<x:totalDigits value="2" />
+			<x:minInclusive value="1" />
+		</x:restriction>
+	</x:simpleType>
+	<x:simpleType name="Alfanumerico1Posicion">
+		<x:restriction base="x:string">
+			<x:maxLength value="1" />
+		</x:restriction>
+	</x:simpleType>
+
+	<x:simpleType name="NumeroIncidencia">
+		<x:restriction base="x:positiveInteger">
+			<x:totalDigits value="6" />
+			<x:minInclusive value="1" />
+		</x:restriction>
+	</x:simpleType>
+	<x:simpleType name="CodigoAsunto">
+		<x:restriction base="x:string">
+			<x:maxLength value="6" />
+		</x:restriction>
+	</x:simpleType>
+	
+	<x:simpleType name="Descriptivo">
+		<x:restriction base="x:string">
+			<x:maxLength value="150" />
+		</x:restriction>
+	</x:simpleType>
+	
+	<x:simpleType name="CodigoMotivo">
+		<x:restriction base="x:positiveInteger">
+			<x:totalDigits value="3" />
+			<x:minInclusive value="1" />
+		</x:restriction>
+	</x:simpleType>
+	
+	<x:simpleType name="CausaInfoAdicional">
+		<x:restriction base="x:int">
+			<x:totalDigits value="2" />
+			<x:minInclusive value="0" />
+		</x:restriction>
+	</x:simpleType>
+</x:schema>

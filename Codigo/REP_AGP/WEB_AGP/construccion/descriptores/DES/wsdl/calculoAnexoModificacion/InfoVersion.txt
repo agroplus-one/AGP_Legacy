@@ -1,0 +1,300 @@
+INFORMACION DE USO RESTRINGIDO
+----------------------------------------------------------------------------------------------------------------------------
+El contenido de este documento es propiedad de AGROSEGURO, no pudiendo ser reproducido, ni comunicado total o parcialmente, 
+a personas sin la autorización expresa del propietario.
+----------------------------------------------------------------------------------------------------------------------------
+
+
+CONTRATACIONSCCALCULOMODIFICACIONES
+--------------------------
+
+
+archivo				                			namespace		                     			version
+- ContratacionSeguroAgrario.xsd                 	SeguroAgrario/Contratacion        	      					15.0
+- ContratacionSeguroAgrarioComplementario.xsd   	SeguroAgrario/Contratacion/Complementario     					4.0
+- DatosVariables.xsd                        		SeguroAgrario/Contratacion/DatosVariables    					10.0
+- CostesFijos_OP					SeguroAgrario/Contratacion/OP/CostesFijos					2.0
+- RelacionSocios_OP					SeguroAgrario/Contratacion/OP/RelacionSocios					2.0
+- Tipos.xsd             		        	Tipos			            	        				29.0
+- CuponModificacion.xsd					SeguroAgrario/CuponModificacion							1.0
+- EstadoContratacion.xsd				SeguroAgrario/EstadoContratacion						1.2
+- xmime.xsd						http://www.w3.org/2005/05/xmlmime
+- policy.xml
+- CalculoSeguroAgrario.xsd				SeguroAgrario/CalculoSeguroAgrario						1.6				
+- DistribucionCostesSeguroAgrario.xsd			SeguroAgrario/DistribucionCostesSeguroAgrario	1.5
+- DiferenciasCoste.xsd                     		SeguroAgrario/DiferenciasCoste   				
+- DistribucionCoste					SeguroAgrario/DistribucionCoste
+- Condicionado_Tipos.xsd				SeguroCreciente/Condicionado/Tipos
+- DatosAdicionalesCabecera.xsd				SeguroAgrario/DistribucionCoste/DatosAdicionalesCabecera			1.1
+- DatosAdicionalesObjetoAsegurado.xsd			SeguroAgrario/DistribucionCoste/DatosAdicionalesObjetoAsegurado			1.1
+- Parcela.xsd
+- Financiacion.xsd					SeguroAgrario/Financiacion							1.2
+- CosteParcela.xsd					SeguroAgrario/DistribucionCoste/Parcela						1.1
+- DiferenciasCosteUnificado.xsd                     	SeguroAgrario/DiferenciasCosteUnificado						1.1
+- Contratacion.xsd                 			Contratacion        	      							7.0
+- CostePoliza.xsd					Contratacion/CostePoliza							1.1
+- DatosVariablesUnificado.xsd                   	Contratacion/DatosVariables    							1.0
+- DeclaracionSubvenciones.xsd				Contratacion/DeclaracionSubvenciones						1.0
+- Explotacion.xsd					Contratacion/Explotacion							1.0
+- Parcela.xsd						Contratacion/Parcela								1.0
+- CosteObjetoAsegurado.xsd				CostePoliza/CosteObjetoAsegurado						1.0
+- CosteParcelaUnificada.xsd				CostePoliza/Parcela								1.0
+- CosteExplotacionUnificada.xsd				CostePoliza/Explotacion								1.0
+- DatosAdicionalesCabeceraUnificado.xsd			DistribucionCoste/DatosAdicionalesCabecera					1.0
+- DatosAdicionalesObjetoAseguradoUnificado.xsd		DistribucionCoste/DatosAdicionalesObjetoAsegurado				1.1
+- DistribucionCostesSeguro.xsd				DistribucionCostesSeguro							1.4
+- PresupuestoContratacion.xsd				PresupuestoContratacion								1.5
+
+DESCRIPCION DE LOS FICHEROS
+---------------------------
+	
+- ContratacionSCCalculoModificaciones.wsdl
+Descriptor del servicio Web que permite obtener el cálculo de una modificación sobre una póliza 
+sin especificación de seguridad.
+Pensado para manejar la seguridad delegando en los módulos de seguridad
+de los lenguajes de programación a través de políticas de aserciones.
+
+- ContratacionSCCalculoModificaciones_con_cabeceras_seguridad.wsdl
+Descriptor del servicio Web que permite obtener el cálculo de una modificación sobre una póliza
+con cabecera de seguridad WS-Security, para manejar la seguridad a través de los bindings de XML 
+generados en cada lenguaje de programación.
+
+- DiferenciasCoste.xsd
+Esquema saliente del servicio con las diferencias de coste entre la póliza original y la modificación
+sobre la misma para pólizas en formato no unificado
+
+- DiferenciasCosteUnificado.xsd
+Esquema saliente del servicio con las diferencias de coste entre la póliza original y la modificación
+sobre la misma para pólizas en formato unificado
+
+- ContratacionSeguroAgrario.xsd
+Esquema entrante de validación de la Póliza del Seguro Creciente
+donde se definen los registros de esa Póliza.
+
+- ContratacionSeguroAgrarioComplementario.xsd
+Esquema entrante de validación de la Póliza del Seguro Creciente
+para los módulos complementarios.
+
+- CalculoSeguroAgrario.xsd
+Esquema entrante de cálculo de la Póliza del Seguro Creciente, que
+es como ContratacionSeguroAgrario.xsd pero con menos restricciones.
+
+- DistribucionCostesSeguroAgrario.xsd
+Esquema saliente con los costes para la función de cálculo obtenidos 
+a partir de los datos la Póliza enviados.
+
+- CostesFijos_OP.xsd
+Anexo con la declaración de gastos fijos de la explotación agrícola en el seguro
+de Costes Fijos de OP (Organización de Productores)
+
+- RelacionSocios_OP
+Anexo con la lista de socios que suscriben el seguro de OP (Organización de Productores)
+
+- DatosVariables.xsd
+Esquema que contiene definiciones de datos variables de la Póliza
+del Seguro Creciente.
+
+- Tipos.xsd
+Esquema que contiene el diccionario de tipos común de Agroseguro.
+
+- CuponModificacion.xsd
+Identificador único que sirve como resguardo del trámite de modificación iniciado.
+
+- EstadoContratacion.xsd
+Resumen de cómo se encuentra en el momento de realizar la petición la contratación y la última
+petición de modificación que se hizo por cupón sobre la misma.
+
+- xmime.xsd
+Esquema de validación de tipos XMLMIME de W3C
+
+- policy.xml
+Política de seguridad según especificación WS-SecurityPolicy con UsernameToken
+de Oasis.
+
+- DistribucionCoste.xsd
+Esquema saliente con los costes de cabecera conforme a la nueva formulación SAC 
+vigente a partir del 2015
+
+- Condicionado_Tipos.xsd
+Esquema que contiene las definiciones de tipos que se emplean en 
+los registros del condicionado.
+
+- DatosAdicionalesCabecera.xsd
+Esquema que contiene datos adicionales de la distribucion de coste de cabecera 
+
+- DatosAdicionalesObjetoAsegurado.xsd
+Esquema que contiene datos adicionales de la distribucion de coste de un objeto asegurado
+
+- Financiacion.xsd
+Esquema que contiene los datos de costes de la financiación de una póliza
+
+- CosteParcela.xsd
+Esquema que contiene los datos de el objeto asegurado parcela con la nueva formulación y fraccionamiento
+de la distribución de coste
+
+- Contratacion.xsd
+Esquema entrante de validación de la Póliza unificada del Seguro Creciente
+donde se definen los registros de esa Póliza.
+
+- CostePoliza.xsd
+Esquema de distribucion de coste de la póliza unificada
+
+- DatosVariablesUnificado.xsd                   
+Esquema de datos variables de la póliza unificada
+
+- DeclaracionSubvenciones.xsd
+Esquema de subvenciones de la póliza unificada
+
+- Explotacion.xsd
+Esquema de explotación de la póliza unificada
+
+- Parcela.xsd
+Esquema de parcela de la póliza unificada
+
+- CosteObjetoAsegurado.xsd						
+Esquema de costes comunes de los objetos asegurados de la póliza unificada
+
+- CosteParcelaUnificada.xsd						
+Esquema de costes de parcela de la póliza unificada
+
+- CosteExplotacionUnificada.xsd
+Esquema de costes de explotación de la póliza unificada
+
+- DatosAdicionalesCabeceraUnificado.xsd
+Esquema que contiene datos adicionales de la distribucion de coste de cabecera de la póliza unificada
+
+- DatosAdicionalesObjetoAseguradoUnificado.xsd
+Esquema que contiene datos adicionales de la distribucion de coste de parcela de la póliza unificada
+
+- DistribucionCostesSeguro.xsd
+Esquema saliente con los costes para la función de cálculo de la póliza unificada obtenidos 
+a partir de los datos de la Póliza unificada enviados.
+
+- PresupuestoContratacion.xsd
+Esquema entrante de cálculo de la Póliza unificada del Seguro Creciente, que
+es como Contratacion.xsd pero con menos restricciones.
+
+
+VERSIONES
+---------
+1.0.13 : 21-09-2020.
+-------------------------------------------------------------------------------------------
+- Contratacion.xsd: Se añade la etiqueta opcional CuentaCobroSiniestros
+- ContratacionSeguroAgrario.xsd: Se añade la etiqueta opcional CuentaCobroSiniestros
+- CalculoSeguroAgrario.xsd: Se añade la etiqueta opcional CuentaCobroSiniestros
+- PresupuestoContratacion.xsd: Se añade la etiqueta opcional CuentaCobroSiniestros
+
+1.0.12 : 05-04-2018.
+---------------------------------------------------------------------------
+-ContratacionSeguroAgrario.xsd, - ContratacionSeguroAgrarioComplementario.xsd y -CalculoSeguroAgrario.xsd
+	Se añade el atributo opcional domiciliado a la etiqueta Pago
+	Se añaden los atributos opcionales destinatario y titular a la etiqueta Cuenta
+-Tipos.xsd
+	Actualización a última versión
+-InfoVersion.txt: inclusión de párrafo legal por ISO27001.
+
+1.0.11 : 03-10-2017.
+---------------------------------------------------------------------------
+-CostePoliza.xsd: Cambio necesario para subsanar ciertos problemas con los cambios realizados en
+la garantía ZPAEN. Adaptación del tipo de datos utilizado en el "costeTomador" en los niveles
+del detalle de las garantías (Datos Adicionales y Acumulado Coste Coberturas/Régimen).
+Los costes de tomador de las explotaciones y de la póliza no cambian. 
+
+
+1.0.10 : 20-05-2016.
+---------------------------------------------------------------------------
+-PresupuestoContratacion.xsd: cambiado el tipo de la referencia de poliza para que soporte referencias de ganado antiguas
+
+
+1.0.9 : 04-04-2016.
+-------------------------------------------------------------------------------------------
+-Actualización de esquemas a últimas versiones para adecuarse al nuevo tratamiento de pólizas de ganado vida
+
+
+1.0.8 : 30-10-2015.
+-------------------------------------------------------------------------------------------
+-Corrección de esquema DiferenciasCosteUnificada.xsd en tipo de referencia de póliza por cambio a "Unificada"
+
+
+1.0.7 : 30-10-2015.
+-------------------------------------------------------------------------------------------
+-Adaptaciones para calcular modificaciones de pólizas de ganado RyD en formato unificado
+
+
+1.0.6 : 30-07-2015.
+-------------------------------------------------------------------------------------------
+-ContratacionSCCalculoModificaciones.wsdl: nuevo parámetro obligatorio para indicar si se quiere calcular la diferencia
+frente a la distribución de coste de la situación actual de la póliza.
+-ContratacionSCCalculoModificaciones.wsdl: eliminación de la operación "Cupón Aplicado" por deshuso.
+-DiferenciasCoste.xsd: eliminado parámetro "recalcular" por desaparición de la operación "Cupón Aplicado"
+-DiferenciasCoste.xsd: añadido parámetro "calcularSituacionActual" por aparición de nueva funcionalidad con nuevo modo
+de cálculo de diferencias
+
+
+1.0.5 : 29-12-2014.
+-------------------------------------------------------------------------------------------
+-Tipos.xsd: : nuevos tipos GrupoNegocio e ImportePositivoPreciso.
+Alteraciones en los siguientes esquemas:
+-DistribucionCostesSeguroAgrario.xsd: inclusión del elemento ObjetoAsegurado con la estructura necesaria
+para albergar los datos de la nueva formulación
+-ContratacionSCCalculoModificaciones.wsdl: nuevo parámetro opcional para elegir si se quiere o no mostrar DatosAdicionales
+en la distribucion de coste.
+-DatosAdicionalesCabecera.xsd: nuevo esquema con los datos adicionales de distribucion de coste de nivel cabecera
+-DatosAdicionalesObjetoAsegurado.xsd: nuevo esquema con los datos adicionales de distribucion de coste de nivel objeto asegurado
+-Parcela.xsd: nuevo esquema con los datos de la parcela con los cambios de la nueva formulación y fraccionamiento
+
+
+1.0.4 : 29-12-2014.
+-------------------------------------------------------------------------------------------
+-DistribucionCoste.xsd y DiferenciasCoste.xsd: : corregidas erratas.
+
+
+1.0.3 : 29-12-2014.
+-------------------------------------------------------------------------------------------
+-ContratacionSeguroAgrario.xsd y CalculoSeguroAgrario.xsd
+Cambia etiqueta Poliza: Desaparece CCC, Aparece nueva etiqueta DistribucionCoste1
+Cambia etiqueta Entidad: Nueva etiqueta Gastos
+Cambia etiqueta Pago: Nuevas etiquetas Cuenta y Fraccionamiento
+Cambia Etiqueta Parcela: Desaparece etiqueta IdentificacionCatastral 
+Nuevos tipos: Gastos, DistribucionCoste1, Cuenta, Fraccionamiento, Aval
+Cambia version documento incluido CostesFijos_OP a 2.0
+Cambia version documento incluido Tipos a 18.0 
+
+- ContratacionSeguroAgrarioComplementario.xsd
+Impacto por nueva formulación y fraccionamiento
+
+- DistribucionCostesSeguroAgrario.xsd
+Impacto por nueva formulación y fraccionamiento
+
+- DistribucionCoste.xsd
+Nuevo esquema
+
+- CostesFijos_OP.xsd
+Ampliación del nº de campos producción de tres a cinco.
+
+- Tipos.xsd
+Nuevos tipos para formulación SAC y fraccionamiento SAECA
+
+-DiferenciasCoste.xsd
+Impacto por nueva formulación y fraccionamiento
+
+
+1.0.2 : 03-06-2014.
+-------------------------------------------------------------------------------------------
+DiferenciasCoste.xsd
+- Corrección en definición de atributo "recalcular" para que sea opcional.
+
+
+1.0.1 : 12-05-2014.
+-------------------------------------------------------------------------------------------
+ContratacionSCCalculoModificaciones.wsdl
+ContratacionSCCalculoModificaciones_con_cabeceras_seguridad.wsdl
+- Eliminada la operación "calculoModificacionPresupuesto" de cálculo de modificaciones sin cupón
+DiferenciasCoste.xsd
+- Correcciones en definición del esquema
+
+
+1.0.0 : 06-05-2014.
+-------------------------------------------------------------------------------------------
+
+Versión inicial.

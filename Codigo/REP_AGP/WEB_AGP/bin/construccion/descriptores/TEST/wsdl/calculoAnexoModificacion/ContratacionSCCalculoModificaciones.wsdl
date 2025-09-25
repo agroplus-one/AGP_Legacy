@@ -1,0 +1,165 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="ContratacionSCCalculoModificaciones"
+	targetNamespace="http://www.agroseguro.es/serviciosweb/ContratacionSCCalculoModificaciones/"
+	xmlns:agr="http://www.agroseguro.es/serviciosweb/ContratacionSCCalculoModificaciones/"
+	xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	xmlns:xmime="http://www.w3.org/2005/05/xmlmime"
+	xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:ti="http://www.agroseguro.es/Tipos"
+	xmlns:ec="http://www.agroseguro.es/SeguroAgrario/EstadoContratacion"
+	xmlns:cupon="http://www.agroseguro.es/SeguroAgrario/CuponModificacion"
+	xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd"
+	xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd"
+	>
+	<wsdl:types>
+		<xsd:schema elementFormDefault="qualified"
+			targetNamespace="http://www.agroseguro.es/serviciosweb/ContratacionSCCalculoModificaciones/"
+			xmlns:agr="http://www.agroseguro.es/serviciosweb/ContratacionSCCalculoModificaciones/"
+			xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+			<xsd:import namespace="http://www.w3.org/2005/05/xmlmime"
+				schemaLocation="xmime.xsd" />
+			
+			<xsd:import	namespace="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd"
+				schemaLocation="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd" />
+				
+			<xsd:import namespace="http://www.agroseguro.es/Tipos"
+				schemaLocation="Tipos.xsd" />
+			
+			<xsd:import namespace="http://www.agroseguro.es/SeguroAgrario/EstadoContratacion"
+				schemaLocation="EstadoContratacion.xsd" />
+				
+			<xsd:import namespace="http://www.agroseguro.es/SeguroAgrario/CuponModificacion" 
+				schemaLocation="CuponModificacion.xsd" />
+			
+			<xsd:complexType name="ParametrosSalida">
+				<xsd:sequence>
+					<xsd:element name="diferenciasCoste" xmime:expectedContentTypes="text/xml" type="xmime:base64Binary" />
+					<xsd:element name="calculoOriginal" xmime:expectedContentTypes="text/xml" type="xmime:base64Binary" minOccurs="0" nillable="true"/>
+					<xsd:element name="calculoModificacion" xmime:expectedContentTypes="text/xml" type="xmime:base64Binary" minOccurs="0" nillable="true"/>
+				</xsd:sequence>
+			</xsd:complexType>
+			
+			<xsd:element name="calculoModificacionCuponActivoRequest" >
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="cuponModificacion" type="cupon:idCupon" />
+						<xsd:element name="tipoPoliza" type="ti:Poliza_Referencia_Tipo" />
+						<xsd:element name="calcularSituacionActual" type="xsd:boolean" />
+						<xsd:element name="modificacionPoliza" xmime:expectedContentTypes="text/xml" type="xmime:base64Binary" />
+						<xsd:element name="datosAdicionales" nillable="true" minOccurs="0" type="xsd:boolean" />
+					</xsd:sequence>
+				</xsd:complexType>	
+			</xsd:element>
+			
+			<xsd:element name="calculoModificacionCuponActivoResponse" type="agr:ParametrosSalida" />
+			
+			<xsd:element name="agrFallo"
+				xmlns:agr="http://www.agroseguro.es/serviciosweb/ContratacionSCCalculoModificaciones/">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:annotation>
+							Lista de mensajes de error de AGROSEGURO
+						</xsd:annotation>
+						<xsd:element name="error" type="agr:Error"	maxOccurs="unbounded" minOccurs="0" />
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:complexType name="Error"
+				xmlns:agr="http://www.agroseguro.es/serviciosweb/ContratacionSCCalculoModificaciones/">
+				<xsd:sequence>
+					<xsd:element name="codigo" type="xsd:int" />
+					<xsd:element name="mensaje" type="xsd:string" />
+				</xsd:sequence>
+			</xsd:complexType>
+		</xsd:schema>
+	</wsdl:types>
+	<wsdl:message name="Header">
+		<wsdl:part name="Security" element="wsse:Security" />
+	</wsdl:message>
+	<wsdl:message name="AgrException">
+		<wsdl:part name="parameters" element="agr:agrFallo"></wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="calculoModificacionCuponActivoRequest">
+		<wsdl:part name="parameters" element="agr:calculoModificacionCuponActivoRequest">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="calculoModificacionCuponActivoResponse">
+		<wsdl:part name="parameters" element="agr:calculoModificacionCuponActivoResponse">
+		</wsdl:part>
+	</wsdl:message>
+	
+	<wsdl:portType name="ContratacionSCCalculoModificaciones">
+		<wsdl:operation name="calculoModificacionCuponActivo">
+			<wsdl:documentation>
+				Método que devuelve el cálculo de una modificación sobre una póliza que tiene un cupón de
+				modificación activo sobre ella.
+				
+				En la petición se deberá facilitar:
+
+				- Cupón: alfanumérico de 14 posiciones, obligatorio
+				- Tipo de póliza: "P" principal o "C" complementaria, obligatorio.
+				- CalcularSituacionActual: booleano, obligatorio
+				- El fichero XML con la póliza modificada, obligatorio.
+				- DatosAdicionales : booleano que indica si se quieren DatosAdicionales en la Distribucion
+				de coste de la póliza modificada, opcional
+				El esquema XSD del documento es "CalculoSeguroAgrario.xsd".
+								
+				Se devolverá la siguiente información :
+			
+				- Fichero XML con las diferencias de coste entre la póliza original y la modificación.
+				El esquema XSD del documento es "DiferenciasCoste.xsd".
+				- Si el parámetro "calcularSituacionActual" se manda a "true", el fichero XML con el cálculo de la situación actual de la póliza.
+				El esquema XSD del documento es "DistribucionCostesSeguroAgrario.xsd".
+				- Fichero XML con el cálculo de la modificación de la póliza.
+				El esquema XSD del documento es "DistribucionCostesSeguroAgrario.xsd".
+
+			</wsdl:documentation>
+			<wsdl:input message="agr:calculoModificacionCuponActivoRequest"></wsdl:input>
+			<wsdl:output message="agr:calculoModificacionCuponActivoResponse"></wsdl:output>
+			<wsdl:fault name="AgrException"
+				message="agr:AgrException">
+			</wsdl:fault>
+		</wsdl:operation>
+		
+	</wsdl:portType>
+	<wsdl:binding name="ContratacionSCCalculoModificacionesSOAP"
+		type="agr:ContratacionSCCalculoModificaciones">
+		<soap:binding style="document"
+			transport="http://schemas.xmlsoap.org/soap/http" />
+		<wsdl:operation name="calculoModificacionCuponActivo">
+			<soap:operation	soapAction="calculoModificacionCuponActivo" />
+			<wsdl:input>
+				<soap:header wsdl:required="true" message="agr:Header" part="Security" use="literal" />
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output><soap:body use="literal" /></wsdl:output>
+			<wsdl:fault name="AgrException"><soap:fault name="AgrException" use="literal" /></wsdl:fault>
+		</wsdl:operation>
+		
+	</wsdl:binding>
+	<wsdl:service name="ContratacionSCCalculoModificaciones">
+		<wsdl:documentation>
+			Mediante este proceso se podrá obtener el cálculo de una modificación de una póliza y las diferencias de 
+			coste con respecto a la póliza original, obteniendo dichos cálculos:
+			
+			- Con el XML de la modificación, el tipo de póliza y un id de cupón activo sobre la póliza
+						
+			La información se devolverá dentro de archivos XML enviados como
+			Adjunto (Attachment) en formato MTOM.
+		</wsdl:documentation>
+		<wsdl:port name="ContratacionSCCalculoModificacionesSOAP"
+			binding="agr:ContratacionSCCalculoModificacionesSOAP">
+			<wsdl:documentation>
+				La primera dirección es el entorno de pruebas y no tiene
+				una resolución asignada en Internet, por lo que se deberá
+				incluir en la máquina local o en el servidor de nombres
+				local con la siguiente dirección: 195.235.42.35
+				
+				La segunda dirección es el entorno de producción.
+			</wsdl:documentation>
+	  <soap:address
+				location="https://www.agroseguro.es/csccm/V2R0/services/ContratacionSCCalculoModificaciones" />
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>

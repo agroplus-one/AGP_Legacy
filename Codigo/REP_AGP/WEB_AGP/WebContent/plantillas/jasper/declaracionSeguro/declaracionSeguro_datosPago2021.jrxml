@@ -1,0 +1,950 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="declaracionSeguro_datosPago" pageWidth="555" pageHeight="802" whenNoDataType="AllSectionsNoDetail" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0">
+	<property name="ireport.zoom" value="1.3310000000000004"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="ID" class="java.lang.Integer"/>
+	<parameter name="tipoPago" class="java.lang.String"/>
+	<parameter name="exentoCuentaCobroSiniestros" class="java.lang.Boolean"/>
+	<queryString>
+		<![CDATA[SELECT DISTINCT DECODE(FORMAPAGO, 'C', 'CONTADO(NO FRACCIONADO)', 'FRACCIONADO)') AS FORMAPAGO,
+                (SELECT ph.FECHA_PAGO
+                   FROM o02agpe0.TB_POLIZAS ph
+                  WHERE ph.IDPOLIZA = PO.IDPOLIZA) AS FECHAENVIO,
+                PP.IMPORTE,
+                PP.TIPO_PAGO,
+                DECODE(PP.TIPO_PAGO,
+                       2,
+                       'DOMICILIADO PRIMA INICIAL Y REGULARIZACIONES - ' ||
+                       DECODE(PP.DEST_DOMICILIACION,
+                              'A',
+                              'ASEGURADO',
+                              'T',
+                              'TOMADOR',
+                              'OTROS'),
+                       'TRANSFERENCIA') AS MEDIO_PAGO,
+                NVL(PP.IBAN, '    ') || NVL(PP.CCCBANCO, '                    ') AS IBAN,
+                NVL(PP.IBAN2, '    ') || NVL(PP.CCCBANCO2, '                    ') AS IBAN2,
+                DECODE(PP.TIPO_PAGO,
+                       2,
+                       DECODE(NVL(PP.DEST_DOMICILIACION, 'A'),
+                              'A',
+                              DECODE(A.TIPOIDENTIFICACION,
+                                     'NIF',
+                                     NVL(A.NOMBRE, '') || ' ' ||
+                                     NVL(A.APELLIDO1, '') || ' ' ||
+                                     NVL(A.APELLIDO2, ''),
+                                     'CIF',
+                                     NVL(A.RAZONSOCIAL, '')),
+                              'T',
+                              NVL(T.RAZONSOCIAL, ''),
+                              'O',
+                              NVL(PP.TITULAR_CUENTA, ''),
+                              ''),
+                       DECODE(A.TIPOIDENTIFICACION,
+                              'NIF',
+                              NVL(A.NOMBRE, '') || ' ' ||
+                              NVL(A.APELLIDO1, '') || ' ' ||
+                              NVL(A.APELLIDO2, ''),
+                              'CIF',
+                              NVL(A.RAZONSOCIAL, ''))) AS TITULAR,
+                DECODE(A.TIPOIDENTIFICACION,
+                      'NIF',
+                      NVL(A.NOMBRE, '') || ' ' ||
+                      NVL(A.APELLIDO1, '') || ' ' ||
+                      NVL(A.APELLIDO2, ''),
+                      'CIF',
+                      NVL(A.RAZONSOCIAL, '')) AS ASEGURADO,
+                PP.DEST_DOMICILIACION,
+                DA.NUMERO_AVAL AS NUMERO_AVAL,
+                DA.IMPORTE_AVAL AS IMPORTE_AVAL,
+                (SELECT DBG.DESCRIPCION
+                   FROM o02agpe0.TB_SC_C_DATOS_BUZON_GENERAL DBG,
+                        o02agpe0.TB_DISTRIBUCION_COSTES_2015 DC
+                  WHERE DBG.CODCPTO = 1018
+                    AND DBG.VALOR_CPTO = DC.PERIODO_FRACC
+                    AND PO.IDPOLIZA = DC.IDPOLIZA) AS PERIODO
+  FROM o02agpe0.TB_PAGOS_POLIZA       PP,
+       o02agpe0.TB_POLIZAS            PO,
+       o02agpe0.TB_DATOS_AVAL_POLIZAS DA,
+       o02agpe0.TB_ASEGURADOS         A,
+       o02agpe0.TB_COLECTIVOS         C,
+       o02agpe0.TB_TOMADORES          T
+ WHERE PO.IDPOLIZA = $P{ID}
+   AND PP.IDPOLIZA = PO.IDPOLIZA
+   AND PP.IDPOLIZA = DA.IDPOLIZA(+)
+   AND PO.IDASEGURADO = A.ID
+   AND PO.IDCOLECTIVO = C.ID
+   AND T.CIFTOMADOR = C.CIFTOMADOR
+   AND T.CODENTIDAD = C.CODENTIDAD]]>
+	</queryString>
+	<field name="FORMAPAGO" class="java.lang.String"/>
+	<field name="FECHAENVIO" class="java.sql.Timestamp"/>
+	<field name="IMPORTE" class="java.math.BigDecimal"/>
+	<field name="TIPO_PAGO" class="java.lang.Integer"/>
+	<field name="MEDIO_PAGO" class="java.lang.String"/>
+	<field name="IBAN" class="java.lang.String"/>
+	<field name="IBAN2" class="java.lang.String"/>
+	<field name="TITULAR" class="java.lang.String"/>
+	<field name="ASEGURADO" class="java.lang.String"/>
+	<field name="DEST_DOMICILIACION" class="java.lang.String"/>
+	<field name="NUMERO_AVAL" class="java.lang.String"/>
+	<field name="PERIODO" class="java.lang.String"/>
+	<field name="IMPORTE_AVAL" class="java.math.BigDecimal"/>
+	<variable name="SHOW_FOOT" class="java.lang.Boolean" resetType="None">
+		<variableExpression><![CDATA[new Boolean(true)]]></variableExpression>
+		<initialValueExpression><![CDATA[]]></initialValueExpression>
+	</variable>
+	<variable name="SHOW_BACK" class="java.lang.Boolean" resetType="None">
+		<variableExpression><![CDATA[new Boolean(true)]]></variableExpression>
+		<initialValueExpression><![CDATA[]]></initialValueExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="260" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="240" height="15"/>
+				<textElement>
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DATOS DE PAGO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="8" y="15" width="140" height="15"/>
+				<textElement>
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Forma de pago..............................:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="8" y="45" width="140" height="15">
+					<printWhenExpression><![CDATA[Boolean.valueOf($F{TIPO_PAGO}.intValue()==2)]]></printWhenExpression>
+				</reportElement>
+				<textElement>
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fecha Domiciliación......................:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="8" y="60" width="140" height="15"/>
+				<textElement>
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Importe Abonado/Domiciliado....:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement isPrintRepeatedValues="false" x="150" y="15" width="300" height="15"/>
+				<textElement textAlignment="Left">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{FORMAPAGO}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy" isBlankWhenNull="true">
+				<reportElement isPrintRepeatedValues="false" x="150" y="45" width="300" height="15">
+					<printWhenExpression><![CDATA[Boolean.valueOf($F{TIPO_PAGO}.intValue()==2)]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Left">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.sql.Timestamp"><![CDATA[$F{FECHAENVIO}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00€" isBlankWhenNull="true">
+				<reportElement isPrintRepeatedValues="false" x="150" y="60" width="300" height="15"/>
+				<textElement textAlignment="Left">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{IMPORTE}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="8" y="30" width="140" height="15"/>
+				<textElement>
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Medio de Pago-Destinatario.......:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement isPrintRepeatedValues="false" x="150" y="30" width="300" height="15"/>
+				<textElement textAlignment="Left">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{MEDIO_PAGO}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement isPrintRepeatedValues="false" x="150" y="75" width="300" height="15"/>
+				<textElement textAlignment="Left">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{tipoPago}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="8" y="75" width="140" height="15"/>
+				<textElement>
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Forma de pago Cliente.................:]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="4" y="94" width="523" height="15"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="10" y="96" width="495" height="15">
+					<printWhenExpression><![CDATA[Boolean.valueOf($F{TIPO_PAGO}.intValue()!=2 && !$P{exentoCuentaCobroSiniestros}.booleanValue())]]></printWhenExpression>
+				</reportElement>
+				<textElement>
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CÓDIGO IBAN DE LA CUENTA PARA PAGO DE INDEMNIZACIONES]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="10" y="96" width="495" height="15">
+					<printWhenExpression><![CDATA[Boolean.valueOf($F{TIPO_PAGO}.intValue()==2 && $F{DEST_DOMICILIACION}.equals("A") && !$P{exentoCuentaCobroSiniestros}.booleanValue())]]></printWhenExpression>
+				</reportElement>
+				<textElement>
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CÓDIGO IBAN DE LA CUENTA PARA COBRO PRIMA Y PAGO DE INDEMNIZACIONES]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="10" y="96" width="495" height="15">
+					<printWhenExpression><![CDATA[Boolean.valueOf($P{exentoCuentaCobroSiniestros}.booleanValue() || ($F{TIPO_PAGO}.intValue()==2 && !$F{DEST_DOMICILIACION}.equals("A")))]]></printWhenExpression>
+				</reportElement>
+				<textElement>
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CÓDIGO IBAN DE LA CUENTA PARA COBRO PRIMA]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="4" y="109" width="22" height="15"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="26" y="109" width="22" height="15"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="48" y="109" width="22" height="15"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="70" y="109" width="22" height="15"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="92" y="109" width="22" height="15"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="114" y="109" width="22" height="15"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="136" y="109" width="22" height="15"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="158" y="109" width="22" height="15"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="180" y="109" width="22" height="15"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="202" y="109" width="22" height="15"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="222" y="109" width="22" height="15"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="244" y="109" width="22" height="15"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="266" y="109" width="22" height="15"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="288" y="109" width="22" height="15"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="307" y="109" width="22" height="15"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="329" y="109" width="22" height="15"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="351" y="109" width="22" height="15"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="373" y="109" width="22" height="15"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="395" y="109" width="22" height="15"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="417" y="109" width="22" height="15"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="439" y="109" width="22" height="15"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="461" y="109" width="22" height="15"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="483" y="109" width="22" height="15"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="505" y="109" width="22" height="15"/>
+			</rectangle>
+			<textField isBlankWhenNull="true">
+				<reportElement isPrintRepeatedValues="false" x="4" y="109" width="22" height="15"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TIPO_PAGO}.intValue()!=2 && !$P{exentoCuentaCobroSiniestros}.booleanValue() ? $F{IBAN2}.substring(0, 1) : $F{IBAN}.substring(0, 1)]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement isPrintRepeatedValues="false" x="26" y="109" width="22" height="15"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TIPO_PAGO}.intValue()!=2 && !$P{exentoCuentaCobroSiniestros}.booleanValue() ? $F{IBAN2}.substring(1, 2) : $F{IBAN}.substring(1, 2)]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement isPrintRepeatedValues="false" x="48" y="109" width="22" height="15"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TIPO_PAGO}.intValue()!=2 && !$P{exentoCuentaCobroSiniestros}.booleanValue() ? $F{IBAN2}.substring(2, 3) : $F{IBAN}.substring(2, 3)]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement isPrintRepeatedValues="false" x="70" y="109" width="22" height="15"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TIPO_PAGO}.intValue()!=2 && !$P{exentoCuentaCobroSiniestros}.booleanValue() ? $F{IBAN2}.substring(3, 4) : $F{IBAN}.substring(3, 4)]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement isPrintRepeatedValues="false" x="92" y="109" width="22" height="15"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TIPO_PAGO}.intValue()!=2 && !$P{exentoCuentaCobroSiniestros}.booleanValue() ? $F{IBAN2}.substring(4, 5) : $F{IBAN}.substring(4, 5)]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement isPrintRepeatedValues="false" x="114" y="109" width="22" height="15"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TIPO_PAGO}.intValue()!=2 && !$P{exentoCuentaCobroSiniestros}.booleanValue() ? $F{IBAN2}.substring(5, 6) : $F{IBAN}.substring(5, 6)]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement isPrintRepeatedValues="false" x="136" y="109" width="22" height="15"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TIPO_PAGO}.intValue()!=2 && !$P{exentoCuentaCobroSiniestros}.booleanValue() ? $F{IBAN2}.substring(6, 7) : $F{IBAN}.substring(6, 7)]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement isPrintRepeatedValues="false" x="158" y="109" width="22" height="15"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TIPO_PAGO}.intValue()!=2 && !$P{exentoCuentaCobroSiniestros}.booleanValue() ? $F{IBAN2}.substring(7, 8) : $F{IBAN}.substring(7, 8)]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement isPrintRepeatedValues="false" x="180" y="109" width="22" height="15"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TIPO_PAGO}.intValue()!=2 && !$P{exentoCuentaCobroSiniestros}.booleanValue() ? $F{IBAN2}.substring(8, 9) : $F{IBAN}.substring(8, 9)]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement isPrintRepeatedValues="false" x="202" y="109" width="20" height="15"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TIPO_PAGO}.intValue()!=2 && !$P{exentoCuentaCobroSiniestros}.booleanValue() ? $F{IBAN2}.substring(9, 10) : $F{IBAN}.substring(9, 10)]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement isPrintRepeatedValues="false" x="222" y="109" width="22" height="15"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TIPO_PAGO}.intValue()!=2 && !$P{exentoCuentaCobroSiniestros}.booleanValue() ? $F{IBAN2}.substring(10, 11) : $F{IBAN}.substring(10, 11)]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement isPrintRepeatedValues="false" x="244" y="109" width="22" height="15"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TIPO_PAGO}.intValue()!=2 && !$P{exentoCuentaCobroSiniestros}.booleanValue() ? $F{IBAN2}.substring(11, 12) : $F{IBAN}.substring(11, 12)]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement isPrintRepeatedValues="false" x="266" y="109" width="22" height="15"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TIPO_PAGO}.intValue()!=2 && !$P{exentoCuentaCobroSiniestros}.booleanValue() ? $F{IBAN2}.substring(12, 13) : $F{IBAN}.substring(12, 13)]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement isPrintRepeatedValues="false" x="288" y="109" width="19" height="15"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TIPO_PAGO}.intValue()!=2 && !$P{exentoCuentaCobroSiniestros}.booleanValue() ? $F{IBAN2}.substring(13, 14) : $F{IBAN}.substring(13, 14)]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement isPrintRepeatedValues="false" x="307" y="109" width="22" height="15"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TIPO_PAGO}.intValue()!=2 && !$P{exentoCuentaCobroSiniestros}.booleanValue() ? $F{IBAN2}.substring(14, 15) : $F{IBAN}.substring(14, 15)]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement isPrintRepeatedValues="false" x="329" y="109" width="22" height="15"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TIPO_PAGO}.intValue()!=2 && !$P{exentoCuentaCobroSiniestros}.booleanValue() ? $F{IBAN2}.substring(15, 16) : $F{IBAN}.substring(15, 16)]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement isPrintRepeatedValues="false" x="351" y="109" width="22" height="15"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TIPO_PAGO}.intValue()!=2 && !$P{exentoCuentaCobroSiniestros}.booleanValue() ? $F{IBAN2}.substring(16, 17) : $F{IBAN}.substring(16, 17)]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement isPrintRepeatedValues="false" x="373" y="109" width="22" height="15"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TIPO_PAGO}.intValue()!=2 && !$P{exentoCuentaCobroSiniestros}.booleanValue() ? $F{IBAN2}.substring(17, 18) : $F{IBAN}.substring(17, 18)]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement isPrintRepeatedValues="false" x="395" y="109" width="22" height="15"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TIPO_PAGO}.intValue()!=2 && !$P{exentoCuentaCobroSiniestros}.booleanValue() ? $F{IBAN2}.substring(18, 19) : $F{IBAN}.substring(18, 19)]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement isPrintRepeatedValues="false" x="417" y="109" width="22" height="15"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TIPO_PAGO}.intValue()!=2 && !$P{exentoCuentaCobroSiniestros}.booleanValue() ? $F{IBAN2}.substring(19, 20) : $F{IBAN}.substring(19, 20)]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement isPrintRepeatedValues="false" x="439" y="109" width="22" height="15"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TIPO_PAGO}.intValue()!=2 ? $F{IBAN2}.substring(20, 21) : $F{IBAN}.substring(20, 21)]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement isPrintRepeatedValues="false" x="461" y="109" width="22" height="15"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TIPO_PAGO}.intValue()!=2 && !$P{exentoCuentaCobroSiniestros}.booleanValue() ? $F{IBAN2}.substring(21, 22) : $F{IBAN}.substring(21, 22)]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement isPrintRepeatedValues="false" x="483" y="109" width="22" height="15"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TIPO_PAGO}.intValue()!=2 && !$P{exentoCuentaCobroSiniestros}.booleanValue() ? $F{IBAN2}.substring(22, 23) : $F{IBAN}.substring(22, 23)]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement isPrintRepeatedValues="false" x="505" y="109" width="22" height="15"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TIPO_PAGO}.intValue()!=2 && !$P{exentoCuentaCobroSiniestros}.booleanValue() ? $F{IBAN2}.substring(23, 24) : $F{IBAN}.substring(23, 24)]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="127" width="530" height="22">
+					<printWhenExpression><![CDATA[Boolean.valueOf($F{TIPO_PAGO}.intValue()!=2  && !$P{exentoCuentaCobroSiniestros}.booleanValue())]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Justified">
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[Nº cuenta del asegurado para el pago de las indemizaciones]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="127" width="530" height="22">
+					<printWhenExpression><![CDATA[Boolean.valueOf($F{TIPO_PAGO}.intValue()==2 && $F{DEST_DOMICILIACION}.equals("A") && !$P{exentoCuentaCobroSiniestros}.booleanValue())]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Justified">
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[Nº cuenta para la domiciliación de la prima incial del seguro, y si procede, de las fracciones, de las regularizaciones, de la renovación de la póliza y del pago de las indemnizaciones al asegurado.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="127" width="530" height="22">
+					<printWhenExpression><![CDATA[Boolean.valueOf($P{exentoCuentaCobroSiniestros}.booleanValue() || ($F{TIPO_PAGO}.intValue()==2 && !$F{DEST_DOMICILIACION}.equals("A")))]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Justified">
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[Nº cuenta para la domiciliación de la prima incial del seguro, y si procede, de las fracciones, de las regularizaciones y de la renovación de la póliza.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="149" width="136" height="15"/>
+				<textElement>
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[TITULAR DE LA CUENTA IBAN:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement isPrintRepeatedValues="false" x="136" y="149" width="394" height="15"/>
+				<textElement textAlignment="Left">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TITULAR}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="240" width="95" height="15">
+					<printWhenExpression><![CDATA[Boolean.valueOf($F{FORMAPAGO}.equals( "FRACCIONADO" ))]]></printWhenExpression>
+				</reportElement>
+				<textElement>
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fraccionamiento.........:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="218" y="240" width="100" height="15">
+					<printWhenExpression><![CDATA[Boolean.valueOf($F{FORMAPAGO}.equals( "FRACCIONADO" ))]]></printWhenExpression>
+				</reportElement>
+				<textElement>
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nº Aval de SAECA.........:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="370" y="240" width="80" height="15">
+					<printWhenExpression><![CDATA[Boolean.valueOf($F{FORMAPAGO}.equals( "FRACCIONADO" ))]]></printWhenExpression>
+				</reportElement>
+				<textElement>
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Importe Aval.........:]]></text>
+			</staticText>
+			<textField pattern="#,##0.00¤" isBlankWhenNull="false">
+				<reportElement isPrintRepeatedValues="false" x="318" y="240" width="44" height="15">
+					<printWhenExpression><![CDATA[Boolean.valueOf($F{FORMAPAGO}.equals( "FRACCIONADO" ))]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Left">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{NUMERO_AVAL}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00¤" isBlankWhenNull="true">
+				<reportElement isPrintRepeatedValues="false" x="451" y="240" width="80" height="15">
+					<printWhenExpression><![CDATA[Boolean.valueOf($F{FORMAPAGO}.equals( "FRACCIONADO" ))]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Left">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{IMPORTE_AVAL}.toString()]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00¤" isBlankWhenNull="false">
+				<reportElement isPrintRepeatedValues="false" x="95" y="240" width="120" height="15">
+					<printWhenExpression><![CDATA[Boolean.valueOf($F{FORMAPAGO}.equals( "FRACCIONADO" ))]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Left">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{PERIODO}]]></textFieldExpression>
+			</textField>
+			<rectangle>
+				<reportElement x="4" y="167" width="523" height="15">
+					<printWhenExpression><![CDATA[Boolean.valueOf($F{TIPO_PAGO}.intValue()==2 && !$F{DEST_DOMICILIACION}.equals("A") && !$P{exentoCuentaCobroSiniestros}.booleanValue())]]></printWhenExpression>
+				</reportElement>
+			</rectangle>
+			<rectangle>
+				<reportElement x="222" y="182" width="22" height="15">
+					<printWhenExpression><![CDATA[Boolean.valueOf($F{TIPO_PAGO}.intValue()==2 && !$F{DEST_DOMICILIACION}.equals("A") && !$P{exentoCuentaCobroSiniestros}.booleanValue())]]></printWhenExpression>
+				</reportElement>
+			</rectangle>
+			<rectangle>
+				<reportElement x="351" y="182" width="22" height="15">
+					<printWhenExpression><![CDATA[Boolean.valueOf($F{TIPO_PAGO}.intValue()==2 && !$F{DEST_DOMICILIACION}.equals("A") && !$P{exentoCuentaCobroSiniestros}.booleanValue())]]></printWhenExpression>
+				</reportElement>
+			</rectangle>
+			<rectangle>
+				<reportElement x="307" y="182" width="22" height="15">
+					<printWhenExpression><![CDATA[Boolean.valueOf($F{TIPO_PAGO}.intValue()==2 && !$F{DEST_DOMICILIACION}.equals("A") && !$P{exentoCuentaCobroSiniestros}.booleanValue())]]></printWhenExpression>
+				</reportElement>
+			</rectangle>
+			<rectangle>
+				<reportElement x="461" y="182" width="22" height="15">
+					<printWhenExpression><![CDATA[Boolean.valueOf($F{TIPO_PAGO}.intValue()==2 && !$F{DEST_DOMICILIACION}.equals("A") && !$P{exentoCuentaCobroSiniestros}.booleanValue())]]></printWhenExpression>
+				</reportElement>
+			</rectangle>
+			<rectangle>
+				<reportElement x="136" y="182" width="22" height="15">
+					<printWhenExpression><![CDATA[Boolean.valueOf($F{TIPO_PAGO}.intValue()==2 && !$F{DEST_DOMICILIACION}.equals("A") && !$P{exentoCuentaCobroSiniestros}.booleanValue())]]></printWhenExpression>
+				</reportElement>
+			</rectangle>
+			<rectangle>
+				<reportElement x="483" y="182" width="22" height="15">
+					<printWhenExpression><![CDATA[Boolean.valueOf($F{TIPO_PAGO}.intValue()==2 && !$F{DEST_DOMICILIACION}.equals("A") && !$P{exentoCuentaCobroSiniestros}.booleanValue())]]></printWhenExpression>
+				</reportElement>
+			</rectangle>
+			<rectangle>
+				<reportElement x="202" y="182" width="22" height="15">
+					<printWhenExpression><![CDATA[Boolean.valueOf($F{TIPO_PAGO}.intValue()==2 && !$F{DEST_DOMICILIACION}.equals("A") && !$P{exentoCuentaCobroSiniestros}.booleanValue())]]></printWhenExpression>
+				</reportElement>
+			</rectangle>
+			<rectangle>
+				<reportElement x="395" y="182" width="22" height="15">
+					<printWhenExpression><![CDATA[Boolean.valueOf($F{TIPO_PAGO}.intValue()==2 && !$F{DEST_DOMICILIACION}.equals("A") && !$P{exentoCuentaCobroSiniestros}.booleanValue())]]></printWhenExpression>
+				</reportElement>
+			</rectangle>
+			<rectangle>
+				<reportElement x="329" y="182" width="22" height="15">
+					<printWhenExpression><![CDATA[Boolean.valueOf($F{TIPO_PAGO}.intValue()==2 && !$F{DEST_DOMICILIACION}.equals("A") && !$P{exentoCuentaCobroSiniestros}.booleanValue())]]></printWhenExpression>
+				</reportElement>
+			</rectangle>
+			<rectangle>
+				<reportElement x="373" y="182" width="22" height="15">
+					<printWhenExpression><![CDATA[Boolean.valueOf($F{TIPO_PAGO}.intValue()==2 && !$F{DEST_DOMICILIACION}.equals("A") && !$P{exentoCuentaCobroSiniestros}.booleanValue())]]></printWhenExpression>
+				</reportElement>
+			</rectangle>
+			<rectangle>
+				<reportElement x="4" y="182" width="22" height="15">
+					<printWhenExpression><![CDATA[Boolean.valueOf($F{TIPO_PAGO}.intValue()==2 && !$F{DEST_DOMICILIACION}.equals("A") && !$P{exentoCuentaCobroSiniestros}.booleanValue())]]></printWhenExpression>
+				</reportElement>
+			</rectangle>
+			<rectangle>
+				<reportElement x="114" y="182" width="22" height="15">
+					<printWhenExpression><![CDATA[Boolean.valueOf($F{TIPO_PAGO}.intValue()==2 && !$F{DEST_DOMICILIACION}.equals("A") && !$P{exentoCuentaCobroSiniestros}.booleanValue())]]></printWhenExpression>
+				</reportElement>
+			</rectangle>
+			<rectangle>
+				<reportElement x="158" y="182" width="22" height="15">
+					<printWhenExpression><![CDATA[Boolean.valueOf($F{TIPO_PAGO}.intValue()==2 && !$F{DEST_DOMICILIACION}.equals("A") && !$P{exentoCuentaCobroSiniestros}.booleanValue())]]></printWhenExpression>
+				</reportElement>
+			</rectangle>
+			<rectangle>
+				<reportElement x="70" y="182" width="22" height="15">
+					<printWhenExpression><![CDATA[Boolean.valueOf($F{TIPO_PAGO}.intValue()==2 && !$F{DEST_DOMICILIACION}.equals("A") && !$P{exentoCuentaCobroSiniestros}.booleanValue())]]></printWhenExpression>
+				</reportElement>
+			</rectangle>
+			<rectangle>
+				<reportElement x="505" y="182" width="22" height="15">
+					<printWhenExpression><![CDATA[Boolean.valueOf($F{TIPO_PAGO}.intValue()==2 && !$F{DEST_DOMICILIACION}.equals("A") && !$P{exentoCuentaCobroSiniestros}.booleanValue())]]></printWhenExpression>
+				</reportElement>
+			</rectangle>
+			<rectangle>
+				<reportElement x="244" y="182" width="22" height="15">
+					<printWhenExpression><![CDATA[Boolean.valueOf($F{TIPO_PAGO}.intValue()==2 && !$F{DEST_DOMICILIACION}.equals("A") && !$P{exentoCuentaCobroSiniestros}.booleanValue())]]></printWhenExpression>
+				</reportElement>
+			</rectangle>
+			<rectangle>
+				<reportElement x="266" y="182" width="22" height="15">
+					<printWhenExpression><![CDATA[Boolean.valueOf($F{TIPO_PAGO}.intValue()==2 && !$F{DEST_DOMICILIACION}.equals("A") && !$P{exentoCuentaCobroSiniestros}.booleanValue())]]></printWhenExpression>
+				</reportElement>
+			</rectangle>
+			<rectangle>
+				<reportElement x="288" y="182" width="22" height="15">
+					<printWhenExpression><![CDATA[Boolean.valueOf($F{TIPO_PAGO}.intValue()==2 && !$F{DEST_DOMICILIACION}.equals("A") && !$P{exentoCuentaCobroSiniestros}.booleanValue())]]></printWhenExpression>
+				</reportElement>
+			</rectangle>
+			<rectangle>
+				<reportElement x="92" y="182" width="22" height="15">
+					<printWhenExpression><![CDATA[Boolean.valueOf($F{TIPO_PAGO}.intValue()==2 && !$F{DEST_DOMICILIACION}.equals("A") && !$P{exentoCuentaCobroSiniestros}.booleanValue())]]></printWhenExpression>
+				</reportElement>
+			</rectangle>
+			<rectangle>
+				<reportElement x="26" y="182" width="22" height="15">
+					<printWhenExpression><![CDATA[Boolean.valueOf($F{TIPO_PAGO}.intValue()==2 && !$F{DEST_DOMICILIACION}.equals("A") && !$P{exentoCuentaCobroSiniestros}.booleanValue())]]></printWhenExpression>
+				</reportElement>
+			</rectangle>
+			<rectangle>
+				<reportElement x="180" y="182" width="22" height="15">
+					<printWhenExpression><![CDATA[Boolean.valueOf($F{TIPO_PAGO}.intValue()==2 && !$F{DEST_DOMICILIACION}.equals("A") && !$P{exentoCuentaCobroSiniestros}.booleanValue())]]></printWhenExpression>
+				</reportElement>
+			</rectangle>
+			<rectangle>
+				<reportElement x="417" y="182" width="22" height="15">
+					<printWhenExpression><![CDATA[Boolean.valueOf($F{TIPO_PAGO}.intValue()==2 && !$F{DEST_DOMICILIACION}.equals("A") && !$P{exentoCuentaCobroSiniestros}.booleanValue())]]></printWhenExpression>
+				</reportElement>
+			</rectangle>
+			<rectangle>
+				<reportElement x="48" y="182" width="22" height="15">
+					<printWhenExpression><![CDATA[Boolean.valueOf($F{TIPO_PAGO}.intValue()==2 && !$F{DEST_DOMICILIACION}.equals("A") && !$P{exentoCuentaCobroSiniestros}.booleanValue())]]></printWhenExpression>
+				</reportElement>
+			</rectangle>
+			<rectangle>
+				<reportElement x="439" y="182" width="22" height="15">
+					<printWhenExpression><![CDATA[Boolean.valueOf($F{TIPO_PAGO}.intValue()==2 && !$F{DEST_DOMICILIACION}.equals("A") && !$P{exentoCuentaCobroSiniestros}.booleanValue())]]></printWhenExpression>
+				</reportElement>
+			</rectangle>
+			<staticText>
+				<reportElement x="0" y="200" width="530" height="22">
+					<printWhenExpression><![CDATA[Boolean.valueOf($F{TIPO_PAGO}.intValue()==2 && !$F{DEST_DOMICILIACION}.equals("A") && !$P{exentoCuentaCobroSiniestros}.booleanValue())]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Justified">
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[Nº cuenta del asegurado para el pago de las indemizaciones]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="223" width="136" height="15">
+					<printWhenExpression><![CDATA[Boolean.valueOf($F{TIPO_PAGO}.intValue()==2 && !$F{DEST_DOMICILIACION}.equals("A") && !$P{exentoCuentaCobroSiniestros}.booleanValue())]]></printWhenExpression>
+				</reportElement>
+				<textElement>
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[TITULAR DE LA CUENTA IBAN:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="10" y="169" width="495" height="15">
+					<printWhenExpression><![CDATA[Boolean.valueOf($F{TIPO_PAGO}.intValue()==2 && !$F{DEST_DOMICILIACION}.equals("A") && !$P{exentoCuentaCobroSiniestros}.booleanValue())]]></printWhenExpression>
+				</reportElement>
+				<textElement>
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CÓDIGO IBAN DE LA CUENTA PARA PAGO DE INDEMNIZACIONES]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement isPrintRepeatedValues="false" x="3" y="182" width="22" height="15">
+					<printWhenExpression><![CDATA[Boolean.valueOf($F{TIPO_PAGO}.intValue()==2 && !$F{DEST_DOMICILIACION}.equals("A") && !$P{exentoCuentaCobroSiniestros}.booleanValue())]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{IBAN2}.substring(0, 1)]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement isPrintRepeatedValues="false" x="25" y="182" width="22" height="15">
+					<printWhenExpression><![CDATA[Boolean.valueOf($F{TIPO_PAGO}.intValue()==2 && !$F{DEST_DOMICILIACION}.equals("A") && !$P{exentoCuentaCobroSiniestros}.booleanValue())]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{IBAN2}.substring( 1, 2 )]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement isPrintRepeatedValues="false" x="47" y="182" width="22" height="15">
+					<printWhenExpression><![CDATA[Boolean.valueOf($F{TIPO_PAGO}.intValue()==2 && !$F{DEST_DOMICILIACION}.equals("A") && !$P{exentoCuentaCobroSiniestros}.booleanValue())]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{IBAN2}.substring( 2, 3 )]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement isPrintRepeatedValues="false" x="69" y="182" width="22" height="15">
+					<printWhenExpression><![CDATA[Boolean.valueOf($F{TIPO_PAGO}.intValue()==2 && !$F{DEST_DOMICILIACION}.equals("A") && !$P{exentoCuentaCobroSiniestros}.booleanValue())]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{IBAN2}.substring( 3, 4 )]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement isPrintRepeatedValues="false" x="91" y="182" width="22" height="15">
+					<printWhenExpression><![CDATA[Boolean.valueOf($F{TIPO_PAGO}.intValue()==2 && !$F{DEST_DOMICILIACION}.equals("A") && !$P{exentoCuentaCobroSiniestros}.booleanValue())]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{IBAN2}.substring( 4, 5 )]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement isPrintRepeatedValues="false" x="113" y="182" width="22" height="15">
+					<printWhenExpression><![CDATA[Boolean.valueOf($F{TIPO_PAGO}.intValue()==2 && !$F{DEST_DOMICILIACION}.equals("A") && !$P{exentoCuentaCobroSiniestros}.booleanValue())]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{IBAN2}.substring( 5, 6 )]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement isPrintRepeatedValues="false" x="135" y="182" width="22" height="15">
+					<printWhenExpression><![CDATA[Boolean.valueOf($F{TIPO_PAGO}.intValue()==2 && !$F{DEST_DOMICILIACION}.equals("A") && !$P{exentoCuentaCobroSiniestros}.booleanValue())]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{IBAN2}.substring( 6,7 )]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement isPrintRepeatedValues="false" x="157" y="182" width="22" height="15">
+					<printWhenExpression><![CDATA[Boolean.valueOf($F{TIPO_PAGO}.intValue()==2 && !$F{DEST_DOMICILIACION}.equals("A") && !$P{exentoCuentaCobroSiniestros}.booleanValue())]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{IBAN2}.substring( 7,8 )]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement isPrintRepeatedValues="false" x="179" y="182" width="22" height="15">
+					<printWhenExpression><![CDATA[Boolean.valueOf($F{TIPO_PAGO}.intValue()==2 && !$F{DEST_DOMICILIACION}.equals("A") && !$P{exentoCuentaCobroSiniestros}.booleanValue())]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{IBAN2}.substring( 8,9 )]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement isPrintRepeatedValues="false" x="201" y="182" width="20" height="15">
+					<printWhenExpression><![CDATA[Boolean.valueOf($F{TIPO_PAGO}.intValue()==2 && !$F{DEST_DOMICILIACION}.equals("A") && !$P{exentoCuentaCobroSiniestros}.booleanValue())]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{IBAN2}.substring( 9,10 )]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement isPrintRepeatedValues="false" x="221" y="182" width="22" height="15">
+					<printWhenExpression><![CDATA[Boolean.valueOf($F{TIPO_PAGO}.intValue()==2 && !$F{DEST_DOMICILIACION}.equals("A") && !$P{exentoCuentaCobroSiniestros}.booleanValue())]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{IBAN2}.substring( 10,11 )]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement isPrintRepeatedValues="false" x="243" y="182" width="22" height="15">
+					<printWhenExpression><![CDATA[Boolean.valueOf($F{TIPO_PAGO}.intValue()==2 && !$F{DEST_DOMICILIACION}.equals("A") && !$P{exentoCuentaCobroSiniestros}.booleanValue())]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{IBAN2}.substring( 11,12 )]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement isPrintRepeatedValues="false" x="265" y="182" width="22" height="15">
+					<printWhenExpression><![CDATA[Boolean.valueOf($F{TIPO_PAGO}.intValue()==2 && !$F{DEST_DOMICILIACION}.equals("A") && !$P{exentoCuentaCobroSiniestros}.booleanValue())]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{IBAN2}.substring( 12,13 )]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement isPrintRepeatedValues="false" x="287" y="182" width="19" height="15">
+					<printWhenExpression><![CDATA[Boolean.valueOf($F{TIPO_PAGO}.intValue()==2 && !$F{DEST_DOMICILIACION}.equals("A") && !$P{exentoCuentaCobroSiniestros}.booleanValue())]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{IBAN2}.substring( 13,14 )]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement isPrintRepeatedValues="false" x="306" y="182" width="22" height="15">
+					<printWhenExpression><![CDATA[Boolean.valueOf($F{TIPO_PAGO}.intValue()==2 && !$F{DEST_DOMICILIACION}.equals("A") && !$P{exentoCuentaCobroSiniestros}.booleanValue())]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{IBAN2}.substring( 14,15 )]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement isPrintRepeatedValues="false" x="328" y="182" width="22" height="15">
+					<printWhenExpression><![CDATA[Boolean.valueOf($F{TIPO_PAGO}.intValue()==2 && !$F{DEST_DOMICILIACION}.equals("A") && !$P{exentoCuentaCobroSiniestros}.booleanValue())]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{IBAN2}.substring( 15,16 )]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement isPrintRepeatedValues="false" x="350" y="182" width="22" height="15">
+					<printWhenExpression><![CDATA[Boolean.valueOf($F{TIPO_PAGO}.intValue()==2 && !$F{DEST_DOMICILIACION}.equals("A") && !$P{exentoCuentaCobroSiniestros}.booleanValue())]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{IBAN2}.substring( 16,17 )]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement isPrintRepeatedValues="false" x="372" y="182" width="22" height="15">
+					<printWhenExpression><![CDATA[Boolean.valueOf($F{TIPO_PAGO}.intValue()==2 && !$F{DEST_DOMICILIACION}.equals("A") && !$P{exentoCuentaCobroSiniestros}.booleanValue())]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{IBAN2}.substring( 17,18 )]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement isPrintRepeatedValues="false" x="394" y="182" width="22" height="15">
+					<printWhenExpression><![CDATA[Boolean.valueOf($F{TIPO_PAGO}.intValue()==2 && !$F{DEST_DOMICILIACION}.equals("A") && !$P{exentoCuentaCobroSiniestros}.booleanValue())]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{IBAN2}.substring( 18,19 )]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement isPrintRepeatedValues="false" x="416" y="182" width="22" height="15">
+					<printWhenExpression><![CDATA[Boolean.valueOf($F{TIPO_PAGO}.intValue()==2 && !$F{DEST_DOMICILIACION}.equals("A") && !$P{exentoCuentaCobroSiniestros}.booleanValue())]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{IBAN2}.substring( 19,20 )]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement isPrintRepeatedValues="false" x="438" y="182" width="22" height="15">
+					<printWhenExpression><![CDATA[Boolean.valueOf($F{TIPO_PAGO}.intValue()==2 && !$F{DEST_DOMICILIACION}.equals("A") && !$P{exentoCuentaCobroSiniestros}.booleanValue())]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{IBAN2}.substring( 20,21 )]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement isPrintRepeatedValues="false" x="460" y="182" width="22" height="15">
+					<printWhenExpression><![CDATA[Boolean.valueOf($F{TIPO_PAGO}.intValue()==2 && !$F{DEST_DOMICILIACION}.equals("A") && !$P{exentoCuentaCobroSiniestros}.booleanValue())]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{IBAN2}.substring( 21,22 )]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement isPrintRepeatedValues="false" x="482" y="182" width="22" height="15">
+					<printWhenExpression><![CDATA[Boolean.valueOf($F{TIPO_PAGO}.intValue()==2 && !$F{DEST_DOMICILIACION}.equals("A") && !$P{exentoCuentaCobroSiniestros}.booleanValue())]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{IBAN2}.substring( 22,23 )]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement isPrintRepeatedValues="false" x="504" y="182" width="22" height="15">
+					<printWhenExpression><![CDATA[Boolean.valueOf($F{TIPO_PAGO}.intValue()==2 && !$F{DEST_DOMICILIACION}.equals("A") && !$P{exentoCuentaCobroSiniestros}.booleanValue())]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{IBAN2}.substring( 23,24 )]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement isPrintRepeatedValues="false" x="136" y="223" width="394" height="15">
+					<printWhenExpression><![CDATA[Boolean.valueOf($F{TIPO_PAGO}.intValue()==2 && !$F{DEST_DOMICILIACION}.equals("A") && !$P{exentoCuentaCobroSiniestros}.booleanValue())]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Left">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ASEGURADO}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

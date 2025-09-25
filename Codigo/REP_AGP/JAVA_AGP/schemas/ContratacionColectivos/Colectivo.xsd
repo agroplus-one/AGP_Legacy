@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<x:schema targetNamespace="http://www.agroseguro.es/Colectivo"
+	xmlns="http://www.agroseguro.es/Colectivo"
+	xmlns:x="http://www.w3.org/2001/XMLSchema"
+	xmlns:ti="http://www.agroseguro.es/ITipos">
+
+	<x:import namespace="http://www.agroseguro.es/ITipos" schemaLocation="../commons/Tipos.xsd"/>
+	
+	<x:complexType name="Colectivo">
+		<x:sequence>
+			<x:element name="Tomador" type="Tomador" maxOccurs="1" minOccurs="1" />
+			<x:element name="DireccionColectivo" type="DireccionColectivo" maxOccurs="1" minOccurs="0" /> 
+			<x:element name="RepresentanteLegal" type="RepresentanteLegal" maxOccurs="1" minOccurs="0" />
+			<x:element name="Entidad" type="Entidad" maxOccurs="1" minOccurs="1" />
+			<x:element name="Mediador" type="Mediador" maxOccurs="1" minOccurs="0" />
+			<x:element name="Banco" type="Banco" maxOccurs="1" minOccurs="0" />
+		</x:sequence>
+		<x:attributeGroup ref="ti:PlanLinea" />
+		<x:attribute name="referencia" use="optional" type="ti:Colectivo_Referencia" />
+		<x:attribute name="digitoControl" use="optional" type="ti:DigitoControl" />
+		<x:attribute name="fechaFirmaTomador" type="x:date" use="optional" />
+		<x:attribute name="fechaFirmaEntidad" type="x:date" use="required" />
+	</x:complexType>
+
+	<x:complexType name="RepresentanteLegal">
+		<x:attribute name="apellidos" use="optional" type="ApellidosReprLegal" />
+		<x:attribute name="nombre" use="optional" type="NombreReprLegal" />
+		<x:attribute name="nif" use="optional" type="ti:NIFCIF" />	
+	</x:complexType>
+
+	<x:complexType name="Banco">
+		<x:attribute name="IBAN" type="ti:IBAN" use="optional" />
+		<x:attribute name="mandato" type="ti:referenciaUnicaMandato" use="optional" />
+	</x:complexType>
+
+	<x:complexType name="Tomador">
+		<x:complexContent>
+			<x:restriction base="ti:Persona">
+				<x:sequence>
+					<x:group ref="ti:NombrePersona" maxOccurs="1" minOccurs="0" />
+					<x:element name="Direccion" type="ti:Direccion" minOccurs="0" maxOccurs="1" />
+					<x:element name="DatosContacto" type="ti:DatosContacto" minOccurs="0" maxOccurs="1" />					
+				</x:sequence>
+				<x:attribute name="nif" type="ti:NIFCIF" use="required" />
+			</x:restriction>
+		</x:complexContent>
+	</x:complexType>
+
+	<x:complexType name="DireccionColectivo">
+		<x:sequence>
+			<x:group ref="ti:NombrePersona" minOccurs="0" maxOccurs="1"  />
+			<x:element name="Direccion" type="ti:Direccion" minOccurs="0" maxOccurs="1" />
+			<x:element name="DatosContacto" type="ti:DatosContacto" minOccurs="0" maxOccurs="1" />					
+		</x:sequence>
+	</x:complexType>
+
+	<x:complexType name="Entidad">
+		<x:attribute name="codigo" type="ti:Entidad_Codigo" use="required" />
+	</x:complexType>
+
+	<x:complexType name="Mediador">
+		<x:sequence>
+			<x:group ref="ti:NombrePersona" maxOccurs="1" minOccurs="0" />
+		</x:sequence>
+		<x:attribute name="tipo" type="ti:Mediador_Tipo" use="optional" />
+		<x:attribute name="codigoInternoEntidad" type="ti:CodigoInternoEntidad" use="optional" />
+	</x:complexType>
+	
+	<x:simpleType name="ApellidosReprLegal">
+		<x:restriction base="x:string">
+			<x:maxLength value="30" />
+		</x:restriction>
+	</x:simpleType>
+		
+	<x:simpleType name="NombreReprLegal">
+		<x:restriction base="x:string">
+			<x:maxLength value="15" />
+		</x:restriction>
+	</x:simpleType>	
+
+	<x:element name="Colectivo" type="Colectivo" />
+
+</x:schema>

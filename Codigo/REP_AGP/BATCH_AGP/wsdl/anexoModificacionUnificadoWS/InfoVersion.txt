@@ -1,0 +1,156 @@
+CONTRATACIONSCMODIFICACION
+--------------------------
+
+
+archivo				                				namespace		                     			version
+
+- ContratacionSeguroAgrario.xsd                     SeguroAgrario/Contratacion        	       		11.0
+- ContratacionSeguroAgrarioComplementario.xsd       SeguroAgrario/Contratacion/Complementario        3.0
+- DatosVariables.xsd                                SeguroAgrario/Contratacion/DatosVariables   	10.0
+- CostesFijos_OP									SeguroAgrario/Contratacion/OP/CostesFijos    	 2.0
+- RelacionSocios_OP									SeguroAgrario/Contratacion/OP/RelacionSocios 	 2.0
+- Tipos.xsd             		                    Tipos			            	                26.0
+- Contratacion.xsd                 					Contratacion        	      					 3.1
+- CostePoliza.xsd									Contratacion/CostePoliza						 1.0
+- DatosVariablesUnificado.xsd                   	Contratacion/DatosVariables    					 1.0
+- DeclaracionSubvenciones.xsd						Contratacion/DeclaracionSubvenciones			 1.0
+- Explotacion.xsd									Contratacion/Explotacion						 1.0
+- Parcela.xsd										Contratacion/Parcela							 1.0
+- xmime.xsd											http://www.w3.org/2005/05/xmlmime
+- policy.xml
+- CuponModificacion.xsd
+- EstadoContratacion.xsd
+- AcuseRecibo.xsd
+
+
+DESCRIPCION DE LOS FICHEROS
+---------------------------
+	
+- ContratacionSCModificacion.wsdl
+Descriptor del servicio Web que permite realizar la modificación de la contratación del 
+Seguro Creciente, sin especificación de seguridad.
+Pensado para manejar la seguridad delegando en los módulos de seguridad
+de los lenguajes de programación a través de políticas de aserciones.
+
+- policy.xml
+Política de seguridad según especificación WS-SecurityPolicy con UsernameToken
+de Oasis.
+
+- ContratacionSCModificacion_con_cabeceras_seguridad.wsdl
+Descriptor del servicio Web que permite realizar la modificación de la contratación del 
+Seguro Creciente, con cabecera de seguridad WS-Security, para
+manejar la seguridad a través de los bindings de XML generados en cada lenguaje
+de programación.
+
+- Contratacion.xsd
+Esquema entrante de validación de la Póliza unificada del Seguro Creciente
+donde se definen los registros de esa Póliza.
+
+- CostePoliza.xsd
+Esquema de distribucion de coste de la póliza unificada
+
+- DatosVariablesUnificado.xsd                   
+Esquema de datos variables de la póliza unificada
+
+- DeclaracionSubvenciones.xsd
+Esquema de subvenciones de la póliza unificada
+
+- Explotacion.xsd
+Esquema de explotación de la póliza unificada
+
+- Parcela.xsd
+Esquema de parcela de la póliza unificada
+
+- CostesFijos_OP.xsd
+Anexo con la declaración de gastos fijos de la explotación agrícola en el seguro
+de Costes Fijos de OP (Organización de Productores)
+
+- RelacionSocios_OP
+Anexo con la lista de socios que suscriben el seguro de OP (Organización de Productores)
+
+- CuponModificacion.xsd
+Identificador único que sirve como resguardo del trámite de modificación iniciado.
+
+- EstadoContratacion.xsd
+Resumen de cómo se encuentra en el momento de realizar la petición la contratación y la última
+petición de modificación que se hizo por cupón sobre la misma.
+
+- AcuseRecibo.xsd
+Esquema saliente obtenido como respuesta a cualquier llamada y donde
+se indica el estado en el que queda el proceso.
+
+- Tipos.xsd
+Esquema que contiene el diccionario de tipos común de Agroseguro.
+
+- xmime.xsd
+Esquema de validación de tipos XMLMIME de W3C
+
+
+
+VERSIONES
+---------
+
+1.1.0 : 01-06-2015.
+-------------------------------------------------------------------------------------------
+- ContratacionSCModificacion.wsdl y ContratacionSCModificacion_con_cabeceras_seguridad.wsdl:
+modificación de la URL (endpoint) del servicio. Tener en cuenta que por un tiempo existirán
+dos versiones (V1R0M* y V1R1M*) del servicio sirviendo simultáneamente en puntos de entrada distintos.
+
+- Añadidos datos fecha de emisión del recibo y de entrada en vigor de la póliza
+- Se eliminan los XSD de la póliza agrícola de nueva formulación
+- Se incluyen los XSD de la póliza unificada de agrícola-ganado
+
+
+
+1.0.4 : 29-12-2014.
+-------------------------------------------------------------------------------------------
+
+-ContratacionSeguroAgrario.xsd
+Cambia etiqueta Poliza: Desaparece CCC, Aparece nueva etiqueta DistribucionCoste1
+Cambia etiqueta Entidad: Nueva etiqueta Gastos
+Cambia etiqueta Pago: Nuevas etiquetas Cuenta y Fraccionamiento
+Cambia Etiqueta Parcela: Desaparece etiqueta IdentificacionCatastral 
+Nuevos tipos: Gastos, DistribucionCoste1, Cuenta, Fraccionamiento, Aval
+Cambia version documento incluido CostesFijos_OP a 2.0
+Cambia version documento incluido Tipos a 18.0 
+
+- ContratacionSeguroAgrarioComplementario.xsd
+Impacto por nueva formulación y fraccionamiento
+
+- CostesFijos_OP.xsd
+Ampliación del nº de campos producción de tres a cinco.
+
+- Tipos.xsd
+Nuevos tipos para formulación SAC y fraccionamiento SAECA
+
+
+
+1.0.3 : 23-01-2013.
+-------------------------------------------------------------------------------------------
+
+- ContratacionSCModificacion.wsdl:
+  Opcionalidad en el envío tanto de la póliza principal como el complementario.
+
+- ContratacionSCModificacion_con_cabeceras_seguridad.wsdl:
+  Opcionalidad en el envío tanto de la póliza principal como el complementario.
+  Corregido error en definición de seguridad. 
+
+1.0.2 : 10-01-2013.
+-------------------------------------------------------------------------------------------
+
+- Tipos.xsd: por error se empaquetó una versión obsoleta del fichero. Se actualliza el fichero.
+
+
+1.0.1 : 09-01-2013.
+-------------------------------------------------------------------------------------------
+
+- CuponModificacion.xsd: se elimina la restricción minOccurs y  maxOccurs del elemento CuponModificación
+  por problemas de compatibilidad detectados en la creación del cliente con .NET
+
+
+
+
+1.0.0 : 08-01-2013.
+-------------------------------------------------------------------------------------------
+
+Versión inicial.

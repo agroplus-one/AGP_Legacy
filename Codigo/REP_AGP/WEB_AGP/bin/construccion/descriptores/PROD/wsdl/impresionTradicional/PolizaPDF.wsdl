@@ -1,0 +1,187 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="PolizaPDF" targetNamespace="http://www.agroseguro.es/serviciosweb/PolizaPDF/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:agr="http://www.agroseguro.es/serviciosweb/PolizaPDF/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:ti="http://www.agroseguro.es/serviciosweb/Tipos/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd" xmlns:xmime="http://www.w3.org/2005/05/xmlmime">
+  <wsdl:types>
+    <xsd:schema elementFormDefault="qualified" targetNamespace="http://www.agroseguro.es/serviciosweb/PolizaPDF/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+      <xsd:import namespace="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd" schemaLocation="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd"/>
+      <xsd:import namespace="http://www.agroseguro.es/serviciosweb/Tipos/" schemaLocation="Tipos.xsd"/>
+	  <xsd:import namespace="http://www.w3.org/2005/05/xmlmime" schemaLocation="http://www.w3.org/2005/05/xmlmime"/>      
+      <xsd:element name="obtenerPolizaOriginalPDFRequest">
+        <xsd:complexType>
+        	<xsd:sequence>
+        		<xsd:element name="tiporeferencia" type="agr:RefComple"/>	            
+	            <xsd:element name="codplan" type="ti:Plan"/>
+	            <xsd:element name="referencia" type="ti:Poliza_Referencia"/>
+        	</xsd:sequence>
+        </xsd:complexType>        
+      </xsd:element>
+      <xsd:element name="obtenerPolizaActualPDFRequest">
+        <xsd:complexType>
+        	<xsd:sequence>
+        		<xsd:element name="tiporeferencia" type="agr:RefComple"/>
+	            <xsd:element name="codplan" type="ti:Plan"/>
+	            <xsd:element name="referencia" type="ti:Poliza_Referencia"/>	            
+	            <xsd:element name="recibo" nillable="true" type="ti:Recibo"/>
+        	</xsd:sequence>
+        </xsd:complexType>        
+      </xsd:element>
+      <xsd:element name="obtenerPolizaOriginalPDFResponse">
+        <xsd:complexType>
+        	<xsd:sequence>
+        		<xsd:element name="documento" xmime:expectedContentTypes="application/pdf" type="xmime:base64Binary"/>	            
+        	</xsd:sequence>
+        </xsd:complexType>        
+      </xsd:element>
+      <xsd:element name="obtenerPolizaActualPDFResponse">
+        <xsd:complexType>
+        	<xsd:sequence>
+        		<xsd:element name="documento" xmime:expectedContentTypes="application/pdf" type="xmime:base64Binary"/>
+        	</xsd:sequence>
+        </xsd:complexType>        
+      </xsd:element>      
+	  <xsd:simpleType name="RefComple" xmlns:agr="http://www.agroseguro.es/serviciosweb/PolizaPDF/">
+		<xsd:annotation>
+			<xsd:documentation>
+				Es referencia de poliza (P) o de complementario (C).
+			</xsd:documentation>
+		</xsd:annotation>      
+		<xsd:restriction base="xsd:token">
+			<xsd:length value="1"/>
+			<xsd:enumeration value="P"/>
+			<xsd:enumeration value="C"/>
+		</xsd:restriction>
+	  </xsd:simpleType>             	        
+      <xsd:element name="agrFallo" xmlns:agr="http://www.agroseguro.es/serviciosweb/PolizaPDF/">
+        <xsd:complexType>
+          <xsd:sequence>
+			  <xsd:annotation>Lista de mensajes de error de AGROSEGURO</xsd:annotation>
+	          <xsd:element maxOccurs="unbounded" minOccurs="0" name="mensaje" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>        
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="Header">
+	<wsdl:part name="Security" element="wsse:Security"/>
+  </wsdl:message>  
+  <wsdl:message name="AgrException">
+    <wsdl:part name="parameters" element="agr:agrFallo">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="obtenerPolizaOriginalPDFResponse">
+    <wsdl:part name="parameters" element="agr:obtenerPolizaOriginalPDFResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="obtenerPolizaActualPDFResponse">
+    <wsdl:part name="parameters" element="agr:obtenerPolizaActualPDFResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="obtenerPolizaOriginalPDFRequest">
+    <wsdl:part name="parameters" element="agr:obtenerPolizaOriginalPDFRequest">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="obtenerPolizaActualPDFRequest">
+    <wsdl:part name="parameters" element="agr:obtenerPolizaActualPDFRequest">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="PolizaPDF">
+    <wsdl:operation name="obtenerPolizaOriginalPDF">
+<wsdl:documentation>
+		Método de impresión Original de la Póliza: Se generará un pdf con el contenido impreso de la póliza tal y como llego a Agroseguro. 
+		
+		En la petición se deberá facilitar:
+				
+			- Tipo de Referencia: Un carácter con los valores P/Principal o C/Complementario. 
+			- Plan. 
+			- Referencia de Póliza/Complementario.
+		
+		En el caso de producirse errores no se devolverá ningún archivo. Algunos de los errores que pueden producirse son:
+		 
+			- La Póliza no existe. 
+			- La Póliza no pertenece a la Entidad. 
+			- El Recibo no existe para la Póliza pedida. 
+			- No existe recibo para la Situación Actual de la Póliza. 
+			- Tipo de Referencia incorrecta. 		 
+	  </wsdl:documentation>
+      <wsdl:input message="agr:obtenerPolizaOriginalPDFRequest">
+    </wsdl:input>
+      <wsdl:output message="agr:obtenerPolizaOriginalPDFResponse">
+    </wsdl:output>
+      <wsdl:fault name="AgrException" message="agr:AgrException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="obtenerPolizaActualPDF">
+<wsdl:documentation>
+		Método Impresión Situación Actual de la Póliza o Situación a Número de Recibo de la Póliza: Se generará un pdf con el contenido
+		impreso de la póliza tal y como se encuentra en la actualidad para su último recibo o bien para el recibo pedido (Copy). 
+		
+		En la petición se deberá facilitar:
+		
+	 		- Tipo de Referencia: Un carácter con los valores P/Principal o C/Complementario. 
+			- Plan.
+			- Referencia de Póliza/Complementario. 
+			- Número de Recibo. Si se rellena se generará el PDF con la situación al número de recibo de póliza indicado,
+ 			  en caso contrario se generará el PDF con la situación actual a fecha de su último recibo.
+			
+		En el caso de producirse errores no se devolverá ningún archivo. Alguno de los errores que pueden producirse son:
+		 
+			- La Póliza no existe. 
+			- La Póliza no pertenece a la Entidad. 
+			- El Recibo no existe para la Póliza pedida. 
+			- No existe recibo para la Situación Actual de la Póliza. 
+			- Tipo de Referencia incorrecta.			
+	  </wsdl:documentation>
+      <wsdl:input message="agr:obtenerPolizaActualPDFRequest">
+    </wsdl:input>
+      <wsdl:output message="agr:obtenerPolizaActualPDFResponse">
+    </wsdl:output>
+      <wsdl:fault name="AgrException" message="agr:AgrException">
+    </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="PolizaPDFSOAP" type="agr:PolizaPDF">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="obtenerPolizaOriginalPDF">
+      <soap:operation soapAction="http://www.agroseguro.es/serviciosweb/PolizaPDF/obtenerPolizaOriginalPDF"/>
+      <wsdl:input>
+      	<soap:header use="literal" message="agr:Header" part="Security" wsdl:required="true"/>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="AgrException">
+        <soap:fault name="AgrException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="obtenerPolizaActualPDF">
+      <soap:operation soapAction="http://www.agroseguro.es/serviciosweb/PolizaPDF/obtenerPolizaActualPDF"/>
+      <wsdl:input>
+      	<soap:header use="literal" message="agr:Header" part="Security" wsdl:required="true"/>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="AgrException">
+        <soap:fault name="AgrException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="PolizaPDF">
+<wsdl:documentation>
+	Mediante proceso se podrá solicitar la impresión de una Póliza en su situación original o actual.
+	
+	La información devuelta será un archivo PDF como un Attachments (Adjunto) en formato MIME Multipart, técnica similar a la utilizada en el correo electrónico 
+	y en las subidas (UPLOAD) de los ficheros por http (ver -Norma de Envío por Http-).	
+	</wsdl:documentation>
+    <wsdl:port name="PolizaPDFSOAP" binding="agr:PolizaPDFSOAP">
+<wsdl:documentation>
+		La primera dirección es el entorno de pruebas y no tiene una resolución asignada en Internet por lo que se deberá
+		incluir en la máquina local o en el servidor de nombres local con la siguiente dirección: 195.235.42.5 agrinfo.agroseguro.com.
+		La segunda dirección es el entorno real de ejecución.  
+	  </wsdl:documentation>
+      <soap:address location="https://agrinfo.agroseguro.com/polizaPDF/V0R2/services/PolizaPDF"/>
+      <soap:address location="https://www.agroseguro.es/polizaPDF/V0R2/services/PolizaPDF"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

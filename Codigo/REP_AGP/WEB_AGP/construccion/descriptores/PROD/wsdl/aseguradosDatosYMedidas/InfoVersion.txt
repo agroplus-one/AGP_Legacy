@@ -1,0 +1,205 @@
+INFORMACION DE USO RESTRINGIDO
+----------------------------------------------------------------------------------------------------------------------------
+El contenido de este documento es propiedad de AGROSEGURO, no pudiendo ser reproducido, ni comunicado total o parcialmente, 
+a personas sin la autorización expresa del propietario.
+
+
+CONTRATACIONSCASEGURADO
+-----------------------
+
+
+archivo				                	namespace		                     			version
+--------------------------------		----------------------------------------		---------
+- AseguradoDatosYMedidas.xsd			SeguroAgrario/AseguradoDatosYMedidas	   
+- ContratacionSeguroAgrario.xsd			SeguroAgrario/Contratacion						11.0
+- CostesFijos_OP.xsd					SeguroAgrario/Contratacion/OP/CostesFijos		2.0
+- RelacionSocios_OP.xsd					SeguroAgrario/Contratacion/OP/RelacionSocios	2.0
+- Condicionado.xsd						SeguroCreciente/Condicionado					23.0
+- Condicionado_Registros.xsd			SeguroCreciente/Condicionado
+- Condicionado_Tipos					SeguroCreciente/Condicionado/Tipos				21.0
+- Tipos.xsd        		                Tipos		                           	   		26.0
+- xmime.xsd								http://www.w3.org/2005/05/xmlmime
+- policy.xml
+- AseguradoInfoSaldoENESA.xsd			SeguroAgrario/AseguradoInfoSaldoENESA	   
+
+
+DESCRIPCION DE LOS FICHEROS
+---------------------------
+	
+- ContratacionSCAsegurado.wsdl
+Descriptor del servicio Web que permite obtener los datos personales de un asegurado,
+si tiene algún problema con las subvenciones y todas aquellos datos y medidas que
+dicho asegurado tiene asignadas a la hora de contratar un producto de seguro
+creciente agrícola o ganado.
+Sin especificación de seguridad. Pensado para manejar la seguridad delegando en
+los módulos de seguridad de los lenguajes de programación a través de políticas de aserciones.
+
+- policy.xml
+Política de seguridad según especificación WS-SecurityPolicy con UsernameToken
+de Oasis.
+
+- ContratacionSCAsegurado_con_cabeceras_seguridad.wsdl
+Idem ContratacionSCAsegurado.wsdl pero con cabecera de seguridad WS-Security, para
+manejar la seguridad a través de los bindings de XML generados en cada lenguaje
+de programación.
+
+- AseguradoDatosYMedidas.xsd
+Esquema saliente que define la estructura del XML con los datos que Agroseguro tiene
+de un asegurado en relación con la contratación.
+
+- ContratacionSeguroAgrario.xsd
+Esquema entrante de validación de la Póliza del Seguro Creciente
+donde se definen los registros de esa Póliza.
+
+- DatosVariables.xsd
+Esquema que contiene definiciones de datos variables de la Póliza
+del Seguro Creciente.
+
+- CostesFijos_OP.xsd
+Anexo con la declaración de gastos fijos de la explotación agrícola en el seguro
+de Costes Fijos de OP (Organización de Productores)
+
+- RelacionSocios_OP
+Anexo con la lista de socios que suscriben el seguro de OP (Organización de Productores)
+
+- Condicionado.xsd	
+Esquema de validación de los diseños del Condicionado que se envían a las Compañias
+
+- Tipos.xsd
+Esquema que contiene el diccionario de tipos común de Agroseguro.
+
+- xmime.xsd
+Esquema de validación de tipos XMLMIME de W3C
+
+- AseguradoInfoSaldoENESA.xsd
+Esquema saliente que define la estructura del XML con la información del saldo de la 
+reducción de la subvención que ENESA aplica a la contratación de un asegurado en un plan.
+
+
+VERSIONES
+---------
+1.0.16 : 11-07-2017.
+-------------------------------------------------------------------------------------------
+- Infoversion.txt: inclusión párrafo legal por ISO27001.
+
+1.0.15 : 03/05/2017
+- AseguradoDatosYMedidas.xsd: Se cambia el tipo de dato a string para el atributo "observacion" de AplicacionMedida evitando restricciones de tamaño
+
+1.0.14 : 06/04/2017
+-------------------------------------------------------------------------------------------
+- AseguradoDatosYMedidas.xsd: Nueva sección deontro de la etiqueta MedidasClub para adaptarse a las modificaciones en el seguro de pastos
+
+1.0.13 : 17/08/2016
+-------------------------------------------------------------------------------------------
+- AseguradoDatosYMedidas.xsd: Nuevos atributos opcionales CarcateristicaExplotacion y RevisionRendimientos en Olivar y Almendro 
+en la sección AutorizacionContratacion
+
+1.0.12 : 04/12/2015
+-------------------------------------------------------------------------------------------
+- AseguradoDatosYMedidas.xsd: corregido prefijo espacio de nombres de tipos de dato Entero3Posiciones y 
+MarcoPlantacion
+
+1.0.11 : 18/11/2015
+-------------------------------------------------------------------------------------------
+- AseguradoDatosYMedidas.xsd: Nuevos atributos opcionales GrupoVarietal y Tipo MarcoPlantación en la Cereza en la sección 
+AutorizacionContratacion
+
+1.0.10 : 14/10/2015
+-------------------------------------------------------------------------------------------
+-ContratacionSCAsegurado.wsdl
+Añadida nueva operación para obtener la información del saldo de ENESA del plan/nif solicitado
+- AseguradoInfoSaldoENESA.xsd
+Nuevo esquema para contener la información de respuesta de la nueva operación del servicio
+
+1.0.9 : 30/07/2015
+-------------------------------------------------------------------------------------------
+- AseguradoDatosYMedidas.xsd
+Modificada la etiqueta MedidasClub añadiendo el "grupoMedida"
+Nueva etiqueta ProximoControlAccesoSubvenciones semejante a la etiqueta ControlAccesoSubvenciones pero incluyendo
+nuevos atributos de "fechaEfecto" para indicar la subvencionabilidad futura del asegurado en el caso de existir 
+nuevas versiones de subvencionabilidad que aun no están activas
+-ContratacionSCAsegurado.wsdl
+Añadidos nuevos parámetros opcionales: "fechaEstudio" para poder realizar peticiones al servicio por fecha concreta
+"mostrarProximasSubvenciones" para mostrar la nueva etiqueta ProximoControlAccesoSubvenciones con los datos de la
+futura subvencionabilidad del asegurado
+
+1.0.8 : 13/02/2015
+-------------------------------------------------------------------------------------------
+- AseguradoDatosYMedidas.xsd
+Modificada la etiqueta MedidasClub adaptándola al Nuevo Seguro de Ganado. Devuelve de cero a n medidas y se
+añaden 3 nuevos atributos opcionales (grupoNegocio, especie y especieDeducible)
+
+- Tipos.xsd
+Incluye entre otros, los nuevos tipos GrupoNegocio y Especie
+
+1.0.7 : 01/10/2014
+-------------------------------------------------------------------------------------------
+- AseguradoDatosYMedidas.xsd
+Cambio de tipo de subvencion de la etiqueta ControlAccesoSubvenciones para que admita ceros para RyD
+Devolución de todos los organismos que controlen subvenciones para saber qué organismos controlar ante la ausencia
+de datos del asegurado en el registro del organismo.
+
+1.0.6 : 01/10/2014
+-------------------------------------------------------------------------------------------
+- AseguradoDatosYMedidas.xsd
+Desaparición de la etiqueta CIAS
+Nueva etiqueta ControlAccesoSubvenciones que incluye los controles que existan a nivel de Organismo
+actualmente contempla el CIAS de ENESA y el nuevo control de la Comunidad Foral de Navarra.
+
+- Tipos.xsd
+Se admiten las provincias Ceuta y Melilla en la dirección del asegurado y persona de contacto.
+
+
+1.0.5 : 29-12-2014.
+-------------------------------------------------------------------------------------------
+- Tipos.xsd
+Se admiten las provincias Ceuta y Melilla en la dirección del asegurado y persona de contacto.
+
+
+1.0.4 : 11-04-2014
+-------------------------------------------------------------------------------------------
+AseguradoDatosYMedidas.xsd
+-Inclusión del atributo "generico" en la etiqueta PorcentajeModulacionENESA para reconocer a 
+los asegurados a los que se les ha aplicado un porcentaje de modulación genérico al no estar 
+en el fichero de modulaciones de ENESA
+
+
+1.0.3 : 30-10-2013
+-------------------------------------------------------------------------------------------
+AseguradoDatosYMedidas.xsd
+-Inclusión de la Seguridad Social y la Relación de Socios.
+-Cambios en la cardinalidad de algunas medidas
+-Modificación de la sección CIAS para distinguir el tipo de seguro (agrícola/ganado)
+de la subvención controlada.
+
+
+1.0.2 : 01-10-2013
+-------------------------------------------------------------------------------------------
+- ContratacionSCAsegurado.wsdl y ContratacionSCAsegurado_con_cabeceras_seguridad.wsdl
+Corregida errata en etiqueta "aseguradoDatosYMedidasResponse"
+Inclusión de cabeceras de seguridad en wsdl preparado para .NET
+
+
+1.0.1 : 06-09-2013
+-------------------------------------------------------------------------------------------
+- AseguradoDatosYMedidas.xsd
+Reempaquetado del fichero. Por error no se incluyó el cambio en la cardinalidad del 
+elemento Asegurado.
+- Empaquetados los esquemas de dependencia indirecta ContratacionSeguroAgrario.xsd, 
+DatosVariables.xsd, CostesFijos_OP.xsd y RelacionSocios_OP
+- Se continua la numeración de versión-release-modificación desde 1.0.0 a 1.0.1: Por error se 
+incrementó el número de release sin existir cambios en el wsdl ni en el endpoint del servicio
+
+
+1.1.0 : 04-09-2013
+-------------------------------------------------------------------------------------------
+AseguradoDatosYMedidas.xsd
+- Cambios en la cardinalidad del elemento "Asegurado": no se devuelven datos de carácter personal
+  cuando el asegurado no pertenece a la Enntidad que realiza la petición
+- Cambios en estructura elemento CIAS
+
+
+1.0.0 : 16-07-2013
+-------------------------------------------------------------------------------------------
+
+Versión inicial.

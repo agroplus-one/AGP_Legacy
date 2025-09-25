@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<x:schema 
+	targetNamespace="http://www.agroseguro.es/ModulosYCoberturasCombinaciones"
+	xmlns="http://www.agroseguro.es/ModulosYCoberturasCombinaciones"
+	xmlns:pks="http://www.agroseguro.es/ModulosYCoberturasCombinaciones"
+	xmlns:x="http://www.w3.org/2001/XMLSchema"
+	xmlns:ti="http://www.agroseguro.es/Tipos"
+	xmlns:cb="http://www.agroseguro.es/ModulosYCoberturas"	
+	>
+	
+	<x:import
+		namespace="http://www.agroseguro.es/Tipos"
+		schemaLocation="Tipos.xsd" />
+		
+		<x:import
+		namespace="http://www.agroseguro.es/ModulosYCoberturas"
+		schemaLocation="ModulosYCoberturas.xsd" />	
+		
+	<x:element name="ModulosYCoberturasCombinaciones">
+		<x:complexType>
+			<x:sequence>
+				<x:element name="Modulo" type="Modulo" minOccurs="1" maxOccurs="unbounded" />
+				<x:element name="Parcelas" type="cb:Parcelas" minOccurs="0" maxOccurs="1" />
+			</x:sequence>
+			<x:attributeGroup ref="ti:PeticionSW" />
+		</x:complexType>
+	</x:element>
+	
+		<x:complexType name="Modulo">
+		<x:sequence>
+        	<x:element name="Combinacion" type="Combinacion" minOccurs="1" maxOccurs="unbounded" />
+        </x:sequence>
+		<x:attribute name="modulo" type="ti:Cobertura_Modulo" use="required" />
+	</x:complexType>
+	
+	<x:complexType name="Combinacion">
+		<x:sequence>
+        	<x:element name="Cobertura" type="cb:Cobertura" minOccurs="1" maxOccurs="unbounded" />
+			<x:element name="Parcelas" type="cb:Parcelas" minOccurs="0" maxOccurs="1" />
+        </x:sequence>
+		<x:attribute name="valor" type="x:string" use="required" />
+	</x:complexType>
+</x:schema>

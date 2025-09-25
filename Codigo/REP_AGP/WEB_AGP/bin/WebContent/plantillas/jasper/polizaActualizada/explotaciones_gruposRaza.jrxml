@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="explotaciones" pageWidth="514" pageHeight="802" columnWidth="514" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0">
+	<import value="com.rsi.agp.core.util.NumberUtils"/>
+	<parameter name="linea" class="com.rsi.agp.dao.tables.poliza.Linea"/>
+	<parameter name="idCupon" class="java.lang.String"/>
+	<parameter name="SUB_DATA_SOURCE" class="java.util.List"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String"/>
+	<parameter name="imprimirAnexoWsPPl" class="java.lang.Boolean"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="grupoRaza" class="java.lang.String">
+		<fieldDescription><![CDATA[grupoRaza]]></fieldDescription>
+	</field>
+	<field name="beanTipoCapital" class="java.util.List">
+		<fieldDescription><![CDATA[beanTipoCapital]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<detail>
+		<band height="41" splitType="Stretch">
+			<staticText>
+				<reportElement x="10" y="0" width="76" height="10"/>
+				<box>
+					<pen lineWidth="0.0"/>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Grupo de raza:]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="87" y="0" width="261" height="10"/>
+				<box>
+					<pen lineWidth="0.0"/>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font size="6"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{grupoRaza}]]></textFieldExpression>
+			</textField>
+			<subreport>
+				<reportElement positionType="Float" mode="Transparent" x="0" y="10" width="510" height="31" isRemoveLineWhenBlank="true" isPrintWhenDetailOverflows="true" backcolor="#FFFFFF"/>
+				<subreportParameter name="SUBREPORT_DIR">
+					<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
+				</subreportParameter>
+				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{beanTipoCapital})]]></dataSourceExpression>
+				<subreportExpression class="java.lang.String"><![CDATA[$P{SUBREPORT_DIR} + "explotaciones_gruposRaza_tiposCapital.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+</jasperReport>

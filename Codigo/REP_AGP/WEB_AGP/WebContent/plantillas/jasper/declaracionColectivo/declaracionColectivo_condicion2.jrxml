@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="declaracionSeguro_condicion2" pageWidth="541" pageHeight="700" columnWidth="541" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" isIgnorePagination="true">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<variable name="SHOW_FOOT" class="java.lang.String">
+		<variableExpression><![CDATA[new String("VACIO")]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="92" splitType="Stretch">
+			<staticText>
+				<reportElement key="staticText-59" x="1" y="17" width="541" height="74"/>
+				<box>
+					<topPen lineWidth="0.25" lineStyle="Solid"/>
+					<leftPen lineWidth="0.25" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.25" lineStyle="Solid"/>
+					<rightPen lineWidth="0.25" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Justified" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="8" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-103" x="1" y="2" width="541" height="15" isPrintWhenDetailOverflows="true"/>
+				<textElement verticalAlignment="Bottom">
+					<font fontName="SansSerif" size="11" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[II.- Declaraciones del Tomador]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="11" y="17" width="520" height="74"/>
+				<textElement textAlignment="Justified" verticalAlignment="Middle" markup="html">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[        El tomador declara cumplir todos y cada uno de los requisitos establecidos en el apartado tres, letra b), del Artículo 12 del Reglamento para
+     aplicación de la Ley 87/1978 de Seguros Agrarios Combinados (B.O.E. de 12 de Enero de 1979), aprobado por Real Decreto 2329/1979 de 14
+     de Septiembre. (B.O.E. de 9 de Octubre de 1979).<br>
+     Que conoce y acepta expresamente las Condiciones Generales y Especiales reguladores de este Seguro, de las cuales recibe en este mismo
+     acto un ejemplar impreso.<br>
+     Asimismo declara, bajo pena de nulidad del presente contrato, no adeudar a AGROSEGURO cantidad alguna, en concepto de primas de años
+     anteriores de los Seguros Agrarios Combinados.]]></text>
+			</staticText>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.16.0.final using JasperReports Library version 3.6.1  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="declaracionComparativa_distSeguro2023" columnCount="4" printOrder="Horizontal" pageWidth="400" pageHeight="820" whenNoDataType="AllSectionsNoDetail" columnWidth="80" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" isFloatColumnFooter="true" isIgnorePagination="true">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="DataAdapter.xml"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<subDataset name="dataset1"/>
+	<parameter name="ID" class="java.lang.Integer"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA[""]]></defaultValueExpression>
+	</parameter>
+	<parameter name="grupoNegPrimero" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[select c.PRIMACOMERCIAL,
+       					c.PRIMACOMERCIALNETA,
+       					c.RECARGOCONSORCIO,
+				        c.RECIBOPRIMA,
+				        c.COSTETOMADOR,
+				        nvl(c.RECARGOAVAL,0) as RECARGOAVAL,
+				        nvl(c.RECARGOFRACCIONAMIENTO,0) as RECARGOFRACCIONAMIENTO,
+				        c.TOTALCOSTETOMADOR,
+				        c.ID as "IDCOSTE",
+					    c.IMPORTE_PAGO_FRACC,
+					    c.IMPORTE_PAGO_FRACC_AGR,
+					    c.codmodulo,
+					    g.descripcion
+  				from tb_distribucion_costes_2015 c 
+          inner join tb_sc_c_grupos_negocio g ON c.grupo_negocio = g.grupo_negocio
+ 				where c.idpoliza = $P{ID} 
+				and c.grupo_negocio = $P{grupoNegPrimero} 
+				order by c.codmodulo, c.grupo_negocio]]>
+	</queryString>
+	<field name="PRIMACOMERCIAL" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="PRIMACOMERCIAL"/>
+		<property name="com.jaspersoft.studio.field.label" value="PRIMACOMERCIAL"/>
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PRIMACOMERCIALNETA" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="PRIMACOMERCIALNETA"/>
+		<property name="com.jaspersoft.studio.field.label" value="PRIMACOMERCIALNETA"/>
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="RECARGOCONSORCIO" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="RECARGOCONSORCIO"/>
+		<property name="com.jaspersoft.studio.field.label" value="RECARGOCONSORCIO"/>
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="RECIBOPRIMA" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="RECIBOPRIMA"/>
+		<property name="com.jaspersoft.studio.field.label" value="RECIBOPRIMA"/>
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="COSTETOMADOR" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="COSTETOMADOR"/>
+		<property name="com.jaspersoft.studio.field.label" value="COSTETOMADOR"/>
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="RECARGOAVAL" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="RECARGOAVAL"/>
+		<property name="com.jaspersoft.studio.field.label" value="RECARGOAVAL"/>
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="RECARGOFRACCIONAMIENTO" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="RECARGOFRACCIONAMIENTO"/>
+		<property name="com.jaspersoft.studio.field.label" value="RECARGOFRACCIONAMIENTO"/>
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="TOTALCOSTETOMADOR" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="TOTALCOSTETOMADOR"/>
+		<property name="com.jaspersoft.studio.field.label" value="TOTALCOSTETOMADOR"/>
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="IDCOSTE" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="IDCOSTE"/>
+		<property name="com.jaspersoft.studio.field.label" value="IDCOSTE"/>
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="IMPORTE_PAGO_FRACC" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="IMPORTE_PAGO_FRACC"/>
+		<property name="com.jaspersoft.studio.field.label" value="IMPORTE_PAGO_FRACC"/>
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="IMPORTE_PAGO_FRACC_AGR" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="IMPORTE_PAGO_FRACC_AGR"/>
+		<property name="com.jaspersoft.studio.field.label" value="IMPORTE_PAGO_FRACC_AGR"/>
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="DESCRIPCION" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="DESCRIPCION"/>
+		<property name="com.jaspersoft.studio.field.label" value="DESCRIPCION"/>
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CODMODULO" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="CODMODULO"/>
+		<property name="com.jaspersoft.studio.field.name" value="CODMODULO"/>
+	</field>
+	<variable name="ROW_SUM_TCT" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{TOTALCOSTETOMADOR}]]></variableExpression>
+		<initialValueExpression><![CDATA[]]></initialValueExpression>
+	</variable>
+	<variable name="ROW_SUM_RAVAL" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{RECARGOAVAL}]]></variableExpression>
+		<initialValueExpression><![CDATA[]]></initialValueExpression>
+	</variable>
+	<variable name="ROW_SUM_RFRACC" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{RECARGOFRACCIONAMIENTO}]]></variableExpression>
+		<initialValueExpression><![CDATA[]]></initialValueExpression>
+	</variable>
+	<variable name="TCT_PAGAR" class="java.math.BigDecimal">
+		<variableExpression><![CDATA[$V{ROW_SUM_TCT}.add($V{ROW_SUM_RAVAL}).add($V{ROW_SUM_RFRACC})]]></variableExpression>
+	</variable>
+	<variable name="DESCRIPCION" class="java.lang.String">
+		<variableExpression><![CDATA[$F{DESCRIPCION}]]></variableExpression>
+	</variable>
+	<variable name="PRIMACOMERCIAL" class="java.lang.String">
+		<variableExpression><![CDATA[new DecimalFormat("#,##0.00").format($F{PRIMACOMERCIAL})]]></variableExpression>
+	</variable>
+	<variable name="PRIMACOMERCIALNETA" class="java.lang.String">
+		<variableExpression><![CDATA[new DecimalFormat("#,##0.00").format($F{PRIMACOMERCIALNETA})]]></variableExpression>
+	</variable>
+	<variable name="RECARGOCONSORCIO" class="java.lang.String">
+		<variableExpression><![CDATA[new DecimalFormat("#,##0.00").format($F{RECARGOCONSORCIO})]]></variableExpression>
+	</variable>
+	<variable name="RECIBOPRIMA" class="java.lang.String">
+		<variableExpression><![CDATA[new DecimalFormat("#,##0.00").format($F{RECIBOPRIMA})]]></variableExpression>
+	</variable>
+	<variable name="COSTETOMADOR" class="java.lang.String">
+		<variableExpression><![CDATA[new DecimalFormat("#,##0.00").format($F{COSTETOMADOR})]]></variableExpression>
+	</variable>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="45" splitType="Stretch">
+			<textField isStretchWithOverflow="true" pattern="#,##0.00¤" isBlankWhenNull="true">
+				<reportElement positionType="Float" x="0" y="15" width="100" height="15" isRemoveLineWhenBlank="true">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Right" lineSpacing="Single">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{DESCRIPCION}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="0" y="30" width="100" height="15" isRemoveLineWhenBlank="true">
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Right" lineSpacing="Single">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$V{PRIMACOMERCIAL}.toString()]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="85" y="0" width="15" height="14">
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Right" lineSpacing="Single"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{CODMODULO}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="0" width="85" height="14">
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Right" lineSpacing="Single"/>
+				<text><![CDATA[Módulo]]></text>
+			</staticText>
+		</band>
+		<band height="30" splitType="Stretch">
+			<subreport isUsingCache="false" runToBottom="false">
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="0" y="0" width="100" height="30" isRemoveLineWhenBlank="true">
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<subreportParameter name="IDCOSTE">
+					<subreportParameterExpression><![CDATA[$F{IDCOSTE}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression class="java.lang.String"><![CDATA[$P{SUBREPORT_DIR} + "declaracionComparativa_distribucionSeguro_bon2023.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="45">
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement positionType="Float" x="0" y="0" width="100" height="15" isRemoveLineWhenBlank="true"/>
+				<textElement textAlignment="Right" lineSpacing="Single">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$V{PRIMACOMERCIALNETA}.toString()]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement positionType="Float" x="0" y="15" width="100" height="15" isRemoveLineWhenBlank="true"/>
+				<textElement textAlignment="Right" lineSpacing="Single">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$V{RECARGOCONSORCIO}.toString()]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement positionType="Float" x="0" y="30" width="100" height="15" isRemoveLineWhenBlank="true" backcolor="rgba(255, 255, 255, 0.0)"/>
+				<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right" lineSpacing="Single">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$V{RECIBOPRIMA}.toString()]]></textFieldExpression>
+			</textField>
+		</band>
+		<band height="90" splitType="Stretch">
+			<subreport isUsingCache="false" runToBottom="false">
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="0" y="0" width="100" height="30" isRemoveLineWhenBlank="true" isPrintWhenDetailOverflows="true">
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<subreportParameter name="IDCOSTE">
+					<subreportParameterExpression><![CDATA[$F{IDCOSTE}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="ID">
+					<subreportParameterExpression><![CDATA[$P{ID}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression class="java.lang.String"><![CDATA[$P{SUBREPORT_DIR} + "declaracionComparativa_distribucionSeguro_subvENESA2015.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="90" splitType="Stretch">
+			<subreport isUsingCache="false" runToBottom="false">
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="0" y="0" width="100" height="30" isRemoveLineWhenBlank="true" isPrintWhenDetailOverflows="true">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<subreportParameter name="IDCOSTE">
+					<subreportParameterExpression><![CDATA[$F{IDCOSTE}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="ID">
+					<subreportParameterExpression><![CDATA[$P{ID}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression class="java.lang.String"><![CDATA[$P{SUBREPORT_DIR} + "declaracionComparativa_distribucionSeguro_subvCCAA2015.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="15" splitType="Stretch">
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement positionType="Float" x="0" y="0" width="100" height="15" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true"/>
+				<textElement textAlignment="Right" lineSpacing="Single">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$V{COSTETOMADOR}.toString()]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

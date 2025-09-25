@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="declaracionSeguro_CoberturasGarantias" pageWidth="537" pageHeight="60" whenNoDataType="AllSectionsNoDetail" columnWidth="537" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" whenResourceMissingType="Key">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="ID" class="java.lang.Integer"/>
+	<queryString>
+	<![CDATA[
+		SELECT DECODE(SM.IDTIPOMEDIADOR_RGA,
+		              1,
+		              'RGA Mediacion, Operador de Banca Seguros Vinculado, S.A.',
+		              2,
+		              'RGA Mediacion, Operador de Banca Seguros Vinculado, S.A.',
+		              NVL(TRIM(SM.NOMSUBENTIDAD),
+		                  SM.NOMBRE || ' ' || SM.Apellido1 || ' ' || SM.Apellido2)) as NOMSUBENTIDAD,
+		       SM.IDTIPOMEDIADOR_AGRO || ' - ' || m.descripcion as IDTIPOMEDIADOR_AGRO,
+		       (sm.codentidad || ' ' || sm.codsubentidad) AS CODINTERNO,
+		       NVL(SM.IMPORTECOMISION, 0) as IMPORTECOMISION,
+		       DECODE(SM.RETRIBUCION, NULL, 'NO', 'SI') AS RETRIBUCION
+		  FROM o02agpe0.TB_POLIZAS                     PO,
+		       o02agpe0.TB_COLECTIVOS                  CO,
+		       o02agpe0.TB_SUBENTIDADES_MEDIADORAS     SM,
+		       o02agpe0.TB_TIPOS_MEDIADORES_AGROSEGURO M
+		 WHERE PO.IDCOLECTIVO = CO.ID
+		   AND CO.ENTMEDIADORA = SM.CODENTIDAD
+		   AND CO.SUBENTMEDIADORA = SM.CODSUBENTIDAD
+		   AND M.ID = SM.IDTIPOMEDIADOR_AGRO
+		   AND PO.IDPOLIZA = $P{ID}
+	]]>
+	</queryString>
+	<field name="NOMSUBENTIDAD" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="IDTIPOMEDIADOR_AGRO" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="IMPORTECOMISION" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="RETRIBUCION" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CODINTERNO" class="java.lang.String"/>
+	<variable name="retrib_aseg" class="java.lang.String"/>
+	<variable name="SHOW_FOOT" class="java.lang.Boolean" resetType="None">
+		<variableExpression><![CDATA[new Boolean(true)]]></variableExpression>
+		<initialValueExpression><![CDATA[]]></initialValueExpression>
+	</variable>
+	<variable name="SHOW_BACK" class="java.lang.Boolean" resetType="None">
+		<variableExpression><![CDATA[new Boolean(true)]]></variableExpression>
+		<initialValueExpression><![CDATA[]]></initialValueExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="40" splitType="Stretch">
+			<staticText>
+				<reportElement positionType="FixRelativeToBottom" x="361" y="14" width="28" height="13"/>
+				<textElement>
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Tipo:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="FixRelativeToBottom" x="203" y="27" width="37" height="13"/>
+				<textElement>
+					<font size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[(SI/NO)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="FixRelativeToBottom" x="240" y="27" width="184" height="13"/>
+				<textElement>
+					<font size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Imp. Comis. que recibe de Entidad:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement positionType="FixRelativeToBottom" x="46" y="14" width="315" height="13"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{NOMSUBENTIDAD}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement positionType="FixRelativeToBottom" x="188" y="27" width="15" height="13"/>
+				<textElement markup="none">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[NO]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement positionType="FixRelativeToBottom" mode="Transparent" x="60" y="1" width="329" height="13"/>
+			</rectangle>
+			<rectangle>
+				<reportElement positionType="FixRelativeToBottom" mode="Transparent" x="0" y="1" width="60" height="13"/>
+			</rectangle>
+			<staticText>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="27" width="188" height="13"/>
+				<textElement>
+					<font size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Corredor recibe retrib. del Asegurado:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="FixRelativeToBottom" x="1" y="14" width="45" height="13"/>
+				<textElement>
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Mediador:]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement positionType="FixRelativeToBottom" mode="Transparent" x="389" y="1" width="145" height="13"/>
+			</rectangle>
+			<textField pattern="###0.00" isBlankWhenNull="true">
+				<reportElement positionType="FixRelativeToBottom" x="424" y="27" width="76" height="13"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{IMPORTECOMISION}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement positionType="FixRelativeToBottom" x="389" y="14" width="138" height="13"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{IDTIPOMEDIADOR_AGRO}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement positionType="FixRelativeToBottom" x="6" y="1" width="50" height="13"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ENTIDAD]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="FixRelativeToBottom" x="399" y="1" width="66" height="13"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Cod. Interno:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="70" y="1" width="251" height="13"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[C616 RURAL, S.A. SEGUROS Y REASEGUROS]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement positionType="FixRelativeToBottom" x="462" y="1" width="72" height="13"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{CODINTERNO}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

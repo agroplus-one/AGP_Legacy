@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="DatosVariablesExplotaciones" columnCount="2" pageWidth="555" pageHeight="802" columnWidth="277" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<import value="com.rsi.agp.dao.tables.poliza.explotaciones.Informes.InformeDatosVariables"/>
+	<style name="StyleTipoMod" isDefault="false" isUnderline="false" isStrikeThrough="false">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[new Boolean($P{TIPOMODIFICACION}.equals( "B" ))]]></conditionExpression>
+			<style isDefault="false" style="StyleTipoMod" forecolor="#CC0000" pattern="" isItalic="false" isUnderline="false" isStrikeThrough="true">
+				<pen lineWidth="0.25"/>
+			</style>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[new Boolean($P{TIPOMODIFICACION}.equals( "A" ))]]></conditionExpression>
+			<style isDefault="false" style="StyleTipoMod" forecolor="#0000CC"/>
+		</conditionalStyle>
+	</style>
+	<parameter name="IDEXPLOTACION" class="java.math.BigDecimal"/>
+	<parameter name="IDGRUPORAZA" class="java.math.BigDecimal"/>
+	<parameter name="TIPOMODIFICACION" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select valor, nomconcepto as nombreConcepto, descripcion
+from vw_inf_modexplotaciones_variab where idexplotacion = $P{IDEXPLOTACION} and idgruporaza = $P{IDGRUPORAZA}]]>
+	</queryString>
+	<field name="VALOR" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="NOMBRECONCEPTO" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="DESCRIPCION" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="12" splitType="Stretch">
+			<textField isStretchWithOverflow="true" pattern="" isBlankWhenNull="true">
+				<reportElement style="StyleTipoMod" stretchType="RelativeToTallestObject" x="0" y="0" width="286" height="12" backcolor="#FFFFFF"/>
+				<textElement verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{NOMBRECONCEPTO}+ ":"]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="" isBlankWhenNull="true">
+				<reportElement style="StyleTipoMod" stretchType="RelativeToTallestObject" x="301" y="0" width="254" height="12" backcolor="#FFFFFF"/>
+				<textElement verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{VALOR} + " - " + ( $F{DESCRIPCION} != null ? $F{DESCRIPCION} : "")]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

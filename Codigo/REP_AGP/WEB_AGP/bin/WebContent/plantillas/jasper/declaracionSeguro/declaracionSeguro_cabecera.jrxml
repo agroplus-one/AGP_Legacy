@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="declaracionSeguro_cabecera" pageWidth="555" pageHeight="802" whenNoDataType="AllSectionsNoDetail" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="9495acf2-96ac-4f3f-83f8-bbba45d295a0">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="ID" class="java.lang.Integer"/>
+	<parameter name="esRenovable" class="java.lang.String"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String"/>
+	<parameter name="P_BARCODE" class="java.lang.String"/>
+	<parameter name="P_BARCODE2" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT DISTINCT (LI.CODLINEA ||' - '||LI.NOMLINEA) AS LINEA,
+       LI.CODPLAN,
+       PO.REFERENCIA ||' - '||PO.DC as REFERENCIA,
+       ES.DESC_ESTADO,
+       (CO.IDCOLECTIVO ||' - '||CO.DC) AS REFCOLECTIVO
+
+FROM o02agpe0.TB_POLIZAS PO, o02agpe0.TB_LINEAS LI, o02agpe0.TB_COLECTIVOS CO, o02agpe0.TB_ESTADOS_POLIZA ES
+WHERE CO.LINEASEGUROID = LI.LINEASEGUROID
+AND CO.ID = PO.IDCOLECTIVO
+AND ES.IDESTADO = PO.IDESTADO
+AND PO.IDPOLIZA = $P{ID}]]>
+	</queryString>
+	<field name="LINEA" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CODPLAN" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="REFERENCIA" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="REFCOLECTIVO" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="DESC_ESTADO" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<variable name="SHOW_FOOT" class="java.lang.Boolean" resetType="None">
+		<variableExpression><![CDATA[new Boolean(true)]]></variableExpression>
+		<initialValueExpression><![CDATA[]]></initialValueExpression>
+	</variable>
+	<variable name="SHOW_BACK" class="java.lang.Boolean" resetType="None">
+		<variableExpression><![CDATA[new Boolean(true)]]></variableExpression>
+		<initialValueExpression><![CDATA[]]></initialValueExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="92" splitType="Stretch">
+			<staticText>
+				<reportElement x="2" y="71" width="77" height="13" uuid="dd32729f-5dad-43e2-94de-a4704689eb26"/>
+				<textElement>
+					<font fontName="SansSerif" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Ref. Colectivo:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="158" y="25" width="50" height="13" uuid="aff3eec8-6307-473b-988d-66008cace427"/>
+				<textElement>
+					<font fontName="SansSerif" size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Linea:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="264" y="71" width="71" height="13" uuid="18a2376c-cf67-453c-9cf4-e4dc80cd2388"/>
+				<textElement>
+					<font fontName="SansSerif" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Declaración:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="158" y="38" width="50" height="13" uuid="e7e67546-ef2d-4c86-8470-ea8bcb3f96e8"/>
+				<textElement>
+					<font fontName="SansSerif" size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Plan:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="79" y="71" width="104" height="13" uuid="9a46841c-d76b-4fdb-a98c-e89ce3868881"/>
+				<textElement>
+					<font fontName="SansSerif" size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{REFCOLECTIVO}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="335" y="71" width="123" height="13" uuid="425ebff7-28cd-460c-bf42-f0bd4b8469b9"/>
+				<textElement>
+					<font fontName="SansSerif" size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{REFERENCIA}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="265" y="25" width="277" height="13" uuid="da2b6ad2-c9f0-4825-85c3-babc4a5958e3"/>
+				<textElement>
+					<font fontName="SansSerif" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{LINEA}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="265" y="38" width="277" height="13" uuid="04ab516b-882e-4efd-9ae0-41a4015d3f20"/>
+				<textElement>
+					<font fontName="SansSerif" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{CODPLAN}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="158" y="0" width="300" height="13" uuid="4e6d1c1a-a070-46e0-855e-6ed6076fc954"/>
+				<textElement textAlignment="Center">
+					<font fontName="SansSerif" size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[SOLICITUD DE ADHESIÓN AL COLECTIVO]]></text>
+			</staticText>
+			<image>
+				<reportElement x="-13" y="0" width="161" height="64" uuid="e577a49d-cc5b-4631-aac4-7b9e7275ceea"/>
+				<imageExpression><![CDATA[$P{SUBREPORT_DIR} + "/images/logo_rga.gif"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="158" y="51" width="107" height="13" uuid="01d8c297-7e21-471f-839b-07df33e38a24"/>
+				<textElement>
+					<font fontName="SansSerif" size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Modalidad del seguro:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="265" y="13" width="277" height="13" uuid="214f8200-32e4-45c6-b27a-85571d983cd5"/>
+				<textElement>
+					<font fontName="SansSerif" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{DESC_ESTADO}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="265" y="51" width="100" height="13" uuid="7e156cf7-8388-4522-97f7-2983456376c2"/>
+				<textElement>
+					<font fontName="SansSerif" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{esRenovable}]]></textFieldExpression>
+			</textField>
+			<componentElement>
+				<reportElement x="458" y="54" width="97" height="30" uuid="fa80bd08-94ba-4c15-bfc4-b127fa7ea58b"/>
+				<c:Code128 xmlns:c="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<c:codeExpression><![CDATA[$P{P_BARCODE} == ""?$P{P_BARCODE2}:$P{P_BARCODE}]]></c:codeExpression>
+				</c:Code128>
+			</componentElement>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

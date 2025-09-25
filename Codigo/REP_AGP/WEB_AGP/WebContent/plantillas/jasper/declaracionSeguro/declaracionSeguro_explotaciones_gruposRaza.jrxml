@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="declaracionSeguro_explotaciones_gruposRaza" pageWidth="512" pageHeight="802" columnWidth="512" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="d418c7a5-071b-479a-af68-49d31aaf9d2e">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA[""]]></defaultValueExpression>
+	</parameter>
+	<parameter name="ID" class="java.lang.Integer"/>
+	<parameter name="IDEXPLOTACION" class="java.math.BigDecimal"/>
+	<parameter name="CODGRUPORAZA" class="java.lang.Long"/>
+	<queryString>
+		<![CDATA[SELECT
+     *
+FROM
+     o02agpe0.VW_INF_EXPLOTACIONES_GANADO
+WHERE
+     IDPOLIZA = $P{ID} AND ID = $P{IDEXPLOTACION}]]>
+	</queryString>
+	<field name="ID" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="IDPOLIZA" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PROVINCIA" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="COMARCA" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="TERMINO" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="REGA" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="SIGLA" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="SUBEXPLOTACION" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="LATITUD" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="LONGITUD" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="ESPECIE" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="REGIMEN" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="GRUPORAZA" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="TIPOCAPITAL" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="TIPOANIMAL" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="GRUPOLISTADO" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CONDICIONPARTICULAR" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="AUTORIZACIONESPECIAL" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="valorConcepto" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PRECIO" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="TASACOMERCIAL" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="COSTETOMADOR" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="IDGRUPORAZA" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nomConcepto" class="java.lang.String"/>
+	<variable name="sumValor" class="java.math.BigDecimal" resetType="Group" resetGroup="grupo_tipoCapital" calculation="Sum">
+		<variableExpression><![CDATA[$F{valorConcepto}]]></variableExpression>
+		<initialValueExpression><![CDATA[new BigDecimal(0)]]></initialValueExpression>
+	</variable>
+	<variable name="sumValorAseg" class="java.math.BigDecimal" resetType="Group" resetGroup="grupo_tipoCapital" calculation="Sum">
+		<variableExpression><![CDATA[$F{valorConcepto}.multiply( $F{PRECIO} )]]></variableExpression>
+		<initialValueExpression><![CDATA[new BigDecimal(0)]]></initialValueExpression>
+	</variable>
+	<variable name="SHOW_FOOT" class="java.lang.Boolean" resetType="None">
+		<variableExpression><![CDATA[new Boolean(true)]]></variableExpression>
+		<initialValueExpression><![CDATA[]]></initialValueExpression>
+	</variable>
+	<variable name="SHOW_BACK" class="java.lang.Boolean" resetType="None">
+		<variableExpression><![CDATA[new Boolean(true)]]></variableExpression>
+		<initialValueExpression><![CDATA[]]></initialValueExpression>
+	</variable>
+	<group name="grupo_raza">
+		<groupExpression><![CDATA[$F{GRUPORAZA}]]></groupExpression>
+		<groupHeader>
+			<band height="5" splitType="Prevent">
+				<staticText>
+					<reportElement x="6" y="-5" width="68" height="10" uuid="98b728fa-fcb5-4f7e-bcdb-13eefc4d353d"/>
+					<textElement verticalAlignment="Middle">
+						<font size="7" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Grupo de Raza:]]></text>
+				</staticText>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+					<reportElement x="78" y="-5" width="344" height="10" uuid="3bb7b332-2ae0-44f7-bba0-c4e1c4360050"/>
+					<textElement verticalAlignment="Middle">
+						<font size="6"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{GRUPORAZA}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+	</group>
+	<group name="grupo_tipoCapital">
+		<groupExpression><![CDATA[$F{TIPOCAPITAL}]]></groupExpression>
+		<groupHeader>
+			<band height="38" splitType="Prevent">
+				<staticText>
+					<reportElement x="17" y="5" width="68" height="10" uuid="3a1da803-795a-47ad-8094-cdf7cef1446f"/>
+					<textElement verticalAlignment="Middle">
+						<font size="7" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Tipo Capital:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement positionType="Float" x="260" y="28" width="102" height="10" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="c6d0a0d1-b1b1-49a3-a80c-04605bae4ceb"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="7" isBold="true"/>
+					</textElement>
+					<text><![CDATA[VALOR ASEGURADO]]></text>
+				</staticText>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+					<reportElement x="77" y="6" width="344" height="10" uuid="b4b0d15d-b15f-4baa-abd5-aeecf287f6bb"/>
+					<textElement verticalAlignment="Middle">
+						<font size="6"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{TIPOCAPITAL}]]></textFieldExpression>
+				</textField>
+				<subreport>
+					<reportElement positionType="Float" x="41" y="16" width="494" height="10" isRemoveLineWhenBlank="true" isPrintWhenDetailOverflows="true" uuid="1d9fa53f-ea1a-4a7e-beff-9cd367363bdf"/>
+					<subreportParameter name="IDGRUPORAZA">
+						<subreportParameterExpression><![CDATA[$F{IDGRUPORAZA}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="IDEXPLOTACION">
+						<subreportParameterExpression><![CDATA[$F{ID}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="TIPOMODIFICACION">
+						<subreportParameterExpression><![CDATA[new String("M")]]></subreportParameterExpression>
+					</subreportParameter>
+					<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					<returnValue subreportVariable="SHOW_FOOT" toVariable="SHOW_FOOT"/>
+					<returnValue subreportVariable="SHOW_BACK" toVariable="SHOW_BACK"/>
+					<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "DatosVariablesExplotaciones.jasper"]]></subreportExpression>
+				</subreport>
+				<staticText>
+					<reportElement positionType="Float" x="214" y="28" width="41" height="10" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="8d59e195-7aa6-4244-a8f4-36aa9821a60a"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="7" isBold="true"/>
+					</textElement>
+					<text><![CDATA[PRECIO]]></text>
+				</staticText>
+				<staticText>
+					<reportElement positionType="Float" x="362" y="28" width="75" height="10" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="d8e4c1d1-d158-4276-94de-bdc8846733bb"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="7" isBold="true"/>
+					</textElement>
+					<text><![CDATA[TASA COMERCIAL]]></text>
+				</staticText>
+				<staticText>
+					<reportElement positionType="Float" x="437" y="28" width="95" height="10" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="ad26e3fb-6eeb-4a5a-bddc-e98c88d6e135"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="7" isBold="true"/>
+					</textElement>
+					<text><![CDATA[COSTE TOMADOR]]></text>
+				</staticText>
+				<staticText>
+					<reportElement positionType="Float" x="21" y="27" width="73" height="10" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="095c7573-5276-49c4-9ba7-10e8ce8b52ca"/>
+					<textElement textAlignment="Justified" verticalAlignment="Middle">
+						<font size="7" isBold="true"/>
+					</textElement>
+					<text><![CDATA[TIPO ANIMALES]]></text>
+				</staticText>
+				<textField isBlankWhenNull="true">
+					<reportElement positionType="Float" x="103" y="28" width="112" height="10" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="fa9547ff-9218-4e55-88eb-71ea45b944c1"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="7" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{nomConcepto}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="16" splitType="Prevent">
+				<staticText>
+					<reportElement positionType="Float" x="31" y="0" width="73" height="10" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="93655b9b-1bbf-455f-86de-bf79305be530"/>
+					<textElement textAlignment="Justified" verticalAlignment="Middle">
+						<font size="7" isBold="true"/>
+					</textElement>
+					<text><![CDATA[TOTAL]]></text>
+				</staticText>
+				<textField isBlankWhenNull="false">
+					<reportElement positionType="Float" x="132" y="0" width="54" height="10" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="850917c1-bdd4-4876-b272-e41b9e922d05"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="6" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{sumValor}]]></textFieldExpression>
+				</textField>
+				<textField pattern="#,##0.00¤" isBlankWhenNull="false">
+					<reportElement positionType="Float" x="250" y="0" width="102" height="10" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="33e8ad34-1f43-474d-8e8c-16b3210b538d"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="6" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{sumValorAseg}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<detail>
+		<band height="10" splitType="Prevent">
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement positionType="Float" x="21" y="0" width="112" height="10" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="1be4041a-92f9-46a7-8d6b-0a6240af23b5"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TIPOANIMAL}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement positionType="Float" x="132" y="0" width="54" height="10" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="b8fe63ca-9f9e-4112-8e1f-468c7b1da833"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{valorConcepto}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.0000¤" isBlankWhenNull="true">
+				<reportElement positionType="Float" x="195" y="0" width="54" height="10" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="d86f1d78-d666-4ce8-8154-1b4ec98eaf52"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{PRECIO}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement positionType="Float" x="362" y="0" width="75" height="10" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="0f0e8eee-be23-4430-84a7-7c43bef14679"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TASACOMERCIAL}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00" isBlankWhenNull="true">
+				<reportElement positionType="Float" x="431" y="0" width="76" height="10" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="18cb6e39-3cb2-4a48-be2e-142dbfdeb70e"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{COSTETOMADOR}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.0000" isBlankWhenNull="true">
+				<reportElement positionType="Float" x="250" y="0" width="102" height="10" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="772b6e26-89c7-4bbc-baa5-82c63239862a"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{valorConcepto}.multiply( $F{PRECIO} )]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Prevent"/>
+	</columnFooter>
+</jasperReport>

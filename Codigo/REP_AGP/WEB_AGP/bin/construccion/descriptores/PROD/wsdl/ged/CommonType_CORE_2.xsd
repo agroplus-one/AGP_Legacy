@@ -1,0 +1,4660 @@
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+	xmlns:core2="http://www.ruralserviciosinformaticos.com/XSD/CORE/CommonType_CORE_2/"
+	targetNamespace="http://www.ruralserviciosinformaticos.com/XSD/CORE/CommonType_CORE_2/"
+	elementFormDefault="qualified">
+	<simpleType name="t_cod_postal_ag">
+		<annotation>
+			<documentation>
+				CODIGO POSTAL AREA GEOGRAFICA. Identifica los Códigos Postales asignados
+				alas diferentes Zonas Postales codigoPostal codigoPostalTasacion
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="5" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_nomb_localidad_ag">
+		<annotation>
+			<documentation>
+				NOMBRE LOCALIDAD.Identifica el nombre con que se identifica cada localidad
+				nombreLocalidad
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="45" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_masDatos">
+		<annotation>
+			<documentation>
+				Identificador de mas registros, valores: 0 No hay más registros 1 Hay más
+				registros masDatos
+			</documentation>
+		</annotation>
+		<restriction base="short" />
+	</simpleType>
+	<simpleType name="t_num_ar_geo">
+		<annotation>
+			<documentation>
+				Id. Interno de localidades de iris. numeroAreaGeografica
+			</documentation>
+		</annotation>
+		<restriction base="int" />
+	</simpleType>
+	<simpleType name="t_nomb_provincia_ag">
+		<annotation>
+			<documentation>
+				Nombre de la provincia de la localidad. nombreProvincia
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="35" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_cod_provincia_ag">
+		<annotation>
+			<documentation>
+				Identifica el código asociado a cada provincia codigoProvincia
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="2" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_descrp_pago">
+		<annotation>
+			<documentation>
+				descripFormasPago Descripción de las formas de pago disponibles para aplazar. Valor:
+				“PAGO EN (Tercer y cuatro digito del campo ) MESES”
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="20" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_nomb_pais_ag">
+		<annotation>
+			<documentation> Nombre del país de la localidad. nombrePais
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="35" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_cod_pais_ag">
+		<annotation>
+			<documentation> Código país de la localidad codigoPais
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="3" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_num_ar_geo_comaut">
+		<annotation>
+			<documentation>
+				código de area de la Comunidad…Autónoma a la que pertenece la provincia
+				numeroAreaGeograficaIris
+			</documentation>
+		</annotation>
+		<restriction base="int">
+		</restriction>
+	</simpleType>
+	<simpleType name="t_nomb_com_atnma_ag">
+		<annotation>
+			<documentation>
+				Nombre de la localidad autónoma de la localidad nombreComunidad
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="25" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_cod_com_autnma_ag">
+		<annotation>
+			<documentation>
+				Código Comunidad autónoma de la localidad. codigoComunidad
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="2" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_nomb_comarca_ag">
+		<annotation>
+			<documentation>
+				Nombre de la comarca de la localidad. nombreComarca
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="35" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_cod_comarca_ag">
+		<annotation>
+			<documentation>
+				Codigo de la comarca de la localidad. codigoComarca
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="2" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_cod_municipio_ag">
+		<annotation>
+			<documentation>
+				Codigo del municipio de la localidad codigoMunicipio
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="3" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_cod_ent_colec_ag">
+		<annotation>
+			<documentation>
+				Codigo entidad colectiva de la localidad entidadColectiva
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="2" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_cod_ent_sing_ag">
+		<annotation>
+			<documentation>
+				Código entidad singular de la localidad. entidadSingular
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="2" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_cod_aplccn_subapl">
+		<annotation>
+			<documentation>
+				Código de la aplicación. codigoAplicacion TablaI: Liquidación de
+				Obligaciones - LIQ Obligaciones Subordinadas - DOS Activo General -
+				AGE Activo Operaciones Avales - AAV Activo Operaciones Cartera - ADE
+				Activo Operaciones Crédito - ACR Activo Operaciones Préstamo - APR
+				Activo Operaciones Subvención - ASU Recibos Ventanilla - SVE Seguros
+				UnitLinked - VUN Liquidación Créditos - LIC Liquidación Plazo - LIP
+				Liquidación Vista - LIV Pasivo Vista - DVI TRansferencias Nóminas y
+				Pensiones - STR /STS Recibos Domiciliados - SDO / SDS Servicios Op.
+				Cheques - SCH Seguros Agroseguros - VAG Embargos y Recaudaciones
+				Ejecutivas - SRE Extranjero Operaciones Ventas - EVE Fondos de
+				Inversión - FFI Gestión Recuperación Deuda - GDR Varios Medios de
+				Pago - VMP Aportaciones Socios - DAP Renta Fija - RFI Gestión de
+				Acuerdos - GAC
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="3" />
+			<enumeration value="LIQ" />
+			<enumeration value="DOS" />
+			<enumeration value="AGE" />
+			<enumeration value="AAV" />
+			<enumeration value="ADE" />
+			<enumeration value="ACR" />
+			<enumeration value="APR" />
+			<enumeration value="ASU" />
+			<enumeration value="SVE" />
+			<enumeration value="VUN" />
+			<enumeration value="LIC" />
+			<enumeration value="LIP" />
+			<enumeration value="LIV" />
+			<enumeration value="DVI" />
+			<enumeration value="STR" />
+			<enumeration value="STS" />
+			<enumeration value="SDO" />
+			<enumeration value="SDS" />
+			<enumeration value="SCH" />
+			<enumeration value="VAG" />
+			<enumeration value="SRE" />
+			<enumeration value="EVE" />
+			<enumeration value="FFI" />
+			<enumeration value="GDR" />
+			<enumeration value="VMP" />
+			<enumeration value="DAP" />
+			<enumeration value="RFI" />
+			<enumeration value="GAC" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_fs_gca_tot_reg">
+		<annotation>
+			<documentation> Número total de incidencias. numeroTotal
+			</documentation>
+		</annotation>
+		<restriction base="int">
+		</restriction>
+	</simpleType>
+	<simpleType name="t_fs_gca_tot_imp">
+		<annotation>
+			<documentation>
+				Importe total de las incidencias por aplicación. importeTotal
+			</documentation>
+		</annotation>
+		<restriction base="decimal">
+			<totalDigits value="15" />
+			<fractionDigits value="2" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_nomb_50">
+		<annotation>
+			<documentation>
+				Nombre de la aplicación o nombre del titular de la domiciliación.
+				razonSocial
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="50" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_cod_externo_moneda">
+		<annotation>
+			<documentation>
+				Código ISO 4217 tipo carácter de la moneda de las incidencias.
+				codigoExtMoneda
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="3" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_nomb_in_nomb_pila">
+		<annotation>
+			<documentation> Nombre de la persona. nombreCliente </documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="30" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_nomb_in_ape_1_in">
+		<annotation>
+			<documentation> Primer apellido de la persona. apellido1Cliente
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="30" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_nomb_in_ape_2_in">
+		<annotation>
+			<documentation>
+				Segundo apellido de la persona. apellido2Cliente
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="30" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_cod_rl_pers_ac">
+		<annotation>
+			<documentation>
+				Indica el código del tipo de relación entre un acuerdo y una persona.
+				relacionAcuerdoPersona ACTIVO '02' INACTIVO '03' SOLICITADO '01'
+				Todos '00'
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="2" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_cod_ecv_pers_ac">
+		<annotation>
+			<documentation>
+				Opcional (Valores: 0- Todos, 1-Solicitada, 2-Activa y 3-Inactiva)
+				ecvPersonaAcuerdo
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="1" />
+			<enumeration value="0" />
+			<enumeration value="1" />
+			<enumeration value="2" />
+			<enumeration value="3" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_num_rl_orden">
+		<annotation>
+			<documentation>
+				Identifica el orden entre las personas con el mismo tipo de relación con
+				respecto al acuerdo. numOrdenInterviniente
+			</documentation>
+		</annotation>
+		<restriction base="decimal">
+			<totalDigits value="4" />
+			<fractionDigits value="0" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_ind_representante">
+		<annotation>
+			<documentation>
+				Indica si la persona relacionada con el acuerdo es menor de edad o su
+				capacidad legal: indRepresentante Valores: 1-Menor con NIF 2-Menor
+				sin NIF 3-Capacidad Legal limitada 4-Capacidad Legal limitada
+				temporal 5-Capacidad Legal Nula 6-No necesita representante
+				7-Persona Jurídica
+			</documentation>
+		</annotation>
+		<restriction base="int">
+			<enumeration value="1" />
+			<enumeration value="2" />
+			<enumeration value="3" />
+			<enumeration value="4" />
+			<enumeration value="5" />
+			<enumeration value="6" />
+			<enumeration value="7" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_cod_pe">
+		<annotation>
+			<documentation>
+				Nos indica a que subtipo pertenece la persona. subTipoPersona Valores:
+				F-Física J-Jurídica
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<length value="1" />
+			<enumeration value="F" />
+			<enumeration value="J" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_s_sgn_imp">
+		<annotation>
+			<documentation>
+				Signo del importe. Identifica el signo de un apunte de un saldo contable.
+				sgnImpNeto Valores: D-Debe H-Haber
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<length value="1" />
+			<enumeration value="D" />
+			<enumeration value="H" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_sexo_in">
+		<annotation>
+			<documentation>
+				Sexo.Es un campo opcional. sexo Valores: M-Mujer H-Hombre D-Desconocido
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<length value="1" />
+			<enumeration value="M" />
+			<enumeration value="H" />
+			<enumeration value="D" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_cod_est_civil_indv">
+		<annotation>
+			<documentation>
+				Código de estado civil dado de alta en la tabla de IRIS PGE-00032
+				EstadoCivil codigoEstadoCivil Valores: 01 - SOLTERO/A 02 -
+				SEPARADO/A 03 - DIVORCIADO/A 04 - VIUDO/A 05 - CASADO/A 06 - UNION
+				DE HECHO 99 - DESCONOCIDO
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<length value="2" />
+			<enumeration value="01" />
+			<enumeration value="02" />
+			<enumeration value="03" />
+			<enumeration value="04" />
+			<enumeration value="05" />
+			<enumeration value="06" />
+			<enumeration value="99" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_cod_rgmn_matrim_in">
+		<annotation>
+			<documentation>
+				Código régimen económico dado de alta en la tabla de IRIS-PGE-00033
+				Régimen del matrimonio. codigoRegimenEconómico Valores: 1 - BIENES
+				GANANCIALES 2 - SEPARACIÓN DE BIENES 3 - COMUNIDAD DE BIENES 4 -
+				REGIMEN ESPECIAL 9 - DESCONOCIDO
+			</documentation>
+		</annotation>
+		<restriction base="int">
+			<enumeration value="1" />
+			<enumeration value="2" />
+			<enumeration value="3" />
+			<enumeration value="4" />
+			<enumeration value="9" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_cod_est_lab_indv">
+		<annotation>
+			<documentation>
+				Código de situación laboral dado de alta en la tabla de IRIS-PGE-00034
+				Estado Laboral. codigoSituacionLaboral Valores: 01 - TRABAJADOR POR
+				CUENTA AJENA. 02 - TRABAJADOR CUENTA PROPIA. 03 - NO EMPLEADO.
+				DEMANDA. 04 - NO EMPLEADO. NO DEMANDA. 05 - JUBILADO. 06 - AMA DE
+				CASA. 07 - MENOR DE EDAD. 08 - ESTUDIANTE. 09 - SERVICIO MILITAR. 10
+				- OTROS PASIVOS. 11 - RENTISTA. 12 - FUNCIONARIO. 98 - TRABAJADOR
+				POR CUENTA AJENA/TEMPORAL. 99 - DESCONOCIDO.
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<length value="2" />
+			<enumeration value="01" />
+			<enumeration value="02" />
+			<enumeration value="03" />
+			<enumeration value="04" />
+			<enumeration value="05" />
+			<enumeration value="06" />
+			<enumeration value="07" />
+			<enumeration value="08" />
+			<enumeration value="09" />
+			<enumeration value="10" />
+			<enumeration value="11" />
+			<enumeration value="12" />
+			<enumeration value="98" />
+			<enumeration value="99" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_cod_cno_indv">
+		<annotation>
+			<documentation>
+				Código CNO dado de alta en la tabla de IRIS-POT-00022 Código Nacional De
+				Ocupación. codigoCNO Valores: pendiente
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="6" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_cod_rzn_alta_pers">
+		<annotation>
+			<documentation>
+				Código de razón de alta en la tabla de IRIS-PGE-00003 Razón de alta de la
+				persona. 01 - PRODUCTO EN PARTICULAR 02 - GESTIÓN DE EMPLEADO 03 -
+				RELACIÓN CON CLIENTE ACTUAL 04 - CAMPAÑA PUBLICITARIA 05 - IMAGEN DE
+				LA ENTIDAD 06 - PROXIMIDAD AL DOMICILIO 07 - PROXIMIDAD AL TRABAJO
+				08 - ESPONTÁNEO 09 - INFORMACIÓN HISTÓRICA 10 - EMISOR EXT.NÓMINAS
+				11 - EMISOR EXT.RECIBOS DOMICILIO 12 - EMISOR EXT.EFECTOS (LIBR-EXT)
+				13 - ALTA RURALVÍA 14 - ALTA MEDIOS DE PAGO 15 - TEBE 16 - PRÉSTAMO
+				AUTOMÁTICO DE COMERCIO 17 - ALTA DE PENSIONES 18 - MICROINFORMÁTICA
+				19 - POTENCIAL CRM 20 - ALTA PROCESOS CONTRATACIÓN 21 - EMISOR DE
+				VALORES 23 - ALTA POR SOLICITUD DE PRE-OFERTA 99 - OTROS
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<length value="2" />
+			<enumeration value="01" />
+			<enumeration value="02" />
+			<enumeration value="03" />
+			<enumeration value="04" />
+			<enumeration value="05" />
+			<enumeration value="06" />
+			<enumeration value="07" />
+			<enumeration value="08" />
+			<enumeration value="09" />
+			<enumeration value="10" />
+			<enumeration value="11" />
+			<enumeration value="12" />
+			<enumeration value="13" />
+			<enumeration value="14" />
+			<enumeration value="15" />
+			<enumeration value="16" />
+			<enumeration value="17" />
+			<enumeration value="18" />
+			<enumeration value="19" />
+			<enumeration value="20" />
+			<enumeration value="21" />
+			<enumeration value="23" />
+			<enumeration value="99" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_cod_cnae_pers">
+		<annotation>
+			<documentation>
+				Código CNAE dado de alta en la tabla de IRIS-POT-00015 C.N.A.E. codigoCNAE
+				Valores: pendiente
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="6" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_num_sec_ac_abono">
+		<annotation>
+			<documentation>
+				Acuerdo con el que se va a realizar el abono en caso de que la incidecnias
+				se genere en el acuerdo instrumental. acuerdoAbono
+			</documentation>
+		</annotation>
+		<restriction base="decimal">
+			<totalDigits value="10" />
+			<fractionDigits value="0" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_s_accion_inc">
+		<annotation>
+			<documentation>
+				Acción a realizar en la incidecnia que se va a gestionar accionIncidencia
+				Valores: R - Resolución con cambio de acuerdo I - Resolución sin
+				cambio de acuerdo N - Devolver
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<length value="1" />
+			<enumeration value="R" />
+			<enumeration value="I" />
+			<enumeration value="N" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_nomb_40">
+		<annotation>
+			<documentation> Nombre, apellidos u otros datos del Ordenante
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="40" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_ind_nomina">
+		<annotation>
+			<documentation>
+				Tipo de operación que desea realizar el Ordenante de la Transferencia.
+				Podrá elegir entre Nómina u Ordinaria. En función del tipo de
+				transferencia elegido, esta tendrá una liquidación de comisiones
+				diferente. Los valores serán: N -> Nomina O -> Ordinaria
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<length value="1" />
+			<enumeration value="N" />
+			<enumeration value="O" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_cod_bic">
+		<annotation>
+			<documentation> Código Bic del Banco destino. </documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="11" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_trf_ref_cliente">
+		<annotation>
+			<documentation> Referencia del Beneficiario de la transferencia
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="35" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_concepto_140">
+		<annotation>
+			<documentation> Concepto de la Transferencia </documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="140" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_ind_tr">
+		<annotation>
+			<documentation>
+				Tipo de Transacción a ejecutar. Desde este servicio se podrá elegir
+				entre simular la transferencia para conocer las comisiones que se
+				van a cobrar o darla de alta directamente. valores: S -> Simulación
+				A -> Alta
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<length value="1" />
+			<enumeration value="S" />
+			<enumeration value="A" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_nomb_70">
+		<annotation>
+			<documentation>
+				Nombre, apellidos u otros datos del beneficiario de la transferencia.
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="70" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_clave_gastos">
+		<annotation>
+			<documentation>
+				Posibles valores son: "SHA" "OUR" "BEN"
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<length value="3" />
+			<enumeration value="SHA" />
+			<enumeration value="OUR" />
+			<enumeration value="BEN" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_txt_mot_dev">
+		<annotation>
+			<documentation> Motivo de la devolución de la transferencia.
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="50" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_descr_tf">
+		<annotation>
+			<documentation>
+				Tipos de transferencias. Posibles valores: Transferencia Nómina Pensión
+				Transferencia No Residente Nómina No Residente Pensión No Residente
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="60" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_proposito">
+		<annotation>
+			<documentation> Indica la naturaleza de la operación. </documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="35" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_denom_legal_or">
+		<annotation>
+			<documentation>
+				denominacionLegal Denominación legal de una persona Jurídica.
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="90" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_cod_estrct_lgl_org">
+		<annotation>
+			<documentation>
+				codigoEstructuraLegal Código de estructura legal de una organización. Un atributo de
+				TP_ESTRCT_LGL_ORG. Valores: 001 AGRUPACION INTERES ECONOMICO 002
+				ASOCIACIONES 003 CAJA DE AHORROS 004 COMUNIDAD DE PROPIETARIOS 005
+				OTRAS COMUNIDADES DE BIENES Y HERENCIAS 006 ENTE RELIGIOSO 007
+				ADMONES CORPORATIVAS AGROPECUARIAS 008 COLEGIOS PROFESIONALES 009
+				MUTUAS DE PREVISION SOCIAL 010 FUNDACION 011 GRUPO DE EMPRESAS 012
+				FONDOS INVERSION ACTIVO MERCADO MONETARI 013 FONDOS INVERSION
+				MOBILIARIA 014 SOCIEDADES Y FONDOS DE TITULIZACION 015 FONDOS
+				INVERSION EN OPCIONES/FUTURO 016 FONDOS INVERSION INMOBILIARIA 017
+				FONDOS PENSIONES ASOCIADOS 018 FONDOS DE PENSIONES DE EMPLEO 019
+				FONDOS DE PENSIONES INDIVIDUALES 020 PROPIEDAD INDIVIDUAL 021
+				SECCION CREDITO 022 SOCIEDAD AGRARIA DE TRANSFORMACION 023 OTRAS
+				SOCIEDADES CIVILES 024 SOCIEDAD COOPERATIVA AGRARIA 025 SOCIEDAD
+				COOPERATIVA DE CREDITO 026 SOCIEDAD COOPERATIVA DE VIVIENDA 027
+				OTRAS COOPERATIVAS DE PRIMER GRADO 028 SOCIEDADES COOPERATIVAS DE 2
+				GRADO Y ULT 029 SOCIEDADES DE TASACION 030 SOCIEDAD DE GARANTIA
+				RECIPROCA 031 ESTABLECIMIENTO DE ARRENDAMIENTO FINANCI 032 BANCOS
+				DECLARANTES A LA CIR 033 BANCOS NO DECLARANTES A LA CIR 034
+				INSTITUTO OFICIAL DE CREDITO 035 CAJA RURAL ASOCIDA 036 SINDICATOS
+				037 SOCIEDAD ANONIMA NORMAL 038 SOCIEDAD ANONIMA DEPORTIVA 039
+				SOCIEDAD ANONIMA LABORAL 040 SOCIEDAD COLECTIVA 041 SOCIEDAD
+				COMANDITARIA 042 SOCIEDAD LIMITADA NORMAL 043 SOCIEDAD IRREGULAR 044
+				COMUNIDAD DE REGANTES 045 PARTIDOS POLITICOS 046 UNION TEMPORAL DE
+				EMPRESAS 047 EMPRESAS DE TRABAJO TEMPORAL 048 SOCIEDAD LIMITADA
+				LABORAL 049 CAJA RURAL NO ASOCIADA 050 BANCO COOPERATIVO 051 BANCOS
+				CENTRALES Y AUTORIDADES MONETARIA 052 ENTIDAD CREDITO EXTRANJERA 053
+				BANCO CENTRAL EUROPEO 054 O.C.D.E. 055 BCOS. MULTIL. DESARR. SIMIL.
+				BCO. CTRAL. 056 INSTITUCIONES EUROPEAS 057 OTROS ORGANISMOS
+				INTERNACIONALES 058 COMPAÑIAS DE SEGUROS 059 SOC. NO FINANC.
+				VINCULADAS A ADM. LOCAL. 060 SOCIEDAD LIMITADA NUEVA EMPRESA 061
+				SOCIEDADES DE VALORES 062 SOCIEDADES DE CAPITAL RIESGO 063
+				SOCIEDADES GESTORAS DE I.I.C. 064 SOCIEDAD GESTORA DE CARTERAS 065
+				AGENCIAS DE VALORES 066 SOCIEDADES DE INVERSION 067 ENTIDADES DE
+				CONTRAPARTIDA CENTRAL 068 SOC. NO FINANC. VINCULADAS A ADM. CTRAL
+				069 SOC. NO FINANC. VINCULADAS A ADM. AUTON. 070 OTROS
+				INTERMEDIARIOS FINANCIEROS 071 OTRAS INSTITUCIONES FINANC.
+				MONETARIAS 072 SOCIEDADES EMISORAS PARTIC. PREFERENTES 073 SOC. NO
+				FINANC. DEPEND. DE ADM. CTRAL. 074 SOC. NO FINANC. DEPEND. DE ADM.
+				AUTON. 075 SOC. NO FINANC. DEPEND. DE ADM. LOCAL 076 ENT.HOLDING QUE
+				GESTIONA FILIALES 077 OTRAS INST. FINANC. DEPEND. ADM. PUBLICA 078
+				RESTO BCOS. MULTILATERALES DE DESARROLLO 079 ENTIDADES DINERO
+				ELECTRONICO 080 SOCIEDADES DE INVERSION LIBRE 081 SOC.ANONIMAS
+				COTIZADAS DE INVERS. EN MDO 082 OTRAS ENTIDADES FINANCIERAS
+				ESPECIALIZAD 083 ENTIDADES HOLDING QUE NO GESTIONAN FILIA 084
+				SOC.GESTORAS OTROS INTERMEDIARIOS FINANC 085 ENTIDADES DE PAGO 086
+				ESTABLECIMIENTOS DE CAMBIO DE MONEDA 087 ESTABLECIMIENTO FINANCIERO
+				DE CREDITO 088 CORREDORES Y AGENTES DE SEGUROS 089 FONDOS DE CAPITAL
+				RIESGO 090 SOCIEDADES DE INVERSION INMOBILIARIA 091 FONDOS DE
+				INVERSION LIBRE 092 RESTO INST FINANC DE AMBITO LIMIT Y PRTM 093
+				ORGANISMOS RECTORES DE LOS MERCADOS OFIC 094 SOCIEDADES DE GESTION
+				DE ACTIVOS 101 ADMINISTRACION CENTRAL ESTADO 102 ADMINISTRACION
+				CENTRAL ORGANISMOS AUTONO 103 ADMINISTRACION AUTONOMICA COMUNIDADES
+				AU 104 ADMINISTRACION AUTONOMICA ORGANISMOS AUT 105 ADMINISTRACION
+				LOCAL CORPORACIONES LOCAL 106 ADMINISTRACION LOCAL ORGANISMOS
+				AUTONOMO 107 OOP.ESTADO ENTE PUBLICO 108 OOP. ESTADO-AUTONOMOS
+				COMERCIALES/INDUS. 109 OOP. ADM. AUT.-ENTE PUBLICO 110
+				OOP.ADM.AUT.AUTONOMOS COMERCIALE/INDUS. 111 OOP.ADM.LOC.-ENTE
+				PUBLICO 112 OOP.ADM.LOC.-AUTONOMOS COMERCIALES/INDUS 113
+				ADMINISTRACION SEGURIDAD SOCIAL-ESTADO 114 ADMINISTRACION SEGURIDAD
+				SOCIAL-TERRITOR 115 COOPERATIVA DE CREDITO 116 ESTABLECIMIENTO
+				PERMANENTE 117 INSTITUCIONES DE INVERSION COLECTIVA PRO 601 FONDO DE
+				GARANTIA DE DEPOSITO
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<length value="3" />
+			<enumeration value="001" />
+			<enumeration value="002" />
+			<enumeration value="003" />
+			<enumeration value="004" />
+			<enumeration value="005" />
+			<enumeration value="006" />
+			<enumeration value="007" />
+			<enumeration value="008" />
+			<enumeration value="009" />
+			<enumeration value="010" />
+			<enumeration value="011" />
+			<enumeration value="012" />
+			<enumeration value="013" />
+			<enumeration value="014" />
+			<enumeration value="015" />
+			<enumeration value="016" />
+			<enumeration value="017" />
+			<enumeration value="018" />
+			<enumeration value="019" />
+			<enumeration value="020" />
+			<enumeration value="021" />
+			<enumeration value="022" />
+			<enumeration value="023" />
+			<enumeration value="024" />
+			<enumeration value="025" />
+			<enumeration value="026" />
+			<enumeration value="027" />
+			<enumeration value="028" />
+			<enumeration value="029" />
+			<enumeration value="030" />
+			<enumeration value="031" />
+			<enumeration value="032" />
+			<enumeration value="033" />
+			<enumeration value="034" />
+			<enumeration value="035" />
+			<enumeration value="036" />
+			<enumeration value="037" />
+			<enumeration value="038" />
+			<enumeration value="039" />
+			<enumeration value="040" />
+			<enumeration value="041" />
+			<enumeration value="042" />
+			<enumeration value="043" />
+			<enumeration value="044" />
+			<enumeration value="045" />
+			<enumeration value="046" />
+			<enumeration value="047" />
+			<enumeration value="048" />
+			<enumeration value="049" />
+			<enumeration value="050" />
+			<enumeration value="051" />
+			<enumeration value="052" />
+			<enumeration value="053" />
+			<enumeration value="054" />
+			<enumeration value="055" />
+			<enumeration value="056" />
+			<enumeration value="057" />
+			<enumeration value="058" />
+			<enumeration value="059" />
+			<enumeration value="060" />
+			<enumeration value="061" />
+			<enumeration value="062" />
+			<enumeration value="063" />
+			<enumeration value="064" />
+			<enumeration value="065" />
+			<enumeration value="066" />
+			<enumeration value="067" />
+			<enumeration value="068" />
+			<enumeration value="069" />
+			<enumeration value="070" />
+			<enumeration value="071" />
+			<enumeration value="072" />
+			<enumeration value="073" />
+			<enumeration value="074" />
+			<enumeration value="075" />
+			<enumeration value="076" />
+			<enumeration value="077" />
+			<enumeration value="078" />
+			<enumeration value="079" />
+			<enumeration value="080" />
+			<enumeration value="081" />
+			<enumeration value="082" />
+			<enumeration value="083" />
+			<enumeration value="084" />
+			<enumeration value="085" />
+			<enumeration value="086" />
+			<enumeration value="087" />
+			<enumeration value="088" />
+			<enumeration value="089" />
+			<enumeration value="090" />
+			<enumeration value="091" />
+			<enumeration value="092" />
+			<enumeration value="093" />
+			<enumeration value="094" />
+			<enumeration value="101" />
+			<enumeration value="102" />
+			<enumeration value="103" />
+			<enumeration value="104" />
+			<enumeration value="105" />
+			<enumeration value="106" />
+			<enumeration value="107" />
+			<enumeration value="108" />
+			<enumeration value="109" />
+			<enumeration value="110" />
+			<enumeration value="111" />
+			<enumeration value="112" />
+			<enumeration value="113" />
+			<enumeration value="114" />
+			<enumeration value="115" />
+			<enumeration value="116" />
+			<enumeration value="117" />
+			<enumeration value="601" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_forma_legal">
+		<annotation>
+			<documentation>
+				formaLegal Forma legal de la persona jurídica, según la tabla referencial
+				IRIS-PGE 00040. Valores posibles: AEIE AGRUPACIÓN EUROPEA DE INTERÉS
+				ECONÓMICO AIE AGRUPACIÓN DE INTERÉS ECONÓMICO EFC SA ENTIDAD
+				FINANCIERA DE CRÉDITO EGFP SA SOCIEDAD GESTORA DE FONDOS DE
+				PENSIONES FCR FONDO DE CAPITAL RIESGO FI FONDO DE INVERSIÓN FII
+				FONDO DE INVERSIÓN INMOBILIARIA FP FONDO DE PENSIONES FT FONDO DE
+				TITULIZACIÓN MUTUA MUTUALIDADES OTROS OTROS SA SOCIEDAD ANÓNIMA SAL
+				SOCIEDAD ANÓNIMA LABORAL SAT SOCIEDAD AGRARIA DE TRANSFORMACIÓN SAU
+				SOCIEDAD ANÓNIMA UNIPERSONAL SC SOCIEDAD COLECTIVA SCE SOCIEDAD
+				COOPERATIVA EUROPEA S COM SOCIEDAD COMANDITARIA SIMPLE S COM P A
+				SOCIEDAD COMANDITARIA POR ACCIONES S COOP SOCIEDAD COOPERATIVA SCPJ
+				SOCIEDAD CIVIL PERSONALIDAD JURIDICA SCR SA SOCIEDADES DE CAPITAL
+				RIESGO SE SOCIEDAD ANONIMA EUROPEA S EN C SOCIEDAD COMANDITARIA
+				SIMPLE SGC SA SOCIEDAD GESTORA DE CARTERA SGECR SA SOCIEDAD GESTORA
+				DE FONDOS DE CAPITAL RIESGO SGFT SA SOCIEDAD GESTORA DE FONDOS DE
+				TITULIZACIÓN SGIIC SA SOCIEDAD GESTORA DE INSTITUCIONES DE INVERSIÓN
+				COL SGR SOCIEDAD DE GARANTÍA RECÍPROCA SI SOCIEDAD DE INVERSIÓN
+				SICAV SOCIEDAD DE INVERSIÓN DE CAPITAL VARIABLE SII SOCIEDAD DE
+				INVERSIÓN INMOBILIARIA SINPJ ENTIDAD SIN PERSONALIDAD JURIDICA SL
+				SOCIEDAD LIMITADA SLL SOCIEDAD LIMITADA LABORAL SLNE SOCIEDAD
+				LIMITADA NUEVA EMPRESA SLU SOCIEDAD LIMITADA UNIPERSONAL SRC
+				SOCIEDAD REGULAR COLECTIVA SRL SOCIEDAD DE RESPONSABILIDAD LIMITADA
+				SUC SUCURSALES EN PAÍSES DISTINTOS A LOS DE SUS SEDES
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="12" />
+			<enumeration value="AEIE" />
+			<enumeration value="AIE" />
+			<enumeration value="EFC SA" />
+			<enumeration value="EGFP SA" />
+			<enumeration value="FCR" />
+			<enumeration value="FI" />
+			<enumeration value="FII" />
+			<enumeration value="FP" />
+			<enumeration value="FT" />
+			<enumeration value="MUTUA" />
+			<enumeration value="OTROS" />
+			<enumeration value="SA" />
+			<enumeration value="SAL" />
+			<enumeration value="SAT" />
+			<enumeration value="SAU" />
+			<enumeration value="SC" />
+			<enumeration value="SCE" />
+			<enumeration value="S COM" />
+			<enumeration value="S COM P A" />
+			<enumeration value="S COOP" />
+			<enumeration value="SCPJ" />
+			<enumeration value="SCR SA" />
+			<enumeration value="SE" />
+			<enumeration value="S EN C" />
+			<enumeration value="SGC SA" />
+			<enumeration value="SGECR SA" />
+			<enumeration value="SGFT SA" />
+			<enumeration value="SGIIC SA" />
+			<enumeration value="SGR" />
+			<enumeration value="SI" />
+			<enumeration value="SICAV" />
+			<enumeration value="SII" />
+			<enumeration value="SINPJ" />
+			<enumeration value="SL" />
+			<enumeration value="SLL" />
+			<enumeration value="SLNE" />
+			<enumeration value="SLU" />
+			<enumeration value="SRC" />
+			<enumeration value="SRL" />
+			<enumeration value="SUC" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_cod_ambto_org">
+		<annotation>
+			<documentation>
+				codigoAmbito Código de ámbito geográfico de la persona jurídica, según
+				TP_AMBTO_ORG. Valores posibles: 01 LOCAL 02 COMARCAL 03 PROVINCIAL
+				04 TERRITORIAL 05 AUTONOMICO 06 ESTATAL 07 SUPRANACIONAL 08
+				COMUNITARIO (U.E.) 99 DESCONOCIDO
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<length value="2" />
+			<enumeration value="01" />
+			<enumeration value="02" />
+			<enumeration value="03" />
+			<enumeration value="04" />
+			<enumeration value="05" />
+			<enumeration value="06" />
+			<enumeration value="07" />
+			<enumeration value="08" />
+			<enumeration value="99" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_sector">
+		<annotation>
+			<documentation>
+				codigoSector Código que determina el sector al que pertenece: Valores: 1 -
+				PÚBLICO 2 - PRIVADO
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="1" />
+			<enumeration value="1" />
+			<enumeration value="2" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_numeroSolicitud">
+		<annotation>
+			<documentation>
+				numeroSolicitud Número de solicitud de préstamos automático.
+			</documentation>
+		</annotation>
+		<restriction base="int">
+			<minInclusive value="0" />
+			<maxInclusive value="2147483647" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_finalidad">
+		<annotation>
+			<documentation> finalidad Finalidad del préstamo </documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="3" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_carencia">
+		<annotation>
+			<documentation> carencia Carencia del préstamo </documentation>
+		</annotation>
+		<restriction base="decimal">
+			<totalDigits value="3" />
+			<fractionDigits value="0" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_pdf">
+		<annotation>
+			<documentation> pdfIne,pdfPoliza Pdf </documentation>
+		</annotation>
+		<restriction base="base64Binary">
+		</restriction>
+	</simpleType>
+	<simpleType name="t_cod_pers_rl_pers">
+		<annotation>
+			<documentation>
+				codigoRelacionPersonas Código que indica el tipo de relación establecida entre dos
+				personas. Valores posibles: 205 PRESIDENTE/A DE 207 CONSEJERO/A DE
+				211 DIRECTIVO/A DE 219 TITULAR REAL DE 407 APODERADO/A DE 410
+				EMPLEADO/A DE 631 ADMINISTRADOR DE 101 Conyuge 103 Padre/madre 104
+				Hijo/a 107 Hermano/al 623 Socio 912 Proveedor 903 Cliente 102
+				Parejal 114 Otros
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<length value="3" />
+			<enumeration value="205" />
+			<enumeration value="207" />
+			<enumeration value="211" />
+			<enumeration value="219" />
+			<enumeration value="407" />
+			<enumeration value="410" />
+			<enumeration value="631" />
+			<enumeration value="101" />
+			<enumeration value="103" />
+			<enumeration value="104" />
+			<enumeration value="107" />
+			<enumeration value="623" />
+			<enumeration value="912" />
+			<enumeration value="903" />
+			<enumeration value="102" />
+			<enumeration value="114" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_certif_tit_real">
+		<annotation>
+			<documentation>
+				certificacionTitularReal Certificación de la titularidad real de una persona jurídica.
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="19" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_descr_pers_rl_pers">
+		<annotation>
+			<documentation>
+				descripcionRelacionPersonas Descripción de la relación entre personas.
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="25" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_cod_contrato">
+		<annotation>
+			<documentation>
+				Código del tipo de contrato. Valores posibles: 01 ORDINARIO POR TIEMPO
+				INDEFINIDO 02 TEMPORAL DE FOMENTO DE EMPLEO 03 A TIEMPO PARCIAL 04 A
+				TIEMPO PARCIAL PREST. SERV. INFERIOR A 12H/SEMANA 05 A TIEMPO
+				PARCIAL DE RELEVO 06 EN PRACTICAS 07 PARA LA FORMACION 08 DE
+				APRENDIZAJE 09 SIN CONTRATO(DESEMPLEO, JUBILADO, ESTUDIANTE...) 99
+				DESCONOCIDO
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<length value="2" />
+			<enumeration value="01" />
+			<enumeration value="02" />
+			<enumeration value="03" />
+			<enumeration value="04" />
+			<enumeration value="05" />
+			<enumeration value="06" />
+			<enumeration value="07" />
+			<enumeration value="08" />
+			<enumeration value="09" />
+			<enumeration value="99" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_indicadorSN">
+		<annotation>
+			<documentation>
+				fotoSN Indica si el formato tiene foto. Posibles valores: S=> SI N=> NO
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<length value="1" />
+			<enumeration value="S" />
+			<enumeration value="N" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_base64Binary">
+		<annotation>
+			<documentation>
+				imagen Imagen del artículo que corresponde al producto financiero a partir
+				de los datos de entrada.
+			</documentation>
+		</annotation>
+		<restriction base="base64Binary">
+		</restriction>
+	</simpleType>
+	<simpleType name="t_cod_rgmn_ocupacion">
+		<annotation>
+			<documentation>
+				codigoRegimenOcupacion Código de Régimen de Ocupación: Los posibles valores son:
+				1.Propiedad sin hipoteca 2.En alquiler 3.Cedido 4.Propiedad
+				hipotecada 5.Casa de padres 9.Otros
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<length value="1" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_id_usuario">
+		<annotation>
+			<documentation>
+				usuarioBE Es el número que identifica unívocamente a cada usuario de banca
+				electrónica.
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="8" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_pan_token">
+		<annotation>
+			<documentation>
+				panToken Es el número que identifica unívocamente a cada tarjeta.(PAN =
+				Personal Account Number).
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="22" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_texto_traducido">
+		<annotation>
+			<documentation>
+				descripcionEstado Descripción ampliada del estado de la tarjeta.
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="2000" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_tipo_cliente">
+		<annotation>
+			<documentation>
+				tipoCliente Posibles valores: 01 => Cliente, persona con acuerdos relacionados.
+				02 => Empleado 05 => No cliente, persona sin acuerdos relacionados.
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="2" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_descr_60">
+		<annotation>
+			<documentation>
+				descripcionCNO Descripción del código de ocupación.
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="60" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_descr_corta">
+		<annotation>
+			<documentation> descripcionTelefono Descripción del teléfono.
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="20" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_cod_bien">
+		<annotation>
+			<documentation>
+				codigoBien Código de tipo bien.Dado de alta en la tabla Iris-00005-PBI
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="4" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_tipo_prestamo">
+		<annotation>
+			<documentation>
+				tipoPrestamo Tipo préstamo. Valores: Posibles valores: H=> Hipotecadio P=>
+				Personal
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<length value="1" />
+			<enumeration value="H" />
+			<enumeration value="P" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_nomb_empr">
+		<annotation>
+			<documentation> nombreEmpresa Nombre de la empresa. </documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="90" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_carg_ocu_acprof">
+		<annotation>
+			<documentation> cargo Cargo. </documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="30" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_cod_niv_ingr_indv">
+		<annotation>
+			<documentation> nivelSalarial NIvel salarial. </documentation>
+		</annotation>
+		<restriction base="positiveInteger">
+			<maxExclusive value="100" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_s_tipo">
+		<annotation>
+			<documentation>
+				indEstadoTarjeta Indicador de situación de la tarjeta. 01 => Seleccionada estampar
+				alta 02 => Enviada estampación alta 03 => Seleccionada estampación
+				renovación 04 => Enviada estampación renovación 05 => En poder del
+				cliente 06 => Pendiente cambio de PIN cajero 07 => Pendiente cambio
+				de PIN Otros 08 => Recogida por baja 09 => Pendiente recoger baja 10
+				=> No emitida 11 => Pendiente por recoger otra 12 => Selec.
+				Estampación alta masiva 13 => Enviada Estampación alta masiva 14 =>
+				Reemitida por cambio de Pan 15 => Error en estampación
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="2" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_indicador">
+		<annotation>
+			<documentation>
+				Campo que puede tomar los siguientes valore: 1 => Se define funcionalidad
+				en el servicio 2 => Se define funcionalidad en el servicio
+			</documentation>
+		</annotation>
+		<restriction base="int">
+			<minInclusive value="1" />
+			<maxInclusive value="2" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_fecha_mes">
+		<annotation>
+			<documentation> fechaMes Tipo de dato fecha con formato (MM)
+			</documentation>
+		</annotation>
+		<restriction base="gMonth" />
+	</simpleType>
+	<simpleType name="t_fecha_dia">
+		<annotation>
+			<documentation> fechaDia Tipo de dato fecha con formato (DD)
+			</documentation>
+		</annotation>
+		<restriction base="gDay" />
+	</simpleType>
+	<simpleType name="t_fecha_anio">
+		<annotation>
+			<documentation>
+				fechaAnio Tipo de dato fecha con formato (YYYY)
+			</documentation>
+		</annotation>
+		<restriction base="gYear" />
+	</simpleType>
+	<simpleType name="t_fecha_anio_mes">
+		<annotation>
+			<documentation>
+				fechaAlta Tipo de dato fecha con formato YYYY-MM
+			</documentation>
+		</annotation>
+		<restriction base="gYearMonth" />
+	</simpleType>
+	<simpleType name="t_periodo">
+		<annotation>
+			<documentation>
+				periodicidadAmortizacion Frecuencia de amortización del préstamo. Valores: Posibles valores:
+				A => Anual B => Bimestral M => Mensual S => Semestral T =>
+				Trimestral
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<length value="1" />
+			<enumeration value="A" />
+			<enumeration value="B" />
+			<enumeration value="M" />
+			<enumeration value="S" />
+			<enumeration value="T" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_anios_antig">
+		<annotation>
+			<documentation>
+				aniosResidPais aniosGlobalesTrabajados Años residiendo en el País / Años globales
+				trabajados
+			</documentation>
+		</annotation>
+		<restriction base="decimal">
+			<totalDigits value="2" />
+			<fractionDigits value="0" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_miembros_uni_fam">
+		<annotation>
+			<documentation>
+				miembrosUnidadFamiliar Número de componentes Unidad Familiar
+			</documentation>
+		</annotation>
+		<restriction base="decimal">
+			<totalDigits value="2" />
+			<fractionDigits value="0" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_num_poliza">
+		<annotation>
+			<documentation> numeroPoliza Número de poliza: Acuerdo Origen
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="20" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_cod_tipo_uso">
+		<annotation>
+			<documentation>
+				codigoTipoUso Tipo de uso del inmueble que garantiza la operación.Posibles
+				valores: IN OT VH 2ª H1
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<length value="2" />
+			<enumeration value="IN" />
+			<enumeration value="OT" />
+			<enumeration value="VH" />
+			<enumeration value="2ª" />
+			<enumeration value="H1" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_superficie_vivienda">
+		<annotation>
+			<documentation>
+				superficieVivienda Superficie de la vivienda que garantiza la operación.
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="20" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_num_habitaciones">
+		<annotation>
+			<documentation>
+				numeroHabitaciones Número de habitaciones de la vivienda
+			</documentation>
+		</annotation>
+		<restriction base="int">
+			<minInclusive value="00000" />
+			<maxInclusive value="99999" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_ind_dur_act_prof">
+		<annotation>
+			<documentation>
+				duracionActividadProfesional Indicador de la duración de la actividad profesional del
+				interviniente: codigoRegimenEconómico Valores: 1 - Indefinido 2 -
+				Temporal 3 - Desconocida
+			</documentation>
+		</annotation>
+		<restriction base="int">
+			<enumeration value="1" />
+			<enumeration value="2" />
+			<enumeration value="3" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_cod_sit_especl">
+		<annotation>
+			<documentation>
+				codigoSituacionEspecial Código de situación especial: Posibles Valores: 0 - No hay 1 -
+				Suspensión de pagos 2 - Quiebra 3 - Disolucion de sociedades 4 -
+				Concurso
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<length value="1" />
+			<enumeration value="0" />
+			<enumeration value="1" />
+			<enumeration value="2" />
+			<enumeration value="3" />
+			<enumeration value="4" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_doc_ult_alt_rai">
+		<annotation>
+			<documentation>
+				tipoDocumentoRAI Tipo de documento de útlima alta: Posibles Valores: 1 - Letra de
+				cambio 2 - Recibo 3 - Pagaré 4 - Pagaré de Cuenta Corriente 5 -
+				Cheque de Cuenta Corriente
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<length value="1" />
+			<enumeration value="1" />
+			<enumeration value="2" />
+			<enumeration value="3" />
+			<enumeration value="4" />
+			<enumeration value="5" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_cod_rl_ac_bi">
+		<annotation>
+			<documentation>
+				codRelacionAcuerdoBien Código relación Acuerdo Bien. Sólo se van a dejar los valores: 1 =>
+				Garantía Hipotecaria 7 => Destino Inversión
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="1" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_cod_ecv_ac_bi">
+		<annotation>
+			<documentation>
+				codigoEstadoRelacionBien Esado de la revisión. Posibles Valores: 1 - Solicitado 2 - Activo 3
+				- Inactivo
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<length value="1" />
+			<enumeration value="1" />
+			<enumeration value="2" />
+			<enumeration value="3" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_cod_amort_cuota">
+		<annotation>
+			<documentation>
+				codigoAmortizacionCuota Código de amortización de la cuota del préstamo. Valores del set
+				CTL_PKA89_LST_CD: 01 - AMORTIZACION CONSTANTE 02 - AMORTIZACION
+				PROGRESIVA 03 - CUOTA IRREGULAR 04 - AL VENCIMIENTO 05 - CUOTA
+				CONSTANTE 06 - CUOTA CONSTANTE EXTRAS 07 - CUOTA PROGRESIVA 10 -
+				CONSTANTE CON PAGO FINAL
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<length value="2" />
+			<enumeration value="01" />
+			<enumeration value="02" />
+			<enumeration value="03" />
+			<enumeration value="04" />
+			<enumeration value="05" />
+			<enumeration value="06" />
+			<enumeration value="07" />
+			<enumeration value="10" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_cod_bien_gtia">
+		<annotation>
+			<documentation>
+				codigoBienGarantia Identifica el código asignado a cada forma de clasificar un bien en
+				función de su representación como garantía.
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="3" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_cod_orig_gtia">
+		<annotation>
+			<documentation>
+				codigoOrigenGarantia Identifica el código asignado a una procedencia u origen de una
+				garantía.
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="2" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_cod_natur_gtia">
+		<annotation>
+			<documentation>
+				codigoNaturalezaGarantia Identifica el código asignado a cada una de las posibles
+				naturalezas de una garantía.
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="4" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_cod_rzn_ecv_ac_bi">
+		<annotation>
+			<documentation>
+				codigoRazonCambioRelacion Identifica el código de un tipo de razón de cambio del ecv de la
+				relación entre un Acuerdo y un Bien.
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="1" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_num_hipoteca">
+		<annotation>
+			<documentation>
+				numeroHipoteca Nos informa del número de hipotecas que tiene el bien.
+			</documentation>
+		</annotation>
+		<restriction base="int">
+			<minInclusive value="00" />
+			<maxInclusive value="99" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_id_interno_bi">
+		<annotation>
+			<documentation> idInternoBi Identificador interno del bien.
+			</documentation>
+		</annotation>
+		<restriction base="int">
+		</restriction>
+	</simpleType>
+	<simpleType name="t_nombre_oficina">
+		<annotation>
+			<documentation> nombreOficina Nombre de la oficina </documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="36" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_referencia">
+		<annotation>
+			<documentation>
+				numeroReferencia Número de referencia de la factura o número de la operación.
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="23" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_num_recibo">
+		<annotation>
+			<documentation>
+				numeroRecibo Número del último recibo cargado por domiciliación.
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="20" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_cod_isin">
+		<annotation>
+			<documentation>
+				codigoIsin Código que identifica de forma unívoca a un valor mobiliario a
+				nivel internacional. Se compone de 12 caracteres alfanuméricos.
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<length value="12" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_miprueba">
+		<annotation>
+			<documentation> codigoDePrueba </documentation>
+		</annotation>
+		<restriction base="string">
+			<length value="69" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_mes_nombre">
+		<annotation>
+			<documentation> Campo que describe los meses del año en literal
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="15" />
+			<enumeration value="Enero" />
+			<enumeration value="Febrero" />
+			<enumeration value="Marzo" />
+			<enumeration value="Abril" />
+			<enumeration value="Mayo" />
+			<enumeration value="Junio" />
+			<enumeration value="Julio" />
+			<enumeration value="Agosto" />
+			<enumeration value="Septiembre" />
+			<enumeration value="Octubre" />
+			<enumeration value="Noviembre" />
+			<enumeration value="Diciembre" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_num_titulos">
+		<annotation>
+			<documentation>
+				numeroTitulosEjecutados Numero de titulos ejecutados del valor mobiliario. Decimal con 22
+				enteros y 8 posiciones decimales.
+			</documentation>
+		</annotation>
+		<restriction base="decimal">
+			<totalDigits value="30" />
+			<fractionDigits value="8" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_superficie">
+		<annotation>
+			<documentation>
+				Superficie construida. Decimal longitud 7 con 2 decimales.
+			</documentation>
+		</annotation>
+		<restriction base="decimal">
+			<totalDigits value="7" />
+			<fractionDigits value="2" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_codigo_unidad_superficie">
+		<annotation>
+			<documentation>
+				Indica la unidad de la superficia construida. Valores: M - Metros
+				cuadrados A - Áreas H - Hectáreas J - Marjales
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<length value="1" />
+			<enumeration value="M" />
+			<enumeration value="A" />
+			<enumeration value="H" />
+			<enumeration value="J" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_ind_SiNo">
+		<annotation>
+			<documentation> Posibles valores de Respuesta SI NO </documentation>
+		</annotation>
+		<restriction base="string">
+			<length value="2" />
+			<enumeration value="Si" />
+			<enumeration value="No" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_indicadorTarjetaDual">
+		<annotation>
+			<documentation>
+				Posibles valores de Respuesta B - CTA. BASE NO DUAL D - CTA. BASE DUAL I -
+				CTA. INTELIGENTE NO DUAL J - CTA. JOVEN NO DUAL N - NO S - CTA.
+				INTELIGENTE DUAL X - CTA. JOVEN DUAL
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="2" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_periodo_consulta">
+		<annotation>
+			<documentation>
+				periodoConsultado Codigo de periodo que desean consultar. Posibles valores: 01M 03M
+				06M 12M YTD 24M 36M 60M
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<length value="3" />
+			<enumeration value="01M" />
+			<enumeration value="03M" />
+			<enumeration value="06M" />
+			<enumeration value="12M" />
+			<enumeration value="YTD" />
+			<enumeration value="24M" />
+			<enumeration value="36M" />
+			<enumeration value="60M" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_num_sec_doc">
+		<annotation>
+			<documentation>
+				numeroSecuencialdocumento Número secuencial del documento financiero asociado al maver.
+			</documentation>
+		</annotation>
+		<restriction base="decimal">
+			<totalDigits value="10" />
+			<fractionDigits value="0" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_url">
+		<annotation>
+			<documentation>
+				url URL desde donde descargar la documentación legal.
+			</documentation>
+		</annotation>
+		<restriction base="anyURI" />
+	</simpleType>
+	<simpleType name="t_signo_importe">
+		<annotation>
+			<documentation>
+				signoImporte Signo del importe del movimiento de la tarjeta: Valores posibles: +
+				=> Cargo – => Abono
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="1" />
+			<enumeration value="+" />
+			<enumeration value="-" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_id_dispositivo_Movil">
+		<annotation>
+			<documentation>
+				idDispositivoMovil Id del Dispositivo móvil que hace la llamada.
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="100" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_cod_ocic">
+		<annotation>
+			<documentation>
+				Código Ocic de la persona, los posibles valores son SI = S, NO = N
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<length value="1" />
+			<enumeration value="S" />
+			<enumeration value="N" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_indica_boolean">
+		<annotation>
+			<documentation> Campo genérico valor boleano </documentation>
+		</annotation>
+		<restriction base="boolean">
+		</restriction>
+	</simpleType>
+	<simpleType name="t_estado_transf">
+		<annotation>
+			<documentation>
+				Estado de la transferencias que se quiere consultar. Posibles estados
+				ABONADA, CANCELADA, PENDIENTE DE ABONAR, DEVUELTA, TODAS, PENDIENTE
+				DE PROCESAR, PROCESADA
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<enumeration value="ABONADA" />
+			<enumeration value="CANCELADA" />
+			<enumeration value="PENDIENTE DE ABONAR" />
+			<enumeration value="DEVUELTA" />
+			<enumeration value="TODAS" />
+			<enumeration value="PENDIENTE DE PROCESAR" />
+			<enumeration value="PROCESADA" />
+			<maxLength value="30" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_identificador_tributo">
+		<annotation>
+			<documentation> Identificador de tributo </documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="13" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_indicador_modalidad_tributo">
+		<annotation>
+			<documentation> Indicador modalidad tributo. Valores posible 1,2,3
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<enumeration value="1" />
+			<enumeration value="2" />
+			<enumeration value="3" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_ind_forma_pago">
+		<annotation>
+			<documentation>
+				Identificador forma de pago Valores posibles A, C, E ABONO_EN_CTA A CARGO_EN_CTA
+				C EFECTIVO E
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<enumeration value="A" />
+			<enumeration value="C" />
+			<enumeration value="E" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_entidad_oficina">
+		<annotation>
+			<documentation> Entidad y oficina concatenadas </documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="8" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_dato_especifico">
+		<annotation>
+			<documentation> Dato especifico </documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="20" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_cod_tributo">
+		<annotation>
+			<documentation>
+				Valores posibles: AGRUP_INDUSTRIA 091 AGRUP_ING_DIRECTO 096 AGRUP_INMUEBLES
+				092 ALCANTARILLADO 015 ALTA_DE_VEHICULOS 070 APROVECH_FORESTAL 036
+				APROVECHAMIENTOS 057 AUTOTAXI_ALQUILER 019 BASURAS_COMERCIO 012
+				BASURAS_DOMICIL 011 BASURAS_INDUSTRIAL 013 BASURAS_MERCADOS 025
+				BICICLETAS 072 CAM_COMERCIO 098 CAM_COMERCIO_COMPL 099 CAM_PROP_URB
+				097 CANALONES 030 CEMENTERIO_MUNICIP 016 CENTRO_DOC_ESCOLAR 052
+				COMEDOR_ESCOLAR 051 CONTRIB_ESPECIAL 061 DIRECTOS 071 DOCUMENTOS 018
+				ELIMIN_RES_SOLIDOS 014 ESPECT_PUBLICOS 024 GARANTIA_SUMINISTR 074
+				GUARDERIA 046 IAE 010 IBI_RUSTICA 002 IBI_URBANA 001
+				INCREMENTO_TERRENO 004 INSPECCION 017 INST_DEPORTIVAS 047
+				INSTAL_TERR 060 INSTALACI
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="3" />
+			<enumeration value="091" />
+			<enumeration value="096" />
+			<enumeration value="092" />
+			<enumeration value="015" />
+			<enumeration value="070" />
+			<enumeration value="036" />
+			<enumeration value="057" />
+			<enumeration value="019" />
+			<enumeration value="012" />
+			<enumeration value="011" />
+			<enumeration value="013" />
+			<enumeration value="025" />
+			<enumeration value="072" />
+			<enumeration value="098" />
+			<enumeration value="099" />
+			<enumeration value="097" />
+			<enumeration value="030" />
+			<enumeration value="016" />
+			<enumeration value="052" />
+			<enumeration value="051" />
+			<enumeration value="061" />
+			<enumeration value="071" />
+			<enumeration value="018" />
+			<enumeration value="014" />
+			<enumeration value="024" />
+			<enumeration value="074" />
+			<enumeration value="046" />
+			<enumeration value="010" />
+			<enumeration value="002" />
+			<enumeration value="001" />
+			<enumeration value="004" />
+			<enumeration value="017" />
+			<enumeration value="047" />
+			<enumeration value="060" />
+			<enumeration value="005" />
+			<enumeration value="067" />
+			<enumeration value="063" />
+			<enumeration value="062" />
+			<enumeration value="003" />
+			<enumeration value="021" />
+			<enumeration value="048" />
+			<enumeration value="064" />
+			<enumeration value="043" />
+			<enumeration value="044" />
+			<enumeration value="073" />
+			<enumeration value="045" />
+			<enumeration value="066" />
+			<enumeration value="054" />
+			<enumeration value="049" />
+			<enumeration value="075" />
+			<enumeration value="068" />
+			<enumeration value="069" />
+			<enumeration value="022" />
+			<enumeration value="056" />
+			<enumeration value="053" />
+			<enumeration value="055" />
+			<enumeration value="023" />
+			<enumeration value="059" />
+			<enumeration value="065" />
+			<enumeration value="037" />
+			<enumeration value="042" />
+			<enumeration value="020" />
+			<enumeration value="041" />
+			<enumeration value="050" />
+			<enumeration value="058" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_storageDoc">
+		<annotation>
+			<documentation>
+				Nombre dado por el gestor documental al soporte de almacenamiento del
+				documento
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="64" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_id_fiscal">
+		<annotation>
+			<documentation> Identificación fiscal de la entidad </documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="20" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_cod_pais_iso">
+		<annotation>
+			<documentation>
+				Identificación ISO 3166-2 de la entidad, alfanumérico.
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="2" />
+		</restriction>
+	</simpleType>
+	<!-- Elementos nuevos 07-11-2016 -->
+	<simpleType name="t_txt_elctr_dr_ampl_val">
+		<annotation>
+			<documentation> Correo electrónico con validación </documentation>
+		</annotation>
+		<restriction base="string">
+			<pattern
+				value="" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_num_tlfno_domic_val">
+		<annotation>
+			<documentation>
+				Teléfono con validación: Número de 9 a 20 caracteres
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<pattern value="\+?[0-9]{9,15}" />
+		</restriction>
+	</simpleType>
+	<!-- Elementos nuevos 21-11-2016 -->
+	<simpleType name="t_mi_poligono">
+		<annotation>
+			<documentation> Polígono </documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="45" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_mi_urban">
+		<annotation>
+			<documentation> Urbanización </documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="45" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_s_otros_datos">
+		<annotation>
+			<documentation> Otros datos relacionados con el domicilio
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="100" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_mi_edificio">
+		<annotation>
+			<documentation> Identificación del edificio </documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="45" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_mi_parcela">
+		<annotation>
+			<documentation> Parcela </documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="45" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_s_mi_fase">
+		<annotation>
+			<documentation> Fase </documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="3" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_s_mi_bloque">
+		<annotation>
+			<documentation> Bloque </documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="2" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_mi_barrio">
+		<annotation>
+			<documentation> Barrio </documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="45" />
+		</restriction>
+	</simpleType>
+	<!-- Elementos nuevos 24-11-2016 -->
+	<simpleType name="t_tipo_informacion">
+		<annotation>
+			<documentation>
+				Código del tipo de información adicional del acuerdo. Tabla IRIS
+				AC_INF_ADIC
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="2" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_id_conj_cond">
+		<annotation>
+			<documentation>
+				Identifica mediante código específico al Conjunto de Condiciones de un
+				Producto Simple
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="3" />
+		</restriction>
+	</simpleType>
+	<!-- Elementos nuevos 25-11-2016 -->
+	<simpleType name="t_ind_tipo_corresp">
+		<annotation>
+			<documentation>
+				Indicador del tipo de correspondencia de la persona. Campo alfanumérico que
+				puede tomar los siguientes valores: B – Buzón Virtual C – Envío
+				Postal P - PDF
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<enumeration value="B" />
+			<enumeration value="C" />
+			<enumeration value="P" />
+		</restriction>
+	</simpleType>
+	<!-- Elementos nuevos 09-01-2017 -->
+	<simpleType name="t_txt_observaciones">
+		<annotation>
+			<documentation> Observaciones </documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="400" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_ind_riesgo_calculado">
+		<annotation>
+			<documentation>
+				Indica el riesgo PBC de la persona. Los valores posibles son: - BAJO -
+				MEDIO - ALTO
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<enumeration value="BAJO" />
+			<enumeration value="MEDIO" />
+			<enumeration value="ALTO" />
+		</restriction>
+	</simpleType>
+	<!-- Elementos nuevos 10-01-2017 -->
+	<simpleType name="t_origen_operacion">
+		<annotation>
+			<documentation>
+				Indicador que informa sobre si esta operación periódica es un Traspaso o una
+				Transferencia. Posibles valores TP(traspaso) o TR(transferencia)
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<enumeration value="TP" />
+			<enumeration value="TR" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_tipo_amortizacion">
+		<annotation>
+			<documentation>
+				Opción de amortización elegida por el cliente 01: Reducir cuota 02:
+				Adelantar vencimiento
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<enumeration value="01" />
+			<enumeration value="02" />
+			<length value="2" />
+		</restriction>
+	</simpleType>
+	<!-- Elementos nuevos-actualizado 19-01-2017 -->
+	<simpleType name="t_pan_asteriscado">
+		<annotation>
+			<documentation>
+				Pan asteriscado. Siguiendo el patrón: 6 cifras, 4 asteriscos, 6 cifras,
+				6 posibles espacios
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="22" />
+			<pattern
+				value="[0-9]{6}[*]{6}[0-9]{4}(([ ]{6})|([ ]{5})|([ ]{4})([ ]{3})|([ ]{2})|([ ]{1}))?" />
+		</restriction>
+	</simpleType>
+	<!-- Elemento t_frecuencia actualizado 27-01-2017 -->
+	<simpleType name="t_frecuencia">
+		<annotation>
+			<documentation>
+				Frecuencia en la que se puede realizar la operación. Valores Posibles: A -->
+				Anual B --> Bimestral C --> Cuatrimestral L --> Semanal M -->
+				Mensual Q --> Quincenal S --> Semestral T --> Trimestral
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<enumeration value="A" />
+			<enumeration value="B" />
+			<enumeration value="C" />
+			<enumeration value="M" />
+			<enumeration value="L" />
+			<enumeration value="Q" />
+			<enumeration value="S" />
+			<enumeration value="T" />
+		</restriction>
+	</simpleType>
+	<!-- Elementos actualizados 30-01-2017 -->
+	<simpleType name="t_modalidad_pago">
+		<annotation>
+			<documentation>
+				Modalidad de pago elegida por el cliente - (10)Pago Completo -
+				(20)Fraccionado y sin domiciliar el 2º pago - (30)Fraccionado y
+				domiciliado el 2º pago
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<length value="2" />
+			<enumeration value="10" />
+			<enumeration value="20" />
+			<enumeration value="30" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_anagrama">
+		<annotation>
+			<documentation>
+				Este dato forma parte de la etiqueta del borrador, concretamente está
+				situado después del NIF debajo mismo del código de barras, es un
+				código de 4 letras. En caso que no exista debe teclear los 4
+				primeros caracteres del primer apellido
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="4" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_cod_admon">
+		<annotation>
+			<documentation>
+				Número de identificación de la oficina de Hacienda asignada al declarante
+				según su dirección fiscal
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="5" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_modelo_hacienda">
+		<annotation>
+			<documentation>
+				Indica el tipo de modelo de Hacienda que se desea capturar.
+			</documentation>
+		</annotation>
+		<restriction base="decimal">
+		</restriction>
+	</simpleType>
+	<!-- Elementos create 14-02-2017 -->
+	<simpleType name="t_ind_negoc_hab">
+		<annotation>
+			<documentation> Indicador de producto habitual </documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="1" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_cod_for_aplc_tr">
+		<annotation>
+			<documentation>
+				Identifica mediante un código la forma de acceder a los tramos de una
+				condición trameada, para su cálculo. Posibles valores: - 1: Al Tramo
+				- 2: Con Desglose de Tramos
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<enumeration value="1" />
+			<enumeration value="2" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_forma_rev">
+		<annotation>
+			<documentation>
+				Identifica la fecha en la cual se ha de producir la primera revisión del tipo
+				de interés variable. A partir de ella se calculan los siguientes
+				periodos de revisión con relación a la frecuencia de revisión. Por
+				defecto y si no se informa, se tomará como fecha de la primera
+				renovación la fecha resultante de calcular, fecha de formalización
+				del acuerdo más el periodo de frecuencia de revisión. Podrá forzarse
+				a una fecha determinada la revisión de todos los acuerdos que se
+				vean implicados en esta condición.
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="1" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_cod_crit_rev">
+		<annotation>
+			<documentation>
+				Recoge el código asociado a un tipo de criterio de revisión de interés.
+				Posibles valores: 01 - Valor Puntual a Fin de Año Natural Anterior
+				02 - Valor Puntual a Fin de Semestre Natural Anterior 03 - Valor
+				Puntual a Fin de Trimestre Natural Anterior 04 - Valor Puntual a Fin
+				de Bimestre Natural Anterior 05 - Valor Puntual a Fin de Mes Natural
+				Anterior 06 - Valor Puntual el Día de Revisión 07 - Valor Medio del
+				Año Natural Anterior 08 - Valor Medio del Semestre Natural Anterior
+				09 - Valor Medio del Trimestre Natural Anterior 10 - Valor Medio del
+				Bimestre Natural Anterior 11 - Valor Medio del Mes Natural Anterior
+				12 - Valor Medio de la Quincena Natural Anterior 13 - Valor Medio
+				del Ultimo mes de Enero 14 - Valor Medio del Ultimo mes de Febrero
+				15 - Valor Medio del Ultimo mes de Marzo 16 - Valor Medio del Ultimo
+				mes de Abril 17 - Valor Medio del Ultimo mes de Mayo 18 - Valor
+				Medio del Ultimo mes de Junio 19 - Valor Medio del Ultimo mes de
+				Julio 20 - Valor Medio del Ultimo mes de Agosto 21 - Valor Medio del
+				Ultimo mes de Septiembre 22 - Valor Medio del Ultimo mes de Octubre
+				23 - Valor Medio del Ultimo mes de Noviembre 24 - Valor Medio del
+				Ultimo mes de Diciembre 25 - Valor Medio de los Últimos 2 meses 26 -
+				Valor Medio de los Últimos 3 meses 27 - Valor Medio de los Últimos 4
+				meses 28 - Valor Medio de los Últimos 5 meses 29 - Valor Medio de
+				los Últimos 6 meses 30 - Valor Medio de los Últimos 7 meses 31 -
+				Valor Medio de los Últimos 8 meses 32 - Valor Medio de los Últimos 9
+				meses 33 - Valor Medio de los Últimos 10 meses 34 - Valor Medio de
+				los Últimos 11 meses 35 - Valor Medio de los Últimos 12 meses 36 -
+				Valor del Día Hábil Anterior
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<enumeration value="01" />
+			<enumeration value="02" />
+			<enumeration value="03" />
+			<enumeration value="04" />
+			<enumeration value="05" />
+			<enumeration value="06" />
+			<enumeration value="07" />
+			<enumeration value="08" />
+			<enumeration value="09" />
+			<enumeration value="10" />
+			<enumeration value="11" />
+			<enumeration value="12" />
+			<enumeration value="13" />
+			<enumeration value="14" />
+			<enumeration value="15" />
+			<enumeration value="16" />
+			<enumeration value="17" />
+			<enumeration value="18" />
+			<enumeration value="19" />
+			<enumeration value="20" />
+			<enumeration value="21" />
+			<enumeration value="22" />
+			<enumeration value="23" />
+			<enumeration value="24" />
+			<enumeration value="25" />
+			<enumeration value="26" />
+			<enumeration value="27" />
+			<enumeration value="28" />
+			<enumeration value="29" />
+			<enumeration value="30" />
+			<enumeration value="31" />
+			<enumeration value="32" />
+			<enumeration value="33" />
+			<enumeration value="34" />
+			<enumeration value="35" />
+			<enumeration value="36" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_cod_int_ref">
+		<annotation>
+			<documentation>
+				Tipo de interés, diferencia los intereses en cuanto a si son fijos o
+				referenciados. Posibles Valores: - A: AMBOS - E: AMBOS_FIJ_DIFR - C:
+				AMBOS_VAR - D: AMBOS_VAR_DIFR - F: FIJO - V: VARIABLE - W:
+				VARIABLE_DIFR
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<enumeration value="A" />
+			<enumeration value="E" />
+			<enumeration value="C" />
+			<enumeration value="D" />
+			<enumeration value="F" />
+			<enumeration value="V" />
+			<enumeration value="W" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_cod_accion_condiciones">
+		<annotation>
+			<documentation>
+				Tipo de acción, determina cómo se realizará la búsqueda en el Catálogo.
+				Posibles valores: - 2: Acceder a KP_CONDICIONES_TAU - 3: Acceder a
+				KP_CONDICIONES_TAU , sacando para los parámetros de tipo LISTA todos
+				sus dominios a la salida
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<enumeration value="2" />
+			<enumeration value="3" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_cod_ref_int">
+		<annotation>
+			<documentation> Código asociado al tipo de referencia de interés
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="4" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_ind_freq_rev_int_var">
+		<annotation>
+			<documentation>
+				Indica la frecuencia en la que se tiene que realizar la revisión del
+				interés variable. Posibles valores: - M: MENSUAL - B: BIMESTRAL - T:
+				TRIMESTRAL - S: SEMESTRAL - A: ANUAL
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<enumeration value="M" />
+			<enumeration value="B" />
+			<enumeration value="T" />
+			<enumeration value="S" />
+			<enumeration value="A" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_cod_agru_clop">
+		<annotation>
+			<documentation> Agrupación de CLOPs </documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="2" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_cod_ecv_kp">
+		<annotation>
+			<documentation>
+				Código del tipo de ecv de una condición de producto
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="2" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_cod_org_cd">
+		<annotation>
+			<documentation>
+				Tipo de organización de condición. Posible valor: - M: Condición
+				devuelta en estructura DatosTrameado
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="1" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_cod_prof_cd">
+		<annotation>
+			<documentation>
+				Recoge un valor que indica a qué nivel de profundidad debe quedar cerrado
+				el valor de una condición. Posibles valores: - 01: Acuerdo - 02:
+				Subacuerdo - 03: Operación - 04: Producto
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<enumeration value="01" />
+			<enumeration value="02" />
+			<enumeration value="03" />
+			<enumeration value="04" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_cod_concpt_neg">
+		<annotation>
+			<documentation>
+				Identifica el código del tipo de concepto de negocio para poder juntar
+				diferentes parámetros que correspondan a un mismo concepto. Posibles
+				valores: - 01: Amortización - 02: Liquidación - 03: Comisión - 04:
+				Duración - 05: Gastos
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<enumeration value="01" />
+			<enumeration value="02" />
+			<enumeration value="03" />
+			<enumeration value="04" />
+			<enumeration value="05" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_cod_estrct_cd">
+		<annotation>
+			<documentation>
+				Clasifica una condición desde el punto de vista de su estructura. Posibles
+				valores: - 1: Interés - 2: Comisión - 3: Lista - 4: Rango - 5: Valor
+				de Lista - 6: Valor de Rango
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<enumeration value="1" />
+			<enumeration value="2" />
+			<enumeration value="3" />
+			<enumeration value="4" />
+			<enumeration value="5" />
+			<enumeration value="6" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_tipo_interes_rev">
+		<annotation>
+			<documentation>
+				Recoge el valor al cual redondear un interés que ha sido revisado
+			</documentation>
+		</annotation>
+		<restriction base="decimal">
+			<totalDigits value="7" />
+			<fractionDigits value="3" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_cod_estrct_parmcd">
+		<annotation>
+			<documentation>
+				Código de la estructura del parámetro de condición. Posibles valores: - 1:
+				Condición devuelta en estructura DatosInteres O DatosFranquicia - 2:
+				Condición devuelta en estructura DatosComision - 3: Condición
+				devuelta en estructura DatosDominio - 4: Condición devuelta en
+				estructura DatosRango
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="1" />
+			<enumeration value="1" />
+			<enumeration value="2" />
+			<enumeration value="3" />
+			<enumeration value="4" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_rango">
+		<annotation>
+			<documentation> Rango </documentation>
+		</annotation>
+		<restriction base="decimal">
+			<totalDigits value="15" />
+			<fractionDigits value="2" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_cod_tipo_cmsn">
+		<annotation>
+			<documentation>
+				Un tipo de comisión, clasifica a una comisión desde el punto de vista
+				de si es fija o proporcional. Posibles Valores - A: AMBOS - C:
+				AMBOS_VAR - F: FIJO - V: VARIABLE
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<enumeration value="A" />
+			<enumeration value="C" />
+			<enumeration value="F" />
+			<enumeration value="V" />
+		</restriction>
+	</simpleType>
+	<!-- Elementos actualiados 15-02-2017 -->
+	<simpleType name="t_cod_kp_tramd">
+		<annotation>
+			<documentation>
+				Identifica el tipo de condición trameada. Sus valores pueden ser de tipo de
+				interés o de tipo de comisión.
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="1" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_cod_um_ampliado">
+		<annotation>
+			<documentation>
+				Identifica los posibles tipos de Unidades de Medida. Posibles valores: U -
+				Unidades L - Miles X - Millones D - Días H - Días Hábiles M - Meses
+				A - Años F - Fecha 1 - Tanto por Ciento 2 - Tanto por Uno 3 - Tanto
+				por Mil 4 - Tanto por Diez Mil 6 - Tanto por Millón
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<enumeration value="U" />
+			<enumeration value="L" />
+			<enumeration value="X" />
+			<enumeration value="D" />
+			<enumeration value="H" />
+			<enumeration value="M" />
+			<enumeration value="A" />
+			<enumeration value="F" />
+			<enumeration value="1" />
+			<enumeration value="2" />
+			<enumeration value="3" />
+			<enumeration value="4" />
+			<enumeration value="6" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_cod_den_moneda">
+		<annotation>
+			<documentation>
+				Indicador de divisa o billete Valores posibles: D - Divisa B - Billete
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<enumeration value="D" />
+			<enumeration value="B" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_cambio">
+		<annotation>
+			<documentation> Valor decimal con el cambio de divisa </documentation>
+		</annotation>
+		<restriction base="decimal">
+			<totalDigits value="10" />
+			<fractionDigits value="6" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_base_cambio">
+		<annotation>
+			<documentation> Valor decimal base del cambio de divisa
+			</documentation>
+		</annotation>
+		<restriction base="decimal">
+			<totalDigits value="3" />
+			<fractionDigits value="0" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_periodo_fiscal">
+		<annotation>
+			<documentation> Periodo fiscal </documentation>
+		</annotation>
+		<restriction base="string">
+			<enumeration value="1T" />
+			<enumeration value="2T" />
+			<enumeration value="3T" />
+			<enumeration value="4T" />
+			<enumeration value="01" />
+			<enumeration value="02" />
+			<enumeration value="03" />
+			<enumeration value="04" />
+			<enumeration value="05" />
+			<enumeration value="06" />
+			<enumeration value="07" />
+			<enumeration value="08" />
+			<enumeration value="09" />
+			<enumeration value="10" />
+			<enumeration value="11" />
+			<enumeration value="12" />
+			<enumeration value="0A" />
+			<enumeration value="1P" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_forma_abono">
+		<annotation>
+			<documentation> Forma de abono </documentation>
+		</annotation>
+		<restriction base="string">
+			<enumeration value="IBAN" />
+			<enumeration value="CUENTA" />
+			<enumeration value="OTROS" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_gastos_por_cuenta">
+		<annotation>
+			<documentation>
+				Gastos por cuenta de... Posibles valores: -BENEFICIARIO -ORDENANTE
+				-COMPARTIDO
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<enumeration value="BENEFICIARIO" />
+			<enumeration value="ORDENANTE" />
+			<enumeration value="COMPARTIDO" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_cod_bancario">
+		<annotation>
+			<documentation> Código bancario (Sortcode, BLZ, ABA) </documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="15" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_ind_num_cs">
+		<annotation>
+			<documentation>
+				Contador de las cestas a las que una Tarifa de un Producto Vendible está
+				asociada. Valor por defecto: 00
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="2" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_canal_web_movil">
+		<annotation>
+			<documentation>
+				Canal. Posibles valores: - W: Web - M: Móvil - A: Ambos
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<enumeration value="W" />
+			<enumeration value="M" />
+			<enumeration value="A" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_num_campa">
+		<annotation>
+			<documentation>
+				Indicador de las campañas a las que una Tarifa de Producto Vendible está
+				asociada. Valor por defecto: 00
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="2" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_cod_ecv_trfa_pdv">
+		<annotation>
+			<documentation>
+				Identifica, mediante un código, el estado de ciclo de vida de una Tarifa de
+				Producto Vendible. Posibles valores: - 01: EN_ESTUDIO - 02:
+				PROPUESTA - 03: RECHAZADA - 04: APROBADA - 05: EN DESARROLLO - 06:
+				PRE-COMERCIALIZACION - 07: EN COMERCIALIZACION - 08: DESACTIVADA -
+				09: CANCELADA - 10: ARCHIVADA. Valor por defecto 07
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<enumeration value="01" />
+			<enumeration value="02" />
+			<enumeration value="03" />
+			<enumeration value="04" />
+			<enumeration value="05" />
+			<enumeration value="06" />
+			<enumeration value="07" />
+			<enumeration value="08" />
+			<enumeration value="09" />
+			<enumeration value="10" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_cod_tp_tarifa">
+		<annotation>
+			<documentation>
+				Identifica el código de posibles tipos de Tarifas que existen. Posibles
+				valores: - 02: Estandar - 03: Específica
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<enumeration value="02" />
+			<enumeration value="03" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_cod_consumidor">
+		<annotation>
+			<documentation>
+				Código de consumidor, rango de valores: 0: No acogido "En sistema
+				anterior". 1: Acogido "En sistema anterior". 2: No acogido "Por
+				decisión de la entidad". 3: Acogido "Por decisión de la entidad". 4:
+				No acogido "En apertura". 5: Acogido "En apertura o por Disposición
+				de la Entidad". 6: No acogido "Por Relaciones". 7: No acogido "Por
+				Movimientos".
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<enumeration value="0" />
+			<enumeration value="1" />
+			<enumeration value="2" />
+			<enumeration value="3" />
+			<enumeration value="4" />
+			<enumeration value="5" />
+			<enumeration value="6" />
+			<enumeration value="7" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_prueba">
+		<annotation>
+			<documentation> anyURI </documentation>
+		</annotation>
+		<restriction base="anyURI">
+			<maxLength value="100" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_indCajeroAmpliado">
+		<annotation>
+			<documentation>
+				Indicador de cajero. Los posibles valores son: S, Es una oficina que Si tiene
+				cajero N, Es una oficina que NO tiene cajero X, Es un cajero que
+				pertenece al Grupo Y, Es un cajero que NO pertenece al Grupo
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<enumeration value="S" />
+			<enumeration value="N" />
+			<enumeration value="X" />
+			<enumeration value="Y" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_datosC43">
+		<annotation>
+			<documentation>
+				Formato cuaderno 43 con la estructura definida en la norma, con la
+				particularidad de que a los registros de movimientos (tipo 22) se
+				les concatena los 5 posibles registros de concepto(tipo de registro
+				23). En los otros tipos de registros solo se informan las 80
+				primeras posiciones conforme se describe en dicha norma.
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="480" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_tipoRegistroC43">
+		<annotation>
+			<documentation>
+				Tipo de registro informado en los registros del C43 consultados. Valores
+				posibles: 11 Registro de cabecera de cuenta 22 Registro de
+				movimientos 33 Registro final de cuenta 88 Registro de fin de
+				fichero
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<enumeration value="11" />
+			<enumeration value="22" />
+			<enumeration value="33" />
+			<enumeration value="88" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_ind_tipo_trf">
+		<annotation>
+			<documentation>
+				Indicador de transferencia: 0 - SNCE 1 - SEPA 2 - SEPA INMEDIATA
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<enumeration value="0" />
+			<enumeration value="1" />
+			<enumeration value="2" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_num_productos">
+		<annotation>
+			<documentation>
+				Número de otros productos de riesgo tiene el cliente.
+			</documentation>
+		</annotation>
+		<restriction base="decimal">
+			<totalDigits value="3" />
+			<fractionDigits value="0" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_codDoc">
+		<annotation>
+			<documentation>
+				Indica un código de tipo de documento. La lista de valores esta en la
+				tabla TP_DOC
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="2" />
+			<enumeration value="10" />
+			<enumeration value="11" />
+			<enumeration value="12" />
+			<enumeration value="13" />
+			<enumeration value="14" />
+			<enumeration value="15" />
+			<enumeration value="16" />
+			<enumeration value="17" />
+			<enumeration value="19" />
+			<enumeration value="18" />
+			<enumeration value="1A" />
+			<enumeration value="1B" />
+			<enumeration value="1C" />
+			<enumeration value="1D" />
+			<enumeration value="1E" />
+			<enumeration value="1F" />
+			<enumeration value="1G" />
+			<enumeration value="1H" />
+			<enumeration value="1I" />
+			<enumeration value="1J" />
+			<enumeration value="1K" />
+			<enumeration value="1L" />
+			<enumeration value="1M" />
+			<enumeration value="1N" />
+			<enumeration value="1Ñ" />
+			<enumeration value="1O" />
+			<enumeration value="1P" />
+			<enumeration value="1Q" />
+			<enumeration value="1R" />
+			<enumeration value="1S" />
+			<enumeration value="1T" />
+			<enumeration value="1U" />
+			<enumeration value="1V" />
+			<enumeration value="1W" />
+			<enumeration value="1X" />
+			<enumeration value="1Y" />
+			<enumeration value="1Z" />
+			<enumeration value="90" />
+			<enumeration value="91" />
+			<enumeration value="20" />
+			<enumeration value="21" />
+			<enumeration value="22" />
+			<enumeration value="23" />
+			<enumeration value="24" />
+			<enumeration value="25" />
+			<enumeration value="26" />
+			<enumeration value="27" />
+			<enumeration value="28" />
+			<enumeration value="29" />
+			<enumeration value="2A" />
+			<enumeration value="2B" />
+			<enumeration value="2C" />
+			<enumeration value="2D" />
+			<enumeration value="2E" />
+			<enumeration value="2F" />
+			<enumeration value="2G" />
+			<enumeration value="2H" />
+			<enumeration value="2I" />
+			<enumeration value="2J" />
+			<enumeration value="2K" />
+			<enumeration value="2L" />
+			<enumeration value="2M" />
+			<enumeration value="2N" />
+			<enumeration value="2Ñ" />
+			<enumeration value="2O" />
+			<enumeration value="30" />
+			<enumeration value="31" />
+			<enumeration value="32" />
+			<enumeration value="33" />
+			<enumeration value="34" />
+			<enumeration value="35" />
+			<enumeration value="36" />
+			<enumeration value="37" />
+			<enumeration value="38" />
+			<enumeration value="39" />
+			<enumeration value="3A" />
+			<enumeration value="3B" />
+			<enumeration value="3C" />
+			<enumeration value="3D" />
+			<enumeration value="3E" />
+			<enumeration value="3F" />
+			<enumeration value="3G" />
+			<enumeration value="3H" />
+			<enumeration value="3I" />
+			<enumeration value="3J" />
+			<enumeration value="3K" />
+			<enumeration value="3L" />
+			<enumeration value="3M" />
+			<enumeration value="3N" />
+			<enumeration value="3Ñ" />
+			<enumeration value="3O" />
+			<enumeration value="3P" />
+			<enumeration value="3Q" />
+			<enumeration value="3R" />
+			<enumeration value="3S" />
+			<enumeration value="3T" />
+			<enumeration value="3U" />
+			<enumeration value="40" />
+			<enumeration value="41" />
+			<enumeration value="42" />
+			<enumeration value="43" />
+			<enumeration value="44" />
+			<enumeration value="45" />
+			<enumeration value="46" />
+			<enumeration value="47" />
+			<enumeration value="48" />
+			<enumeration value="49" />
+			<enumeration value="4A" />
+			<enumeration value="4B" />
+			<enumeration value="4C" />
+			<enumeration value="4D" />
+			<enumeration value="4E" />
+			<enumeration value="4F" />
+			<enumeration value="4G" />
+			<enumeration value="4H" />
+			<enumeration value="4I" />
+			<enumeration value="4J" />
+			<enumeration value="4K" />
+			<enumeration value="4L" />
+			<enumeration value="4M" />
+			<enumeration value="4N" />
+			<enumeration value="4Ñ" />
+			<enumeration value="4O" />
+			<enumeration value="4P" />
+			<enumeration value="4Q" />
+			<enumeration value="4R" />
+			<enumeration value="4S" />
+			<enumeration value="4T" />
+			<enumeration value="4U" />
+			<enumeration value="4V" />
+			<enumeration value="4W" />
+			<enumeration value="4X" />
+			<enumeration value="4Y" />
+			<enumeration value="4Z" />
+			<enumeration value="A0" />
+			<enumeration value="A1" />
+			<enumeration value="A2" />
+			<enumeration value="A3" />
+			<enumeration value="A4" />
+			<enumeration value="A5" />
+			<enumeration value="A6" />
+			<enumeration value="50" />
+			<enumeration value="51" />
+			<enumeration value="52" />
+			<enumeration value="53" />
+			<enumeration value="54" />
+			<enumeration value="55" />
+			<enumeration value="56" />
+			<enumeration value="57" />
+			<enumeration value="58" />
+			<enumeration value="59" />
+			<enumeration value="5A" />
+			<enumeration value="5B" />
+			<enumeration value="5C" />
+			<enumeration value="5D" />
+			<enumeration value="5E" />
+			<enumeration value="5F" />
+			<enumeration value="5G" />
+			<enumeration value="5H" />
+			<enumeration value="5I" />
+			<enumeration value="60" />
+			<enumeration value="62" />
+			<enumeration value="63" />
+			<enumeration value="64" />
+			<enumeration value="65" />
+			<enumeration value="66" />
+			<enumeration value="67" />
+			<enumeration value="68" />
+			<enumeration value="69" />
+			<enumeration value="6A" />
+			<enumeration value="6B" />
+			<enumeration value="6C" />
+			<enumeration value="6D" />
+			<enumeration value="6E" />
+			<enumeration value="6F" />
+			<enumeration value="6G" />
+			<enumeration value="6H" />
+			<enumeration value="6I" />
+			<enumeration value="6J" />
+			<enumeration value="6K" />
+			<enumeration value="6L" />
+			<enumeration value="6M" />
+			<enumeration value="6N" />
+			<enumeration value="6Ñ" />
+			<enumeration value="6O" />
+			<enumeration value="6P" />
+			<enumeration value="6Q" />
+			<enumeration value="6R" />
+			<enumeration value="6S" />
+			<enumeration value="6T" />
+			<enumeration value="6U" />
+			<enumeration value="6V" />
+			<enumeration value="6W" />
+			<enumeration value="6X" />
+			<enumeration value="6Y" />
+			<enumeration value="6Z" />
+			<enumeration value="70" />
+			<enumeration value="71" />
+			<enumeration value="72" />
+			<enumeration value="73" />
+			<enumeration value="74" />
+			<enumeration value="75" />
+			<enumeration value="76" />
+			<enumeration value="77" />
+			<enumeration value="78" />
+			<enumeration value="79" />
+			<enumeration value="7A" />
+			<enumeration value="7B" />
+			<enumeration value="7C" />
+			<enumeration value="7D" />
+			<enumeration value="7E" />
+			<enumeration value="7F" />
+			<enumeration value="7G" />
+			<enumeration value="7H" />
+			<enumeration value="7J" />
+			<enumeration value="7K" />
+			<enumeration value="7L" />
+			<enumeration value="7M" />
+			<enumeration value="7N" />
+			<enumeration value="7Ñ" />
+			<enumeration value="7O" />
+			<enumeration value="7P" />
+			<enumeration value="7Q" />
+			<enumeration value="7R" />
+			<enumeration value="7S" />
+			<enumeration value="7T" />
+			<enumeration value="7U" />
+			<enumeration value="7V" />
+			<enumeration value="7W" />
+			<enumeration value="7X" />
+			<enumeration value="7Y" />
+			<enumeration value="7Z" />
+			<enumeration value="80" />
+			<enumeration value="81" />
+			<enumeration value="82" />
+			<enumeration value="83" />
+			<enumeration value="84" />
+			<enumeration value="85" />
+			<enumeration value="86" />
+			<enumeration value="87" />
+			<enumeration value="88" />
+			<enumeration value="89" />
+			<enumeration value="92" />
+			<enumeration value="93" />
+			<enumeration value="94" />
+			<enumeration value="95" />
+			<enumeration value="96" />
+			<enumeration value="97" />
+			<enumeration value="98" />
+			<enumeration value="99" />
+			<enumeration value="A0" />
+			<enumeration value="A1" />
+			<enumeration value="A2" />
+			<enumeration value="A3" />
+			<enumeration value="A4" />
+			<enumeration value="A5" />
+			<enumeration value="A6" />
+			<enumeration value="A7" />
+			<enumeration value="A8" />
+			<enumeration value="A9" />
+			<enumeration value="B0" />
+			<enumeration value="B1" />
+			<enumeration value="B2" />
+			<enumeration value="B3" />
+			<enumeration value="B4" />
+			<enumeration value="BP" />
+			<enumeration value="BR" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_edad">
+		<annotation>
+			<documentation> EDAD (EXPRESADA EN AÑOS) </documentation>
+		</annotation>
+		<restriction base="integer">
+			<totalDigits value="3" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_bsl_cof_edu_va">
+		<annotation>
+			<documentation> Coeficiente de endeudamiento </documentation>
+		</annotation>
+		<restriction base="decimal">
+			<totalDigits value="8" />
+			<fractionDigits value="2" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_bsl_nac_in">
+		<annotation>
+			<documentation>
+				INDICADOR DE NACIONALIDAD. Posibles valores: 1 - Español 2 - Extranjero
+				territorio U.E. 3 - Extranjero otros territorios
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<enumeration value="1" />
+			<enumeration value="2" />
+			<enumeration value="3" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_cod_fndad_ac">
+		<annotation>
+			<documentation>
+				Este Atributo contiene los distintos Códigos que identifican las
+				Finalidades de un Acuerdo. La lista de posibles valores se encuentra
+				en la tabla COD_FINALIDAD
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="3" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_cca_ponder">
+		<annotation>
+			<documentation>
+				CCA-PONDERADO Un atributo de uso general.Identifica el grado de morosidad del
+				pago de un cliente. Está formado por 4 posiciones, las dos primeras
+				indican la tendencia al pago y las dos segundas, la tendencia a la
+				morosidad. Se calcula a partir del CCA de Importes, dando peso a
+				cada uno de los dígitos la siguiente forma: 1º ponderando cada cuota
+				por los días que le faltan para llegar a 90. 2º lo que le falta al
+				1º dígito ponderado para ser la suma de los dos primeros del CCA de
+				Importes. 3º ponderando cada cuota por los días que le faltan para
+				llegar a 90. 4º lo que le falta al 3º dígito ponderado para ser la
+				suma de los dos últimos del CCA de Importes.
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="4" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_num_hijos_in">
+		<annotation>
+			<documentation>
+				Identifica número de hijos que tiene la Persona Física
+			</documentation>
+		</annotation>
+		<restriction base="short">
+			<totalDigits value="3" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_cod_ecv_ac">
+		<annotation>
+			<documentation>
+				Indica el valor de un código de un tipo de estado de ciclo de vida del
+				Acuerdo. Un atributo del TP_ECV_AC. *** Dominio: 0 - Ofertado 1 -
+				Solicitado 2 - Propuesto 3 - Aprobado 4 - Activo 5 - Suspendido 6 -
+				Vencido 7 - Cancelado 8 - Archivado
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<enumeration value="0" />
+			<enumeration value="1" />
+			<enumeration value="2" />
+			<enumeration value="3" />
+			<enumeration value="4" />
+			<enumeration value="5" />
+			<enumeration value="6" />
+			<enumeration value="7" />
+			<enumeration value="8" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_cod_grtia_ac">
+		<annotation>
+			<documentation>
+				Garantía que garantiza el préstamo. Valores posibles: - 1 - Hipotecaria
+				suficiente. - 2 - Hipotecaria insuficiente. - 3 - Prendaria
+				suficiente. - 4 - Prendaria insuficiente. - 5 - Dineraria
+				suficiente. - 6 - Dineraria insuficiente. - 7 - Personal. - 8 -
+				Sector público. - 9 - Mixta suficiente. - 10 - Mixta insuficiente.
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<enumeration value="1" />
+			<enumeration value="2" />
+			<enumeration value="3" />
+			<enumeration value="4" />
+			<enumeration value="5" />
+			<enumeration value="6" />
+			<enumeration value="7" />
+			<enumeration value="8" />
+			<enumeration value="9" />
+			<enumeration value="10" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_cod_tipo_pers_ctble">
+		<annotation>
+			<documentation>
+				Código tipo persona contable. Valores posibles: A00-BANCOS CENTRALES,
+				B00-ENTIDADES CREDITO, C00-CLIENTELA, 100-BCOS CENTRALES, 200-ENT DE
+				CREDITO, 210-ENT OFCCDTO, 220-BANCOS, 230-CAJASAHORRO, 240-COOP
+				CDTO, 250-OTRAS ENT CDTO, 300-BCOS MULTILAT DESA,
+				310-INST_FINAN_MONE, 320-RESTO_INST, 400-ADMON_PUBLICAS,
+				410-ADMON_CENTRAL, 411-ESTADO, 412-AC E ORG AUT ADM E, 413-AC
+				EMPRESAS, 420-AT CCAA ADMON, 421-AT CAA COM AUTO, 422-AT CCAA ORG
+				AUTAD, 423-AT CCAA EMPRESAS, 430-AT CORP LOCALES, 431-AT CORP LOCAL,
+				432-AT CORP LOC ORG_AT, 433-AT CORP LOC EMPRES, 440-OSS E ADMON SEG
+				SO, 450-ORG INTERNACIONAL, 500-RESTO CLIENTELA, 600-OTRAS SOC FINAN,
+				601-EST FINAN CRED, 602-OSF ENT DINERO ELE, 603-FON MERC MONE,
+				604-OTRAS INST f INAN, 605-ENT SEGUROS, 606-FOND PENSIONES, 607-FOND
+				INVERSION NOF, 608-OTR INS INV COL NF, 609-FOND INVERSION LIB,
+				610-FOND CAP RIESGO, 611-SOC INVER MOBIL, 612-SOC INVER INMOBIL,
+				613-SOC INVER LIBRE, 614-OSF REST INV COLEC, 615-SOC VALORES, 616-SA
+				INVER MERC INM, 617-SOC CAP RIESGO, 618-SOC FON TITUL, 619-ENT
+				CONTRP CENTRA, 620-SOC GESTION ACTIVO, 621-RESTO INTERM FINAN,
+				622-ENT HOLDING FILIAL, 623-AGEN DE VALORES, 624-SOC GEST CARTERA,
+				625-SOC GEST INTERM, 626-SOC GARAN RECIP, 627-SOC TASACION, 628-ENT
+				DE PAGO, 629-ESTAB CAMBIO, 630-OSF ENT ASESOR FIN, 631-CORR AGEN
+				SEGUR, 632-AUXILIARES FINANCI, 633-SOC EMIS PREFER, 634-ENT HOLDING,
+				635-SOC FINAN ESP, 636-RST FINAN AMBITO L, 637-INTERN SUPRANACION,
+				700-SOCIED NO FINAN, 710-OOP E ENT PUBL EST, 720-OOP E ORG AUTO COM,
+				730-OOP AT CA ENT PUBL, 740-OOP AT CA ORG AUT, 750-OOP AT CL CORP
+				LOC, 760-OOP AT CL ORG AUT, 800-HOGARES, 810-INSTIT PRIV S FIN,
+				820-FAMILIAS, 821-H EMPRESARIOS INDI, 822-H ACTIV NO EMPRESA
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<enumeration value="A00" />
+			<enumeration value="B00" />
+			<enumeration value="C00" />
+			<enumeration value="100" />
+			<enumeration value="200" />
+			<enumeration value="210" />
+			<enumeration value="220" />
+			<enumeration value="230" />
+			<enumeration value="240" />
+			<enumeration value="250" />
+			<enumeration value="300" />
+			<enumeration value="310" />
+			<enumeration value="320" />
+			<enumeration value="400" />
+			<enumeration value="410" />
+			<enumeration value="411" />
+			<enumeration value="412" />
+			<enumeration value="413" />
+			<enumeration value="420" />
+			<enumeration value="421" />
+			<enumeration value="422" />
+			<enumeration value="423" />
+			<enumeration value="430" />
+			<enumeration value="431" />
+			<enumeration value="432" />
+			<enumeration value="433" />
+			<enumeration value="440" />
+			<enumeration value="450" />
+			<enumeration value="500" />
+			<enumeration value="600" />
+			<enumeration value="601" />
+			<enumeration value="602" />
+			<enumeration value="603" />
+			<enumeration value="604" />
+			<enumeration value="605" />
+			<enumeration value="606" />
+			<enumeration value="607" />
+			<enumeration value="608" />
+			<enumeration value="609" />
+			<enumeration value="610" />
+			<enumeration value="611" />
+			<enumeration value="612" />
+			<enumeration value="613" />
+			<enumeration value="614" />
+			<enumeration value="615" />
+			<enumeration value="616" />
+			<enumeration value="617" />
+			<enumeration value="618" />
+			<enumeration value="619" />
+			<enumeration value="620" />
+			<enumeration value="621" />
+			<enumeration value="622" />
+			<enumeration value="623" />
+			<enumeration value="624" />
+			<enumeration value="625" />
+			<enumeration value="626" />
+			<enumeration value="627" />
+			<enumeration value="628" />
+			<enumeration value="629" />
+			<enumeration value="630" />
+			<enumeration value="631" />
+			<enumeration value="632" />
+			<enumeration value="633" />
+			<enumeration value="634" />
+			<enumeration value="635" />
+			<enumeration value="636" />
+			<enumeration value="637" />
+			<enumeration value="700" />
+			<enumeration value="710" />
+			<enumeration value="720" />
+			<enumeration value="730" />
+			<enumeration value="740" />
+			<enumeration value="750" />
+			<enumeration value="760" />
+			<enumeration value="800" />
+			<enumeration value="810" />
+			<enumeration value="820" />
+			<enumeration value="821" />
+			<enumeration value="822" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_cod_ecv_ac_ac">
+		<annotation>
+			<documentation>
+				Describe un código de un tipo de estado de ciclo de vida de una relación
+				entre acuerdos. Valores posibles: -1: Solicitada -2: Activa -3:
+				Inactiva
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<enumeration value="1" />
+			<enumeration value="2" />
+			<enumeration value="3" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_num_orden_rx">
+		<annotation>
+			<documentation>
+				Identificador del orden de relación entre 2 acuerdos.
+			</documentation>
+		</annotation>
+		<restriction base="integer">
+			<minInclusive value="0" />
+			<maxInclusive value="255" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_descuento">
+		<annotation>
+			<documentation> Porcentaje de descuento aplicado. </documentation>
+		</annotation>
+		<restriction base="decimal">
+			<fractionDigits value="3" />
+			<totalDigits value="6" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_tlf_movil">
+		<annotation>
+			<documentation> Teléfono Móvil </documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="15" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_nomb_trfa_pdv">
+		<annotation>
+			<documentation> Nombre de la tarifa de producto vendible
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="30" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_int_increm">
+		<annotation>
+			<documentation> Incremento del interés. </documentation>
+		</annotation>
+		<restriction base="decimal">
+			<totalDigits value="6" />
+			<fractionDigits value="3" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_cod_ecv_ka">
+		<annotation>
+			<documentation>
+				Filtro para el estado en el que se encuentra dicha condición, con valores:
+				1 - Solicitada. 2 - Propuesta. 3 - Aceptada. 4 - Rechazada. 5 -
+				Aprobada. 6 - Activa. 7 - Cancelada. 8 - Vencida. 9 - Archivada.
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<enumeration value="1" />
+			<enumeration value="2" />
+			<enumeration value="3" />
+			<enumeration value="4" />
+			<enumeration value="5" />
+			<enumeration value="6" />
+			<enumeration value="7" />
+			<enumeration value="8" />
+			<enumeration value="9" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_int_vble_fraccion">
+		<annotation>
+			<documentation>
+				Sólo para interés variable. Fracción en el incremento del interés.
+			</documentation>
+		</annotation>
+		<restriction base="decimal">
+			<totalDigits value="7" />
+			<fractionDigits value="4" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_ind_tipo_kt">
+		<annotation>
+			<documentation>
+				Tipo de porcentaje aplicado, con valores posibles: - F - FIJA - L -
+				LIMITE - X - MAXIMO - M - MINIMO - C - PORCENT_POR_CIEN - I -
+				PORCENT_POR_MIL - U - PORCENT_POR_UNO - T - PRORRATEO - A - SG_FIJA
+				- B - SG_LIMITE - D - SG_MAXIMO - E - SG_MINIMO - G -
+				SG_PORC_POR_CIEN - H - SG_PORC_POR_MIL - J - SG_PORC_POR_UNO - K -
+				SG_PRORRATEO
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<length value="1" />
+			<enumeration value="F" />
+			<enumeration value="L" />
+			<enumeration value="X" />
+			<enumeration value="M" />
+			<enumeration value="C" />
+			<enumeration value="I" />
+			<enumeration value="U" />
+			<enumeration value="T" />
+			<enumeration value="A" />
+			<enumeration value="B" />
+			<enumeration value="D" />
+			<enumeration value="E" />
+			<enumeration value="G" />
+			<enumeration value="H" />
+			<enumeration value="J" />
+			<enumeration value="K" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_cod_ecv_bonif">
+		<annotation>
+			<documentation>
+				Tipo de bonificación. Valores posibles. A - Aplazada. P - Planificada. R
+				- Realizada
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<length value="1" />
+			<enumeration value="A" />
+			<enumeration value="P" />
+			<enumeration value="R" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_ind_tp_consumo">
+		<annotation>
+			<documentation>
+				Tipo de liquidación de préstamo. Valores posibles: B - Bonificación D -
+				Descuento. N - Nada T - Tarjeta
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<length value="1" />
+			<enumeration value="B" />
+			<enumeration value="D" />
+			<enumeration value="N" />
+			<enumeration value="T" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_cod_orgn_ac">
+		<annotation>
+			<documentation>
+				Razón de solicitud del acuerdo. Podrá tomar uno de los siguientes
+				valores: - SUBROG_DECL_MISM E - SUBROG_NDECL_MISM F -
+				SUBROG_DECL_AJEN G - SUBROG_NDECL_AJEN H - SEGREGACION X -
+				SEGREGACION_PAR Y - SUBROTRAENTA 0 - PETIC_NORMAL 1 - OFERTA 2 -
+				RENOVA_AC 3 - REFINANCIACION 4 - SUBROGACION 5 - SUBROGA_PARCI 6 -
+				CONSTITU_AUTO 7 - ACUERDO_HIJO 8 - PRINCIPAL_CESTA 9 De no
+				informarse tomará por defecto el valor 1.
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<enumeration value="E" />
+			<enumeration value="F" />
+			<enumeration value="G" />
+			<enumeration value="H" />
+			<enumeration value="X" />
+			<enumeration value="Y" />
+			<enumeration value="0" />
+			<enumeration value="1" />
+			<enumeration value="2" />
+			<enumeration value="3" />
+			<enumeration value="4" />
+			<enumeration value="5" />
+			<enumeration value="6" />
+			<enumeration value="7" />
+			<enumeration value="8" />
+			<enumeration value="9" />
+			<maxLength value="1" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_num_operac">
+		<annotation>
+			<documentation> Número de operación SCP. </documentation>
+		</annotation>
+		<restriction base="decimal">
+			<totalDigits value="7" />
+			<fractionDigits value="0" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_txt_ind_resdcia">
+		<annotation>
+			<documentation>
+				Indicador de residencia de una persona. Posibles valores: 1 - RESIDENTE 2 -
+				UNION EUROPEA 3 - UNION MONETARIA EUROPEA 4 - RESTO DEL MUNDO
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<length value="1" />
+			<enumeration value="1" />
+			<enumeration value="2" />
+			<enumeration value="3" />
+			<enumeration value="4" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_txt_ref_te">
+		<annotation>
+			<documentation> Referencia de la operación </documentation>
+		</annotation>
+		<restriction base="string">
+			<length value="12" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_num_sec_tre">
+		<annotation>
+			<documentation> Número de secuencia del traspaso de efectivo
+			</documentation>
+		</annotation>
+		<restriction base="decimal">
+			<totalDigits value="11" />
+			<fractionDigits value="0" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_rsgo_calculado">
+		<annotation>
+			<documentation>
+				Riesgo calculado para un interviniente con los valores posibles
+				siguientes: ALTO, MEDIO y BAJO
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<enumeration value="ALTO" />
+			<enumeration value="MEDIO" />
+			<enumeration value="BAJO" />
+			<maxLength value="10" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_tipo_oprcn_trasp">
+		<annotation>
+			<documentation> Tipo de operación de traspaso de efectivo.
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="14" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_estado_op">
+		<annotation>
+			<documentation> Estado de la operación del traspaso. </documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="15" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_nombre_benef_te">
+		<annotation>
+			<documentation> Nombre del beneficiario del traspaso de efectivo
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="72" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_descr_larga">
+		<annotation>
+			<documentation> Descripción larga de campo para tabla referencial.
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="30" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_descr_moneda">
+		<annotation>
+			<documentation> Descripción de moneda </documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="40" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_nomb_grp_pd">
+		<annotation>
+			<documentation>
+				Descripción de un grupo de productos (alfanumérico de 30)
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="30" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_euribor">
+		<annotation>
+			<documentation>
+				índice de referencia publicado diariamente que indica el tipo de interés
+				promedio al que un gran número de bancos europeos dicen concederse
+				préstamos a corto plazo entre ellos para prestárselo a terceros
+				-particulares y empresas
+			</documentation>
+		</annotation>
+		<restriction base="decimal">
+			<fractionDigits value="2" />
+			<totalDigits value="4" />
+			<minInclusive value="0" />
+			<maxInclusive value="10" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_descr_bien">
+		<annotation>
+			<documentation> Descripción del bien </documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="250" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_cod_documento">
+		<annotation>
+			<documentation>
+				Tipo de documento. Valores posibles: CJ - CHEQUE EC - EFECTO EJ - EFECTO
+				COMERCIAL TRUNCADO RECIBIDO RB - RECIBO TF - TRANSFERENCIA RZ -
+				RECIBO SEPA RM - REMESAS - MAVER SIN DOCUMENTOS LQ - LIQUIDACION
+				GASTOS TI - TRANSFERENCIA INMEDIATA TR - TRANSFERENCIA SEPA MP -
+				MEDIOS DE PAGO EG - CONFIRMING EF - FACTORING
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<length value="2" />
+			<enumeration value="CJ" />
+			<enumeration value="EC" />
+			<enumeration value="EJ" />
+			<enumeration value="RB" />
+			<enumeration value="TF" />
+			<enumeration value="RZ" />
+			<enumeration value="RM" />
+			<enumeration value=" " />
+			<enumeration value="LQ" />
+			<enumeration value="TI" />
+			<enumeration value="TR" />
+			<enumeration value="MP" />
+			<enumeration value="EG" />
+			<enumeration value="EF" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_est_relacion">
+		<annotation>
+			<documentation>
+				Situación de la relación entre la persona y el centro Valores: ACTIVA
+				CANCELADAS ACTVIVACION_FUTURA
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="17" />
+			<enumeration value="ACTIVAS" />
+			<enumeration value="CANCELADAS" />
+			<enumeration value="ACTIVACION_FUTURA" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_cod_cargo">
+		<annotation>
+			<documentation> Código de cargo que ocupa en la empresa
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="2" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_desc_cargo">
+		<annotation>
+			<documentation> Descripción del cargo que ocupa en la empresa
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="25" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_cod_perfil_trans">
+		<annotation>
+			<documentation>
+				Código de perfil de una persona. Posibles valores: 1
+				Aplicación/Subaplicación 2 Transacción
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<length value="1" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_nomb_perfil_trans">
+		<annotation>
+			<documentation> Nombre de perfil </documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="20" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_desc_rzn_alta_pers">
+		<annotation>
+			<documentation> Descripción razón de alta de la persona
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="30" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_desc_perfil">
+		<annotation>
+			<documentation> Descripción del perfil de usuario </documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="100" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_cod_relacion">
+		<annotation>
+			<documentation>
+				Código que identifica la relación entre una persona y el centro. Valores:
+				01 - Trabaja para 02- Está asignado 03- Es gestor
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<length value="2" />
+			<enumeration value="01" />
+			<enumeration value="02" />
+			<enumeration value="03" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_desc_relacion">
+		<annotation>
+			<documentation> Descripción de la relación entre usuarios
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="30" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_tipo_jerarquia">
+		<annotation>
+			<documentation>
+				Tipo de jerarquía de relación entre usuarios. Valores: A - Ascendente D
+				- Descendente
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<length value="1" />
+			<enumeration value="A" />
+			<enumeration value="D" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_cod_rel_usu">
+		<annotation>
+			<documentation>
+				Código de relación entre usuarios. Posibles valores: 01 - Responsable 02 -
+				Sustituto
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="2" />
+			<enumeration value="01" />
+			<enumeration value="02" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_coordenada">
+		<annotation>
+			<documentation> Coordenada geográfica. </documentation>
+		</annotation>
+		<restriction base="decimal">
+			<maxInclusive value="99999999999" />
+			<fractionDigits value="7" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_codigo_operacion">
+		<annotation>
+			<documentation> Identificador externo de la operación.
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="26" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_porcentaje_at">
+		<annotation>
+			<documentation> Porcentaje de atribución de una aplicación
+			</documentation>
+		</annotation>
+		<restriction base="decimal">
+			<totalDigits value="6" />
+			<fractionDigits value="3" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_nivel_atribucion">
+		<annotation>
+			<documentation>
+				Nivel de atribución de un usuario. Posibles valores A, B, C, D, E
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<enumeration value="A" />
+			<enumeration value="B" />
+			<enumeration value="C" />
+			<enumeration value="D" />
+			<enumeration value="E" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_dias_valor">
+		<annotation>
+			<documentation>
+				Número de días de valoración, indica el número de días de margen sobre una
+				fecha valor.
+			</documentation>
+		</annotation>
+		<restriction base="decimal">
+			<totalDigits value="4" />
+			<minInclusive value="0" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_cod_dir_elctr">
+		<annotation>
+			<documentation>
+				Código de dirección electrónica. Valores posibles: - 16 CORREO_BACKOFFICE
+				- 12 CORREO_EMPLEADO - 15 CORREO_RIESGOS - 14 CORREO_RSG_CRED - 04
+				DATAFONO - 01 FAX - 11 GESTOR_EXT_RECUPER - 08 INTERNET - 03 N_R_I -
+				13 PAGINA_WEB - 05 SWIFT - 02 TELEFONO - 07 TELEFONO_DOMICILIO - 09
+				TELEFONO_MOVIL - 10 TELEFONO_TELECOBRO - 06 TELEX
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<enumeration value="01" />
+			<enumeration value="02" />
+			<enumeration value="03" />
+			<enumeration value="04" />
+			<enumeration value="05" />
+			<enumeration value="06" />
+			<enumeration value="07" />
+			<enumeration value="08" />
+			<enumeration value="09" />
+			<enumeration value="10" />
+			<enumeration value="11" />
+			<enumeration value="12" />
+			<enumeration value="13" />
+			<enumeration value="14" />
+			<enumeration value="15" />
+			<enumeration value="16" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_cod_id_ext_pers">
+		<annotation>
+			<documentation>
+				Identifica el codigo asociado a cada tipo de identificacion externa de una
+				persona fisica o jurdica. 01=C.I.F. Nacional 02=C.I.F. Extranjero
+				03=C.I.F. provisional 04=Numero CSB Ofi.C.R 05=Desconocido interf
+				06=Codigo de SWIFT 07=Cod.NRBE de una E.B 08=OTRAS P.JURIDICAS
+				09=Delegacion AEAT 10=Referencia Nomina 11=Referencia Emisor Para
+				Personas Fisicas 12=NUMERO PART.JURIDICA 13=RGA TOGA 14=OFICINA
+				INTEGRADA 15=ASOCIADO A CAPITAL 16=C.I.F.EXTR.NO RESID 17=CODIGO
+				FISCAL 51=N.I.F. Nacional 52=Pasaporte 53=Tarj.Resi o NIF Ext
+				54=Esp. No Resi.Sin NIF 55=Esp. menor 14 Sin NIF 56=Descon.
+				Inter.Fis 57=Numero Seg.Social 58=Permiso de conducir 59=D.N.I.
+				60=Otras P.Fisicas 61=Referencia nomins 62=Referencia emisor
+				63=Matricula Empleado 66=Tarjeta de Residencia 70=Matricula
+				Automovil
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="2" />
+			<enumeration value="01" />
+			<enumeration value="02" />
+			<enumeration value="03" />
+			<enumeration value="04" />
+			<enumeration value="05" />
+			<enumeration value="06" />
+			<enumeration value="07" />
+			<enumeration value="08" />
+			<enumeration value="09" />
+			<enumeration value="10" />
+			<enumeration value="11" />
+			<enumeration value="12" />
+			<enumeration value="13" />
+			<enumeration value="14" />
+			<enumeration value="15" />
+			<enumeration value="16" />
+			<enumeration value="17" />
+			<enumeration value="51" />
+			<enumeration value="52" />
+			<enumeration value="53" />
+			<enumeration value="54" />
+			<enumeration value="55" />
+			<enumeration value="56" />
+			<enumeration value="57" />
+			<enumeration value="58" />
+			<enumeration value="59" />
+			<enumeration value="60" />
+			<enumeration value="61" />
+			<enumeration value="62" />
+			<enumeration value="63" />
+			<enumeration value="64" />
+			<enumeration value="65" />
+			<enumeration value="66" />
+			<enumeration value="70" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_cod_bloqueo">
+		<annotation>
+			<documentation>
+				Código de bloqueo de un acuerdo. Posibles valores: - 34
+				BLQ.FORMALIZ.EXPEDIENTE.
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<length value="2" />
+			<enumeration value="34" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_mot_bloqueo">
+		<annotation>
+			<documentation> Motivo de bloqueo del acuerdo </documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="30" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_origen_bloqueo">
+		<annotation>
+			<documentation>
+				Origen del bloqueo, posibles valores: C - Cliente O - Oficina
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<length value="1" />
+			<enumeration value="O" />
+			<enumeration value="C" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_mot_cancela_bloqueo">
+		<annotation>
+			<documentation>
+				Motivo de cancelación de un bloqueo asociado a un acuerdoa
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="30" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_interes_referencial">
+		<annotation>
+			<documentation> Interes Referencial </documentation>
+		</annotation>
+		<restriction base="decimal">
+			<totalDigits value="10" />
+			<fractionDigits value="4" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_num_cheque">
+		<annotation>
+			<documentation> Número de cheque </documentation>
+		</annotation>
+		<restriction base="integer">
+			<totalDigits value="7" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_identif_cheque">
+		<annotation>
+			<documentation>
+				Identificación del cheque. Campo 5 posiciones, donde las 2 primeras determinan el
+				tipo de cheque. 42- Cheques cuenta corriente 43- Cheques cuenta
+				corriente no residente 82- Pagarés cuenta corriente 83- Pagarés
+				cuenta corriente no residente 75- Cheques bancarios 76- Cheques
+				bancarios no residentes 77- Cheques nómina 90- Pagos domiciliados
+				91- Pagos domiciliados no residentes 11- Cheques carburante y
+				gasóleo bonificado 78- Cheques viaje
+			</documentation>
+		</annotation>
+		<restriction base="integer">
+			<totalDigits value="5" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_cod_rl_pers_ac_pos">
+		<annotation>
+			<documentation>
+				Código relación persona acuerdo restringido a los valores 0: Todas las
+				figuras 01: Titular
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<enumeration value="0" />
+			<enumeration value="01" />
+			<maxLength value="2" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_cuenta_ccc">
+		<annotation>
+			<documentation> Cuenta ccc </documentation>
+		</annotation>
+		<restriction base="string">
+			<pattern value="[0-9]{20}" />
+			<length value="20" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_numero_retencion">
+		<annotation>
+			<documentation> Número de retención </documentation>
+		</annotation>
+		<restriction base="int">
+			<totalDigits value="7" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_num_anotacion">
+		<annotation>
+			<documentation> Número identificativo de la anotación.
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="16" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_tipo_info_adicional">
+		<annotation>
+			<documentation>
+				Tipo de información adicional. Posibles valores: 1 - Información
+				adicional acuerdo 2 - Identificadores externos 3 - Otras personas 4
+				- Información adicional otras personas 5 - Datos acuerdo/oficina
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<length value="1" />
+			<enumeration value="1" />
+			<enumeration value="2" />
+			<enumeration value="3" />
+			<enumeration value="4" />
+			<enumeration value="5" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_cod_info_adicional">
+		<annotation>
+			<documentation>
+				Código de información adicional. Para cada tipo puede haber uno o varios
+				códigos posibles, siendo un campo sin valores acotados, pues se
+				definen a medida que se necesita incluir información.
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<length value="2" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_valor_info_adicional">
+		<annotation>
+			<documentation>
+				Valor que se incluye como información adicional a un acuerdo.
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="50" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_tipo_contrapartida">
+		<annotation>
+			<documentation>
+				Tipo contrapartida para la cancelación de un acuerdo. Posibles valores:
+				CJ - Caja IV - Intervención CT – Cuenta asociada OT - Otro Acuerdo
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<length value="2" />
+			<enumeration value="CJ" />
+			<enumeration value="IV" />
+			<enumeration value="CT" />
+			<enumeration value="OT" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_razon_cancela">
+		<annotation>
+			<documentation>
+				Indica la razón de cancelación de un acuerdo Este campo tiene valores
+				predefinidos, pero pueden definirse más, por lo que la validación de
+				los posibles valores se hace en la capa de Negocio. Se indican los
+				definidos actualmente: 01 CAMBIO NORMAL 12 TEMPORAL DESDE OFERTA 13
+				TEMPORAL DESDE SOLICITUD 14 TEMPORAL DESDE APROBACIÓN 15 ANTICIPADA
+				DESDE ACTIVO 16 CANCELACIÓN CON REVERSIÓN 17 CANCELACIÓN POR VENTA
+				18 CANCELACIÓN POR NO AMPLIACIÓN 19 CANCELACIÓN POR DENEGACIÓN 20
+				CANCELACIÓN POR ANULACIÓN 21 CANCELACIÓN POR FALLECIMIENTO 22
+				CANCELACIÓN POR EXPULSIÓN 23 CANCELACIÓN SIN JUSTIFICAR 24
+				CANCELACION POR OTROS MOTIVOS 30 CANCELACIÓN POR ERROR 31
+				CANCELACION POR PRESTACION 32 CANCELACION POR TRASPASO
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<length value="2" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_clasifica_mifid">
+		<annotation>
+			<documentation>
+				Código que identifica la clasificación MIFID que tiene una persona.
+				Posibles valores: M MINORISTA P PROFESIONAL C CONTRAPARTE ELEGIBLE
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<length value="1" />
+			<enumeration value="M" />
+			<enumeration value="P" />
+			<enumeration value="C" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_codigoSituacion">
+		<annotation>
+			<documentation>
+				Código tipo de situación de un acuerdo. Posibles valores: 0 - Normal 1 -
+				Impagado 2 - Dudoso-Moroso 3 - Dudoso 4 - Muy Dudoso 5 - Fallido 9 -
+				Mal Documentado
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<length value="1" />
+			<enumeration value="0" />
+			<enumeration value="1" />
+			<enumeration value="2" />
+			<enumeration value="3" />
+			<enumeration value="4" />
+			<enumeration value="5" />
+			<enumeration value="9" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_cod_sancion">
+		<annotation>
+			<documentation>
+				Código de la última política sancionada. Valores actuales (podrían
+				definirse nuevos códigos, por lo que no se pone como restricción):
+				01 INCREMENTAR VINCULACION 02 SITUACION NORMAL 03 NO INCREMENTAR
+				RIESGOS 04 APORTAR GARANTIAS 05 VIGILAR 06 REDUCIR RIESGO 07 CLIENTE
+				EN SUPERVISION ESPECIAL 08 EXTINGUIR RIESGO 09 APROBAR POLITICAS
+				PROPUESTA OFICINA 10 SEGUIMIENTO ESPECIAL AUDITORIA 11 SEGUIMIENTO
+				ESPECIAL BANCO ESPAÑA 12 SEGUIMIENTO ESPECIAL VOLUNTARIO 13
+				SEGUIMIENTO GESTION DE IRREGULARES 14 SEGUIMIENTO PROMOCIONES SUELO
+				15 INICIAR RECLAMACION JUDICIAL 16 BAJA EN SEGUIMIENTO 17 GESTIONAR
+				POR DEPARTAMENTO SEGUIMIENTO
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<length value="2" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_estado_bloqueo">
+		<annotation>
+			<documentation>
+				Indica el código de un tipo de estado de un bloqueo/protección de un
+				Acuerdo. Posibles valores: A - Activo I - Inactivo C - Cancelado V -
+				Vencido H - Archivado 0 - Todos
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<length value="1" />
+			<enumeration value="A" />
+			<enumeration value="I" />
+			<enumeration value="C" />
+			<enumeration value="V" />
+			<enumeration value="H" />
+			<enumeration value="0" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_emisor_bloqueo">
+		<annotation>
+			<documentation> ID emisor de bloqueo/protección de un acuerdo
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="35" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_cod_bloqueo_acuerdo">
+		<annotation>
+			<documentation>
+				Código de bloqueo/protección de un acuerdo. No se incluye como restricción
+				los posibles valores debido a que no es acotada. Actualmente los
+				valores posibles son: 01 - BLOQUEO JURIDICO 02 - BLOQUEO JUR.CARGOS
+				03 - BLOQUEO JUDICIAL 04 - BLOQUEO JUD. CARGOS 05 - BLQ.FALTA NIF 06
+				- CONSULTA RESTRINGIDA 07 - BLQ.MANUAL TODAS OP. 08 - BLQ.MANUAL
+				CARGOS 09 - BLQ.MANUAL ABONOS 10 - BLQ.MANUAL RECIBOS 11 -
+				BLQ.MANUAL EFECTOS 12 - BLQ.MANUAL M-PAGO 13 - BLQ.MANUAL TESORER 14
+				- BLQ.MANUAL ACTIVO 15 - BLQ.AUTOMAT.AVAL 16 - CONS.RESTRINGIDA PER
+				17 - BLOQUEO TITULIZACION 18 - BLQ.TITULIZ.PREST. 19 - BLOQ.FALTA
+				REPRESENT 20 - G.E.D. - ENVIO SS.CC 21 - BLOQ. DOMICILIACION 23 -
+				BLOQ. DIF RESIDENCIA 24 - BLQ MANUAL REINTEG 25 - BLQ MANUAL DESCUB
+				26 - FALTA ID. CARGOS 27 - FALTA ID. ABONOS 28 - NIF REVOCADO AEAT
+				29 - BLQ.MANUAL ALTA REM 30 - BLQ.MANUAL GEST. EFE 51 - PRTCN.
+				JURIDICO 52 - PRTCN. JUR. CARGOS 57 - PRT.MANUAL TODAS OP. 58 - PRT.
+				MANUAL CARGOS 59 - PRT. MANUAL ABONOS 60 - PRT. MANUAL RECIBOS 61 -
+				PRT. MANUAL EFECTOS 62 - PRT. MANUAL M-PAGO 63 - PRT. MANUAL TESORER
+				64 - PRT. MANUAL ACTIVO 65 - PRT. POR MOROSIDAD 66 - PRT. MANUAL
+				REINTEG 67 - ADMISION-ENVIO SSCC
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<length value="2" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_idext_ac_seguros">
+		<annotation>
+			<documentation> ID emisor de bloqueo/protección de un acuerdo
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="50" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_info_adicional ">
+		<annotation>
+			<documentation> Información adicional de un acuerdo </documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="40" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_cod_tasa_estatal">
+		<annotation>
+			<documentation> Código de la tasa estatal. </documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="5" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_id_justif_ing_admon">
+		<annotation>
+			<documentation>
+				Identificador del justificante de ingreso a la administración.
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="19" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_num_bloqueo">
+		<annotation>
+			<documentation> Número de bloqueo asociado a un acuerdo
+			</documentation>
+		</annotation>
+		<restriction base="integer">
+			<minInclusive value="0" />
+			<totalDigits value="4" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_cod_rl_pers_de">
+		<annotation>
+			<documentation>
+				Indica el código del tipo de relación entre un documento y una persona.
+				Posibles valores: 01 TITULAR 02 AUTORIZADO 03 AVALISTA 04 AVALISTA
+				NO SOLIDARIO 05 APODERADO 06 BENEFICIARIO 07 NOTARIO 08 CORREDOR
+				COMERCIO 09 AGENTE CORREDOR 10 ORGANISMO SUBVENCIONADOR 11
+				COOPERATIVAS 12 GESTIONA 13 REPRESENTADA TITULAR 1 14 REPRESENTADA
+				TITULAR 2 15 REPRESENTANTE LEGAL 16 TUTOR 17 PROMOTOR COMERCIAL 18
+				HIPOTECANTE NO DEUDOR 19 AVALISTA SUBSIDIARIO 20 TITULAR CUC1 21
+				TITULAR CUC2 22 PRESENTADOR 23 ASUME GASTOS AVAL 24 USUFRUCTUARIO 25
+				ENTIDAD DEPOSITARIA 26 INVERSOR 27 PROVEEDOR 28 APODERADO DEL
+				AVALISTA 29 APODERADO AVALISTA NO SOLIDARIO 30 APODERADO DEL
+				APODERADO 31 APODERADO DEL BENEFICIARIO 32 APODERADO ASUME GASTOS 33
+				APODERADO PROMOTOR COMERCIAL 34 APODERADO HIPOTECANTE NO DEUDOR 35
+				APODERADO DE AVALISTA SUBSIDIARIO 36 APODERADO DEL PROVEEDOR 37
+				ASEGURADO 38 PAGADOR 39 CONDUCTOR OCASIONAL 40 TITULAR ACUERDO MARCO
+				42 ASOCIADO RURALVIA RP 42 ASOC.B.ELECTRONICA RP 43
+				CONS.B.ELECTRONICA RP 43 CONS.RURALVIA.RP 51 RELACIONES BANCA
+				PRIVADA
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="3" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_cod_tp_de">
+		<annotation>
+			<documentation>
+				Indica el código que identifica a cada una de las diferentes partes de un
+				documento. Sus posibles valores son: 01 CONTRATO 02 RECIBI 03 ANEXO1
+				04 ANEXO2 05 ANEXO3 06 ANEXO4
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="2" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_cod_ecv_operacion">
+		<annotation>
+			<documentation>
+				Indica el código de estado de ciclo de vida de una operación de firma
+				diferida. Sus posibles valores son: A ANULADA C COMPLETADA P
+				PENDIENTE
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="1" />
+			<enumeration value="A" />
+			<enumeration value="C" />
+			<enumeration value="P" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_cod_tipo_operacion">
+		<annotation>
+			<documentation>
+				Indica el código del tipo de operación de firma diferida. Sus posibles
+				valores son: 01 FIRMA_OFICINA 02 FIRMA_ONLINE
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="2" />
+			<enumeration value="01" />
+			<enumeration value="02" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_cod_ecv_firma">
+		<annotation>
+			<documentation>
+				Indica el código de estado de ciclo de vida de una firma dentro de un
+				proceso de firma diferida. Sus posibles valores son: 01 COMPLETADA
+				02 PENDIENTE
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="2" />
+			<enumeration value="01" />
+			<enumeration value="02" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_id_interno_dc">
+		<annotation>
+			<documentation>
+				Indica el Identificador interno de una emisión de documento.
+			</documentation>
+		</annotation>
+		<restriction base="int" />
+	</simpleType>
+	<simpleType name="t_descr_40">
+		<annotation>
+			<documentation> Descripción de formulario en 40 caracteres.
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="40" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_dato_adicional_15">
+		<annotation>
+			<documentation>
+				Dato adicional en 15 caracteres. Parametrización de envío o no a GED de
+				un formulario.
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="15" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_tipo_sol">
+		<annotation>
+			<documentation>
+				Tipo de solicitud de tasación. Valores: - C00 - Carga Automática - T00 -
+				Tasadora
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="3" />
+			<enumeration value="C00" />
+			<enumeration value="T00" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_id_mensaje">
+		<annotation>
+			<documentation> Identificador del número de mensaje de tasación
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="20" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_num_reg_tasa">
+		<annotation>
+			<documentation>
+				Número de registro de la tasación. Es único por bien y hace referencia al
+				numero de tasaciones de ese bien.
+			</documentation>
+		</annotation>
+		<restriction base="decimal">
+			<fractionDigits value="0" />
+			<totalDigits value="5" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_tipo_accion">
+		<annotation>
+			<documentation>
+				Tipo de acción realizada sobre la referencia de la tasación. -
+				0-AltaOperacion - 1-ModifOperacion - 2-CancOperacion
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<length value="1" />
+			<enumeration value="0" />
+			<enumeration value="1" />
+			<enumeration value="2" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_observaciones">
+		<annotation>
+			<documentation> texto libre para observaciones </documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="1000" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_uso_bien">
+		<annotation>
+			<documentation>
+				Uso del inmueble: - H1 - VIV. HABITUAL 1 VEZ - VH - VIVIENDA HABITUAL -
+				2ª - 2 VIVIENDA - IN - INVERSION - OT - OTROS
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<length value="2" />
+			<enumeration value="VH" />
+			<enumeration value="H1" />
+			<enumeration value="2ª" />
+			<enumeration value="IN" />
+			<enumeration value="OT" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_registro">
+		<annotation>
+			<documentation> número de registro </documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="6" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_finca">
+		<annotation>
+			<documentation> Finca </documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="15" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_tomo">
+		<annotation>
+			<documentation> Tomo </documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="6" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_libro">
+		<annotation>
+			<documentation> Libro </documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="6" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_folio">
+		<annotation>
+			<documentation> Folio </documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="6" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_idufir">
+		<annotation>
+			<documentation> IDUFIR </documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="14" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_tipo_tasa">
+		<annotation>
+			<documentation>
+				Tipo de tasación: - T-“ Económica” - E –“Estadística”
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<enumeration value="E" />
+			<enumeration value="T" />
+			<length value="1" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_motivo_soli">
+		<annotation>
+			<documentation>
+				Motivo de la solicitud de tasación: 1-“Concesión Operación” 2-“Revisión
+				cumplimiento normativo” 3-“Otros”
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<length value="1" />
+			<enumeration value="1" />
+			<enumeration value="2" />
+			<enumeration value="3" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_cod_docum">
+		<annotation>
+			<documentation>
+				Código de documento IRIS, de dos dígitos. Sus posibles valores están
+				recogidos en la tabla referencial TP_DOC.
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="2" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_nombre_largo">
+		<annotation>
+			<documentation> Nombre largo de hasta 200 carácteres. </documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="200" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_indicadorSNVP">
+		<annotation>
+			<documentation>
+				Posibles valores: S=> SI N=> NO V => VENTAS P => POSICION
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<length value="1" />
+			<enumeration value="S" />
+			<enumeration value="N" />
+			<enumeration value="V" />
+			<enumeration value="P" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_cod_registro">
+		<annotation>
+			<documentation>
+				Tipo de dirección registral del Bien. Posibles valores: 00 - REGISTRO DE
+				LA PROPIEDAD 01 - CATASTRO 02 - COLEGIOS PROFESIONALES 03 - REGISTRO
+				CONSULAR 04 - REGISTRO COOPERATIVAS 06 - REGISTRO DE TRAFICO 07 -
+				REGST.MAQUINARIA AGRICOLA 08 - REGISTRO MERCANTIL 09 - REGISTRO
+				ENTIDADES B.E. 99 - OTROS
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<enumeration value="00" />
+			<enumeration value="01" />
+			<enumeration value="02" />
+			<enumeration value="03" />
+			<enumeration value="04" />
+			<enumeration value="06" />
+			<enumeration value="07" />
+			<enumeration value="08" />
+			<enumeration value="09" />
+			<enumeration value="99" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_libro_reg">
+		<annotation>
+			<documentation>
+				Número de Libro de la Dirección Registral de un Bien.
+			</documentation>
+		</annotation>
+		<restriction base="decimal">
+			<totalDigits value="5" />
+			<fractionDigits value="0" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_tomo_reg">
+		<annotation>
+			<documentation>
+				Número de Tomo de la Dirección Registral de un Bien.
+			</documentation>
+		</annotation>
+		<restriction base="decimal">
+			<totalDigits value="5" />
+			<fractionDigits value="0" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_folio_reg">
+		<annotation>
+			<documentation> Folio de la Dirección Registral de un Bien.
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="5" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_valor">
+		<annotation>
+			<documentation> Valor actual. </documentation>
+		</annotation>
+		<restriction base="decimal">
+			<totalDigits value="15" />
+			<fractionDigits value="2" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_total_intereses">
+		<annotation>
+			<documentation> Total intereses antes de amortizar </documentation>
+		</annotation>
+		<restriction base="decimal">
+			<totalDigits value="15" />
+			<fractionDigits value="2" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_porcentaje">
+		<annotation>
+			<documentation> Porcentaje </documentation>
+		</annotation>
+		<restriction base="decimal">
+			<totalDigits value="6" />
+			<fractionDigits value="3" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_ac_ambito_lci">
+		<annotation>
+			<documentation> Acuerdo dentro del ámbito de la ley LCI
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="2" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_capital_pdte">
+		<annotation>
+			<documentation> Capital pendiente antes de amortizar </documentation>
+		</annotation>
+		<restriction base="decimal">
+			<totalDigits value="15" />
+			<fractionDigits value="2" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_tipo_actualizacion">
+		<annotation>
+			<documentation> Tipo de actualización </documentation>
+		</annotation>
+		<restriction base="decimal">
+			<totalDigits value="15" />
+			<fractionDigits value="2" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_tipo_doc">
+		<annotation>
+			<documentation>
+				Tipo de documento. Posibles valores: F - Fijo, V - Variable, S -
+				Subrogación .
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="1" />
+			<enumeration value="F" />
+			<enumeration value="V" />
+			<enumeration value="S" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_indicador_validacion">
+		<annotation>
+			<documentation>
+				Indica si se valida sobre movimientos de cuenta o de tarjeta. Valores
+				posibles: "C" - Cuenta "D" - Tarjeta de débito
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<enumeration value="C" />
+			<enumeration value="D" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_importe">
+		<annotation>
+			<documentation> Importe </documentation>
+		</annotation>
+		<restriction base="decimal">
+			<totalDigits value="15" />
+			<fractionDigits value="2" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_formaPago">
+		<annotation>
+			<documentation>
+				Forma de pago actual de la tarjeta: contado - Forma de pago al contado.
+				importeFijo - Forma de pago con un importe fijo. porcentaje - Forma
+				de pago con un porcentaje aplicado. cuotaFijaMensual - Forma de pago
+				con una cuota fija mensual en la tarjeta. porcentajeMensual - Forma
+				de pago con un porcentaje mensual en la tarjeta.
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<enumeration value="contado" />
+			<enumeration value="importeFijo" />
+			<enumeration value="porcentaje" />
+			<enumeration value="cuotaFijaMensual" />
+			<enumeration value="porcentajeMensual" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_codigoIdioma">
+		<annotation>
+			<documentation> Código del idioma. </documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="5" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_hora_minuto">
+		<annotation>
+			<documentation> Hora en formato HH:MM </documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="5" />
+			<pattern value="([0-1][0-9]|2[0-3]):[0-5][0-9]" />
+		</restriction>
+	</simpleType>
+</schema>

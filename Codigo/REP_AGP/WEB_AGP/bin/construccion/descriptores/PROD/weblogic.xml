@@ -1,0 +1,9 @@
+<weblogic-web-app>
+	<session-descriptor>
+		<persistent-store-type>memory</persistent-store-type>
+		<timeout-secs>3600</timeout-secs>
+	</session-descriptor>
+	<container-descriptor>
+		<show-archived-real-path-enabled>true</show-archived-real-path-enabled>
+	</container-descriptor>
+</weblogic-web-app>

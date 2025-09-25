@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="declaracionSeguro_hojaParcelas_totalNoPlanton" pageWidth="555" pageHeight="802" whenNoDataType="AllSectionsNoDetail" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<import value="com.rsi.agp.core.util.NumberUtils"/>
+	<parameter name="HOJA" class="java.math.BigDecimal"/>
+	<parameter name="IDPOLIZA" class="java.lang.Integer"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA[""]]></defaultValueExpression>
+	</parameter>
+	<parameter name="CODCONCEPTO" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT COUNT(distinct(PA.IDPARCELA)) AS NUM_PARCELAS,
+       SUM(NVL(REL.Produccionmodif, REL.PRODUCCION)) AS PRODUCCION,
+       SUM(CA.SUPERFICIE) AS SUPERFICIE,
+       SUM(NVL(REL.Preciomodif * REL.Produccionmodif, REL.PRECIO * REL.PRODUCCION)) AS PRECIO_PRODUCCION,
+       NVL(SUM(NVL(REL.Preciomodif, REL.PRECIO) * to_number(CA.SUPERFICIE)),  null) AS PRECIO_SUPERFICIE
+  FROM o02agpe0.TB_PARCELAS             PA,
+       o02agpe0.TB_CAPITALES_ASEGURADOS CA,
+       o02agpe0.TB_SC_C_TIPO_CAPITAL    TC,
+       o02agpe0.TB_CAP_ASEG_REL_MODULO  REL
+ WHERE CA.IDPARCELA = PA.IDPARCELA
+   AND CA.CODTIPOCAPITAL = TC.CODTIPOCAPITAL
+   AND CA.IDCAPITALASEGURADO = REL.IDCAPITALASEGURADO
+   AND TC.CODCONCEPTO = $P{CODCONCEPTO}
+   AND PA.HOJA = $P{HOJA}
+   AND PA.IDPOLIZA = $P{IDPOLIZA}]]>
+	</queryString>
+	<field name="NUM_PARCELAS" class="java.lang.String"/>
+	<field name="SUPERFICIE" class="java.math.BigDecimal"/>
+	<field name="PRODUCCION" class="java.math.BigDecimal"/>
+	<field name="PRECIO_PRODUCCION" class="java.math.BigDecimal"/>
+	<field name="PRECIO_SUPERFICIE" class="java.math.BigDecimal"/>
+	<variable name="SHOW_FOOT" class="java.lang.Boolean" resetType="None">
+		<variableExpression><![CDATA[new Boolean(true)]]></variableExpression>
+		<initialValueExpression><![CDATA[]]></initialValueExpression>
+	</variable>
+	<variable name="SHOW_BACK" class="java.lang.Boolean" resetType="None">
+		<variableExpression><![CDATA[new Boolean(true)]]></variableExpression>
+		<initialValueExpression><![CDATA[]]></initialValueExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="14" splitType="Stretch">
+			<printWhenExpression><![CDATA[Boolean.valueOf(!($F{NUM_PARCELAS}.toString()).equals("0"))]]></printWhenExpression>
+			<textField>
+				<reportElement mode="Transparent" x="0" y="0" width="188" height="14" backcolor="#FFFFFF"/>
+				<box leftPadding="5" rightPadding="2">
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle" markup="none">
+					<font size="6" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["CAPITALES " + ($P{CODCONCEPTO}.equals("68") ? "PRODUCCIÓN" : "SUPERFICIE")]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="188" y="0" width="70" height="14"/>
+				<box rightPadding="2">
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="6" isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{NUM_PARCELAS}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00" isBlankWhenNull="true">
+				<reportElement x="380" y="0" width="70" height="14"/>
+				<box rightPadding="2">
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="6"/>
+				</textElement>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{SUPERFICIE}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00" isBlankWhenNull="true">
+				<reportElement x="450" y="0" width="93" height="14"/>
+				<box rightPadding="2">
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="6"/>
+				</textElement>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[($P{CODCONCEPTO}.equals("68") ? $F{PRECIO_PRODUCCION} : $F{PRECIO_SUPERFICIE})]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00" isBlankWhenNull="true">
+				<reportElement x="258" y="0" width="107" height="14"/>
+				<box rightPadding="2">
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="6"/>
+				</textElement>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[($P{CODCONCEPTO}.equals("68") ? $F{PRODUCCION} : $F{SUPERFICIE})]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="true">
+				<reportElement x="365" y="0" width="15" height="14"/>
+				<box rightPadding="2">
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font size="6"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[($P{CODCONCEPTO}.equals("68") ? "Kg." : "Ha.")]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="15">
+			<printWhenExpression><![CDATA[Boolean.valueOf(!($F{NUM_PARCELAS}.toString()).equals("0"))]]></printWhenExpression>
+			<subreport>
+				<reportElement positionType="Float" mode="Transparent" x="0" y="1" width="543" height="14" isRemoveLineWhenBlank="true" backcolor="#FFFFFF"/>
+				<subreportParameter name="IDPOLIZA">
+					<subreportParameterExpression><![CDATA[$P{IDPOLIZA}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="HOJA">
+					<subreportParameterExpression><![CDATA[$P{HOJA}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="CODCONCEPTO">
+					<subreportParameterExpression><![CDATA[$P{CODCONCEPTO}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="SUBREPORT_DIR">
+					<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<returnValue subreportVariable="SHOW_FOOT" toVariable="SHOW_FOOT"/>
+				<returnValue subreportVariable="SHOW_BACK" toVariable="SHOW_BACK"/>
+				<subreportExpression class="java.lang.String"><![CDATA[$P{SUBREPORT_DIR} + "declaracionSeguro_hojaParcelas_resValAseg_ProdSupDesglose.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

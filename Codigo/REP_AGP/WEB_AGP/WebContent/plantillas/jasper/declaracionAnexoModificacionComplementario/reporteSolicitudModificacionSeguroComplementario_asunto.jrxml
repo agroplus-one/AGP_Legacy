@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reporteSolicitudModificacionSeguro_indentificacionSeguro" pageWidth="330" pageHeight="16" whenNoDataType="AllSectionsNoDetail" columnWidth="330" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0">
+	<parameter name="ID" class="java.math.BigDecimal"/>
+	<parameter name="ASUNTO" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT * FROM DUAL]]>
+	</queryString>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<detail>
+		<band height="16" splitType="Stretch">
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement key="textField-32" x="0" y="0" width="330" height="16" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true"/>
+				<box leftPadding="2">
+					<topPen lineWidth="0.25" lineStyle="Solid"/>
+					<leftPen lineWidth="0.25" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.25" lineStyle="Solid"/>
+					<rightPen lineWidth="0.25" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="9" pdfFontName="Courier"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{ASUNTO}.replace("DOMICM", "Cambio de Domicilio del Asegurado o del Tomador")
+          .replace("PARCEA", "Alta de Parcela")
+          .replace("PARCEB", "Baja de Parcelas")
+          .replace("PARCEM", "Desglose de Parcelas")
+          .replace("SUBVEA", "Alta Tipo de Subvención")
+          .replace("SUBVEB", "Baja Tipo de Subvención")
+          .replace("SUBVEM", "Modificación Tipo de Subvención Adicional")
+          .replace("OTROS", "Otras Modificaciones")
+          .replaceAll(";", "\n")
+          .trim()]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

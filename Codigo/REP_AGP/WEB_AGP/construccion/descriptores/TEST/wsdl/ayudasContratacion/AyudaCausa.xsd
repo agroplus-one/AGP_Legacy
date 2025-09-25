@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<x:schema xmlns:x="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.agroseguro.es/SeguroAgrario/Contratacion/AyudaCausa" xmlns="http://www.agroseguro.es/SeguroAgrario/Contratacion/AyudaCausa" xmlns:ti="http://www.agroseguro.es/Tipos">
+
+	<x:import namespace="http://www.agroseguro.es/Tipos" schemaLocation="Tipos.xsd"/>
+
+	<x:element name="Causas" type="Causas"/>
+	
+	<x:complexType name="Causas">
+		<x:sequence>
+			<x:element maxOccurs="unbounded" minOccurs="1" name="Causa" type="Causa"/>			
+		</x:sequence>
+	</x:complexType>
+
+	<x:complexType name="Causa">	
+    	<x:attribute name="codigoCausa" type="ti:Motivo_Codigo" use="required"/>
+    	<x:attribute name="descripcion" type="ti:Motivo_Descripcion" use="required"/>
+    </x:complexType>
+
+</x:schema>

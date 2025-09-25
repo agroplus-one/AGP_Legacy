@@ -1,0 +1,176 @@
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+	xmlns:tns="http://www.ruralserviciosinformaticos.com/empresa/SE_SEG_Documentacion_GED/"
+	xmlns:ns="http://www.ruralserviciosinformaticos.com/empresa/SE_SEG_Documentacion_GED/"
+	xmlns:core="http://www.ruralserviciosinformaticos.com/XSD/CORE/CommonType_CORE/"
+	xmlns:ego="http://www.ruralserviciosinformaticos.com/XSD/ErrorGenerico_O/"
+	xmlns:seg="http://www.ruralserviciosinformaticos.com/XSD/SEGUROS/CommonType_SEGUROS/"
+	xmlns:cont="http://www.ruralserviciosinformaticos.com/XSD/CONT/CommonType_CONT/"
+	targetNamespace="http://www.ruralserviciosinformaticos.com/empresa/SE_SEG_Documentacion_GED/"
+	elementFormDefault="qualified">
+	<import
+		namespace="http://www.ruralserviciosinformaticos.com/XSD/CONT/CommonType_CONT/"
+		schemaLocation="./CommonType_CONT.xsd" />
+	<import
+		namespace="http://www.ruralserviciosinformaticos.com/XSD/CORE/CommonType_CORE/"
+		schemaLocation="http://soa03.risa:80/SOA_Seguros/Empresa/PS/soap/v1/SE_SEG_Documentacion_GED?SCHEMA%2FSOA_ComunV1%2FRecursos%2FXSD%2FCORE%2FCommonType_CORE" />
+	<import
+		namespace="http://www.ruralserviciosinformaticos.com/XSD/ErrorGenerico_O/"
+		schemaLocation="http://soa03.risa:80/SOA_Seguros/Empresa/PS/soap/v1/SE_SEG_Documentacion_GED?SCHEMA%2FSOA_ComunV1%2FRecursos%2FXSD%2FEE_O_ErrorGenerico" />
+	<import
+		namespace="http://www.ruralserviciosinformaticos.com/XSD/SEGUROS/CommonType_SEGUROS/"
+		schemaLocation="./CommonType_SEGUROS.xsd" />
+	<import namespace="http://www.w3.org/2004/08/xop/include"
+		schemaLocation="http://soa03.risa:80/SOA_Seguros/Empresa/PS/soap/v1/SE_SEG_Documentacion_GED?SCHEMA%2FSOA_Seguros%2FRecursos%2Fcommon%2FXSD%2FMtom" />
+	<element name="EE_I_EliminarDocumentoVida" type="ns:EE_I_EliminarDocumentoVida_type" />
+	<element name="EE_I_ProcesarDocumentoAgroseguros" type="ns:EE_I_ProcesarDocumentoAgroseguros_type" />
+	<element name="EE_I_ProcesarDocumentoVida" type="ns:EE_I_ProcesarDocumentoVida_type" />
+	<element name="EE_O_EliminarDocumentoVida" type="ns:EE_O_EliminarDocumentoVida_type" />
+	<element name="EE_O_ProcesarDocumentoAgroseguros" type="ns:EE_O_ProcesarDocumentoAgroseguros_type" />
+	<element name="EE_O_ProcesarDocumentoVida" type="ns:EE_O_ProcesarDocumentoVida_type" />
+	<complexType name="EE_I_EliminarDocumentoVida_type">
+		<sequence>
+			<element name="codigoEntidad" type="core:t_cod_nrbe_en"
+				minOccurs="1" />
+			<element name="codcia" type="seg:t_codcia" minOccurs="1" />
+			<element name="codmedia" type="seg:t_codmedia" minOccurs="1" />
+			<element name="dni_tomador" type="seg:t_nif_pas" minOccurs="1" />
+			<element name="tipo_movimiento" type="seg:t_tipo_mvto_doc"
+				minOccurs="1" />
+			<element name="id_archivo" type="seg:t_idDocumento"
+				minOccurs="1" />
+			<element name="numero_propuesta" type="seg:t_numPropuesta"
+				minOccurs="0" />
+		</sequence>
+	</complexType>
+	<complexType name="EE_I_ProcesarDocumentoAgroseguros_type">
+		<sequence>
+			<element name="codigoEntidad" type="core:t_cod_nrbe_en"
+				minOccurs="1" />
+			<element name="codcia" type="seg:t_codcia" minOccurs="1" />
+			<element name="planagro" type="seg:t_codigo_plan" minOccurs="1" />
+			<element name="codtec" type="seg:t_codtec" minOccurs="0" />
+			<element name="referenciaagro" type="seg:t_referencia_doc"
+				minOccurs="1" />
+			<element name="tipopol" type="seg:t_tipo_poliza" minOccurs="1" />
+			<element name="fechaefect" type="seg:t_fecha" minOccurs="1" />
+			<element name="codmedia" type="seg:t_codmedia" minOccurs="1" />
+			<element name="codofic" type="seg:t_oficina" minOccurs="1" />
+			<element name="acuerdo" type="seg:t_acuerdo" minOccurs="0" />
+			<element name="dniasegurado" type="seg:t_nif" minOccurs="1" />
+			<element name="nombreasegurado" type="seg:t_nombre_completo"
+				minOccurs="0" />
+			<element name="apellido1asegurado" type="seg:t_apellido"
+				minOccurs="1" />
+			<element name="apellido2asegurado" type="seg:t_apellido"
+				minOccurs="0" />
+			<element name="dnitomador" type="seg:t_nif_pas" minOccurs="1" />
+			<element name="nombretomador" type="seg:t_nombre_completo"
+				minOccurs="0" />
+			<element name="apellido1tomador" type="seg:t_apellido"
+				minOccurs="1" />
+			<element name="apellido2tomador" type="seg:t_apellido"
+				minOccurs="0" />
+			<element name="tipomovimiento" type="seg:t_tipo_mvto_doc"
+				minOccurs="1" />
+			<element name="codbarras" type="seg:t_codbarras_rga"
+				minOccurs="0" />
+			<element name="nombrearchivo" type="seg:t_nombreDoc"
+				minOccurs="1" />
+			<element name="firma" type="seg:t_ind_firma" minOccurs="1" />
+			<element name="numeroSolicitud" type="seg:t_num_proyecto"
+				minOccurs="0" />
+		</sequence>
+	</complexType>
+	<complexType name="EE_I_ProcesarDocumentoVida_type">
+		<sequence>
+			<element name="codigoEntidad" type="core:t_cod_nrbe_en"
+				minOccurs="1" />
+			<element name="codcia" type="seg:t_codcia" minOccurs="1" />
+			<element name="codptec" type="seg:t_codtec" minOccurs="1" />
+			<element name="numPolizaVida" type="seg:t_num_poliza_vida"
+				minOccurs="1" />
+			<element name="numSolic" type="seg:t_numSolicitud" minOccurs="0" />
+			<element name="fechaefect" type="seg:t_fecha" minOccurs="1" />
+			<element name="codMedia" type="seg:t_codmedia" minOccurs="1" />
+			<element name="codoFic" type="seg:t_oficina" minOccurs="1" />
+			<element name="acuerdo" type="seg:t_acuerdo" minOccurs="0" />
+			<element name="dniTomador" type="seg:t_nif_pas" minOccurs="0" />
+			<element name="nombreApellidoTomador" type="seg:t_name"
+				minOccurs="1" />
+			<element name="dniAasegurado" type="seg:t_nif_pas" minOccurs="0" />
+			<element name="nombreApellidoAsegurado" type="seg:t_name"
+				minOccurs="0" />
+			<element name="tipoMovr" type="seg:t_tipoMovimiento"
+				minOccurs="1" />
+			<element name="tipoDocumento" type="seg:t_cod_tipo_documento"
+				minOccurs="0" />
+			<element name="primaTotal" type="seg:t_prima" minOccurs="0" />
+			<element name="codBarrasRGA" type="seg:t_codbarras_rga"
+				minOccurs="0" />
+			<element name="idArchivo" type="seg:t_idDocumento" minOccurs="1" />
+			<element name="indOrigen" type="seg:t_origenDocu" minOccurs="0" />
+			<element name="indTableta" type="seg:t_indTableta" minOccurs="1" />
+			<element name="usuario" type="seg:t_userName" minOccurs="1" />
+			<element name="numProyecto" type="seg:t_num_proyecto"
+				minOccurs="0" />
+			<element name="numPropuesta" type="seg:t_numPropuesta"
+				minOccurs="0" />
+			<element name="documentoAttachMtom" type="cont:t_documentoMtom"
+				minOccurs="1" />
+		</sequence>
+	</complexType>
+	<complexType name="EE_O_EliminarDocumentoVida_type">
+		<sequence>
+			<element name="codigoRetorno" type="core:t_codigoRetorno"
+				minOccurs="1" />
+			<element name="Errores" type="ego:Error_type" minOccurs="0"
+				maxOccurs="1" />
+			<element name="Respuesta" type="ns:Respuesta" minOccurs="0" />
+		</sequence>
+	</complexType>
+	<complexType name="Respuesta">
+		<sequence>
+			<element name="codigoMostrar" type="seg:t_codigoError"
+				minOccurs="1" />
+			<element name="mensajeMostrar" type="seg:t_descError"
+				minOccurs="0" />
+		</sequence>
+	</complexType>
+	<complexType name="EE_O_ProcesarDocumentoAgroseguros_type">
+		<sequence>
+			<element name="codigoRetorno" type="core:t_codigoRetorno"
+				minOccurs="1" />
+			<element name="Respuesta" type="ns:RespuestaAgroseguros"
+				minOccurs="0" />
+			<element name="Errores" type="ego:Error_type" minOccurs="0"
+				maxOccurs="1" />
+		</sequence>
+	</complexType>
+	<complexType name="EE_O_ProcesarDocumentoVida_type">
+		<sequence>
+			<element name="codigoRetorno" type="core:t_codigoRetorno"
+				minOccurs="1" />
+			<element name="Errores" type="ego:Error_type" minOccurs="0"
+				maxOccurs="1" />
+			<element name="Respuesta" type="ns:RespuestaProcesarDocumentoVida"
+				minOccurs="0" />
+		</sequence>
+	</complexType>
+	<complexType name="RespuestaProcesarDocumentoVida">
+		<sequence>
+			<element name="idDocumentum" type="seg:t_idDoc" minOccurs="0" />
+			<element name="claseDocumental" type="seg:t_clase_documental"
+				minOccurs="0" />
+			<element name="idArchivo" type="seg:t_idDocumento" minOccurs="1" />
+		</sequence>
+	</complexType>
+	<complexType name="RespuestaAgroseguros">
+		<sequence>
+			<element name="codigoMostrar" type="seg:t_codigoError"
+				minOccurs="1" />
+			<element name="mensajeMostrar" type="seg:t_descError"
+				minOccurs="0" />
+			<element name="idDocumentum" type="seg:t_idDoc" minOccurs="0" />
+		</sequence>
+	</complexType>
+</schema>

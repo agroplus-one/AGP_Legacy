@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.16.0.final using JasperReports Library version 6.16.0-48579d909b7943b64690c65c71e07e0b80981928  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="coberturas2024" pageWidth="595" pageHeight="842" columnWidth="595" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="b7084ab6-85ed-45d4-a73a-e1541c1878d7">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<property name="com.jaspersoft.studio.unit." value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageHeight" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.topMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.bottomMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.leftMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.rightMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnSpacing" value="pixel"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA[""]]></defaultValueExpression>
+	</parameter>
+	<parameter name="sourceTablaCoberturas" class="net.sf.jasperreports.engine.data.JRBeanCollectionDataSource" isForPrompting="false"/>
+	<parameter name="codModulo" class="java.lang.String"/>
+	<parameter name="coberturas" class="java.util.ArrayList"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="codModulo" class="java.lang.String"/>
+	<field name="caractExplotacion" class="java.lang.String"/>
+	<field name="coberturas" class="java.util.ArrayList"/>
+	<field name="titulos" class="java.util.List"/>
+	<detail>
+		<band height="73" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="40" height="15" uuid="68b67614-0c91-4d2e-be25-b205d8e74ecf">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement markup="none">
+					<font isBold="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Modulo:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="40" y="0" width="360" height="15" uuid="47d5a796-1060-4cca-a1ba-cb6b3b932d57">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement>
+					<font isBold="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{codModulo}]]></textFieldExpression>
+			</textField>
+			<subreport>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="11" y="30" width="569" height="30" uuid="f82629e2-436c-4931-9369-f9908cf3b51a"/>
+				<subreportParameter name="SUBREPORT_DIR">
+					<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="sourceTablaCoberturas">
+					<subreportParameterExpression><![CDATA[$P{sourceTablaCoberturas}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="coberturas">
+					<subreportParameterExpression><![CDATA[$F{coberturas}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="titulos">
+					<subreportParameterExpression><![CDATA[$F{titulos}]]></subreportParameterExpression>
+				</subreportParameter>
+				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{coberturas})]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "rejillaTablaCoberturas2024.jasper"]]></subreportExpression>
+			</subreport>
+			<staticText>
+				<reportElement x="11" y="15" width="149" height="15" uuid="552873c0-61fd-4e13-b445-1f2039e4a39e">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement markup="none">
+					<font isBold="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Caract. Explotacion:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="110" y="15" width="290" height="15" uuid="f21c4f1e-232c-4858-b1af-817cafad27f6">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{caractExplotacion}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

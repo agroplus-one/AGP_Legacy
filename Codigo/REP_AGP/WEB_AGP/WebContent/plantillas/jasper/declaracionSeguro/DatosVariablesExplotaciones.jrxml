@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="DatosVariablesExplotaciones" columnCount="2" printOrder="Horizontal" pageWidth="555" pageHeight="802" columnWidth="277" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="StyleTipoMod" isDefault="false">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[new Boolean($P{TIPOMODIFICACION}.compareTo( "A" ) == 0)]]></conditionExpression>
+			<style isDefault="false" style="StyleTipoMod" forecolor="#3300CC" backcolor="#FFFFFF" markup="styled" fontSize="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[new Boolean($P{TIPOMODIFICACION}.compareTo( "B" ) == 0)]]></conditionExpression>
+			<style isDefault="false" style="StyleTipoMod" forecolor="#990000" fill="Solid" markup="styled" fontSize="8" isBold="false" isItalic="false" isUnderline="false"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[new Boolean($P{TIPOMODIFICACION}.compareTo( "M" )==0)]]></conditionExpression>
+			<style isDefault="false" style="StyleTipoMod" forecolor="#000000" backcolor="#FFFFFF" markup="styled" fontSize="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false"/>
+		</conditionalStyle>
+	</style>
+	<parameter name="IDGRUPORAZA" class="java.math.BigDecimal"/>
+	<parameter name="IDEXPLOTACION" class="java.math.BigDecimal"/>
+	<parameter name="TIPOMODIFICACION" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[Select * from o02agpe0.vw_inf_explotaciones_variables
+where idgruporaza = $P{IDGRUPORAZA}
+and
+idexplotacion= $P{IDEXPLOTACION}]]>
+	</queryString>
+	<field name="IDGRUPORAZA" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="IDEXPLOTACION" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CODGRUPORAZA" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CODCONCEPTO" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="VALOR" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="NOMCONCEPTO" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="DESCRIPCION" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<variable name="SHOW_FOOT" class="java.lang.Boolean" resetType="None">
+		<variableExpression><![CDATA[new Boolean(true)]]></variableExpression>
+		<initialValueExpression><![CDATA[]]></initialValueExpression>
+	</variable>
+	<variable name="SHOW_BACK" class="java.lang.Boolean" resetType="None">
+		<variableExpression><![CDATA[new Boolean(true)]]></variableExpression>
+		<initialValueExpression><![CDATA[]]></initialValueExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="10" splitType="Prevent">
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToTallestObject" x="0" y="0" width="270" height="10"/>
+				<textElement>
+					<font size="6" isItalic="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{NOMCONCEPTO} + ":  " +
+$F{VALOR} + " " + ( $F{DESCRIPCION} != null ? " - " + $F{DESCRIPCION} : "" )]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 06-jun-2011 12:13:40 by Hibernate Tools 3.3.0.GA -->
+<hibernate-mapping>
+    <class name="com.rsi.agp.dao.tables.orgDat.VistaRotacion" table="VW_ORG_DATOS_ROTACION">
+        <composite-id name="id" class="com.rsi.agp.dao.tables.orgDat.VistaRotacionId">
+            <key-property name="lineaseguroid" type="java.lang.Long">
+                <column name="LINEASEGUROID" precision="15" scale="0" />
+            </key-property>
+            <key-property name="codmodulo" type="string">
+                <column name="CODMODULO" length="5" />
+            </key-property>
+            <key-property name="codcultivo" type="java.math.BigDecimal">
+                <column name="CODCULTIVO" precision="3" scale="0" />
+            </key-property>
+            <key-property name="codvariedad" type="java.math.BigDecimal">
+                <column name="CODVARIEDAD" precision="3" scale="0" />
+            </key-property>
+            <key-property name="codrotacion" type="java.math.BigDecimal">
+                <column name="CODROTACION" precision="3" scale="0" />
+            </key-property>
+            <key-property name="descripcion" type="string">
+                <column name="DESCRIPCION" length="25" />
+            </key-property>            
+        </composite-id>
+        <property name="codprovincia" type="java.math.BigDecimal">
+            <column name="CODPROVINCIA" precision="2" scale="0" />
+        </property>
+        <property name="codcomarca" type="java.math.BigDecimal">
+            <column name="CODCOMARCA" precision="2" scale="0" />
+        </property>
+        <property name="codtermino" type="java.math.BigDecimal">
+            <column name="CODTERMINO" precision="3" scale="0" />
+        </property>
+        <property name="subtermino" type="java.lang.Character">
+            <column name="SUBTERMINO" length="1" />
+        </property>
+        <property name="codtipocapital" type="java.math.BigDecimal">
+            <column name="CODTIPOCAPITAL" precision="3" scale="0" />
+        </property>
+    </class>
+</hibernate-mapping>

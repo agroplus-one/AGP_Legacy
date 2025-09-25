@@ -1,0 +1,1656 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="declaracionColectivo" pageWidth="595" pageHeight="842" whenNoDataType="AllSectionsNoDetail" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="14" bottomMargin="14" isSummaryNewPage="true">
+	<property name="ireport.scriptlethandling" value="2"/>
+	<property name="ireport.encoding" value="UTF-8"/>
+	<property name="ireport.zoom" value="2.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="960"/>
+	<import value="net.sf.jasperreports.engine.*"/>
+	<import value="java.util.*"/>
+	<import value="net.sf.jasperreports.engine.data.*"/>
+	<subDataset name="Table Dataset 1"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA[""]]></defaultValueExpression>
+	</parameter>
+	<parameter name="IMAGEN_DIR" class="java.lang.String">
+		<defaultValueExpression><![CDATA["."]]></defaultValueExpression>
+	</parameter>
+	<parameter name="DRIVER_MANAGER" class="java.sql.DriverManager" isForPrompting="false"/>
+	<parameter name="SUBREPORT_CONNECTION" class="java.sql.Connection" isForPrompting="false"/>
+	<parameter name="ID" class="java.math.BigDecimal"/>
+	<parameter name="LINEASEGUROID" class="java.lang.String"/>
+	<parameter name="datasource" class="net.sf.jasperreports.engine.data.JRBeanCollectionDataSource" isForPrompting="false"/>
+	<parameter name="tablaSubreport" class="net.sf.jasperreports.engine.JasperReport" isForPrompting="false"/>
+	<parameter name="FECHA" class="java.util.Date"/>
+	<parameter name="COPIA" class="java.lang.String"/>
+	<parameter name="CODENTIDAD" class="java.lang.String"/>
+	<parameter name="CIFTOMADOR" class="java.lang.String"/>
+	<parameter name="RAZONSOCIAL" class="java.lang.String"/>
+	<parameter name="CLAVEVIA" class="java.lang.String"/>
+	<parameter name="DOMICILIO" class="java.lang.String"/>
+	<parameter name="NUMVIA" class="java.lang.String"/>
+	<parameter name="PISO" class="java.lang.String"/>
+	<parameter name="BLOQUE" class="java.lang.String"/>
+	<parameter name="ESCALERA" class="java.lang.String"/>
+	<parameter name="CODLOCALSTR" class="java.lang.String"/>
+	<parameter name="CODPROVSTR" class="java.lang.String"/>
+	<parameter name="SUBLOCALIDAD" class="java.lang.String"/>
+	<parameter name="CODPOSTALSTR" class="java.lang.String"/>
+	<parameter name="TELEFONO" class="java.lang.String"/>
+	<parameter name="MOVIL" class="java.lang.String"/>
+	<parameter name="EMAIL" class="java.lang.String"/>
+	<parameter name="REPRE_NOMBRE" class="java.lang.String"/>
+	<parameter name="REPRE_AP1" class="java.lang.String"/>
+	<parameter name="REPRE_AP2" class="java.lang.String"/>
+	<parameter name="REPRE_NIF" class="java.lang.String"/>
+	<parameter name="IDCOLECTIVO" class="java.lang.String"/>
+	<parameter name="DC" class="java.lang.String"/>
+	<parameter name="CCC_ENTIDAD" class="java.lang.String"/>
+	<parameter name="CCC_OFICINA" class="java.lang.String"/>
+	<parameter name="CCC_DC" class="java.lang.String"/>
+	<parameter name="CCC_CUENTA" class="java.lang.String"/>
+	<parameter name="OBSERVACIONES" class="java.lang.String"/>
+	<parameter name="NOMENTIDAD" class="java.lang.String"/>
+	<parameter name="NOMSUBENTIDAD" class="java.lang.String"/>
+	<parameter name="CODSUBENTIDAD" class="java.lang.String"/>
+	<parameter name="TIPOMEDSTR" class="java.lang.String"/>
+	<parameter name="NOMPROVINCIA" class="java.lang.String"/>
+	<parameter name="NOMLOCALIDAD" class="java.lang.String"/>
+	<parameter name="CODENT" class="java.lang.String"/>
+	<parameter name="NOMBREVIA" class="java.lang.String"/>
+	<parameter name="CRM" class="java.lang.String"/>
+	<parameter name="IBAN" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<variable name="REF_COLECTIVO" class="java.lang.String">
+		<variableExpression><![CDATA[$P{REPORT_PARAMETERS_MAP}.get("REF_COLECTIVO").toString()]]></variableExpression>
+	</variable>
+	<variable name="NUM_DECLARACION" class="java.lang.String">
+		<variableExpression><![CDATA[$P{REPORT_PARAMETERS_MAP}.get("NUM_DECLARACION").toString()]]></variableExpression>
+	</variable>
+	<variable name="FECHA" class="java.util.Date">
+		<variableExpression><![CDATA[new java.util.Date()]]></variableExpression>
+	</variable>
+	<variable name="MES_FECHA" class="java.lang.String">
+		<variableExpression><![CDATA[]]></variableExpression>
+	</variable>
+	<background>
+		<band height="500">
+			<image>
+				<reportElement x="10" y="100" width="540" height="375"/>
+				<imageExpression class="java.lang.String"><![CDATA[$P{IMAGEN_DIR}+"/images/aguavero.jpg"]]></imageExpression>
+			</image>
+		</band>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="722" splitType="Stretch">
+			<printWhenExpression><![CDATA[new Boolean($V{PAGE_NUMBER}.equals(new Integer(1)))]]></printWhenExpression>
+			<subreport>
+				<reportElement x="190" y="3" width="255" height="42"/>
+				<subreportParameter name="LINEASEGUROID">
+					<subreportParameterExpression><![CDATA[$P{LINEASEGUROID}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="ID">
+					<subreportParameterExpression><![CDATA[$P{ID}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression class="java.lang.String"><![CDATA[$P{SUBREPORT_DIR} + "declaracionColectivo_cabecera.jasper"]]></subreportExpression>
+			</subreport>
+			<staticText>
+				<reportElement key="staticText-59" x="459" y="4" width="95" height="39"/>
+				<box>
+					<topPen lineWidth="0.25" lineStyle="Solid"/>
+					<leftPen lineWidth="0.25" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.25" lineStyle="Solid"/>
+					<rightPen lineWidth="0.25" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="7" isBold="false" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[DECLARACION SEGURO COLECTIVO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-103" x="349" y="52" width="31" height="16" isPrintWhenDetailOverflows="true"/>
+				<textElement verticalAlignment="Bottom">
+					<font fontName="SansSerif" size="11" isBold="false" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[REF.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-103" x="380" y="52" width="20" height="16" isPrintWhenDetailOverflows="true"/>
+				<textElement verticalAlignment="Bottom">
+					<font fontName="SansSerif" size="12" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[N.º]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="400" y="53" width="57" height="16"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[( $P{IDCOLECTIVO} !=null ? $P{IDCOLECTIVO}+" - " : "" )]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="458" y="53" width="31" height="16"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[( $P{IDCOLECTIVO} !=null ? $P{DC}: "" )]]></textFieldExpression>
+			</textField>
+			<image>
+				<reportElement x="5" y="3" width="168" height="42"/>
+				<imageExpression class="java.lang.String"><![CDATA[$P{IMAGEN_DIR}+"/images/logovero.jpg"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement key="staticText-9" x="7" y="74" width="542" height="15"/>
+				<textElement verticalAlignment="Bottom">
+					<font fontName="SansSerif" size="11" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[I.- Datos del Tomador del Seguro Colectivo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-59" x="6" y="92" width="541" height="11"/>
+				<box>
+					<topPen lineWidth="0.25" lineStyle="Solid"/>
+					<leftPen lineWidth="0.25" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.25" lineStyle="Solid"/>
+					<rightPen lineWidth="0.25" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="8" isBold="false" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[TOMADOR]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement key="textField-34" x="422" y="110" width="125" height="12"/>
+				<box leftPadding="2">
+					<leftPen lineWidth="0.25" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.25" lineStyle="Solid"/>
+					<rightPen lineWidth="0.25" lineStyle="Solid"/>
+				</box>
+				<textElement verticalAlignment="Top">
+					<font fontName="SansSerif" size="7"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{CIFTOMADOR}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement key="staticText-105" x="422" y="103" width="125" height="8"/>
+				<box leftPadding="3">
+					<leftPen lineWidth="0.25" lineStyle="Solid"/>
+					<rightPen lineWidth="0.25" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="5" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[D.N.I. ó C.I.F.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-104" x="6" y="103" width="416" height="8"/>
+				<box leftPadding="3">
+					<leftPen lineWidth="0.25" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="5" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[DENOMINACIÓN SOCIAL]]></text>
+			</staticText>
+			<textField isBlankWhenNull="false">
+				<reportElement key="textField-33" x="6" y="110" width="416" height="12"/>
+				<box leftPadding="2">
+					<leftPen lineWidth="0.25" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.25" lineStyle="Solid"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid"/>
+				</box>
+				<textElement verticalAlignment="Top">
+					<font fontName="SansSerif" size="7"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{RAZONSOCIAL}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement key="staticText-60" x="6" y="122" width="180" height="8"/>
+				<box leftPadding="3">
+					<leftPen lineWidth="0.25" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="5" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[CALLE Y N.º]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-106" x="6" y="142" width="209" height="8"/>
+				<box leftPadding="3">
+					<leftPen lineWidth="0.25" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="5" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[PROVINCIA]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement key="textField-35" x="6" y="151" width="208" height="11"/>
+				<box leftPadding="2">
+					<leftPen lineWidth="0.25" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.25" lineStyle="Solid"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid"/>
+				</box>
+				<textElement verticalAlignment="Top">
+					<font fontName="SansSerif" size="7"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{NOMPROVINCIA}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement key="staticText-66" x="186" y="122" width="325" height="8"/>
+				<box leftPadding="3">
+					<leftPen lineWidth="0.25" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="5" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[LOCALIDAD]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-117" x="290" y="203" width="132" height="8"/>
+				<box leftPadding="3">
+					<leftPen lineWidth="0.25" lineStyle="Solid"/>
+					<rightPen lineWidth="0.25" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="5" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[Nombre]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement key="textField-25" x="186" y="130" width="325" height="12"/>
+				<box leftPadding="2">
+					<leftPen lineWidth="0.25" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.25" lineStyle="Solid"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid"/>
+				</box>
+				<textElement verticalAlignment="Top">
+					<font fontName="SansSerif" size="7"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{NOMLOCALIDAD}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement key="staticText-111" x="238" y="142" width="97" height="8"/>
+				<box leftPadding="3">
+					<leftPen lineWidth="0.25" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="5" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[TELEFONO FIJO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-112" x="335" y="142" width="87" height="8"/>
+				<box leftPadding="3">
+					<leftPen lineWidth="0.25" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="5" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[TELEFONO MOVIL]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement key="textField-41" x="335" y="150" width="87" height="12"/>
+				<box leftPadding="2">
+					<leftPen lineWidth="0.25" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.25" lineStyle="Solid"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid"/>
+				</box>
+				<textElement verticalAlignment="Top">
+					<font fontName="SansSerif" size="7"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{MOVIL}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement key="textField-40" x="238" y="150" width="97" height="12"/>
+				<box leftPadding="2">
+					<leftPen lineWidth="0.25" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.25" lineStyle="Solid"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid"/>
+				</box>
+				<textElement verticalAlignment="Top">
+					<font fontName="SansSerif" size="7"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[" "+$P{TELEFONO}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement key="staticText-115" x="6" y="203" width="143" height="8"/>
+				<box leftPadding="3">
+					<leftPen lineWidth="0.25" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="5" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[1.er Apellido]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement key="textField-46" x="290" y="211" width="132" height="12"/>
+				<box leftPadding="2">
+					<leftPen lineWidth="0.25" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.25" lineStyle="Solid"/>
+					<rightPen lineWidth="0.25" lineStyle="Solid"/>
+				</box>
+				<textElement verticalAlignment="Top">
+					<font fontName="SansSerif" size="7"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{REPRE_NOMBRE}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement key="staticText-116" x="148" y="203" width="143" height="8"/>
+				<box leftPadding="3">
+					<leftPen lineWidth="0.25" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="5" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[2º Apellido]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement key="textField-45" x="148" y="211" width="143" height="12"/>
+				<box leftPadding="2">
+					<leftPen lineWidth="0.25" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.25" lineStyle="Solid"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid"/>
+				</box>
+				<textElement verticalAlignment="Top">
+					<font fontName="SansSerif" size="7"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{REPRE_AP2}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement key="textField-44" x="6" y="211" width="143" height="12"/>
+				<box leftPadding="2">
+					<leftPen lineWidth="0.25" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.25" lineStyle="Solid"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid"/>
+				</box>
+				<textElement verticalAlignment="Top">
+					<font fontName="SansSerif" size="7"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{REPRE_AP1}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement key="staticText-59" x="6" y="192" width="541" height="11"/>
+				<box>
+					<topPen lineWidth="0.25" lineStyle="Solid"/>
+					<leftPen lineWidth="0.25" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.25" lineStyle="Solid"/>
+					<rightPen lineWidth="0.25" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="8" isBold="false" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[REPRESENTANTE LEGAL]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement key="textField-24" x="6" y="130" width="180" height="12"/>
+				<box leftPadding="2">
+					<leftPen lineWidth="0.25" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.25" lineStyle="Solid"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid"/>
+				</box>
+				<textElement verticalAlignment="Top">
+					<font fontName="SansSerif" size="7"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{NOMBREVIA} + " " + $P{DOMICILIO}  + " " +  $P{NUMVIA}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement key="textField-37" x="422" y="150" width="125" height="12"/>
+				<box leftPadding="2">
+					<leftPen lineWidth="0.25" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.25" lineStyle="Solid"/>
+					<rightPen lineWidth="0.25" lineStyle="Solid"/>
+				</box>
+				<textElement verticalAlignment="Top">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{CODPOSTALSTR}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement key="staticText-108" x="422" y="142" width="125" height="8"/>
+				<box leftPadding="3">
+					<leftPen lineWidth="0.25" lineStyle="Solid"/>
+					<rightPen lineWidth="0.25" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="5" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[Código Postal]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-117" x="422" y="204" width="125" height="8"/>
+				<box leftPadding="3">
+					<leftPen lineWidth="0.25" lineStyle="Solid"/>
+					<rightPen lineWidth="0.25" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="5" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[D.N.I.]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement key="textField-46" x="422" y="211" width="125" height="12"/>
+				<box leftPadding="2">
+					<leftPen lineWidth="0.25" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.25" lineStyle="Solid"/>
+					<rightPen lineWidth="0.25" lineStyle="Solid"/>
+				</box>
+				<textElement verticalAlignment="Top">
+					<font fontName="SansSerif" size="7"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{REPRE_NIF}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement key="textField-4" mode="Opaque" x="511" y="122" width="12" height="20" backcolor="#CCCCCC"/>
+				<box leftPadding="2">
+					<topPen lineWidth="0.25" lineStyle="Solid"/>
+					<leftPen lineWidth="0.25" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.25" lineStyle="Solid"/>
+					<rightPen lineWidth="0.25" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="7" pdfFontName="Courier"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{CODLOCALSTR}.toString().substring(0,1)]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement key="textField-4" mode="Opaque" x="535" y="122" width="12" height="20" backcolor="#CCCCCC"/>
+				<box leftPadding="2">
+					<topPen lineWidth="0.25" lineStyle="Solid"/>
+					<leftPen lineWidth="0.25" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.25" lineStyle="Solid"/>
+					<rightPen lineWidth="0.25" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="7" pdfFontName="Courier"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{CODLOCALSTR}.toString().substring(2,3)]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement key="textField-4" mode="Opaque" x="523" y="122" width="12" height="20" backcolor="#CCCCCC"/>
+				<box leftPadding="2">
+					<topPen lineWidth="0.25" lineStyle="Solid"/>
+					<leftPen lineWidth="0.25" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.25" lineStyle="Solid"/>
+					<rightPen lineWidth="0.25" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="7" pdfFontName="Courier"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{CODLOCALSTR}.toString().substring(1,2)]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement key="textField-4" mode="Opaque" x="227" y="142" width="12" height="20" backcolor="#CCCCCC"/>
+				<box leftPadding="2">
+					<topPen lineWidth="0.25" lineStyle="Solid"/>
+					<leftPen lineWidth="0.25" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.25" lineStyle="Solid"/>
+					<rightPen lineWidth="0.25" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="7" pdfFontName="Courier"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{CODPROVSTR}.toString().substring(1,2)]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement key="textField-4" mode="Opaque" x="215" y="142" width="12" height="20" backcolor="#CCCCCC"/>
+				<box leftPadding="2">
+					<topPen lineWidth="0.25" lineStyle="Solid"/>
+					<leftPen lineWidth="0.25" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.25" lineStyle="Solid"/>
+					<rightPen lineWidth="0.25" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="7" pdfFontName="Courier"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{CODPROVSTR}.toString().substring(0,1)]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="-3" y="91" width="8" height="130"/>
+				<textElement rotation="Left">
+					<font size="6"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{COPIA}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement key="staticText-115" x="6" y="163" width="541" height="8"/>
+				<box leftPadding="3">
+					<leftPen lineWidth="0.25" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="5" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[CORREO ELECTRÓNICO]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement key="textField-4" x="6" y="162" width="541" height="21"/>
+				<box leftPadding="2">
+					<topPen lineWidth="0.25" lineStyle="Solid"/>
+					<leftPen lineWidth="0.25" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.25" lineStyle="Solid"/>
+					<rightPen lineWidth="0.25" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="7" pdfFontName="Courier"/>
+				</textElement>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="7" y="171" width="541" height="13"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{EMAIL}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement key="staticText-103" x="5" y="561" width="542" height="15" isPrintWhenDetailOverflows="true"/>
+				<textElement verticalAlignment="Bottom">
+					<font fontName="SansSerif" size="11" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[IV.- Datos de la Cuenta Corriente para el extorno de prima y abono del Siniestro]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement key="textField-26" x="109" y="609" width="440" height="11"/>
+				<box leftPadding="2">
+					<leftPen lineWidth="0.25" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.25" lineStyle="Solid"/>
+					<rightPen lineWidth="0.25" lineStyle="Solid"/>
+				</box>
+				<textElement verticalAlignment="Top">
+					<font fontName="SansSerif" size="7"/>
+				</textElement>
+			</textField>
+			<staticText>
+				<reportElement key="staticText-59" mode="Opaque" x="7" y="576" width="54" height="44" backcolor="#CCCCCC"/>
+				<box>
+					<topPen lineWidth="0.25" lineStyle="Solid"/>
+					<leftPen lineWidth="0.25" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.25" lineStyle="Solid"/>
+					<rightPen lineWidth="0.25" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="7" isBold="false" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[DATOS DE LA ENTIDAD BANCARIA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-59" x="61" y="576" width="78" height="11"/>
+				<box>
+					<topPen lineWidth="0.25" lineStyle="Solid"/>
+					<leftPen lineWidth="0.25" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.25" lineStyle="Solid"/>
+					<rightPen lineWidth="0.25" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="7" isBold="false" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[BANCO/CAJA]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement key="textField-34" x="384" y="587" width="165" height="11"/>
+				<box leftPadding="2">
+					<leftPen lineWidth="0.25" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.25" lineStyle="Solid"/>
+					<rightPen lineWidth="0.25" lineStyle="Solid"/>
+				</box>
+				<textElement verticalAlignment="Top">
+					<font fontName="SansSerif" size="7"/>
+				</textElement>
+			</textField>
+			<staticText>
+				<reportElement key="staticText-59" mode="Opaque" x="7" y="620" width="54" height="22" backcolor="#CCCCCC"/>
+				<box>
+					<topPen lineWidth="0.25" lineStyle="Solid"/>
+					<leftPen lineWidth="0.25" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.25" lineStyle="Solid"/>
+					<rightPen lineWidth="0.25" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="7" isBold="false" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[CÓDIGO IBAN DEL TOMADOR]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-59" x="61" y="587" width="31" height="11"/>
+				<box>
+					<topPen lineWidth="0.25" lineStyle="Solid"/>
+					<leftPen lineWidth="0.25" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.25" lineStyle="Solid"/>
+					<rightPen lineWidth="0.25" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="7" isBold="false" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[CALLE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-59" x="61" y="598" width="31" height="11"/>
+				<box>
+					<topPen lineWidth="0.25" lineStyle="Solid"/>
+					<leftPen lineWidth="0.25" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.25" lineStyle="Solid"/>
+					<rightPen lineWidth="0.25" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="7" isBold="false" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[C.P.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-59" x="61" y="609" width="48" height="11"/>
+				<box>
+					<topPen lineWidth="0.25" lineStyle="Solid"/>
+					<leftPen lineWidth="0.25" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.25" lineStyle="Solid"/>
+					<rightPen lineWidth="0.25" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="7" isBold="false" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[PROVINCIA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-59" x="197" y="598" width="106" height="11"/>
+				<box>
+					<topPen lineWidth="0.25" lineStyle="Solid"/>
+					<leftPen lineWidth="0.25" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.25" lineStyle="Solid"/>
+					<rightPen lineWidth="0.25" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="7" isBold="false" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[LOCALIDAD]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-59" x="350" y="587" width="34" height="11"/>
+				<box>
+					<topPen lineWidth="0.25" lineStyle="Solid"/>
+					<leftPen lineWidth="0.25" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.25" lineStyle="Solid"/>
+					<rightPen lineWidth="0.25" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="7" isBold="false" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[Ag. N.º]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-59" x="92" y="587" width="258" height="11"/>
+				<box>
+					<topPen lineWidth="0.25" lineStyle="Solid"/>
+					<leftPen lineWidth="0.25" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.25" lineStyle="Solid"/>
+					<rightPen lineWidth="0.25" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="7" isBold="false" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-59" x="303" y="598" width="246" height="11"/>
+				<box>
+					<topPen lineWidth="0.25" lineStyle="Solid"/>
+					<leftPen lineWidth="0.25" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.25" lineStyle="Solid"/>
+					<rightPen lineWidth="0.25" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="7" isBold="false" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-59" x="92" y="598" width="105" height="11"/>
+				<box>
+					<topPen lineWidth="0.25" lineStyle="Solid"/>
+					<leftPen lineWidth="0.25" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.25" lineStyle="Solid"/>
+					<rightPen lineWidth="0.25" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="7" isBold="false" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-59" x="61" y="620" width="488" height="11"/>
+				<box>
+					<topPen lineWidth="0.25" lineStyle="Solid"/>
+					<leftPen lineWidth="0.25" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.25" lineStyle="Solid"/>
+					<rightPen lineWidth="0.25" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="7" isBold="false" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[  CÓDIGO IBAN]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement key="textField-4" x="139" y="576" width="410" height="11"/>
+				<box leftPadding="2">
+					<topPen lineWidth="0.25" lineStyle="Solid"/>
+					<leftPen lineWidth="0.25" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.25" lineStyle="Solid"/>
+					<rightPen lineWidth="0.25" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="7" pdfFontName="Courier"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[("0".equals($P{CRM}) ? $P{NOMENTIDAD} : "")]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="324" y="630" width="20" height="12"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{CCC_DC}.substring(1,2)]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="304" y="630" width="20" height="12"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{CCC_DC}.substring(0,1)]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="161" y="630" width="20" height="12"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{CCC_ENTIDAD}.substring(1,2)]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="141" y="630" width="20" height="12"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{CCC_ENTIDAD}.substring(0,1)]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="201" y="630" width="20" height="12"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{CCC_ENTIDAD}.substring(3,4)]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="181" y="630" width="20" height="12"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{CCC_ENTIDAD}.substring(2,3)]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="282" y="630" width="21" height="12"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{CCC_OFICINA}.substring(3,4)]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="222" y="630" width="20" height="12"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{CCC_OFICINA}.substring(0,1)]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="262" y="630" width="20" height="12"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{CCC_OFICINA}.substring(2,3)]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="242" y="630" width="20" height="12"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{CCC_OFICINA}.substring(1,2)]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="426" y="630" width="20" height="12"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{CCC_CUENTA}.substring(4,5)]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="447" y="630" width="20" height="12"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{CCC_CUENTA}.substring(5,6)]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="529" y="630" width="20" height="12"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{CCC_CUENTA}.substring(9,10)]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="406" y="630" width="20" height="12"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{CCC_CUENTA}.substring(3,4)]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="490" y="630" width="20" height="12"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{CCC_CUENTA}.substring(7,8)]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="470" y="630" width="20" height="12"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{CCC_CUENTA}.substring(6,7)]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="344" y="630" width="20" height="12"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{CCC_CUENTA}.substring(0,1)]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="510" y="630" width="20" height="12"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{CCC_CUENTA}.substring(8,9)]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="386" y="630" width="20" height="12"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{CCC_CUENTA}.substring(2,3)]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="364" y="630" width="20" height="12"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{CCC_CUENTA}.substring(1,2)]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement key="textField-4" x="386" y="631" width="82" height="11"/>
+				<box leftPadding="2">
+					<topPen lineWidth="0.25" lineStyle="Solid"/>
+					<leftPen lineWidth="0.25" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.25" lineStyle="Solid"/>
+					<rightPen lineWidth="0.25" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="7" pdfFontName="Courier"/>
+				</textElement>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement key="textField-4" x="303" y="631" width="83" height="11"/>
+				<box leftPadding="2">
+					<topPen lineWidth="0.25" lineStyle="Solid"/>
+					<leftPen lineWidth="0.25" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.25" lineStyle="Solid"/>
+					<rightPen lineWidth="0.25" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="7" pdfFontName="Courier"/>
+				</textElement>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement key="textField-4" x="222" y="631" width="81" height="11"/>
+				<box leftPadding="2">
+					<topPen lineWidth="0.25" lineStyle="Solid"/>
+					<leftPen lineWidth="0.25" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.25" lineStyle="Solid"/>
+					<rightPen lineWidth="0.25" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="7" pdfFontName="Courier"/>
+				</textElement>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement key="textField-4" x="141" y="631" width="81" height="11"/>
+				<box leftPadding="2">
+					<topPen lineWidth="0.25" lineStyle="Solid"/>
+					<leftPen lineWidth="0.25" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.25" lineStyle="Solid"/>
+					<rightPen lineWidth="0.25" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="7" pdfFontName="Courier"/>
+				</textElement>
+			</textField>
+			<staticText>
+				<reportElement key="staticText-103" x="485" y="653" width="44" height="16" isPrintWhenDetailOverflows="true"/>
+				<textElement verticalAlignment="Bottom">
+					<font fontName="SansSerif" size="7" isBold="false" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[CODIGOS]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement key="textField-4" x="5" y="667" width="470" height="26"/>
+				<box leftPadding="2">
+					<topPen lineWidth="0.25" lineStyle="Solid"/>
+					<leftPen lineWidth="0.25" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.25" lineStyle="Solid"/>
+					<rightPen lineWidth="0.25" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="7" pdfFontName="Courier"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{OBSERVACIONES}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement key="textField-4" mode="Opaque" x="486" y="670" width="12" height="18" backcolor="#CCCCCC"/>
+				<box leftPadding="2">
+					<topPen lineWidth="0.25" lineStyle="Solid"/>
+					<leftPen lineWidth="0.25" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.25" lineStyle="Solid"/>
+					<rightPen lineWidth="0.25" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="7" pdfFontName="Courier"/>
+				</textElement>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement key="textField-4" mode="Opaque" x="498" y="670" width="12" height="18" backcolor="#CCCCCC"/>
+				<box leftPadding="2">
+					<topPen lineWidth="0.25" lineStyle="Solid"/>
+					<leftPen lineWidth="0.25" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.25" lineStyle="Solid"/>
+					<rightPen lineWidth="0.25" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="7" pdfFontName="Courier"/>
+				</textElement>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement key="textField-4" mode="Opaque" x="510" y="670" width="12" height="18" backcolor="#CCCCCC"/>
+				<box leftPadding="2">
+					<topPen lineWidth="0.25" lineStyle="Solid"/>
+					<leftPen lineWidth="0.25" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.25" lineStyle="Solid"/>
+					<rightPen lineWidth="0.25" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="7" pdfFontName="Courier"/>
+				</textElement>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement key="textField-4" mode="Opaque" x="522" y="670" width="12" height="18" backcolor="#CCCCCC"/>
+				<box leftPadding="2">
+					<topPen lineWidth="0.25" lineStyle="Solid"/>
+					<leftPen lineWidth="0.25" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.25" lineStyle="Solid"/>
+					<rightPen lineWidth="0.25" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="7" pdfFontName="Courier"/>
+				</textElement>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement key="textField-4" mode="Opaque" x="534" y="670" width="12" height="18" backcolor="#CCCCCC"/>
+				<box leftPadding="2">
+					<topPen lineWidth="0.25" lineStyle="Solid"/>
+					<leftPen lineWidth="0.25" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.25" lineStyle="Solid"/>
+					<rightPen lineWidth="0.25" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="7" pdfFontName="Courier"/>
+				</textElement>
+			</textField>
+			<staticText>
+				<reportElement key="staticText-103" x="4" y="651" width="157" height="15" isPrintWhenDetailOverflows="true"/>
+				<textElement verticalAlignment="Bottom">
+					<font fontName="SansSerif" size="11" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[V.- Observaciones]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="12" y="250" width="520" height="74"/>
+				<textElement textAlignment="Justified" verticalAlignment="Middle" markup="html">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[        El tomador declara cumplir todos y cada uno de los requisitos establecidos en el apartado tres, letra b), del Artículo 12 del Reglamento para
+     aplicación de la Ley 87/1978 de Seguros Agrarios Combinados (B.O.E. de 12 de Enero de 1979), aprobado por Real Decreto 2329/1979 de 14
+     de Septiembre. (B.O.E. de 9 de Octubre de 1979).<br>
+     Que conoce y acepta expresamente las Condiciones Generales y Especiales reguladores de este Seguro, de las cuales recibe en este mismo
+     acto un ejemplar impreso.<br>
+     Asimismo declara, bajo pena de nulidad del presente contrato, no adeudar a AGROSEGURO cantidad alguna, en concepto de primas de años
+     anteriores de los Seguros Agrarios Combinados.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-103" x="5" y="233" width="541" height="15" isPrintWhenDetailOverflows="true"/>
+				<textElement verticalAlignment="Bottom">
+					<font fontName="SansSerif" size="11" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[II.- Declaraciones del Tomador]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-59" x="4" y="248" width="541" height="79"/>
+				<box>
+					<topPen lineWidth="0.25" lineStyle="Solid"/>
+					<leftPen lineWidth="0.25" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.25" lineStyle="Solid"/>
+					<rightPen lineWidth="0.25" lineStyle="Solid"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="SansSerif" size="8" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-59" x="3" y="344" width="541" height="211"/>
+				<box>
+					<topPen lineWidth="0.25" lineStyle="Solid"/>
+					<leftPen lineWidth="0.25" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.25" lineStyle="Solid"/>
+					<rightPen lineWidth="0.25" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Justified" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="8" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-103" positionType="FixRelativeToBottom" x="4" y="329" width="540" height="15" isPrintWhenDetailOverflows="true"/>
+				<textElement verticalAlignment="Bottom">
+					<font fontName="SansSerif" size="11" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[III.- Datos del Contrato]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="11" y="345" width="520" height="208"/>
+				<textElement textAlignment="Justified" verticalAlignment="Top" markup="html">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[     La obligación de pago de la parte de la prima a cargo de los asegurados que contratan a través de un tomador 
+     colectivo le corresponde a dicho tomador (Art. 14.2 del R.D.2329/1979).<br/>
+     El pago de dicha parte de la prima se hará mediante domiciliación bancaria a la cuenta que se consigne en la póliza, o excepcionalmente, 
+	 mediante transferencia bancaria a favor de AGROSEGURO en las cuentas bancarias que en el momento de la suscripción ésta señale expresamente, 
+	 tal y como se especifica en las condiciones especiales en cada línea de seguro.<br/>
+	 Con carácter general, las pólizas entran en vigor a las 0 horas del día siguiente a la fecha de recepción de la póliza domiciliada o a la
+	 fecha del pago por transferencia, si ésta es la forma elegida para el pago de la prima.<br/>
+	 No se admitirá ninguna póliza cuya fecha de contratación sea anterior a la fecha de formalización de la presente declaración.<br/>
+	 Tampoco se admitirá ninguna póliza cuya fecha de recepción sea posterior a la fecha límite de suscripción fijada por la normativa ministerial
+	 que regula cada línea de seguro.<br/>
+	 Si por cualquier causa, la totalidad de la prima no fuera abonada, se aplicará lo previsto en las condiciones que regulan cada línea de seguro, 
+	 y en su defecto, lo previsto para el impago en la Ley de Contrato de Seguro.<br/>
+	 El tomador se compromete a facilitar a los peritos designados por AGROSEGURO, la inspección en todo momento de los bienes asegurados, así como
+	 a facilitarles aquella información que estimen necesaria para la correcta ejecución del contrato de seguro contratado.<br/>]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="161" y="635" width="3" height="13"/>
+				<textElement>
+					<font size="6"/>
+				</textElement>
+				<text><![CDATA[|]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="181" y="635" width="3" height="13"/>
+				<textElement>
+					<font size="6"/>
+				</textElement>
+				<text><![CDATA[|]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="201" y="635" width="3" height="13"/>
+				<textElement>
+					<font size="6"/>
+				</textElement>
+				<text><![CDATA[|]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="242" y="635" width="3" height="13"/>
+				<textElement>
+					<font size="6"/>
+				</textElement>
+				<text><![CDATA[|]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="262" y="635" width="3" height="13"/>
+				<textElement>
+					<font size="6"/>
+				</textElement>
+				<text><![CDATA[|]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="282" y="635" width="3" height="13"/>
+				<textElement>
+					<font size="6"/>
+				</textElement>
+				<text><![CDATA[|]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="324" y="635" width="3" height="13"/>
+				<textElement>
+					<font size="6"/>
+				</textElement>
+				<text><![CDATA[|]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="344" y="635" width="3" height="13"/>
+				<textElement>
+					<font size="6"/>
+				</textElement>
+				<text><![CDATA[|]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="364" y="635" width="3" height="13"/>
+				<textElement>
+					<font size="6"/>
+				</textElement>
+				<text><![CDATA[|]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="406" y="635" width="3" height="13"/>
+				<textElement>
+					<font size="6"/>
+				</textElement>
+				<text><![CDATA[|]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="426" y="635" width="3" height="13"/>
+				<textElement>
+					<font size="6"/>
+				</textElement>
+				<text><![CDATA[|]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="446" y="635" width="3" height="13"/>
+				<textElement>
+					<font size="6"/>
+				</textElement>
+				<text><![CDATA[|]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="488" y="635" width="3" height="13"/>
+				<textElement>
+					<font size="6"/>
+				</textElement>
+				<text><![CDATA[|]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="508" y="635" width="3" height="13"/>
+				<textElement>
+					<font size="6"/>
+				</textElement>
+				<text><![CDATA[|]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="527" y="635" width="3" height="13"/>
+				<textElement>
+					<font size="6"/>
+				</textElement>
+				<text><![CDATA[|]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement key="textField-4" x="61" y="631" width="80" height="11"/>
+				<box leftPadding="2">
+					<topPen lineWidth="0.25" lineStyle="Solid"/>
+					<leftPen lineWidth="0.25" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.25" lineStyle="Solid"/>
+					<rightPen lineWidth="0.25" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="7" pdfFontName="Courier"/>
+				</textElement>
+			</textField>
+			<staticText>
+				<reportElement x="81" y="635" width="3" height="13"/>
+				<textElement>
+					<font size="6"/>
+				</textElement>
+				<text><![CDATA[|]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="100" y="635" width="3" height="13"/>
+				<textElement>
+					<font size="6"/>
+				</textElement>
+				<text><![CDATA[|]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="120" y="635" width="3" height="13"/>
+				<textElement>
+					<font size="6"/>
+				</textElement>
+				<text><![CDATA[|]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement key="textField-4" x="468" y="631" width="81" height="11"/>
+				<box leftPadding="2">
+					<topPen lineWidth="0.25" lineStyle="Solid"/>
+					<leftPen lineWidth="0.25" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.25" lineStyle="Solid"/>
+					<rightPen lineWidth="0.25" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="7" pdfFontName="Courier"/>
+				</textElement>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="101" y="630" width="20" height="12"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{IBAN}.substring(2,3)]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="121" y="630" width="20" height="12"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{IBAN}.substring(3,4)]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="61" y="630" width="20" height="12"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{IBAN}.substring(0,1)]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="81" y="630" width="20" height="12"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{IBAN}.substring(1,2)]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<pageFooter>
+		<band height="92">
+			<staticText>
+				<reportElement key="staticText-59" mode="Opaque" x="9" y="0" width="263" height="92" backcolor="#CCCCCC"/>
+				<box>
+					<topPen lineWidth="0.25" lineStyle="Solid"/>
+					<leftPen lineWidth="0.25" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.25" lineStyle="Solid"/>
+					<rightPen lineWidth="0.25" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font fontName="SansSerif" size="8" isBold="false" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-110" x="95" y="60" width="14" height="10"/>
+				<textElement>
+					<font size="7" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[En]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="175" y="60" width="17" height="10"/>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[de]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="147" y="60" width="14" height="10"/>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[a]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement key="textField-4" x="354" y="11" width="33" height="11"/>
+				<box leftPadding="2">
+					<topPen lineWidth="0.25" lineStyle="Solid"/>
+					<leftPen lineWidth="0.25" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.25" lineStyle="Solid"/>
+					<rightPen lineWidth="0.25" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="7" pdfFontName="Courier"/>
+				</textElement>
+			</textField>
+			<image>
+				<reportElement x="93" y="25" width="175" height="65"/>
+				<imageExpression><![CDATA[$P{IMAGEN_DIR}+"/images/Sello_RGA_Firma.gif"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="428" y="0" width="26" height="10">
+					<printWhenExpression><![CDATA[new Boolean($P{FECHA}.getMonth() == 2 -1)]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[Febrero]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="397" y="0" width="14" height="10"/>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[new Integer($P{FECHA}.getDate())]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="383" y="0" width="14" height="10"/>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[a]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="428" y="0" width="37" height="10">
+					<printWhenExpression><![CDATA[new Boolean($P{FECHA}.getMonth() == 12 -1)]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[Diciembre]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="279" y="0" width="14" height="10"/>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[En]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-103" x="13" y="18" width="35" height="11" isPrintWhenDetailOverflows="true"/>
+				<textElement verticalAlignment="Bottom">
+					<font fontName="SansSerif" size="7" isBold="false" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[ENTIDAD ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="469" y="0" width="15" height="10"/>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[de]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-103" x="21" y="7" width="234" height="11" isPrintWhenDetailOverflows="true"/>
+				<textElement verticalAlignment="Bottom">
+					<font fontName="SansSerif" size="7" isBold="false" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[ENTIDAD ASEGURADORA QUE TRAMITA LA DECLARACION (9) ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-103" x="279" y="11" width="74" height="11" isPrintWhenDetailOverflows="true"/>
+				<textElement verticalAlignment="Bottom">
+					<font fontName="SansSerif" size="7" isBold="false" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[TIPO DE MEDIADOR]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-103" x="279" y="22" width="111" height="18" isPrintWhenDetailOverflows="true"/>
+				<textElement verticalAlignment="Bottom">
+					<font fontName="SansSerif" size="7" isBold="false" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[NOMBRE DEL MEDIADOR QUE INTERVIENE EN LA OPERACION]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-103" x="279" y="42" width="105" height="11" isPrintWhenDetailOverflows="true"/>
+				<textElement verticalAlignment="Bottom">
+					<font fontName="SansSerif" size="7" isBold="false" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[CODIGO INTERNO ENTIDAD]]></text>
+			</staticText>
+			<image>
+				<reportElement x="305" y="52" width="33" height="40">
+					<printWhenExpression><![CDATA[new Boolean($P{CODENT}.charAt(0) == '3')]]></printWhenExpression>
+				</reportElement>
+				<imageExpression><![CDATA[$P{IMAGEN_DIR}+"/images/Logo_RGAMediacion.png"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement key="staticText-103" x="279" y="52" width="74" height="19" isPrintWhenDetailOverflows="true"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="6" isBold="false" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[El Mediador de Seguros (FIRMA)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-103" x="461" y="52" width="85" height="19" isPrintWhenDetailOverflows="true"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="6" isBold="false" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[El Tomador del Seguro representante o Apoderado]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="428" y="0" width="38" height="10">
+					<printWhenExpression><![CDATA[new Boolean($P{FECHA}.getMonth() == 4 -1)]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[Abril]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="428" y="0" width="32" height="10">
+					<printWhenExpression><![CDATA[new Boolean($P{FECHA}.getMonth() == 3 -1)]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[Marzo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="428" y="0" width="24" height="10">
+					<printWhenExpression><![CDATA[new Boolean($P{FECHA}.getMonth() == 5 -1)]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[Mayo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="411" y="0" width="17" height="10"/>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[de]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="428" y="0" width="41" height="10">
+					<printWhenExpression><![CDATA[new Boolean($P{FECHA}.getMonth() == 9 -1)]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[Septiembre]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="428" y="0" width="33" height="10">
+					<printWhenExpression><![CDATA[new Boolean($P{FECHA}.getMonth() ==10 -1)]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[Octubre]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="428" y="0" width="37" height="10">
+					<printWhenExpression><![CDATA[new Boolean($P{FECHA}.getMonth() == 11 -1)]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[Noviembre]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="428" y="0" width="33" height="10">
+					<printWhenExpression><![CDATA[new Boolean($P{FECHA}.getMonth() == 8 -1)]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[Agosto]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="428" y="0" width="23" height="10">
+					<printWhenExpression><![CDATA[new Boolean($P{FECHA}.getMonth() == 1 -1)]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[Enero]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="428" y="0" width="30" height="10">
+					<printWhenExpression><![CDATA[new Boolean($P{FECHA}.getMonth() == 6 -1)]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[Junio]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="486" y="0" width="65" height="10"/>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[String.valueOf(new SimpleDateFormat("dd-MMM-yyyy").format($P{FECHA})).substring(7,11)]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="428" y="0" width="33" height="10">
+					<printWhenExpression><![CDATA[new Boolean($P{FECHA}.getMonth() == 7 - 1)]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[Julio]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="60" y="20" width="122" height="10"/>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[Seguros Generales Rural, S.A.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-59" x="192" y="29" width="61" height="10"/>
+				<box>
+					<topPen lineWidth="0.25" lineStyle="Solid"/>
+					<leftPen lineWidth="0.25" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.25" lineStyle="Solid"/>
+					<rightPen lineWidth="0.25" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="7" isBold="false" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[C-616]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="158" y="60" width="14" height="10"/>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[........]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="233" y="60" width="15" height="10"/>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[de]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="247" y="60" width="25" height="10"/>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[........]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="191" y="60" width="40" height="10"/>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[................]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="112" y="60" width="29" height="10"/>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[...............]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-103" x="7" y="36" width="88" height="26" isPrintWhenDetailOverflows="true"/>
+				<textElement textAlignment="Center" verticalAlignment="Bottom">
+					<font fontName="SansSerif" size="6" isBold="false" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[Por la Entidad Aseguradora, Representante o Apoderado FIRMA Y SELLO]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="390" y="22" width="165" height="18"/>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[( ($P{CODENT}.charAt(0) == '3')
+    ? "RGA MEDIACION OBSV"
+    : ($P{NOMSUBENTIDAD}.toString()))]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="370" y="12" width="17" height="10"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="6"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{TIPOMEDSTR}.toString().substring(1,2)]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="354" y="12" width="17" height="10"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="6"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{TIPOMEDSTR}.toString().substring(0,1)]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement key="textField-4" x="387" y="42" width="146" height="11"/>
+				<box leftPadding="2">
+					<topPen lineWidth="0.25" lineStyle="Solid"/>
+					<leftPen lineWidth="0.25" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.25" lineStyle="Solid"/>
+					<rightPen lineWidth="0.25" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="8" pdfFontName="Courier"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{CODENT} +
+($P{CODSUBENTIDAD}.isEmpty() ? ""
+    : $P{CODSUBENTIDAD}.equals ("0") ? ""
+    : ($P{CODSUBENTIDAD}.length() == 1 ? ("0" + $P{CODSUBENTIDAD}) : $P{CODSUBENTIDAD}))]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement key="staticText-59" x="370" y="18" width="0" height="4"/>
+				<box>
+					<topPen lineWidth="0.25" lineStyle="Solid"/>
+					<leftPen lineWidth="0.25" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.25" lineStyle="Solid"/>
+					<rightPen lineWidth="0.25" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="7" isBold="false" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[C-616]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="292" y="0" width="74" height="10"/>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{NOMLOCALIDAD}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+</jasperReport>

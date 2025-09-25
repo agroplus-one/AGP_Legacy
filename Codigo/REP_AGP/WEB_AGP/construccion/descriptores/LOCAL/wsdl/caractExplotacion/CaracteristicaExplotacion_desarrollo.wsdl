@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="CaracteristicaExplotacion"
+	targetNamespace="http://www.agroseguro.es/serviciosweb/CaracteristicaExplotacion/"
+	xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/"
+	xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	xmlns:agr="http://www.agroseguro.es/serviciosweb/CaracteristicaExplotacion/"
+	xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/"
+	xmlns:ti="http://www.agroseguro.es/Tipos"
+	xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd"
+	xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd"
+	xmlns:xmime="http://www.w3.org/2005/05/xmlmime">
+	<wsdl:types>
+		<xsd:schema elementFormDefault="qualified"
+			targetNamespace="http://www.agroseguro.es/serviciosweb/CaracteristicaExplotacion/"
+			xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+			<xsd:import
+				namespace="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd"
+				schemaLocation="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd" />
+			<xsd:import namespace="http://www.agroseguro.es/Tipos"
+				schemaLocation="Tipos.xsd" />
+			<xsd:import namespace="http://www.w3.org/2005/05/xmlmime"
+				schemaLocation="xmime.xsd" />
+
+			<xsd:element
+				name="obtenerCaracteristicaExplotacionRequest">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:annotation>
+							La póliza enviada deberá ajustarse al esquema del servicio de
+							Cálculo de la Póliza
+						</xsd:annotation>
+						<xsd:element name="poliza"
+							xmime:expectedContentTypes="text/xml" type="xmime:base64Binary" />
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element
+				name="obtenerCaracteristicaExplotacionResponse">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="acuseRecibo"
+							xmime:expectedContentTypes="text/xml" type="xmime:base64Binary" />
+						<xsd:element name="caracteristicaExplotacion"
+							type="ti:CaracteristicasExplotacion" />
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="agrFallo"
+				xmlns:agr="http://www.agroseguro.es/serviciosweb/CaracteristicaExplotacion/">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:annotation>
+							Lista de mensajes de error de AGROSEGURO
+						</xsd:annotation>
+						<xsd:element name="error" type="agr:Error"
+							maxOccurs="unbounded" minOccurs="0" />
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:complexType name="Error"
+				xmlns:agr="http://www.agroseguro.es/serviciosweb/CaracteristicaExplotacion/">
+				<xsd:sequence>
+					<xsd:element name="codigo" type="xsd:int" />
+					<xsd:element name="mensaje" type="xsd:string" />
+				</xsd:sequence>
+			</xsd:complexType>
+		</xsd:schema>
+	</wsdl:types>
+	<wsdl:message name="Header">
+		<wsdl:part name="Security" element="wsse:Security" />
+	</wsdl:message>
+	<wsdl:message name="AgrException">
+		<wsdl:part name="parameters" element="agr:agrFallo"></wsdl:part>
+	</wsdl:message>
+	<wsdl:message
+		name="obtenerCaracteristicaExplotacionRequest">
+		<wsdl:part name="parameters"
+			element="agr:obtenerCaracteristicaExplotacionRequest">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message
+		name="obtenerCaracteristicaExplotacionResponse">
+		<wsdl:part name="parameters"
+			element="agr:obtenerCaracteristicaExplotacionResponse">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:portType name="CaracteristicaExplotacion">
+		<wsdl:operation name="obtenerCaracteristicaExplotacion">
+			<wsdl:documentation>
+				Método de obtención de Característica de la
+				Explotación:
+
+				En la petición se deberá facilitar:
+
+				- Fichero XML de la póliza. La
+				validación en estructura
+				del XML está determinado por el mismo
+				esquema que el servicio de Cálculo de Costes de la Póliza. Dicho
+				esquema XSD se llama "CalculoSeguroAgrario.xsd".
+
+				Dependiendo de si ha
+				podido obtener o no la Característica de la Explotación:
+
+				* Con los datos recibidos se ha podido obtener una Característica de
+				Explotación:
+				- Devuelve Acuse de recibo indicando que el proceso ha ido bien
+				-
+				Devuelve parámetro con el identificador de la Característica de la
+				Explotación
+
+				* Se ha producido un error de estructura:
+				- Devuelve Acuse de Recibo
+				con la lista de errores ocurridos
+
+				* Se ha producido alguna excepción que impide la obtención de la
+				Característica de la Explotación:
+				- Devuelve soap fault.
+
+
+				- Fichero XML de acuse de recibo. El esquema XSD del
+				acuse de recibo
+				se denomina: "AcuseRecibo.xsd". El
+				procesamiento del fichero XML de
+				la póliza determinará
+				si es completamente correcta o da lugar a
+				errores de
+				estructura que aparecen en el atributo "tipo" de la
+				etiqueta "Error" del acuse de recibo:
+
+				• De rechazo -código 1-: son
+				errores de estructura que
+				impiden el cálculo de la Característica de
+				la Explotación.
+
+				En el XML acuse de recibo se indicará el "estado" del
+				"Documento", informando del resultado del cálculo. El
+				estado podrá
+				ser:
+
+				• "Rechazado" -código 2- si existe algún error de
+				estructura que
+				impide la obtención de la Característica.
+
+				• "Correcto" -código 1- si
+				no aparecen errores.
+
+				- Valor entero que identifica la Característica
+				de la Explotación obtenida. Cuando no se
+				hayan producido errores de
+				estructura ni de proceso, la
+				respuesta XML cumple la estructura
+				definida en el tipo CaracteristicasExplotacion
+				del esquema XSD
+				"Tipos.xsd".
+
+				- Un error en la obtención de la Característica de la
+				Explotación se comunica con los mensajes de
+				código / error que
+				correspondan mediante el mecanismo
+				SOAPFault y no se genera ningún
+				adjunto XML.
+			</wsdl:documentation>
+			<wsdl:input
+				message="agr:obtenerCaracteristicaExplotacionRequest"></wsdl:input>
+			<wsdl:output
+				message="agr:obtenerCaracteristicaExplotacionResponse"></wsdl:output>
+			<wsdl:fault name="AgrException" message="agr:AgrException">
+			</wsdl:fault>
+		</wsdl:operation>
+	</wsdl:portType>
+	<wsdl:binding name="CaracteristicaExplotacionSOAP"
+		type="agr:CaracteristicaExplotacion">
+		<soap:binding style="document"
+			transport="http://schemas.xmlsoap.org/soap/http" />
+		<wsdl:operation name="obtenerCaracteristicaExplotacion">
+			<soap:operation
+				soapAction="http://www.agroseguro.es/serviciosweb/CaracteristicaExplotacion/obtenerCaracteristicaExplotacion" />
+			<wsdl:input>
+				<soap:header use="literal" message="agr:Header"
+					part="Security" wsdl:required="true" />
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+			<wsdl:fault name="AgrException">
+				<soap:fault name="AgrException" use="literal" />
+			</wsdl:fault>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:service name="CaracteristicaExplotacion">
+		<wsdl:documentation>
+			Mediante este proceso se podrá solicitar la
+			Característica de la Explotación.
+
+			El presente documento WSDL podrá
+			utilizarse
+			tanto en remoto (Agroseguro) como en local (Entidades).
+
+			La
+			información devuelta será un archivo XML de acuse de
+			recibo, y un
+			parámetro indicando la Característica de la Explotación, enviados o
+			recibidos como Adjuntos
+			(Attachment) en formato MTOM.
+		</wsdl:documentation>
+		<wsdl:port name="CaracteristicaExplotacionSOAP"
+			binding="agr:CaracteristicaExplotacionSOAP">
+			<wsdl:documentation>
+				La primera dirección es el entorno de pruebas y
+				no tiene
+				una resolución asignada en Internet por lo que se deberá
+				incluir en la máquina local o en el servidor de nombres
+				local con la
+				siguiente dirección: 195.235.42.5
+				agrinfo.agroseguro.com. La segunda
+				dirección es el
+				entorno real de ejecución.
+			</wsdl:documentation>
+			<soap:address
+				location="https://preproduccion.agroseguro.es/caracteristicaExplotacion/V1R0/services/CaracteristicaExplotacion" />
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>

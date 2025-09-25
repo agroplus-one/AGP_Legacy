@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?><x:schema targetNamespace="http://www.agroseguro.es/Contratacion/SeguroRenovable/Gastos" xmlns="http://www.agroseguro.es/Contratacion/SeguroRenovable/Gastos" xmlns:ti="http://www.agroseguro.es/ITipos" xmlns:x="http://www.w3.org/2001/XMLSchema">
+	
+	<x:import namespace="http://www.agroseguro.es/ITipos"
+		schemaLocation="../commons/Tipos.xsd" />
+
+	<x:element name="GastosSeguroRenovable" type="GastosSeguroRenovable">
+		<x:unique name="pk_grupo_negocio">
+			<x:selector xpath="Gastos"/>
+			<x:field xpath="@grupoNegocio"/>
+		</x:unique>
+	</x:element>
+				
+	<x:complexType name="GastosSeguroRenovable">
+		<x:choice>
+<!-- esta estructura permite que se incluya una etiqueta o las dos, pero debe haber al menos una -->
+			<x:sequence>
+				<x:element maxOccurs="unbounded" minOccurs="1" name="Gastos" type="Gastos"/>
+				<x:element maxOccurs="1" minOccurs="0" name="Cuenta" type="Cuenta"/>
+			</x:sequence>
+			<x:element maxOccurs="1" minOccurs="1" name="Cuenta" type="Cuenta"/>		
+		</x:choice>
+
+		<x:attribute name="referencia" type="ti:Poliza_Referencia_Unificada" use="required"/>
+		<x:attribute name="digitoControl" type="ti:DigitoControl" use="required"/>
+		<x:attribute name="plan" type="ti:Plan" use="required"/>
+	</x:complexType>
+
+	<x:complexType name="Gastos">
+		<x:attribute name="grupoNegocio" type="ti:GrupoNegocio" use="required"/>
+		<x:attribute name="administracion" type="ti:PorcentajeGastos" use="required"/>
+		<x:attribute name="adquisicion" type="ti:PorcentajeGastos" use="required"/>
+		<x:attribute name="comisionMediador" type="ti:PorcentajeGastos" use="required"/>
+	</x:complexType>
+	
+	<x:complexType name="Cuenta">
+		<x:attribute name="iban" type="ti:IBAN" use="required"/>
+		<x:attribute name="destinatario" type="ti:DestinatarioDomiciliacion" use="required"/>
+		<x:attribute name="titular" type="ti:TitularCuenta" use="optional"/>		
+	</x:complexType>
+	
+
+</x:schema>

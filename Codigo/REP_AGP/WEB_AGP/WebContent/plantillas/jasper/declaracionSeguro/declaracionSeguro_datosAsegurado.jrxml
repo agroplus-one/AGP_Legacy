@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.16.0.final using JasperReports Library version 6.16.0-48579d909b7943b64690c65c71e07e0b80981928  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="declaracionSeguro_subreportTomadorAsegurado" pageWidth="555" pageHeight="802" whenNoDataType="AllSectionsNoDetail" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="179989e0-6e00-4d9c-a758-7fb4a17cf29c">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="ID" class="java.lang.Integer"/>
+	<queryString>
+		<![CDATA[select distinct a.NIFCIF,
+	(A.NOMBRE ||' '|| a.apellido1 ||' '|| a.apellido2) as asegurado_nombre,
+        (v.abreviatura||' '|| a.direccion ||' '|| a.numvia) as asegurado_domicilio,
+        a.piso as asegurado_piso,
+	a.bloque as asegurado_bloque,
+	a.escalera as asegurado_escalera,
+        pr.nomprovincia as asegurado_provincia,
+	l.nomlocalidad as asegurado_localidad,
+	a.telefono as asegurado_telefono,
+	a.movil as asegurado_movil,
+	a.email as asegurado_email,
+	a.codpostal as asegurado_cp,
+	a.tipoidentificacion as tipo,
+        a.razonsocial as asegurado_razon
+             from o02agpe0.tb_polizas p, o02agpe0.tb_asegurados a, o02agpe0.tb_vias v, o02agpe0.tb_localidades l, o02agpe0.tb_provincias pr
+        where p.idasegurado = a.id
+        and v.clave = a.clavevia
+        and l.codprovincia = a.codprovincia
+        and l.codlocalidad = a.codlocalidad
+        and l.sublocalidad = a.sublocalidad
+        and pr.codprovincia = a.codprovincia
+        and p.idpoliza = $P{ID}]]>
+	</queryString>
+	<field name="NIFCIF" class="java.lang.String"/>
+	<field name="ASEGURADO_NOMBRE" class="java.lang.String"/>
+	<field name="ASEGURADO_DOMICILIO" class="java.lang.String"/>
+	<field name="ASEGURADO_PISO" class="java.lang.String"/>
+	<field name="ASEGURADO_BLOQUE" class="java.lang.String"/>
+	<field name="ASEGURADO_ESCALERA" class="java.lang.String"/>
+	<field name="ASEGURADO_PROVINCIA" class="java.lang.String"/>
+	<field name="ASEGURADO_LOCALIDAD" class="java.lang.String"/>
+	<field name="ASEGURADO_TELEFONO" class="java.lang.String"/>
+	<field name="ASEGURADO_MOVIL" class="java.lang.String"/>
+	<field name="ASEGURADO_EMAIL" class="java.lang.String"/>
+	<field name="ASEGURADO_CP" class="java.math.BigDecimal"/>
+	<field name="TIPO" class="java.lang.String"/>
+	<field name="ASEGURADO_RAZON" class="java.lang.String"/>
+	<variable name="SHOW_FOOT" class="java.lang.Boolean" resetType="None">
+		<variableExpression><![CDATA[new Boolean(true)]]></variableExpression>
+		<initialValueExpression><![CDATA[]]></initialValueExpression>
+	</variable>
+	<variable name="SHOW_BACK" class="java.lang.Boolean" resetType="None">
+		<variableExpression><![CDATA[new Boolean(true)]]></variableExpression>
+		<initialValueExpression><![CDATA[]]></initialValueExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="65" splitType="Stretch">
+			<staticText>
+				<reportElement x="112" y="39" width="51" height="13" uuid="04aa32a2-561a-4b5c-82f1-bee70f774340"/>
+				<textElement>
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Tfno.Fijo:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="326" y="39" width="39" height="13" uuid="b1cf0de1-115e-4e09-9259-1b5a458e7d88"/>
+				<textElement>
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[e-mail:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="112" y="26" width="61" height="13" uuid="488896e1-09f8-4a7b-ab58-1aa1e0da9656"/>
+				<textElement>
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Piso/Letra:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="0" y="13" width="484" height="13" uuid="46aa0224-5f49-4c7e-b479-97c524792d96"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TIPO}.equals( "CIF" ) ? $F{ASEGURADO_RAZON} : $F{ASEGURADO_NOMBRE}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="0" width="242" height="13" uuid="50620487-e9c4-49ab-9ae6-81a2f65f46a6"/>
+				<textElement>
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DATOS DEL ASEGURADO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="326" y="26" width="57" height="13" uuid="0af52789-affe-4acd-ae53-4cfcaa02e816"/>
+				<textElement>
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Localidad:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="35" y="39" width="58" height="13" uuid="d7eed676-01b0-4e08-af3d-4cd726ccb86d"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ASEGURADO_PROVINCIA}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="365" y="39" width="190" height="13" uuid="c36c13d2-6ec8-4459-89f2-e4ec60bb312e"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ASEGURADO_EMAIL}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="163" y="39" width="55" height="13" uuid="7166ab5f-1c40-45cf-b60a-2d207d4dfbd9"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ASEGURADO_TELEFONO}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="208" y="26" width="24" height="13" uuid="fbc62c85-8f20-42b3-9a1e-a460195c9b60"/>
+				<textElement>
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Blq:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="215" y="39" width="56" height="13" uuid="0a265e6e-4268-4772-ab9d-474d2b429ad0"/>
+				<textElement>
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Tfno. Móvil:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="0" y="39" width="28" height="13" uuid="ffa1b909-17aa-46ad-b72a-ce5cc04d11c0"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ASEGURADO_CP}.toString()]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="173" y="26" width="35" height="13" uuid="67a73e8d-9f6f-463f-ac82-fa2ff87ff24c"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ASEGURADO_PISO}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="271" y="39" width="55" height="13" uuid="327bafc3-0719-4104-94a2-fb4fadd31aaf"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ASEGURADO_MOVIL}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="264" y="26" width="27" height="13" uuid="bb18ea79-6720-44d3-9565-141ad6a1b764"/>
+				<textElement>
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Esc:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="291" y="26" width="24" height="13" uuid="6aaf8252-00f5-482f-8139-d9ca101acb87"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ASEGURADO_ESCALERA}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="383" y="26" width="172" height="13" uuid="ab748ebd-7474-48ed-9d58-0e7dbd05ca8c"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ASEGURADO_LOCALIDAD}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="238" y="26" width="26" height="13" uuid="1b10d904-363f-41ca-9b73-bb958c3c4738"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ASEGURADO_BLOQUE}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="334" y="0" width="52" height="13" uuid="9c124ab9-2e12-4e1f-bc81-239554fdb803"/>
+				<textElement>
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[NIF/CIF:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="386" y="0" width="150" height="13" uuid="05be825b-74f3-42fa-a204-573286838ad0"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{NIFCIF}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="0" y="26" width="111" height="13" uuid="06a796c8-0bb7-4d65-879c-2a2dceea3f6b"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ASEGURADO_DOMICILIO}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="28" y="39" width="7" height="13" uuid="62361951-33f8-4149-b574-f0e26e25a0c4"/>
+				<textElement>
+					<font size="9" isBold="false"/>
+				</textElement>
+				<text><![CDATA[-]]></text>
+			</staticText>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

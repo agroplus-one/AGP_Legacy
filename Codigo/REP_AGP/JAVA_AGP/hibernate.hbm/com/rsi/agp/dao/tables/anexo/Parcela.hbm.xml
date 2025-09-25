@@ -1,0 +1,163 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping auto-import="false">
+    <class name="com.rsi.agp.dao.tables.anexo.Parcela" table="TB_ANEXO_MOD_PARCELAS">
+        <comment>Tabla para las parcelas modificadas en el Anexo Modficacion Poliza</comment>
+        <id name="id" type="long">
+            <column name="ID" precision="15" scale="0" />
+            <generator class="sequence">
+            	<param name="sequence">SQ_TB_ANEXO_MOD_PARCELAS</param>
+            </generator>        
+        </id>
+        <many-to-one name="anexoModificacion" class="com.rsi.agp.dao.tables.anexo.AnexoModificacion" lazy="false" fetch="select">
+            <column name="IDANEXO" precision="15" scale="0" not-null="true">
+                <comment>Identificador del Anexo</comment>
+            </column>
+        </many-to-one>
+        <many-to-one name="parcela" class="com.rsi.agp.dao.tables.poliza.Parcela" lazy="no-proxy" fetch="select">
+            <column name="IDPARCELA" precision="15" scale="0" not-null="false">
+                <comment>Identificador del Parcela en la Poliza</comment>
+            </column>
+        </many-to-one>
+        <property name="idcopyparcela" type="long">
+            <column name="IDCOPYPARCELA" precision="15" scale="0">
+                <comment>Identificador Parcela en la Copy</comment>
+            </column>
+        </property>
+        <property name="tipomodificacion" type="java.lang.Character">
+            <column name="TIPOMODIFICACION" length="1" not-null="false">
+                <comment>Tipo Modificacion Parcela: (A, B, M)</comment>
+            </column>
+        </property>
+        <property name="hoja" type="java.math.BigDecimal">
+            <column name="HOJA" precision="3" scale="0" not-null="true">
+                <comment>Hoja</comment>
+            </column>
+        </property>
+        <property name="numero" type="java.math.BigDecimal">
+            <column name="NUMERO" precision="3" scale="0" not-null="true">
+                <comment>Numero</comment>
+            </column>
+        </property>
+        <property name="nomparcela" type="string">
+            <column name="NOMPARCELA" length="20">
+                <comment>Nombre</comment>
+            </column>
+        </property>
+        <property name="codprovincia" type="java.math.BigDecimal">
+            <column name="CODPROVINCIA" precision="2" scale="0" not-null="true">
+                <comment>Provincia</comment>
+            </column>
+        </property>
+        <property name="codcomarca" type="java.math.BigDecimal">
+            <column name="CODCOMARCA" precision="2" scale="0" not-null="true">
+                <comment>Comarca</comment>
+            </column>
+        </property>
+        <property name="codtermino" type="java.math.BigDecimal">
+            <column name="CODTERMINO" precision="3" scale="0" not-null="true">
+                <comment>Termino</comment>
+            </column>
+        </property>
+        <property name="subtermino" type="java.lang.Character">
+            <column name="SUBTERMINO" length="1" not-null="true">
+                <comment>Subtermino</comment>
+            </column>
+        </property>
+        <property name="codcultivo" type="java.math.BigDecimal">
+            <column name="CODCULTIVO" precision="3" scale="0" not-null="true">
+                <comment>Cultivo</comment>
+            </column>
+        </property>
+        <property name="codvariedad" type="java.math.BigDecimal">
+            <column name="CODVARIEDAD" precision="3" scale="0" not-null="true">
+                <comment>Variedad</comment>
+            </column>
+        </property>
+        <property name="poligono" type="string">
+            <column name="POLIGONO" length="3">
+                <comment>Poligono</comment>
+            </column>
+        </property>
+        <property name="parcela_1" type="string">
+            <column name="PARCELA" length="5">
+                <comment>Parcela</comment>
+            </column>
+        </property>
+        <property name="codprovsigpac" type="java.math.BigDecimal">
+            <column name="CODPROVSIGPAC" precision="2" scale="0">
+                <comment>Provincia SIGPAC</comment>
+            </column>
+        </property>
+        <property name="codtermsigpac" type="java.math.BigDecimal">
+            <column name="CODTERMSIGPAC" precision="3" scale="0">
+                <comment>Termino SIGPAC</comment>
+            </column>
+        </property>
+        <property name="agrsigpac" type="java.math.BigDecimal">
+            <column name="AGRSIGPAC" precision="3" scale="0">
+                <comment>Agregado SIGPAC</comment>
+            </column>
+        </property>
+        <property name="zonasigpac" type="java.math.BigDecimal">
+            <column name="ZONASIGPAC" precision="2" scale="0">
+                <comment>zona SIGPAC</comment>
+            </column>
+        </property>
+        <property name="poligonosigpac" type="java.math.BigDecimal">
+            <column name="POLIGONOSIGPAC" precision="3" scale="0">
+                <comment>Poligono SIGPAC</comment>
+            </column>
+        </property>
+        <property name="parcelasigpac" type="java.math.BigDecimal">
+            <column name="PARCELASIGPAC" precision="5" scale="0">
+                <comment>Parcela SIGPAC</comment>
+            </column>
+        </property>
+        <property name="recintosigpac" type="java.math.BigDecimal">
+            <column name="RECINTOSIGPAC" precision="5" scale="0">
+                <comment>Recinto SIGPAC</comment>
+            </column>
+        </property>
+        <!--  añadido para que soporte instalaciones -->
+        <property name="tipoparcela" type="java.lang.Character">
+            <column name="TIPOPARCELA" length="1">
+                <comment>Tipo anexo de parcela:anexo o instalacion</comment>
+            </column>
+        </property>
+        <property name="idparcelaanxestructura" type="long">
+            <column name="IDPARCELAANXESTRUCTURA" precision="15">
+                <comment>Id de la estructura de un anexo de parcela</comment>
+            </column>
+        </property>
+         <property name="altaencomplementario" type="java.lang.Character">
+            <column name="ALTAENCOMPLEMENTARIO" length="1">
+                <comment>Indica si la parcela se da de alta en el seguro complementario</comment>
+            </column>
+        </property>
+        <property name="parcAgricola" type="java.lang.Integer">
+            <column name="PARCELA_AGRICOLA" precision="5" scale="0">
+                <comment>Parcela agr&#237;cola</comment>
+            </column>
+        </property>
+        <!-- fin añadido -->
+   
+        <set name="capitalAsegurados" table="TB_ANEXO_MOD_CAPITALES_ASEG" inverse="true" lazy="false" fetch="select" cascade="all">
+            <key>
+                <column name="IDPARCELAANEXO" precision="15" scale="0" not-null="true">
+                    <comment>Identificador parcela del Anexo</comment>
+                </column>
+            </key>
+            <one-to-many class="com.rsi.agp.dao.tables.anexo.CapitalAsegurado" />
+        </set>
+        <set name="parcelaSWZonifSIGPACs" table="TB_ANEXO_MOD_PAR_SW_ZON_SIGPAC" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDPARCELA" precision="15" scale="0" not-null="true">
+                    <comment>Identificador de la parcela de anexo</comment>
+                </column>
+            </key>
+            <one-to-many class="com.rsi.agp.dao.tables.anexo.ParcelaAMSWZonifSIGPAC" />
+        </set>
+    </class>
+</hibernate-mapping>

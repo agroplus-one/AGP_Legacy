@@ -1,0 +1,412 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="ContratacionRenovaciones"
+	targetNamespace="http://www.agroseguro.es/serviciosweb/ContratacionRenovaciones/"
+	xmlns:agr="http://www.agroseguro.es/serviciosweb/ContratacionRenovaciones/"
+	xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	xmlns:xmime="http://www.w3.org/2005/05/xmlmime"
+	xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:ti="http://www.agroseguro.es/Tipos"
+	xmlns:er="http://www.agroseguro.es/EstadoRenovacion"
+	xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd"
+	xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd"
+	>
+	<wsdl:types>
+		<xsd:schema elementFormDefault="qualified"
+			targetNamespace="http://www.agroseguro.es/serviciosweb/ContratacionRenovaciones/"
+			xmlns:agr="http://www.agroseguro.es/serviciosweb/ContratacionRenovaciones/"
+			xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+			<xsd:import namespace="http://www.w3.org/2005/05/xmlmime"
+				schemaLocation="xmime.xsd" />
+			<xsd:import	namespace="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd"
+				schemaLocation="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd" />
+			<xsd:import namespace="http://www.agroseguro.es/Tipos"
+				schemaLocation="Tipos.xsd" />
+			<xsd:import namespace="http://www.agroseguro.es/EstadoRenovacion"
+				schemaLocation="EstadoRenovacion.xsd" />
+
+			<xsd:complexType name="ParametrosListaPolizasRenovables">
+				<xsd:sequence>
+					<xsd:element name="plan" type="ti:Plan" />
+					<xsd:element name="linea" type="ti:Linea_Codigo" />
+					<xsd:element name="nifTomador" type="ti:NIF" nillable="true" minOccurs="0" />
+					<xsd:element name="colectivo" type="ti:Colectivo_Referencia" nillable="true" minOccurs="0" />
+					<xsd:element name="mediador" type="ti:CodigoInternoEntidad" nillable="true" minOccurs="0" />
+					<xsd:element name="nifAsegurado" type="ti:NIF" nillable="true" minOccurs="0" />
+					<xsd:element name="referencia" type="ti:Poliza_Referencia_Unificada" nillable="true" minOccurs="0" />
+					<xsd:element name="listaEstados" type="agr:FiltroEstado" nillable="true" minOccurs="0" />
+					<xsd:element name="fechaRenovacionDesde" type="xsd:date" nillable="true" minOccurs="0" />
+					<xsd:element name="fechaRenovacionHasta" type="xsd:date" nillable="true" minOccurs="0" />
+					<xsd:element name="gastosComunicados" type="xsd:boolean" nillable="true" minOccurs="0" />
+				</xsd:sequence>
+			</xsd:complexType>
+
+			<xsd:simpleType name="FiltroEstado">
+				<xsd:list itemType="er:CodigoEstadoRenovacion"/>
+			</xsd:simpleType>
+			                                                                      
+			<xsd:complexType name="ParametrosConsultaContratacionRenovable">
+				<xsd:sequence>
+					<xsd:element name="plan" type="ti:Plan" />
+					<xsd:element name="referencia" type="ti:Poliza_Referencia_Unificada" />
+				</xsd:sequence>
+			</xsd:complexType>
+
+			<xsd:complexType name="ParametrosGastosPolizaRenovable">
+				<xsd:sequence>
+					<xsd:element name="plan" type="ti:Plan" />
+					<xsd:element name="referencia" type="ti:Poliza_Referencia_Unificada" />
+					<xsd:element name="gastosGrupoNegocio" type="ti:Gastos" minOccurs="1" maxOccurs="unbounded" />
+				</xsd:sequence>
+			</xsd:complexType>
+
+			<xsd:complexType name="ParametrosImpresionProrroga">
+				<xsd:sequence>
+					<xsd:element name="plan" type="ti:Plan" />
+					<xsd:element name="referencia" type="ti:Poliza_Referencia_Unificada" />
+					<xsd:element name="tipoComunicacion" type="xsd:string"/>
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="ParametrosRecuperacionExplotaciones">
+				<xsd:sequence>
+					<xsd:element name="planAnterior" type="ti:Plan" />
+					<xsd:element name="referenciaBase" type="ti:Poliza_Referencia_Unificada" />
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:element name="listaPolizasRenovablesRequest" type="agr:ParametrosListaPolizasRenovables" />
+
+			<xsd:element name="listaPolizasRenovablesResponse">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="polizasRenovables" xmime:expectedContentTypes="text/xml" type="xmime:base64Binary" />
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+
+			<xsd:element name="consultaContratacionRenovableRequest" type="agr:ParametrosConsultaContratacionRenovable" />
+
+			<xsd:element name="consultaContratacionRenovableResponse">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="polizaRenovable" xmime:expectedContentTypes="text/xml" type="xmime:base64Binary" />
+						<xsd:element name="estadoRenovacion" xmime:expectedContentTypes="text/xml" type="xmime:base64Binary" />
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+
+			<xsd:element name="gastosPolizaRenovableRequest" type="agr:ParametrosGastosPolizaRenovable" />
+
+			<xsd:element name="gastosPolizaRenovableResponse">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="resultado" type="xsd:boolean" />
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+
+			<xsd:element name="impresionProrrogaRequest" type="agr:ParametrosImpresionProrroga" />
+
+			<xsd:element name="impresionProrrogaResponse">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="documento" xmime:expectedContentTypes="application/pdf" type="xmime:base64Binary" />
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="recuperacionExplotacionesRequest" type="agr:ParametrosRecuperacionExplotaciones" />
+
+			<xsd:element name="recuperacionExplotacionesResponse">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="documento" xmime:expectedContentTypes="text/xml" type="xmime:base64Binary" />
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="agrFallo"
+				xmlns:agr="http://www.agroseguro.es/serviciosweb/ContratacionRenovaciones/">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:annotation>
+							Lista de mensajes de error de AGROSEGURO
+						</xsd:annotation>
+						<xsd:element name="error" type="agr:Error"	maxOccurs="unbounded" minOccurs="0" />
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:complexType name="Error"
+				xmlns:agr="http://www.agroseguro.es/serviciosweb/ContratacionRenovaciones/">
+				<xsd:sequence>
+					<xsd:element name="codigo" type="xsd:int" />
+					<xsd:element name="mensaje" type="xsd:string" />
+				</xsd:sequence>
+			</xsd:complexType>
+		</xsd:schema>
+	</wsdl:types>
+	<wsdl:message name="Header">
+		<wsdl:part name="Security" element="wsse:Security" />
+	</wsdl:message>
+	<wsdl:message name="AgrException">
+		<wsdl:part name="parameters" element="agr:agrFallo"/>
+	</wsdl:message>
+	<wsdl:message name="listaPolizasRenovablesRequest">
+		<wsdl:part name="parameters" element="agr:listaPolizasRenovablesRequest">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="listaPolizasRenovablesResponse">
+		<wsdl:part name="parameters" element="agr:listaPolizasRenovablesResponse">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="consultaContratacionRenovableRequest">
+		<wsdl:part name="parameters" element="agr:consultaContratacionRenovableRequest">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="consultaContratacionRenovableResponse">
+		<wsdl:part name="parameters" element="agr:consultaContratacionRenovableResponse">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="gastosPolizaRenovableRequest">
+		<wsdl:part name="parameters" element="agr:gastosPolizaRenovableRequest">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="gastosPolizaRenovableResponse">
+		<wsdl:part name="parameters" element="agr:gastosPolizaRenovableResponse">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="impresionProrrogaRequest">
+		<wsdl:part name="parameters" element="agr:impresionProrrogaRequest">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="impresionProrrogaResponse">
+		<wsdl:part name="parameters" element="agr:impresionProrrogaResponse">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="recuperacionExplotacionesRequest">
+		<wsdl:part name="parameters" element="agr:recuperacionExplotacionesRequest">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="recuperacionExplotacionesResponse">
+		<wsdl:part name="parameters" element="agr:recuperacionExplotacionesResponse">
+		</wsdl:part>
+	</wsdl:message>
+	
+	<wsdl:portType name="ContratacionRenovaciones">
+		<wsdl:operation name="listaPolizasRenovables">
+			<wsdl:documentation>
+				Método que devuelve la lista de pólizas renovables dependiendo de los parámetros 
+				de entrada que se introduzcan en la petición.
+
+				En la petición se deberá facilitar:
+
+				- El plan, obligatorio.
+				- La línea, obligatoria.
+				
+				Al menos uno de los siguientes parámetros:
+				- El NIF del tomador, opcional.
+				- El colectivo, opcional.
+				- El NIF del asegurado, opcional.
+				- La referencia de la póliza, opcional.
+				
+				Opcionalmente:
+				- La fecha de renovación "desde", opcional.
+				- La fecha de renovación "hasta", opcional.
+								
+				Se devolverá la siguiente información :
+
+				- Fichero XML con la lista de pólizas renovables filtrada por los parámetros de entrada. 
+				El esquema XSD del documento es "ListaPolizasRenovables.xsd".
+
+			</wsdl:documentation>
+			<wsdl:input message="agr:listaPolizasRenovablesRequest"/>
+			<wsdl:output message="agr:listaPolizasRenovablesResponse"/>
+			<wsdl:fault name="AgrException"
+				message="agr:AgrException">
+			</wsdl:fault>
+		</wsdl:operation>
+
+		<wsdl:operation name="consultaContratacionRenovable">
+			<wsdl:documentation>
+				Método que devuelve la póliza renovable solicitada.
+
+				En la petición se deberá facilitar:
+
+				- El plan, obligatorio.
+				- La referencia de la póliza, obligatorio.
+
+				Se devolverá la siguiente información :
+
+				- Fichero XML con la póliza renovable. 
+				El esquema XSD del documento es "Contratacion.xsd".
+				- Fichero XML con el estado de la renovación de la póliza renovable. 
+				El esquema XSD del documento es "EstadoRenovacion.xsd".
+
+			</wsdl:documentation>
+			<wsdl:input message="agr:consultaContratacionRenovableRequest"/>
+			<wsdl:output message="agr:consultaContratacionRenovableResponse"/>
+			<wsdl:fault name="AgrException"
+				message="agr:AgrException">
+			</wsdl:fault>
+		</wsdl:operation>
+
+		<wsdl:operation name="gastosPolizaRenovable">
+			<wsdl:documentation>
+				Método que gestiona los gastos de una póliza renovable.
+
+				En la petición se deberá facilitar:
+
+				- El plan, obligatorio.
+				- La referencia de la póliza, obligatorio.
+				- El grupo de negocio, obligatorio.
+				- El % de gastos de administración, opcional.
+				- El % de gastos de adquisición, opcional.
+				- El % de gastos de comisiones, opcional.
+
+				Se devolverá un mensaje informando del éxito de la operación con los parámetros de entrada con los que se ha llevado a cabo si
+				la operación se ha llevado a cabo correctamente, o un SoapFault indicando la causa por la que dicha operación no ha podido 
+				llevarse a cabo.
+
+			</wsdl:documentation>
+			<wsdl:input message="agr:gastosPolizaRenovableRequest"/>
+			<wsdl:output message="agr:gastosPolizaRenovableResponse"/>
+			<wsdl:fault name="AgrException"
+				message="agr:AgrException">
+			</wsdl:fault>
+		</wsdl:operation>
+
+		<wsdl:operation name="impresionProrroga">
+			<wsdl:documentation>
+				Este servicio sirve para obtener la impresión en PDF de la prórroga de primera comunicación y la de comunicación definitiva.
+
+				En la petición se deberá facilitar:
+
+					- El plan anterior, obligatorio.
+					- La referencia de la póliza base, obligatorio.
+					- Tipo de comunicación, obligatorio.
+
+				Se devolverá el documento PDF con la prórroga solicitada.
+
+			</wsdl:documentation>
+			<wsdl:input message="agr:impresionProrrogaRequest"/>
+			<wsdl:output message="agr:impresionProrrogaResponse"/>
+			<wsdl:fault name="AgrException"
+				message="agr:AgrException">
+			</wsdl:fault>
+		</wsdl:operation>
+		
+		<wsdl:operation name="recuperacionExplotaciones">
+			<wsdl:documentation>
+				Este servicio sirve para obtener un borrador de póliza para el plan
+				actual a partir de la póliza base no renovable del plan anterior
+				indicada por parámetro, aplicando las transformaciones que sean
+				necesarias.
+			
+				En la petición se deberá facilitar:
+			
+				- El plan anterior, obligatorio.
+				- La referencia de la póliza base, obligatorio.
+			
+				Se devolverá un XML con el borrador de póliza transformada al plan actual,
+				con la estructura definida en los esquemas de póliza unificada.
+
+			</wsdl:documentation>
+			<wsdl:input message="agr:recuperacionExplotacionesRequest"/>
+			<wsdl:output message="agr:recuperacionExplotacionesResponse"/>
+			<wsdl:fault name="AgrException"
+				message="agr:AgrException">
+			</wsdl:fault>
+		</wsdl:operation>
+		
+	</wsdl:portType>
+	<wsdl:binding name="ContratacionRenovacionesSOAP"
+		type="agr:ContratacionRenovaciones">
+		<soap:binding style="document"
+			transport="http://schemas.xmlsoap.org/soap/http" />
+		<wsdl:operation name="listaPolizasRenovables">
+			<soap:operation	soapAction="listaPolizasRenovables" />
+			<wsdl:input>
+				<soap:header wsdl:required="true" message="agr:Header" part="Security" use="literal" />
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+			<wsdl:fault name="AgrException">
+				<soap:fault name="AgrException" use="literal" />
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="consultaContratacionRenovable">
+			<soap:operation	soapAction="consultaContratacionRenovable" />
+			<wsdl:input>
+				<soap:header wsdl:required="true" message="agr:Header" part="Security" use="literal" />
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+			<wsdl:fault name="AgrException">
+				<soap:fault name="AgrException" use="literal" />
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="gastosPolizaRenovable">
+			<soap:operation	soapAction="gastosPolizaRenovable" />
+			<wsdl:input>
+				<soap:header wsdl:required="true" message="agr:Header" part="Security" use="literal" />
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+			<wsdl:fault name="AgrException">
+				<soap:fault name="AgrException" use="literal" />
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="impresionProrroga">
+			<soap:operation	soapAction="impresionProrroga" />
+			<wsdl:input>
+				<soap:header wsdl:required="true" message="agr:Header" part="Security" use="literal" />
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+			<wsdl:fault name="AgrException">
+				<soap:fault name="AgrException" use="literal" />
+			</wsdl:fault>
+		</wsdl:operation>
+		
+		<wsdl:operation name="recuperacionExplotaciones">
+			<soap:operation	soapAction="recuperacionExplotaciones" />
+			<wsdl:input>
+				<soap:header wsdl:required="true" message="agr:Header" part="Security" use="literal" />
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+			<wsdl:fault name="AgrException">
+				<soap:fault name="AgrException" use="literal" />
+			</wsdl:fault>
+		</wsdl:operation>
+		
+	</wsdl:binding>
+	<wsdl:service name="ContratacionRenovaciones">
+		<wsdl:documentation>
+			Mediante este proceso se podrán consultar las pólizas de ganado que se van a renovar, el estado de las renovaciones 
+			de las mismas y gestionar los gastos que se quieren aplicar a dichas renovaciones.
+
+			La información se devolverá dentro de archivos XML enviados como adjunto (Attachment) en formato MTOM.
+		</wsdl:documentation>
+		<wsdl:port name="ContratacionRenovacionesSOAP"
+			binding="agr:ContratacionRenovacionesSOAP">
+			<wsdl:documentation>
+				La primera dirección es el entorno de pruebas y no tiene
+				una resolución asignada en Internet, por lo que se deberá
+				incluir en la máquina local o en el servidor de nombres
+				local con la siguiente dirección: preproduccion.agroseguro.es
+
+				La segunda dirección es el entorno de producción.
+			</wsdl:documentation>
+			<soap:address
+				location="http://preproduccion.agroseguro.es/cren/V1R0/services/ContratacionRenovaciones" />
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<x:schema 
+	targetNamespace="http://www.agroseguro.es/ListaPolizasRenovables"
+	xmlns="http://www.agroseguro.es/ListaPolizasRenovables"
+	xmlns:pks="http://www.agroseguro.es/ListaPolizasRenovables"
+	xmlns:x="http://www.w3.org/2001/XMLSchema"
+	xmlns:ti="http://www.agroseguro.es/Tipos" 
+	xmlns:re="http://www.agroseguro.es/EstadoRenovacion" 
+	
+	>
+	
+	<x:import
+		namespace="http://www.agroseguro.es/Tipos"
+		schemaLocation="Tipos.xsd" />
+	<x:import
+		namespace="http://www.agroseguro.es/EstadoRenovacion"
+		schemaLocation="EstadoRenovacion.xsd" />
+
+	<x:element name="ListaPolizasRenovables" type="ListaPolizasRenovables" />
+	
+	<x:complexType name="ListaPolizasRenovables" >
+		<x:sequence>
+			<x:element name="Renovacion" type="re:Renovacion" minOccurs="1" maxOccurs="unbounded" />
+		</x:sequence>
+		<x:attribute name="plan" type="ti:Plan" use="required" />
+		<x:attribute name="linea" type="ti:Linea_Codigo" />
+		<x:attribute name="nifTomador" type="ti:NIFCIF" />
+		<x:attribute name="colectivo" type="ti:Colectivo_Referencia" />
+		<x:attribute name="mediador" type="ti:CodigoInternoEntidad" />
+		<x:attribute name="nifAsegurado" type="ti:NIFCIF" />
+		<x:attribute name="referencia" type="ti:Poliza_Referencia_Unificada" />
+		<x:attribute name="listaEstados" type="pks:FiltroEstado" />
+		<x:attribute name="fechaRenovacionDesde" type="x:date" />
+		<x:attribute name="fechaRenovacionHasta" type="x:date" />
+		<x:attribute name="gastosComunicados" type="x:boolean" />
+		<x:attributeGroup ref="ti:PeticionSW" />
+	</x:complexType>
+	
+	<x:simpleType name="FiltroEstado">
+		<x:list itemType="re:CodigoEstadoRenovacion"/>
+	</x:simpleType>	
+	
+</x:schema>

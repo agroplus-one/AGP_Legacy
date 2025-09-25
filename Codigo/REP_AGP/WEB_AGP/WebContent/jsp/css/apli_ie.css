@@ -1,0 +1,489 @@
+/*
+**************************************************************************************************
+*
+*  CReACION:
+*  ------------
+*
+* REFERENCIA  FECHA       AUTOR             DESCRIPCION
+* ----------  ----------  ----------------  ------------------------------------------------------
+* P000015034              Varios            CSS principal de la aplicación.
+*
+ **************************************************************************************************
+*/
+
+BODY { font-family: verdana,tahoma,Arial,Helvetica,sans-serif; color: #999999;}
+img {border: 0px;}
+.color {background-color:#bac441;}
+.borde {background-color:#666666;}	
+.raya {background-color:#666666;}	
+.espiga {background-color:#525583;padding: 0px;}
+.titulo {background-color: #E5E5E5; border-width: 1px;border-style: solid; border-color:#E0E0E0; color: #666666; font-weight: bold; font-size: 11px;}
+.titulopag {color: #004539; font-weight: bold; font-size: 11px; text-transform: uppercase; background-color: #ffffff; border-width: 1px; border-style: solid;  border-color: #FFFFFF #FFFFFF #004539 #FFFFFF; vertical-align: middle;letter-spacing: 1px}
+.titapli1  {font-family:  verdana, arial; color: #626262; font-size: 12px; font-weight: bold; vertical-align: middle; padding-right: 2px;letter-spacing: -1px;}
+.titapli2  {font-family:  verdana, arial; color: #A0A0A0; font-size: 12px; font-weight: bold; vertical-align: middle; padding-right: 2px;letter-spacing: -1px;}
+.titapli3  {font-family:  verdana, arial; color: #BDBDBD; font-size: 12px; font-weight: bold; vertical-align: middle; padding-right: 2px;letter-spacing: -1px;}
+.alto3 	{height: 3px;}
+.alto5 	{height: 5px;}
+.alto10  {height: 10px;}
+.ancho5  {width: 10px;}
+.ancho20  {width: 20px;}
+.ancho4  {width: 4px;}
+.espa   {width: 5%;}
+.titintra  {background-color:#525583; font-family:  tahoma, verdana, arial; color: #FFFFFF; font-size: 12px; font-weight: bold; vertical-align: middle; padding-right: 2px;letter-spacing: 1px;}
+TABLE.NORMAL {width: 95%; background-color: #ffffff; align: center;}
+.conten	 {background-color: #ffffff; border-width: 1px; border-style: solid; border-color: #E5E5E5; text-align: center; padding:5px; }  
+.paginar 	{background-color: #FFFFFF;color: #666666; font-weight: regular; font-size: 9px;font-family: tahoma,arial; height:24; vertical-align:top;}
+a.pag:link	{background-color: #FFFFFF; font-family: tahoma,arial; color: #E5E5E5; font-weight: bold;font-size: 9px; height:24; vertical-align:top; text-decoration: underline;}		
+a.pag:visited	{background-color: #FFFFFF; font-family: tahoma,arial; color: #E5E5E5; font-weight: bold; font-size: 9px; height:24; vertical-align:top; text-decoration: underline;}		
+a.pag:hover	{background-color: #FFFFFF; font-family: tahoma,arial; color: #666666; font-weight: bold; font-size: 9px; height:24; vertical-align:top; text-decoration: none;}
+
+
+/*-------------------------*/
+/* MENU                    */
+/*-------------------------*/
+.borde	{background-color:#666666;}
+.raya	{background-color:#666666;}
+.submenu  { margin-bottom: 1px;}
+span.submenu  { background-color:#FFFFFF; font-family:tahoma,verdana,arial; color: #333333; font-weight: normal; font-size: 11px; line-height: 18px;padding-right: 0px; padding-bottom: 12px; padding-left: 30px; }
+A.subm:link  { font-family:tahoma, verdana, arial; color: #A0A0A0; font-size:11px; text-decoration:none; padding-right: 15px; }                 
+A.subm:visited  { font-family:tahoma, verdana, arial; color: #999999; font-size:11px; text-decoration:none; padding-right: 15px; } 
+A.subm:hover  { font-family:tahoma, verdana, arial; color: #BAC441; font-size:11px; text-decoration:underline;} 
+.norepetir { background-repeat: no-repeat; background-color:#FFFFFF;}
+.opc  { background-color:#E0E0E0; font-family: verdana,tahoma,arial; font-size: 11px; color:#FFFFFF; cursor:pointer; width:144px; height:17px;}	
+.titopc	 { background-color:#FFFFFF; font-family: verdana,tahoma,arial; font-size: 11px; color:#666666; cursor:pointer;width:140px;height:12px;padding-left:5px;}
+
+
+a.menupal {width:101px; height:22px;text-align: center;font-family: Verdana, Arial, Helvetica, sans-serif; 
+font-size: 9px;/*	font-weight : bold;*/text-decoration: none; color: white;vertical-align: bottom;
+background-color: transparent; background-image: url(../img/opcion_a.gif);background-repeat: no-repeat;background-position: bottom;
+margin-bottom: none;margin-left :0.1em;margin-right : 0.1em;margin-top: 0.0 em;
+padding-left: 0.2em;padding-right:0.2em;padding-top:4.8;Display: block;}
+
+
+ a.menupal:hover {width:101px; height:22px;text-align: center;font-family:
+  Verdana, Arial, Helvetica, sans-serif; 
+font-size: 10px;font-weight : bold;	text-decoration: none; color: #FFFFFF;vertical-align: bottom;  
+background-color:  transparent;background-image: url(../img/opcion_b.gif); background-repeat: no-repeat;background-position: center bottom;
+margin-bottom: none;margin-left :0.1em;margin-right : 0.1em;margin-top: 0.0 em;padding-left: 0.2em;
+padding-right:0.2em;padding-top:4.8;Display: block;}
+
+
+ a.menupalActive {width:101px; height:22px;text-align: center;font-family: Verdana, Arial, Helvetica, sans-serif; 
+font-size: 9px;text-decoration: none; color: #FFFFFF; font-weight : bold;vertical-align: bottom;	
+background-color:  transparent;background-image: url(../img/opcion_b.gif); background-repeat: no-repeat;
+background-position: left top;margin-bottom: none;margin-left :0.1em;margin-right : 0.1em;margin-top: 0.0 em;
+padding-left: 0.2em;padding-right:0.2em;padding-top:4.8;Display: block;}
+
+ 
+ 
+/*-------------------------*/
+/* PESTAÃ?â??AS                */
+/*-------------------------*/
+a.solap:link  {font-family:tahoma,Arial,Helvetica,sans-serif; font-size:11px; color:#333333; background:#E8E8E8; font-weight:regular; text-align: center; vertical-align: middle; margin:1px; padding-left: 10px; padding-right: 10px; padding-bottom: 3px; padding-top: 1px; letter-spacing: normal; height:16;border-width: 1px; border-style: solid; border-color: #A0A0A0 #A0A0A0 #E8E8E8 #A0A0A0; }		
+a.solap:visited	 {font-family:tahoma,Arial,Helvetica,sans-serif; font-size:11px; color:#333333; background:#E8E8E8; font-weight:regular; text-align: center; vertical-align: middle; margin:1px; padding-left: 10px; padding-right: 10px; padding-bottom: 3px; padding-top: 1px; letter-spacing: normal; height:16;border-width: 1px; border-style: solid; border-color: #A0A0A0 #A0A0A0 #E8E8E8 #A0A0A0; }
+a.solap:hover  {font-family:tahoma,Arial,Helvetica,sans-serif; font-size:11px; color:#333333; background:#FFFFFF; font-weight:regular; text-align: center; vertical-align: middle; margin:1px; padding-left: 10px; padding-right: 10px; padding-bottom: 3px; padding-top: 1px; letter-spacing: normal; height:16;border-width: 1px; border-style: solid; border-color: #A0A0A0 #A0A0A0 #FFFFFF #A0A0A0; }
+.solapa {background:#E8E8E8; height:5;}
+
+
+
+/* ////////// DATOS */
+
+/*-------------------------*/
+/* Cabecera                */
+/*-------------------------*/
+.cbdatoI  {background-color: #ffffff; font-family: tahoma, verdana, arial; font-size: 12px; color: #666666; border-width: 1px; border-style: solid;  border-color: #FFFFFF #FFFFFF #BAC441 #FFFFFF; vertical-align: middle; text-align:left; font-variant: normal;}
+.cbdatoC  {background-color: #ffffff; font-family: tahoma, verdana, arial; font-size: 12px; color: #666666; border-width: 1px; border-style: solid;  border-color: #FFFFFF #FFFFFF #BAC441 #FFFFFF; vertical-align: middle; text-align:center; font-variant: normal;}
+.cbdatoD  {background-color: #ffffff; font-family: tahoma, verdana, arial; font-size: 12px; color: #666666; border-width: 1px; border-style: solid;  border-color: #FFFFFF #FFFFFF #BAC441 #FFFFFF; vertical-align: middle; text-align:right; padding-right: 5px; font-variant: normal;}	  
+.cbdato1I  {background-color: #F7F7F7; font-family: tahoma, verdana, arial; font-size: 11px; font-weight: bold; text-transform: capitalize; color: #999999; vertical-align: middle; text-align: left; padding-left: 5px;}
+.cbdato1C  {background-color: #F7F7F7; font-family: tahoma, verdana, arial; font-size: 11px; font-weight: bold; text-transform: capitalize; color: #E5E5E5; vertical-align: middle; text-align: center;}
+.cbdato1D  {background-color: #F7F7F7; font-family: tahoma, verdana, arial; font-size: 11px; font-weight: bold; text-transform: capitalize; color: #999999; vertical-align: middle; text-align: right; padding-right: 5px;}
+.titdato  {font-family: tahoma, verdana, arial; font-size: 11px; color: #666666; vertical-align: middle; padding-left: 5px;}
+
+/*-------------------------*/
+/* Contenidos              */
+/*-------------------------*/
+
+TABLE.DATO   {width: 100%; background-color: #ffffff; border-width: 1px; border-style: solid; border-color: #E5E5E5;}
+.txt {font-family: tahoma,arial,verdana; font-size: 11px; color: #333333; text-align: justify; white-space: normal; vertical-align: top; padding-left: 5px; padding-top: 4px; padding-bottom: 4px; height: 25px;}
+.txtI {font-family: tahoma,arial,verdana; font-size: 11px; color: #333333; text-align: left; white-space: normal; vertical-align: top; padding-left: 5px; padding-top: 4px; padding-bottom: 4px;}
+.txtaccion {font-family: tahoma,arial,verdana; font-size: 11px; vertical-align: bottom; white-space: normal; font-size: 11px; height: 25px;}
+.txtgrande {font-family: tahoma,arial,verdana; font-size: 14px; color: #333333; vertical-align: top; white-space: normal; font-size: 11px; height: 25px; text-align: justify; font-weight: normal;}
+.datoN1  {font-family: tahoma, verdana, arial; font-size: 11px; color: #666666; vertical-align: middle;padding-top: 4px;padding-bottom: 4px;padding-left: 5px;}
+.datoN2  {font-family: tahoma, verdana, arial; font-size: 11px; color: #626262; vertical-align: middle;padding-top: 4px;padding-bottom: 4px;padding-left: 5px;}
+FONT.datobl {font-family: tahoma, verdana, arial; font-size: 11px; color: #CC0000; text-align: left; vertical-align: top; padding: 3px;}
+INPUT.dato    {background-color: #E5E5E5; font-family: tahoma, Verdana, Arial; font-size: 12px; color: #333333;}
+INPUT.datofijo  {background-color: #ffffff; font-family: tahoma, Verdana, Arial; font-size: 11px; color: #626262;}
+INPUT.buscar  {background-color: #FFFFFF; font-family: tahoma, Verdana, Arial; font-size: 11px; color: #626262;}
+SELECT.dato   {background-color: #E5E5E5; font-family: tahoma, Verdana, Arial; font-size: 12px; color: #333333;}
+SELECT.datoCob   {background-color: #E5E5E5; font-family: tahoma, Verdana, Arial; font-size: 10px; color: #333333;}
+SELECT.datoseg   {background-color: #E5E5E5; font-family: tahoma, Verdana, Arial; font-size: 12px; color: #333333;}
+TEXTAREA.dato {background-color: #EDEDED; font-family: tahoma, Verdana, Arial; font-size: 11px; color: #626262;padding-bottom: 5px;}
+.ist     { background-color: #FFFFFF; font-family: tahoma,arial,verdana; font-size: 11px; color: #666666; text-align: left; vertical-align: top; padding-left: 5px; padding-top: 2px;}
+.isrt	{ background-color: #FFFFFF; font-family: tahoma,arial,verdana; font-size: 11px; color: #666666; text-align: left; vertical-align: top; padding-left: 5px; padding-top: 2px; padding:3;}
+.radbot  {background-color: #FFFFFF; font-family: tahoma,arial,verdana; font-size: 11px; color: #666666; text-align: center; vertical-align: top; padding-left: 5px; padding-top: 2px;width=8;}
+.check   {background-color: #FFFFFF; font-family: tahoma,arial,verdana; font-size: 11px; color: #666666; text-align: left; vertical-align: top; padding-left: 5px; padding-top: 2px;}
+.istL     {background-color: #FFFFFF; font-family: tahoma,arial,verdana; font-size: 11px; color: #666666; text-align: left; vertical-align: top; padding-left: 5px; padding-top: 2px;width=8; padding:3; border-width: 1px; border-style: solid; border-color: #FFFFFF #FFFFFF #EDEDED #FFFFFF; height:18;}
+.checkL   {background-color: #FFFFFF; font-family: tahoma,arial,verdana; font-size: 11px; color: #666666; text-align: center; vertical-align: top; padding-left: 5px; padding-top: 2px; border-width: 1px; border-style: solid; border-color: #FFFFFF #FFFFFF #EDEDED #FFFFFF; height:18;}
+
+.detaldatoI  {font-family: tahoma,arial,verdana; font-size: 11px; color: #555555; text-align: left; vertical-align: top; padding-left: 5px; padding-top: 4px; padding-bottom: 4px;}
+.detaldatoC  {font-family: tahoma,arial,verdana; font-size: 11px; color: #555555; text-align: center; vertical-align: top; padding-left: 5px; padding-top: 4px; padding-bottom: 4px;}
+.detaldatoD  {font-family: tahoma,arial,verdana; font-size: 11px; color: #555555; text-align: right;  vertical-align: top; padding-left: 5px; padding-top: 4px; padding-bottom: 4px;}
+
+.literal {font-family: tahoma, verdana, arial; font-size: 11px;  font-weight: bold; color: #626262; vertical-align: top;padding-top: 4px;padding-bottom: 4px;padding-left: 5px; text-align:left;}
+.literalUtil {font-family: tahoma, verdana, arial; font-size: 11px; color: #626262; vertical-align: top;padding-top: 4px;padding-bottom: 4px;padding-left: 5px;}
+.literalCM {font-family: tahoma, verdana, arial; font-size: 11px;  font-weight: bold; color: #4682b4; vertical-align: top;padding-top: 4px;padding-bottom: 4px;padding-left: 5px;}
+.detalI  {font-family: tahoma,arial,verdana; font-size: 11px; color: #555555; text-align: left; vertical-align: top; padding-left: 5px; padding-top: 4px; padding-bottom: 4px;}
+.detalC  {font-family: tahoma,arial,verdana; font-size: 11px; font-weight: bold; color: #626262; text-align: center; vertical-align: top; padding-left: 5px; padding-top: 4px; padding-bottom: 4px;}
+.detalD  {font-family: tahoma,arial,verdana; font-size: 11px; font-weight: bold; color: #626262; text-align: right; vertical-align: top; padding-left: 5px; padding-top: 4px; padding-bottom: 4px;}
+
+.detalfecha  {font-family: tahoma,arial,verdana; font-size: 11px; color: #555555; text-align: left; vertical-align: top; padding-left: 0px; padding-top: 4px; padding-bottom: 4px; padding-right: 8px;}
+.detalnumPI  {font-family: tahoma,verdana,arial; font-size: 8pt; color: #0000FF; text-align: left; padding-left: 5px; padding-left: 5px; padding-top: 4px; padding-bottom: 4px;}
+.detalnumNI  {font-family: tahoma,verdana,arial; font-size: 8pt; color: #FF0000; text-align: left; padding-left: 5px; padding-top: 4px; padding-bottom: 4px;}
+.detalnumPD {font-family: tahoma,verdana,arial; font-size: 8pt; color: #0000FF; text-align: right; padding:3px; border-width: 1px; border-style: solid; border-color: #FFFFFF #FFFFFF #EDEDED #FFFFFF; height:18; text-decoration:none;}
+.detalnumND {font-family: tahoma,verdana,arial; font-size: 8pt; color: #FF0000; text-align: right; padding:3px; border-width: 1px; border-style: solid; border-color: #FFFFFF #FFFFFF #EDEDED #FFFFFF; height:18; text-decoration:none;}
+
+.bordedat  {background-color: #ffffff; border-width: 1px; border-style: solid; border-color: #E5E5E5; text-align: center;  vertical-align: top; padding:5px; }
+
+A:link    {font-family: tahoma,Arial,Helvetica,sans-serif; font-size: 11px; color: #626262; font-weight:regular; text-decoration:underline;}          
+A:visited {font-family: tahoma,Arial,Helvetica,sans-serif; font-size: 11px; color: #626262; font-weight:regular; text-decoration:underline;}        
+A:hover   {font-family: tahoma,Arial,Helvetica,sans-serif; font-size: 11px; color: #626262; font-weight:regular; text-decoration:none;}
+
+.errorForm {width:500px;color:black;border:1px solid #DD3C10;display:none;font-size:12px;
+	font-style:italic;font-weight:bold;line-height:20px;background-color:#FFEBE8;margin:15px auto;}
+
+.labelAseg{font-family: tahoma, verdana, arial; font-size: 11px;  font-weight: bold; color: #339900; vertical-align: top;padding-top: 4px;padding-bottom: 4px;padding-left: 5px;}		    
+		 
+.
+/* ////////// LISTAS */
+
+
+/*-------------------------*/
+/* Cabecera                */
+/*-------------------------*/
+
+.cblistaF1I  {background-color: #F7F7F7; font-family: tahoma, verdana, arial; font-size: 11px; color: #626262; text-align: left;   vertical-align: middle; padding-left: 5px; padding-right: 10px; padding-bottom: 1px; border-width: 1px; border-style: solid; border-color: #A4A3A3 #A4A3A3 #A4A3A3 #A4A3A3; height:18; text-decoration:none;}
+.cblistaF1C  {background-color: #F7F7F7; font-family: tahoma, verdana, arial; font-size: 11px; color: #626262; text-align: center; vertical-align: middle; padding-left: 5px; padding-right: 10px; padding-bottom: 1px; border-width: 1px; border-style: solid; border-color: #FFFFFF #A4A3A3 #A4A3A3 #FFFFFF; height:18; text-decoration:none;}
+.cblistaF2I  {background-color: #BAC441; font-family: tahoma,verdana,arial; font-size: 9pt; font-weight: bold; border-width: 1px; border-style: solid; border-color: #666666; color: #FFFFFF; text-align: left;}
+.cblistaF2C  {background-color: #BAC441; font-family: tahoma,verdana,arial; font-size: 9pt; font-weight: bold; border-width: 1px; border-style: solid; border-color: #666666; color: #ffffff; text-align: center;}
+.cblista  {font-family: tahoma, verdana, arial; font-size: 11px; color: #626262; text-align: left; vertical-align: middle; padding-left: 5px; padding-right: 10px; padding-bottom: 2px;}
+.cblistaI {font-family: tahoma, verdana, arial; font-size: 11px; color: #626262; text-align: left; vertical-align: middle; padding-left: 5px; padding-right: 10px; padding-bottom: 2px;}
+.cblistaC {font-family: tahoma, verdana, arial; font-size: 11px; color: #626262; text-align: center; vertical-align: middle; padding-left: 5px; padding-right: 10px; padding-bottom: 2px;}
+
+
+/*-------------------------*/
+/* Contenidos              */
+/*-------------------------*/
+
+TABLE.LISTA  {width: 100%; background-color: #ffffff; margin: 0 auto;}
+
+.contenlista  { font-family: tahoma, verdana, arial; font-size: 11px; color: #999999; text-align: left; vertical-align: middle; padding-left: 10px; padding-top: 4px; padding-bottom: 4px; padding-right: 10px;}
+.contenlistaI  { font-family: tahoma, verdana, arial; font-size: 11px; color: #999999; text-align: left; vertical-align: middle; padding-left: 10px; padding-top: 4px; padding-bottom: 4px; padding-right: 10px;}
+.contenlistaC  { font-family: tahoma, verdana, arial; font-size: 11px; color: #999999; text-align: center; vertical-align: middle; padding-left: 10px; padding-top: 4px; padding-bottom: 4px; padding-right: 10px;}
+.contenlistaD  { font-family: tahoma, verdana, arial; font-size: 11px; color: #999999; text-align: right; vertical-align: middle; padding-left: 10px; padding-top: 4px; padding-bottom: 4px; padding-right: 10px;}
+.contenlistaIN  { font-family: tahoma, verdana, arial; font-size: 11px; color: #999999; text-align: left; vertical-align: middle; padding-left: 10px; padding-top: 4px; padding-bottom: 4px; padding-right: 10px;}
+.contenlistaCN  { font-family: tahoma, verdana, arial; font-size: 11px; color: #999999; text-align: center; vertical-align: middle; padding-left: 10px; padding-top: 4px; padding-bottom: 4px; padding-right: 10px;}
+.contenlistaDN  { font-family: tahoma, verdana, arial; font-size: 11px; color: #999999; text-align: right; vertical-align: middle; padding-left: 10px; padding-top: 4px; padding-bottom: 4px; padding-right: 10px;}
+
+.fchalista     { font-family: tahoma, verdana, arial; font-size: 11px; color: #626262; vertical-align: middle; padding-left: 10px; padding-top: 4px; padding-bottom: 4px; padding-right: 10px;}
+.fchalistaI   {font-family: tahoma, verdana, arial; font-size: 11px; color: #626262; text-align: left; vertical-align: middle; padding-left: 10px; padding-top: 4px; padding-bottom: 4px; padding-right: 10px;}
+
+.detalistaI  {font-family: tahoma, verdana, arial; font-size: 11px; color: #999999; text-align: left;   vertical-align: middle; padding-left: 10px; padding-top: 4px; padding-bottom: 4px; padding-right: 10px; border-width: 1px; border-style: solid; border-color: #FFFFFF #FFFFFF #EDEDED #FFFFFF; height:18; text-decoration:none;}
+.detalistaC  {font-family: tahoma, verdana, arial; font-size: 11px; color: #999999; text-align: center; vertical-align: middle; padding-left: 10px; padding-top: 4px; padding-bottom: 4px; padding-right: 10px; border-width: 1px; border-style: solid; border-color: #FFFFFF #FFFFFF #EDEDED #FFFFFF; height:18; text-decoration:none;}
+.detalistaD  {font-family: tahoma, verdana, arial; font-size: 11px; color: #999999; text-align: right;  vertical-align: middle; padding-left: 10px; padding-top: 4px; padding-bottom: 4px; padding-right: 10px; border-width: 1px; border-style: solid; border-color: #FFFFFF #FFFFFF #EDEDED #FFFFFF; height:18; text-decoration:none;}
+.detalistaIN {font-family: tahoma, verdana, arial; font-size: 11px; color: #999999; text-align: left;   vertical-align: middle; padding-left: 10px; padding-top: 4px; padding-bottom: 4px; padding-right: 10px; border-width: 1px; border-style: solid; border-color: #FFFFFF #FFFFFF #EDEDED #FFFFFF; height:18; text-decoration:none;}
+.detalistaCN {font-family: tahoma, verdana, arial; font-size: 11px; color: #999999; text-align: center; vertical-align: middle; padding-left: 10px; padding-top: 4px; padding-bottom: 4px; padding-right: 10px; border-width: 1px; border-style: solid; border-color: #FFFFFF #FFFFFF #EDEDED #FFFFFF; height:18; text-decoration:none;}
+.detalistaDN {font-family: tahoma, verdana, arial; font-size: 11px; color: #999999; text-align: right;  vertical-align: middle; padding-left: 10px; padding-top: 4px; padding-bottom: 4px; padding-right: 10px; border-width: 1px; border-style: solid; border-color: #FFFFFF #FFFFFF #EDEDED #FFFFFF; height:18; text-decoration:none;}
+
+
+/*-------------------------*/
+/* botones                 */
+/*-------------------------*/
+
+.lugarbotI {padding-left: 5px; padding-top: 2px;}
+.lugarbotC {text-align: center; padding-top: 2px;}
+.lugarbotD {text-align: right;  padding-top: 2px;}
+.lugarbotlist {background:#FFFFFF;}
+a.bot:link {font-family: tahoma,Arial,Helvetica,sans-serif; font-size: 11px; color: #333333; background: #A3A3C2; font-weight: normal; text-align: center; vertical-align: middle; margin: 1px; padding-left: 10px; padding-right: 10px; padding-bottom: 3px; padding-top: 1px; letter-spacing: normal; border-width: 1px; border-style: solid; border-color: #525583 #999999 #999999 #525583; height: 14; text-decoration: underline;}		
+a.bot:visited {font-family: tahoma,Arial,Helvetica,sans-serif; font-size: 11px; color: #333333; background: #A3A3C2; font-weight: normal; text-align: center; vertical-align: middle; margin: 1px; padding-left: 10px; padding-right: 10px; padding-bottom: 3px; padding-top: 1px; letter-spacing: normal; border-width: 1px; border-style: solid; border-color: #525583 #999999 #999999 #525583; height: 14; text-decoration:underline;}
+a.bot:hover	{font-family: tahoma,Arial,Helvetica,sans-serif; font-size: 11px; color: #333333; background: #FFFFFF; font-weight: normal; text-align: center; vertical-align: middle; margin: 1px; padding-left: 10px; padding-right: 10px; padding-bottom: 3px; padding-top: 1px; letter-spacing: normal; border-width: 1px; border-style: solid; border-color: #999999 #525583 #525583 #999999; height: 14; text-decoration: none;}
+a.botlist:link {font-family:tahoma,Arial,Helvetica,sans-serif; font-size:11px; color:#626262; font-weight:bold; text-align: center; vertical-align: middle; margin:1px; padding-left: 5px; padding-right: 5px; padding-bottom: 3px; padding-top: 1px; letter-spacing: normal; border-width: 1px; border-style: solid; border-color: #FFFFFF #FFFFFF #FFFFFF #FFFFFF; height:18; text-decoration:underline;}		
+a.botlist:visited {font-family:tahoma,Arial,Helvetica,sans-serif; font-size:11px; color:#626262; font-weight:bold; text-align: center; vertical-align: middle; margin:1px; padding-left: 5px; padding-right: 5px; padding-bottom: 3px; padding-top: 1px; letter-spacing: normal; border-width: 1px; border-style: solid; border-color: #FFFFFF #FFFFFF #FFFFFF #FFFFFF; height:18; text-decoration:underline;}
+a.botlist:hover {font-family:tahoma,Arial,Helvetica,sans-serif; font-size:11px; color:#626262; background: ##F7F7F7; font-weight:bold; text-align: center; vertical-align: middle; margin:1px; padding-left: 5px; padding-right: 5px; padding-bottom: 3px; padding-top: 1px; letter-spacing: normal; border-width: 1px; border-style: solid; border-color: #FFFFFF #FFFFFF #626262 #FFFFFF; height:18; text-decoration:none; }
+a.botlistRojo:link {font-family:tahoma,Arial,Helvetica,sans-serif; font-size:10px; color:#cc0000; font-weight:bold; text-align: center; vertical-align: middle; margin:1px; padding-left: 5px; padding-right: 5px; padding-bottom: 3px; padding-top: 1px; letter-spacing: normal; border-width: 1px; border-style: solid; border-color: #FFFFFF #FFFFFF #FFFFFF #FFFFFF; height:18; text-decoration:underline;}		
+a.botlistRojo:visited {font-family:tahoma,Arial,Helvetica,sans-serif; font-size:10px; color:#cc0000; font-weight:bold; text-align: center; vertical-align: middle; margin:1px; padding-left: 5px; padding-right: 5px; padding-bottom: 3px; padding-top: 1px; letter-spacing: normal; border-width: 1px; border-style: solid; border-color: #FFFFFF #FFFFFF #FFFFFF #FFFFFF; height:18; text-decoration:underline;}
+a.botlistRojo:hover {font-family:tahoma,Arial,Helvetica,sans-serif; font-size:10px; color:#cc0000; font-weight:bold; text-align: center; vertical-align: middle; margin:1px; padding-left: 5px; padding-right: 5px; padding-bottom: 3px; padding-top: 1px; letter-spacing: normal; border-width: 1px; border-style: solid; border-color: #FFFFFF #FFFFFF #cc0000 #FFFFFF; height:18; text-decoration:none; }
+#FR_color {height:20px;margin:0pt;padding:0pt;}
+#FR_menu{margin:0;padding:0;}
+#conten {position:absolute;left:144px;top:20px;margin:0;padding:0;}
+#FR_bot {margin:0 0 0 1px;padding:0;}
+#FR_apli {margin:0;padding:0;}
+
+
+
+/*-------------------------*/
+/* Formulario              */
+/*-------------------------*/
+/* html tags */
+#main select.dato {background-color: #E5E5E5; font-family: tahoma, Verdana, Arial; font-size: 12px; color: #333333;}
+#main input.dato    {background-color: #E5E5E5; font-family: tahoma, Verdana, Arial; font-size: 12px; color: #333333;
+                     border: 2px inset;border-color: initial;padding-left: 2px}
+#main textarea.dato {background-color: #E5E5E5; font-family: tahoma, Verdana, Arial; font-size: 12px; color: #333333;
+                     border: 2px inset;border-color: initial;padding-left: 2px;overflow:hidden}
+
+#main *{margin: 0;padding: 0;border: 0;vertical-align: baseline;background: transparent;}
+#main select{width:250px}
+#main .panel1 {margin:10px;padding:15px;border:1px solid #CCC;overflow:hidden;width: 100%;}
+#main .panel1 fieldset span{width:80px;float:left;line-height:25px;}
+#main .panel1 fieldset select{float:left}
+#main .panel2 {margin:10px;padding:15px;border:1px solid #CCC;overflow:hidden; width:96%;}
+/* Left*/
+#main .panel2 .panel2_left {float:left;width:430px;}
+#main .panel2 .panel2_left fieldset span {width:120px;float:left;line-height:25px;}
+#main .panel2 .panel2_left fieldset select {float:left}
+/* Right */
+#main .panel2 .panel2_right {float:left;width:250px;margin-left:15px;}
+#main .panel2 .panel2_right fieldset {border:1px solid #CCC}
+#main .panel2 .panel2_right fieldset fieldset {border:0px;padding:10px}
+#main .panel2 .panel2_right fieldset legend {margin-left:5px}
+#main .panel2 .panel2_right fieldset fieldset span {width:120px;float:left;line-height:25px;}
+#main .panel2 .panel2_right fieldset select {float:left;}
+/* Bottom */
+#main .panel2 .panel2_bottom {clear:both;width:500px;margin-top:5px;} 
+#main .panel2 .panel2_bottom fieldset span {width:120px;float:left;line-height:25px}
+
+
+/* error */
+#main .errorForm {width:500px;color:black;border:1px solid #DD3C10;display:none;font-size:12px;
+	font-style:italic;font-weight:bold;line-height:20px;background-color:#FFEBE8;margin:15px auto;}
+#main .miniCalendario {
+  border: 0px solid #FFFFFF; height: 15px; width: 16px; background: url(../img/calendar.gif);}
+/* Alone */
+#main .fieldset_alone {border:1px solid #CCC; width:300px; padding:10px; vertical-align: top;}
+
+
+
+/*-------------------------*/
+/* Formulario2             */
+/*-------------------------*/
+/* html tags */
+#main2 select.dato {background-color: #E5E5E5; font-family: tahoma, Verdana, Arial; font-size: 12px; color: #333333;}
+#main2 input.dato    {background-color: #E5E5E5; font-family: tahoma, Verdana, Arial; font-size: 12px; color: #333333;
+                     border: 2px inset;border-color: initial;}
+
+#main2 *{margin: 0;padding: 0;border: 0;outline: 0;vertical-align: baseline;background: transparent;}
+#main2 select{width:250px}
+#main2 .panel1 {margin:10px;padding:15px;border:1px solid #CCC;overflow:hidden;width: 100%;}
+#main2 .panel1 fieldset span{width:80px;float:left;line-height:25px;}
+#main2 .panel1 fieldset select{float:left}
+#main2 .panel2 {margin:10px;padding:15px;border:1px solid #CCC;overflow:hidden;width: 100%;}
+/* Left*/
+#main2 .panel2 .panel2_left {float:left;width:430px;}
+#main2 .panel2 .panel2_left fieldset span {width:120px;float:left;line-height:25px;}
+#main2 .panel2 .panel2_left fieldset select {float:left}
+/* Right */
+#main2 .panel2 .panel2_right {float:left;width:250px;margin-left:15px;}
+#main2 .panel2 .panel2_right fieldset {border:1px solid #CCC}
+#main2 .panel2 .panel2_right fieldset fieldset {border:0px;padding:10px}
+#main2 .panel2 .panel2_right fieldset legend {margin-left:5px}
+#main2 .panel2 .panel2_right fieldset fieldset span {width:120px;float:left;line-height:25px;}
+#main2 .panel2 .panel2_right fieldset select {float:left;}
+/* Bottom */
+#main2 .panel2 .panel2_bottom {clear:both;width:500px;margin-top:5px;} 
+#main2 .panel2 .panel2_bottom fieldset span {width:120px;float:left;line-height:25px}
+/* error */
+#main2 .errorForm {width:500px;height:20px;color:black;border:1px solid #DD3C10;display:none;font-size:12px;
+	font-style:italic;font-weight:bold;line-height:20px;background-color:#FFEBE8}
+		    
+
+.handOver {cursor:hand;cursor:pointer;}
+
+/*-----------------------------*/
+/* parcelasAnexoModificacion   */
+/*-----------------------------*/
+
+.panel2Anexo {margin:10px;padding:15px;border:0px solid #CCC;overflow:hidden;width: 100%;}
+.panel2Anexo fieldset {border:1px solid #CCCCCC;padding:5px}
+.panel2Anexo fieldset legend{color:#666666;font-family:tahoma,arial,verdana;font-size:11px;text-align:left;
+                             margin-left:5px;}
+
+.width40{width:40px}
+.width140{width:40px}
+.width140{width:35px}
+.width30{width:30px}
+.width25{width:25px}
+.marcarTodos{font-family: tahoma, verdana, arial;color: #626262;width:120;float:right;text-decoration:underline;
+	font-size:11px;cursor:hand;cursor:pointer;}
+            
+    
+.row1{height:50px;}
+.row1 .hojaNum{width:180px;float:left;padding-top:17px};
+.row1 .idCatastral{width:200px;float:left;margin-left:15px}
+.row1 .idCatastral fieldset{border:1px solid #CCCCCC;padding:5px}
+.row1 .idCatastral fieldset legend{color:#666666;font-family:tahoma,arial,verdana;font-size:11px;text-align:left;margin-left:5px;}
+.row1 .sigpac{width:620;float:left;}
+.row1 .sigpac fieldset{border:1px solid #CCCCCC;padding:5px 0 5px 0;}
+.row1 .sigpac fieldset legend{color:#666666;font-family:tahoma,arial,verdana;font-size:11px;text-align:left;margin-left:5px;}   
+
+.row2{height:50px;margin-top:10px;}  
+.row2 .localizacion{padding:5px;width:100%;float:left;border:0px solid #CCCCCC}
+.row2 .localizacion fieldset{padding:5px}
+.row2 .localizacion .item{float:left;text-align:left;margin-left:0px;}
+
+.row3{height:50px}
+.row3 .cultivoVariedad{width:75%;float:left;border:0px solid #CCCCCC;}
+
+.row4{height:50px}
+.row4 .supPro{width:180px;float:left;text-align:left;}
+.row4 .tipoMod{width:230px;float:left;text-align:left}
+.row4 .tipoCapital{width:150px;text-align:left;float:left;}
+/******************************/
+/* Siniestros*/
+
+.panel2Siniestro {margin:10px;padding:15px;border:1px solid #CCC;overflow:hidden;width: 100%;}
+.panel2Siniestro fieldset {border:1px solid #CCCCCC;padding:5px}
+.panel2Siniestro fieldset legend{color:#666666;font-family:tahoma,arial,verdana;font-size:11px;text-align:left;
+                                 margin-left:5px;}
+
+/*-----------------------------------------------*/
+/* panel avisos listado parcelas/instalaciones   */
+/*-----------------------------------------------*/
+.parcelasRepWindow {padding-bottom: 5px;display: none; width: 40%; top: 150px; left: 35%; 
+                    position: absolute; z-index: 1006;border:1px solid #A4A4A4;background-color:#F2F2F2 !important}
+                                       
+.panelInformacion_content {text-align: center; padding:5px;background-color:#F2F2F2 !important }  
+.panelInformacion_content .panelInformacion {display:block;
+				   font-size:11px;font-weight:bold;background-color:#F2F2F2 !important;
+				   text-align:center}
+.panelInformacion_content .bot_continuar {padding:3px;text-decoration:none;font-weight: bold; font-size: 11px;
+                 filter:alpha(opacity=50);-moz-opacity:.50;opacity:.50;}
+                 
+/*-----------------------------------------------*/
+/* panel cambio masivo                           */
+/*-----------------------------------------------*/
+.panelCambioMasivo {padding-bottom: 5px;display: none; width: 980px; top: 50px; left: 13%; 
+                    position: absolute; z-index: 1006;border:1px solid #A4A4A4;background-color:#FFFFFF !important}
+
+/* Panel de Estado de Contratación en AM */
+.panelEstadoContratacion {padding-bottom: 5px;display: none; width: 600px; top: 165px; left: 25%; 
+                    position: absolute; z-index: 1006;border:1px solid #A4A4A4;background-color:#FFFFFF !important}
+                    
+.panelConfirmacion {padding-bottom: 5px;display: none; width: 600px; top: 165px; left: 25%; 
+                    position: absolute; z-index: 1006;border:1px solid #A4A4A4;background-color:#FFFFFF !important}                    
+
+.panelInformacion_content {text-align: center; padding:5px;background-color:#FFFFFF !important }  
+.panelInformacion_content .panelInformacion {display:block;
+				   font-size:11px;font-weight:bold;background-color:#FFFFFF !important;text-align:center}
+.panelInformacion_content .bot_continuar {padding:3px;text-decoration:none;font-weight: bold; font-size: 11px;
+                 filter:alpha(opacity=50);-moz-opacity:.50;opacity:.50;}
+ .data {font-weight:normal;color:#339900}
+ .errorForm_cm {height:20px;color:black;border:1px solid #DD3C10;display:none;font-size:12px;
+	font-style:italic;font-weight:bold;line-height:20px;background-color:#FFEBE8}
+	    
+/*-----------------------------------------------*/
+/* panel replicar plan cultivos subentidad       */
+/*-----------------------------------------------*/          
+.replicarSubEntidadWindow {padding-bottom: 5px;display: none; width: 40%; top: 150px; left: 35%; 
+                    position: absolute; z-index: 1006;border:1px solid #A4A4A4;background-color:#FFFFFF !important}
+                                       
+.replicarSubEntidadWindow .panelInformacion_content {text-align: center; padding:5px;background-color:#FFFFFF !important }  
+.replicarSubEntidadWindow .panelInformacion_content .panelInformacion {display:block;
+				   font-size:11px;font-weight:bold;background-color:#FFFFFF !important;
+				   text-align:center}
+.replicarSubEntidadWindow .panelInformacion_content .bot_continuar {padding:3px;text-decoration:none;font-weight: bold; font-size: 11px;
+                 filter:alpha(opacity=50);-moz-opacity:.50;opacity:.50;}
+                 
+/*-----------------------------------------------*/
+/*                    popup                      */
+/*-----------------------------------------------*/
+.wrapper_popup { 
+                 padding-bottom: 5px;display: none; width: 40%; top: 150px; left: 35%; 
+                 position: absolute; z-index: 1006;border:1px solid #A4A4A4;background-color:#FFFFFF !important;
+                 color:#333333;-moz-border-radius:4px 4px 4px 4px;padding:0.2em;}
+.wrapper_popup .header-popup {
+                 padding:0.4em 1em;position:relative;
+		         color:#FFFFFF;font-weight:bold;-moz-border-radius:4px 4px 4px 4px;
+		         background:#525583;height:15px}
+.wrapper_popup .header-popup .title_popup {
+	             float:left;margin:0 0 0 0;font-size:11px;line-height:15px}	                
+.wrapper_popup .content_popup {
+                 text-align: center; padding:5px;background-color:#FFFFFF !important }  
+.wrapper_popup .content_popup .messages_popup {
+                 display:block;text-align:center
+				 font-size:11px;font-weight:bold;background-color:#FFFFFF !important;}
+.wrapper_popup .header-popup .close_botton_popup {
+	             height:18px;margin:-10px 0 0;padding:1px;position:absolute;right:0.3em;top:50%;width:19px;
+		         font-family:arial;font-size:13px;font-weight:bold;cursor:hand;cursor:pointer}
+.wrapper_popup .content_popup .bot_continuar {
+                 padding:3px;text-decoration:none;font-weight: bold; font-size: 11px;
+                 filter:alpha(opacity=50);-moz-opacity:.50;opacity:.50;}
+/*--------------------- popup forma pago ---------------*/
+
+.errorForm_fp {height:20px;color:black;border:1px solid #DD3C10;display:none;font-size:12px;
+	font-style:italic;font-weight:bold;line-height:20px;background-color:#FFEBE8; width:80%; align="center"; display:block;}	
+
+	span.descripcionAmpliada{
+	color: grey;
+	margin-left: 5%;
+}
+
+.tabla-popup, .subtabla-popup{
+	border-collapse: collapse;
+	font-size: 11px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.tabla-popup th, .subtabla-popup th{
+	font-weight: bold; 
+	color: #626262; 
+	vertical-align: top;
+	padding-left: 20px;
+	padding-right: 20px;
+	padding-top: 4px;
+	padding-bottom: 4px;
+	border: 1px solid #626262;
+}
+
+.tabla-popup td, .subtabla-popup td {
+	color: #555555; 
+	text-align: left; 
+	vertical-align: top;
+	padding-left: 5px;
+	padding-right: 15px;
+	padding-top: 4px; 
+	padding-bottom: 4px;
+	border: 1px solid #626262;
+}
+
+.subtabla-popup td {
+	color: #555555; 
+	text-align: center; 
+	vertical-align: top;
+	padding-left: 5px;
+	padding-right: 15px;
+	padding-top: 4px; 
+	padding-bottom: 4px;
+	border: 1px solid #626262;
+}
+
+.titulo-tabla {
+	font-weight: bold; 
+	text-align: left; 
+}
+
+.centered-message {
+	margin-top: 15%;
+	text-align: center;
+	font-size: 12px;
+	font-weight: bold;
+	color: #666666;
+}
+
+.ganado-rc-oculto {
+	float: left; 
+	display: none;
+}
+
+.float-izquierda {
+	float: left;
+}

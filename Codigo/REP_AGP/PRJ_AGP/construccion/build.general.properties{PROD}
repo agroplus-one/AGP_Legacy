@@ -1,0 +1,73 @@
+################################################
+# Fichero de propiedades comunes para AGROPLUS #
+# Version: 1.0                                 #
+# T-Systems                                    #
+################################################
+
+# Entorno. Valores posibles: DES, TEST o PROD
+entorno=PROD
+
+# Version
+version=1.0
+
+# Nombres de Proyectos
+project_name=rsi_agp
+
+# Directorio Raiz del proyecto
+base=..
+
+# Directorio de construccion Java
+java_dir=JAVA_AGP
+
+# Directorio de construccion de la aplicacion Web
+web_dir=WEB_AGP
+
+# Directorio de Generacion de la documentacion
+documentation_dir=${base}/../${java_dir}/docs/api
+
+# Directorio donde se compilan las clases Java
+build=${base}/build
+
+# Directorio donde se encuentran los fuentes Java
+src=${base}/src
+
+# Directorio donde se generan las distribuciones (.jar, .war, .ear)
+dist=${base}/dist
+
+# Directorio donde reside el proyecto de librerias de Harvest
+harvest_components_dir=${base}/..
+
+# Nombre del archivo .jar que se genera
+jar_name=JAVA_AGP
+
+# Directorio donde estan las librerias Java
+libraries.dir=/harvest/banca/REP_LIBRERIAS_CMS/PRJ_LIBRERIAS_MICRO/resultado
+libraries_hi.dir=/harvest/hi/REP_LIBRERIAS_NT/resultado
+
+# Directorio donde estan los descriptores para las aplicaciones
+path_descr=descriptores
+
+# Directorio donde estan los descriptores para el entorno especificado
+path_descr_entorno=${path_descr}/${entorno}
+
+# Descriptor de la aplicacion J2EE
+app_name=application.xml
+
+# Fichero ant de construccion para el modulo Java
+ant_java=${base}/../${java_dir}/construccion/build.xml
+
+# Fichero ant de construccion para el modulo Web
+ant_web=${base}/../${web_dir}/construccion/build.xml
+
+# Fichero ant de construccion para el modulo Java
+ant_wsdl=${base}/../${web_dir}/construccion/buildWS.xml
+
+# Directorio donde reside el contenido Web de la aplicacion (JSP, HTML, etc.)
+web_content=${base}/../${web_dir}/WebContent
+#web_content=D:/Agroplus/REP_AGP/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/WEB_AGP
+
+# Directorio donde residen los ficheros HBM de Hibernate
+hbm.dir=./${java_dir}/hibernate.hbm
+
+# Desarrollo: Directorio donde esta instalado tomcat
+tomcat.home=D:/AgroPlus/apache-tomcat-6.0.20

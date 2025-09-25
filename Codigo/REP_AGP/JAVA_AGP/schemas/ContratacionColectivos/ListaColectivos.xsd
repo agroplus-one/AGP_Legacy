@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<x:schema 
+	targetNamespace="http://www.agroseguro.es/ListaColectivos"
+	xmlns="http://www.agroseguro.es/ListaColectivos"
+	xmlns:pks="http://www.agroseguro.es/ListaColectivos"
+	xmlns:x="http://www.w3.org/2001/XMLSchema"
+	xmlns:ti="http://www.agroseguro.es/ITipos">
+	
+	<x:import namespace="http://www.agroseguro.es/ITipos" schemaLocation="../commons/Tipos.xsd"/>
+
+	<x:element name="ListaColectivos" type="ListaColectivos" />
+	
+	<x:complexType name="ListaColectivos" >
+		<x:sequence>
+			<x:element name="Tomador" type="Tomador" minOccurs="1" maxOccurs="unbounded"/>
+		</x:sequence>
+		<x:attributeGroup ref="ti:PeticionSW" />
+		<!-- Parametros de llamada -->
+		<x:anyAttribute namespace="##any" processContents="lax"/>
+	</x:complexType>
+	
+	<x:complexType name="Tomador">
+		<x:sequence>
+			<x:group ref="ti:NombrePersona" minOccurs="1" maxOccurs="1" />
+			<x:element name="Colectivo" type="Colectivo" minOccurs="1" maxOccurs="unbounded"/>
+		</x:sequence>
+		<x:attribute name="nif" type="ti:NIFCIF" use="required" />
+	</x:complexType>
+	
+	<x:complexType name="Colectivo">
+		<x:attribute name="referencia" use="required" type="ti:Colectivo_Referencia" />
+		<x:attribute name="digitoControl" use="required" type="ti:DigitoControl" />
+		<x:attribute name="linea" use="required" type="ti:Linea_Codigo" />
+		<x:attribute name="codigoInternoEntidad" use="required" type="ti:CodigoInternoEntidad" />
+		<x:attribute name="IBAN" use="required" type="ti:IBAN" />
+		<x:attribute name="estado" use="required" type="estado" />
+		<x:attribute name="descriptivoEstado" use="required" type="descriptivoEstado" />
+		<x:attribute name="fechaEstado" use="required" type="x:date" />
+
+	</x:complexType>
+	
+	<x:simpleType name="estado">
+		<x:restriction base="x:positiveInteger">
+			<x:totalDigits value="2" />
+			<x:minInclusive value="1" />
+		</x:restriction>
+	</x:simpleType>
+
+	<x:simpleType name="descriptivoEstado">
+		<x:restriction base="x:string">
+			<x:maxLength value="30" />
+		</x:restriction>
+	</x:simpleType>
+		
+</x:schema>

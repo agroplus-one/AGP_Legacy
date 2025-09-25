@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="declaracionSeguro_distribucionSeguro_subCCAA" pageWidth="372" pageHeight="15" columnWidth="372" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0">
+	<parameter name="ID" class="java.lang.Integer"/>
+	<queryString>
+		<![CDATA[SELECT CSUB.CODORGANISMO, SUM(CSUB.IMPORTESUBV) as IMPORTE, O.DESORGANISMO
+FROM o02agpe0.TB_DIST_COSTE_SUBVS csub, o02agpe0.TB_POLIZAS PO, o02agpe0.TB_DISTRIBUCION_COSTES CO, o02agpe0.TB_SC_C_ORGANISMOS O
+WHERE CO.IDPOLIZA = PO.IDPOLIZA
+AND CSUB.CODORGANISMO = O.CODORGANISMO
+AND CO.ID = CSUB.IDDISTCOSTE
+AND PO.IDPOLIZA=$P{ID}
+GROUP BY CSUB.CODORGANISMO,O.DESORGANISMO]]>
+	</queryString>
+	<field name="CODORGANISMO" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="IMPORTE" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="DESORGANISMO" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<variable name="SHOW_FOOT" class="java.lang.Boolean" resetType="None">
+		<variableExpression><![CDATA[new Boolean(true)]]></variableExpression>
+		<initialValueExpression><![CDATA[]]></initialValueExpression>
+	</variable>
+	<variable name="SHOW_BACK" class="java.lang.Boolean" resetType="None">
+		<variableExpression><![CDATA[new Boolean(true)]]></variableExpression>
+		<initialValueExpression><![CDATA[]]></initialValueExpression>
+	</variable>
+	<group name="organismo">
+		<groupExpression><![CDATA[$F{CODORGANISMO}]]></groupExpression>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<detail>
+		<band height="15" splitType="Stretch">
+			<textField pattern="#,##0.00¤" isBlankWhenNull="true">
+				<reportElement x="216" y="0" width="45" height="15"/>
+				<textElement textAlignment="Right">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{IMPORTE}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="false">
+				<reportElement x="0" y="0" width="255" height="15"/>
+				<textElement>
+					<font size="8" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["Subvención " + $F{DESORGANISMO}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

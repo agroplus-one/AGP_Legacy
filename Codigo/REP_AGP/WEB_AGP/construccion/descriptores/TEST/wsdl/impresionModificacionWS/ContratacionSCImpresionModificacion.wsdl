@@ -1,0 +1,664 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="ContratacionSCImpresionModificacion"
+	targetNamespace="http://www.agroseguro.es/serviciosweb/ContratacionSCImpresionModificacion/"
+	xmlns:agr="http://www.agroseguro.es/serviciosweb/ContratacionSCImpresionModificacion/"
+	xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	xmlns:xmime="http://www.w3.org/2005/05/xmlmime"
+	xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:ti="http://www.agroseguro.es/Tipos"
+	xmlns:ec="http://www.agroseguro.es/SeguroAgrario/EstadoContratacion"
+	xmlns:cupon="http://www.agroseguro.es/SeguroAgrario/CuponModificacion"
+	xmlns:ri="http://www.agroseguro.es/RelacionIncidencias"
+	xmlns:la="http://www.agroseguro.es/ListaAsuntos"
+	xmlns:lm="http://www.agroseguro.es/ListaMotivosAnulacionRescision"
+	xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd"
+	xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd"
+	>
+	<wsdl:types>
+		<xsd:schema elementFormDefault="qualified"
+			targetNamespace="http://www.agroseguro.es/serviciosweb/ContratacionSCImpresionModificacion/"
+			xmlns:agr="http://www.agroseguro.es/serviciosweb/ContratacionSCImpresionModificacion/"
+			xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+			<xsd:import namespace="http://www.w3.org/2005/05/xmlmime"
+				schemaLocation="xmime.xsd" />
+				
+			<xsd:import	namespace="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd"
+				schemaLocation="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd" />
+			
+			<xsd:import namespace="http://www.agroseguro.es/Tipos"
+				schemaLocation="Tipos.xsd" />
+				
+			<xsd:import namespace="http://www.agroseguro.es/SeguroAgrario/EstadoContratacion"
+				schemaLocation="EstadoContratacion.xsd" />
+			
+			<xsd:import namespace="http://www.agroseguro.es/SeguroAgrario/CuponModificacion" 
+				schemaLocation="CuponModificacion.xsd" />
+			
+			<xsd:import namespace="http://www.agroseguro.es/RelacionIncidencias" 
+				schemaLocation="RelacionIncidencias.xsd" />
+				
+			<xsd:import namespace="http://www.agroseguro.es/ListaAsuntos" 
+				schemaLocation="ListaAsuntos.xsd" />
+				
+			<xsd:import namespace="http://www.agroseguro.es/ListaMotivosAnulacionRescision" 
+				schemaLocation="ListaMotivosAnulacionRescision.xsd" />				
+			
+			<xsd:complexType name="PlanReferencia">
+				<xsd:sequence>
+					<xsd:element name="plan" type="ti:Plan" />
+					<xsd:element name="referencia" type="ti:Poliza_Referencia_Unificada" />
+				</xsd:sequence>
+			</xsd:complexType>
+			
+			<xsd:complexType name="PlanReferenciaTipo">
+				<xsd:sequence>
+					<xsd:element name="plan" type="ti:Plan" />
+					<xsd:element name="referencia" type="ti:Poliza_Referencia_Unificada" />
+					<xsd:element name="tipoReferencia" type="ti:Poliza_Referencia_Tipo" maxOccurs="1" minOccurs="0" />
+				</xsd:sequence>
+			</xsd:complexType>
+			
+			<xsd:complexType name="AnioIncidencia">
+				<xsd:sequence>
+					<xsd:element name="anio" type="ec:AnioIncidencia" />
+					<xsd:element name="numero" type="ec:NumeroIncidencia" />
+				</xsd:sequence>
+			</xsd:complexType>
+			
+			
+			
+			<xsd:complexType name="PlanLineaNif">
+				<xsd:sequence>
+					<xsd:element name="plan" type="ti:Plan" />
+					<xsd:element name="linea" type="ti:Linea_Codigo" />
+					<xsd:element name="nif" type="ti:NIF" />
+					
+				</xsd:sequence>
+			</xsd:complexType>
+			
+			<xsd:complexType name="ParametrosAnulacionRescision">
+				<xsd:sequence>
+					<xsd:element name="planReferenciaTipo" type="agr:PlanReferenciaTipo" />
+					<xsd:element name="nif" type="ti:NIF" />
+					<xsd:element name="linea" type="ti:Linea_Codigo" />
+					<xsd:element name="codigoMotivo" type="lm:CodigoMotivoAnulacionRescision" />
+				</xsd:sequence>
+			</xsd:complexType>
+			
+			<xsd:element name="relacionIncidenciasPolizaRequest" >
+				<xsd:complexType>
+				  <xsd:sequence>
+					<xsd:element name="plan" type="ti:Plan" />
+					<xsd:element name="referencia" type="ti:Poliza_Referencia_Unificada" />
+				  </xsd:sequence>
+				</xsd:complexType>	
+			</xsd:element>
+			
+			<xsd:element name="relacionIncidenciasPolizaResponse">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="relacionIncidenciasPoliza" xmime:expectedContentTypes="text/xml" type="xmime:base64Binary" />
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			
+			<xsd:element name="relacionIncidenciasRequest" >
+				<xsd:complexType>
+				  <xsd:sequence>
+					<xsd:choice maxOccurs="1" minOccurs="1">
+						<xsd:element name="planReferencia" type="agr:PlanReferencia" />
+						<xsd:element name="planLineaNif" type="agr:PlanLineaNif" />
+					</xsd:choice>
+				  </xsd:sequence>
+				</xsd:complexType>	
+			</xsd:element>
+			
+			<xsd:element name="relacionIncidenciasResponse">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="relacionIncidencias" xmime:expectedContentTypes="text/xml" type="xmime:base64Binary" />
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			
+			<xsd:element name="pdfIncidenciaRequest">
+				<xsd:complexType>
+					<xsd:sequence>	
+						<xsd:element name="anio" type="ec:AnioIncidencia" minOccurs="0" nillable="true" />
+						<xsd:element name="numero" type="ec:NumeroIncidencia" minOccurs="0" nillable="true" />
+						<xsd:element name="cuponModificacion" type="cupon:idCupon" minOccurs="0" nillable="true" />
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			
+			<xsd:element name="pdfIncidenciaResponse">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="documento" xmime:expectedContentTypes="application/pdf" type="xmime:base64Binary" maxOccurs="unbounded"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			
+			<xsd:element name="envioDocumentacionIncidenciaRequest">
+				<xsd:complexType>
+					<xsd:sequence>	
+						<xsd:choice maxOccurs="1" minOccurs="1">
+							<xsd:element name="planReferenciaTipo" type="agr:PlanReferenciaTipo" />
+							<xsd:element name="anioIncidencia" type="agr:AnioIncidencia" />
+							<xsd:element name="cuponModificacion" type="cupon:idCupon" />
+							<xsd:element name="planLineaNif" type="agr:PlanLineaNif" />
+						</xsd:choice>
+						<xsd:element name="documento" xmime:expectedContentTypes="application/*" type="xmime:base64Binary" minOccurs="1" maxOccurs="unbounded"/>
+						<xsd:element name="observaciones" type="ri:ObservacionesIncidencia" maxOccurs="1" minOccurs="0" />
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			
+			<xsd:element name="envioDocumentacionIncidenciaResponse">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="acuseRecibo" xmime:expectedContentTypes="text/xml" type="xmime:base64Binary" />
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			
+			<xsd:element name="envioDocumentacionNuevaIncidenciaRequest">
+				<xsd:complexType>
+					<xsd:sequence>	
+						<xsd:choice maxOccurs="1" minOccurs="1">
+							<xsd:element name="planReferenciaTipo" type="agr:PlanReferenciaTipo" />
+							<xsd:element name="planLineaNif" type="agr:PlanLineaNif" />
+						</xsd:choice>
+						<xsd:element name="documento" xmime:expectedContentTypes="application/*" type="xmime:base64Binary" minOccurs="1" maxOccurs="unbounded"/>
+						<xsd:element name="codigoAsunto" type="la:CodigoAsunto" />
+						<xsd:element name="observaciones" type="ri:ObservacionesIncidencia" maxOccurs="1" minOccurs="0" />
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			
+			<xsd:element name="envioDocumentacionNuevaIncidenciaResponse">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="acuseRecibo" xmime:expectedContentTypes="text/xml" type="xmime:base64Binary" />
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			
+			<xsd:element name="listaAsuntosRequest" />
+			
+			<xsd:element name="listaAsuntosResponse">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="listaAsuntos" xmime:expectedContentTypes="text/xml" type="xmime:base64Binary" />
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			
+			<!-- Pet. 57627 ** MODIF TAM (15.10.2019) -->
+			<xsd:element name="anulacionPolizaRequest" type="agr:ParametrosAnulacionRescision" />
+			
+			<xsd:element name="anulacionPolizaResponse">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="acuseRecibo" xmime:expectedContentTypes="text/xml" type="xmime:base64Binary" />
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			
+			<xsd:element name="rescisionPropuestaRequest" type="agr:ParametrosAnulacionRescision" />
+			
+			<xsd:element name="rescisionPropuestaResponse">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="acuseRecibo" xmime:expectedContentTypes="text/xml" type="xmime:base64Binary" />
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			
+			<xsd:element name="listaMotivosRequest" />
+			
+			<xsd:element name="listaMotivosResponse">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="listaMotivos" xmime:expectedContentTypes="text/xml" type="xmime:base64Binary" />
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			
+			<xsd:element name="agrFallo"
+				xmlns:agr="http://www.agroseguro.es/serviciosweb/ContratacionSCImpresionModificacion/">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:annotation>
+							Lista de mensajes de error de AGROSEGURO
+						</xsd:annotation>
+						<xsd:element name="error" type="agr:Error"	maxOccurs="unbounded" minOccurs="0" />
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:complexType name="Error"
+				xmlns:agr="http://www.agroseguro.es/serviciosweb/ContratacionSCImpresionModificacion/">
+				<xsd:sequence>
+					<xsd:element name="codigo" type="xsd:int" />
+					<xsd:element name="mensaje" type="xsd:string" />
+				</xsd:sequence>
+			</xsd:complexType>
+		</xsd:schema>
+	</wsdl:types>
+	<wsdl:message name="Header">
+		<wsdl:part name="Security" element="wsse:Security" />
+	</wsdl:message>
+	<wsdl:message name="AgrException">
+		<wsdl:part name="parameters" element="agr:agrFallo"></wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="relacionIncidenciasPolizaRequest">
+		<wsdl:part name="parameters" element="agr:relacionIncidenciasPolizaRequest">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="relacionIncidenciasPolizaResponse">
+		<wsdl:part name="parameters" element="agr:relacionIncidenciasPolizaResponse">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="relacionIncidenciasRequest">
+		<wsdl:part name="parameters" element="agr:relacionIncidenciasRequest">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="relacionIncidenciasResponse">
+		<wsdl:part name="parameters" element="agr:relacionIncidenciasResponse">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="pdfIncidenciaRequest">
+		<wsdl:part name="parameters" element="agr:pdfIncidenciaRequest">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="pdfIncidenciaResponse">
+		<wsdl:part name="parameters" element="agr:pdfIncidenciaResponse">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="envioDocumentacionIncidenciaRequest">
+		<wsdl:part name="parameters" element="agr:envioDocumentacionIncidenciaRequest">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="envioDocumentacionIncidenciaResponse">
+		<wsdl:part name="parameters" element="agr:envioDocumentacionIncidenciaResponse">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="envioDocumentacionNuevaIncidenciaRequest">
+		<wsdl:part name="parameters" element="agr:envioDocumentacionNuevaIncidenciaRequest">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="envioDocumentacionNuevaIncidenciaResponse">
+		<wsdl:part name="parameters" element="agr:envioDocumentacionNuevaIncidenciaResponse">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="listaAsuntosRequest">
+		<wsdl:part name="parameters" element="agr:listaAsuntosRequest">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="listaAsuntosResponse">
+		<wsdl:part name="parameters" element="agr:listaAsuntosResponse">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="anulacionPolizaRequest">
+		<wsdl:part name="parameters" element="agr:anulacionPolizaRequest">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="anulacionPolizaResponse">
+		<wsdl:part name="parameters" element="agr:anulacionPolizaResponse">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="rescisionPropuestaRequest">
+		<wsdl:part name="parameters" element="agr:rescisionPropuestaRequest">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="rescisionPropuestaResponse">
+		<wsdl:part name="parameters" element="agr:rescisionPropuestaResponse">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="listaMotivosRequest">
+		<wsdl:part name="parameters" element="agr:listaMotivosRequest">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="listaMotivosResponse">
+		<wsdl:part name="parameters" element="agr:listaMotivosResponse">
+		</wsdl:part>
+	</wsdl:message>
+	
+	<wsdl:portType name="ContratacionSCImpresionModificacion">
+		<wsdl:operation name="relacionIncidenciasPoliza">
+			<wsdl:documentation>
+				Método que devuelve una relación de las incidencias	asociadas a la póliza 
+				solicitada.
+				
+				En la petición se deberá facilitar:
+
+				- El plan, obligatorio.
+				- La referencia de la póliza, obligatorio.
+				
+				Se devolverá la siguiente información :
+
+				- Fichero XML con la relación de las incidencias. 
+				El esquema XSD del documento es "RelacionIncidenciasPoliza.xsd".
+
+			</wsdl:documentation>
+			<wsdl:input message="agr:relacionIncidenciasPolizaRequest"></wsdl:input>
+			<wsdl:output message="agr:relacionIncidenciasPolizaResponse"></wsdl:output>
+			<wsdl:fault name="AgrException"
+				message="agr:AgrException">
+			</wsdl:fault>
+		</wsdl:operation>
+		
+		<wsdl:operation name="relacionIncidencias">
+			<wsdl:documentation>
+				Método que devuelve una relación de las incidencias	asociadas al plan linea nif enviandos.
+				
+				En la petición se deberá elegir entre dos opciones :
+				- Opción 1:
+					- El plan, obligatorio.
+					- La Línea, obligatorio.
+					- El Nif, obligatorio
+				- Opción 2: 	
+					- El plan, obligatorio.
+					- La referencia de la póliza, obligatorio.
+					
+				Se devolverá la siguiente información :
+
+				- Fichero XML con la relación de las incidencias. 
+				El esquema XSD del documento es "RelacionIncidencias.xsd".
+
+			</wsdl:documentation>
+			<wsdl:input message="agr:relacionIncidenciasRequest"></wsdl:input>
+			<wsdl:output message="agr:relacionIncidenciasResponse"></wsdl:output>
+			<wsdl:fault name="AgrException"
+				message="agr:AgrException">
+			</wsdl:fault>
+		</wsdl:operation>
+		
+		<wsdl:operation name="pdfIncidencia">
+			<wsdl:documentation>
+				Método que devuelve el pdf de una incidencia de una Póliza.
+
+				En la petición se deberá facilitar:
+
+				- El año de la incidencia, opcional.
+				- El número de incidencia, opcional.
+				- El cupón que generó la incidencia, opcional. 
+
+				Se devolverá la siguiente información :
+
+				- Fichero PDF de la incidencia. 
+
+			</wsdl:documentation>
+			<wsdl:input message="agr:pdfIncidenciaRequest"></wsdl:input>
+			<wsdl:output message="agr:pdfIncidenciaResponse"></wsdl:output>
+			<wsdl:fault name="AgrException"
+				message="agr:AgrException">
+			</wsdl:fault>
+		</wsdl:operation>
+		
+		<wsdl:operation name="envioDocumentacionIncidencia">
+			<wsdl:documentation>
+				Método que permite enviar documentación sobre una incidencia existente.
+
+				En la petición se deberá facilitar una las siguientes combinaciones de parametros:
+				
+				- Combinacion1:
+					- El plan, obligatorio.
+					- La referencia de la póliza, obligatorio.
+					- El tipo de referencia, opcional.
+					- Documento/s a aportar, obligatorio.
+				- Combinacion2:
+					- El año de la incidencia, obligatorio.
+					- El número de incidencia, obligatorio.
+					- Documento/s a aportar, obligatorio.
+				- Combinacion3:
+					- El cupón que generó la incidencia, obligatorio.
+					- Documento/s a aportar, obligatorio.
+				- Combinacion4:
+					- El plan, obligatorio.
+					- La línea, obligatorio.
+					- El Nif, obligatorio.
+					- Documento/s a aportar, obligatorio.
+
+				Se devolverá la siguiente información :
+
+				- Acuse de recibo con el número de documentos aceptados.
+
+			</wsdl:documentation>
+			<wsdl:input message="agr:envioDocumentacionIncidenciaRequest"></wsdl:input>
+			<wsdl:output message="agr:envioDocumentacionIncidenciaResponse"></wsdl:output>
+			<wsdl:fault name="AgrException"
+				message="agr:AgrException">
+			</wsdl:fault>
+		</wsdl:operation>
+		
+		<wsdl:operation name="envioDocumentacionNuevaIncidencia">
+			<wsdl:documentation>
+				Método que permite enviar documentación sobre una incidencia existente.
+
+				En la petición se deberá facilitar una las siguientes combinaciones de parametros:
+				
+				- Combinacion1:
+					- El plan, obligatorio.
+					- La referencia de la póliza, obligatorio.
+					- El tipo de referencia, opcional.
+					- Documento/s a aportar, obligatorio.
+				
+				- Combinacion2:
+					- El plan, obligatorio.
+					- La línea, obligatorio.
+					- El Nif, obligatorio.
+					- Documento/s a aportar, obligatorio.
+
+				Se devolverá la siguiente información :
+
+				- Acuse de recibo con el número de documentos aceptados y el número de incidencia asignados.
+
+			</wsdl:documentation>
+			<wsdl:input message="agr:envioDocumentacionNuevaIncidenciaRequest"></wsdl:input>
+			<wsdl:output message="agr:envioDocumentacionNuevaIncidenciaResponse"></wsdl:output>
+			<wsdl:fault name="AgrException"
+				message="agr:AgrException">
+			</wsdl:fault>
+		</wsdl:operation>
+		
+		<wsdl:operation name="listaAsuntos">
+			<wsdl:documentation>
+				Método que devuelve la lista de códigos y descriptivos de asuntos para poder ser utilizados en las operaciones
+				de envío de documentación.
+
+				En la petición no habrá parametros de entrada.
+
+				Se devolverá la siguiente información :
+				
+				Fichero XML con la relación de asuntos.
+				El esquema XSD del documento es "ListaAsuntos.xsd"
+
+			</wsdl:documentation>
+			<wsdl:input message="agr:listaAsuntosRequest"></wsdl:input>
+			<wsdl:output message="agr:listaAsuntosResponse"></wsdl:output>
+			<wsdl:fault name="AgrException"
+				message="agr:AgrException">
+			</wsdl:fault>
+		</wsdl:operation>
+		
+		<wsdl:operation name="anulacionPoliza">
+			<wsdl:documentation>
+				Método que permite la anulación de pólizas que estén en vigor.
+
+				En la petición se deberá facilitar:
+				
+				- El plan, obligatorio.
+				- La referencia de póliza, obligatorio.
+				- El tipo de referencia, opcional.
+				- El NIF, obligatorio.
+				- La línea, obligatorio.
+
+				Se devolverá la siguiente información :
+
+				- Acuse de recibo con el número de incidencia asignado si la anulación es aceptada,
+        		  o la lista de errores de rechazo si la anulación es rechazada. 
+
+			</wsdl:documentation>
+			<wsdl:input message="agr:anulacionPolizaRequest"></wsdl:input>
+			<wsdl:output message="agr:anulacionPolizaResponse"></wsdl:output>
+			<wsdl:fault name="AgrException"
+				message="agr:AgrException">
+			</wsdl:fault>
+		</wsdl:operation>
+
+		<wsdl:operation name="rescisionPropuesta">
+			<wsdl:documentation>
+				Método que permite la rescisión de propuestas de renovación.
+
+				En la petición se deberá facilitar:
+				
+				- El plan, obligatorio.
+				- La referencia de póliza, obligatorio.
+				- El tipo de referencia, opcional.
+				- El NIF, obligatorio.
+				- La línea, obligatorio.
+
+				Se devolverá la siguiente información :
+
+				- Acuse de recibo con el número de incidencia asignado si la rescisión es aceptada,
+        		  o la lista de errores de rechazo si la rescisión es rechazada. 
+
+			</wsdl:documentation>
+			<wsdl:input message="agr:rescisionPropuestaRequest"></wsdl:input>
+			<wsdl:output message="agr:rescisionPropuestaResponse"></wsdl:output>
+			<wsdl:fault name="AgrException"
+				message="agr:AgrException">
+			</wsdl:fault>
+		</wsdl:operation>
+		
+		<wsdl:operation name="listaMotivos">
+			<wsdl:documentation>
+				Método que devuelve la lista de motivos para poder ser utilizados en las operaciones
+				de anulación de pólizas y de rescisión de propuestas de renovación.
+
+				En la petición no habrá parametros de entrada.
+
+				Se devolverá la siguiente información :
+				
+				Fichero XML con la relación de motivo.
+				El esquema XSD del documento es "ListaMotivosAnulacionRescision.xsd"
+
+			</wsdl:documentation>
+			<wsdl:input message="agr:listaMotivosRequest"></wsdl:input>
+			<wsdl:output message="agr:listaMotivosResponse"></wsdl:output>
+			<wsdl:fault name="AgrException"
+				message="agr:AgrException">
+			</wsdl:fault>
+		</wsdl:operation>
+		
+	</wsdl:portType>
+	<wsdl:binding name="ContratacionSCImpresionModificacionSOAP"
+		type="agr:ContratacionSCImpresionModificacion">
+		<soap:binding style="document"
+			transport="http://schemas.xmlsoap.org/soap/http" />
+		<wsdl:operation name="relacionIncidenciasPoliza">
+			<soap:operation	soapAction="relacionIncidenciasPoliza" />
+			<wsdl:input>
+				<soap:header wsdl:required="true" message="agr:Header" part="Security" use="literal" />
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output><soap:body use="literal" /></wsdl:output>
+			<wsdl:fault name="AgrException"><soap:fault name="AgrException" use="literal" /></wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="relacionIncidencias">
+			<soap:operation	soapAction="relacionIncidencias" />
+			<wsdl:input>
+				<soap:header wsdl:required="true" message="agr:Header" part="Security" use="literal" />
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output><soap:body use="literal" /></wsdl:output>
+			<wsdl:fault name="AgrException"><soap:fault name="AgrException" use="literal" /></wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="pdfIncidencia">
+			<soap:operation	soapAction="pdfIncidencia" />
+			<wsdl:input>
+				<soap:header wsdl:required="true" message="agr:Header" part="Security" use="literal" />
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output><soap:body use="literal" /></wsdl:output>
+			<wsdl:fault name="AgrException"><soap:fault name="AgrException" use="literal" /></wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="envioDocumentacionIncidencia">
+			<soap:operation	soapAction="envioDocumentacionIncidencia" />
+			<wsdl:input>
+				<soap:header wsdl:required="true" message="agr:Header" part="Security" use="literal" />
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output><soap:body use="literal" /></wsdl:output>
+			<wsdl:fault name="AgrException"><soap:fault name="AgrException" use="literal" /></wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="envioDocumentacionNuevaIncidencia">
+			<soap:operation	soapAction="envioDocumentacionNuevaIncidencia" />
+			<wsdl:input>
+				<soap:header wsdl:required="true" message="agr:Header" part="Security" use="literal" />
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output><soap:body use="literal" /></wsdl:output>
+			<wsdl:fault name="AgrException"><soap:fault name="AgrException" use="literal" /></wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="listaAsuntos">
+			<soap:operation	soapAction="listaAsuntos" />
+			<wsdl:input>
+				<soap:header wsdl:required="true" message="agr:Header" part="Security" use="literal" />
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output><soap:body use="literal" /></wsdl:output>
+			<wsdl:fault name="AgrException"><soap:fault name="AgrException" use="literal" /></wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="anulacionPoliza">
+			<soap:operation	soapAction="anulacionPoliza" />
+			<wsdl:input>
+				<soap:header wsdl:required="true" message="agr:Header" part="Security" use="literal" />
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output><soap:body use="literal" /></wsdl:output>
+			<wsdl:fault name="AgrException"><soap:fault name="AgrException" use="literal" /></wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="rescisionPropuesta">
+			<soap:operation	soapAction="rescisionPropuesta" />
+			<wsdl:input>
+				<soap:header wsdl:required="true" message="agr:Header" part="Security" use="literal" />
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output><soap:body use="literal" /></wsdl:output>
+			<wsdl:fault name="AgrException"><soap:fault name="AgrException" use="literal" /></wsdl:fault>
+		</wsdl:operation>		
+		<wsdl:operation name="listaMotivos">
+			<soap:operation	soapAction="listaMotivos" />
+			<wsdl:input>
+				<soap:header wsdl:required="true" message="agr:Header" part="Security" use="literal" />
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output><soap:body use="literal" /></wsdl:output>
+			<wsdl:fault name="AgrException"><soap:fault name="AgrException" use="literal" /></wsdl:fault>
+		</wsdl:operation>		
+	</wsdl:binding>
+	<wsdl:service name="ContratacionSCImpresionModificacion">
+		<wsdl:documentation>
+			Mediante este proceso se podrá obtener una relación de incidencias asociadas a una póliza o el pdf de una incidencia concreta.
+
+			La información se devolverá dentro de archivos XML o PDF enviados como
+			Adjunto (Attachment) en formato MTOM.
+		</wsdl:documentation>
+		<wsdl:port name="ContratacionSCImpresionModificacionSOAP"
+			binding="agr:ContratacionSCImpresionModificacionSOAP">
+			<wsdl:documentation>
+				La primera dirección es el entorno de pruebas y no tiene
+				una resolución asignada en Internet, por lo que se deberá
+				incluir en la máquina local o en el servidor de nombres
+				local con la siguiente dirección: preproduccion.agroseguro.es
+				
+				La segunda dirección es el entorno de producción.
+			</wsdl:documentation>
+			<soap:address
+				location="https://preproduccion.agroseguro.es/csci/V1R0/services/ContratacionSCImpresionModificacion" />
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>

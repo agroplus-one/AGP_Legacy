@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema targetNamespace="http://www.agroseguro.es/SeguroAgrario/DistribucionCoste/DatosAdicionalesObjetoAsegurado"
+	xmlns="http://www.agroseguro.es/SeguroAgrario/DistribucionCoste/DatosAdicionalesObjetoAsegurado"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:ti="http://www.agroseguro.es/Tipos"
+	xmlns:cti="http://www.agroseguro.es/SeguroCreciente/Condicionado/Tipos"
+	version="1.0" 
+>
+
+	<xs:import
+		namespace="http://www.agroseguro.es/Tipos"
+		schemaLocation="Tipos.xsd" />
+	
+	<xs:import
+		namespace="http://www.agroseguro.es/SeguroCreciente/Condicionado/Tipos"
+		schemaLocation="Condicionado_Tipos.xsd" />
+
+	<xs:attribute name="pctRecargoConsorcio" type="ti:TantoPorCien" />
+
+	<xs:element name="GastosEntidad">
+	
+		<xs:complexType>
+			<xs:attribute name="administracion" type="ti:ImportePositivo" use="required" />
+			<xs:attribute name="adquisicion" type="ti:ImportePositivo" use="required" />
+			<xs:attribute name="comisiones" type="ti:ImportePositivo" use="required" />
+		</xs:complexType>
+	
+	</xs:element>
+	
+	<xs:element name="GrupoTasas">
+	
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="TasaRiesgo" type="TasaRiesgo" minOccurs="1" maxOccurs="unbounded" />
+			</xs:sequence>
+			<xs:attribute name="grupo" type="cti:GrupoTasa" use="required" />
+		</xs:complexType>
+	
+	</xs:element>
+	
+		<xs:complexType name="TasaRiesgo">
+			<xs:attribute name="riesgo" type="ti:Riesgo_Codigo" use="required" />
+			<xs:attribute name="tasa" type="ti:ImportePositivo" use="required" />
+		</xs:complexType>	
+	
+	<xs:element name="Organismo">
+	
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="CalculoSubvencion" type="CalculoSubvencion" minOccurs="0" maxOccurs="1" />
+			</xs:sequence>
+			<xs:attribute name="codigoOrganismo" type="ti:Organismo_Codigo" use="required" />
+		</xs:complexType>
+				
+	</xs:element>
+	
+	<xs:complexType name="CalculoSubvencion">
+		<xs:sequence>
+			<xs:element name="Reduccion" type="Reduccion" minOccurs="0" maxOccurs="unbounded" />
+		</xs:sequence>
+		<xs:attribute name="causaExclusion" type="xs:string" use="optional" />
+	</xs:complexType>	
+
+	<xs:complexType name="Reduccion">
+		<xs:attribute name="descriptivo" type="xs:string" use="optional" />
+		<xs:attribute name="porcentaje" type="ti:TantoPorCien" use="optional" />
+		<xs:attribute name="importe" type="ti:ImportePositivo" use="optional" />
+		<xs:attribute name="limite" type="ti:LimiteSubv" use="optional" />
+	</xs:complexType>
+	
+</xs:schema>

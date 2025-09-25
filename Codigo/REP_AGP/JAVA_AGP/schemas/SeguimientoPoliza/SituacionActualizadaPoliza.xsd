@@ -1,0 +1,397 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema targetNamespace="http://www.agroseguro.es/SeguroAgrario/Recibos"
+		
+		xmlns="http://www.agroseguro.es/SeguroAgrario/Recibos"
+		xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+		xmlns:dv="http://www.agroseguro.es/SeguroAgrario/Contratacion/DatosVariables"
+		xmlns:ti="http://www.agroseguro.es/ITipos"
+>
+
+	<!-- Importacion de la definicion de tipos genericos -->
+	<xsd:import
+		namespace="http://www.agroseguro.es/ITipos" 
+		schemaLocation="../commons/Tipos.xsd"/> 
+    
+    <xsd:import
+		namespace="http://www.agroseguro.es/SeguroAgrario/Contratacion/DatosVariables" 
+		schemaLocation="../commons/DatosVariables.xsd"/>   
+    
+    <xsd:element name="Fase" type="Fase" /> 
+		  
+    <xsd:complexType name="Fase">
+		<xsd:sequence>
+		    <xsd:choice maxOccurs="unbounded" minOccurs="1"> 
+				<xsd:element name="Colectivo" type="Colectivo" maxOccurs="1" minOccurs="1" />
+				<xsd:element name="Individual" type="Individual" maxOccurs="1" minOccurs="1" />
+			</xsd:choice>
+		</xsd:sequence>
+		<xsd:attribute name="plan" use="required" type="ti:Plan" />  
+		<xsd:attribute name="fase" use="required" type="ti:Fase_Codigo" />
+		<xsd:attribute name="fechaEmisionRecibo" use="required" type="xsd:date" />
+	</xsd:complexType>
+
+	<xsd:complexType name="Colectivo">
+	    <xsd:sequence>
+			<xsd:choice maxOccurs="1" minOccurs="1">
+				<xsd:element name="NombreApellidos" type="ti:NombreApellidos" maxOccurs="1" minOccurs="1"/> 
+				<xsd:element name="RazonSocial" type="ti:RazonSocial" maxOccurs="1" minOccurs="1"/>
+			</xsd:choice>
+			<xsd:element name="Direccion" type="ti:Direccion" maxOccurs="1" minOccurs="1" />
+			<xsd:element name="DatosContacto" type="ti:DatosContacto" maxOccurs="1" minOccurs="0" />
+			<xsd:element name="Poliza" type="Poliza" minOccurs="1" maxOccurs="unbounded" />
+		</xsd:sequence>
+		<xsd:attribute name="referencia" use="required"
+			type="ti:Colectivo_Referencia">
+			<xsd:annotation>
+				<xsd:documentation>
+					Se validará el digito de control de acuerdo a la
+					fórmula de cálculo del mismo.
+				</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="digitoControl" use="required"
+			type="ti:DigitoControl">
+			<xsd:annotation>
+				<xsd:documentation>
+					Se validará que se corresponda con el colectivo.
+				</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="cif" use="required" type="ti:NIFCIF">
+			<xsd:annotation>
+				<xsd:documentation>
+					El CIF del Tomador.
+				</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+		
+	</xsd:complexType>
+	
+	<xsd:complexType name="Individual">
+	    <xsd:sequence>
+			<xsd:choice maxOccurs="1" minOccurs="1">
+				<xsd:element name="NombreApellidos" type="ti:NombreApellidos" maxOccurs="1" minOccurs="1"/> 
+				<xsd:element name="RazonSocial" type="ti:RazonSocial" maxOccurs="1" minOccurs="1"/>
+			</xsd:choice>
+			<xsd:element name="Direccion" type="ti:Direccion" maxOccurs="1" minOccurs="1" />
+			<xsd:element name="DatosContacto" type="ti:DatosContacto" maxOccurs="1" minOccurs="0" />
+			<xsd:element name="Poliza" type="Poliza" minOccurs="1" maxOccurs="1" />
+		</xsd:sequence>
+		<xsd:attribute name="nif" use="required" type="ti:NIFCIF"/>
+		<xsd:attribute name="referencia" use="required" type="ti:Poliza_Referencia_Creciente" />
+		<xsd:attribute name="digitoControl" use="required" type="ti:DigitoControl" />				
+	</xsd:complexType>
+	
+	<xsd:complexType name="Poliza">
+	    <xsd:sequence>
+			<xsd:element name="Asegurado" type="Asegurado" maxOccurs="1" minOccurs="1" />			
+			<xsd:element name="Entidad" type="Entidad" maxOccurs="1" minOccurs="1" />
+			<xsd:element name="Rendimientos" type="Rendimientos" maxOccurs="1" minOccurs="0" /> 			
+			<xsd:element name="CoberturaPrincipal" type="Cobertura" maxOccurs="1" minOccurs="1" />
+			<xsd:element name="CoberturaComplementario" type="Cobertura" maxOccurs="1" minOccurs="0" />			
+			<xsd:element name="ObjetosAsegurados" type="ObjetosAsegurados" maxOccurs="1" minOccurs="1" />
+			<xsd:element name="PagoPrincipal" type="Pago" maxOccurs="unbounded" minOccurs="1" />
+			<xsd:element name="PagoComplementario" type="Pago" maxOccurs="unbounded" minOccurs="0" />
+			<xsd:choice maxOccurs="1" minOccurs="1">		
+				<xsd:element name="DistribucionCostePrincipal" type="DistribucionCoste" maxOccurs="1" minOccurs="1" />
+				<xsd:element name="DistribucionCostePrincipal1" type="DistribucionCoste1" maxOccurs="1" minOccurs="1" />
+			</xsd:choice>
+			<xsd:choice maxOccurs="1" minOccurs="0">
+				<xsd:element name="DistribucionCosteComplementario" type="DistribucionCoste" maxOccurs="1" minOccurs="0" />
+				<xsd:element name="DistribucionCosteComplementario1" type="DistribucionCoste1" maxOccurs="1" minOccurs="0" />
+			</xsd:choice>	
+			<xsd:element name="CuentaCobroSiniestros" type="CuentaCobroSiniestros" maxOccurs="1" minOccurs="0"/>			
+			<xsd:element name="SubvencionesEnesa" type="SubvencionesEnesa" maxOccurs="1" minOccurs="0" />			
+			<xsd:element name="SubvencionesOrganismos" type="SubvencionesOrganismos" maxOccurs="1" minOccurs="0" />						
+			<xsd:element name="SubvencionesDeclaradas" type="SubvencionesDeclaradas" maxOccurs="1" minOccurs="0" />
+			<xsd:element name="OtrosDatosInteres" type="OtrosDatosInteres" maxOccurs="1" minOccurs="0" />
+		</xsd:sequence>	
+		<xsd:attribute name="linea" use="required" type="ti:Linea_Codigo" />
+		<xsd:attribute name="referencia" use="required" type="ti:Poliza_Referencia_Creciente" />
+		<xsd:attribute name="digitoControl" use="required" type="ti:DigitoControl" />
+		<xsd:attribute name="anuladaRefundidaPrincipal" use="required" type="ti:Aplicacion_AnuladaRefundida" />
+		<xsd:attribute name="anuladaRefundidaComplementario" use="optional" type="ti:Aplicacion_AnuladaRefundida" />		
+		<xsd:attribute name="recibo" use="optional" type="ti:Recibo_Codigo" />
+		<xsd:attribute name="fechaFirmaSeguroPrincipal" type="xsd:date" use="required" />
+		<xsd:attribute name="fechaEntradaVigorPrincipal" type="xsd:date" use="required" />
+		<xsd:attribute name="fechaFirmaSeguroComplementario" type="xsd:date" use="optional" />
+		<xsd:attribute name="fechaEntradaVigorComplementario" type="xsd:date" use="optional" />		
+		<xsd:attribute name="porcentajeModulacion" type="ti:TantoPorCien" use="optional" />
+	</xsd:complexType>
+
+	<xsd:complexType name="Asegurado">
+		<xsd:sequence>
+			<xsd:choice maxOccurs="1" minOccurs="1">
+				<xsd:element name="NombreApellidos" type="ti:NombreApellidos" maxOccurs="1" minOccurs="1"/> 
+				<xsd:element name="RazonSocial" type="ti:RazonSocial" maxOccurs="1" minOccurs="1"/>
+			</xsd:choice>
+			<xsd:element name="Direccion" type="ti:Direccion" maxOccurs="1" minOccurs="1" />
+			<xsd:element name="DatosContacto" type="ti:DatosContacto" maxOccurs="1" minOccurs="0" />
+		</xsd:sequence>
+		<xsd:attribute name="nif" use="required" type="ti:NIFCIF"/>
+	</xsd:complexType>
+
+	<xsd:complexType name="Entidad">
+		<xsd:sequence>
+			<xsd:element name="MediadorPrincipal" type="Mediador" maxOccurs="1" minOccurs="0" />
+			<xsd:element name="MediadorComplementario" type="Mediador" maxOccurs="1" minOccurs="0" />
+			<xsd:element name="GastosPrincipal" type="Gastos" maxOccurs="1" minOccurs="0" />
+			<xsd:element name="GastosComplementario" type="Gastos" maxOccurs="1" minOccurs="0" />			
+		</xsd:sequence>
+		<xsd:attribute name="codigo" type="ti:Entidad_Codigo" use="required" />
+	</xsd:complexType>
+
+	<xsd:complexType name="Mediador">
+		<xsd:sequence>
+			<xsd:choice minOccurs="0" maxOccurs="1">
+				<xsd:element name="NombreApellidos"
+					type="ti:NombreApellidos" minOccurs="1" maxOccurs="1"/>
+				<xsd:element name="razonSocial" type="ti:RazonSocial" minOccurs="1" maxOccurs="1"/>
+			</xsd:choice>
+		</xsd:sequence>
+		<xsd:attribute name="codigoInterno" use="required" type="ti:CodigoInternoEntidad" />
+		<xsd:attribute name="tipo" type="Mediador_Tipo_SitAct" use="required" />
+		<xsd:attribute name="retribucionAsegurado" type="ti:SiNo" use="optional">
+			<xsd:annotation>
+				<xsd:documentation>
+					Obligatorio en el tipo de mediador "05" --> Corredor
+				</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="importeRetribucion" type="ti:ImportePositivo" use="optional">
+			<xsd:annotation>
+				<xsd:documentation>
+					Obligatorio en el tipo de mediador "05" --> Corredor
+				</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+	</xsd:complexType>
+	
+	<xsd:complexType name="Gastos">
+		<xsd:attribute name="administracion" type="ti:TantoPorCien" use="required" />
+		<xsd:attribute name="adquisicion" type="ti:TantoPorCien" use="required" />
+		<xsd:attribute name="comisionMediador" type="ti:TantoPorCien" use="required" />
+	</xsd:complexType>
+	
+	<xsd:simpleType name="Mediador_Tipo_SitAct">
+		<xsd:restriction base="xsd:int">
+			<xsd:totalDigits value="2" />
+			<xsd:minInclusive value="0" />
+		</xsd:restriction>
+	</xsd:simpleType>	
+
+	<xsd:complexType name="DistribucionCoste">
+	    <xsd:attribute name="primaComercial" type="ti:ImporteLargo" use="required" />
+	    <xsd:attribute name="bonificacionSistProteccion" type="ti:ImporteLargo" use="required" />
+	    <xsd:attribute name="bonificacion" type="ti:ImporteLargo" use="required" />
+	    <xsd:attribute name="recargo" type="ti:ImporteLargo" use="required" />
+	    <xsd:attribute name="descuentoColectivo" type="ti:ImporteLargo" use="required" />
+	    <xsd:attribute name="descuentoVentanilla" type="ti:ImporteLargo" use="required" />
+	    <xsd:attribute name="primaNeta" type="ti:ImporteLargo" use="required" />
+	    <xsd:attribute name="consorcio" type="ti:ImporteLargo" use="required" />
+	    <xsd:attribute name="clea" type="ti:ImporteLargo" use="required" />
+	    <xsd:attribute name="costeNeto" type="ti:ImporteLargo" use="required" />
+		<xsd:attribute name="subvencionEnesa" type="ti:ImporteLargo" use="required" />
+		<xsd:attribute name="costeTomador" type="ti:ImporteLargo" use="required" />
+	</xsd:complexType>
+	
+	<xsd:complexType name="DistribucionCoste1">
+		<xsd:sequence>
+			<xsd:element name="BonificacionesRecargos" type="BonificacionesRecargos" minOccurs="0" maxOccurs="1"/>			
+		</xsd:sequence>	
+	    <xsd:attribute name="primaComercial" type="ti:ImporteLargo" use="required" />
+	    <xsd:attribute name="primaComercialNeta" type="ti:ImporteLargo" use="required" />
+	    <xsd:attribute name="recargoConsorcio" type="ti:ImporteLargo" use="required" />
+	    <xsd:attribute name="reciboPrima" type="ti:ImporteLargo" use="required" />
+	    <xsd:attribute name="subvencionEnesa" type="ti:ImporteLargo" use="required" />
+	    <xsd:attribute name="costeTomador" type="ti:ImporteLargo" use="required" />
+	    <xsd:attribute name="totalCosteTomador" type="ti:ImporteLargo" use="required" />
+	    <xsd:attribute name="recargoAval" type="ti:ImporteLargo" use="optional" />
+	    <xsd:attribute name="recargoFraccionamiento" type="ti:ImporteLargo" use="optional" />
+	</xsd:complexType>	
+
+	<xsd:complexType name="Pago">
+		<xsd:sequence>
+			<xsd:element name="Fraccionamiento" type="Fraccionamiento" maxOccurs="1" minOccurs="0" />
+			<xsd:element name="Cuenta" type="Cuenta" maxOccurs="1" minOccurs="0" />
+		</xsd:sequence>	
+		<xsd:attribute name="forma" type="ti:FormaPago" use="required" />
+		<xsd:attribute name="domiciliado" type="ti:SN" use="optional"/>
+		<xsd:attribute name="fecha" type="xsd:date" use="required" />
+		<xsd:attribute name="importe" type="ti:ImporteLargo" use="required" />
+		<xsd:attribute name="banco" type="ti:CCC_Banco" use="required" />
+	</xsd:complexType>
+
+	<xsd:complexType name="Fraccionamiento">
+	    <xsd:sequence>
+			<xsd:element name="Aval" type="Aval" maxOccurs="1" minOccurs="0" />			
+		</xsd:sequence> 	
+		<xsd:attribute name="periodo" type="ti:Entero3Posiciones" use="required" />
+	</xsd:complexType>
+	
+	<xsd:complexType name="Aval">	
+		<xsd:attribute name="numero" type="ti:NumeroAval" use="required" />
+		<xsd:attribute name="importe" type="ti:Importe" use="required" />				
+	</xsd:complexType>	
+	
+	<xsd:complexType name="Cuenta">	
+		<xsd:attribute name="iban" type="ti:IBAN" use="required" />
+		<xsd:attribute name="destinatario" type="ti:DestinatarioDomiciliacion" use="optional"/>
+		<xsd:attribute name="titular" type="ti:TitularCuenta" use="optional"/>
+	</xsd:complexType>	
+	
+	<xsd:complexType name="BonificacionesRecargos" >
+		<xsd:sequence>
+			<xsd:element name="BonificacionRecargo" type="BonificacionRecargo" maxOccurs="unbounded" minOccurs="1" />	
+		</xsd:sequence>
+	</xsd:complexType>
+	
+	<xsd:complexType name="BonificacionRecargo" >
+		<xsd:attribute name="codigo" type="ti:Entero3Posiciones" use="required" />
+		<xsd:attribute name="importe" type="ti:ImporteLargo" use="required" /> 
+	</xsd:complexType>
+
+	<xsd:complexType name="Cobertura">
+	    <xsd:sequence>
+			<xsd:element name="DatosVariables" type="dv:DatosVariables" maxOccurs="1" minOccurs="0" />
+		</xsd:sequence>   
+		<xsd:attribute name="modulo" type="ti:Cobertura_Modulo" use="required"/>
+	</xsd:complexType>
+	  
+	<xsd:complexType name="SubvencionesDeclaradas">
+		<xsd:sequence>
+			<xsd:element name="SeguridadSocial" maxOccurs="1" minOccurs="0" type="SeguridadSocial" />											
+			<xsd:element name="SubvencionDeclarada" type="SubvencionDeclarada" minOccurs="1" maxOccurs="unbounded" />
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="SubvencionDeclarada">
+		<xsd:attribute name="tipo" type="ti:Subvencion_Tipo" use="required" />
+	</xsd:complexType> 
+
+	<xsd:complexType name="SeguridadSocial">
+		<xsd:attribute name="codigo" use="required" type="ti:SeguridadSocial_Codigo" />
+		<xsd:attribute name="numero" use="required" type="ti:SeguridadSocial_Numero" />
+		<xsd:attribute name="regimen" use="required" type="ti:SeguridadSocial_Regimen" />
+		<xsd:attribute name="provincia" use="required" type="ti:SeguridadSocial_Provincia" />
+	</xsd:complexType>
+
+	<xsd:complexType name="SubvencionesEnesa">
+		<xsd:sequence>
+			<xsd:element name="SubvencionEnesaPrincipal" type="SubvencionEnesa" minOccurs="1" maxOccurs="unbounded" />
+			<xsd:element name="SubvencionEnesaComplementario" type="SubvencionEnesa" minOccurs="0" maxOccurs="unbounded" />			
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="SubvencionEnesa">
+		<xsd:attribute name="codigoSubvencion" type="ti:Subvencion_Tipo" use="required" />
+		<xsd:attribute name="importe" type="ti:ImporteLargo" use="required" />
+	</xsd:complexType>
+
+	<xsd:complexType name="SubvencionesOrganismos">
+		<xsd:sequence>
+			<xsd:element name="SubvencionOrganismoPrincipal" type="SubvencionOrganismo" minOccurs="1" maxOccurs="unbounded" />
+			<xsd:element name="SubvencionOrganismoComplementario" type="SubvencionOrganismo" minOccurs="0" maxOccurs="unbounded" />			
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="SubvencionOrganismo">
+		<xsd:attribute name="codigo" type="ti:Organismo_Codigo" use="required" />
+		<xsd:attribute name="importe" type="ti:ImporteLargo" use="required" />
+	</xsd:complexType>
+
+	<xsd:complexType name="Rendimientos">
+		<xsd:attribute name="aplicacion" type="RendimientosAplicacion" use="required" />
+		<xsd:attribute name="porcentaje" type="ti:Coeficiente_Rendimiento" use="required" />
+		<xsd:attribute name="tabla" type="ti:Rendimientos_Tabla" use="required" />
+	</xsd:complexType>
+	
+	<xsd:simpleType name="RendimientosAplicacion">
+		<xsd:restriction base="xsd:token">
+			<xsd:length value="1" />
+			<xsd:enumeration value="1" />
+			<xsd:enumeration value="2" />
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:complexType name	="ObjetosAsegurados">
+	<xsd:sequence>
+	    <xsd:element name="Parcela" type="Parcela" maxOccurs="unbounded" minOccurs="1" />
+	</xsd:sequence>
+	</xsd:complexType>
+	
+	
+	<xsd:complexType name="Parcela">
+	<xsd:sequence>
+		<xsd:element name="Ubicacion"  maxOccurs="1" minOccurs="1" type="AmbitoAgro" />
+		<xsd:element name="Cosecha" maxOccurs="1" minOccurs="1" type="Cosecha"/>
+		<xsd:choice maxOccurs="1" minOccurs="1">
+			<xsd:element name="SIGPAC" maxOccurs="1" minOccurs="0" type="ti:SIGPAC" />
+			<xsd:element name="IdentificacionCatastral" maxOccurs="1" minOccurs="0" type="IdentificacionCatastral" />
+		</xsd:choice>
+	</xsd:sequence>
+	<xsd:attribute name="hoja" use="required" type="ti:Parcela_Hoja" />
+	<xsd:attribute name="numero" use="required" type="ti:Parcela_Numero" />
+	<xsd:attribute name="nombre" use="optional" type="ti:Parcela_Nombre" />
+	<xsd:attribute name="parcelaAgricola" type="ti:Codigo5" use="optional"/>
+</xsd:complexType>
+
+<xsd:complexType name="AmbitoAgro">
+	<xsd:attribute name="provincia" use="required" type="ti:Provincia_Codigo" />
+	<xsd:attribute name="comarca" use="required" type="ti:Comarca_Codigo" />
+	<xsd:attribute name="termino" use="required" type="ti:Termino_Codigo" />
+	<xsd:attribute name="subtermino" use="required" type="ti:Subtermino_Codigo" />
+</xsd:complexType>
+
+<xsd:complexType name="Cosecha">
+	<xsd:sequence>
+		<xsd:element name="CapitalesAsegurados" type="CapitalesAsegurados" minOccurs="1" maxOccurs="1" />
+	</xsd:sequence>
+	<xsd:attribute name="cultivo" use="required" type="ti:Cultivo_Codigo" />
+	<xsd:attribute name="variedad" use="required" type="ti:Variedad_Codigo" />
+</xsd:complexType>
+
+<xsd:complexType name="CapitalesAsegurados">
+	<xsd:sequence>
+		<xsd:element name="CapitalAsegurado" type="CapitalAsegurado" minOccurs="1" maxOccurs="unbounded" />
+	</xsd:sequence>
+</xsd:complexType>
+
+<xsd:complexType name="CapitalAsegurado">
+	<xsd:sequence>  
+		<xsd:element name="DatosVariables" type="dv:DatosVariables" maxOccurs="1" minOccurs="0" />
+	</xsd:sequence>
+	<xsd:attribute name="tipo" type="ti:TipoCapital" use="required" />
+	<xsd:attribute name="superficie" type="ti:Parcela_Superficie" use="required" />
+	<xsd:attribute name="precio" type="ti:Precio" use="required" />
+	<xsd:attribute name="produccionPrincipal" use="required" type="ti:ProduccionKG" />
+	<xsd:attribute name="produccionComplementario" use="optional" type="ti:ProduccionKG" />
+</xsd:complexType>  
+    
+<xsd:complexType name="IdentificacionCatastral">
+   	<xsd:attribute name="poligono" type="ti:IdentificacionCatastral_Poligono" use="required" />
+   	<xsd:attribute name="parcela" type="ti:IdentificacionCatastral_Parcela" use="required" />
+</xsd:complexType>
+	
+<xsd:complexType name="OtrosDatosInteres">
+		<xsd:sequence>
+			<xsd:element name="OtrosDatosInteresPrincipal" maxOccurs="unbounded" minOccurs="0" type="OtrosDatosInteresPrincipal" />											
+			<xsd:element name="OtrosDatosInteresComplementario" maxOccurs="unbounded" minOccurs="0" type="OtrosDatosInteresComplementario" />											
+		</xsd:sequence>
+	</xsd:complexType>
+		
+
+	<xsd:complexType name="OtrosDatosInteresPrincipal">
+		<xsd:attribute name="observaciones" type="ti:Observaciones" use="required" />
+
+	</xsd:complexType> 
+	
+	<xsd:complexType name="OtrosDatosInteresComplementario">
+		<xsd:attribute name="observaciones" type="ti:Observaciones" use="required" />
+	</xsd:complexType> 
+	
+	<xsd:complexType name="CuentaCobroSiniestros">
+		<xsd:attribute name="iban" type="ti:IBAN" use="required"/>
+	</xsd:complexType>
+	
+</xsd:schema>

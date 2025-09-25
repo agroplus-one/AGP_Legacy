@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.16.0.final using JasperReports Library version 3.6.1  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="bonificacionesComparativa2024" columnCount="4" printOrder="Horizontal" pageWidth="320" pageHeight="842" columnWidth="80" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="DataAdapter.xml"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<queryString>
+		<![CDATA[select * from dual]]>
+	</queryString>
+	<field name="codigo" class="java.math.BigDecimal"/>
+	<field name="importe" class="java.math.BigDecimal"/>
+	<variable name="TotalImporte" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$V{importe}.plus()]]></variableExpression>
+	</variable>
+	<variable name="TotalImporteString" class="java.lang.String" calculation="Sum">
+		<variableExpression><![CDATA[new DecimalFormat("#,##0.00").format($V{TotalImporte})]]></variableExpression>
+	</variable>
+	<variable name="importe" class="java.math.BigDecimal">
+		<variableExpression><![CDATA[($F{importe} != null) ? $F{importe} : new java.math.BigDecimal(0)]]></variableExpression>
+	</variable>
+	<variable name="importeString" class="java.lang.String">
+		<variableExpression><![CDATA[new DecimalFormat("#,##0.00").format($V{importe})]]></variableExpression>
+	</variable>
+	<detail>
+		<band height="30" splitType="Stretch">
+			<textField isBlankWhenNull="true">
+				<reportElement x="0" y="0" width="80" height="15">
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement lineSpacing="Single"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$V{TotalImporteString}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="0" y="15" width="80" height="15">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
+				<textElement lineSpacing="Single"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$V{importeString}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

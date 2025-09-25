@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	targetNamespace="http://www.agroseguro.es/Contratacion/CostePoliza"
+	version="1.0" xmlns="http://www.agroseguro.es/Contratacion/CostePoliza"
+	xmlns:ti="http://www.agroseguro.es/Tipos">
+
+	<xs:import namespace="http://www.agroseguro.es/Tipos"
+		schemaLocation="Tipos.xsd" />
+
+	<xs:complexType name="CostePoliza">
+		<xs:sequence>
+			<xs:element maxOccurs="unbounded" minOccurs="1"
+				name="CosteGrupoNegocio" type="CosteGrupoNegocio" />
+			<xs:element maxOccurs="1" minOccurs="0" name="Financiacion"
+				type="Financiacion" />
+		</xs:sequence>
+		<xs:attribute name="totalCosteTomador" type="ti:ImportePositivo"
+			use="required" />
+	</xs:complexType>
+
+	<xs:complexType name="Financiacion">
+		<xs:attribute name="recargoAval" type="ti:ImportePositivo"
+			use="optional" />
+		<xs:attribute name="recargoFraccionamiento" type="ti:ImportePositivo"
+			use="optional" />
+	</xs:complexType>
+
+	<xs:complexType name="CosteGrupoNegocio">
+		<xs:sequence>
+			<xs:element maxOccurs="unbounded" minOccurs="0"
+				name="BonificacionRecargo" type="BonificacionRecargo" />
+			<xs:element maxOccurs="unbounded" minOccurs="0"
+				name="SubvencionEnesa" type="SubvencionEnesa" />
+			<xs:element maxOccurs="unbounded" minOccurs="0"
+				name="SubvencionCCAA" type="SubvencionCCAA" />
+		</xs:sequence>
+		<xs:attribute name="grupoNegocio" type="ti:GrupoNegocio"
+			use="optional" />
+		<xs:attribute name="primaComercial" type="ti:ImportePositivo"
+			use="required" />
+		<xs:attribute name="primaComercialNeta" type="ti:ImportePositivo"
+			use="required" />
+		<xs:attribute name="recargoConsorcio" type="ti:ImportePositivo"
+			use="required" />
+		<xs:attribute name="reciboPrima" type="ti:ImportePositivo"
+			use="required" />
+		<xs:attribute name="costeTomador" type="ti:ImportePositivo"
+			use="required" />
+	</xs:complexType>
+
+	<xs:complexType name="BonificacionRecargo">
+		<xs:attribute name="codigo" type="ti:BonificacionRecargo_Codigo"
+			use="required" />
+		<xs:attribute name="importe" type="ti:ImportePositivo"
+			use="required" />
+	</xs:complexType>
+
+	<xs:complexType name="SubvencionEnesa">
+		<xs:attribute name="tipo" type="ti:Subvencion_Tipo" use="required" />
+		<xs:attribute name="importe" type="ti:ImportePositivo"
+			use="required" />
+	</xs:complexType>
+
+	<xs:complexType name="SubvencionCCAA">
+		<xs:attribute name="codigoOrganismo" type="ti:Organismo_Codigo"
+			use="required" />
+		<xs:attribute name="importe" type="ti:ImportePositivo"
+			use="required" />
+	</xs:complexType>
+
+	<xs:complexType name="DistribucionCoste">
+		<xs:sequence>
+			<xs:element maxOccurs="1" minOccurs="0"
+				name="BonificacionMedidasPreventivas" type="BonificacionMedidasPreventivas" />
+			<xs:choice maxOccurs="1" minOccurs="0">
+				<xs:element maxOccurs="1" minOccurs="1"
+					name="BonificacionAsegurado" type="BonificacionAsegurado" />
+				<xs:element maxOccurs="1" minOccurs="1" name="RecargoAsegurado"
+					type="RecargoAsegurado" />
+			</xs:choice>
+			<xs:element maxOccurs="1" minOccurs="0" name="Descuento"
+				type="Descuento" />
+			<xs:element maxOccurs="1" minOccurs="1" name="Consorcio"
+				type="Consorcio" />
+			<xs:element maxOccurs="unbounded" minOccurs="0"
+				name="SubvencionEnesa" type="SubvencionEnesa" />
+			<xs:element maxOccurs="unbounded" minOccurs="0"
+				name="SubvencionCCAA" type="SubvencionCCAA" />
+		</xs:sequence>
+		<xs:attribute name="primaComercial" type="ti:ImportePositivo"
+			use="required" />
+		<xs:attribute name="primaNeta" type="ti:ImportePositivo"
+			use="required" />
+		<xs:attribute name="costeNeto" type="ti:ImportePositivo"
+			use="required" />
+		<xs:attribute name="cargoTomador" type="ti:ImportePositivo"
+			use="required" />
+	</xs:complexType>
+
+	<xs:complexType abstract="true" name="Importe">
+		<xs:attribute name="importe" type="ti:ImportePositivo"
+			use="required" />
+	</xs:complexType>
+
+	<xs:complexType name="BonificacionMedidasPreventivas">
+		<xs:complexContent>
+			<xs:restriction base="Importe">
+				<xs:attribute name="importe" type="ti:ImportePositivo"
+					use="required" />
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="BonificacionAsegurado">
+		<xs:complexContent>
+			<xs:restriction base="Importe">
+				<xs:attribute name="importe" type="ti:ImportePositivo"
+					use="required" />
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="RecargoAsegurado">
+		<xs:complexContent>
+			<xs:restriction base="Importe">
+				<xs:attribute name="importe" type="ti:ImportePositivo"
+					use="required" />
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="Descuento">
+		<xs:attribute name="ventanilla" type="ti:ImportePositivo"
+			use="required" />
+		<xs:attribute name="contratacionColectiva" type="ti:ImportePositivo"
+			use="required" />
+	</xs:complexType>
+
+	<xs:complexType name="Consorcio">
+		<xs:attribute name="reaseguro" type="ti:ImportePositivo"
+			use="required" />
+		<xs:attribute name="recargo" type="ti:ImportePositivo"
+			use="required" />
+	</xs:complexType>
+
+
+</xs:schema>

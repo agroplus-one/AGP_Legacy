@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="declaracionSeguroComplementario_hojaParcelas_totalNoPlanton" pageWidth="555" pageHeight="802" whenNoDataType="AllSectionsNoDetail" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<import value="com.rsi.agp.core.util.NumberUtils"/>
+	<parameter name="HOJA" class="java.math.BigDecimal"/>
+	<parameter name="IDPOLIZA" class="java.lang.Integer"/>
+	<queryString>
+		<![CDATA[select   sum (totalproduccion) as TOTALPRODUCCION,
+         sum (totalprecio) AS  TOTALPRECIO,
+         sum (totalsuperficie) AS  TOTALSUPERFICIE from  (
+
+select   0   as  totalproduccion,
+         sum (NVL(ca1.PRECIO * to_number(dv1.valor), 0 )) as  totalprecio,
+         0   as  totalsuperficie
+from  o02agpe0.tb_parcelas p1, o02agpe0.tb_capitales_asegurados ca1, o02agpe0.tb_datos_var_parcela dv1, o02agpe0.tb_sc_c_tipo_capital tc1
+where  p1.idparcela = ca1.idparcela and ca1.idcapitalasegurado = dv1.idcapitalasegurado
+       and  dv1.codconcepto = tc1.codconcepto and  ca1.codtipocapital = tc1.codtipocapital and
+       tc1.codconcepto <> 68   and  ca1.codtipocapital <> 1   and  tc1.codtipocapital <> 1   AND p1.HOJA = $P{HOJA} and  p1.idpoliza =  $P{IDPOLIZA}
+       and  ca1.codtipocapital < 100
+union
+SELECT   SUM  (NVL(CA.Produccionmodif,CA.Incrementoproduccion)) AS  TOTALPRODUCCION,
+         SUM  (NVL(CA.Preciomodif * CA.Produccionmodif,CA.PRECIO * CA.INCREMENTOPRODUCCION)) AS  TOTALPRECIO,
+         SUM  (CA.SUPERFICIE) AS  TOTALSUPERFICIE
+FROM  o02agpe0.TB_PARCELAS PA, o02agpe0.TB_CAPITALES_ASEGURADOS CA, o02agpe0.TB_SC_C_TIPO_CAPITAL TC
+WHERE  CA.IDPARCELA = PA.IDPARCELA AND  CA.CODTIPOCAPITAL = TC.CODTIPOCAPITAL
+       AND  CA.CODTIPOCAPITAL != 1 and  tc.codtipocapital < 100 and  tc.codtipocapital !=12 AND  PA.HOJA = $P{HOJA} AND  PA.IDPOLIZA =  $P{IDPOLIZA}
+union
+SELECT   SUM  (NVL(CA.Produccionmodif,CA.Incrementoproduccion)) AS  TOTALPRODUCCION,
+         SUM  (NVL(CA.Preciomodif * CA.Produccionmodif,CA.PRECIO * CA.INCREMENTOPRODUCCION)) AS  TOTALPRECIO,
+         SUM  (CA.SUPERFICIE) AS  TOTALSUPERFICIE
+FROM  o02agpe0.TB_PARCELAS PA, o02agpe0.TB_CAPITALES_ASEGURADOS CA, o02agpe0.TB_SC_C_TIPO_CAPITAL TC
+WHERE  CA.IDPARCELA = PA.IDPARCELA AND  CA.CODTIPOCAPITAL = TC.CODTIPOCAPITAL
+       and  tc.codtipocapital =12 AND  PA.HOJA = $P{HOJA} AND  PA.IDPOLIZA =  $P{IDPOLIZA}
+       )]]>
+	</queryString>
+	<field name="TOTALPRODUCCION" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="TOTALPRECIO" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="TOTALSUPERFICIE" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="14" splitType="Stretch">
+			<printWhenExpression><![CDATA[Boolean.valueOf(!($F{TOTALPRODUCCION}.toString()).equals("0") || !($F{TOTALPRECIO}.toString()).equals("0") || !($F{TOTALSUPERFICIE}.toString()).equals("0"))]]></printWhenExpression>
+			<textField pattern="###0.00" isBlankWhenNull="true">
+				<reportElement x="468" y="0" width="75" height="14"/>
+				<box rightPadding="2">
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="6"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[NumberUtils.formatear($F{TOTALPRECIO},2)]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="118" y="0" width="70" height="14"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="6"/>
+				</textElement>
+			</textField>
+			<textField pattern="###0.00" isBlankWhenNull="true">
+				<reportElement x="398" y="0" width="70" height="14"/>
+				<box rightPadding="2">
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="6"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[NumberUtils.formatear($F{TOTALSUPERFICIE},2)]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="188" y="0" width="70" height="14"/>
+				<box rightPadding="2">
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="6" isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[NumberUtils.formatear($F{TOTALPRODUCCION},2)]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Transparent" x="0" y="0" width="118" height="14" backcolor="#FFFFFF"/>
+				<box leftPadding="2">
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font size="6" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CAPITALES PRODUCCION]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="328" y="0" width="70" height="14"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="6"/>
+				</textElement>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="258" y="0" width="70" height="14"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="6"/>
+				</textElement>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

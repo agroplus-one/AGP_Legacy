@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<x:schema
+	targetNamespace="http://www.agroseguro.es/CostePoliza/Parcela"
+	xmlns="http://www.agroseguro.es/CostePoliza/Parcela"
+	xmlns:x="http://www.w3.org/2001/XMLSchema"
+	xmlns:ti="http://www.agroseguro.es/Tipos"
+	xmlns:co="http://www.agroseguro.es/CostePoliza/CosteObjetoAsegurado"
+	elementFormDefault="qualified">
+
+	<x:import namespace="http://www.agroseguro.es/Tipos"
+		schemaLocation="Tipos.xsd" />
+	<x:import namespace="http://www.agroseguro.es/CostePoliza/CosteObjetoAsegurado"
+		schemaLocation="CosteObjetoAsegurado.xsd" />
+	<x:import namespace="http://www.agroseguro.es/DistribucionCoste/DatosAdicionalesObjetoAsegurado"
+		schemaLocation="DatosAdicionalesObjetoAseguradoUnificado.xsd" />
+
+	<x:element name="Parcela" >
+		
+		<x:complexType>
+			<x:sequence>
+				<x:element name="CosteParcela" type="co:CosteObjetoAsegurado"
+					maxOccurs="1" minOccurs="1" />
+			</x:sequence>
+			<x:attribute name="hoja" use="required" type="ti:Parcela_Hoja" />
+			<x:attribute name="numero" use="required"
+				type="ti:Parcela_Numero" />
+			<x:attribute name="tipo" use="required" type="ti:TipoCapital" />
+			<x:attribute name="precio" type="ti:Precio" use="required" />
+			<x:attribute name="produccion" type="ti:ProduccionKG"
+				use="required" />
+			<x:anyAttribute namespace="http://www.agroseguro.es/DistribucionCoste/DatosAdicionalesObjetoAsegurado" processContents="lax" />
+		</x:complexType>
+	
+	</x:element>
+	
+	<x:complexType name="DatosAdicionales">
+		<x:sequence>
+			<x:any minOccurs="1" maxOccurs="unbounded" namespace="http://www.agroseguro.es/DistribucionCoste/DatosAdicionalesObjetoAsegurado"
+				processContents="lax" />
+		</x:sequence>
+		<x:anyAttribute namespace="http://www.agroseguro.es/DistribucionCoste/DatosAdicionalesObjetoAsegurado" processContents="lax" />
+	</x:complexType>	
+	
+</x:schema>

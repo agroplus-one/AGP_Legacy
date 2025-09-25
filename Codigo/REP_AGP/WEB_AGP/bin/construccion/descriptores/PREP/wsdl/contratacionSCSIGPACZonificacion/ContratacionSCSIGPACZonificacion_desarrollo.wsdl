@@ -1,0 +1,320 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="ContratacionSCSIGPACZonificacion" 
+	targetNamespace="http://www.agroseguro.es/serviciosWeb/ContratacionSCSIGPACZonificacion/" 
+	xmlns:agr="http://www.agroseguro.es/serviciosWeb/ContratacionSCSIGPACZonificacion/" 
+	xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" 
+	xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" 
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	xmlns:xmime="http://www.w3.org/2005/05/xmlmime"
+	xmlns:ti="http://www.agroseguro.es/Tipos"
+	xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd"
+	xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd"
+	>
+  <wsdl:types>
+    <xsd:schema elementFormDefault="qualified"
+    	targetNamespace="http://www.agroseguro.es/serviciosWeb/ContratacionSCSIGPACZonificacion/"
+    	xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	  <xsd:import namespace="http://www.w3.org/2005/05/xmlmime"
+				schemaLocation="xmime.xsd" />
+	  <xsd:import namespace="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd"
+				schemaLocation="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd" />
+	  <xsd:import namespace="http://www.agroseguro.es/Tipos"
+				schemaLocation="Tipos.xsd" />
+      <xsd:element name="SIGPAC_Request">
+        <xsd:complexType>
+          <xsd:sequence>
+				<xsd:element name="provinciaSIGPAC" type="ti:Provincia_Codigo" />
+				<xsd:element name="terminoSIGPAC" type="ti:Termino_Codigo" />
+				<xsd:element name="agregadoSIGPAC" type="ti:SIGPAC_Agregado" />
+				<xsd:element name="zonaSIGPAC" type="ti:SIGPAC_Zona" />
+				<xsd:element name="poligonoSIGPAC" type="ti:SIGPAC_Poligono" />
+				<xsd:element name="parcelaSIGPAC" type="ti:SIGPAC_Parcela" />
+				<xsd:element name="plan" type="ti:Plan" nillable="true" minOccurs="0" />
+				<xsd:element name="linea" type="ti:Linea_Codigo" nillable="true" minOccurs="0" />
+				<xsd:element name="cultivo" type="ti:Cultivo_Codigo" nillable="true" minOccurs="0" />
+				<xsd:element name="infoSIGPAC" type="xsd:boolean" minOccurs="0" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+	  
+      <xsd:element name="SIGPAC_Response">
+        <xsd:complexType>
+          <xsd:sequence>
+			<xsd:element name="equivalenciaSIGPAC_Agroseguro" xmime:expectedContentTypes="text/xml" type="xmime:base64Binary" />
+		  </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>	
+	  
+	   <xsd:element name="SIGPAC_Fauna_Request">
+        <xsd:complexType>
+          <xsd:sequence>
+				<xsd:element name="plan" type="ti:Plan" />
+				<xsd:element name="linea" type="ti:Linea_Codigo" />
+				<xsd:element name="provinciaSIGPAC" type="ti:Provincia_Codigo" />
+				<xsd:element name="terminoSIGPAC" type="ti:Termino_Codigo" />
+				<xsd:element name="agregadoSIGPAC" type="ti:SIGPAC_Agregado" />
+				<xsd:element name="zonaSIGPAC" type="ti:SIGPAC_Zona" />
+				<xsd:element name="poligonoSIGPAC" type="ti:SIGPAC_Poligono" />
+				<xsd:element name="parcelaSIGPAC" type="ti:SIGPAC_Parcela" />
+				<xsd:element name="recintoSIGPAC" type="ti:SIGPAC_Recinto" nillable="true" minOccurs="0" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+	  
+      <xsd:element name="SIGPAC_Fauna_Response">
+        <xsd:complexType>
+          <xsd:sequence>
+			<xsd:element name="infoReduccionParcelasFauna" xmime:expectedContentTypes="text/xml" type="xmime:base64Binary" />
+		  </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>	
+
+	  <xsd:element name="SIGPAC_LIM_MAX_DANOS_Request">
+        <xsd:complexType>
+          <xsd:sequence>
+				<xsd:element name="plan" type="ti:Plan" />
+				<xsd:element name="linea" type="ti:Linea_Codigo" />
+				<xsd:element name="provinciaSIGPAC" type="ti:Provincia_Codigo" />
+				<xsd:element name="terminoSIGPAC" type="ti:Termino_Codigo" />
+				<xsd:element name="agregadoSIGPAC" type="ti:SIGPAC_Agregado" />
+				<xsd:element name="zonaSIGPAC" type="ti:SIGPAC_Zona" />
+				<xsd:element name="poligonoSIGPAC" type="ti:SIGPAC_Poligono" />
+				<xsd:element name="parcelaSIGPAC" type="ti:SIGPAC_Parcela" />
+				<xsd:element name="recintoSIGPAC" type="ti:SIGPAC_Recinto" nillable="true" minOccurs="0" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+	  
+      <xsd:element name="SIGPAC_LIM_MAX_DANOS_Response">
+        <xsd:complexType>
+          <xsd:sequence>
+			<xsd:element name="InfoLimiteMaximoDanos" xmime:expectedContentTypes="text/xml" type="xmime:base64Binary" />
+		  </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>		  	  
+ 
+      <xsd:element name="agrFallo"
+				xmlns:agr="http://www.agroseguro.es/serviciosWeb/ContratacionSCSIGPACZonificacion/">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:annotation>
+					Lista de mensajes de error de AGROSEGURO
+				</xsd:annotation>
+				<xsd:element name="error" type="agr:Error"
+					maxOccurs="unbounded" minOccurs="0" />
+			</xsd:sequence>
+		</xsd:complexType>
+	  </xsd:element>
+	  <xsd:complexType name="Error"
+		xmlns:agr="http://www.agroseguro.es/serviciosWeb/ContratacionSCSIGPACZonificacion/">
+		<xsd:sequence>
+			<xsd:element name="codigo" type="xsd:int" />
+			<xsd:element name="mensaje" type="xsd:string" />
+		</xsd:sequence>
+	  </xsd:complexType>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="Header">
+    <wsdl:part name="Security" element="wsse:Security" />
+  </wsdl:message>
+  <wsdl:message name="AgrException">
+		<wsdl:part name="parameters" element="agr:agrFallo"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="SIGPAC_Request">
+	<wsdl:part name="parameters"
+			element="agr:SIGPAC_Request">
+	</wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="SIGPAC_Response">
+	<wsdl:part name="parameters"
+			element="agr:SIGPAC_Response">
+	</wsdl:part>
+  </wsdl:message>
+  
+   <wsdl:message name="SIGPAC_Fauna_Request">
+	<wsdl:part name="parameters"
+			element="agr:SIGPAC_Fauna_Request">
+	</wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="SIGPAC_Fauna_Response">
+	<wsdl:part name="parameters"
+			element="agr:SIGPAC_Fauna_Response">
+	</wsdl:part>
+   </wsdl:message>	
+   <wsdl:message name="SIGPAC_LIM_MAX_DANOS_Request">
+	<wsdl:part name="parameters"
+			element="agr:SIGPAC_LIM_MAX_DANOS_Request">
+	</wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="SIGPAC_LIM_MAX_DANOS_Response">
+	<wsdl:part name="parameters"
+			element="agr:SIGPAC_LIM_MAX_DANOS_Response">
+	</wsdl:part>
+  </wsdl:message>
+  
+  <wsdl:portType name="ContratacionSCSIGPACZonificacion">
+    <wsdl:operation name="equivalenciaSIGPAC_Agroseguro">
+      <wsdl:documentation>
+				Este servicio sirve básicamente para saber a partir de una referencia de SIGPAC qué ámbito 
+				geográfico le corresponde en Agroseguro. Si además dicha parcela está zonificada para el 
+				producto indicado, se informará sobre el subtérmino y el código de zona asignado a dicha parcela.
+				
+				Parámetro de entrada:
+
+				•	Provincia: numérico de dos posiciones, sin decimales. Obligatorio.
+				•	Término SIGPAC: numérico de tres posiciones, sin decimales. Obligatorio.
+				•	Agregado SIGPAC: numérico de tres posiciones, sin decimales. Obligatorio.
+				•	Zona SIGPAC: numérico de dos posiciones, sin decimales. Obligatorio.
+				•	Polígono SIGPAC: numérico de tres posiciones, sin decimales. Obligatorio.
+				•	Parcela SIGPAC: numérico de cinco posiciones, sin decimales. Obligatorio.
+				•	Plan: numérico de cuatro posiciones sin decimales. Opcional. Deberá de ir acompañado de la línea.
+				•	Línea: numérico de tres posiciones sin decimales. Opcional. Deberá ir acompañado del plan.
+				•	Cultivo: numérico de tres posiciones sin decimales. Opcional. Deberá de ir acompañado de la línea y del plan.
+				•	infoSIGPAC: de tipo lógico. Opcional
+
+				
+				Se devolverá la siguiente información :
+
+				- Se generará un XML con los datos de información de la equivalencia entre los ambitos del SIGPAC y Agroseguro.
+				El esquema XSD de dicho fichero se denomina: "EquivalenciaSIGPAC_Agroseguro.xsd".
+	  </wsdl:documentation>
+      <wsdl:input message="agr:SIGPAC_Request" />
+	  <wsdl:output message="agr:SIGPAC_Response" />
+	  <wsdl:fault name="AgrException" message="agr:AgrException" />
+    </wsdl:operation>
+	
+	<wsdl:operation name="infoReduccionParcelasFauna">
+      <wsdl:documentation>
+								
+				Este servicio sirve para averiguar la posible reducción de la producción de una parcela a la hora de contratarla, 
+				en caso de haber tenido daños por fauna en años anteriores de forma reiterada. Para más detalles, ver apartado 
+				“Daño por fauna silvestre” en las condiciones especiales de las líneas afectadas.
+				
+				Parámetro de entrada:
+
+				•	Plan: numérico de cuatro posiciones sin decimales. Obligatorio.
+				•	Línea: numérico de tres posiciones sin decimales. Obligatorio.
+				•	Provincia: numérico de dos posiciones, sin decimales. Obligatorio.
+				•	Término SIGPAC: numérico de tres posiciones, sin decimales. Obligatorio.
+				•	Agregado SIGPAC: numérico de tres posiciones, sin decimales. Obligatorio.
+				•	Zona SIGPAC: numérico de dos posiciones, sin decimales. Obligatorio.
+				•	Polígono SIGPAC: numérico de tres posiciones, sin decimales. Obligatorio.
+				•	Parcela SIGPAC: numérico de cinco posiciones, sin decimales. Obligatorio.
+				•	Recinto SIGPAC: numérico de cinco posiciones, sin decimales. Opcional.
+
+				
+				Se devolverá la siguiente información :
+
+				- Se devolverá un XML con toda la información disponible relativa a la parcela determinada por los parámetros de entrada.
+				El esquema XSD de dicho fichero se denomina: "InfoReduccionParcelaFauna.xsd".
+								
+	  </wsdl:documentation>
+      <wsdl:input message="agr:SIGPAC_Fauna_Request" />
+	  <wsdl:output message="agr:SIGPAC_Fauna_Response" />
+	  <wsdl:fault name="AgrException" message="agr:AgrException" />
+    </wsdl:operation>
+	
+	<wsdl:operation name="InfoLimiteMaximoDanos">
+      <wsdl:documentation>
+								
+				Este servicio sirve para obtener el límite máximo de daños permitido para una parcela y producto en un plan de estudio (por ejemplo, en la línea de uva de vinificación por riesgo de lluvia).
+				La información de este servicio se verá condicionada por la información que el Departamento de Estudios vaya indicando para cada parcela afectada en base a los datos históricos de la misma.
+
+				•	Plan: numérico de cuatro posiciones sin decimales. Obligatorio.
+				•	Línea: numérico de tres posiciones sin decimales. Obligatorio.
+				•	Provincia: numérico de dos posiciones, sin decimales. Obligatorio.
+				•	Término SIGPAC: numérico de tres posiciones, sin decimales. Obligatorio.
+				•	Agregado SIGPAC: numérico de tres posiciones, sin decimales. Obligatorio.
+				•	Zona SIGPAC: numérico de dos posiciones, sin decimales. Obligatorio.
+				•	Polígono SIGPAC: numérico de tres posiciones, sin decimales. Obligatorio.
+				•	Parcela SIGPAC: numérico de cinco posiciones, sin decimales. Obligatorio.
+				•	Recinto SIGPAC: numérico de cinco posiciones, sin decimales. Opcional.
+
+				
+				Se devolverá la siguiente información :
+
+				- Se devolverá un XML con toda la información disponible relativa a la parcela determinada por los parámetros de entrada.
+				El esquema XSD de dicho fichero se denomina: "InfoLimiteMaximoDanos.xsd".
+				
+				
+	  </wsdl:documentation>
+      <wsdl:input message="agr:SIGPAC_LIM_MAX_DANOS_Request" />
+	  <wsdl:output message="agr:SIGPAC_LIM_MAX_DANOS_Response" />
+	  <wsdl:fault name="AgrException" message="agr:AgrException" />
+    </wsdl:operation>
+    
+  </wsdl:portType>
+  <wsdl:binding name="ContratacionSCSIGPACZonificacionSOAP" 
+  		type="agr:ContratacionSCSIGPACZonificacion">
+    <soap:binding style="document" 
+    	transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="equivalenciaSIGPAC_Agroseguro">
+      <soap:operation 
+      		soapAction="equivalenciaSIGPAC_Agroseguro"/>
+      <wsdl:input>
+		<soap:header wsdl:required="true" message="agr:Header" part="Security" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="AgrException">
+		<soap:fault name="AgrException" use="literal" />
+	  </wsdl:fault>
+    </wsdl:operation>
+	
+	<wsdl:operation name="infoReduccionParcelasFauna">
+      <soap:operation 
+      		soapAction="infoReduccionParcelasFauna"/>
+      <wsdl:input>
+	    <soap:header wsdl:required="true" message="agr:Header" part="Security" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="AgrException">
+		<soap:fault name="AgrException" use="literal" />
+	  </wsdl:fault>
+    </wsdl:operation>
+	
+	<wsdl:operation name="InfoLimiteMaximoDanos">
+      <soap:operation 
+      		soapAction="InfoLimiteMaximoDanos"/>
+      <wsdl:input>
+		<soap:header wsdl:required="true" message="agr:Header" part="Security" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="AgrException">
+		<soap:fault name="AgrException" use="literal" />
+	  </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ContratacionSCSIGPACZonificacion">
+    <wsdl:documentation>
+			Este servicio sirve básicamente para saber a partir de una referencia de SIGPAC qué ámbito 
+			geográfico le corresponde en Agroseguro. Si además dicha parcela está zonificada para el 
+			producto indicado, se informará sobre el subtérmino y el código de zona asignado a dicha parcela.
+			determinado.
+
+			La información se devolverá dentro de archivos XML enviados como
+			Adjunto (Attachment) en formato MTOM.
+	</wsdl:documentation>
+    <wsdl:port binding="agr:ContratacionSCSIGPACZonificacionSOAP" 
+    		name="ContratacionSCSIGPACZonificacionSOAP">
+      <wsdl:documentation>
+				La primera dirección es el entorno de pruebas y no tiene
+				una resolución asignada en Internet, por lo que se deberá
+				incluir en la máquina local o en el servidor de nombres
+				local con la siguiente dirección: 195.235.42.35
+				
+				La segunda dirección es el entorno de producción.
+	  </wsdl:documentation>
+	  <soap:address
+				location="https://195.235.42.35/cscz/V1R0/services/ContratacionSCSIGPACZonificacion" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

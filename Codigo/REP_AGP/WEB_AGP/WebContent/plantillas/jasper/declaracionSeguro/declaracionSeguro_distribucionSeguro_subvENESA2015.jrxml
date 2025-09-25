@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="declaracionSeguro_distribucionSeguro_subvENESA2015" printOrder="Horizontal" pageWidth="372" pageHeight="30" columnWidth="372" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0">
+	<parameter name="IDCOSTE" class="java.math.BigDecimal"/>
+	<queryString>
+		<![CDATA[select s.codtiposubv,e.destiposubvenesa,s.importesubv
+  				 from o02agpe0.tb_dist_coste_subvs_2015 s,
+       				  o02agpe0.TB_SC_C_TIPO_SUBV_ENESA e
+ 				 where s.iddistcoste = $P{IDCOSTE}
+   				 and s.codorganismo = '0'
+                 and e.codtiposubvenesa = s.codtiposubv]]>
+	</queryString>
+	<field name="codtiposubv" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="importesubv" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="destiposubvenesa" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<variable name="TotalImporte" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{importesubv}.plus()]]></variableExpression>
+	</variable>
+	<variable name="SHOW_FOOT" class="java.lang.Boolean" resetType="None">
+		<variableExpression><![CDATA[new Boolean(true)]]></variableExpression>
+		<initialValueExpression><![CDATA[]]></initialValueExpression>
+	</variable>
+	<variable name="SHOW_BACK" class="java.lang.Boolean" resetType="None">
+		<variableExpression><![CDATA[new Boolean(true)]]></variableExpression>
+		<initialValueExpression><![CDATA[]]></initialValueExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<columnHeader>
+		<band height="15">
+			<staticText>
+				<reportElement isPrintRepeatedValues="false" x="0" y="0" width="193" height="15" isPrintInFirstWholeBand="true"/>
+				<textElement>
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Subvención ENESA...............................................:]]></text>
+			</staticText>
+			<textField evaluationTime="Auto" pattern="#,##0.00¤" isBlankWhenNull="true">
+				<reportElement x="194" y="0" width="65" height="13"/>
+				<textElement textAlignment="Right">
+					<font size="8" isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$V{TotalImporte}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="15" splitType="Stretch">
+			<textField pattern="#,##0.00¤" isBlankWhenNull="true">
+				<reportElement x="194" y="0" width="65" height="15"/>
+				<textElement textAlignment="Right">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{importesubv}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="false">
+				<reportElement x="9" y="0" width="184" height="15"/>
+				<textElement>
+					<font size="7" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{destiposubvenesa}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

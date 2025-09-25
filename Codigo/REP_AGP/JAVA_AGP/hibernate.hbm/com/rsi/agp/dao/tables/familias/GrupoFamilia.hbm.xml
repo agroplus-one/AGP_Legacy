@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.rsi.agp.dao.tables.familias.GrupoFamilia" table="TP_GRUPO_FAMILIA_SEG">
+        <comment></comment>
+        <id name="codGrupo" type="string">
+            <column name="COD_GRUPO_FAMILIA_SEG" length="2" />
+        </id>
+       <property name="nomGrupo" type="string">
+            <column name="DETALLE" length="255" not-null="true">
+                <comment></comment>
+            </column>
+        </property>
+    </class>
+</hibernate-mapping>

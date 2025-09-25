@@ -1,0 +1,547 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="ContratacionAyudas"
+	targetNamespace="http://www.agroseguro.es/serviciosweb/ContratacionAyudas/"
+	xmlns:agr="http://www.agroseguro.es/serviciosweb/ContratacionAyudas/"
+	xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	xmlns:xmime="http://www.w3.org/2005/05/xmlmime"
+	xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:ti="http://www.agroseguro.es/Tipos"
+	xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd"
+	xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd"
+	
+	>
+	<wsdl:types>
+		<xsd:schema elementFormDefault="qualified"
+			targetNamespace="http://www.agroseguro.es/serviciosweb/ContratacionAyudas/"
+			xmlns:agr="http://www.agroseguro.es/serviciosweb/ContratacionAyudas/"
+			xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+			<xsd:import namespace="http://www.w3.org/2005/05/xmlmime"
+				schemaLocation="xmime.xsd" />
+			<xsd:import	namespace="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd"
+				schemaLocation="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd" />
+
+			<xsd:import namespace="http://www.agroseguro.es/Tipos"
+				schemaLocation="Tipos.xsd" />
+
+			<xsd:complexType name="ParametrosTiposSubvencion">
+				<xsd:sequence>
+					<xsd:element name="plan" type="ti:Plan" />
+					<xsd:element name="linea" type="ti:Linea_Codigo" />
+				</xsd:sequence>
+			</xsd:complexType>
+                                                        
+			<xsd:complexType name="ParametrosDatosFijosyVariablesPoliza">
+				<xsd:sequence>
+					<xsd:element name="plan" type="ti:Plan" />
+					<xsd:element name="linea" type="ti:Linea_Codigo" />
+					<xsd:element name="especie" type="ti:Especie" nillable="true" minOccurs="0" maxOccurs="1"/>
+					<xsd:element name="regimen" type="ti:Regimen" nillable="true" minOccurs="0" maxOccurs="1"/>
+					<xsd:element name="grupoRaza" type="ti:GrupoRaza" nillable="true" minOccurs="0" maxOccurs="1"/>
+					<xsd:element name="tipoCapital" type="ti:TipoCapital" nillable="true" minOccurs="0" maxOccurs="1"/>
+					<xsd:element name="tipoAnimal" type="ti:TipoAnimal" nillable="true" minOccurs="0" maxOccurs="1"/>
+					<xsd:element name="provincia" type="ti:Provincia_Codigo" nillable="true" minOccurs="0" maxOccurs="1"/>
+					<xsd:element name="termino" type="ti:Termino_Codigo" nillable="true" minOccurs="0" maxOccurs="1"/>
+					<xsd:element name="subtermino" type="ti:Subtermino_Codigo" nillable="true" minOccurs="0" maxOccurs="1"/>
+					<xsd:element name="soloValoresPresupuesto" type="xsd:boolean" nillable="true" minOccurs="0" maxOccurs="1"/>
+					<xsd:element name="mostrarDependenciasDV" type="xsd:boolean" nillable="true" minOccurs="0" maxOccurs="1"/>
+				</xsd:sequence>
+			</xsd:complexType>
+
+			<xsd:complexType name="ParametrosEmpresasGestoras">
+				<xsd:sequence>
+					<xsd:element name="provincia" type="ti:Provincia_Codigo"/>
+					<xsd:element name="termino" type="ti:Termino_Codigo"/>
+				</xsd:sequence>
+			</xsd:complexType>
+			
+			<xsd:complexType name="ParametrosGrupoRazas">
+				<xsd:sequence>
+					<xsd:element name="plan" type="ti:Plan" />
+					<xsd:element name="linea" type="ti:Linea_Codigo" />
+					<xsd:element name="especie" type="ti:Especie"/>
+					<xsd:element name="regimen" type="ti:Regimen"/>
+				</xsd:sequence>
+			</xsd:complexType>
+						
+			<xsd:element name="tiposSubvencionRequest" type="agr:ParametrosTiposSubvencion"></xsd:element>
+			<xsd:element name="tiposSubvencionResponse">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="tiposSubvencion" type="xmime:base64Binary"></xsd:element>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			
+			<xsd:element name="datosFijosyVariablesPolizaRequest" type="agr:ParametrosDatosFijosyVariablesPoliza"></xsd:element>
+			<xsd:element name="datosFijosyVariablesPolizaResponse">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="datosFijosyVariablesPoliza" type="xmime:base64Binary"></xsd:element>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+
+			<xsd:element name="modulosCoberturasRequest" >
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="presupuestoContratacion" xmime:expectedContentTypes="text/xml" type="xmime:base64Binary" />
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="modulosCoberturasResponse">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="modulosCoberturas" xmime:expectedContentTypes="text/xml" type="xmime:base64Binary" />
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+
+			<xsd:element name="preciosRequest" >
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="presupuestoContratacion" xmime:expectedContentTypes="text/xml" type="xmime:base64Binary" />
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="preciosResponse">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="distribucionPreciosPoliza" xmime:expectedContentTypes="text/xml" type="xmime:base64Binary" />
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+
+			<xsd:element name="empresasGestorasRequest" type="agr:ParametrosEmpresasGestoras"></xsd:element>
+			<xsd:element name="empresasGestorasResponse">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="empresasGestoras" xmime:expectedContentTypes="text/xml" type="xmime:base64Binary" />
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			
+			<xsd:element name="grupoRazasRequest" type="agr:ParametrosGrupoRazas"></xsd:element>
+			<xsd:element name="grupoRazasResponse">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="infoGrupoRaza" xmime:expectedContentTypes="application/pdf" type="xmime:base64Binary"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			
+			<xsd:element name="coberturasContratadasRequest" >
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="presupuestoContratacion" xmime:expectedContentTypes="text/xml" type="xmime:base64Binary" />
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="coberturasContratadasResponse">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="coberturasContratadas" xmime:expectedContentTypes="text/xml" type="xmime:base64Binary" />
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			
+			<xsd:element name="agrFallo"
+				xmlns:agr="http://www.agroseguro.es/serviciosweb/ContratacionAyudas/">
+				<xsd:complexType>
+					<xsd:sequence>
+<!--  PENDIENTE 						<xsd:annotation>
+							Lista de mensajes de error de AGROSEGURO
+						</xsd:annotation>
+-->						
+						<xsd:element name="error" type="agr:Error"	maxOccurs="unbounded" minOccurs="0" />
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:complexType name="Error"
+				xmlns:agr="http://www.agroseguro.es/serviciosweb/ContratacionAyudas/">
+				<xsd:sequence>
+					<xsd:element name="codigo" type="xsd:int" />
+					<xsd:element name="mensaje" type="xsd:string" />
+				</xsd:sequence>
+			</xsd:complexType>
+		</xsd:schema>
+	</wsdl:types>
+	
+	<wsdl:message name="Header">
+	<wsdl:part name="Security" element="wsse:Security" />
+	
+	</wsdl:message>
+	<wsdl:message name="AgrException">
+		<wsdl:part name="parameters" element="agr:agrFallo"/>
+	</wsdl:message>
+	
+	<wsdl:message name="tiposSubvencionRequest">
+		<wsdl:part name="parameters" element="agr:tiposSubvencionRequest"></wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="tiposSubvencionResponse">
+		<wsdl:part name="parameters" element="agr:tiposSubvencionResponse"></wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="datosFijosyVariablesPolizaRequest">
+		<wsdl:part name="parameters" element="agr:datosFijosyVariablesPolizaRequest"></wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="datosFijosyVariablesPolizaResponse">
+		<wsdl:part name="parameters" element="agr:datosFijosyVariablesPolizaResponse"></wsdl:part>
+	</wsdl:message>	
+	<wsdl:message name="modulosCoberturasRequest">
+		<wsdl:part name="parameters" element="agr:modulosCoberturasRequest">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="modulosCoberturasResponse">
+		<wsdl:part name="parameters" element="agr:modulosCoberturasResponse">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="preciosRequest">
+		<wsdl:part name="parameters" element="agr:preciosRequest">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="preciosResponse">
+		<wsdl:part name="parameters" element="agr:preciosResponse">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="empresasGestorasRequest">
+		<wsdl:part name="parameters" element="agr:empresasGestorasRequest">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="empresasGestorasResponse">
+		<wsdl:part name="parameters" element="agr:empresasGestorasResponse">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="grupoRazasRequest">
+		<wsdl:part name="parameters" element="agr:grupoRazasRequest">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="grupoRazasResponse">
+		<wsdl:part name="parameters" element="agr:grupoRazasResponse">
+		</wsdl:part>
+	</wsdl:message>
+	
+	<wsdl:message name="coberturasContratadasRequest">
+		<wsdl:part name="parameters" element="agr:coberturasContratadasRequest">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="coberturasContratadasResponse">
+		<wsdl:part name="parameters" element="agr:coberturasContratadasResponse">
+		</wsdl:part>
+	</wsdl:message>
+
+	<wsdl:portType name="ContratacionAyudas">
+
+
+		<wsdl:operation name="tiposSubvencion">
+			<wsdl:documentation>Este servicio sirve para obtener los tipos de subvención aprobados para un plan/línea
+
+				El procedimiento dispondrá de los siguientes parámetros de entrada:
+
+				-	Plan: numérico de cuatro posiciones sin decimales. Obligatorio.
+				-	Línea: numérico de tres posiciones sin decimales. Obligatorio.
+
+				Devuelve un XML con los tipos de subvenciones aprobados según los parámetros de entrada
+			</wsdl:documentation>
+			<wsdl:input message="agr:tiposSubvencionRequest"></wsdl:input>
+			<wsdl:output message="agr:tiposSubvencionResponse"></wsdl:output>
+            <wsdl:fault name="AgrException" message="agr:AgrException"></wsdl:fault>
+        </wsdl:operation>
+		<wsdl:operation name="datosFijosyVariablesPoliza">
+			<wsdl:documentation>Este servicio sirve para obtener las combinaciones válidas de datos fijos y datos variables que no dependen de coberturas que puede tener una explotación para sus posibles tipos de capital, 
+				atendiendo a una combinación de datos fijos válida y su ámbito geográfico. 
+
+				El procedimiento dispondrá de los siguientes parámetros de entrada:
+				
+				-	Plan: numérico de cuatro posiciones sin decimales. Obligatorio.
+				-	Línea: numérico de tres posiciones sin decimales. Obligatorio.
+				-	Especie: numérico de tres posiciones. Opcional
+				-	Régimen: numérico de tres posiciones. Opcional
+				-	Grupo de raza: numérico de tres posiciones. Opcional
+				-	Tipo de capital: numérico de tres posiciones. Opcional
+				-	Tipo de animal numérico de tres posiciones. Opcional
+				-	Provincia: numérico de dos posiciones. Opcional
+				-	Termino: numérico de tres posiciones. Opcional
+				-	Subtérmino: alfanumérico de una posición. Opcional
+				-   SoloValoresPresupuesto: booleano. Opcional
+				-   MostrarDependenciasDV: booleano. Opcional
+				
+				Si las comprobaciones iniciales han sido satisfactorias se procederá a devolver un XML con los tipos de capital asegurables con los datos fijos y variables que se pueden utilizar según los parámetros de entrada
+			</wsdl:documentation>
+			<wsdl:input message="agr:datosFijosyVariablesPolizaRequest"></wsdl:input>
+			<wsdl:output message="agr:datosFijosyVariablesPolizaResponse"></wsdl:output>
+            <wsdl:fault name="AgrException" message="agr:AgrException"></wsdl:fault>
+        </wsdl:operation>
+		
+		<wsdl:operation name="modulosCoberturas">
+			<wsdl:documentation>
+				Este servicio sirve para obtener las elecciones de cobertura que se
+				pueden escoger para una póliza.
+			
+			
+				En la petición se deberá facilitar:
+			
+					- Fichero XML de presupuesto de póliza unificada según la estructura
+					definida en el esquema “PresupuestoContratacion.xsd”
+			
+				Se devolverá la siguiente información :
+			
+					- Fichero XML con los posibles módulos y elecciones de cobertura (datos
+					variables que dependen de concepto principal y riesgo cubierto) en los
+					que se puede contratar la póliza recibida por parámetro.
+
+			</wsdl:documentation>
+			<wsdl:input message="agr:modulosCoberturasRequest"/>
+			<wsdl:output message="agr:modulosCoberturasResponse"/>
+			<wsdl:fault name="AgrException"
+				message="agr:AgrException">
+			</wsdl:fault>
+		</wsdl:operation>
+		
+		<wsdl:operation name="precios">
+			<wsdl:documentation>
+				Este servicio sirve para obtener los precios máximos y mínimos con los
+				que se puede asegurar una explotación ganadera en el momento de
+				realizar la consulta.
+
+
+				En la petición se deberá facilitar:
+			
+					- El plan, obligatorio.
+					- La línea, obligatoria.
+					- La especie, obligatoria.
+					- El régimen, obligatorio.
+					- El grupo de raza, obligatorio.
+					- El tipo de animal, obligatorio.
+					- La provincia, obligatoria.
+					- El término municipal, obligatorio.
+					- El subtérmino, obligatorio.
+					- Tipo de capital, obligatorio.
+					- Datos variables, obligatorio.
+			
+			
+				Se devolverá la siguiente información :
+			
+					- Precio máximo permitido.
+					- Precio mínimo permitido.
+
+			</wsdl:documentation>
+			<wsdl:input message="agr:preciosRequest"/>
+			<wsdl:output message="agr:preciosResponse"/>
+			<wsdl:fault name="AgrException"
+				message="agr:AgrException">
+			</wsdl:fault>
+		</wsdl:operation>
+		
+		<wsdl:operation name="empresasGestoras">
+				<wsdl:documentation>
+					Este servicio sirve para obtener el nombre de las empresas gestoras que
+					prestan sus servicios de retirada de cadáveres en un ámbito
+					determinado.
+				
+				
+					En la petición se deberá facilitar:
+				
+						- La provincia, obligatorio.
+						- El término municipal, obligatorio.
+				
+				
+					Se devolverá la siguiente información :
+				
+						- Fichero XML con los posibles módulos y elecciones de cobertura en los
+						que se puede contratar la póliza recibida por parámetro.
+
+			</wsdl:documentation>
+			<wsdl:input message="agr:empresasGestorasRequest"/>
+			<wsdl:output message="agr:empresasGestorasResponse"/>
+			<wsdl:fault name="AgrException"
+				message="agr:AgrException">
+			</wsdl:fault>
+		</wsdl:operation>
+		
+		
+		<wsdl:operation name="grupoRazas">
+				<wsdl:documentation>
+					Este servicio sirve para obtener el grupo de razas a partir de la
+					configuración de razas de la explotación.
+				
+				
+					En la petición se deberá facilitar:
+				
+						- El plan, obligatorio.
+						- La línea, obligatoria.
+						- La especie, obligatoria.
+						- El régimen, obligatorio.
+						- La configuración de razas: parámetro múltiple indicando el nº de
+						animales de cada raza.
+				
+				
+					Se devolverá la siguiente información :
+				
+						- El grupo de raza.
+						- El descriptivo del grupo.
+
+			</wsdl:documentation>
+			<wsdl:input message="agr:grupoRazasRequest"/>
+			<wsdl:output message="agr:grupoRazasResponse"/>
+			<wsdl:fault name="AgrException"
+				message="agr:AgrException">
+			</wsdl:fault>
+		</wsdl:operation>
+		
+		
+		<wsdl:operation name="coberturasContratadas">
+			<wsdl:documentation>
+				Este servicio sirve para obtener las coberturas contradas en una poliza.
+
+			
+			
+				En la petición se deberá facilitar:
+			
+					- Fichero XML de presupuesto de póliza unificada según la estructura
+					definida en el esquema “PresupuestoContratacion.xsd”
+			
+				Se devolverá la siguiente información :
+			
+					- Fichero XML con las elecciones de cobertura (datos
+					variables que dependen de concepto principal y riesgo cubierto) en los
+					que se ha contratado la póliza recibida por parámetro.
+
+			</wsdl:documentation>
+			<wsdl:input message="agr:coberturasContratadasRequest"/>
+			<wsdl:output message="agr:coberturasContratadasResponse"/>
+			<wsdl:fault name="AgrException"
+				message="agr:AgrException">
+			</wsdl:fault>
+		</wsdl:operation>
+
+	</wsdl:portType>
+	<wsdl:binding name="ContratacionAyudasSOAP"
+		type="agr:ContratacionAyudas">
+		<soap:binding style="document"
+			transport="http://schemas.xmlsoap.org/soap/http" />
+	
+		<wsdl:operation name="tiposSubvencion">
+			<soap:operation	soapAction="tiposSubvencion" />
+			<wsdl:input>
+				<soap:header wsdl:required="true" message="agr:Header" part="Security" use="literal" />
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+			<wsdl:fault name="AgrException">
+				<soap:fault name="AgrException" use="literal" />
+			</wsdl:fault>
+		</wsdl:operation>
+				
+		<wsdl:operation name="datosFijosyVariablesPoliza">
+			<soap:operation	soapAction="datosFijosyVariablesPoliza" />
+			<wsdl:input>
+				<soap:header wsdl:required="true" message="agr:Header" part="Security" use="literal" />
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+			<wsdl:fault name="AgrException">
+				<soap:fault name="AgrException" use="literal" />
+			</wsdl:fault>
+		</wsdl:operation>
+		
+		<wsdl:operation name="modulosCoberturas">
+			<soap:operation	soapAction="modulosCoberturas" />
+			<wsdl:input>
+				<soap:header wsdl:required="true" message="agr:Header" part="Security" use="literal" />
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+			<wsdl:fault name="AgrException">
+				<soap:fault name="AgrException" use="literal" />
+			</wsdl:fault>
+		</wsdl:operation>
+		
+		<wsdl:operation name="precios">
+			<soap:operation	soapAction="precios" />
+			<wsdl:input>
+				<soap:header wsdl:required="true" message="agr:Header" part="Security" use="literal" />
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+			<wsdl:fault name="AgrException">
+				<soap:fault name="AgrException" use="literal" />
+			</wsdl:fault>
+		</wsdl:operation>
+		
+		<wsdl:operation name="empresasGestoras">
+			<soap:operation	soapAction="empresasGestoras" />
+			<wsdl:input>
+				<soap:header wsdl:required="true" message="agr:Header" part="Security" use="literal" />
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+			<wsdl:fault name="AgrException">
+				<soap:fault name="AgrException" use="literal" />
+			</wsdl:fault>
+		</wsdl:operation>
+		
+		<wsdl:operation name="grupoRazas">
+			<soap:operation	soapAction="grupoRazas" />
+			<wsdl:input>
+				<soap:header wsdl:required="true" message="agr:Header" part="Security" use="literal" />
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+			<wsdl:fault name="AgrException">
+				<soap:fault name="AgrException" use="literal" />
+			</wsdl:fault>
+		</wsdl:operation>
+		
+		<wsdl:operation name="coberturasContratadas">
+			<soap:operation	soapAction="coberturasContratadas" />
+			<wsdl:input>
+				<soap:header wsdl:required="true" message="agr:Header" part="Security" use="literal" />
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+			<wsdl:fault name="AgrException">
+				<soap:fault name="AgrException" use="literal" />
+			</wsdl:fault>
+		</wsdl:operation>
+		
+		
+	</wsdl:binding>
+	<wsdl:service name="ContratacionAyudas">
+		<wsdl:documentation>
+		
+			Este servicio incluye diversas funciones de apoyo a la contratación de
+			pólizas diseñadas para ser utilizadas desde los aplicativos de
+			contratación de las Entidades. Pretende ser con el tiempo un sustituto
+			de parte de las tablas de condicionado que se envían actualmente a las
+			Entidades
+			
+		</wsdl:documentation>
+		<wsdl:port name="ContratacionAyudasSOAP"
+			binding="agr:ContratacionAyudasSOAP">
+			<wsdl:documentation>
+				La primera dirección es el entorno de pruebas y no tiene
+				una resolución asignada en Internet, por lo que se deberá
+				incluir en la máquina local o en el servidor de nombres
+				local con la siguiente dirección: preproduccion.agroseguro.es
+
+				La segunda dirección es el entorno de producción.
+			</wsdl:documentation>
+			<soap:address
+				location="https://www.agroseguro.es/cayu/V1R0/services/ContratacionAyudas" />
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>

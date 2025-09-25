@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<x:schema xmlns:x="http://www.w3.org/2001/XMLSchema"
+	targetNamespace="http://www.agroseguro.es/SeguroAgrario/Contratacion/OP/RelacionSocios"
+	xmlns="http://www.agroseguro.es/SeguroAgrario/Contratacion/OP/RelacionSocios"
+	xmlns:ti="http://www.agroseguro.es/Tipos">
+
+	<x:import namespace="http://www.agroseguro.es/Tipos"
+		schemaLocation="Tipos.xsd" />
+
+		<x:complexType name="RelacionSociosOP">
+		<x:sequence>
+			<x:element name="Contacto" type="Contacto" maxOccurs="1" minOccurs="0" />
+			<x:element name="SocioOP" type="SocioOP" maxOccurs="unbounded" minOccurs="1" />
+		</x:sequence>
+	</x:complexType>
+
+	<x:complexType name="Contacto">
+		<x:attribute name="nombre" use="required" type="ti:NombrePersona" />
+		<x:attribute name="apellido1" use="required" type="ti:Apellido" />
+		<x:attribute name="apellido2" use="optional" type="ti:Apellido" />
+		<x:attribute name="telefono" use="optional" type="ti:Telefono" />
+		<x:attribute name="email" use="optional" type="ti:Email" />			
+	</x:complexType>
+	
+	<x:complexType name="SocioOP">
+		<x:sequence>
+			<x:choice minOccurs="1" maxOccurs="1">
+				<x:element name="NombreApellidos" type="ti:NombreApellidos" minOccurs="1" maxOccurs="1" />
+				<x:element name="RazonSocial" type="ti:RazonSocial" minOccurs="1" maxOccurs="1" />
+			</x:choice>
+			<x:element name="ReferenciaSeguro" type="ReferenciaSeguro" minOccurs="0" maxOccurs="1" />
+			<x:element name="ProduccionPrevista" type="ProduccionPrevista" minOccurs="0" maxOccurs="1" />
+		</x:sequence>
+		<x:attribute name="nif" use="required">
+			<x:simpleType>
+				<x:restriction base="x:string">
+					<x:maxLength value="9" />
+				</x:restriction>	
+			</x:simpleType>
+		</x:attribute>
+	</x:complexType>
+
+	<x:complexType name="ReferenciaSeguro">
+		<x:sequence>
+			<x:element name="Poliza" type="Poliza" minOccurs="1" maxOccurs="1" />
+			<x:element name="Colectivo" type="Colectivo" minOccurs="0" maxOccurs="1" />			
+		</x:sequence>
+	</x:complexType>
+	
+	<x:complexType name="Poliza">
+		<x:attribute name="referencia" type="ti:Poliza_Referencia_Creciente" use="required" />
+		<x:attribute name="digitoControl" type="ti:DigitoControl" use="required" />
+	</x:complexType>
+
+	<x:complexType name="Colectivo">
+		<x:attribute name="referencia" type="ti:Colectivo_Referencia" use="required" />
+		<x:attribute name="digitoControl" type="ti:DigitoControl" use="required" />
+	</x:complexType>
+
+	<x:complexType name="ProduccionPrevista">
+		<x:attribute name="superficie" type="ti:Parcela_Superficie" use="required" />
+		<x:attribute name="produccion" type="ti:ProduccionKG" use="required" />		 
+	</x:complexType>
+</x:schema>

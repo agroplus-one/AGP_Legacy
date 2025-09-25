@@ -1,0 +1,167 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 27-sep-2011 8:46:53 by Hibernate Tools 3.3.0.GA -->
+<hibernate-mapping>
+    <class name="com.rsi.agp.dao.tables.comisiones.RgaComisiones" table="TB_RGA_COMISIONES">
+           <id name="id" type="java.lang.Long">
+            <column name="ID" precision="15" scale="0" />
+            <generator class="sequence">
+            	<param name="sequence">SQ_RGA_COMISIONES</param>
+            </generator>
+        </id>
+         <many-to-one name="cierre" class="com.rsi.agp.dao.tables.comisiones.Cierre" fetch="select">
+            <column name="IDCIERRE" precision="15" scale="0" not-null="true" />
+        </many-to-one>
+        <property name="numfas" type="string">
+            <column name="NUMFAS" length="4" />
+        </property>
+        <property name="codcol" type="string">
+            <column name="CODCOL" length="7" />
+        </property>
+        <property name="codlin" type="java.math.BigDecimal">
+            <column name="CODLIN" precision="3" scale="0" />
+        </property>
+        <property name="codpln" type="java.math.BigDecimal">
+            <column name="CODPLN" precision="4" scale="0" />
+        </property>
+        <property name="codent" type="java.math.BigDecimal">
+            <column name="CODENT" precision="4" scale="0" />
+        </property>
+        <property name="codentmed" type="java.math.BigDecimal">
+            <column name="CODENTMED" precision="4" scale="0" />
+        </property>
+        <property name="codsubmed" type="java.math.BigDecimal">
+            <column name="CODSUBMED" precision="4" scale="0" />
+        </property>
+        <property name="codofi" type="java.math.BigDecimal">
+            <column name="CODOFI" precision="4" scale="0" />
+        </property>
+        <property name="refplz" type="string">
+            <column name="REFPLZ" length="7" />
+        </property>
+        <property name="tippol" type="java.lang.Character">
+            <column name="TIPPOL" length="1" />
+        </property>
+        <property name="feccar" type="string">
+            <column name="FECCAR" length="8" />
+        </property>
+        <property name="nomasg" type="string">
+            <column name="NOMASG" length="102" />
+        </property>
+        <property name="nifasg" type="string">
+            <column name="NIFASG" length="9" />
+        </property>
+        <property name="prinue" type="java.math.BigDecimal">
+            <column name="PRINUE" precision="13" />
+        </property>
+        <property name="gasnue" type="java.math.BigDecimal">
+            <column name="GASNUE" precision="13" />
+        </property>
+        <property name="gasentnue" type="java.math.BigDecimal">
+            <column name="GASENTNUE" precision="15" />
+        </property>
+        <property name="gassubnue" type="java.math.BigDecimal">
+            <column name="GASSUBNUE" precision="15" />
+        </property>
+        <property name="gasrganue" type="java.math.BigDecimal">
+            <column name="GASRGANUE" precision="15" />
+        </property>
+        <property name="commentnue" type="java.math.BigDecimal">
+            <column name="COMMENTNUE" precision="15" />
+        </property>
+        <property name="commendnue" type="java.math.BigDecimal">
+            <column name="COMMENDNUE" precision="15" />
+        </property>
+        <property name="comrganue" type="java.math.BigDecimal">
+            <column name="COMRGANUE" precision="15" />
+        </property>
+        <property name="totnue" type="java.math.BigDecimal">
+            <column name="TOTNUE" precision="15" />
+        </property>
+        <property name="prireg" type="java.math.BigDecimal">
+            <column name="PRIREG" precision="15" />
+        </property>
+        <property name="gasreg" type="java.math.BigDecimal">
+            <column name="GASREG" precision="15" />
+        </property>
+        <property name="gasentreg" type="java.math.BigDecimal">
+            <column name="GASENTREG" precision="15" />
+        </property>
+        <property name="gassubreg" type="java.math.BigDecimal">
+            <column name="GASSUBREG" precision="15" />
+        </property>
+        <property name="gasrgareg" type="java.math.BigDecimal">
+            <column name="GASRGAREG" precision="15" />
+        </property>
+        <property name="comentreg" type="java.math.BigDecimal">
+            <column name="COMENTREG" precision="15" />
+        </property>
+        <property name="commendreg" type="java.math.BigDecimal">
+            <column name="COMMENDREG" precision="15" />
+        </property>
+        <property name="comrgareg" type="java.math.BigDecimal">
+            <column name="COMRGAREG" precision="15" />
+        </property>
+        <property name="totreg" type="java.math.BigDecimal">
+            <column name="TOTREG" precision="15" />
+        </property>
+        <property name="costot" type="java.math.BigDecimal">
+            <column name="COSTOT" precision="15" />
+        </property>
+        <property name="prisum" type="java.math.BigDecimal">
+            <column name="PRISUM" precision="15" />
+        </property>
+        <property name="gassum" type="java.math.BigDecimal">
+            <column name="GASSUM" precision="15" />
+        </property>
+        <property name="gasentsum" type="java.math.BigDecimal">
+            <column name="GASENTSUM" precision="15" />
+        </property>
+        <property name="gassubsum" type="java.math.BigDecimal">
+            <column name="GASSUBSUM" precision="15" />
+        </property>
+        <property name="gasrgasum" type="java.math.BigDecimal">
+            <column name="GASRGASUM" precision="15" />
+        </property>
+        <property name="comentsum" type="java.math.BigDecimal">
+            <column name="COMENTSUM" precision="15" />
+        </property>
+        <property name="comsubsum" type="java.math.BigDecimal">
+            <column name="COMSUBSUM" precision="15" />
+        </property>
+        <property name="comrgasum" type="java.math.BigDecimal">
+            <column name="COMRGASUM" precision="15" />
+        </property>
+        <property name="tipmdtra" type="java.lang.Character">
+            <column name="TIPMDTRA" length="1" />
+        </property>
+        <property name="codmetra1" type="string">
+            <column name="CODMETRA1" length="2" />
+        </property>
+        <property name="portra" type="java.math.BigDecimal">
+            <column name="PORTRA" precision="5" />
+        </property>
+        <property name="imptra" type="java.math.BigDecimal">
+            <column name="IMPTRA" precision="13" />
+        </property>
+        <property name="tipmedcal" type="java.lang.Character">
+            <column name="TIPMEDCAL" length="1" />
+        </property>
+        <property name="codmedcal" type="string">
+            <column name="CODMEDCAL" length="2"></column>
+        </property>
+        <property name="porcal" type="java.math.BigDecimal">
+            <column name="PORCAL" precision="5" />
+        </property>
+        <property name="impcal" type="java.math.BigDecimal">
+            <column name="IMPCAL" precision="15" />
+        </property>
+         <property name="gastosentidad" type="java.math.BigDecimal">
+            <column name="GASTOSENTIDAD" precision="15"></column>
+        </property>
+        <property name="gastoscomisiones" type="java.math.BigDecimal">
+            <column name="GASTOSCOMISIONES" precision="15"> </column>
+        </property>
+    </class>
+</hibernate-mapping>

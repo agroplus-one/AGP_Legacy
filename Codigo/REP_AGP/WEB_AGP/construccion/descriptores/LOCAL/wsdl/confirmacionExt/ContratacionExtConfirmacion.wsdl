@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="ContratacionExtConfirmacion"
+	targetNamespace="http://agp.rsi.com/serviciosweb/ContratacionExtConfirmacion/"
+	xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/"
+	xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	xmlns:rsi="http://agp.rsi.com/serviciosweb/ContratacionExtConfirmacion/"
+	xmlns:agr="http://www.agroseguro.es/SeguroAgrario/Contratacion"
+	xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/"
+	xmlns:xmime="http://www.w3.org/2005/05/xmlmime">
+	<wsdl:types>
+		<xsd:schema elementFormDefault="qualified"
+			targetNamespace="http://agp.rsi.com/serviciosweb/ContratacionExtConfirmacion/"
+			xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+			<xsd:import namespace="http://www.w3.org/2005/05/xmlmime"
+				schemaLocation="http://www.w3.org/2005/05/xmlmime" />
+			<xsd:element name="confirmarRequest">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="poliza"
+							xmime:expectedContentTypes="text/xml" type="xmime:base64Binary" />
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="confirmarResponse">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="codigo" type="xsd:string"/>
+						<xsd:element name="mensaje" type="xsd:string"/>
+						<xsd:element name="acuseRecibo" minOccurs="1"
+							xmime:expectedContentTypes="text/xml" type="xmime:base64Binary" />
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+		</xsd:schema>			
+	</wsdl:types>
+	<wsdl:message name="Header"/>
+	<wsdl:message name="confirmarRequest">
+		<wsdl:part name="parameters" element="rsi:confirmarRequest">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="confirmarResponse">
+		<wsdl:part name="parameters" element="rsi:confirmarResponse">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:portType name="ContratacionExtConfirmacion">
+		<wsdl:operation name="confirmar">
+			<wsdl:documentation>
+				Método de Confirmación de Contratación de la Póliza:
+				permitirá la confirmación de la contratación de una
+				póliza en el sistema de Agroseguro.
+
+				En la petición se deberá facilitar:
+
+				- Fichero XML de la póliza. El procesamiento del fichero
+				XML de la póliza incluirá una validación previa de la
+				póliza para asegurar que la póliza no se rechace, ya sea
+				porque no cumple en estructura o por cualquier otra
+				causa que produzca un rechazo de póliza. La validación
+				de la estructura del XML quedatá determinada por el
+				esquema XSD: "ContratacionSeguroAgrario.xsd". Si se
+				supera la validación previa el sistema pasará a
+				confirmar la contratación de la póliza. La definición y
+				jerarquía de etiquetas del fichero XML de la Póliza que
+				sirve de entrada aparece publicado en la Web de
+				Agroseguro, en la última versión del documento: "Seguro
+				Creciente: Norma de Grabación de Seguros Agrícolas
+				DES-N-0043".
+
+				De no indicarse la referencia del documento (en el caso
+				de una póliza Principal) esta será asignada por
+				Agroseguro.
+
+				Se devolverá la siguiente información :
+				
+				- Código: resultado de la operación. Puede tener los 
+				siguientes valores:
+				• -1: error inesperado.
+				• 0: póliza rechazada por validaciones RGA
+				• 1: póliza aceptada por RGA pero rechazada por Agroseguro. 
+				• 2: póliza aceptada por RGA y  por Agroseguro
+				
+				- Mensaje: descriptivo del resultado de la operación. Si la póliza 
+				no pasa	las validaciones especificadas por RGA, aquí se indicará la 
+				causa del rechazo. 				
+
+				- Fichero XML de acuse de recibo. Tanto si la Póliza se
+				rechazase, como si finalmente se consiguiese grabar con
+				éxito, se recibirá un acuse de recibo donde se indicará
+				si el documento de la Póliza es aceptado o es rechazado.
+				El esquema XSD del acuse de recibo es "AcuseRecibo.xsd".
+
+				El procesamiento del fichero XML de la póliza determina
+				si se acepta o da lugar a errores de rechazo que
+				aparecen en el atributo "tipo" de la etiqueta "Error"
+				del acuse de recibo:
+
+				• De rechazo -código 1-: son errores de estructura o de
+				lógica que impiden la confirmación de la póliza, es
+				decir la aceptación de ésta en Agroseguro.
+
+				En el XML acuse de recibo se indicará el "estado" del
+				"Documento", informando del resultado de la confirmación
+				de la póliza. El estado podrá ser:
+
+				• "Rechazado" -código 2- si existe algún error de
+				rechazo que impide la grabación de la póliza.
+
+				• "Aceptado" -código 1- si no aparecen errores.
+
+				Si la póliza ha sido aceptada se devolverá además en los
+				"DatosAsociados" los siguientes atributos: "directorio"
+				asignado a la póliza y, en el caso de ser asignada por
+				Agroseguro, "referencia" asignada a la póliza Principal.
+			</wsdl:documentation>
+			<wsdl:input message="rsi:confirmarRequest"></wsdl:input>
+			<wsdl:output message="rsi:confirmarResponse"></wsdl:output>
+		</wsdl:operation>
+	</wsdl:portType>
+	<wsdl:binding name="ContratacionExtConfirmacionSOAP"
+		type="rsi:ContratacionExtConfirmacion">
+		<soap:binding style="document"
+			transport="http://schemas.xmlsoap.org/soap/http" />
+		<wsdl:operation name="confirmar">
+			<soap:operation
+				soapAction="http://agp.rsi.com/serviciosweb/ContratacionExtConfirmacion/confirmar" />
+			<wsdl:input>
+				<soap:header use="literal" message="rsi:Header"
+					part="Security" wsdl:required="true" />
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:service name="ContratacionExtConfirmacion">
+		<wsdl:documentation>
+			Mediante este proceso se podrá solicitar la confirmación de
+			la contratación de una Póliza para su tramitación en
+			Agroseguro.
+
+			La información devuelta será un archivo XML de acuse de
+			recibo enviado como un Adjunto (Attachment) en formato MTOM.
+		</wsdl:documentation>
+		<wsdl:port name="ContratacionExtConfirmacionSOAP"
+			binding="rsi:ContratacionExtConfirmacionSOAP">
+			<soap:address
+				location="https://http://localhost:8080/rsi_agp/services/ContratacionExtConfirmacion" />
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>

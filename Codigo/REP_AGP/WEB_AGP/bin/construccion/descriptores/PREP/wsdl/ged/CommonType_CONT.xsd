@@ -1,0 +1,16 @@
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+	xmlns:cont="http://www.ruralserviciosinformaticos.com/XSD/CONT/CommonType_CONT/"
+	xmlns:mcont="http://www.bea.com/wli/sb/context"
+	targetNamespace="http://www.ruralserviciosinformaticos.com/XSD/CONT/CommonType_CONT/"
+	elementFormDefault="qualified">
+	<import namespace="http://www.bea.com/wli/sb/context"
+		schemaLocation="http://soa03.risa:80/SOA_Seguros/Empresa/PS/soap/v1/SE_SEG_Documentacion_GED?SCHEMA%2FSOA_ComunV1%2FRecursos%2FXSD%2FEsquemasOsb%2Fv1%2FMessageContext" />
+	<complexType name="t_documentoMtom">
+		<annotation>
+			<documentation>Documento en tecnología MTOM </documentation>
+		</annotation>
+		<sequence>
+			<element ref="mcont:binary-content" />
+		</sequence>
+	</complexType>
+</schema>

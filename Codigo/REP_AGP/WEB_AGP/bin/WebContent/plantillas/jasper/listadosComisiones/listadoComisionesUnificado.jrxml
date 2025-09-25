@@ -1,0 +1,759 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.16.0.final using JasperReports Library version 6.16.0-48579d909b7943b64690c65c71e07e0b80981928  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Comisiones 2015 +" pageWidth="1770" pageHeight="595" orientation="Landscape" whenNoDataType="AllSectionsNoDetail" columnWidth="1730" leftMargin="20" rightMargin="20" topMargin="0" bottomMargin="20" uuid="4c55fd28-b4f3-4e5a-9dc3-824ae4bb5241">
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="3501"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="source" class="net.sf.jasperreports.engine.JRDataSource"/>
+	<parameter name="PERFIL" class="java.lang.String"/>
+	<field name="entmediadora" class="java.lang.Integer"/>
+	<field name="subentmediadora" class="java.lang.Integer"/>
+	<field name="oficina" class="java.lang.String"/>
+	<field name="plan" class="java.lang.Integer"/>
+	<field name="linea" class="java.lang.Integer"/>
+	<field name="referencia" class="java.lang.String"/>
+	<field name="fechaVigor" class="java.util.Date"/>
+	<field name="ciftomador" class="java.lang.String"/>
+	<field name="idcolectivo" class="java.lang.String"/>
+	<field name="nifcif" class="java.lang.String"/>
+	<field name="nombreAsegurado" class="java.lang.String"/>
+	<field name="fase" class="java.lang.Integer"/>
+	<field name="fechaEmisionRecibo" class="java.util.Date"/>
+	<field name="grupoNegocio" class="java.lang.Character"/>
+	<field name="primaComercialNeta" class="java.math.BigDecimal"/>
+	<field name="gdAdmin" class="java.math.BigDecimal"/>
+	<field name="gdAdq" class="java.math.BigDecimal"/>
+	<field name="gdCommedEntidad" class="java.math.BigDecimal"/>
+	<field name="gdComisionMediador" class="java.math.BigDecimal"/>
+	<field name="gaAdmin" class="java.math.BigDecimal"/>
+	<field name="gaAdq" class="java.math.BigDecimal"/>
+	<field name="gaCommedEntidad" class="java.math.BigDecimal"/>
+	<field name="gaComisionMediador" class="java.math.BigDecimal"/>
+	<field name="gpAdmin" class="java.math.BigDecimal"/>
+	<field name="gpAdq" class="java.math.BigDecimal"/>
+	<field name="gpComisionMediador" class="java.math.BigDecimal"/>
+	<field name="gpCommedEntidad" class="java.math.BigDecimal"/>
+	<field name="gpCommedEsmed" class="java.math.BigDecimal"/>
+	<title>
+		<band height="85" splitType="Stretch">
+			<staticText>
+				<reportElement x="-20" y="0" width="1840" height="52" uuid="20c487bb-d307-46e3-93f6-cd3da5700b16"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="20" isBold="true" pdfFontName="Helvetica-Bold"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[LISTADO DE COMISIONES 2015+]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="-20" y="52" width="60" height="20" uuid="7d8013cb-97d9-40f3-9c2f-0d112ff54d9d"/>
+				<box>
+					<topPen lineWidth="0.5" lineStyle="Solid"/>
+					<leftPen lineWidth="0.5" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.5" lineStyle="Solid"/>
+					<rightPen lineWidth="0.5" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Left">
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[E Med]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="40" y="52" width="60" height="20" uuid="a767db50-a3b0-4e55-b5c1-248dd3d28374"/>
+				<box>
+					<topPen lineWidth="0.5" lineStyle="Solid"/>
+					<leftPen lineWidth="0.5" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.5" lineStyle="Solid"/>
+					<rightPen lineWidth="0.5" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Left">
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[S Med]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="100" y="52" width="60" height="20" uuid="80c8f0ec-d626-4b0b-b509-647a0a18d754"/>
+				<box>
+					<topPen lineWidth="0.5" lineStyle="Solid"/>
+					<leftPen lineWidth="0.5" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.5" lineStyle="Solid"/>
+					<rightPen lineWidth="0.5" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Left">
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Oficina]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="160" y="52" width="60" height="20" uuid="ceb39a09-fae8-44fb-965b-19ba69d437ec"/>
+				<box>
+					<topPen lineWidth="0.5" lineStyle="Solid"/>
+					<leftPen lineWidth="0.5" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.5" lineStyle="Solid"/>
+					<rightPen lineWidth="0.5" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Left">
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Plan]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="220" y="52" width="60" height="20" uuid="e562e0b9-5275-47cf-aa3b-f5e2f17a2143"/>
+				<box>
+					<topPen lineWidth="0.5" lineStyle="Solid"/>
+					<leftPen lineWidth="0.5" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.5" lineStyle="Solid"/>
+					<rightPen lineWidth="0.5" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Left">
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Línea]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="280" y="52" width="60" height="20" uuid="e51174d5-c867-4c4d-86c6-81afa4d715da"/>
+				<box>
+					<topPen lineWidth="0.5" lineStyle="Solid"/>
+					<leftPen lineWidth="0.5" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.5" lineStyle="Solid"/>
+					<rightPen lineWidth="0.5" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Left">
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Póliza]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="340" y="52" width="60" height="20" uuid="15bc8dd5-9abc-4b6c-b4a1-cc1c88da24d3"/>
+				<box>
+					<topPen lineWidth="0.5" lineStyle="Solid"/>
+					<leftPen lineWidth="0.5" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.5" lineStyle="Solid"/>
+					<rightPen lineWidth="0.5" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Left">
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[F. Vigor]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="400" y="52" width="70" height="20" uuid="e56a8ff8-46b8-4d0e-976c-0d7182331f01"/>
+				<box>
+					<topPen lineWidth="0.5" lineStyle="Solid"/>
+					<leftPen lineWidth="0.5" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.5" lineStyle="Solid"/>
+					<rightPen lineWidth="0.5" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Left">
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[CIF Tomador]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="470" y="52" width="60" height="20" uuid="cedc0f5c-f8b0-4371-90a5-bf961ec71d61"/>
+				<box>
+					<topPen lineWidth="0.5" lineStyle="Solid"/>
+					<leftPen lineWidth="0.5" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.5" lineStyle="Solid"/>
+					<rightPen lineWidth="0.5" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Left">
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Colectivo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="530" y="52" width="70" height="20" uuid="870a7775-ee87-4cd0-a9ec-216a157cbb3e"/>
+				<box>
+					<topPen lineWidth="0.5" lineStyle="Solid"/>
+					<leftPen lineWidth="0.5" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.5" lineStyle="Solid"/>
+					<rightPen lineWidth="0.5" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Left">
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[NIF Aseg.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="600" y="52" width="250" height="20" uuid="80bc5275-8226-48f0-95e5-09a0dac9d26c"/>
+				<box>
+					<topPen lineWidth="0.5" lineStyle="Solid"/>
+					<leftPen lineWidth="0.5" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.5" lineStyle="Solid"/>
+					<rightPen lineWidth="0.5" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Left">
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Asegurado]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="850" y="52" width="60" height="20" uuid="b27f0339-0db2-49eb-ac06-11a8c06708a2"/>
+				<box>
+					<topPen lineWidth="0.5" lineStyle="Solid"/>
+					<leftPen lineWidth="0.5" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.5" lineStyle="Solid"/>
+					<rightPen lineWidth="0.5" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Left">
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Fase]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="910" y="52" width="70" height="20" uuid="99b32d45-b4d0-484b-956f-fd705ca2b636"/>
+				<box>
+					<topPen lineWidth="0.5" lineStyle="Solid"/>
+					<leftPen lineWidth="0.5" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.5" lineStyle="Solid"/>
+					<rightPen lineWidth="0.5" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Left">
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[F. Emisión]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="980" y="52" width="60" height="20" uuid="0c5b741a-b8ae-421a-a33c-ab807848eb2c"/>
+				<box>
+					<topPen lineWidth="0.5" lineStyle="Solid"/>
+					<leftPen lineWidth="0.5" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.5" lineStyle="Solid"/>
+					<rightPen lineWidth="0.5" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Left">
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[G.N.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1040" y="52" width="60" height="20" uuid="7b762a5e-82a9-47b6-9ec8-3ade5eb23d56"/>
+				<box>
+					<topPen lineWidth="0.5" lineStyle="Solid"/>
+					<leftPen lineWidth="0.5" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.5" lineStyle="Solid"/>
+					<rightPen lineWidth="0.5" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Left">
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[PCN]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1100" y="52" width="60" height="20" uuid="2ec6f03c-f718-41c2-895c-fe1acfe0686d">
+					<printWhenExpression><![CDATA[!$P{PERFIL}.equals("1")]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.5" lineStyle="Solid"/>
+					<leftPen lineWidth="0.5" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.5" lineStyle="Solid"/>
+					<rightPen lineWidth="0.5" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Left">
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Dev Adm]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1160" y="52" width="60" height="20" uuid="34bf041a-f6d2-4858-829d-e64e3fd62aff"/>
+				<box>
+					<topPen lineWidth="0.5" lineStyle="Solid"/>
+					<leftPen lineWidth="0.5" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.5" lineStyle="Solid"/>
+					<rightPen lineWidth="0.5" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Left">
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Dev Adq]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1220" y="52" width="60" height="20" uuid="17a7183d-05a5-4e96-80cd-020de8558db0"/>
+				<box>
+					<topPen lineWidth="0.5" lineStyle="Solid"/>
+					<leftPen lineWidth="0.5" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.5" lineStyle="Solid"/>
+					<rightPen lineWidth="0.5" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Left">
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Dev Ent]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1280" y="52" width="60" height="20" uuid="5b647389-a3ae-4ab7-a3c9-dbb5fb994be2"/>
+				<box>
+					<topPen lineWidth="0.5" lineStyle="Solid"/>
+					<leftPen lineWidth="0.5" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.5" lineStyle="Solid"/>
+					<rightPen lineWidth="0.5" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Left">
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Dev Med]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1340" y="52" width="60" height="20" uuid="fce0136a-6081-4667-9069-17f2336c9f30"/>
+				<box>
+					<topPen lineWidth="0.5" lineStyle="Solid"/>
+					<leftPen lineWidth="0.5" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.5" lineStyle="Solid"/>
+					<rightPen lineWidth="0.5" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Left">
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Abon Adm]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1400" y="52" width="60" height="20" uuid="e24a2280-c633-4f0f-8081-9b70ef03f058"/>
+				<box>
+					<topPen lineWidth="0.5" lineStyle="Solid"/>
+					<leftPen lineWidth="0.5" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.5" lineStyle="Solid"/>
+					<rightPen lineWidth="0.5" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Left">
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Abon Adq]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1460" y="52" width="60" height="20" uuid="4f7f35ab-a7d6-436f-b241-3b34931b29d3"/>
+				<box>
+					<topPen lineWidth="0.5" lineStyle="Solid"/>
+					<leftPen lineWidth="0.5" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.5" lineStyle="Solid"/>
+					<rightPen lineWidth="0.5" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Left">
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Abon Ent]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1520" y="52" width="60" height="20" uuid="a4694971-0a5d-41e2-b8d4-7058bf28937e"/>
+				<box>
+					<topPen lineWidth="0.5" lineStyle="Solid"/>
+					<leftPen lineWidth="0.5" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.5" lineStyle="Solid"/>
+					<rightPen lineWidth="0.5" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Left">
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Abon Med]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1580" y="52" width="60" height="20" uuid="8b560c61-36de-4a14-8feb-6d159e1606d9"/>
+				<box>
+					<topPen lineWidth="0.5" lineStyle="Solid"/>
+					<leftPen lineWidth="0.5" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.5" lineStyle="Solid"/>
+					<rightPen lineWidth="0.5" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Left">
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Pte Adm]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1640" y="52" width="60" height="20" uuid="fe4fb4c3-c49e-4740-b7a3-05ac0aa9b343"/>
+				<box>
+					<topPen lineWidth="0.5" lineStyle="Solid"/>
+					<leftPen lineWidth="0.5" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.5" lineStyle="Solid"/>
+					<rightPen lineWidth="0.5" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Left">
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Pte Adq]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1700" y="52" width="60" height="20" uuid="e9ba315b-5618-4749-94cc-b10bbce9f395"/>
+				<box>
+					<topPen lineWidth="0.5" lineStyle="Solid"/>
+					<leftPen lineWidth="0.5" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.5" lineStyle="Solid"/>
+					<rightPen lineWidth="0.5" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Left">
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Pte Ent]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1760" y="52" width="60" height="20" uuid="1d6cb150-f766-4155-ad4d-4a3787be3867"/>
+				<box>
+					<topPen lineWidth="0.5" lineStyle="Solid"/>
+					<leftPen lineWidth="0.5" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.5" lineStyle="Solid"/>
+					<rightPen lineWidth="0.5" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Left">
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Pte Med]]></text>
+			</staticText>
+		</band>
+	</title>
+	<detail>
+		<band height="25" splitType="Stretch">
+			<textField>
+				<reportElement x="-20" y="0" width="60" height="20" uuid="8e42f89f-db59-49f8-b151-c7e7be29cfd5"/>
+				<box>
+					<topPen lineWidth="0.5" lineStyle="Solid"/>
+					<leftPen lineWidth="0.5" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.5" lineStyle="Solid"/>
+					<rightPen lineWidth="0.5" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Left">
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{entmediadora}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="40" y="0" width="60" height="20" uuid="4b55af57-645a-4c89-bd9b-7da28b3d3542"/>
+				<box>
+					<topPen lineWidth="0.5" lineStyle="Solid"/>
+					<leftPen lineWidth="0.5" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.5" lineStyle="Solid"/>
+					<rightPen lineWidth="0.5" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Left">
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{subentmediadora}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="100" y="0" width="60" height="20" uuid="7e7b587d-3914-4b19-8938-b601496d20b8"/>
+				<box>
+					<topPen lineWidth="0.5" lineStyle="Solid"/>
+					<leftPen lineWidth="0.5" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.5" lineStyle="Solid"/>
+					<rightPen lineWidth="0.5" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Left">
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{PERFIL}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="160" y="0" width="60" height="20" uuid="4c9033b7-331f-4397-9041-95170b9ded07"/>
+				<box>
+					<topPen lineWidth="0.5" lineStyle="Solid"/>
+					<leftPen lineWidth="0.5" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.5" lineStyle="Solid"/>
+					<rightPen lineWidth="0.5" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Left">
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{plan}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="220" y="0" width="60" height="20" uuid="1bbfaee0-ff43-4a44-9d15-bea5c8ca5709"/>
+				<box>
+					<topPen lineWidth="0.5" lineStyle="Solid"/>
+					<leftPen lineWidth="0.5" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.5" lineStyle="Solid"/>
+					<rightPen lineWidth="0.5" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Left">
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{linea}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="280" y="0" width="60" height="20" uuid="be387e4e-082e-4b6e-a579-7b647c238c67"/>
+				<box>
+					<topPen lineWidth="0.5" lineStyle="Solid"/>
+					<leftPen lineWidth="0.5" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.5" lineStyle="Solid"/>
+					<rightPen lineWidth="0.5" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Left">
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{referencia}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="340" y="0" width="60" height="20" uuid="8a671818-fd5e-4f22-908b-e34ffead3d68"/>
+				<box>
+					<topPen lineWidth="0.5" lineStyle="Solid"/>
+					<leftPen lineWidth="0.5" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.5" lineStyle="Solid"/>
+					<rightPen lineWidth="0.5" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Left">
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.text.SimpleDateFormat("dd/MM/yyyy").format($F{fechaVigor})]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="400" y="0" width="70" height="20" uuid="223d1a00-572d-4f17-8917-cd062cbb1767"/>
+				<box>
+					<topPen lineWidth="0.5" lineStyle="Solid"/>
+					<leftPen lineWidth="0.5" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.5" lineStyle="Solid"/>
+					<rightPen lineWidth="0.5" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Left">
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ciftomador}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="470" y="0" width="60" height="20" uuid="a8c860de-af96-4c6b-9e01-f565a6d1553f"/>
+				<box>
+					<topPen lineWidth="0.5" lineStyle="Solid"/>
+					<leftPen lineWidth="0.5" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.5" lineStyle="Solid"/>
+					<rightPen lineWidth="0.5" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Left">
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{idcolectivo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="530" y="0" width="70" height="20" uuid="290021d6-f55d-4ffb-bb37-29951a92e3f7"/>
+				<box>
+					<topPen lineWidth="0.5" lineStyle="Solid"/>
+					<leftPen lineWidth="0.5" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.5" lineStyle="Solid"/>
+					<rightPen lineWidth="0.5" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Left">
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nifcif}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="600" y="0" width="250" height="20" uuid="cee7baec-5f2f-4009-abbc-5181ccddd3e3"/>
+				<box>
+					<topPen lineWidth="0.5" lineStyle="Solid"/>
+					<leftPen lineWidth="0.5" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.5" lineStyle="Solid"/>
+					<rightPen lineWidth="0.5" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Left">
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nombreAsegurado}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="850" y="0" width="60" height="20" uuid="57cf8b59-33d8-4a05-97e7-3c51003f5383"/>
+				<box>
+					<topPen lineWidth="0.5" lineStyle="Solid"/>
+					<leftPen lineWidth="0.5" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.5" lineStyle="Solid"/>
+					<rightPen lineWidth="0.5" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Left">
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{fase}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="910" y="0" width="70" height="20" uuid="51d3b1dd-dec3-4a60-903b-57a9c8312bfe"/>
+				<box>
+					<topPen lineWidth="0.5" lineStyle="Solid"/>
+					<leftPen lineWidth="0.5" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.5" lineStyle="Solid"/>
+					<rightPen lineWidth="0.5" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Left">
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.text.SimpleDateFormat("dd/MM/yyyy").format($F{fechaEmisionRecibo})]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="980" y="0" width="60" height="20" uuid="a48ce4b5-8268-47e4-a0e3-849834b1e0df"/>
+				<box>
+					<topPen lineWidth="0.5" lineStyle="Solid"/>
+					<leftPen lineWidth="0.5" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.5" lineStyle="Solid"/>
+					<rightPen lineWidth="0.5" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Left">
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{grupoNegocio}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="1040" y="0" width="60" height="20" uuid="fac12dd8-9370-4a6c-b2a8-90c492339368"/>
+				<box>
+					<topPen lineWidth="0.5" lineStyle="Solid"/>
+					<leftPen lineWidth="0.5" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.5" lineStyle="Solid"/>
+					<rightPen lineWidth="0.5" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Left">
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{primaComercialNeta}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="1100" y="0" width="60" height="20" uuid="d44f5e58-3397-4022-bce9-55397555b932">
+					<printWhenExpression><![CDATA[!$P{PERFIL}.equals("1")]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.5" lineStyle="Solid"/>
+					<leftPen lineWidth="0.5" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.5" lineStyle="Solid"/>
+					<rightPen lineWidth="0.5" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Right">
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{PERFIL}.equals("1") ? 0 : $F{gdAdmin}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="1160" y="0" width="60" height="20" uuid="850d80fa-49ec-4666-91ba-bdb087685a6d"/>
+				<box>
+					<topPen lineWidth="0.5" lineStyle="Solid"/>
+					<leftPen lineWidth="0.5" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.5" lineStyle="Solid"/>
+					<rightPen lineWidth="0.5" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Right">
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{gdAdq}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="1220" y="0" width="60" height="20" uuid="a00093fa-ba32-41a7-bdb8-6e73eff34255"/>
+				<box>
+					<topPen lineWidth="0.5" lineStyle="Solid"/>
+					<leftPen lineWidth="0.5" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.5" lineStyle="Solid"/>
+					<rightPen lineWidth="0.5" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Right">
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{gdCommedEntidad}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="1280" y="0" width="60" height="20" uuid="3e89b053-a96b-48a0-b3ad-f4c09784e4e4"/>
+				<box>
+					<topPen lineWidth="0.5" lineStyle="Solid"/>
+					<leftPen lineWidth="0.5" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.5" lineStyle="Solid"/>
+					<rightPen lineWidth="0.5" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Right">
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{gdComisionMediador}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="1340" y="0" width="60" height="20" uuid="dcc1e138-59b3-4cdd-94c2-4ec155788126"/>
+				<box>
+					<topPen lineWidth="0.5" lineStyle="Solid"/>
+					<leftPen lineWidth="0.5" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.5" lineStyle="Solid"/>
+					<rightPen lineWidth="0.5" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Right">
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{PERFIL} == "1" ? 0 : $F{gaAdmin}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="1400" y="0" width="60" height="20" uuid="1ce37cdb-007e-4b30-bbd1-fa942cf97685"/>
+				<box>
+					<topPen lineWidth="0.5" lineStyle="Solid"/>
+					<leftPen lineWidth="0.5" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.5" lineStyle="Solid"/>
+					<rightPen lineWidth="0.5" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Right">
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{gaAdq}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="1460" y="0" width="60" height="20" uuid="82c4b22e-7d49-4003-bfaf-1f4145722a3d"/>
+				<box>
+					<topPen lineWidth="0.5" lineStyle="Solid"/>
+					<leftPen lineWidth="0.5" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.5" lineStyle="Solid"/>
+					<rightPen lineWidth="0.5" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Right">
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{gaCommedEntidad}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="1520" y="0" width="60" height="20" uuid="12bde976-a5a9-4dd4-be04-03cbcfd32331"/>
+				<box>
+					<topPen lineWidth="0.5" lineStyle="Solid"/>
+					<leftPen lineWidth="0.5" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.5" lineStyle="Solid"/>
+					<rightPen lineWidth="0.5" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Right">
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{gaComisionMediador}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="1580" y="0" width="60" height="20" uuid="451c45d7-8780-4a6c-bf3a-89738f55c888"/>
+				<box>
+					<topPen lineWidth="0.5" lineStyle="Solid"/>
+					<leftPen lineWidth="0.5" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.5" lineStyle="Solid"/>
+					<rightPen lineWidth="0.5" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Right">
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{PERFIL} == "1" ? 0 : $F{gpAdmin}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="1640" y="0" width="60" height="20" uuid="de39324d-a792-4c75-8f7a-5e63c3bce9fb"/>
+				<box>
+					<topPen lineWidth="0.5" lineStyle="Solid"/>
+					<leftPen lineWidth="0.5" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.5" lineStyle="Solid"/>
+					<rightPen lineWidth="0.5" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Right">
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{gpAdq}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="1700" y="0" width="60" height="20" uuid="cb72d278-b433-4507-bbf1-604c9b635123"/>
+				<box>
+					<topPen lineWidth="0.5" lineStyle="Solid"/>
+					<leftPen lineWidth="0.5" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.5" lineStyle="Solid"/>
+					<rightPen lineWidth="0.5" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Right">
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{gpCommedEntidad}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="1760" y="0" width="60" height="20" uuid="3cdff3dd-393c-48ec-b744-106a3cca02a4"/>
+				<box>
+					<topPen lineWidth="0.5" lineStyle="Solid"/>
+					<leftPen lineWidth="0.5" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.5" lineStyle="Solid"/>
+					<rightPen lineWidth="0.5" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Right">
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{gpCommedEsmed}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

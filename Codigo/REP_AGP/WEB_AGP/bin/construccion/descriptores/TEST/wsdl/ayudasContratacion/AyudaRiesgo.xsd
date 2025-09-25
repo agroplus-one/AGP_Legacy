@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<x:schema xmlns:x="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.agroseguro.es/SeguroAgrario/Contratacion/AyudaRiesgo" xmlns="http://www.agroseguro.es/SeguroAgrario/Contratacion/AyudaRiesgo" xmlns:ti="http://www.agroseguro.es/Tipos">
+
+	<x:import namespace="http://www.agroseguro.es/Tipos" schemaLocation="Tipos.xsd"/>
+
+	<x:element name="Riesgos" type="Riesgos"/>
+	
+	<x:complexType name="Riesgos">
+		<x:sequence>
+			<x:element maxOccurs="unbounded" minOccurs="1" name="Riesgo" type="Riesgo"/>			
+		</x:sequence>
+		<x:attribute name="tipoSeguro" type="x:string" use="required"/>
+	</x:complexType>
+
+	<x:complexType name="Riesgo">	
+    	<x:attribute name="codigoRiesgo" type="ti:Motivo_Codigo" use="required"/>
+    	<x:attribute name="descripcion" type="ti:Motivo_Descripcion" use="required"/>
+    </x:complexType>
+
+</x:schema>

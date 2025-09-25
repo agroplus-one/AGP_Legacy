@@ -1,0 +1,318 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="ContratacionSCModificacion" 
+	targetNamespace="http://www.agroseguro.es/serviciosWeb/ContratacionSCModificacion/" 
+	xmlns:agr="http://www.agroseguro.es/serviciosWeb/ContratacionSCModificacion/" 
+	xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" 
+	xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" 
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	xmlns:xmime="http://www.w3.org/2005/05/xmlmime"
+	xmlns:ti="http://www.agroseguro.es/Tipos"
+	xmlns:cupon="http://www.agroseguro.es/SeguroAgrario/CuponModificacion"
+  xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd"
+	xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd">                
+                  
+  <wsdl:types>
+    <xsd:schema elementFormDefault="qualified"
+    	targetNamespace="http://www.agroseguro.es/serviciosWeb/ContratacionSCModificacion/"
+    	xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	  <xsd:import namespace="http://www.w3.org/2005/05/xmlmime" schemaLocation="xmime.xsd" />
+	  <xsd:import namespace="http://www.agroseguro.es/Tipos" schemaLocation="Tipos.xsd" />
+    <xsd:import	namespace="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd"
+				schemaLocation="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd" />
+	  <xsd:import namespace="http://www.agroseguro.es/SeguroAgrario/CuponModificacion" schemaLocation="CuponModificacion.xsd" />
+      <xsd:element name="consultarContratacionRequest">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="plan" type="ti:Plan" />
+			<xsd:element name="referencia" type="ti:Poliza_Referencia" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+	  
+      <xsd:element name="consultarContratacionResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+			<xsd:element name="polizaPrincipal" xmime:expectedContentTypes="text/xml" type="xmime:base64Binary" />
+			<xsd:element name="polizaComplementaria" xmime:expectedContentTypes="text/xml" type="xmime:base64Binary" />
+			<xsd:element name="estadoContratacion" xmime:expectedContentTypes="text/xml" type="xmime:base64Binary" />
+		  </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>	
+ 
+	  <xsd:element name="solicitudModificacionRequest">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="plan" type="ti:Plan" />
+			<xsd:element name="referencia" type="ti:Poliza_Referencia" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      
+	  <xsd:element name="solicitudModificacionResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+			<xsd:element name="polizaPrincipal" xmime:expectedContentTypes="text/xml" type="xmime:base64Binary" />
+			<xsd:element name="polizaComplementaria" xmime:expectedContentTypes="text/xml" type="xmime:base64Binary" />
+			<xsd:element name="estadoContratacion" xmime:expectedContentTypes="text/xml" type="xmime:base64Binary" />
+			<xsd:element name="cuponModificacion" xmime:expectedContentTypes="text/xml" type="xmime:base64Binary" />
+			</xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>	
+	  
+	  <xsd:element name="envioModificacionRequest">
+        <xsd:complexType>
+          <xsd:sequence>
+			<xsd:element name="cuponModificacion" type="cupon:idCupon" />
+			<xsd:element name="forzarRevisionAdministrativa" type="xsd:boolean" />
+			<xsd:element name="polizaPrincipal" xmime:expectedContentTypes="text/xml" type="xmime:base64Binary" nillable="true" minOccurs="0"/>
+			<xsd:element name="polizaComplementaria" xmime:expectedContentTypes="text/xml" type="xmime:base64Binary" nillable="true" minOccurs="0"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      
+	  <xsd:element name="envioModificacionResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+				<xsd:element name="acuse" xmime:expectedContentTypes="text/xml" type="xmime:base64Binary" />
+			</xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>	
+
+	  <xsd:element name="anulacionCuponRequest">
+        <xsd:complexType>
+          <xsd:sequence>
+			<xsd:element name="cuponModificacion" type="cupon:idCupon" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      
+	  <xsd:element name="anulacionCuponResponse">
+        <xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="respuesta" type="xsd:string" />
+			</xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>	
+	
+      <xsd:element name="agrFallo"
+				xmlns:agr="http://www.agroseguro.es/serviciosWeb/ContratacionSCModificacion/">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:annotation>
+					Lista de mensajes de error de AGROSEGURO
+				</xsd:annotation>
+				<xsd:element name="error" type="agr:Error" maxOccurs="unbounded" minOccurs="0" />
+			</xsd:sequence>
+		</xsd:complexType>
+	  </xsd:element>
+	  <xsd:complexType name="Error"
+		xmlns:agr="http://www.agroseguro.es/serviciosWeb/ContratacionSCModificacion/">
+		<xsd:sequence>
+			<xsd:element name="codigo" type="xsd:int" />
+			<xsd:element name="mensaje" type="xsd:string" />
+		</xsd:sequence>
+	  </xsd:complexType>
+    </xsd:schema>
+  </wsdl:types>
+  
+  <wsdl:message name="Header">
+    <wsdl:part name="Security" element="wsse:Security" />
+  </wsdl:message>
+
+  
+  <wsdl:message name="AgrException">
+		<wsdl:part name="parameters" element="agr:agrFallo"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="consultarContratacionRequest">
+		<wsdl:part name="parameters" element="agr:consultarContratacionRequest"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="consultarContratacionResponse">
+		<wsdl:part name="parameters" element="agr:consultarContratacionResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="solicitudModificacionRequest">
+		<wsdl:part name="parameters" element="agr:solicitudModificacionRequest"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="solicitudModificacionResponse">
+		<wsdl:part name="parameters" element="agr:solicitudModificacionResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="envioModificacionRequest">
+		<wsdl:part name="parameters" element="agr:envioModificacionRequest"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="envioModificacionResponse">
+		<wsdl:part name="parameters" element="agr:envioModificacionResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="anulacionCuponRequest">
+		<wsdl:part name="parameters" element="agr:anulacionCuponRequest"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="anulacionCuponResponse">
+		<wsdl:part name="parameters" element="agr:anulacionCuponResponse"></wsdl:part>
+  </wsdl:message>
+  
+  <wsdl:portType name="ContratacionSCModificacion">
+    <wsdl:operation name="consultarContratacion">
+      <wsdl:documentation>
+				Operación de Consulta de la Contratación: 
+				
+				Este servicio devuelve cómo se encuentra la contratación en el momento de realizar la petición. 
+				Para ello se devuelve una respuesta con la póliza principal, la complementaria si existiera y 
+				un documento informando sobre el estado de ambos documentos. 
+
+				Parámetros de entrada:
+
+				•	Plan: numérico de 4 posiciones. Obligatorio
+				•	Referencia de póliza: alfanumérico de 7 posiciones. Obligatorio
+
+				Se devolverá la siguiente información :
+				
+				•	XML Póliza principal: Especificado por el esquema ContratacionSeguroAgrario.xsd
+				•	XML Póliza complementaria: Sólo si existe seguro complementario. Especificado por el esquema ContratacionSeguroAgrarioComplementario.xsd
+				•	XML Estado de la contratación: Especificado por el esquema EstadoContratacion.xsd.  
+				
+				- Si por algún motivo no se ha podido recuperar la contratación, o se produce un error en el servicio, se devuelve un error mediante el mecanismo SOAPFault 
+				y no se genera ningún adjunto XML.
+					
+	  </wsdl:documentation>
+      <wsdl:input message="agr:consultarContratacionRequest" />
+	  <wsdl:output message="agr:consultarContratacionResponse" />
+	  <wsdl:fault name="AgrException" message="agr:AgrException" />
+    </wsdl:operation>
+    <wsdl:operation name="solicitudModificacion">
+      <wsdl:documentation>
+				Operación de solicitud de Modificación de la Contratación (cupón): 
+				
+				Este servicio primero comprueba si es posible realizar una modificación sobre la contratación indicada. 
+				Seguidamente bloquea dicha contratación para evitar que la contratación varíe mientras la modificación solicitada está en curso, 
+				y procede a devolver una imagen de la contratación en el momento de realizar la petición acompañada de un identificador de modificación (cupón).
+				
+				El cupón de modificación y por tanto el bloqueo de la contratación, se mantendrá activo hasta las doce de la noche del día actual o hasta 
+				que se anule expresamente dicho cupón, mediante el servicio de anulación de cupones.
+
+				Parámetros de entrada: 
+
+				•	Plan: numérico de 4 posiciones. Obligatorio
+				•	Referencia de póliza: alfanumérico de 7 posiciones. Obligatorio
+
+				Se devolverá la siguiente información :
+				
+				•	XML Cupón de modificación: Especificado por el esquema CuponModificacion.xsd. 
+				•	XML Póliza principal: Especificado por el esquema ContratacionSeguroAgrario.xsd
+				•	XML Póliza complementaria: Sólo si existe seguro complementario. Especificado por el esquema ContratacionSeguroAgrarioComplementario.xsd
+				•	XML Estado de la contratación: Especificado por el esquema EstadoContratacion.xsd.  
+
+				- Si por algún motivo no se ha podido recuperar la contratación, o se produce un error en el servicio, se devuelve un error mediante el mecanismo SOAPFault 
+				y no se genera ningún adjunto XML.
+
+	  </wsdl:documentation>
+	  <wsdl:input message="agr:solicitudModificacionRequest" />
+	  <wsdl:output message="agr:solicitudModificacionResponse" />
+	  <wsdl:fault name="AgrException" message="agr:AgrException" />
+	</wsdl:operation>
+    <wsdl:operation name="envioModificacion">
+      <wsdl:documentation>
+				Operación de envío de la Modificación de la Contratación: 
+				
+				Este servicio sirve para enviar los cambios sobre los documentos de contratación que previamente se solicitaron con el servicio de solicitud de cupones.
+				Solo están soportados cambios en los datos relativos  a las subvenciones declarables y las parcelas, y no se gestionan cambios en los documentos de seguro complementario.
+
+				Parámetros de entrada:
+
+				•	Cupón: alfanumérico de 14 posiciones. Obligatorio
+				•	Forzar revisión administrativa: boolean (true/false). Obligatorio
+				•	XML Póliza principal: Especificado por el esquema ContratacionSeguroAgrario.xsd
+				•	XML Póliza complementaria: Especificado por el esquema ContratacionSeguroAgrarioComplementario.xsd
+
+				Se devolverá la siguiente información :
+				
+				•	XML de acuse de recibo: AcuseRecibo.xsd 
+				
+				- Si se produce un error en el servicio, se devuelve un error mediante el mecanismo SOAPFault 
+				
+	  </wsdl:documentation>
+      <wsdl:input message="agr:envioModificacionRequest" />
+	  <wsdl:output message="agr:envioModificacionResponse" />
+	  <wsdl:fault name="AgrException" message="agr:AgrException" />
+    </wsdl:operation>	
+    <wsdl:operation name="anulacionCupon">
+      <wsdl:documentation>
+				Operación de anulación de cupón: 
+				
+				Este servicio permite anular el cupón obtenido en una petición previa de solicitud de modificación. 
+
+				Parámetros de entrada:
+
+				•	Cupón: alfanumérico de 14 posiciones. Obligatorio
+				
+				Se devolverá la siguiente información :
+				
+				•	parámetro indicando el cupón ha sido anulado o error mediante el mecanismo SOAPFault indicando que el cupón no se ha podido anular 
+
+	  </wsdl:documentation>
+      <wsdl:input message="agr:anulacionCuponRequest" />
+	  <wsdl:output message="agr:anulacionCuponResponse" />
+	  <wsdl:fault name="AgrException" message="agr:AgrException" />
+    </wsdl:operation>		
+  </wsdl:portType>
+  <wsdl:binding name="ContratacionSCModificacionSOAP" type="agr:ContratacionSCModificacion">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="consultarContratacion">
+      <soap:operation soapAction="consultarContratacion"/>
+      <wsdl:input>
+         <soap:header wsdl:required="true" message="agr:Header" part="Security" use="literal" />
+         <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output><soap:body use="literal"/></wsdl:output>
+      <wsdl:fault name="AgrException"><soap:fault name="AgrException" use="literal" /></wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="solicitudModificacion">
+      <soap:operation soapAction="solicitudModificacion"/>
+      <wsdl:input>
+         <soap:header wsdl:required="true" message="agr:Header" part="Security" use="literal" />
+         <soap:body use="literal" />
+    </wsdl:input>
+      <wsdl:output><soap:body use="literal"/></wsdl:output>
+      <wsdl:fault name="AgrException"><soap:fault name="AgrException" use="literal" /></wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="envioModificacion">
+      <soap:operation soapAction="envioModificacion"/>
+      <wsdl:input>
+         <soap:header wsdl:required="true" message="agr:Header" part="Security" use="literal" />
+         <soap:body use="literal" />
+       </wsdl:input>
+      <wsdl:output><soap:body use="literal"/></wsdl:output>
+      <wsdl:fault name="AgrException"><soap:fault name="AgrException" use="literal" /></wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="anulacionCupon">
+      <soap:operation soapAction="anulacionCupon"/>
+      <wsdl:input>
+         <soap:header wsdl:required="true" message="agr:Header" part="Security" use="literal" />
+         <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output><soap:body use="literal"/></wsdl:output>
+      <wsdl:fault name="AgrException"><soap:fault name="AgrException" use="literal" /></wsdl:fault>
+    </wsdl:operation>
+	
+  </wsdl:binding>
+  <wsdl:service name="ContratacionSCModificacion">
+    <wsdl:documentation>
+			Mediante este proceso tramitar vía Internet una modificación de la contratación (solicitud de modificación y envío de la misma), 
+			así como varias funcionalidades de apoyo en dicho trámite, como la consulta de la contratación, la anulación de la modificación 
+			o la consulta del estado de la última modificación.
+
+			La información se devolverá dentro de archivos XML enviados como
+			Adjunto (Attachment) en formato MTOM.
+	</wsdl:documentation>
+    <wsdl:port binding="agr:ContratacionSCModificacionSOAP" 
+    		name="ContratacionSCModificacionSOAP">
+      <wsdl:documentation>
+				La primera dirección es el entorno de pruebas y no tiene
+				una resolución asignada en Internet, por lo que se deberá
+				incluir en la máquina local o en el servidor de nombres
+				local con la siguiente dirección: preproduccion.agroseguro.es
+				
+				La segunda dirección es el entorno de producción.
+	  </wsdl:documentation>
+	  <soap:address
+				location="https://preproduccion.agroseguro.es/cscm/V1R1/services/ContratacionSCModificacion" />	  
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

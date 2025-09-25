@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="declaracionSeguro_notaInfo_CRM" pageWidth="555" pageHeight="700" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" isIgnorePagination="true">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString language="SQL">
+		<![CDATA[]]>
+	</queryString>
+	<variable name="SHOW_FOOT" class="java.lang.Boolean" resetType="None">
+		<variableExpression><![CDATA[new Boolean(false)]]></variableExpression>
+		<initialValueExpression><![CDATA[]]></initialValueExpression>
+	</variable>
+	<variable name="SHOW_BACK" class="java.lang.Boolean" resetType="None">
+		<variableExpression><![CDATA[new Boolean(false)]]></variableExpression>
+		<initialValueExpression><![CDATA[]]></initialValueExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="626" splitType="Stretch">
+			<staticText>
+				<reportElement x="28" y="14" width="492" height="27"/>
+				<textElement textAlignment="Center">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[NOTA INFORMATIVA PREVIA A LA CELEBRACIÓN DE UN CONTRATO DE SEGURO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="28" y="52" width="492" height="574"/>
+				<textElement textAlignment="Justified">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[1. Identidad y dirección del mediador: CAJAMAR INTERMEDIADORA Operador de Banca-Seguros Vinculado, S.L.U., Pl. de Barcelona, 5. 04006 Almería.
+
+2. Registro en el que está inscrito el mediador: Registro administrativo especial de mediadores de seguros, corredores de reaseguros y de sus altos cargos de la Dirección General de Seguros y Fondos de Pensiones (DGSyFP) con la clave OV-0014. Dicha circunstancia se puede comprobar en el domicilio de la DGSyFP (Paseo de la Castellana, nº 44, 28046 - MADRID) y en la página Web de este organismo, sita en: http://www.dgsfp.meh.es
+
+3. Participación en el capital o en los derechos de voto de una aseguradora: CAJAMAR INTERMEDIADORA O.B.S.V., S.L. no tiene participación directa ni indirecta superior al 10% en el capital social o en los derechos de voto en una entidad aseguradora determinada. Su matriz y Socia Única, Cajamar Caja Rural, Sociedad Cooperativa de Crédito, es una Entidad Financiera, inscrita en el Registro Especial del Banco de España con el número de codificación 3058. Dicha Entidad es titular del 50% del capital social de dos compañías aseguradoras: Cajamar Vida, SA de Seguros y Reaseguros y Cajamar Seguros
+Generales, SA de Seguros y Reaseguros.
+
+4. Participación de una aseguradora en los derechos de voto o en el capital de CAJAMAR INTERMEDIADORA O.B.S.V., S.L.: No hay ninguna aseguradora que tenga participación directa ni indirecta superior al 10% en el capital o en los derechos de voto de CAJAMAR INTERMEDIADORA O.B.S.V., S.L.
+
+5. Procedimientos que permiten presentar quejas sobre CAJAMAR INTERMEDIADORA O.B.S.V., S.L. y procedimientos de resolución extrajudiciales, en su caso:
+a) Presentación de quejas o reclamaciones ante el departamento y servicio de atención al cliente de la entidad aseguradora, en relación con la actuación de CAJAMAR INTERMEDIADORA Op erador de Banca-Seguros Vinculado, S.L. La entidad aseguradora podrá designar también un defensor del cliente para la resolución de quejas y reclamaciones que se sometan a su decisión.
+Las quejas o reclamaciones deben dirigirse por escrito al domicilio social de la aseguradora.
+La decisión del defensor del cliente favorable a la reclamación vinculará a la entidad aseguradora, sin que dicha vinculación sea obstáculo a la plenitud de la tutela judicial, al recurso a otros mecanismos de solución de conflictos (arbitraje de consumo, regulado por el RD 231/2008, en caso de que la aseguradora se hubiera adherido al Sistema Arbitral de Consumo, o arbitraje, regulado por la ley 60/2003, en caso de existencia de pacto arbitral) ni a la protección administrativa.
+b) Presentación de quejas o reclamaciones ante el Servicio de Atención al Cliente de CAJAMAR INTERMEDIADORA Operador de Banca-Seguros Vinculado, S.L. Esta sociedad está adherida al Servicio de Atención al Cliente del Grupo CAJAMAR CAJA RURAL, Sociedad Cooperativa de Crédito. Las quejas o reclamaciones deberán ser presentadas por escrito en la sede social de CAJAMAR INTERMEDIADORA Operador de Banca-Seguros Vinculado, S.L., en cualquier oficina abierta al público del Grupo Cajamar Caja Rural, S.C.C.
+c) Presentación de quejas o reclamaciones por escrito ante el Servicio de Reclamaciones de la Dirección General de Seguros y Fondos de Pensiones (Pº Castellana, 44, 28046 Madrid) conforme al procedimiento establecido en la normativa sobre protección del cliente de los servicios financieros. Para su admisión es imprescindible acreditar que se ha formulado previamente la queja o reclamación, por escrito, ante cualquiera de las instancias descritas en los apartados anteriores y que la tramitación de la misma se encuentra en alguna de las siguientes situaciones: 1) que la respuesta haya sido negativa, 2) que no
+se haya admitido a trámite la queja o reclamación, o 3) que haya transcurrido el plazo de dos meses desde su presentación ante cualquiera de las instancias antes mencionadas sin que hubiera sido resuelta.
+
+6. Tratamiento de los datos de carácter personal del cliente: Los datos facilitados con motivo de la solicitud se incorporarán a un fichero cuyo responsable es la entidad aseguradora y se tratarán para el estudio de la solicitud del contrato de seguro, siendo necesario facilitarlos para formalizarla. El titular de los datos puede ejercitar sus derechos de acceso, rectificación, cancelación y oposición ante la entidad aseguradora, cuya denominación y domicilio figuran en la documentación que se entrega al titular.
+
+7. Análisis objetivo: CAJAMAR INTERMEDIADORA Operador de Banca-Seguros Vinculado, S.L. no está contractualmente obligada a realizar actividades de mediación en seguros exclusivamente con una o varias entidades aseguradoras, no facilitando asesoramiento con arreglo a la obligación de llevar a cabo un análisis objetivo que se impone a los corredores de seguros. El cliente tiene derecho a solicitar información sobre las entidades aseguradoras para las que CAJAMAR INTERMEDIADORA Operador de Banca-Seguros Vinculado, S.L. realiza la mediación.
+
+8. Asesoramiento sobre contratación de un seguro: El asesoramiento prestado se facilita con la finalidad de contratar un seguro y no cualquier otro producto que pudiera comercializar la entidad de crédito.]]></text>
+			</staticText>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

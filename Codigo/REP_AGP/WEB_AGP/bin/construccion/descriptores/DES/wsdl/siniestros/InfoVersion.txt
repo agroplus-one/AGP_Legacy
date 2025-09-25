@@ -1,0 +1,61 @@
+SINIESTROSSCDECLARACION
+-----------------------
+
+archivo	                    			namespace                      				version
+--------------------------------------  ---------------------------------------  	----------
+- DeclaracionSiniestros.xsd             SeguroAgrario/Siniestros          			7.0
+- DatosVariablesDS.xsd                  SeguroAgrario/Siniestros/DatosVariablesDS   4.0
+- Tipos.xsd             		        Tipos			 							18.0
+- xmime.xsd								http://www.w3.org/2005/05/xmlmime
+- policy.xml
+- AcuseRecibo.xsd
+
+
+DESCRIPCION DE LOS FICHEROS
+---------------------------
+
+- SiniestrosSCDeclaracion.wsdl
+Descriptor del servicio Web que permite validar y confirmar un siniestro sobre una línea
+de Seguro Creciente agríaola, sin especificación de seguridad.
+Pensado para manejar la seguridad delegando en los módulos de seguridad
+de los lenguajes de programación a través de políticas de aserciones.
+
+- policy.xml
+Política de seguridad según especificación WS-SecurityPolicy con UsernameToken
+de Oasis.
+
+- SiniestrosSCDeclaracion_con_cabeceras_seguridad.wsdl
+Descriptor del servicio Web que permite validar y confirmar un siniestro sobre una línea
+de Seguro Creciente agríaola, con cabecera de seguridad WS-Security, para
+manejar la seguridad a través de los bindings de XML generados en cada lenguaje
+de programación.
+
+- DeclaracionSiniestros.xsd 
+Esquema entrante de validación del documento declaración de siniestro.
+
+- DatosVariablesDS.xsd
+Esquema que contiene las definiciones de los datos variables del siniestro
+
+- Tipos.xsd
+Esquema que contiene el diccionario de tipos común de Agroseguro.
+
+- xmime.xsd
+Esquema de validación de tipos XMLMIME de W3C
+
+-policy.xml
+
+1.0.2 : 17-04-2018.
+-------------------------------------------------------------------------------------------
+- DeclaracionSiniestros.xsd
+Se añaden nuevos datos opcionales. Datos de contacto del asegurado(email y telefonoMovil)
+
+1.0.1 : 29-12-2014.
+-------------------------------------------------------------------------------------------
+- Tipos.xsd
+Se admiten las provincias Ceuta y Melilla en la dirección del asegurado y persona de contacto.
+
+
+1.0.0 : 16-07-2013.
+-------------------------------------------------------------------------------------------
+
+Versión inicial.

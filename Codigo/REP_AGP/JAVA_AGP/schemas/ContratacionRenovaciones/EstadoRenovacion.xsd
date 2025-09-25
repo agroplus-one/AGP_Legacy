@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<x:schema 
+	targetNamespace="http://www.agroseguro.es/EstadoRenovacion"
+	xmlns="http://www.agroseguro.es/EstadoRenovacion"
+	xmlns:pks="http://www.agroseguro.es/EstadoRenovacion"
+	xmlns:x="http://www.w3.org/2001/XMLSchema"
+	xmlns:ti="http://www.agroseguro.es/ITipos" 
+	>
+	
+	<x:import
+		namespace="http://www.agroseguro.es/ITipos"
+		schemaLocation="../commons/Tipos.xsd" />
+
+	<x:element name="EstadoRenovacion" type="EstadoRenovacion" />
+	
+	<x:complexType name="EstadoRenovacion" >
+		<x:sequence>
+			<x:element name="Renovacion" type="Renovacion" minOccurs="1" maxOccurs="1" />
+		</x:sequence>
+		<x:attribute name="plan" type="ti:Plan" use="required" />
+		<x:attribute name="referencia" type="ti:Poliza_Referencia_Unificada" use="required" />
+		<x:attributeGroup ref="ti:PeticionSW" />
+	</x:complexType>
+	
+	<x:complexType name="Renovacion">
+        <x:sequence>
+			<x:element name="Gastos" type="ti:Gastos" minOccurs="0" maxOccurs="unbounded" />
+			<x:element name="GastosAplicados" type="GastosPctImp" minOccurs="0" maxOccurs="unbounded" />
+			<x:element name="CosteGrupoNegocio" type="GrupoNegocioPrimas" minOccurs="0" maxOccurs="unbounded" />
+			<x:element name="Fraccionamiento" type="Fraccionamiento" minOccurs="0" maxOccurs="1" />
+        </x:sequence>
+		<x:attribute name="plan" type="ti:Plan" use="required" />
+		<x:attribute name="linea" type="ti:Linea_Codigo" use="required" />
+		<x:attribute name="referencia" type="ti:Poliza_Referencia_Unificada" use="required" />
+		<x:attribute name="digitoControl" type="ti:DigitoControl" use="required"/>
+		<x:attribute name="nifTomador" type="ti:NIFCIF" use="optional" />
+		<x:attribute name="nombreTomador" type="DenominacionTomador" use="optional" />
+		<x:attribute name="colectivo" type="ti:Colectivo_Referencia" use="optional" />
+		<x:attribute name="mediador" type="ti:CodigoInternoEntidad" use="optional" />
+		<x:attribute name="nifAsegurado" type="ti:NIFCIF" use="required" />
+		<x:attribute name="fechaRenovacion" type="x:date" use="optional" />
+		<x:attribute name="fechaComunicacion" type="x:date" use="optional" />
+		<x:attribute name="costeTotalTomador" type="ti:ImportePositivo" use="optional" />
+		<x:attribute name="costeTotalTomadorAnterior" type="ti:ImportePositivo" use="optional" />
+		<x:attribute name="fase" type="ti:Fase_Codigo" use="optional" />
+		<x:attribute name="numeroRecibo" type="ti:Recibo_Codigo" use="optional" />
+		<x:attribute name="forma" type="ti:FormaPago" use="optional" />
+		<x:attribute name="domiciliado" type="ti:SN" use="optional" />
+		<x:attribute name="fechaDomiciliacion" type="x:date" use="optional" />
+		<x:attribute name="importeDomiciliar" type="ti:ImportePositivo" use="optional" />
+		<x:attribute name="IBAN" type="ti:IBAN" use="optional" />
+		<x:attribute name="destinatarioDomiciliacion" type="ti:DestinatarioDomiciliacion" use="optional" />   
+		<x:attribute name="estado" use="required" type="CodigoEstadoRenovacion" />
+		<x:attribute name="descriptivoEstado" use="required" type="DescriptivoEstadoRenovacion" />
+    </x:complexType>
+    
+   	<x:simpleType name="DenominacionTomador">
+		<x:restriction base="x:token">
+			<x:maxLength value="100" />
+		</x:restriction>
+	</x:simpleType>
+	
+	
+	<x:simpleType name="CodigoEstadoRenovacion">
+		<x:restriction base="x:positiveInteger">
+			<x:totalDigits value="2" />
+			<x:minInclusive value="1" />
+		</x:restriction>
+	</x:simpleType>
+
+	<x:simpleType name="DescriptivoEstadoRenovacion">
+		<x:restriction base="x:string">
+			<x:maxLength value="30" />
+		</x:restriction>
+	</x:simpleType>
+	
+	<x:complexType name="GastosPctImp" >
+		<x:attribute name="grupoNegocio" type="ti:GrupoNegocio" use="required" />
+		<x:attribute name="administracion" type="ti:PorcentajeGastos" use="required" />
+		<x:attribute name="importeAdministracion" type="ti:ImportePositivo" use="required" />
+		<x:attribute name="adquisicion" type="ti:PorcentajeGastos" use="required" />
+		<x:attribute name="importeAdquisicion" type="ti:ImportePositivo" use="required" />
+		<x:attribute name="comisionMediador" type="ti:PorcentajeGastos" use="required" />
+		<x:attribute name="importeComisionMediador" type="ti:ImportePositivo" use="required" />
+	</x:complexType>
+	
+	<x:complexType name="GrupoNegocioPrimas" >
+		<x:sequence>
+			<x:element name="BonificacionRecargo" type="BonificacionRecargo" minOccurs="0" maxOccurs="unbounded" />
+		</x:sequence>
+		<x:attribute name="grupoNegocio" type="ti:GrupoNegocio" use="required" />
+		<x:attribute name="primaComercial" type="ti:ImportePositivo" use="required" />
+		<x:attribute name="primaComercialNeta" type="ti:ImportePositivo" use="required" />
+		<x:attribute name="primaComercialBaseNeta" type="ti:ImportePositivo" use="required" />
+	</x:complexType>
+	
+	<x:complexType name="BonificacionRecargo" >
+		<x:attribute name="codigo" type="ti:BonificacionRecargo_Codigo" use="required" />
+		<x:attribute name="importe" type="ti:ImportePositivo" use="required" />
+	</x:complexType>
+	
+	<x:complexType name="Fraccionamiento">
+		<x:sequence>
+			<x:element name="Aval" type="Aval" maxOccurs="1" minOccurs="0" />
+		</x:sequence>
+		<x:attribute name="periodo" type="ti:PeriodoFraccionamiento" use="required" />
+	</x:complexType>
+	
+	<x:complexType name="Aval">
+		<x:attribute name="numero" type="ti:NumeroAval" use="required" />
+		<x:attribute name="importe" type="ti:ImportePositivo" use="required" />
+	</x:complexType>
+	
+</x:schema>

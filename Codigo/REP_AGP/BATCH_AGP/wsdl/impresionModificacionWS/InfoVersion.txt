@@ -1,0 +1,117 @@
+CONTRATACIONSCIMPRESIONMODIFICACION
+GEESTION DE INCIDENCIAS
+--------------------------
+
+
+archivo				                				namespace		                     			version
+
+- RelacionIncidenciasPoliza.xsd                     SeguroAgrario/RelacionIncidenciasPoliza   		1.1
+- RelacionIncidencias.xsd                    		SeguroAgrario/RelacionIncidencias				1.1
+- Tipos.xsd             		           			Tipos			            	                14.0
+- CuponModificacion.xsd
+- EstadoContratacion.xsd
+- ListaAsuntos.xsd                    				ListaAsuntos									1.0
+- AcuseRecibo.xsd
+- xmime.xsd											http://www.w3.org/2005/05/xmlmime
+- policy.xml
+
+
+DESCRIPCION DE LOS FICHEROS
+---------------------------
+	
+- ContratacionSCImpresionModificacion.wsdl
+Descriptor del servicio Web que permite obtener la lista de incidencias de una póliza
+y obtener el pdf de una incidencia seleccionada, sin especificación de seguridad.
+Pensado para manejar la seguridad delegando en los módulos de seguridad
+de los lenguajes de programación a través de políticas de aserciones.
+
+- policy.xml
+Política de seguridad según especificación WS-SecurityPolicy con UsernameToken
+de Oasis.
+
+- ContratacionSCImpresionModificacion_con_cabeceras_seguridad.wsdl
+Descriptor del servicio Web que permite obtener la lista de incidencias de una póliza
+y obtener el pdf de una incidencia seleccionada, con cabecera de seguridad WS-Security, para
+manejar la seguridad a través de los bindings de XML generados en cada lenguaje
+de programación.
+
+- RelacionIncidenciasPoliza.xsd
+Esquema saliente de la operación de obtención de la lista de incidencias de una póliza.
+
+- CuponModificacion.xsd
+Identificador único que sirve como resguardo del trámite de modificación iniciado.
+
+- EstadoContratacion.xsd
+Resumen de cómo se encuentra en el momento de realizar la petición la contratación y la última
+petición de modificación que se hizo por cupón sobre la misma.
+
+- Tipos.xsd
+Esquema que contiene el diccionario de tipos común de Agroseguro.
+
+- xmime.xsd
+Esquema de validación de tipos XMLMIME de W3C
+
+- RelacionIncidencias.xsd
+Esquema saliente de la operación de obtención de la lista de incidencias.
+
+- ListaAsuntos.xsd
+Esquema saliente de la operación de obtención de la lista de asuntos.
+
+
+VERSIONES
+---------
+
+1.0.0 : 04-02-2014.
+-------------------------------------------------------------------------------------------
+
+Versión inicial.
+
+
+1.0.1 : 02-04-2014.
+-------------------------------------------------------------------------------------------
+
+-Eliminación de atributo "required" en etiquetas "element" de los wsdl por problemas en la generación 
+del servicio web
+
+
+1.0.2 : 23-06-2015.
+-------------------------------------------------------------------------------------------
+
+- Añadido tipo Poliza_Referencia_Unificada al esquema RelacionIncidenciasPoliza.xsd y 
+ actualizado a la última versión el esquema EstadoContratacion.xsd
+
+
+1.0.3 : 17-09-2015.
+-------------------------------------------------------------------------------------------
+
+- Modificados wsdls tipo del parámetro referencia de "Creciente" a "Unificada"
+
+
+1.0.4 : 26-10-2017.
+-------------------------------------------------------------------------------------------
+
+- Creación de nuevas operaciones:
+	- EnvioDocumentacionIncidencia
+	- EnvioDocumentacionNuevaIncidencia
+	- RelacionIncidencias
+	- ListaAsuntos
+
+
+1.0.5 : 07-12-2017.
+-------------------------------------------------------------------------------------------
+
+- Modificados wsdl
+	- Se define el nuevo tipo PlanReferenciaTipo que contiene un parámetro opcional tipoReferencia para distinguir en
+	  los seguros agrícolas, las referencias de seguros principales o complementarias.
+	- Se sustituye el elemento planReferencia por planReferenciaTipo de tipo PlanReferenciaTipo
+          en envioDocumentacionIncidenciaRequest y envioDocumentacionNuevaIncidenciaRequest.
+	- Se define como obligatorio el parámetro Documento en envioDocumentacionNuevaIncidenciaRequest.
+
+- Modificado el esquema RelacionIncidencias.xsd:
+	- Se cambia el tipo para el atributo nif, que pasa a ser de tipo NIFCIF.
+	- Se definen nuevos tipos: DescriptivoDocumentoAfectado, IdEnvio y ObservacionesIncidencia, para limitar las longitudes del contenido.
+	- Nuevo atributo numeroDocumentos para indicar cuántos documentos se han recibido para esa incidencia,
+	  ya sean en un solo envío o en varios, por cualquiera de los métodos aceptados (correo, servicios web, impreso, generado internamente). 
+	
+
+- Modificado el esquema ListaAsuntos.xsd con la definición de nuevos tipos: CodigoAsunto y DescriptivoAsunto, para limitar las longitudes del contenido

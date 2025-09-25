@@ -1,0 +1,388 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="aseguradoGanado" pageWidth="600" pageHeight="802" whenNoDataType="AllSectionsNoDetail" columnWidth="600" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" isFloatColumnFooter="true">
+	<property name="ireport.zoom" value="1.4641000000000006"/>
+	<property name="ireport.x" value="5"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA[""]]></defaultValueExpression>
+	</parameter>
+	<parameter name="SUB_DATA_SOURCE" class="java.util.List" isForPrompting="false"/>
+	<parameter name="subvenciones" class="java.util.Map" isForPrompting="false"/>
+	<parameter name="linea" class="com.rsi.agp.dao.tables.poliza.Linea" isForPrompting="false"/>
+	<parameter name="tomador" class="com.rsi.agp.dao.tables.admin.Tomador" isForPrompting="false"/>
+	<parameter name="imprimirAnexoWsPPl" class="java.lang.Boolean"/>
+	<parameter name="idCupon" class="java.lang.String"/>
+	<parameter name="esRenovable" class="java.lang.String"/>
+	<parameter name="tituloInforme" class="java.lang.String">
+		<parameterDescription><![CDATA[tituloInforme]]></parameterDescription>
+	</parameter>
+	<parameter name="esGanado" class="java.lang.Boolean"/>
+	<parameter name="estadoPol" class="java.lang.String"/>
+	<parameter name="provinciaAseg" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="estadoContratacion" class="es.agroseguro.seguroAgrario.estadoContratacion.EstadoContratacionDocument">
+		<fieldDescription><![CDATA[estadoContratacion]]></fieldDescription>
+	</field>
+	<field name="polizaComplementaria" class="es.agroseguro.seguroAgrario.contratacion.complementario.PolizaDocument">
+		<fieldDescription><![CDATA[polizaComplementaria]]></fieldDescription>
+	</field>
+	<field name="polizaPrincipal" class="es.agroseguro.seguroAgrario.contratacion.PolizaDocument">
+		<fieldDescription><![CDATA[polizaPrincipal]]></fieldDescription>
+	</field>
+	<field name="polizaGanado" class="es.agroseguro.contratacion.PolizaDocument">
+		<fieldDescription><![CDATA[polizaGanado]]></fieldDescription>
+	</field>
+	<variable name="HEADER" class="java.lang.String">
+		<variableExpression><![CDATA[new String("NO")]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="51" splitType="Stretch">
+			<subreport>
+				<reportElement mode="Transparent" x="10" y="16" width="545" height="30" backcolor="#FFFFFF">
+					<printWhenExpression><![CDATA[new Boolean(!$P{esGanado}.booleanValue())]]></printWhenExpression>
+				</reportElement>
+				<subreportParameter name="SUBREPORT_DIR">
+					<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="idCupon">
+					<subreportParameterExpression><![CDATA[$P{idCupon}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="imprimirAnexoWsPPl">
+					<subreportParameterExpression><![CDATA[$P{imprimirAnexoWsPPl}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="tituloInforme">
+					<subreportParameterExpression><![CDATA[$P{tituloInforme}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="esRenovable">
+					<subreportParameterExpression><![CDATA[$P{esRenovable}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="linea">
+					<subreportParameterExpression><![CDATA[$P{linea}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="estadoPol">
+					<subreportParameterExpression><![CDATA[$P{estadoPol}]]></subreportParameterExpression>
+				</subreportParameter>
+				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($P{SUB_DATA_SOURCE})]]></dataSourceExpression>
+				<subreportExpression class="java.lang.String"><![CDATA[$P{SUBREPORT_DIR} + "cabecera.jasper"]]></subreportExpression>
+			</subreport>
+			<subreport>
+				<reportElement mode="Transparent" x="15" y="16" width="537" height="30" backcolor="#FFFFFF">
+					<printWhenExpression><![CDATA[new Boolean($P{esGanado}.booleanValue())]]></printWhenExpression>
+				</reportElement>
+				<subreportParameter name="SUBREPORT_DIR">
+					<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="tituloInforme">
+					<subreportParameterExpression><![CDATA[$P{tituloInforme}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="imprimirAnexoWsPPl">
+					<subreportParameterExpression><![CDATA[$P{imprimirAnexoWsPPl}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="idCupon">
+					<subreportParameterExpression><![CDATA[$P{idCupon}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="esRenovable">
+					<subreportParameterExpression><![CDATA[$P{esRenovable}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="linea">
+					<subreportParameterExpression><![CDATA[$P{linea}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="estadoPol">
+					<subreportParameterExpression><![CDATA[$P{estadoPol}]]></subreportParameterExpression>
+				</subreportParameter>
+				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($P{SUB_DATA_SOURCE})]]></dataSourceExpression>
+				<subreportExpression class="java.lang.String"><![CDATA[$P{SUBREPORT_DIR} + "cabeceraGanado.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="93" splitType="Stretch">
+			<textField isBlankWhenNull="true">
+				<reportElement x="431" y="0" width="124" height="13"/>
+				<textElement verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{tomador}.getId().getCiftomador()]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="0" y="13" width="484" height="13"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{tomador}.getRazonsocial()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="374" y="0" width="57" height="13"/>
+				<textElement verticalAlignment="Middle">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[NIF/CIF:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="340" y="26" width="51" height="13"/>
+				<textElement verticalAlignment="Middle">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Localidad:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="340" y="39" width="36" height="13"/>
+				<textElement verticalAlignment="Middle">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[e-mail:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="135" y="26" width="57" height="13"/>
+				<textElement verticalAlignment="Middle">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Piso/Letra:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="218" y="26" width="38" height="13"/>
+				<textElement verticalAlignment="Middle">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Blq:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="290" y="26" width="24" height="13"/>
+				<textElement verticalAlignment="Middle">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Esc:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="135" y="39" width="48" height="13"/>
+				<textElement verticalAlignment="Middle">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Tfno.Fijo:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="233" y="39" width="56" height="13"/>
+				<textElement verticalAlignment="Middle">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Tfno. Móvil:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="0" y="26" width="135" height="13"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{tomador}.getDomicilio()]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="391" y="26" width="205" height="13"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{tomador}.getLocalidad().getNomlocalidad()]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="0" y="39" width="120" height="13"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{tomador}.getCodpostalstr()+"-"+$P{tomador}.getLocalidad().getProvincia().getNomprovincia()]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="376" y="39" width="224" height="13"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{tomador}.getEmail()]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="188" y="26" width="19" height="13"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{tomador}.getPiso()]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="256" y="26" width="20" height="13"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{tomador}.getBloque()]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="317" y="26" width="23" height="13"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{tomador}.getEscalera()]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="290" y="39" width="50" height="13"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{tomador}.getMovil()]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="183" y="39" width="50" height="13"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{tomador}.getTelefono()]]></textFieldExpression>
+			</textField>
+			<subreport>
+				<reportElement positionType="Float" mode="Transparent" x="1" y="66" width="537" height="13" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" backcolor="#FFFFFF">
+					<printWhenExpression><![CDATA[new Boolean($P{esGanado}.booleanValue())]]></printWhenExpression>
+				</reportElement>
+				<subreportParameter name="provinciaAseg">
+					<subreportParameterExpression><![CDATA[$P{provinciaAseg}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="idCupon">
+					<subreportParameterExpression><![CDATA[$P{idCupon}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="imprimirAnexoWsPPl">
+					<subreportParameterExpression><![CDATA[$P{imprimirAnexoWsPPl}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="linea">
+					<subreportParameterExpression><![CDATA[$P{linea}]]></subreportParameterExpression>
+				</subreportParameter>
+				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($P{SUB_DATA_SOURCE})]]></dataSourceExpression>
+				<subreportExpression class="java.lang.String"><![CDATA[$P{SUBREPORT_DIR} + "aseguradoGanado.jasper"]]></subreportExpression>
+			</subreport>
+			<subreport>
+				<reportElement positionType="Float" mode="Transparent" x="1" y="80" width="537" height="13" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" backcolor="#FFFFFF">
+					<printWhenExpression><![CDATA[new Boolean(!$P{esGanado}.booleanValue())]]></printWhenExpression>
+				</reportElement>
+				<subreportParameter name="provinciaAseg">
+					<subreportParameterExpression><![CDATA[$P{provinciaAseg}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="imprimirAnexoWsPPl">
+					<subreportParameterExpression><![CDATA[$P{imprimirAnexoWsPPl}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="idCupon">
+					<subreportParameterExpression><![CDATA[$P{idCupon}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="linea">
+					<subreportParameterExpression><![CDATA[$P{linea}]]></subreportParameterExpression>
+				</subreportParameter>
+				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($P{SUB_DATA_SOURCE})]]></dataSourceExpression>
+				<subreportExpression class="java.lang.String"><![CDATA[$P{SUBREPORT_DIR} + "asegurado.jasper"]]></subreportExpression>
+			</subreport>
+			<staticText>
+				<reportElement x="0" y="0" width="242" height="13"/>
+				<textElement>
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DATOS DEL TOMADOR]]></text>
+			</staticText>
+		</band>
+		<band height="50">
+			<staticText>
+				<reportElement x="0" y="3" width="240" height="13"/>
+				<textElement>
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[SUBVENCIONES SOLICITADAS]]></text>
+			</staticText>
+			<textField pattern="00" isBlankWhenNull="true">
+				<reportElement x="244" y="16" width="147" height="13">
+					<printWhenExpression><![CDATA[new Boolean(!$P{esGanado}.booleanValue())]]></printWhenExpression>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[new DecimalFormat("00").format(new Integer($F{polizaPrincipal}.getPoliza().getSubvencionesDeclaradas().getSeguridadSocial().getProvincia())) + "/"+ new DecimalFormat("00000000").format(new Integer($F{polizaPrincipal}.getPoliza().getSubvencionesDeclaradas().getSeguridadSocial().getNumero()))+ "/"+
+new DecimalFormat("00").format(new Integer($F{polizaPrincipal}.getPoliza().getSubvencionesDeclaradas().getSeguridadSocial().getCodigo()))]]></textFieldExpression>
+			</textField>
+			<subreport>
+				<reportElement mode="Transparent" x="2" y="29" width="376" height="10" backcolor="#FFFFFF">
+					<printWhenExpression><![CDATA[new Boolean(!$P{esGanado}.booleanValue())]]></printWhenExpression>
+				</reportElement>
+				<subreportParameter name="subvenciones">
+					<subreportParameterExpression><![CDATA[$P{subvenciones}]]></subreportParameterExpression>
+				</subreportParameter>
+				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource(Arrays.asList($F{polizaGanado}.getPoliza().getSubvencionesDeclaradas().getSubvencionDeclaradaArray()))]]></dataSourceExpression>
+				<subreportExpression class="java.lang.String"><![CDATA[$P{SUBREPORT_DIR} + "subvencionesAsegurado.jasper"]]></subreportExpression>
+			</subreport>
+			<textField isBlankWhenNull="true">
+				<reportElement x="450" y="16" width="73" height="13">
+					<printWhenExpression><![CDATA[new Boolean(!$P{esGanado}.booleanValue())]]></printWhenExpression>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{polizaPrincipal}.getPoliza().getSubvencionesDeclaradas().getSeguridadSocial().getRegimen() + ""]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="148" y="16" width="96" height="13"/>
+				<textElement>
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nº Seg. Social:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="396" y="16" width="54" height="13"/>
+				<textElement>
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Régimen:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1" y="16" width="108" height="13"/>
+				<textElement>
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Tipo de subvención:]]></text>
+			</staticText>
+			<textField pattern="00" isBlankWhenNull="true">
+				<reportElement x="244" y="16" width="147" height="13">
+					<printWhenExpression><![CDATA[new Boolean($P{esGanado}.booleanValue())]]></printWhenExpression>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[new DecimalFormat("00").format(new Integer($F{polizaGanado}.getPoliza().getSubvencionesDeclaradas().getSeguridadSocial().getProvincia())) + "/"+ new DecimalFormat("00000000").format(new Integer($F{polizaGanado}.getPoliza().getSubvencionesDeclaradas().getSeguridadSocial().getNumero()))+ "/"+
+new DecimalFormat("00").format(new Integer($F{polizaGanado}.getPoliza().getSubvencionesDeclaradas().getSeguridadSocial().getCodigo()))]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="450" y="16" width="73" height="13">
+					<printWhenExpression><![CDATA[new Boolean($P{esGanado}.booleanValue())]]></printWhenExpression>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{polizaGanado}.getPoliza().getSubvencionesDeclaradas().getSeguridadSocial().getRegimen() + ""]]></textFieldExpression>
+			</textField>
+			<subreport>
+				<reportElement mode="Transparent" x="2" y="29" width="376" height="10" backcolor="#FFFFFF">
+					<printWhenExpression><![CDATA[new Boolean($P{esGanado}.booleanValue())]]></printWhenExpression>
+				</reportElement>
+				<subreportParameter name="subvenciones">
+					<subreportParameterExpression><![CDATA[$P{subvenciones}]]></subreportParameterExpression>
+				</subreportParameter>
+				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource(Arrays.asList($F{polizaGanado}.getPoliza().getSubvencionesDeclaradas().getSubvencionDeclaradaArray()))]]></dataSourceExpression>
+				<subreportExpression class="java.lang.String"><![CDATA[$P{SUBREPORT_DIR} + "subvencionesAseguradoGanado.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

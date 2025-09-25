@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<x:schema targetNamespace="http://www.agroseguro.es/Recibos/Comisiones"
+	xmlns="http://www.agroseguro.es/Recibos/Comisiones"
+	xmlns:x="http://www.w3.org/2001/XMLSchema"
+	xmlns:ti="http://www.agroseguro.es/ITipos" 
+>
+
+	<x:import
+		namespace="http://www.agroseguro.es/ITipos" 
+		schemaLocation="../commons/Tipos.xsd" />
+
+	<x:element name="Fase" type="Fase" />
+	
+	<x:complexType name="Fase">
+		<x:sequence>
+			<x:element name="Recibo" type="Recibo" minOccurs="1" maxOccurs="unbounded" />
+		</x:sequence>
+		<x:attribute name="plan" use="required" type="ti:Plan" />
+		<x:attribute name="fase" use="required" type="ti:Fase_Codigo" />
+		<x:attribute name="fechaEmisionRecibo" use="required" type="x:date" />
+	</x:complexType>
+
+	<x:complexType name="Recibo">
+		<x:sequence>
+			<x:choice maxOccurs="1" minOccurs="1">
+				<x:element name="NombreApellidos" type="ti:NombreApellidos" maxOccurs="1" minOccurs="1"/> 
+				<x:element name="RazonSocial" type="ti:RazonSocial" maxOccurs="1" minOccurs="1"/>
+			</x:choice>
+			<x:choice maxOccurs="1" minOccurs="1">
+				<x:element name="Colectivo" type="Colectivo"  maxOccurs="1" minOccurs="1"/>
+				<x:element name="Individual" type="Individual" maxOccurs="1" minOccurs="1" />
+			</x:choice>	
+			<x:choice maxOccurs="1" minOccurs="0">
+				<x:element name="DatosNuevos" type="DatosNuevos" maxOccurs="1" minOccurs="0" />
+			</x:choice>	
+			<x:choice maxOccurs="1" minOccurs="0">
+				<x:element name="DatosRegularizados" type="DatosRegularizados" maxOccurs="1" minOccurs="0" />	
+			</x:choice>
+			<x:choice maxOccurs="1" minOccurs="0">
+				<x:element name="DatosTotales" type="DatosTotales" maxOccurs="1" minOccurs="0" />
+			</x:choice>
+			<x:element name="Aplicaciones" type="Aplicaciones" maxOccurs="1" minOccurs="0" />	
+		</x:sequence>	
+		<x:attribute name="linea" type="ti:Linea_Codigo" use="required" />
+		<x:attribute name="recibo" type="ti:Recibo_Codigo" use="required" />
+		<x:attribute name="localidad" type="ti:Localidad" use="required" />
+		<x:attribute name="grupoNegocio" type="ti:Recibo_GrupoNegocio" use="required" />
+	</x:complexType>
+
+	<x:complexType name="Colectivo">
+		<x:attribute name="referenciaColectivo" use="required" type="ti:Colectivo_Referencia" />
+		<x:attribute name="digitoControl" use="required" type="ti:DigitoControl" />						
+		<x:attribute name="codigoInterno" use="required" type="ti:CodigoInternoEntidad" />		
+	</x:complexType>
+
+	<x:complexType name="Individual">
+		<x:sequence>
+			<x:element name="CondicionesParticulares" type="CondicionesParticulares" minOccurs="0" maxOccurs="unbounded" />
+		</x:sequence>
+		<x:attribute name="referencia" use="required" type="ti:Poliza_Referencia_Creciente" />
+		<x:attribute name="digitoControl" use="required" type="ti:DigitoControl" />		
+		<x:attribute name="tipoReferencia" use="optional" type="ti:Poliza_Referencia_Tipo" />		
+		<x:attribute name="codigoInterno" use="optional" type="ti:CodigoInternoEntidad" />		
+		<x:attribute name="anuladaRefundida" use="optional" type="ti:Aplicacion_AnuladaRefundida" />		
+   <!-- <x:attribute name="marcaBonificacionesRecargo" use="required" type="ti:BonificacionRecargo_Tipo" />		
+		<x:attribute name="marcaCondicionesParticulares" use="required" type="ti:MarcaCondicionesParticulares" /> -->
+		<x:attribute name="porcentajeGtosEntAplic" use="optional" type="PorcentajeGastos" />		
+		<x:attribute name="porcentajeGtosComisAplic" use="optional" type="PorcentajeGastos" />			
+	</x:complexType>
+	
+	<x:complexType name="ColectivoReferencia">
+		<x:attribute name="referenciaColectivo" use="required" type="ti:Colectivo_Referencia" />
+		<x:attribute name="digitoControlColectivo" use="required" type="ti:DigitoControl" />	
+		<x:attribute name="codigoInterno" use="required" type="ti:CodigoInternoEntidad" />
+		<x:attribute name="referenciaPoliza" use="required" type="ti:Colectivo_Referencia" />
+		<x:attribute name="digitoControlPoliza" use="required" type="ti:DigitoControl" />						
+	</x:complexType>	
+	
+	<x:complexType name="CondicionesParticulares">
+		<x:attribute name="marcaCondicionesParticulares" use="required" type="MarcaCondicionesParticularesComisiones" />
+	</x:complexType>
+	
+	<x:simpleType name="MarcaCondicionesParticularesComisiones">
+		<x:annotation>
+			<x:documentation>
+				0 = Base
+				1 = Bonif. Asegurado Club
+			    2 = Recargo Asegurado Club
+				3 = Nuevo Asegurado
+				4 = Asegurado consolidado
+				5 = Gran Poliza
+			</x:documentation>
+		</x:annotation>
+	
+		<x:restriction base="x:int">
+			<x:totalDigits value="1" />
+			<x:pattern value="[0-9]" />
+		</x:restriction>
+	</x:simpleType>
+	
+	<x:simpleType name="PorcentajeGastos">
+		<x:annotation>
+			<x:documentation>
+				cantidad que representa el porcentaje de gastos externos a una entidad aplicados
+			</x:documentation>
+		</x:annotation>
+		<x:restriction base="x:decimal">
+			<x:maxInclusive value="999.99" />
+			<x:minInclusive value="0" />
+			<x:fractionDigits value="2" />
+			<x:totalDigits value="5" />
+		</x:restriction>
+	</x:simpleType>
+	
+	<x:attributeGroup name="DatosComisionesRecibosEmitidos" >
+	   	<x:attribute name="primaBaseCalculo" type="ti:ImporteLargo" use="required" />
+	   	<x:attribute name="gastosExternosEntidad" type="ti:Importe" use="required" />
+	   	<x:attribute name="comisiones" type="ti:Importe" use="required" />
+	   	<x:attribute name="total" type="ti:Importe" use="required" />
+    </x:attributeGroup>
+    
+	<x:attributeGroup name="DatosComisionesRecibosEmitidos1" >
+	   	<x:attribute name="primaComercialNeta" type="ti:ImporteLargo" use="required" />
+	   	<x:attribute name="gastosAdminEntidad" type="ti:ImporteLargo" use="required" />
+		<x:attribute name="gastosAdqEntidad" type="ti:ImporteLargo" use="required" />
+		<x:attribute name="comisionesMediador" type="ti:ImporteLargo" use="required" />		
+    </x:attributeGroup>    
+	
+	<x:complexType name="DatosNuevos">
+		<x:attributeGroup ref="DatosComisionesRecibosEmitidos" />	
+	</x:complexType>
+	
+	<x:complexType name="DatosNuevos1">
+		<x:attributeGroup ref="DatosComisionesRecibosEmitidos1" />	
+		<x:attribute name="total" type="ti:ImporteLargo" use="required" />
+	</x:complexType>	
+	
+	<x:complexType name="DatosRegularizados">
+		<x:attributeGroup ref="DatosComisionesRecibosEmitidos" />	
+	</x:complexType>
+	
+	<x:complexType name="DatosRegularizados1">
+		<x:attributeGroup ref="DatosComisionesRecibosEmitidos1" />
+		<x:attribute name="total" type="ti:ImporteLargo" use="required" />	
+	</x:complexType>	
+	
+	<x:complexType name="DatosTotales">
+		<x:attributeGroup ref="DatosComisionesRecibosEmitidos" />	
+		<x:attribute name="gastosPagados" type="ti:Importe" use="required" />
+	    <x:attribute name="gastosPendientes" type="ti:Importe" use="required" />
+	</x:complexType>
+	
+	<x:complexType name="DatosTotales1">
+		<x:attributeGroup ref="DatosComisionesRecibosEmitidos1" />	
+		<x:attribute name="gastosAdminEntidadAbon" type="ti:ImporteLargo" use="required" />
+		<x:attribute name="gastosAdqEntidadAbon" type="ti:ImporteLargo" use="required" />
+	    <x:attribute name="comisionesMediadorAbon" type="ti:ImporteLargo" use="required" />
+	    <x:attribute name="gastosAdminEntidadPdte" type="ti:ImporteLargo" use="required" />
+	    <x:attribute name="gastosAdqEntidadPdtes" type="ti:ImporteLargo" use="required" />
+	    <x:attribute name="comisionesMediadorPdtes" type="ti:ImporteLargo" use="required" />
+	</x:complexType>	
+	
+	<x:complexType name="DatosTotalesAplicacion">
+		<x:attribute name="primaBaseCalculo" type="ti:ImporteLargo" use="required" />
+	   	<x:attribute name="gastosExternosEntidad" type="ti:Importe" use="required" />
+	   	<x:attribute name="porcentajeGtosEntAplic" type="PorcentajeGastos" use="required" />		
+	   	<x:attribute name="comisiones" type="ti:Importe" use="required" />
+	   	<x:attribute name="porcentajeGtosComisAplic" type="PorcentajeGastos" use="required" />
+	   	<x:attribute name="total" type="ti:Importe" use="required" />
+	</x:complexType>
+	
+	<x:complexType name="Aplicaciones">
+		<x:sequence>
+			<x:element name="Aplicacion" type="Aplicacion" minOccurs="1" maxOccurs="unbounded" />
+		</x:sequence>
+	</x:complexType>
+	
+	<x:complexType name="Aplicacion">
+		<x:sequence>
+			<x:choice maxOccurs="1" minOccurs="1">
+				<x:element name="NombreApellidos" type="ti:NombreApellidos" maxOccurs="1" minOccurs="1"/> 
+				<x:element name="RazonSocial" type="ti:RazonSocial" maxOccurs="1" minOccurs="1"/>
+			</x:choice>
+			<x:choice maxOccurs="1" minOccurs="0">
+				<x:element name="DatosNuevos1" type="DatosNuevos1" maxOccurs="1" minOccurs="0" />	
+				<x:element name="DatosNuevos" type="DatosNuevos" maxOccurs="1" minOccurs="0" />	
+			</x:choice>
+			<x:choice maxOccurs="1" minOccurs="0">
+				<x:element name="DatosRegularizados1" type="DatosRegularizados1" maxOccurs="1" minOccurs="0" />	
+				<x:element name="DatosRegularizados" type="DatosRegularizados" maxOccurs="1" minOccurs="0" />
+			</x:choice>
+			<x:choice maxOccurs="1" minOccurs="1">
+				<x:element name="DatosTotales1" type="DatosTotales1" maxOccurs="1" minOccurs="1" />	
+				<x:element name="DatosTotales" type="DatosTotalesAplicacion" maxOccurs="1" minOccurs="1" />
+			</x:choice>
+			<x:element name="CondicionesParticulares" type="CondicionesParticulares" minOccurs="0" maxOccurs="unbounded" />
+		</x:sequence>		
+		<x:attribute name="referencia" use="required" type="ti:Poliza_Referencia_Creciente" />
+		<x:attribute name="digitoControl" use="required" type="ti:DigitoControl" />		
+		<x:attribute name="tipoReferencia" use="required" type="ti:Poliza_Referencia_Tipo" />		
+		<x:attribute name="codigoInterno" use="required" type="ti:CodigoInternoEntidad" />		
+		<x:attribute name="anuladaRefundida" use="required" type="ti:Aplicacion_AnuladaRefundida" />		
+  <!--  <x:attribute name="marcaBonificacionesRecargo" use="required" type="ti:BonificacionRecargo_Tipo" />		
+		<x:attribute name="marcaCondicionesParticulares" use="required" type="ti:MarcaCondicionesParticulares" /> -->	
+	</x:complexType>
+
+</x:schema>

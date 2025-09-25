@@ -1,0 +1,739 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="declaracionSeguro_hojaParcelas" pageWidth="555" pageHeight="802" whenNoDataType="AllSectionsNoDetail" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="61d03ec4-b279-4338-9d87-afd34522b5bd">
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA[""]]></defaultValueExpression>
+	</parameter>
+	<parameter name="ID" class="java.lang.Integer"/>
+	<parameter name="COB_PARCELAS" class="java.util.Map"/>
+	<parameter name="imprimirReducida" class="java.lang.Boolean"/>
+	<parameter name="pintarDC2015" class="java.lang.Boolean"/>
+	<parameter name="esRenovable" class="java.lang.String"/>
+	<parameter name="tablaSubreportParc" class="java.util.HashMap" isForPrompting="false"/>
+	<parameter name="datasourcParc" class="java.util.HashMap"/>
+	<parameter name="SUBREPORT_DIR2" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA[""]]></defaultValueExpression>
+	</parameter>
+	<parameter name="SUBREPORT_DIR1" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA[""]]></defaultValueExpression>
+	</parameter>
+	<parameter name="P_BARCODE" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT 
+            PA.HOJA,
+            PA.NUMERO,
+            (PR.CODPROVINCIA || ' ' || PR.NOMPROVINCIA) AS NOMPROVINCIA,
+            (CO.CODCOMARCA || ' ' || CO.NOMCOMARCA) AS NOMCOMARCA,
+            CASE 
+                WHEN TO_DATE('20230301', 'YYYYMMDD') >
+					(SELECT MIN(f.feciniciocontrata) FROM o02agpe0.tb_sc_c_fec_contrat_agr f WHERE f.lineaseguroid = PO.LINEASEGUROID)
+				THEN (TE.CODTERMINO || '-' || TE.NOMTERMINO)
+				ELSE (TE.CODTERMINO || '-' || TE.NOMBRE_SIGPAC)
+            END AS TERMINO,
+            TE.SUBTERMINO,
+            PA.IDPARCELA,
+            CA.IDCAPITALASEGURADO,
+            CU.CODCULTIVO,
+            CU.DESCULTIVO,
+            VA.CODVARIEDAD,
+            VA.DESVARIEDAD,
+            (PA.POLIGONO || PA.PARCELA) AS CATAS,
+            (CODPROVSIGPAC || '-' || CODTERMSIGPAC || '-' || AGRSIGPAC || '-' || ZONASIGPAC || '-' || POLIGONOSIGPAC || '-' || PARCELASIGPAC || '-' || RECINTOSIGPAC) AS SIGPAC,
+            PA.NOMPARCELA,
+            TC.CODTIPOCAPITAL,
+            TC.DESTIPOCAPITAL,
+            REL.PRODUCCION,
+            REL.PRECIO,
+            PO.LINEASEGUROID,
+            CA.SUPERFICIE,
+            DC.ID AS IDDISTCOSTE,
+            dc2.id as IDDISTCOSTE2,
+            TC.CODCONCEPTO,
+            (PA.HOJA || PA.NUMERO) AS IDPARC
+        FROM 
+            o02agpe0.TB_PARCELAS PA,
+            o02agpe0.TB_PROVINCIAS PR,
+            o02agpe0.TB_TERMINOS TE,
+            o02agpe0.TB_COMARCAS CO,
+            o02agpe0.TB_POLIZAS PO,
+            o02agpe0.TB_SC_C_CULTIVOS CU,
+            o02agpe0.TB_SC_C_VARIEDADES VA,
+            o02agpe0.TB_SC_C_TIPO_CAPITAL TC,
+            o02agpe0.TB_CAPITALES_ASEGURADOS CA,
+            o02agpe0.TB_CAP_ASEG_REL_MODULO REL,
+            o02agpe0.TB_DISTRIBUCION_COSTES DC,
+            o02agpe0.tb_distribucion_costes_2015 dc2
+        WHERE 
+            PA.CODPROVINCIA = PR.CODPROVINCIA AND 
+            PA.CODPROVINCIA = TE.CODPROVINCIA AND 
+            PA.CODTERMINO = TE.CODTERMINO AND 
+            PA.SUBTERMINO = TE.SUBTERMINO AND 
+            TE.CODCOMARCA = CO.CODCOMARCA AND 
+            CO.CODPROVINCIA = TE.CODPROVINCIA AND 
+            PO.IDPOLIZA = PA.IDPOLIZA AND 
+            PO.LINEASEGUROID = CU.LINEASEGUROID AND 
+            PO.LINEASEGUROID = VA.LINEASEGUROID AND 
+            PA.CODCULTIVO = CU.CODCULTIVO AND 
+            VA.CODCULTIVO (+)= PA.CODCULTIVO AND 
+            VA.CODVARIEDAD (+)= PA.CODVARIEDAD AND 
+            CA.IDPARCELA (+)= PA.IDPARCELA AND 
+            TC.CODTIPOCAPITAL (+)= CA.CODTIPOCAPITAL AND 
+            REL.IDCAPITALASEGURADO (+)= CA.IDCAPITALASEGURADO AND 
+            DC.IDPOLIZA (+)= PO.IDPOLIZA AND 
+            DC2.IDPOLIZA (+)= PO.IDPOLIZA AND 
+            PA.CODCOMARCA = CO.CODCOMARCA AND 
+            PO.IDPOLIZA = $P{ID}
+        ORDER BY TC.CODTIPOCAPITAL ASC]]>
+	</queryString>
+	<field name="HOJA" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="NUMERO" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="NOMPROVINCIA" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="NOMCOMARCA" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="TERMINO" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="SUBTERMINO" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="IDPARCELA" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="IDCAPITALASEGURADO" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CODCULTIVO" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="DESCULTIVO" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CODVARIEDAD" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="DESVARIEDAD" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CATAS" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="SIGPAC" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="NOMPARCELA" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CODTIPOCAPITAL" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="DESTIPOCAPITAL" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PRODUCCION" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PRECIO" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="LINEASEGUROID" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="SUPERFICIE" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="IDDISTCOSTE" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="IDDISTCOSTE2" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CODCONCEPTO" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="IDPARC" class="java.lang.Long">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="numero" class="java.lang.Long"/>
+	<sortField name="HOJA"/>
+	<sortField name="NUMERO"/>
+	<variable name="SHOW_FOOT" class="java.lang.Boolean" resetType="None">
+		<variableExpression><![CDATA[new Boolean(true)]]></variableExpression>
+		<initialValueExpression><![CDATA[]]></initialValueExpression>
+	</variable>
+	<variable name="SHOW_BACK" class="java.lang.Boolean" resetType="None">
+		<variableExpression><![CDATA[new Boolean(true)]]></variableExpression>
+		<initialValueExpression><![CDATA[]]></initialValueExpression>
+	</variable>
+	<group name="G_HOJA" isStartNewPage="true">
+		<groupExpression><![CDATA[$F{HOJA}]]></groupExpression>
+		<groupFooter>
+			<band height="108">
+				<staticText>
+					<reportElement x="198" y="23" width="70" height="14" uuid="daed5fa5-a7fb-467a-a9d3-af57aa9ad28a"/>
+					<box>
+						<pen lineWidth="0.5"/>
+						<topPen lineWidth="0.5"/>
+						<leftPen lineWidth="0.5"/>
+						<bottomPen lineWidth="0.5"/>
+						<rightPen lineWidth="0.5"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="6" isBold="true" isUnderline="false"/>
+					</textElement>
+					<text><![CDATA[Nº Parcelas]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="268" y="23" width="122" height="14" uuid="8843ea74-0700-4fab-8327-e884a066ed3f"/>
+					<box>
+						<pen lineWidth="0.5"/>
+						<topPen lineWidth="0.5"/>
+						<leftPen lineWidth="0.5"/>
+						<bottomPen lineWidth="0.5"/>
+						<rightPen lineWidth="0.5"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="6" isBold="true"/>
+					</textElement>
+					<text><![CDATA[]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="390" y="23" width="70" height="14" uuid="b2569336-c3cc-4fa3-aa31-0c27a2328b5f"/>
+					<box>
+						<pen lineWidth="0.5"/>
+						<topPen lineWidth="0.5"/>
+						<leftPen lineWidth="0.5"/>
+						<bottomPen lineWidth="0.5"/>
+						<rightPen lineWidth="0.5"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="6" isBold="true"/>
+					</textElement>
+					<text><![CDATA[SUPERFICIE (Ha)]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="460" y="23" width="93" height="14" uuid="384eb1f0-d6b2-4859-a095-e036fa72fbce"/>
+					<box>
+						<pen lineWidth="0.5"/>
+						<topPen lineWidth="0.5"/>
+						<leftPen lineWidth="0.5"/>
+						<bottomPen lineWidth="0.5"/>
+						<rightPen lineWidth="0.5"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="6" isBold="true"/>
+					</textElement>
+					<text><![CDATA[VALOR ASEGURABLE (€)]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="10" y="23" width="188" height="14" uuid="dd8a396a-d6bb-4c50-a69a-841218ade38a"/>
+					<box>
+						<pen lineWidth="0.5"/>
+						<topPen lineWidth="0.5"/>
+						<leftPen lineWidth="0.5"/>
+						<bottomPen lineWidth="0.5"/>
+						<rightPen lineWidth="0.5"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="6" isBold="true" isUnderline="false"/>
+					</textElement>
+					<text><![CDATA[]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="10" y="10" width="186" height="13" uuid="e332debd-a122-45aa-b5de-c404b6532824"/>
+					<box>
+						<pen lineWidth="0.0"/>
+						<topPen lineWidth="0.0"/>
+						<leftPen lineWidth="0.0"/>
+						<bottomPen lineWidth="0.0"/>
+						<rightPen lineWidth="0.0"/>
+					</box>
+					<textElement>
+						<font size="10" isBold="true"/>
+					</textElement>
+					<text><![CDATA[RESUMEN DEL VALOR ASEGURABLE]]></text>
+				</staticText>
+				<subreport>
+					<reportElement positionType="Float" mode="Transparent" x="10" y="51" width="543" height="14" isRemoveLineWhenBlank="true" backcolor="#FFFFFF" uuid="37315389-ebc9-4ec6-ab16-4a5d9ed4fbc5"/>
+					<subreportParameter name="IDPOLIZA">
+						<subreportParameterExpression><![CDATA[$P{ID}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="HOJA">
+						<subreportParameterExpression><![CDATA[$F{HOJA}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="CODCONCEPTO">
+						<subreportParameterExpression><![CDATA["117"]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="SUBREPORT_DIR">
+						<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
+					</subreportParameter>
+					<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					<returnValue subreportVariable="SHOW_FOOT" toVariable="SHOW_FOOT"/>
+					<returnValue subreportVariable="SHOW_BACK" toVariable="SHOW_BACK"/>
+					<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "declaracionSeguro_hojaParcelas_resValAseg_UnidMet.jasper"]]></subreportExpression>
+				</subreport>
+				<subreport>
+					<reportElement positionType="Float" mode="Transparent" x="10" y="65" width="543" height="14" isRemoveLineWhenBlank="true" backcolor="#FFFFFF" uuid="075cbb6f-b2f0-4b25-9b9e-1ea5f54fd5e9"/>
+					<subreportParameter name="IDPOLIZA">
+						<subreportParameterExpression><![CDATA[$P{ID}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="HOJA">
+						<subreportParameterExpression><![CDATA[$F{HOJA}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="CODCONCEPTO">
+						<subreportParameterExpression><![CDATA["767"]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="SUBREPORT_DIR">
+						<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
+					</subreportParameter>
+					<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					<returnValue subreportVariable="SHOW_FOOT" toVariable="SHOW_FOOT"/>
+					<returnValue subreportVariable="SHOW_BACK" toVariable="SHOW_BACK"/>
+					<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "declaracionSeguro_hojaParcelas_resValAseg_UnidMet.jasper"]]></subreportExpression>
+				</subreport>
+				<subreport>
+					<reportElement positionType="Float" mode="Transparent" x="10" y="79" width="543" height="14" isRemoveLineWhenBlank="true" backcolor="#FFFFFF" uuid="7bdd5d7a-68a5-4074-9c32-076f9bea9202"/>
+					<subreportParameter name="IDPOLIZA">
+						<subreportParameterExpression><![CDATA[$P{ID}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="HOJA">
+						<subreportParameterExpression><![CDATA[$F{HOJA}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="CODCONCEPTO">
+						<subreportParameterExpression><![CDATA["766"]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="SUBREPORT_DIR">
+						<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
+					</subreportParameter>
+					<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					<returnValue subreportVariable="SHOW_FOOT" toVariable="SHOW_FOOT"/>
+					<returnValue subreportVariable="SHOW_BACK" toVariable="SHOW_BACK"/>
+					<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "declaracionSeguro_hojaParcelas_resValAseg_UnidMet.jasper"]]></subreportExpression>
+				</subreport>
+				<subreport>
+					<reportElement positionType="Float" mode="Transparent" x="10" y="37" width="543" height="14" isRemoveLineWhenBlank="true" backcolor="#FFFFFF" uuid="50ae1aa2-603f-47ea-89f8-85bf4964afc9"/>
+					<subreportParameter name="IDPOLIZA">
+						<subreportParameterExpression><![CDATA[$P{ID}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="HOJA">
+						<subreportParameterExpression><![CDATA[$F{HOJA}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="CODCONCEPTO">
+						<subreportParameterExpression><![CDATA["68"]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="SUBREPORT_DIR">
+						<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
+					</subreportParameter>
+					<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					<returnValue subreportVariable="SHOW_FOOT" toVariable="SHOW_FOOT"/>
+					<returnValue subreportVariable="SHOW_BACK" toVariable="SHOW_BACK"/>
+					<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "declaracionSeguro_hojaParcelas_resValAseg_ProduccionSup.jasper"]]></subreportExpression>
+				</subreport>
+				<subreport>
+					<reportElement positionType="Float" mode="Transparent" x="10" y="93" width="543" height="14" isRemoveLineWhenBlank="true" backcolor="#FFFFFF" uuid="ebcb2fbb-3305-428f-a146-4e8a9e36f2a2"/>
+					<subreportParameter name="IDPOLIZA">
+						<subreportParameterExpression><![CDATA[$P{ID}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="HOJA">
+						<subreportParameterExpression><![CDATA[$F{HOJA}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="CODCONCEPTO">
+						<subreportParameterExpression><![CDATA["258"]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="SUBREPORT_DIR">
+						<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
+					</subreportParameter>
+					<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					<returnValue subreportVariable="SHOW_FOOT" toVariable="SHOW_FOOT"/>
+					<returnValue subreportVariable="SHOW_BACK" toVariable="SHOW_BACK"/>
+					<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "declaracionSeguro_hojaParcelas_resValAseg_ProduccionSup.jasper"]]></subreportExpression>
+				</subreport>
+			</band>
+		</groupFooter>
+	</group>
+	<group name="G_NUMERO" minHeightToStartNewPage="46">
+		<groupExpression><![CDATA[$F{NUMERO}]]></groupExpression>
+		<groupHeader>
+			<band height="31">
+				<textField isBlankWhenNull="true">
+					<reportElement x="358" y="0" width="65" height="8" printWhenGroupChanges="G_NUMERO" uuid="571059a8-7ed0-4d82-bbbd-2558b2e871f5"/>
+					<textElement verticalAlignment="Middle">
+						<font size="6"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{NOMPARCELA}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement x="251" y="0" width="103" height="8" printWhenGroupChanges="G_NUMERO" uuid="a0bdf3f7-4b81-4f5f-98ce-24b93c7fe802"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="6"/>
+					</textElement>
+					<textFieldExpression><![CDATA[( $F{SIGPAC} != null ? $F{SIGPAC} : $F{CATAS} )]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement x="163" y="0" width="87" height="8" printWhenGroupChanges="G_NUMERO" uuid="ec729cb9-86a5-410a-bc0d-ec577c663f84"/>
+					<textElement verticalAlignment="Middle">
+						<font size="6"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{DESVARIEDAD}]]></textFieldExpression>
+				</textField>
+				<textField pattern="#000" isBlankWhenNull="true">
+					<reportElement x="143" y="0" width="20" height="8" printWhenGroupChanges="G_NUMERO" uuid="ff1f4f13-1bf5-4393-83c1-98b7cd8e7a25"/>
+					<textElement>
+						<font size="6"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{CODVARIEDAD}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement x="57" y="0" width="78" height="8" printWhenGroupChanges="G_NUMERO" uuid="5848cf2b-1fa2-4d6b-b7df-09e46cfa7d49"/>
+					<textElement verticalAlignment="Middle">
+						<font size="6"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{DESCULTIVO}]]></textFieldExpression>
+				</textField>
+				<textField pattern="#000" isBlankWhenNull="true">
+					<reportElement x="8" y="0" width="24" height="8" printWhenGroupChanges="G_NUMERO" uuid="07fe0f2f-d6fd-4d1c-b178-27d0c32ce0d7"/>
+					<textElement>
+						<font size="6"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{NUMERO}]]></textFieldExpression>
+				</textField>
+				<textField pattern="#000" isBlankWhenNull="true">
+					<reportElement x="37" y="0" width="20" height="8" printWhenGroupChanges="G_NUMERO" uuid="432d4b3f-117d-4c36-93c3-1180a5cceaaf"/>
+					<textElement>
+						<font size="6"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{CODCULTIVO}]]></textFieldExpression>
+				</textField>
+				<subreport>
+					<reportElement x="1" y="22" width="552" height="8" backcolor="#FFFFFF" uuid="325ac8c8-31a3-4735-9025-06bbb3ccafa0">
+						<printWhenExpression><![CDATA[new Boolean (($P{pintarDC2015}.booleanValue()))]]></printWhenExpression>
+					</reportElement>
+					<subreportParameter name="IDDISTCOSTE2">
+						<subreportParameterExpression><![CDATA[$F{IDDISTCOSTE2}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="NUMERO">
+						<subreportParameterExpression><![CDATA[$F{NUMERO}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="HOJA">
+						<subreportParameterExpression><![CDATA[$F{HOJA}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="CODTIPOCAPITAL">
+						<subreportParameterExpression><![CDATA[$F{CODTIPOCAPITAL}]]></subreportParameterExpression>
+					</subreportParameter>
+					<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					<returnValue subreportVariable="SHOW_FOOT" toVariable="SHOW_FOOT"/>
+					<returnValue subreportVariable="SHOW_BACK" toVariable="SHOW_BACK"/>
+					<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "declaracionSeguro_hojaParcelas_distCosteParcela2015.jasper"]]></subreportExpression>
+				</subreport>
+				<subreport>
+					<reportElement positionType="Float" mode="Transparent" x="12" y="20" width="535" height="8" isRemoveLineWhenBlank="true" backcolor="#FFFFFF" uuid="6abbbfd6-bc84-4251-a028-4325091388b4">
+						<printWhenExpression><![CDATA[new Boolean(!$P{pintarDC2015}.booleanValue())]]></printWhenExpression>
+					</reportElement>
+					<subreportParameter name="IDDISTCOSTE">
+						<subreportParameterExpression><![CDATA[$F{IDDISTCOSTE}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="HOJA">
+						<subreportParameterExpression><![CDATA[$F{HOJA}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="NUMERO">
+						<subreportParameterExpression><![CDATA[$F{NUMERO}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="CODTIPOCAPITAL">
+						<subreportParameterExpression><![CDATA[$F{CODTIPOCAPITAL}]]></subreportParameterExpression>
+					</subreportParameter>
+					<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					<returnValue subreportVariable="SHOW_FOOT" toVariable="SHOW_FOOT"/>
+					<returnValue subreportVariable="SHOW_BACK" toVariable="SHOW_BACK"/>
+					<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "declaracionSeguro_hojaParcelas_distCosteParcela.jasper"]]></subreportExpression>
+				</subreport>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="21">
+				<line>
+					<reportElement positionType="Float" mode="Transparent" x="12" y="15" width="543" height="1" isPrintWhenDetailOverflows="true" printWhenGroupChanges="G_NUMERO" forecolor="#999999" uuid="d29960eb-1f6b-4842-8394-1234acf652ab"/>
+				</line>
+				<subreport isUsingCache="false" runToBottom="false">
+					<reportElement positionType="Float" stretchType="RelativeToBandHeight" mode="Transparent" x="12" y="3" width="532" height="8" isRemoveLineWhenBlank="true" backcolor="#FFFFFF" uuid="ce3608df-e28a-4937-8b9a-fd988e0a1765">
+						<printWhenExpression><![CDATA[new Boolean($P{datasourcParc}.get($F{IDPARC}) !=null)]]></printWhenExpression>
+					</reportElement>
+					<dataSourceExpression><![CDATA[$P{datasourcParc}.get($F{IDPARC})]]></dataSourceExpression>
+					<subreportExpression><![CDATA[$P{tablaSubreportParc}.get($F{IDPARC})]]></subreportExpression>
+				</subreport>
+			</band>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="64" splitType="Stretch">
+			<subreport>
+				<reportElement mode="Transparent" x="1" y="24" width="554" height="38" backcolor="#FFFFFF" uuid="22a1404b-24b8-4395-bf88-cbc2582179a0"/>
+				<subreportParameter name="SUBREPORT_DIR">
+					<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="esRenovable">
+					<subreportParameterExpression><![CDATA[$P{esRenovable}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="P_BARCODE">
+					<subreportParameterExpression><![CDATA[$P{P_BARCODE}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="ID">
+					<subreportParameterExpression><![CDATA[$P{ID}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<returnValue subreportVariable="SHOW_FOOT" toVariable="SHOW_FOOT"/>
+				<returnValue subreportVariable="SHOW_BACK" toVariable="SHOW_BACK"/>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "declaracionSeguro_cabecera.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="64" splitType="Stretch">
+			<staticText>
+				<reportElement x="10" y="39" width="24" height="23" uuid="b8841331-22ec-4468-a6f9-7669d390a61d"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8" isBold="true" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Nº PAR:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="39" y="39" width="100" height="23" uuid="db999173-7bb4-4029-8cf7-489acd6a80ce"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8" isBold="true" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[CULTIVO
+COD. - NOMBRE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="145" y="39" width="105" height="23" uuid="80cfd7d5-38e2-4ec0-9bf0-29a4e999c21a"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8" isBold="true" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[VARIEDAD
+COD. - NOMBRE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="253" y="39" width="105" height="23" uuid="4db290b4-b6ad-44d7-b0c6-b0685f93e8de"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[SIGPAC]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="360" y="39" width="58" height="23" uuid="017366b0-da4a-4dda-93aa-de97d435ecc9"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[NOMBRE
+PARCELA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="418" y="39" width="130" height="23" uuid="5456d559-5f52-4a88-9913-ef615134c388"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[TIPO CAPITAL
+COD. - NOMBRE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="13" y="26" width="135" height="13" uuid="3afcd1ec-f5bb-4c85-825a-7ff00711d639"/>
+				<textElement>
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DATOS DE LA COSECHA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="13" y="0" width="186" height="13" uuid="63f69e32-ad9f-4259-9c06-9d55233f4e02"/>
+				<textElement>
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[SITUACIÓN DE LAS EXPLOTACIONES]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="13" y="13" width="47" height="11" uuid="fd6a6726-f191-44bc-8d57-5d1c89db8db1"/>
+				<textElement>
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Provincia:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="174" y="13" width="47" height="11" uuid="e3075f56-9cba-4773-a63e-276bbabd912a"/>
+				<textElement>
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Comarca:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="343" y="13" width="47" height="11" uuid="049f9eaf-c0e4-4268-acce-f4cfd3e4f50a"/>
+				<textElement>
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Término:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="64" y="13" width="108" height="11" uuid="b3596d62-5f50-4a58-999c-979c0fd3be87"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{NOMPROVINCIA}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="221" y="13" width="122" height="11" uuid="9a6293e0-d178-4a9e-b389-4ad487469eee"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{NOMCOMARCA}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="390" y="13" width="168" height="11" uuid="1aab31ed-3344-42f4-ac15-edc817eaf720"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TERMINO}+"  "+$F{SUBTERMINO}]]></textFieldExpression>
+			</textField>
+			<textField pattern="000" isBlankWhenNull="true">
+				<reportElement x="199" y="0" width="40" height="13" uuid="7866d003-b1cc-43ea-89a9-a4f90c0b8a5b"/>
+				<textElement verticalAlignment="Middle">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["- HOJA "]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement positionType="Float" mode="Transparent" x="10" y="61" width="545" height="1" forecolor="#333333" uuid="1d20ab7a-bf7e-4c80-9c33-6be96b17b9c8"/>
+			</line>
+			<textField pattern="000" isBlankWhenNull="true">
+				<reportElement x="239" y="0" width="43" height="13" uuid="6871ec95-af91-4177-9983-4d0626b1ee1f"/>
+				<textElement verticalAlignment="Middle">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{HOJA}!= null?new DecimalFormat("000").format($F{HOJA}):""]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="24" splitType="Stretch">
+			<subreport>
+				<reportElement positionType="Float" mode="Transparent" x="10" y="8" width="552" height="8" isRemoveLineWhenBlank="true" isPrintWhenDetailOverflows="true" backcolor="#FFFFFF" uuid="f534b40f-5dfb-4b7b-b6af-0c7a08689152">
+					<printWhenExpression><![CDATA[new Boolean(!$P{imprimirReducida}.booleanValue())]]></printWhenExpression>
+				</reportElement>
+				<subreportParameter name="COB_PARCELAS">
+					<subreportParameterExpression><![CDATA[$P{COB_PARCELAS}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="LINEA">
+					<subreportParameterExpression><![CDATA[$F{LINEASEGUROID}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="IDCAPITAL">
+					<subreportParameterExpression><![CDATA[$F{IDCAPITALASEGURADO}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="IDPARCELA">
+					<subreportParameterExpression><![CDATA[$F{IDPARCELA}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<returnValue subreportVariable="SHOW_FOOT" toVariable="SHOW_FOOT"/>
+				<returnValue subreportVariable="SHOW_BACK" toVariable="SHOW_BACK"/>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "declaracionSeguro_detalleDatosCosecha.jasper"]]></subreportExpression>
+			</subreport>
+			<textField pattern="###0.00" isBlankWhenNull="true">
+				<reportElement x="377" y="0" width="60" height="8" uuid="cd6b6c4f-a39b-44ee-b15e-f015054225c2"/>
+				<textElement verticalAlignment="Middle">
+					<font size="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{SUPERFICIE}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="145" y="0" width="53" height="8" uuid="255df85d-6e19-4b44-b833-dcdd033a4c0b"/>
+				<textElement verticalAlignment="Middle">
+					<font size="6" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{PRODUCCION}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="331" y="0" width="46" height="8" uuid="96d995ac-28a9-47f0-af11-b1557d998a5a"/>
+				<textElement>
+					<font size="6" isBold="true"/>
+				</textElement>
+				<text><![CDATA[SUPERFICIE:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="39" y="0" width="77" height="8" uuid="2453e0e6-aa80-4b5a-a0a2-f510bffdd29f"/>
+				<textElement verticalAlignment="Middle">
+					<font size="6" isBold="true"/>
+				</textElement>
+				<text><![CDATA[PRODUCCION:]]></text>
+			</staticText>
+			<textField pattern="#000" isBlankWhenNull="true">
+				<reportElement x="426" y="0" width="20" height="8" isPrintInFirstWholeBand="true" uuid="32c56cb1-e3fe-4c56-9f5c-293bd2678982"/>
+				<textElement>
+					<font size="6" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{CODTIPOCAPITAL}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="446" y="0" width="107" height="8" isPrintInFirstWholeBand="true" uuid="9696c333-6a76-45d9-a218-a3ecdc5e0d35"/>
+				<textElement verticalAlignment="Middle">
+					<font size="6" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{DESTIPOCAPITAL}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="217" y="0" width="29" height="8" uuid="3389febb-6583-41ea-a152-24521661b471"/>
+				<textElement verticalAlignment="Middle">
+					<font size="6" isBold="true"/>
+				</textElement>
+				<text><![CDATA[PRECIO:]]></text>
+			</staticText>
+			<textField pattern="#,##0.0000¤" isBlankWhenNull="true">
+				<reportElement x="246" y="0" width="68" height="8" uuid="70e81368-2af2-4938-a1b4-3a7713aa0439"/>
+				<textElement verticalAlignment="Middle">
+					<font size="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{PRECIO}]]></textFieldExpression>
+			</textField>
+			<subreport>
+				<reportElement positionType="Float" mode="Transparent" x="10" y="16" width="535" height="8" isRemoveLineWhenBlank="true" backcolor="#FFFFFF" uuid="4fa082ef-903f-41a0-acea-0845ee4e00b7">
+					<printWhenExpression><![CDATA[new Boolean(!$P{imprimirReducida}.booleanValue())]]></printWhenExpression>
+				</reportElement>
+				<subreportParameter name="COB_PARCELAS">
+					<subreportParameterExpression><![CDATA[$P{COB_PARCELAS}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="IDCAPITAL">
+					<subreportParameterExpression><![CDATA[$F{IDCAPITALASEGURADO}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<returnValue subreportVariable="SHOW_FOOT" toVariable="SHOW_FOOT"/>
+				<returnValue subreportVariable="SHOW_BACK" toVariable="SHOW_BACK"/>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "declaracionSeguro_hojaParcela_cosecha_detalle.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+	<summary>
+		<band height="32" splitType="Stretch">
+			<subreport>
+				<reportElement x="10" y="0" width="535" height="22" uuid="2eff1614-bb9c-4dc2-8727-1e1f8d61569b"/>
+				<subreportParameter name="imprimirReducida">
+					<subreportParameterExpression><![CDATA[$P{imprimirReducida}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="ID">
+					<subreportParameterExpression><![CDATA[$P{ID}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<returnValue subreportVariable="SHOW_FOOT" toVariable="SHOW_FOOT"/>
+				<returnValue subreportVariable="SHOW_BACK" toVariable="SHOW_BACK"/>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "declaracionSeguro_resumenSuperficies.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</summary>
+</jasperReport>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="explotaciones_gruposRaza_tiposCapital" pageWidth="595" pageHeight="842" columnWidth="595" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0">
+	<parameter name="SUBREPORT_DIR" class="java.lang.String"/>
+	<field name="tipoCapital" class="java.lang.String">
+		<fieldDescription><![CDATA[tipoCapital]]></fieldDescription>
+	</field>
+	<field name="beanTipoAnimal" class="java.util.List">
+		<fieldDescription><![CDATA[beanTipoAnimal]]></fieldDescription>
+	</field>
+	<field name="datosVariable" class="java.util.List">
+		<fieldDescription><![CDATA[datosVariable]]></fieldDescription>
+	</field>
+	<detail>
+		<band height="57">
+			<staticText>
+				<reportElement x="20" y="2" width="76" height="10"/>
+				<box>
+					<pen lineWidth="0.0"/>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Tipo de Capital:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="86" y="2" width="314" height="10"/>
+				<textElement verticalAlignment="Middle">
+					<font size="6"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{tipoCapital}]]></textFieldExpression>
+			</textField>
+			<subreport>
+				<reportElement positionType="Float" mode="Transparent" x="0" y="26" width="592" height="31" isRemoveLineWhenBlank="true" isPrintWhenDetailOverflows="true" backcolor="#FFFFFF"/>
+				<subreportParameter name="SUBREPORT_DIR">
+					<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
+				</subreportParameter>
+				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{beanTipoAnimal})]]></dataSourceExpression>
+				<subreportExpression class="java.lang.String"><![CDATA[$P{SUBREPORT_DIR} + "explotaciones_gruposRaza_tiposCapital_animales.jasper"]]></subreportExpression>
+			</subreport>
+			<subreport>
+				<reportElement positionType="Float" mode="Transparent" x="0" y="12" width="510" height="14" isRemoveLineWhenBlank="true" isPrintWhenDetailOverflows="true" backcolor="#FFFFFF"/>
+				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{datosVariable})]]></dataSourceExpression>
+				<subreportExpression class="java.lang.String"><![CDATA[$P{SUBREPORT_DIR} + "explotaciones_datosVariables.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+</jasperReport>

@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="declaracionSiniestro_datosAsegurado" pageWidth="555" pageHeight="802" whenNoDataType="AllSectionsNoDetail" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="ID" class="java.lang.Integer"/>
+	<queryString>
+		<![CDATA[select distinct a.NIFCIF,
+	NVL(a.razonsocial,A.NOMBRE ||' '|| a.apellido1 ||' '|| a.apellido2) as asegurado_nombre,
+        (v.abreviatura||' '|| a.direccion ||' '|| a.numvia) as asegurado_domicilio,
+        a.piso as asegurado_piso,
+	a.bloque as asegurado_bloque,
+	a.escalera as asegurado_escalera,
+        pr.nomprovincia as asegurado_provincia,
+	l.nomlocalidad as asegurado_localidad,
+	a.telefono as asegurado_telefono,
+	a.movil as asegurado_movil,
+	a.email as asegurado_email,
+	a.codpostal as asegurado_cp
+             from tb_polizas p, tb_asegurados a, tb_vias v, tb_localidades l, tb_provincias pr
+        where p.idasegurado = a.id
+        and v.clave = a.clavevia
+        and l.codprovincia = a.codprovincia
+        and l.codlocalidad = a.codlocalidad
+        and l.sublocalidad = a.sublocalidad
+        and pr.codprovincia = a.codprovincia
+        and p.idpoliza = $P{ID}]]>
+	</queryString>
+	<field name="NIFCIF" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="ASEGURADO_NOMBRE" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="ASEGURADO_DOMICILIO" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="ASEGURADO_PISO" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="ASEGURADO_BLOQUE" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="ASEGURADO_ESCALERA" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="ASEGURADO_PROVINCIA" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="ASEGURADO_LOCALIDAD" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="ASEGURADO_TELEFONO" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="ASEGURADO_MOVIL" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="ASEGURADO_EMAIL" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="ASEGURADO_CP" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="100" splitType="Stretch">
+			<staticText>
+				<reportElement x="14" y="15" width="57" height="15"/>
+				<textElement>
+					<font size="7" isBold="true" pdfFontName="Courier-Bold"/>
+				</textElement>
+				<text><![CDATA[Nombre:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="191" y="60" width="51" height="15"/>
+				<textElement>
+					<font size="7" isBold="true" pdfFontName="Courier-Bold"/>
+				</textElement>
+				<text><![CDATA[Tfno.Fijo:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="14" y="30" width="57" height="15"/>
+				<textElement>
+					<font size="7" isBold="true" pdfFontName="Courier-Bold"/>
+				</textElement>
+				<text><![CDATA[Domicilio:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="191" y="75" width="39" height="15"/>
+				<textElement>
+					<font size="7" isBold="true" pdfFontName="Courier-Bold"/>
+				</textElement>
+				<text><![CDATA[e-mail:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="191" y="45" width="57" height="15"/>
+				<textElement>
+					<font size="7" isBold="true" pdfFontName="Courier-Bold"/>
+				</textElement>
+				<text><![CDATA[Piso/letra:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="71" y="15" width="484" height="15"/>
+				<textElement>
+					<font size="7" pdfFontName="Courier"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{ASEGURADO_NOMBRE}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="0" width="242" height="15"/>
+				<textElement>
+					<font size="9" isBold="true" pdfFontName="Courier-Bold"/>
+				</textElement>
+				<text><![CDATA[DATOS DEL ASEGURADO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="14" y="45" width="57" height="15"/>
+				<textElement>
+					<font size="7" isBold="true" pdfFontName="Courier-Bold"/>
+				</textElement>
+				<text><![CDATA[Localidad:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="71" y="60" width="120" height="15"/>
+				<textElement>
+					<font size="7" pdfFontName="Courier"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{ASEGURADO_PROVINCIA}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="230" y="75" width="167" height="15"/>
+				<textElement>
+					<font size="7" pdfFontName="Courier"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{ASEGURADO_EMAIL}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="14" y="75" width="57" height="15"/>
+				<textElement>
+					<font size="7" isBold="true" pdfFontName="Courier-Bold"/>
+				</textElement>
+				<text><![CDATA[C. Postal:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="242" y="60" width="105" height="15"/>
+				<textElement>
+					<font size="7" isStrikeThrough="false" pdfFontName="Courier"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{ASEGURADO_TELEFONO}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="353" y="45" width="45" height="15"/>
+				<textElement>
+					<font size="7" isBold="true" pdfFontName="Courier-Bold"/>
+				</textElement>
+				<text><![CDATA[Bloque:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="353" y="60" width="62" height="15"/>
+				<textElement>
+					<font size="7" isBold="true" pdfFontName="Courier-Bold"/>
+				</textElement>
+				<text><![CDATA[Tfno. Móvil:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="71" y="75" width="120" height="15"/>
+				<textElement>
+					<font size="7" pdfFontName="Courier"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{ASEGURADO_CP}.toString()]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="248" y="45" width="105" height="15"/>
+				<textElement>
+					<font size="7" pdfFontName="Courier"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{ASEGURADO_PISO}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="415" y="60" width="140" height="15"/>
+				<textElement>
+					<font size="7" pdfFontName="Courier"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{ASEGURADO_MOVIL}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="448" y="45" width="55" height="15"/>
+				<textElement>
+					<font size="7" isBold="true" pdfFontName="Courier-Bold"/>
+				</textElement>
+				<text><![CDATA[Escalera:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="503" y="45" width="26" height="15"/>
+				<textElement>
+					<font pdfFontName="Courier"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{ASEGURADO_ESCALERA}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="14" y="60" width="57" height="15"/>
+				<textElement>
+					<font size="7" isBold="true" pdfFontName="Courier-Bold"/>
+				</textElement>
+				<text><![CDATA[Provincia:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="71" y="45" width="120" height="15"/>
+				<textElement>
+					<font size="7" pdfFontName="Courier"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{ASEGURADO_LOCALIDAD}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="398" y="45" width="26" height="15"/>
+				<textElement>
+					<font size="7" pdfFontName="Courier"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{ASEGURADO_BLOQUE}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="353" y="0" width="52" height="15"/>
+				<textElement>
+					<font size="7" isBold="true" pdfFontName="Courier-Bold"/>
+				</textElement>
+				<text><![CDATA[NIF/CIF:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="405" y="0" width="150" height="15"/>
+				<textElement>
+					<font size="7" pdfFontName="Courier"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{NIFCIF}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="71" y="30" width="484" height="15"/>
+				<textElement>
+					<font size="7" pdfFontName="Courier"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{ASEGURADO_DOMICILIO}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

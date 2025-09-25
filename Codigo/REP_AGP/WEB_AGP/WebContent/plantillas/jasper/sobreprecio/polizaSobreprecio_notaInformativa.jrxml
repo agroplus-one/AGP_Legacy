@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="polizaSobreprecio_notainformativa" pageWidth="533" pageHeight="700" whenNoDataType="AllSectionsNoDetail" columnWidth="533" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" isIgnorePagination="true">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="hanging-indentation-style" isDefault="false">
+		<box leftPadding="23"/>
+	</style>
+	<parameter name="NOTA_TITULO" class="java.lang.String"/>
+	<parameter name="NOTA_TEXTO" class="java.lang.String"/>
+	<parameter name="NOTA_SUBTITULO" class="java.lang.String"/>
+	<parameter name="NOTA_RUTA_FOTO" class="java.lang.String"/>
+	<parameter name="NOTA_UBICACION_FOTO" class="java.lang.String"/>
+	<parameter name="TIPO_POLIZA" class="java.lang.String"/>
+	<parameter name="NOTA_VERTICAL" class="java.lang.String"/>
+	<parameter name="numSolicitud" class="java.lang.String"/>
+	<parameter name="entidad" class="java.lang.String"/>
+	<parameter name="oficina" class="java.lang.String"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String">
+		<defaultValueExpression><![CDATA[""]]></defaultValueExpression>
+	</parameter>
+	<parameter name="P_BARCODE" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<variable name="SHOW_FOOT" class="java.lang.Boolean" resetType="None">
+		<variableExpression><![CDATA[new Boolean(false)]]></variableExpression>
+		<initialValueExpression><![CDATA[]]></initialValueExpression>
+	</variable>
+	<title>
+		<band height="680" splitType="Stretch">
+			<textField isBlankWhenNull="true">
+				<reportElement x="27" y="107" width="467" height="27"/>
+				<textElement textAlignment="Center" markup="html">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{NOTA_TITULO}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement style="hanging-indentation-style" mode="Transparent" x="27" y="198" width="467" height="482"/>
+				<textElement textAlignment="Justified" markup="html">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{NOTA_TEXTO}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="27" y="136" width="467" height="60" isRemoveLineWhenBlank="true">
+					<printWhenExpression><![CDATA[Boolean.valueOf(!"".equals($P{NOTA_SUBTITULO}))]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Justified" markup="html">
+					<font size="9" isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{NOTA_SUBTITULO}]]></textFieldExpression>
+			</textField>
+			<image vAlign="Bottom" onErrorType="Icon">
+				<reportElement x="394" y="636" width="100" height="44">
+					<printWhenExpression><![CDATA[new Boolean($P{NOTA_UBICACION_FOTO}.equals("6"))]]></printWhenExpression>
+				</reportElement>
+				<imageExpression class="java.lang.String"><![CDATA[$P{SUBREPORT_DIR} + $P{NOTA_RUTA_FOTO}]]></imageExpression>
+			</image>
+			<image onErrorType="Icon">
+				<reportElement x="27" y="16" width="100" height="44">
+					<printWhenExpression><![CDATA[new Boolean($P{NOTA_UBICACION_FOTO}.equals("3"))]]></printWhenExpression>
+				</reportElement>
+				<imageExpression class="java.lang.String"><![CDATA[$P{SUBREPORT_DIR} + $P{NOTA_RUTA_FOTO}]]></imageExpression>
+			</image>
+			<image onErrorType="Icon">
+				<reportElement x="394" y="16" width="100" height="44">
+					<printWhenExpression><![CDATA[new Boolean($P{NOTA_UBICACION_FOTO}.equals("4"))]]></printWhenExpression>
+				</reportElement>
+				<imageExpression class="java.lang.String"><![CDATA[$P{SUBREPORT_DIR} + $P{NOTA_RUTA_FOTO}]]></imageExpression>
+			</image>
+			<image vAlign="Bottom" onErrorType="Icon">
+				<reportElement x="27" y="636" width="100" height="44">
+					<printWhenExpression><![CDATA[new Boolean($P{NOTA_UBICACION_FOTO}.equals("5"))]]></printWhenExpression>
+				</reportElement>
+				<imageExpression class="java.lang.String"><![CDATA[$P{SUBREPORT_DIR} + $P{NOTA_RUTA_FOTO}]]></imageExpression>
+			</image>
+			<textField isBlankWhenNull="true">
+				<reportElement x="0" y="0" width="27" height="680"/>
+				<textElement textAlignment="Center" rotation="Left" markup="html">
+					<font size="5" isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{NOTA_VERTICAL}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="27" y="65" width="218" height="17"/>
+				<textElement textAlignment="Left" markup="html">
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["SOLICITUD NÚMERO: " + $P{numSolicitud}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="27" y="86" width="218" height="17"/>
+				<textElement textAlignment="Left" markup="html">
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{entidad} + " / " + $P{oficina}]]></textFieldExpression>
+			</textField>
+			<componentElement>
+				<reportElement x="357" y="65" width="137" height="30"/>
+				<c:Code128 xmlns:c="http://jasperreports.sourceforge.net/jasperreports/components" 
+					xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components 
+					http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<c:codeExpression><![CDATA[$P{P_BARCODE}]]></c:codeExpression>
+				</c:Code128>				
+			</componentElement>			
+		</band>
+	</title>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

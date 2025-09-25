@@ -1,0 +1,19 @@
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+	xmlns:tns="http://www.ruralserviciosinformaticos.com/XSD/ErrorGenerico_O/"
+	targetNamespace="http://www.ruralserviciosinformaticos.com/XSD/ErrorGenerico_O/"
+	elementFormDefault="qualified">
+	<element name="ErrorGenericoResponse" type="tns:Error_type" />
+	<complexType name="Error_type">
+		<sequence>
+			<element name="codigoMostrar" nillable="false" type="string" />
+			<element name="mensajeMostrar" nillable="true" type="string"
+				minOccurs="0" />
+			<element name="solucion" nillable="true" type="string"
+				minOccurs="0" />
+			<element name="prioridad" nillable="true" type="string"
+				minOccurs="0" />
+			<element name="grupoAlerta" nillable="true" type="string"
+				minOccurs="0" />
+		</sequence>
+	</complexType>
+</schema>

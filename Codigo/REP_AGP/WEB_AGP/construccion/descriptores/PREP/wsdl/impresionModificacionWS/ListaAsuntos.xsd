@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<x:schema 
+	targetNamespace="http://www.agroseguro.es/ListaAsuntos"
+	xmlns="http://www.agroseguro.es/ListaAsuntos"
+	xmlns:pks="http://www.agroseguro.es/ListaAsuntos"
+	xmlns:x="http://www.w3.org/2001/XMLSchema"
+> 
+
+	<!-- Importacion de la definicion de tipos genericos -->
+		
+	<x:element name="ListaAsuntos" type="ListaAsuntos" >
+		<x:annotation>
+			<x:documentation>
+				Elemento Raiz
+			</x:documentation>
+		</x:annotation>
+	</x:element>
+	
+	<x:complexType name="ListaAsuntos">
+		<x:sequence>
+            <x:element name="Asunto" type="Asunto" minOccurs="1" maxOccurs="unbounded" />		
+        </x:sequence>
+	</x:complexType>
+		
+	<x:complexType name="Asunto">
+		<x:attribute name="codigo" use="required" type="CodigoAsunto" />	
+		<x:attribute name="descriptivo" use="required" type="DescriptivoAsunto" />	
+	</x:complexType>
+	
+	<x:simpleType name="CodigoAsunto">
+		<x:restriction base="x:string">
+			<x:maxLength value="6" />
+		</x:restriction>
+	</x:simpleType>
+	
+	<x:simpleType name="DescriptivoAsunto">
+		<x:restriction base="x:string">
+			<x:maxLength value="45" />
+		</x:restriction>
+	</x:simpleType>
+	
+</x:schema>

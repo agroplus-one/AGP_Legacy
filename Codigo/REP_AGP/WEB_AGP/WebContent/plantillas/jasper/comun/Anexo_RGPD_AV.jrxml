@@ -1,0 +1,536 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.16.0.final using JasperReports Library version 3.6.1  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Anexo_RGPD" pageWidth="555" pageHeight="1500" whenNoDataType="AllSectionsNoDetail" columnWidth="515" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" isIgnorePagination="true">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="style1" fill="Solid" lineSpacing="Single"/>
+	<parameter name="SUBREPORT_COMUN_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["."]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<variable name="SHOW_FOOT" class="java.lang.Boolean" resetType="None">
+		<variableExpression><![CDATA[new Boolean(false)]]></variableExpression>
+		<initialValueExpression><![CDATA[]]></initialValueExpression>
+	</variable>
+	<variable name="SHOW_BACK" class="java.lang.Boolean" resetType="None">
+		<variableExpression><![CDATA[new Boolean(false)]]></variableExpression>
+		<initialValueExpression><![CDATA[]]></initialValueExpression>
+	</variable>
+	<title>
+		<band height="720" splitType="Stretch">
+			<image>
+				<reportElement x="0" y="-1" width="161" height="64"/>
+			</image>
+			<frame>
+				<reportElement positionType="Float" x="99" y="178" width="416" height="138">
+					<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.VerticalRowLayout"/>
+				</reportElement>
+				<box topPadding="0" bottomPadding="0">
+					<pen lineWidth="0.75"/>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textField isStretchWithOverflow="true">
+					<reportElement positionType="Float" x="0" y="0" width="416" height="18">
+						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+					</reportElement>
+					<box topPadding="3" leftPadding="10"/>
+					<textElement lineSpacing="Single">
+						<font size="15" isBold="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA["FINALIDADES DE NATURALEZA CONTRACTUAL:"]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement positionType="Float" x="0" y="18" width="416" height="12">
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+						<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+					</reportElement>
+					<box leftPadding="10"/>
+					<textElement lineSpacing="Single">
+						<font size="15"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA["- Establecer las condiciones del seguro que nos solicita y realizar la selección de riesgos, teniendo en cuenta los datos que nos facilite para elaborar su perfil de riesgo, mediante tratamientos automatizados o no."]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement positionType="Float" x="0" y="30" width="416" height="12">
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					</reportElement>
+					<box leftPadding="10"/>
+					<textElement lineSpacing="Single">
+						<font size="15"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA["- Celebrar, mantener y seguir el cumplimiento del seguro que contrate con la Compañía"]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement positionType="Float" x="0" y="42" width="416" height="12">
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					</reportElement>
+					<box leftPadding="10"/>
+					<textElement lineSpacing="Single">
+						<font size="15" isBold="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA["FINALIDADES BASADAS EN EL INTERÉS LEGÍTIMO DE LA COMPAÑÍA:"]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement positionType="Float" x="0" y="54" width="416" height="12">
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					</reportElement>
+					<box leftPadding="10"/>
+					<textElement lineSpacing="Single">
+						<font size="15"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA["- Desarrollar acciones comerciales en general, y en particular, ofrecerle y/o recomendarle nuestros productos y servicios, que puedan resultar de su interés, dentro de su expectativa razonable de privacidad, basada en su historial de contratación con nosotros. La recomendación de productos podrá basarse en un perfilado que, en algunos casos, se llevará a cabo utilizando medios basados únicamente en el tratamiento automatizado de sus datos."]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement positionType="Float" x="0" y="66" width="416" height="12">
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					</reportElement>
+					<box leftPadding="10"/>
+					<textElement lineSpacing="Single">
+						<font size="15"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA["- Crear modelos de comportamiento a través de datos seudonimizados y anónimos, que también permitan ajustarnos a tus necesidades e intereses."]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement positionType="Float" x="0" y="78" width="416" height="12">
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					</reportElement>
+					<box leftPadding="10"/>
+					<textElement lineSpacing="Single">
+						<font size="15"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA["- Auditar la calidad de los servicios que prestamos."]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement positionType="Float" x="0" y="90" width="416" height="12">
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					</reportElement>
+					<box leftPadding="10"/>
+					<textElement lineSpacing="Single">
+						<font size="15"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA["- Conservar sus datos por un plazo no superior al establecido legalmente a contar desde la emisión de la oferta, para llevar a cabo el mantenimiento y seguimiento de la misma."]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement positionType="Float" x="0" y="102" width="416" height="12">
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					</reportElement>
+					<box leftPadding="10"/>
+					<textElement lineSpacing="Single">
+						<font size="15"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA["- Puede consultar información más detallada sobre nuestros tratamientos, o la forma en la que puede oponerse a ellos,  en el apartado 'Protección de Datos' que se encuentra en nuestra web www.segurosrga.es"]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement positionType="Float" x="0" y="114" width="416" height="12">
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					</reportElement>
+					<box leftPadding="10"/>
+					<textElement lineSpacing="Single">
+						<font size="15" isBold="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA["FINALIDADES BASADAS EN EL INTERÉS LEGÍTIMO DE LA COMPAÑÍA:"]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement positionType="Float" x="0" y="126" width="416" height="12">
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					</reportElement>
+					<box leftPadding="10" bottomPadding="4"/>
+					<textElement lineSpacing="Single">
+						<font size="15"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA["- Las que usted pudiera consentir expresamente en la contratación del producto."]]></textFieldExpression>
+				</textField>
+			</frame>
+			<frame>
+				<reportElement positionType="Float" x="99" y="316" width="416" height="109">
+					<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.VerticalRowLayout"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="0.75"/>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textField isStretchWithOverflow="true">
+					<reportElement positionType="Float" x="0" y="0" width="416" height="25"/>
+					<box leftPadding="10"/>
+					<textElement lineSpacing="Single">
+						<font size="15"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA["- Organismos Públicos competentes, Jueces y Tribunales, cuando la Compañía tenga la obligación legal de facilitarlos."]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement positionType="Float" x="0" y="25" width="416" height="21"/>
+					<box leftPadding="10"/>
+					<textElement lineSpacing="Single">
+						<font size="15"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA["- Entidades reaseguradoras o coaseguradoras, para la formalización de contratos de reaseguro o coaseguro a fin de celebrar, tramitar o gestionar, en su caso, las prestaciones contenidas en su póliza."]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement positionType="Float" x="0" y="46" width="416" height="21"/>
+					<box leftPadding="10"/>
+					<textElement lineSpacing="Single">
+						<font size="15"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA["- Entidades del sector asegurador, para la prevención del fraude en la contratación de seguros."]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement positionType="Float" x="0" y="67" width="416" height="21"/>
+					<box leftPadding="10"/>
+					<textElement lineSpacing="Single">
+						<font size="15"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA["- Entidades financieras para la gestión de cobros y pagos."]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement positionType="Float" x="0" y="88" width="416" height="21">
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					</reportElement>
+					<box leftPadding="10"/>
+					<textElement lineSpacing="Single">
+						<font size="15"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA["Además, la compañía cuenta con la colaboración de algunos terceros proveedores de servicios que tienen acceso a sus datos personales y que tratan los referidos datos en nombre y por cuenta de la Compañía como consecuencia de su prestación de servicios.  En concreto, y a título enunciativo y no limitativo, los citados proveedores desempeñan sus servicios en los siguientes sectores: servicios de custodia y digitalización de documentación, servicios de mediación de seguros, servicios reconocimientos médicos para selección de riesgos, servicios de gestión administrativa y atención de clientes, servicios de auditoría de calidad de servicios o servicios de desarrollo tecnológico."]]></textFieldExpression>
+				</textField>
+			</frame>
+			<frame>
+				<reportElement positionType="Float" isPrintRepeatedValues="false" x="99" y="75" width="416" height="103">
+					<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.VerticalRowLayout"/>
+				</reportElement>
+				<box topPadding="5" bottomPadding="5">
+					<topPen lineWidth="1.0" lineStyle="Solid"/>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid"/>
+				</box>
+				<textField isStretchWithOverflow="true">
+					<reportElement positionType="Float" x="0" y="0" width="416" height="24" isRemoveLineWhenBlank="true">
+						<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+					</reportElement>
+					<box leftPadding="10" bottomPadding="0" rightPadding="0"/>
+					<textElement lineSpacing="Single">
+						<font size="15" isItalic="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA["RGA Seguros Generales Rural, S.A. de Seguros y Reaseguros"]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement positionType="Float" x="0" y="24" width="416" height="23">
+						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+						<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					</reportElement>
+					<box topPadding="2" leftPadding="10"/>
+					<textElement lineSpacing="Single">
+						<font size="15"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA["C/Basauri, 14 (28023) Madrid"]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement positionType="Float" x="0" y="47" width="416" height="23" isPrintWhenDetailOverflows="true">
+						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+					</reportElement>
+					<box topPadding="0" leftPadding="10"/>
+					<textElement lineSpacing="Single">
+						<font size="15" isItalic="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA["Correo electrónico de contacto de la compañía: cat@segurosrga.es"]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement positionType="Float" x="0" y="70" width="416" height="23">
+						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+					</reportElement>
+					<box topPadding="3" leftPadding="10"/>
+					<textElement lineSpacing="Single" markup="none">
+						<font size="15"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA["Contacto Delegado de Protección de Datos: correo postal al DPO RGA C/Basauri, 14 (28023) Madrid, o correo electrónico  dpo_rga@segurosrga.es"]]></textFieldExpression>
+				</textField>
+			</frame>
+			<frame>
+				<reportElement positionType="Float" x="0" y="316" width="99" height="109">
+					<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.VerticalRowLayout"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="0.75"/>
+					<rightPen lineWidth="0.75"/>
+				</box>
+				<textField isStretchWithOverflow="true">
+					<reportElement x="0" y="0" width="99" height="55"/>
+					<box topPadding="5" leftPadding="5"/>
+					<textElement lineSpacing="Single">
+						<font size="15"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA["Destinatarios"]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement mode="Transparent" x="0" y="55" width="99" height="54" forecolor="#FFFFFF" backcolor="rgba(255, 255, 255, 0.0)"/>
+					<box bottomPadding="326"/>
+					<textElement lineSpacing="Single">
+						<font size="12"/>
+					</textElement>
+					<textFieldExpression><![CDATA[" "]]></textFieldExpression>
+				</textField>
+			</frame>
+			<frame>
+				<reportElement x="0" y="75" width="99" height="103">
+					<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.VerticalRowLayout"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="0.75"/>
+					<rightPen lineWidth="0.75"/>
+				</box>
+				<textField isStretchWithOverflow="true">
+					<reportElement x="0" y="0" width="99" height="52"/>
+					<box topPadding="5" leftPadding="5"/>
+					<textElement lineSpacing="Single">
+						<font size="15"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA["Responsable"]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement x="0" y="52" width="99" height="51" forecolor="#FFFFFF"/>
+					<box bottomPadding="97">
+						<pen lineColor="#FFFFFF"/>
+					</box>
+					<textElement lineSpacing="Single">
+						<font size="14"/>
+					</textElement>
+					<textFieldExpression><![CDATA[" "]]></textFieldExpression>
+				</textField>
+			</frame>
+			<frame>
+				<reportElement positionType="Float" x="0" y="178" width="99" height="138">
+					<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.VerticalRowLayout"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="0.75"/>
+					<rightPen lineWidth="0.75"/>
+				</box>
+				<textField isStretchWithOverflow="true">
+					<reportElement x="0" y="0" width="99" height="69"/>
+					<box topPadding="5" leftPadding="5" bottomPadding="400"/>
+					<textElement lineSpacing="Single">
+						<font size="15"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA["Finalidades y legitimación"]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement positionType="Float" mode="Transparent" x="0" y="69" width="99" height="69" forecolor="#FFFFFF" backcolor="rgba(255, 255, 255, 0.0)"/>
+					<box topPadding="0" bottomPadding="137"/>
+					<textElement lineSpacing="Single">
+						<font size="13"/>
+					</textElement>
+					<textFieldExpression><![CDATA["."]]></textFieldExpression>
+				</textField>
+			</frame>
+			<frame>
+				<reportElement positionType="Float" x="0" y="425" width="99" height="35">
+					<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.VerticalRowLayout"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="0.75"/>
+					<rightPen lineWidth="0.75"/>
+				</box>
+				<textField isStretchWithOverflow="true">
+					<reportElement x="0" y="0" width="99" height="18"/>
+					<box topPadding="5" leftPadding="5" bottomPadding="140"/>
+					<textElement lineSpacing="Single">
+						<font size="15"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA["Derechos"]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement positionType="Float" mode="Opaque" x="0" y="18" width="99" height="17" forecolor="#FFFFFF" backcolor="rgba(255, 255, 255, 0.0)"/>
+					<box topPadding="0" bottomPadding="32"/>
+					<textElement lineSpacing="Single">
+						<font size="12"/>
+					</textElement>
+					<textFieldExpression><![CDATA[" "]]></textFieldExpression>
+				</textField>
+			</frame>
+			<frame>
+				<reportElement positionType="Float" x="99" y="425" width="416" height="35">
+					<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.VerticalRowLayout"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="0.75"/>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textField isStretchWithOverflow="true">
+					<reportElement positionType="Float" x="0" y="0" width="416" height="18">
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					</reportElement>
+					<box leftPadding="10"/>
+					<textElement lineSpacing="Single">
+						<font size="15"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA["Podrá acceder, rectificar, suprimir sus datos, oponerse al uso de los mismos, revocar sus consentimientos, así como ejercer otros derechos reconocidos por la normativa como el derecho de portabilidad, limitación del tratamiento, o presentar reclamaciones ante la Agencia de Protección de Datos, o a nuestro Delegado de Protección de Datos. "]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement positionType="Float" x="0" y="18" width="416" height="17">
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					</reportElement>
+					<box topPadding="10" leftPadding="10"/>
+					<textElement lineSpacing="Single">
+						<font size="15"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA["Puede ejercer estos derechos dirigiéndose a la Compañía o al Delegado de Protección de Datos, así como presentar una reclamación ante la Agencia Española de Protección de Datos."]]></textFieldExpression>
+				</textField>
+			</frame>
+			<frame>
+				<reportElement positionType="Float" x="0" y="460" width="99" height="60">
+					<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.VerticalRowLayout"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="0.75"/>
+					<rightPen lineWidth="0.75"/>
+				</box>
+				<textField isStretchWithOverflow="true">
+					<reportElement x="0" y="0" width="99" height="30"/>
+					<box topPadding="5" leftPadding="5"/>
+					<textElement lineSpacing="Single">
+						<font size="15"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA["Procedencia"]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement mode="Opaque" x="0" y="30" width="99" height="30" forecolor="#FFFFFF" backcolor="rgba(255, 255, 255, 0.0)"/>
+					<box topPadding="0" bottomPadding="144"/>
+					<textElement lineSpacing="Single">
+						<font size="12"/>
+					</textElement>
+					<textFieldExpression><![CDATA[" "]]></textFieldExpression>
+				</textField>
+			</frame>
+			<frame>
+				<reportElement positionType="Float" x="99" y="460" width="416" height="60">
+					<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.VerticalRowLayout"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="0.75"/>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textField isStretchWithOverflow="true">
+					<reportElement positionType="Float" x="0" y="0" width="416" height="20">
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					</reportElement>
+					<box leftPadding="10"/>
+					<textElement lineSpacing="Single">
+						<font size="15"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA["La Compañía obtiene sus datos de las siguientes fuentes:"]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement positionType="Float" x="0" y="20" width="416" height="20"/>
+					<box leftPadding="10"/>
+					<textElement lineSpacing="Single">
+						<font size="15"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA["1. La información que Usted nos facilite y la que se genere del mantenimiento de la relación contractual."]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement positionType="Float" x="0" y="40" width="416" height="20">
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					</reportElement>
+					<box leftPadding="10"/>
+					<textElement lineSpacing="Single">
+						<font size="15"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA["2. La información que obtenemos a través de la Caja Rural o entidad financiera cuyas redes de distribución se ceden a RGA Mediación OBSV, S.A. u otros Operadores de Banca Seguros  autorizados, si usted realiza la solicitud del producto a través de la misma, o de la misma forma si hubiera utilizado otros Agentes o Colaboradores externos en la contratación."]]></textFieldExpression>
+				</textField>
+			</frame>
+			<frame>
+				<reportElement positionType="Float" x="0" y="520" width="99" height="47">
+					<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.VerticalRowLayout"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="0.75"/>
+					<rightPen lineWidth="0.75"/>
+				</box>
+				<textField isStretchWithOverflow="true">
+					<reportElement x="0" y="0" width="99" height="24"/>
+					<box leftPadding="5"/>
+					<textElement lineSpacing="Single">
+						<font size="15"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA["Datos de Terceros interesados"]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement positionType="Float" mode="Opaque" x="0" y="24" width="99" height="23" forecolor="#FFFFFF" backcolor="rgba(255, 255, 255, 0.0)"/>
+					<box topPadding="0" bottomPadding="122"/>
+					<textElement lineSpacing="Single">
+						<font size="12"/>
+					</textElement>
+					<textFieldExpression><![CDATA[" "]]></textFieldExpression>
+				</textField>
+			</frame>
+			<frame>
+				<reportElement positionType="Float" x="99" y="520" width="416" height="47">
+					<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.VerticalRowLayout"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="0.75"/>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textField isStretchWithOverflow="true">
+					<reportElement positionType="Float" x="0" y="0" width="416" height="47">
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					</reportElement>
+					<box leftPadding="10" bottomPadding="5"/>
+					<textElement lineSpacing="Single">
+						<font size="15"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA["Respecto de aquellos datos de terceros interesados que eventualmente nos pudiera proporcionar a lo largo del proceso de contratación (p.ej., beneficiarios o asegurados), recae sobre Usted la responsabilidad de que los mismos sean ciertos, completos y exactos en el momento de aportarlos. Usted garantiza haber obtenido previamente y contar con el consentimiento expreso de dichos terceros para la comunicación de sus datos a la Compañía y a transmitirles la información sobre dicho tratamiento que se recoge en el presente documento."]]></textFieldExpression>
+				</textField>
+			</frame>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="290" y="0" width="225" height="22"/>
+				<textElement textAlignment="Right" lineSpacing="Single" markup="html">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["INFORMACIÓN BÁSICA SOBRE"]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="290" y="20" width="225" height="22"/>
+				<textElement textAlignment="Right" lineSpacing="Single" markup="html">
+					<font size="12" isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["PROTECCIÓN DE DATOS"]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

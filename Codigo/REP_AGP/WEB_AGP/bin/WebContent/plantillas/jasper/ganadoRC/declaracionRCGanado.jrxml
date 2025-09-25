@@ -1,0 +1,604 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.16.0.final using JasperReports Library version 3.6.1  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="declaracionRCGanado" pageWidth="595" pageHeight="842" whenNoDataType="AllSectionsNoDetail" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<property name="ireport.callouts" value="##Mon Sep 27 11:54:24 CEST 2010"/>
+	<style name="table" lineSpacing="Single">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TH" mode="Opaque" backcolor="#7FFFD4" lineSpacing="Single">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_CH" mode="Opaque" backcolor="#BFFFEA" lineSpacing="Single">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TD" mode="Opaque" backcolor="#FFFFFF" lineSpacing="Single">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[new Boolean($V{REPORT_COUNT}.intValue()%2==0)]]></conditionExpression>
+			<style backcolor="#EFFFF9" lineSpacing="Single"/>
+		</conditionalStyle>
+	</style>
+	<style name="table 1" lineSpacing="Single">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_TH" mode="Opaque" backcolor="#7FFFD4" lineSpacing="Single">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_CH" mode="Opaque" backcolor="#BFFFEA" lineSpacing="Single">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_TD" mode="Opaque" backcolor="#FFFFFF" lineSpacing="Single">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2" lineSpacing="Single">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2_TH" mode="Opaque" backcolor="#7FFFD4" lineSpacing="Single">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2_CH" mode="Opaque" backcolor="#BFFFEA" lineSpacing="Single">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2_TD" mode="Opaque" backcolor="#FFFFFF" lineSpacing="Single">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[new Boolean($V{REPORT_COUNT}.intValue()%2==0)]]></conditionExpression>
+			<style backcolor="#EFFFF9" lineSpacing="Single"/>
+		</conditionalStyle>
+	</style>
+	<style name="table 3" lineSpacing="Single">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 3_TH" mode="Opaque" backcolor="#F0F8FF" lineSpacing="Single">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 3_CH" mode="Opaque" backcolor="#BFE1FF" lineSpacing="Single">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 3_TD" mode="Opaque" backcolor="#FFFFFF" lineSpacing="Single">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 4" lineSpacing="Single">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 4_TH" mode="Opaque" backcolor="#7FFFD4" lineSpacing="Single">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 4_CH" mode="Opaque" backcolor="#BFFFEA" lineSpacing="Single">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 4_TD" mode="Opaque" backcolor="#FFFFFF" lineSpacing="Single">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[new Boolean($V{REPORT_COUNT}.intValue()%2==0)]]></conditionExpression>
+			<style backcolor="#EFFFF9" lineSpacing="Single"/>
+		</conditionalStyle>
+	</style>
+	<style name="table 5" lineSpacing="Single">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 5_TH" mode="Opaque" backcolor="#F0F8FF" lineSpacing="Single">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 5_CH" mode="Opaque" backcolor="#BFE1FF" lineSpacing="Single">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 5_TD" mode="Opaque" backcolor="#FFFFFF" lineSpacing="Single">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA[""]]></defaultValueExpression>
+	</parameter>
+	<parameter name="asegurador" class="java.lang.String"/>
+	<parameter name="poliza" class="java.lang.String"/>
+	<parameter name="numero" class="java.lang.String"/>
+	<parameter name="producto" class="java.lang.String"/>
+	<parameter name="caja" class="java.lang.String"/>
+	<parameter name="oficina" class="java.lang.String"/>
+	<parameter name="entMed" class="java.lang.String"/>
+	<parameter name="subEntMed" class="java.lang.String"/>
+	<parameter name="mediador" class="java.lang.String"/>
+	<parameter name="duracion" class="java.lang.String"/>
+	<parameter name="FECHA" class="java.util.Date"/>
+	<parameter name="CIUDAD_EMISION" class="java.lang.String"/>
+	<parameter name="tomador_nombreCompleto" class="java.lang.Object"/>
+	<parameter name="tomador_identificador" class="java.lang.String"/>
+	<parameter name="tomador_telefono" class="java.lang.String"/>
+	<parameter name="tomador_email" class="java.lang.String"/>
+	<parameter name="tomador_domicilio" class="java.lang.String"/>
+	<parameter name="tomador_poblacion" class="java.lang.String"/>
+	<parameter name="tomador_codigoPostal" class="java.lang.String"/>
+	<parameter name="tomador_provincia" class="java.lang.String"/>
+	<parameter name="asegurado_nombreCompleto" class="java.lang.String"/>
+	<parameter name="asegurado_identificador" class="java.lang.String"/>
+	<parameter name="asegurado_telefono" class="java.lang.String"/>
+	<parameter name="asegurado_domicilio" class="java.lang.String"/>
+	<parameter name="asegurado_poblacion" class="java.lang.String"/>
+	<parameter name="asegurado_codigoPostal" class="java.lang.String"/>
+	<parameter name="asegurado_provincia" class="java.lang.String"/>
+	<parameter name="asegurado_email" class="java.lang.String"/>
+	<parameter name="franquicia" class="java.lang.String"/>
+	<parameter name="sumaAsegurada" class="java.lang.String"/>
+	<parameter name="explotaciones" class="net.sf.jasperreports.engine.data.JRBeanCollectionDataSource"/>
+	<parameter name="titularCC" class="java.lang.String"/>
+	<parameter name="IBANCC" class="java.lang.String"/>
+	<parameter name="entidadCC" class="java.lang.String"/>
+	<parameter name="formaPago" class="java.lang.String"/>
+	<parameter name="primaNeta" class="java.lang.String"/>
+	<parameter name="primaNetaAnual" class="java.lang.String"/>
+	<parameter name="totalRecibo" class="java.lang.String"/>
+	<parameter name="NOTA_VERTICAL" class="java.lang.String"/>
+	<parameter name="NOTA_SUBTITULO" class="java.lang.String"/>
+	<parameter name="TIPO_POLIZA" class="java.lang.String"/>
+	<parameter name="NOTA_TEXTO" class="java.lang.String"/>
+	<parameter name="NOTA_UBICACION_FOTO" class="java.lang.String"/>
+	<parameter name="NOTA_RUTA_FOTO" class="java.lang.String"/>
+	<parameter name="NOTA_TITULO" class="java.lang.String"/>
+	<parameter name="recibos" class="net.sf.jasperreports.engine.data.JRBeanCollectionDataSource"/>
+	<parameter name="IMAGEN_DIR" class="java.lang.String">
+		<defaultValueExpression><![CDATA["."]]></defaultValueExpression>
+	</parameter>
+	<parameter name="descImp1" class="java.lang.String"/>
+	<parameter name="descImp2" class="java.lang.String"/>
+	<parameter name="descImp3" class="java.lang.String"/>
+	<parameter name="descImp4" class="java.lang.String"/>
+	<parameter name="descImp5" class="java.lang.String"/>
+	<parameter name="descImp0" class="java.lang.String"/>
+	<parameter name="valorImp1" class="java.lang.String"/>
+	<parameter name="valorImp2" class="java.lang.String"/>
+	<parameter name="valorImp3" class="java.lang.String"/>
+	<parameter name="valorImp4" class="java.lang.String"/>
+	<parameter name="valorImp5" class="java.lang.String"/>
+	<parameter name="valorImp0" class="java.lang.String"/>
+	<parameter name="descImp7" class="java.lang.String"/>
+	<parameter name="descImp6" class="java.lang.String"/>
+	<parameter name="valorImp7" class="java.lang.String"/>
+	<parameter name="valorImp6" class="java.lang.String"/>
+	<parameter name="aseguradoVulnerable" class="java.lang.Boolean"/>
+	<parameter name="SUBREPORT_COMUN_DIR" class="java.lang.String">
+		<defaultValueExpression><![CDATA["."]]></defaultValueExpression>
+	</parameter>
+	<parameter name="RUTA_IPID" class="java.lang.String">
+		<defaultValueExpression><![CDATA["."]]></defaultValueExpression>
+	</parameter>
+	<parameter name="HAS_NOTA_INFORMATIVA" class="java.lang.String">
+		<defaultValueExpression><![CDATA["FALSE"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="SHOW_ENT_SUBENT_MED" class="java.lang.Boolean">
+		<defaultValueExpression><![CDATA[new Boolean("FALSE")]]></defaultValueExpression>
+	</parameter>
+	<parameter name="numSolicitud" class="java.lang.String"/>
+	<parameter name="PLAN" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[select * from dual]]>
+	</queryString>
+	<variable name="MES_FECHA" class="java.lang.String">
+		<variableExpression><![CDATA[]]></variableExpression>
+	</variable>
+	<variable name="SHOW_FOOT" class="java.lang.Boolean" resetType="None">
+		<variableExpression><![CDATA[new Boolean(false)]]></variableExpression>
+		<initialValueExpression><![CDATA[]]></initialValueExpression>
+	</variable>
+	<variable name="SHOW_BACK" class="java.lang.Boolean" resetType="None">
+		<variableExpression><![CDATA[new Boolean(true)]]></variableExpression>
+		<initialValueExpression><![CDATA[]]></initialValueExpression>
+	</variable>
+	<background>
+		<band height="802" splitType="Stretch">
+			<image evaluationTime="Page">
+				<reportElement x="79" y="229" width="390" height="384">
+					<printWhenExpression><![CDATA[new Boolean(!($V{PAGE_NUMBER}.intValue() <= (Boolean.valueOf($P{HAS_NOTA_INFORMATIVA}).booleanValue() ? 3 : 2)))]]></printWhenExpression>
+				</reportElement>
+				<imageExpression class="java.lang.String"><![CDATA[$P{IMAGEN_DIR} + "marcaAgua.jpg"]]></imageExpression>
+			</image>
+		</band>
+	</background>
+	<detail>
+		<band height="12">
+			<subreport runToBottom="false">
+				<reportElement x="0" y="1" width="555" height="11" isRemoveLineWhenBlank="true">
+					<printWhenExpression><![CDATA[Boolean.valueOf($P{HAS_NOTA_INFORMATIVA})]]></printWhenExpression>
+				</reportElement>
+				<subreportParameter name="NOTA_VERTICAL">
+					<subreportParameterExpression><![CDATA[$P{NOTA_VERTICAL}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="NOTA_SUBTITULO">
+					<subreportParameterExpression><![CDATA[$P{NOTA_SUBTITULO}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="entidad">
+					<subreportParameterExpression><![CDATA[$P{SHOW_ENT_SUBENT_MED}.booleanValue() ? $P{entMed} : $P{caja}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="numSolicitud">
+					<subreportParameterExpression><![CDATA[$P{numSolicitud}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="TIPO_POLIZA">
+					<subreportParameterExpression><![CDATA[$P{TIPO_POLIZA}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="REPORT_CONNECTION">
+					<subreportParameterExpression><![CDATA[$P{REPORT_CONNECTION}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="NOTA_TEXTO">
+					<subreportParameterExpression><![CDATA[$P{NOTA_TEXTO}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="oficina">
+					<subreportParameterExpression><![CDATA[$P{SHOW_ENT_SUBENT_MED}.booleanValue() ? $P{subEntMed} : $P{oficina}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="NOTA_UBICACION_FOTO">
+					<subreportParameterExpression><![CDATA[$P{NOTA_UBICACION_FOTO}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="NOTA_RUTA_FOTO">
+					<subreportParameterExpression><![CDATA[$P{NOTA_RUTA_FOTO}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="NOTA_TITULO">
+					<subreportParameterExpression><![CDATA[$P{NOTA_TITULO}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="SUBREPORT_DIR">
+					<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
+				</subreportParameter>
+				<returnValue subreportVariable="SHOW_FOOT" toVariable="SHOW_FOOT"/>
+				<returnValue subreportVariable="SHOW_BACK" toVariable="SHOW_BACK"/>
+				<subreportExpression class="java.lang.String"><![CDATA[$P{aseguradoVulnerable}.booleanValue() ? $P{SUBREPORT_DIR} + "declaracionRCGanado_notaInformativa_AV.jasper" : $P{SUBREPORT_DIR} + "declaracionRCGanado_notaInformativa.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="12">
+			<break>
+				<reportElement x="0" y="10" width="100" height="1"/>
+			</break>
+			<subreport runToBottom="false">
+				<reportElement isPrintRepeatedValues="false" x="0" y="0" width="555" height="12" forecolor="#009999" backcolor="#FFFFFF"/>
+				<subreportParameter name="numSolicitud">
+					<subreportParameterExpression><![CDATA[$P{numSolicitud}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="RUTA_IPID">
+					<subreportParameterExpression><![CDATA[$P{RUTA_IPID}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="PLAN">
+					<subreportParameterExpression><![CDATA[$P{PLAN}]]></subreportParameterExpression>
+				</subreportParameter>
+				<returnValue subreportVariable="SHOW_FOOT" toVariable="SHOW_FOOT"/>
+				<returnValue subreportVariable="SHOW_BACK" toVariable="SHOW_BACK"/>
+				<subreportExpression class="java.lang.String"><![CDATA[$P{SUBREPORT_DIR} + "declaracionRCGanado_ipid.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="12">
+			<break>
+				<reportElement x="0" y="10" width="100" height="1"/>
+			</break>
+			<subreport runToBottom="false">
+				<reportElement isPrintRepeatedValues="false" x="0" y="0" width="555" height="12" forecolor="#009999" backcolor="#FFFFFF"/>
+				<subreportParameter name="numSolicitud">
+					<subreportParameterExpression><![CDATA[$P{numSolicitud}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="RUTA_IPID">
+					<subreportParameterExpression><![CDATA[$P{RUTA_IPID}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="PLAN">
+					<subreportParameterExpression><![CDATA[$P{PLAN}]]></subreportParameterExpression>
+				</subreportParameter>
+				<returnValue subreportVariable="SHOW_FOOT" toVariable="SHOW_FOOT"/>
+				<returnValue subreportVariable="SHOW_BACK" toVariable="SHOW_BACK"/>
+				<subreportExpression class="java.lang.String"><![CDATA[$P{SUBREPORT_DIR} + "declaracionRCGanado_ipid2.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="65" splitType="Stretch">
+			<image>
+				<reportElement x="0" y="1" width="161" height="64"/>
+				<imageExpression class="java.lang.String"><![CDATA[$P{IMAGEN_DIR}+"logo_rga.gif"]]></imageExpression>
+			</image>
+			<elementGroup>
+				<staticText>
+					<reportElement x="161" y="14" width="394" height="16"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle" lineSpacing="Single">
+						<font fontName="SansSerif" size="11" isBold="true"/>
+					</textElement>
+					<text><![CDATA[SEGURO DE RESPONSABILIDAD CIVIL GENERAL]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="161" y="30" width="394" height="24"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle" lineSpacing="Single">
+						<font fontName="SansSerif" size="14" isBold="true"/>
+					</textElement>
+					<text><![CDATA[R.C. PARTICULARES]]></text>
+				</staticText>
+			</elementGroup>
+		</band>
+		<band height="93" splitType="Stretch">
+			<subreport runToBottom="false">
+				<reportElement isPrintRepeatedValues="false" x="0" y="0" width="555" height="93" forecolor="#009999" backcolor="#FFFFFF"/>
+				<subreportParameter name="SUBREPORT_DIR">
+					<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="poliza">
+					<subreportParameterExpression><![CDATA[$P{poliza}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="asegurador">
+					<subreportParameterExpression><![CDATA[$P{asegurador}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="producto">
+					<subreportParameterExpression><![CDATA[$P{producto}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="oficina">
+					<subreportParameterExpression><![CDATA[$P{oficina}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="mediador">
+					<subreportParameterExpression><![CDATA[$P{mediador}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="duracion">
+					<subreportParameterExpression><![CDATA[$P{duracion}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="caja">
+					<subreportParameterExpression><![CDATA[$P{caja}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="numero">
+					<subreportParameterExpression><![CDATA[$P{numero}]]></subreportParameterExpression>
+				</subreportParameter>
+				<returnValue subreportVariable="SHOW_FOOT" toVariable="SHOW_FOOT"/>
+				<returnValue subreportVariable="SHOW_BACK" toVariable="SHOW_BACK"/>
+				<subreportExpression class="java.lang.String"><![CDATA[$P{SUBREPORT_DIR} + "/declaracionRCGanado_ccpp.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="161">
+			<subreport>
+				<reportElement positionType="Float" isPrintRepeatedValues="false" x="0" y="2" width="555" height="159" forecolor="#CC99FF" backcolor="#FFFFFF"/>
+				<subreportParameter name="asegurado_codigoPostal">
+					<subreportParameterExpression><![CDATA[$P{asegurado_codigoPostal}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="asegurado_telefono">
+					<subreportParameterExpression><![CDATA[$P{asegurado_telefono}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="tomador_domicilio">
+					<subreportParameterExpression><![CDATA[$P{tomador_domicilio}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="asegurado_nombreCompleto">
+					<subreportParameterExpression><![CDATA[$P{asegurado_nombreCompleto}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="tomador_nombreCompleto">
+					<subreportParameterExpression><![CDATA[$P{tomador_nombreCompleto}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="asegurado_identificador">
+					<subreportParameterExpression><![CDATA[$P{asegurado_identificador}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="tomador_telefono">
+					<subreportParameterExpression><![CDATA[$P{tomador_telefono}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="tomador_provincia">
+					<subreportParameterExpression><![CDATA[$P{tomador_provincia}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="asegurado_email">
+					<subreportParameterExpression><![CDATA[$P{asegurado_email}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="tomador_poblacion">
+					<subreportParameterExpression><![CDATA[$P{tomador_poblacion}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="asegurado_domicilio">
+					<subreportParameterExpression><![CDATA[$P{asegurado_domicilio}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="tomador_email">
+					<subreportParameterExpression><![CDATA[$P{tomador_email}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="asegurado_provincia">
+					<subreportParameterExpression><![CDATA[$P{asegurado_provincia}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="tomador_identificador">
+					<subreportParameterExpression><![CDATA[$P{tomador_identificador}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="asegurado_poblacion">
+					<subreportParameterExpression><![CDATA[$P{asegurado_poblacion}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="tomador_codigoPostal">
+					<subreportParameterExpression><![CDATA[$P{tomador_codigoPostal}]]></subreportParameterExpression>
+				</subreportParameter>
+				<returnValue subreportVariable="SHOW_FOOT" toVariable="SHOW_FOOT"/>
+				<returnValue subreportVariable="SHOW_BACK" toVariable="SHOW_BACK"/>
+				<subreportExpression class="java.lang.String"><![CDATA[$P{SUBREPORT_DIR} + "/declaracionRCGanado_datosPersonales.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="148">
+			<subreport>
+				<reportElement x="0" y="0" width="555" height="148"/>
+				<subreportParameter name="SUBREPORT_DIR">
+					<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="sumaAsegurada">
+					<subreportParameterExpression><![CDATA[$P{sumaAsegurada}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="explotaciones_riesgo">
+					<subreportParameterExpression><![CDATA[$P{explotaciones}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="franquicia">
+					<subreportParameterExpression><![CDATA[$P{franquicia}]]></subreportParameterExpression>
+				</subreportParameter>
+				<returnValue subreportVariable="SHOW_FOOT" toVariable="SHOW_FOOT"/>
+				<returnValue subreportVariable="SHOW_BACK" toVariable="SHOW_BACK"/>
+				<subreportExpression class="java.lang.String"><![CDATA[$P{SUBREPORT_DIR} + "/declaracionRCGanado_riesgo.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="101">
+			<subreport>
+				<reportElement x="0" y="1" width="555" height="100"/>
+				<subreportParameter name="descImp0">
+					<subreportParameterExpression><![CDATA[$P{descImp0}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="descImp1">
+					<subreportParameterExpression><![CDATA[$P{descImp1}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="descImp2">
+					<subreportParameterExpression><![CDATA[$P{descImp2}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="IBANCC">
+					<subreportParameterExpression><![CDATA[$P{IBANCC}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="descImp7">
+					<subreportParameterExpression><![CDATA[$P{descImp7}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="valorImp4">
+					<subreportParameterExpression><![CDATA[$P{valorImp4}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="valorImp5">
+					<subreportParameterExpression><![CDATA[$P{valorImp5}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="titularCC">
+					<subreportParameterExpression><![CDATA[$P{titularCC}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="valorImp6">
+					<subreportParameterExpression><![CDATA[$P{valorImp6}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="valorImp7">
+					<subreportParameterExpression><![CDATA[$P{valorImp7}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="descImp3">
+					<subreportParameterExpression><![CDATA[$P{descImp3}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="valorImp0">
+					<subreportParameterExpression><![CDATA[$P{valorImp0}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="valorImp1">
+					<subreportParameterExpression><![CDATA[$P{valorImp1}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="descImp4">
+					<subreportParameterExpression><![CDATA[$P{descImp4}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="valorImp2">
+					<subreportParameterExpression><![CDATA[$P{valorImp2}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="descImp5">
+					<subreportParameterExpression><![CDATA[$P{descImp5}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="valorImp3">
+					<subreportParameterExpression><![CDATA[$P{valorImp3}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="descImp6">
+					<subreportParameterExpression><![CDATA[$P{descImp6}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="recibos">
+					<subreportParameterExpression><![CDATA[$P{recibos}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="totalRecibo">
+					<subreportParameterExpression><![CDATA[$P{totalRecibo}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="formaPago">
+					<subreportParameterExpression><![CDATA[$P{formaPago}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="SUBREPORT_DIR">
+					<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="primaNetaAnual">
+					<subreportParameterExpression><![CDATA[$P{primaNetaAnual}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="primaNeta">
+					<subreportParameterExpression><![CDATA[$P{primaNeta}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="entidadCC">
+					<subreportParameterExpression><![CDATA[$P{entidadCC}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<returnValue subreportVariable="SHOW_FOOT" toVariable="SHOW_FOOT"/>
+				<returnValue subreportVariable="SHOW_BACK" toVariable="SHOW_BACK"/>
+				<subreportExpression class="java.lang.String"><![CDATA[$P{SUBREPORT_DIR} + "declaracionRCGanado_recibo.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="50">
+			<break>
+				<reportElement x="0" y="0" width="100" height="1"/>
+			</break>
+			<subreport>
+				<reportElement x="0" y="1" width="555" height="49" isPrintWhenDetailOverflows="true"/>
+				<subreportParameter name="SUBREPORT_COMUN_DIR">
+					<subreportParameterExpression><![CDATA[$P{SUBREPORT_COMUN_DIR}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="aseguradoVulnerable">
+					<subreportParameterExpression><![CDATA[$P{aseguradoVulnerable}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<returnValue subreportVariable="SHOW_FOOT" toVariable="SHOW_FOOT"/>
+				<returnValue subreportVariable="SHOW_BACK" toVariable="SHOW_BACK"/>
+				<subreportExpression class="java.lang.String"><![CDATA[$P{aseguradoVulnerable}.booleanValue() ? $P{SUBREPORT_COMUN_DIR} + "Anexo_RGPD_2_AV.jasper" : $P{SUBREPORT_COMUN_DIR} + "Anexo_RGPD_2.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="37" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="0" width="548" height="37"/>
+			</rectangle>
+			<textField evaluationTime="Page">
+				<reportElement positionType="Float" x="0" y="4" width="548" height="13">
+					<printWhenExpression><![CDATA[$V{SHOW_FOOT}]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" lineSpacing="Single">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["Emitido en "+ $P{CIUDAD_EMISION} +" a " + new Integer($P{FECHA}.getDate()) + " de " +
+(new java.text.DateFormatSymbols(new Locale("es", "ES")).getMonths()[$P{FECHA}.getMonth()]).toUpperCase() + " de " +String.valueOf(new SimpleDateFormat("yyyy").format($P{FECHA}))]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Page">
+				<reportElement positionType="Float" x="478" y="19" width="37" height="13"/>
+				<textElement lineSpacing="Single">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["Página "+ $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement positionType="Float" x="507" y="19" width="37" height="13"/>
+				<textElement lineSpacing="Single">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[" de " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

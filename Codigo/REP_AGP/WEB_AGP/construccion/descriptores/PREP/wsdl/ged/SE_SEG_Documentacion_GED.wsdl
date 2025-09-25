@@ -1,0 +1,124 @@
+<WL5G3N1:definitions
+	xmlns:WL5G3N0="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd"
+	xmlns:WL5G3N1="http://schemas.xmlsoap.org/wsdl/"
+	xmlns:WL5G3N2="http://www.ruralserviciosinformaticos.com/XSD/SecurityHeader/"
+	xmlns:WL5G3N3="http://www.ruralserviciosinformaticos.com/empresa/SE_SEG_Documentacion_GED/"
+	xmlns:WL5G3N4="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy"
+	targetNamespace="http://www.ruralserviciosinformaticos.com/empresa/SE_SEG_Documentacion_GED/">
+	<wsp:UsingPolicy WL5G3N1:Required="true" />
+	<wsp:Policy WL5G3N0:Id="Mtom.xml">
+		<wsoma:OptimizedMimeSerialization
+			xmlns:wsoma="http://schemas.xmlsoap.org/ws/2004/09/policy/optimizedmimeserialization" />
+	</wsp:Policy>
+	<WL5G3N1:types>
+		<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:WL5G3N0="http://schemas.xmlsoap.org/wsdl/"
+			xmlns:WL5G3N1="http://www.ruralserviciosinformaticos.com/XSD/SecurityHeader/"
+			xmlns:WL5G3N2="http://www.ruralserviciosinformaticos.com/empresa/SE_SEG_Documentacion_GED/"
+			xmlns:WL5G3N3="http://schemas.xmlsoap.org/wsdl/soap/"
+			xmlns:sec="http://www.ruralserviciosinformaticos.com/XSD/SecurityHeader/"
+			xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+			xmlns:tns="http://www.ruralserviciosinformaticos.com/empresa/SE_SEG_Documentacion_GED/"
+			xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+			<import
+				namespace="http://www.ruralserviciosinformaticos.com/empresa/SE_SEG_Documentacion_GED/"
+				schemaLocation="http://soa02.risa:80/SOA_Seguros/Empresa/PS/soap/v1/SE_SEG_Documentacion_GED?SCHEMA%2FSOA_Seguros%2FEmpresa%2FXSD%2Fv1%2FEE_SEG_Documentacion_GED" />
+			<import
+				namespace="http://www.ruralserviciosinformaticos.com/XSD/SecurityHeader/"
+				schemaLocation="http://soa02.risa:80/SOA_Seguros/Empresa/PS/soap/v1/SE_SEG_Documentacion_GED?SCHEMA%2FSOA_ComunV1%2FRecursos%2FXSD%2FSecurity%2Fv1%2FSecurityHeader" />
+		</schema>
+	</WL5G3N1:types>
+	<WL5G3N1:message name="RSI_Header_Input">
+		<WL5G3N1:part element="WL5G3N2:RSI_Header" name="RSI_Header" />
+	</WL5G3N1:message>
+	<WL5G3N1:message name="ProcesarDocumentoAgroseguros_Input">
+		<WL5G3N1:part element="WL5G3N3:EE_I_ProcesarDocumentoAgroseguros"
+			name="ProcesarDocumentoAgroseguros_Input" />
+	</WL5G3N1:message>
+	<WL5G3N1:message name="ProcesarDocumentoAgroseguros_Output">
+		<WL5G3N1:part element="WL5G3N3:EE_O_ProcesarDocumentoAgroseguros"
+			name="ProcesarDocumentoAgroseguros_Output" />
+	</WL5G3N1:message>
+	<WL5G3N1:message name="EliminarDocumentoVida_Input">
+		<WL5G3N1:part element="WL5G3N3:EE_I_EliminarDocumentoVida"
+			name="EliminarDocumentoVida_Input" />
+	</WL5G3N1:message>
+	<WL5G3N1:message name="EliminarDocumentoVida_Output">
+		<WL5G3N1:part element="WL5G3N3:EE_O_EliminarDocumentoVida"
+			name="EliminarDocumentoVida_Output" />
+	</WL5G3N1:message>
+	<WL5G3N1:message name="ProcesarDocumentoVida_Input">
+		<WL5G3N1:part element="WL5G3N3:EE_I_ProcesarDocumentoVida"
+			name="ProcesarDocumentoVida_Input" />
+	</WL5G3N1:message>
+	<WL5G3N1:message name="ProcesarDocumentoVida_Output">
+		<WL5G3N1:part element="WL5G3N3:EE_O_ProcesarDocumentoVida"
+			name="ProcesarDocumentoVida_Output" />
+	</WL5G3N1:message>
+	<WL5G3N1:portType name="SE_SEG_Documentacion_GED_PortType">
+		<WL5G3N1:operation name="ProcesarDocumentoAgroseguros">
+			<WL5G3N1:input message="WL5G3N3:ProcesarDocumentoAgroseguros_Input" />
+			<WL5G3N1:output message="WL5G3N3:ProcesarDocumentoAgroseguros_Output" />
+		</WL5G3N1:operation>
+		<WL5G3N1:operation name="EliminarDocumentoVida">
+			<WL5G3N1:input message="WL5G3N3:EliminarDocumentoVida_Input" />
+			<WL5G3N1:output message="WL5G3N3:EliminarDocumentoVida_Output" />
+		</WL5G3N1:operation>
+		<WL5G3N1:operation name="ProcesarDocumentoVida">
+			<WL5G3N1:input message="WL5G3N3:ProcesarDocumentoVida_Input" />
+			<WL5G3N1:output message="WL5G3N3:ProcesarDocumentoVida_Output" />
+		</WL5G3N1:operation>
+	</WL5G3N1:portType>
+	<WL5G3N1:binding name="SE_SEG_Documentacion_GED_Binder"
+		type="WL5G3N3:SE_SEG_Documentacion_GED_PortType">
+		<wsp:Policy>
+			<wsp:PolicyReference URI="#Mtom.xml" />
+		</wsp:Policy>
+		<WL5G3N4:binding style="document"
+			transport="http://schemas.xmlsoap.org/soap/http" />
+		<WL5G3N1:operation name="ProcesarDocumentoAgroseguros">
+			<WL5G3N4:operation soapAction="ProcesarDocumentoAgroseguros"
+				style="document" />
+			<WL5G3N1:input>
+				<WL5G3N4:header message="WL5G3N3:RSI_Header_Input"
+					part="RSI_Header" use="literal" />
+				<WL5G3N4:body parts="ProcesarDocumentoAgroseguros_Input"
+					use="literal" />
+			</WL5G3N1:input>
+			<WL5G3N1:output>
+				<WL5G3N4:body parts="ProcesarDocumentoAgroseguros_Output"
+					use="literal" />
+			</WL5G3N1:output>
+		</WL5G3N1:operation>
+		<WL5G3N1:operation name="EliminarDocumentoVida">
+			<WL5G3N4:operation soapAction="EliminarDocumentoVida"
+				style="document" />
+			<WL5G3N1:input>
+				<WL5G3N4:header message="WL5G3N3:RSI_Header_Input"
+					part="RSI_Header" use="literal" />
+				<WL5G3N4:body parts="EliminarDocumentoVida_Input" use="literal" />
+			</WL5G3N1:input>
+			<WL5G3N1:output>
+				<WL5G3N4:body parts="EliminarDocumentoVida_Output" use="literal" />
+			</WL5G3N1:output>
+		</WL5G3N1:operation>
+		<WL5G3N1:operation name="ProcesarDocumentoVida">
+			<WL5G3N4:operation soapAction="ProcesarDocumentoVida"
+				style="document" />
+			<WL5G3N1:input>
+				<WL5G3N4:header message="WL5G3N3:RSI_Header_Input"
+					part="RSI_Header" use="literal" />
+				<WL5G3N4:body parts="ProcesarDocumentoVida_Input" use="literal" />
+			</WL5G3N1:input>
+			<WL5G3N1:output>
+				<WL5G3N4:body parts="ProcesarDocumentoVida_Output" use="literal" />
+			</WL5G3N1:output>
+		</WL5G3N1:operation>
+	</WL5G3N1:binding>
+	<WL5G3N1:service name="SE_SEG_Documentacion_GEDQSService">
+		<WL5G3N1:port binding="WL5G3N3:SE_SEG_Documentacion_GED_Binder"
+			name="SE_SEG_Documentacion_GEDQSPort">
+			<WL5G3N4:address
+				location="http://soa02.risa/SOA_Seguros/Empresa/PS/soap/v1/SE_SEG_Documentacion_GED" />
+		</WL5G3N1:port>
+	</WL5G3N1:service>
+</WL5G3N1:definitions>

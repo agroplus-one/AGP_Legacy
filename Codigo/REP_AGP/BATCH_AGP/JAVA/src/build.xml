@@ -1,0 +1,1295 @@
+<project name="BATCH AGROPLUS" default="main" basedir=".">
+	<!-- Se construye un .jar para cada clase, con las mismas librerias
+	     para que luego funcione el comando java- jar.-->
+	<property name="src.dir"     value="../src"/>
+	<property name="srcExt.dir"     value="../src/com/rsi/agp/batch/importacion"/>
+	<property name="srcRecepcion.dir"     value="../src/com/rsi/agp/batch/RecepcionAgroseguro.java"/>
+	<property name="build.dir"   value="../build"/>
+	<property name="lib.dir"     value="../lib"/>
+	<property name="classes.dir" value="${build.dir}/classes"/>
+	<property name="jar.dir"     value="${build.dir}/jar"/>
+	<property name="jar.fileuploader.name"       			value="FileUploader"/>
+	<property name="jar.filedownloader.name"     			value="FileDownloader"/>
+	<property name="jar.acuserecibofinder.name"  			value="AcuseReciboFinder"/>
+	<property name="jar.recepcionfinder.name"				value="RecepcionFinder"/>
+	<property name="jar.comprobadorestadopoliza.name"  		value="ComprobadorEstadoPoliza"/>
+	<property name="jar.generadorsqlestadopoliza.name" 		value="GeneradorSqlEstadoPoliza"/>
+	<property name="jar.xmlTransormer.name" 				value="XmlTransformer"/>
+	<property name="jar.xmlIdUpdater.name" 					value="XmlIdUpdater"/>
+	<property name="jar.contratacionws.name" 				value="ContratacionWS"/>
+	<property name="jar.comisiones.name" 					value="BatchComisiones"/>
+	<property name="jar.importacion.name" 					value="BatchImportacion"/>
+	<property name="jar.generaPdf.name" 					value="GeneradorPdf"/>
+	<property name="jar.envioPolizasExternas.name" 			value="EnvioPolizasExternas"/>
+	<property name="jar.recepcionAgroseguro.name" 			value="RecepcionAgroseguro"/>
+	<property name="jar.importacionPolizasExt.name" 		value="ImportacionPolizasExt"/>
+	<property name="jar.suplementosSbp.name" 				value="SuplementosSbp"/>
+	<property name="jar.gastosRenovables.name" 				value="GastosRenovables"/>
+	<property name="jar.cargaPolizasRenovables.name" 		value="CargaPolizasRenovables"/>
+	<property name="jar.procesarPolizasRenovables.name"     value="ProcesarPolizasRenovables"/>
+	<property name="jar.updateEstadosPolRenovables.name"    value="UpdateEstadosPolRenovables"/>
+	<property name="jar.validaPolizasExternas.name"			value="ValidaPolizasExternas"/>
+	<property name="jar.pruebaOracle.name"    				value="PruebaOracle"/>
+	<property name="jar.envioCuentasRenovables.name"        value="EnvioCuentasRenovables"/>
+	<property name="jar.updateFechaEntradaVigor.name"       value="UpdateFechaEntradaVigor"/>
+	<!-- Pet. 50775 ** MODIF TAM (19.03.2018) ** Inicio  -->
+	<property name="jar.incidenciasListAsuntos.name"        value="IncidenciasListAsuntos"/> 
+	<property name="jar.seguimientoPolizas.name"            value="SeguimientoPolizas"/> 
+	<property name="jar.documentacionged.name"           	value="DocumentacionGed"/> 
+	<property name="jar.cargaRecibosEmitidos.name"          value="CargaRecibosEmitidos"/>
+	<property name="jar.cargaCondicionados.name"         	value="CargaCondicionados"/>
+	<property name="jar.cargaComisiones.name"        	 	value="CargaComisiones"/>
+	
+	<property name="file-uploader-main-class"    			value="com.rsi.agp.batch.FileUploader"/>
+	<property name="file-downloader-main-class"  			value="com.rsi.agp.batch.FileDownloader"/>
+	<property name="acuse-recibo-main-class"     			value="com.rsi.agp.batch.AcuseReciboFinder"/>
+	<property name="recepcion-main-class"     				value="com.rsi.agp.batch.RecepcionFinder"/>
+	<property name="comprobador-estado-poliza-main-class"   value="com.rsi.agp.batch.ComprobadorEstadoPoliza"/>
+	<property name="generadorsql-estado-poliza-main-class"  value="com.rsi.agp.batch.GeneradorSqlEstadoPoliza"/>
+	<property name="xmlTransormer-main-class" 				value="com.rsi.agp.core.executor.XmlTransformer"/>
+	<property name="xmlIdUpdater-main-class" 				value="com.rsi.agp.core.executor.XmlIdUpdater"/>
+	<property name="contratacionws-main-class" 				value="com.rsi.agp.batch.ContratacionWS"/>
+	<property name="comisiones-main-class" 					value="com.rsi.agp.batch.comisiones.main.BatchMain"/>
+	<property name="importacion-main-class" 				value="com.rsi.agp.batch.importacionCondicionado.main.BatchImportacionCondicionado"/>
+	<property name="generaPdf-main-class" 					value="com.rsi.agp.core.pdf.GeneradorPdf"/>
+	<property name="envioPolizasExternas-main-class" 		value="com.rsi.agp.batch.EnvioPolizasExternas"/>
+	<property name="validaPolizasExternas-main-class"		value="com.rsi.agp.batch.ValidaPolizasExternas"/>	
+	<property name="recepcionAgroseguro-main-class" 		value="com.rsi.agp.batch.RecepcionAgroseguro"/>
+	<property name="importacionPolizasExt-main-class" 		value="com.rsi.agp.batch.importacion.ImportacionPolizasExt"/>
+	<property name="suplementosSbp-main-class" 				value="com.rsi.agp.batch.sobreprecio.GeneraSuplementos"/>
+	<property name="gastosRenovables-main-class" 			value="com.rsi.agp.batch.renovables.GastosRenovables"/>
+	<property name="cargaPolizasRenovables-main-class" 		value="com.rsi.agp.batch.cargaPolizasRenovables.CargaPolizasRenovables"/>
+	<property name="procesarPolizasRenovables-main-class" 	value="com.rsi.agp.batch.procesarPolizasRenovables.ProcesarPolizasRenovables"/>
+	<property name="updateEstadosPolRenovables-main-class" 	value="com.rsi.agp.batch.updateEstadosPolRenovables.UpdateEstadosPolRenovables"/>
+	<property name="envioCuentasRenovables-main-class" 	    value="com.rsi.agp.batch.envioCuentasRenovables.EnvioCuentasRenovables"/>
+	<property name="updateFechaEntradaVigor-main-class" 	value="com.rsi.agp.batch.updateFechaEntradaVigor.UpdateFechaEntradaVigor"/>
+	<!-- Pet. 50775 ** MODIF TAM (19.03.2018) ** Inicio  -->
+	<property name="incidenciasListAsuntos-main-class"      value="com.rsi.agp.batch.incidenciasListAsuntos.IncidenciasListAsuntos"/> 
+	<property name="seguimientoPolizas-main-class"          value="com.rsi.agp.batch.seguimiento.SeguimientoPolizas"/>	
+	<property name="documentacionged-main-class"       		value="com.rsi.agp.batch.ged.GedRevisarDocum"/>
+	<property name="cargaRecibosEmitidos-main-class"       	value="com.rsi.agp.batch.cargaRecibos.CargaRecibosEmitidos"/>
+	<property name="cargaCondicionados-main-class"       	value="com.rsi.agp.batch.cargaCondicionados.CargaCondicionados"/>
+	<property name="cargaComisiones-main-class"      	 	value="com.rsi.agp.batch.cargaComisiones.CargaComisiones"/>
+	
+	<property name="pruebaOracle-main-class" 				value="com.rsi.agp.batch.pruebaOracle.PruebaOracle"/>
+	
+	<path id="path.classpath">
+		<fileset dir="${lib.dir}" >
+			<include name="**/commons-cli-1.2.jar"/>
+			<include name="**/commons-codec-1.3.jar"/>
+			<include name="**/commons-httpclient-3.1-contrib.jar"/>
+			<include name="**/commons-io.jar"/>
+			<include name="**/commons-logging-1.1.jar"/>			
+			<include name="**/ojdbc6_v12.1.0.2.0.jar"/>
+			<include name="**/schemas.jar"/>
+			<include name="**/wsAgroseguro.jar"/>
+			<include name="**/xbean.jar"/>
+			<include name="**/ftp4j-1.7.jar"/>
+			<include name="**/commons-net-3.0.1.jar"/>
+			<include name="**/commons-collections.jar"/>
+			<include name="**/JAVA_AGP.jar"/>
+			<include name="**/jta.jar"/>
+			<include name="**/slf4j-api-1.6.6.jar"/>
+			<include name="**/slf4j-nop-1.6.6.jar"/>
+			<include name="**/spring.jar"/>
+			<include name="**/log4j-1.2.16.jar"/>
+			<include name="**/hibernate3.jar"/>
+			<include name="**/javassist-3.10.0.GA.jar"/>
+			<include name="**/spring-webmvc.jar"/>
+			<include name="**/iText-5.0.5.jar"/>
+			<include name="**/commons-lang3-3.4.jar"/>
+			<include name="**/jasper-compiler.jar"/>
+			<include name="**/jasperreports-6.0.0.jar"/>
+			<include name="**/jasperreports-fonts-3.6.1.jar"/>
+			<include name="**/DynamicJasper-5.0.4.jar"/>
+		</fileset>
+	</path>
+	
+	<path id="comisiones.path.classpath">
+		<fileset dir="${lib.dir}" >
+		    <include name="**/hibernate3.jar"/>
+			<include name="**/commons-collections.jar"/>
+			<include name="**/commons-dbcp.jar"/>
+			<include name="**/commons-io.jar"/>
+			<include name="**/commons-logging-1.1.jar"/>
+			<include name="**/ftp4j-1.7.jar"/>
+			<include name="**/commons-pool.jar"/>
+			<include name="**/JAVA_AGP.jar"/>
+			<include name="**/jta.jar"/>
+			<include name="**/dom4j-1.6.1.jar"/>
+			<include name="**/poi-3.2.jar"/>
+			<include name="**/spring-webmvc.jar"/>
+			<include name="**/spring.jar"/>
+			<include name="**/slf4j-api-1.6.6.jar"/>
+			<include name="**/slf4j-nop-1.6.6.jar"/>
+			<include name="**/schemas.jar"/>
+			<include name="**/wsAgroseguro.jar"/>
+			<include name="**/xbean_xpath.jar"/>
+			<include name="**/xbean.jar"/>
+			<include name="**/ojdbc6_v12.1.0.2.0.jar"/>
+			<include name="**/log4j-1.2.16.jar"/>
+			<include name="**/javassist-3.10.0.GA.jar"/>
+			<include name="**/commons-net-3.0.1.jar"/>
+			<include name="**/commons-lang3-3.4.jar"/>		
+		</fileset>
+	</path>
+	
+	<path id="importacion.path.classpath">
+		<fileset dir="${lib.dir}" >
+			<include name="**/hibernate3.jar"/>
+			<include name="**/ojdbc6_v12.1.0.2.0.jar"/>
+			<include name="**/commons-collections.jar"/>
+			<include name="**/commons-dbcp.jar"/>
+			<include name="**/commons-lang.jar"/>
+			<include name="**/commons-logging-1.1.jar"/>
+			<include name="**/commons-pool.jar"/>
+			<include name="**/commons-lang.jar"/>
+			<include name="**/dom4j-1.6.1.jar"/>
+			<include name="**/poi-3.2.jar"/>
+			<include name="**/schemas.jar"/>
+			<include name="**/wsAgroseguro.jar"/>
+			<include name="**/xbean_xpath.jar"/>
+			<include name="**/xbean.jar"/>
+			<include name="**/log4j-1.2.16.jar"/>
+			<include name="**/commons-net-3.0.1.jar"/>
+			<include name="**/JAVA_AGP.jar"/>
+			<include name="**/jta.jar"/>
+			<include name="**/slf4j-api-1.6.6.jar"/>
+			<include name="**/slf4j-nop-1.6.6.jar"/>
+			<include name="**/spring.jar"/>
+			<include name="**/javassist-3.10.0.GA.jar"/>
+			<include name="**/spring-webmvc.jar"/>
+		</fileset>
+	</path>
+	
+	<path id="generaPdf.path.classpath">
+		<fileset dir="${lib.dir}" >
+			<include name="**/commons-cli-1.2.jar"/>
+			<include name="**/iText-5.0.5.jar"/>
+			<include name="**/JAVA_AGP.jar"/>
+		</fileset>
+	</path>
+	
+	<path id="envioPolizasExternas.path.classpath">
+		<fileset dir="${lib.dir}" >
+			<include name="**/ojdbc6_v12.1.0.2.0.jar"/>
+			<include name="**/JAVA_AGP.jar"/>
+			<include name="**/FileUploader.jar"/>
+			<include name="**/log4j-1.2.16.jar"/>
+			<include name="**/hibernate3.jar"/>
+			<include name="**/dom4j-1.6.1.jar"/>
+			<include name="**/slf4j-api-1.6.6.jar"/>
+			<include name="**/slf4j-nop-1.6.6.jar"/>
+			<include name="**/spring.jar"/>			
+			<include name="**/spring-webmvc.jar"/>
+			<include name="**/javassist-3.10.0.GA.jar"/>			
+			<include name="**/commons-collections.jar"/>
+			<include name="**/commons-dbcp.jar"/>
+			<include name="**/commons-lang.jar"/>
+			<include name="**/commons-logging-1.1.jar"/>
+			<include name="**/commons-pool.jar"/>
+			<include name="**/commons-lang.jar"/>
+			<include name="**/poi-3.2.jar"/>
+			<include name="**/schemas.jar"/>
+			<include name="**/wsAgroseguro.jar"/>
+			<include name="**/xbean_xpath.jar"/>
+			<include name="**/xbean.jar"/>
+			<include name="**/commons-net-3.0.1.jar"/>
+			<include name="**/jta.jar"/>
+			<include name="**/validaPolizasExternas.jar"/>
+		</fileset>
+	</path>
+	
+	<path id="validaPolizasExternas.path.classpath">
+		<fileset dir="${lib.dir}" >
+			<include name="**/ojdbc6_v12.1.0.2.0.jar"/>
+			<include name="**/JAVA_AGP.jar"/>
+			<include name="**/log4j-1.2.16.jar"/>
+			<include name="**/hibernate3.jar"/>
+			<include name="**/dom4j-1.6.1.jar"/>
+			<include name="**/slf4j-api-1.6.6.jar"/>
+			<include name="**/slf4j-nop-1.6.6.jar"/>
+			<include name="**/spring.jar"/>			
+			<include name="**/spring-webmvc.jar"/>
+			<include name="**/javassist-3.10.0.GA.jar"/>			
+			<include name="**/commons-collections.jar"/>
+			<include name="**/commons-dbcp.jar"/>
+			<include name="**/commons-lang.jar"/>
+			<include name="**/commons-logging-1.1.jar"/>
+			<include name="**/commons-pool.jar"/>
+			<include name="**/commons-lang.jar"/>
+			<include name="**/poi-3.2.jar"/>
+			<include name="**/schemas.jar"/>
+			<include name="**/wsAgroseguro.jar"/>
+			<include name="**/xbean_xpath.jar"/>
+			<include name="**/xbean.jar"/>
+			<include name="**/commons-net-3.0.1.jar"/>
+			<include name="**/jta.jar"/>
+		</fileset>
+	</path>
+	
+	
+	<path id="recepcionAgroseguro.path.classpath">
+		<fileset dir="${lib.dir}" >
+			<include name="**/RecepcionFinder.jar"/>
+			<include name="**/FileDownloader.jar"/>
+		    <include name="**/ojdbc6_v12.1.0.2.0.jar"/>
+			<include name="**/JAVA_AGP.jar"/>
+			<include name="**/log4j-1.2.16.jar"/>
+		</fileset>
+	</path>
+	
+	<path id="importacionPolizasExt.path.classpath">
+		<fileset dir="${lib.dir}" >
+		    <include name="**/hibernate3.jar"/>
+			<include name="**/ojdbc6_v12.1.0.2.0.jar"/>
+			<include name="**/commons-collections.jar"/>
+			<include name="**/commons-dbcp.jar"/>
+			<include name="**/commons-lang.jar"/>
+			<include name="**/commons-logging-1.1.jar"/>
+			<include name="**/commons-pool.jar"/>
+			<include name="**/commons-lang.jar"/>
+			<include name="**/dom4j-1.6.1.jar"/>
+			<include name="**/poi-3.2.jar"/>
+			<include name="**/schemas.jar"/>
+			<include name="**/wsAgroseguro.jar"/>
+			<include name="**/xbean_xpath.jar"/>
+			<include name="**/xbean.jar"/>
+			<include name="**/log4j-1.2.16.jar"/>
+			<include name="**/commons-net-3.0.1.jar"/>
+			<include name="**/JAVA_AGP.jar"/>
+			<include name="**/jta.jar"/>
+			<include name="**/slf4j-api-1.6.6.jar"/>
+			<include name="**/slf4j-nop-1.6.6.jar"/>
+			<include name="**/spring.jar"/>
+			<include name="**/javassist-3.10.0.GA.jar"/>
+			<include name="**/spring-webmvc.jar"/>
+		</fileset>
+	</path>
+	
+	<path id="gastosRenovables.path.classpath"> 
+		<fileset dir="${lib.dir}" >
+		    <include name="**/commons-cli-1.2.jar"/>
+		    <include name="**/commons-codec-1.3.jar"/>
+			<include name="**/commons-collections.jar"/>
+			<include name="**/commons-dbcp.jar"/>
+			<include name="**/commons-httpclient-3.1-contrib.jar"/>
+			<include name="**/commons-io.jar"/>
+			<include name="**/commons-logging-1.1.jar"/>
+			<include name="**/commons-net-3.0.1.jar"/>
+			<include name="**/commons-pool.jar"/>
+			<include name="**/dom4j-1.6.1.jar"/>
+			<include name="**/hibernate3.jar"/>
+			<include name="**/iText-5.0.5.jar"/>
+			<include name="**/JAVA_AGP.jar"/>
+			<include name="**/javassist-3.10.0.GA.jar"/>
+			<include name="**/jta.jar"/>
+			<include name="**/log4j-1.2.16.jar"/>
+			<include name="**/ojdbc6_v12.1.0.2.0.jar"/>
+			<include name="**/slf4j-api-1.6.6.jar"/>
+			<include name="**/slf4j-nop-1.6.6.jar"/>
+			<include name="**/poi-3.2.jar"/>
+			<include name="**/spring-webmvc.jar"/>
+			<include name="**/spring.jar"/>
+			<include name="**/schemas.jar"/>
+			<include name="**/wsAgroseguro.jar"/>
+			<include name="**/xbean_xpath.jar"/>
+			<include name="**/xbean.jar"/>
+		</fileset>
+	</path>
+	
+	<path id="suplementosSbp.path.classpath">
+		<fileset dir="${lib.dir}" >
+		    <include name="**/hibernate3.jar"/>
+			<include name="**/ojdbc6_v12.1.0.2.0.jar"/>
+			<include name="**/commons-collections.jar"/>
+			<include name="**/commons-dbcp.jar"/>
+			<include name="**/commons-lang.jar"/>
+			<include name="**/commons-logging-1.1.jar"/>
+			<include name="**/commons-pool.jar"/>
+			<include name="**/commons-lang.jar"/>
+			<include name="**/dom4j-1.6.1.jar"/>
+			<include name="**/poi-3.2.jar"/>
+			<include name="**/schemas.jar"/>
+			<include name="**/wsAgroseguro.jar"/>
+			<include name="**/xbean_xpath.jar"/>
+			<include name="**/xbean.jar"/>
+			<include name="**/log4j-1.2.16.jar"/>
+			<include name="**/commons-net-3.0.1.jar"/>
+			<include name="**/JAVA_AGP.jar"/>
+			<include name="**/jta.jar"/>
+			<include name="**/slf4j-api-1.6.6.jar"/>
+			<include name="**/slf4j-nop-1.6.6.jar"/>
+			<include name="**/spring.jar"/>
+			<include name="**/javassist-3.10.0.GA.jar"/>
+			<include name="**/spring-webmvc.jar"/>
+		</fileset>
+	</path>
+	
+	<path id="cargaPolizasRenovables.path.classpath"> 
+		<fileset dir="${lib.dir}" >
+		    <include name="**/commons-cli-1.2.jar"/>
+		    <include name="**/commons-codec-1.3.jar"/>
+			<include name="**/commons-collections.jar"/>
+			<include name="**/commons-dbcp.jar"/>
+			<include name="**/commons-httpclient-3.1-contrib.jar"/>
+			<include name="**/commons-io.jar"/>
+			<include name="**/commons-logging-1.1.jar"/>
+			<include name="**/commons-net-3.0.1.jar"/>
+			<include name="**/commons-pool.jar"/>
+			<include name="**/dom4j-1.6.1.jar"/>
+			<include name="**/hibernate3.jar"/>
+			<include name="**/iText-5.0.5.jar"/>
+			<include name="**/JAVA_AGP.jar"/>
+			<include name="**/javassist-3.10.0.GA.jar"/>
+			<include name="**/jta.jar"/>
+			<include name="**/log4j-1.2.16.jar"/>
+			<include name="**/ojdbc6_v12.1.0.2.0.jar"/>
+			<include name="**/slf4j-api-1.6.6.jar"/>
+			<include name="**/slf4j-nop-1.6.6.jar"/>
+			<include name="**/poi-3.2.jar"/>
+			<include name="**/spring-webmvc.jar"/>
+			<include name="**/spring.jar"/>
+			<include name="**/schemas.jar"/>
+			<include name="**/wsAgroseguro.jar"/>
+			<include name="**/xbean_xpath.jar"/>
+			<include name="**/xbean.jar"/>
+		</fileset>
+	</path>
+	
+	<path id="procesarPolizasRenovables.path.classpath"> 
+		<fileset dir="${lib.dir}" >
+		    <include name="**/commons-cli-1.2.jar"/>
+		    <include name="**/commons-codec-1.3.jar"/>
+			<include name="**/commons-collections.jar"/>
+			<include name="**/commons-dbcp.jar"/>
+			<include name="**/commons-httpclient-3.1-contrib.jar"/>
+			<include name="**/commons-io.jar"/>
+			<include name="**/commons-logging-1.1.jar"/>
+			<include name="**/commons-net-3.0.1.jar"/>
+			<include name="**/commons-pool.jar"/>
+			<include name="**/dom4j-1.6.1.jar"/>
+			<include name="**/hibernate3.jar"/>
+			<include name="**/iText-5.0.5.jar"/>
+			<include name="**/JAVA_AGP.jar"/>
+			<include name="**/javassist-3.10.0.GA.jar"/>
+			<include name="**/jta.jar"/>
+			<include name="**/log4j-1.2.16.jar"/>
+			<include name="**/ojdbc6_v12.1.0.2.0.jar"/>
+			<include name="**/slf4j-api-1.6.6.jar"/>
+			<include name="**/slf4j-nop-1.6.6.jar"/>
+			<include name="**/poi-3.2.jar"/>
+			<include name="**/spring-webmvc.jar"/>
+			<include name="**/spring.jar"/>
+			<include name="**/schemas.jar"/>
+			<include name="**/wsAgroseguro.jar"/>
+			<include name="**/xbean_xpath.jar"/>
+			<include name="**/xbean.jar"/>
+		</fileset>
+	</path>
+	
+	<!-- Pet. 50775 ** MODIF TAM (19.03.2018) ** Inicio  -->
+	<!-- incluimos la referencia al nuevo jar -->
+	<path id="incidenciasListAsuntos.path.classpath"> 
+		<fileset dir="${lib.dir}" >
+		    <include name="**/commons-cli-1.2.jar"/>
+		    <include name="**/commons-codec-1.3.jar"/>
+			<include name="**/commons-collections.jar"/>
+			<include name="**/commons-dbcp.jar"/>
+			<include name="**/commons-httpclient-3.1-contrib.jar"/>
+			<include name="**/commons-io.jar"/>
+			<include name="**/commons-logging-1.1.jar"/>
+			<include name="**/commons-net-3.0.1.jar"/>
+			<include name="**/commons-pool.jar"/>
+			<include name="**/dom4j-1.6.1.jar"/>
+			<include name="**/hibernate3.jar"/>
+			<include name="**/iText-5.0.5.jar"/>
+			<include name="**/JAVA_AGP.jar"/>
+			<include name="**/javassist-3.10.0.GA.jar"/>
+			<include name="**/jta.jar"/>
+			<include name="**/log4j-1.2.16.jar"/>
+			<include name="**/ojdbc6_v12.1.0.2.0.jar"/>
+			<include name="**/slf4j-api-1.6.6.jar"/>
+			<include name="**/slf4j-nop-1.6.6.jar"/>
+			<include name="**/poi-3.2.jar"/>
+			<include name="**/spring-webmvc.jar"/>
+			<include name="**/spring.jar"/>
+			<include name="**/schemas.jar"/>
+			<include name="**/wsAgroseguro.jar"/>
+			<include name="**/xbean_xpath.jar"/>
+			<include name="**/xbean.jar"/>
+		</fileset>
+	</path> 
+	<!-- Pet. 50775 ** MODIF TAM (19.03.2018) ** Fin  -->	
+	
+	<path id="seguimientoPolizas.path.classpath"> 
+		<fileset dir="${lib.dir}" >
+		    <include name="**/commons-cli-1.2.jar"/>
+		    <include name="**/commons-codec-1.3.jar"/>
+			<include name="**/commons-collections.jar"/>
+			<include name="**/commons-dbcp.jar"/>
+			<include name="**/commons-httpclient-3.1-contrib.jar"/>
+			<include name="**/commons-io.jar"/>
+			<include name="**/commons-logging-1.1.jar"/>
+			<include name="**/commons-net-3.0.1.jar"/>
+			<include name="**/commons-pool.jar"/>
+			<include name="**/dom4j-1.6.1.jar"/>
+			<include name="**/hibernate3.jar"/>
+			<include name="**/iText-5.0.5.jar"/>
+			<include name="**/JAVA_AGP.jar"/>
+			<include name="**/javassist-3.10.0.GA.jar"/>
+			<include name="**/jta.jar"/>
+			<include name="**/log4j-1.2.16.jar"/>
+			<include name="**/ojdbc6_v12.1.0.2.0.jar"/>
+			<include name="**/slf4j-api-1.6.6.jar"/>
+			<include name="**/slf4j-nop-1.6.6.jar"/>
+			<include name="**/poi-3.2.jar"/>
+			<include name="**/spring-webmvc.jar"/>
+			<include name="**/spring.jar"/>
+			<include name="**/schemas.jar"/>
+			<include name="**/wsAgroseguro.jar"/>
+			<include name="**/xbean_xpath.jar"/>
+			<include name="**/xbean.jar"/>
+			<include name="**/cglib-3.0.jar"/>
+		</fileset>
+	</path>
+	
+	<path id="updateEstadosPolRenovables.path.classpath"> 
+		<fileset dir="${lib.dir}" >
+		    <include name="**/commons-cli-1.2.jar"/>
+		    <include name="**/commons-codec-1.3.jar"/>
+			<include name="**/commons-collections.jar"/>
+			<include name="**/commons-dbcp.jar"/>
+			<include name="**/commons-httpclient-3.1-contrib.jar"/>
+			<include name="**/commons-io.jar"/>
+			<include name="**/commons-logging-1.1.jar"/>
+			<include name="**/commons-net-3.0.1.jar"/>
+			<include name="**/commons-pool.jar"/>
+			<include name="**/dom4j-1.6.1.jar"/>
+			<include name="**/hibernate3.jar"/>
+			<include name="**/iText-5.0.5.jar"/>
+			<include name="**/JAVA_AGP.jar"/>
+			<include name="**/javassist-3.10.0.GA.jar"/>
+			<include name="**/jta.jar"/>
+			<include name="**/log4j-1.2.16.jar"/>
+			<include name="**/ojdbc6_v12.1.0.2.0.jar"/>
+			<include name="**/slf4j-api-1.6.6.jar"/>
+			<include name="**/slf4j-nop-1.6.6.jar"/>
+			<include name="**/poi-3.2.jar"/>
+			<include name="**/spring-webmvc.jar"/>
+			<include name="**/spring.jar"/>
+			<include name="**/schemas.jar"/>
+			<include name="**/wsAgroseguro.jar"/>
+			<include name="**/xbean_xpath.jar"/>
+			<include name="**/xbean.jar"/>
+		</fileset>
+	</path>
+	
+	<path id="envioCuentasRenovables.path.classpath"> 
+		<fileset dir="${lib.dir}" >
+		    <include name="**/ojdbc6_v12.1.0.2.0.jar"/>
+		    <include name="**/commons-cli-1.2.jar"/>
+		    <include name="**/commons-codec-1.3.jar"/>
+		    <include name="**/FileUploader.jar"/>
+			<include name="**/commons-collections.jar"/>
+			<include name="**/commons-dbcp.jar"/>
+			<include name="**/commons-httpclient-3.1-contrib.jar"/>
+			<include name="**/commons-io.jar"/>
+			<include name="**/commons-logging-1.1.jar"/>
+			<include name="**/commons-net-3.0.1.jar"/>
+			<include name="**/commons-pool.jar"/>
+			<include name="**/dom4j-1.6.1.jar"/>
+			<include name="**/hibernate3_vfinal.jar"/>
+			<include name="**/hibernate-jpa-2.0-api-1.0.1.Final.jar"/>
+			<include name="**/iText-5.0.5.jar"/>
+			<include name="**/JAVA_AGP.jar"/>
+			<include name="**/javassist-3.10.0.GA.jar"/>
+			<include name="**/jta.jar"/> 
+			<include name="**/log4j-1.2.16.jar"/>			
+			<include name="**/slf4j-api-1.6.6.jar"/>
+			<include name="**/slf4j-nop-1.6.6.jar"/>
+			<include name="**/poi-3.2.jar"/>
+			<include name="**/spring-webmvc.jar"/>
+			<include name="**/spring.jar"/>
+			<include name="**/schemas.jar"/>
+			<include name="**/wsAgroseguro.jar"/>
+			<include name="**/xbean_xpath.jar"/>
+			<include name="**/xbean.jar"/>
+		</fileset>
+	</path>
+	
+	<path id="updateFechaEntradaVigor.path.classpath"> 
+		<fileset dir="${lib.dir}" >
+		    <include name="**/hibernate3.jar"/>
+			<include name="**/ojdbc6_v12.1.0.2.0.jar"/>
+			<include name="**/commons-collections.jar"/>
+			<include name="**/commons-dbcp.jar"/>
+			<include name="**/commons-lang.jar"/>
+			<include name="**/commons-logging-1.1.jar"/>
+			<include name="**/commons-pool.jar"/>
+			<include name="**/commons-lang.jar"/>
+			<include name="**/dom4j-1.6.1.jar"/>
+			<include name="**/poi-3.2.jar"/>
+			<include name="**/schemas.jar"/>
+			<include name="**/wsAgroseguro.jar"/>
+			<include name="**/xbean_xpath.jar"/>
+			<include name="**/xbean.jar"/>
+			<include name="**/log4j-1.2.16.jar"/>
+			<include name="**/commons-net-3.0.1.jar"/>
+			<include name="**/JAVA_AGP.jar"/>
+			<include name="**/jta.jar"/>
+			<include name="**/slf4j-api-1.6.6.jar"/>
+			<include name="**/slf4j-nop-1.6.6.jar"/>
+			<include name="**/spring.jar"/>
+			<include name="**/javassist-3.10.0.GA.jar"/>
+			<include name="**/spring-webmvc.jar"/>
+		</fileset>
+	</path>
+	
+	<path id="documentacionged.path.classpath">
+			<fileset dir="${lib.dir}" >
+				<include name="**/commons-cli-1.2.jar"/>
+				<include name="**/commons-codec-1.3.jar"/>
+				<include name="**/commons-httpclient-3.1-contrib.jar"/>
+				<include name="**/commons-io.jar"/>
+				<include name="**/commons-logging-1.1.jar"/>			
+				<include name="**/ojdbc6_v12.1.0.2.0.jar"/>
+				<include name="**/schemas.jar"/>
+				<include name="**/wsAgroseguro.jar"/>
+				<include name="**/xbean.jar"/>
+				<include name="**/ftp4j-1.7.jar"/>
+				<include name="**/commons-net-3.0.1.jar"/>
+				<include name="**/commons-collections.jar"/>
+				<include name="**/JAVA_AGP.jar"/>
+				<include name="**/jta.jar"/>
+				<include name="**/slf4j-api-1.6.6.jar"/>
+				<include name="**/slf4j-nop-1.6.6.jar"/>
+				<include name="**/spring.jar"/>
+				<include name="**/log4j-1.2.16.jar"/>
+				<include name="**/hibernate3.jar"/>
+				<include name="**/javassist-3.10.0.GA.jar"/>
+				<include name="**/spring-webmvc.jar"/>
+				<include name="**/iText-5.0.5.jar"/>
+				<include name="**/commons-lang3-3.4.jar"/>
+				<include name="**/jsch-0.1.44.jar"/>
+				<include name="**/dom4j-1.6.1.jar"/>
+				<include name="**/jasper-compiler.jar"/>
+				<include name="**/jasperreports-6.0.0.jar"/>
+				<include name="**/jasperreports-fonts-3.6.1.jar"/>
+				<include name="**/DynamicJasper-5.0.4.jar"/>
+				<include name="**/commons-digester.jar"/>
+				<include name="**/commons-beanutils.jar"/>
+			</fileset>
+		</path>
+	
+	<path id="pruebaOracle.path.classpath"> 
+		<fileset dir="${lib.dir}" >		 
+		    <include name="**/commons-cli-1.2.jar"/>
+		    <include name="**/commons-codec-1.3.jar"/>
+			<include name="**/commons-collections.jar"/>
+			<include name="**/commons-dbcp.jar"/>
+			<include name="**/commons-httpclient-3.1-contrib.jar"/>
+			<include name="**/commons-io.jar"/>
+			<include name="**/commons-logging-1.1.jar"/>
+			<include name="**/commons-net-3.0.1.jar"/>
+			<include name="**/commons-pool.jar"/>
+			<include name="**/dom4j-1.6.1.jar"/>
+			<include name="**/hibernate3.jar"/>
+			<include name="**/JAVA_AGP.jar"/>
+			<include name="**/javassist-3.10.0.GA.jar"/>
+			<include name="**/jta.jar"/>
+			<include name="**/log4j-1.2.16.jar"/>
+			<include name="**/ojdbc6_v12.1.0.2.0.jar"/>
+			<include name="**/slf4j-api-1.6.6.jar"/>
+			<include name="**/slf4j-nop-1.6.6.jar"/>
+			<include name="**/poi-3.2.jar"/>
+			<include name="**/xbean_xpath.jar"/>
+			<include name="**/xbean.jar"/>
+		</fileset>
+	</path>
+	
+	<path id="cargaRecibosEmitidos.path.classpath"> 
+		<fileset dir="${lib.dir}" >
+		    <include name="**/commons-cli-1.2.jar"/>
+		    <include name="**/commons-codec-1.3.jar"/>
+			<include name="**/commons-collections.jar"/>
+			<include name="**/commons-dbcp.jar"/>
+			<include name="**/commons-httpclient-3.1-contrib.jar"/>
+			<include name="**/commons-io.jar"/>
+			<include name="**/commons-logging-1.1.jar"/>
+			<include name="**/commons-net-3.0.1.jar"/>
+			<include name="**/commons-pool.jar"/>
+			<include name="**/dom4j-1.6.1.jar"/>
+			<include name="**/hibernate3.jar"/>
+			<include name="**/iText-5.0.5.jar"/>
+			<include name="**/JAVA_AGP.jar"/>
+			<include name="**/javassist-3.10.0.GA.jar"/>
+			<include name="**/jta.jar"/>
+			<include name="**/log4j-1.2.16.jar"/>
+			<include name="**/ojdbc6_v12.1.0.2.0.jar"/>
+			<include name="**/slf4j-api-1.6.6.jar"/>
+			<include name="**/slf4j-nop-1.6.6.jar"/>
+			<include name="**/poi-3.2.jar"/>
+			<include name="**/spring-webmvc.jar"/>
+			<include name="**/spring.jar"/>
+			<include name="**/schemas.jar"/>
+			<include name="**/wsAgroseguro.jar"/>
+			<include name="**/xbean_xpath.jar"/>
+			<include name="**/xbean.jar"/>
+			<include name="**/cglib-3.0.jar"/>
+		</fileset>
+	</path>
+	
+	<path id="cargaCondicionados.path.classpath"> 
+			<fileset dir="${lib.dir}" >
+			    <include name="**/commons-cli-1.2.jar"/>
+			    <include name="**/commons-codec-1.3.jar"/>
+				<include name="**/commons-collections.jar"/>
+				<include name="**/commons-dbcp.jar"/>
+				<include name="**/commons-httpclient-3.1-contrib.jar"/>
+				<include name="**/commons-io.jar"/>
+				<include name="**/commons-logging-1.1.jar"/>
+				<include name="**/commons-net-3.0.1.jar"/>
+				<include name="**/commons-pool.jar"/>
+				<include name="**/dom4j-1.6.1.jar"/>
+				<include name="**/hibernate3.jar"/>
+				<include name="**/iText-5.0.5.jar"/>
+				<include name="**/JAVA_AGP.jar"/>
+				<include name="**/javassist-3.10.0.GA.jar"/>
+				<include name="**/jta.jar"/>
+				<include name="**/log4j-1.2.16.jar"/>
+				<include name="**/ojdbc6_v12.1.0.2.0.jar"/>
+				<include name="**/slf4j-api-1.6.6.jar"/>
+				<include name="**/slf4j-nop-1.6.6.jar"/>
+				<include name="**/poi-3.2.jar"/>
+				<include name="**/spring-webmvc.jar"/>
+				<include name="**/spring.jar"/>
+				<include name="**/schemas.jar"/>
+				<include name="**/wsAgroseguro.jar"/>
+				<include name="**/xbean_xpath.jar"/>
+				<include name="**/xbean.jar"/>
+				<include name="**/cglib-3.0.jar"/>
+				<include name="**/commons-lang3-3.4.jar"/>
+			</fileset>
+		</path>
+	
+	<path id="cargaComisiones.path.classpath"> 
+				<fileset dir="${lib.dir}" >
+				    <include name="**/commons-cli-1.2.jar"/>
+				    <include name="**/commons-codec-1.3.jar"/>
+					<include name="**/commons-collections.jar"/>
+					<include name="**/commons-dbcp.jar"/>
+					<include name="**/commons-httpclient-3.1-contrib.jar"/>
+					<include name="**/commons-io.jar"/>
+					<include name="**/commons-logging-1.1.jar"/>
+					<include name="**/commons-net-3.0.1.jar"/>
+					<include name="**/commons-pool.jar"/>
+					<include name="**/dom4j-1.6.1.jar"/>
+					<include name="**/hibernate3.jar"/>
+					<include name="**/iText-5.0.5.jar"/>
+					<include name="**/JAVA_AGP.jar"/>
+					<include name="**/javassist-3.10.0.GA.jar"/>
+					<include name="**/jta.jar"/>
+					<include name="**/log4j-1.2.16.jar"/>
+					<include name="**/ojdbc6_v12.1.0.2.0.jar"/>
+					<include name="**/slf4j-api-1.6.6.jar"/>
+					<include name="**/slf4j-nop-1.6.6.jar"/>
+					<include name="**/poi-3.2.jar"/>
+					<include name="**/spring-webmvc.jar"/>
+					<include name="**/spring.jar"/>
+					<include name="**/schemas.jar"/>
+					<include name="**/wsAgroseguro.jar"/>
+					<include name="**/xbean_xpath.jar"/>
+					<include name="**/xbean.jar"/>
+					<include name="**/cglib-3.0.jar"/>
+					<include name="**/commons-lang3-3.4.jar"/>
+					<include name="**/javax.servlet.jar"/>
+				</fileset>
+			</path>
+	
+	<target name="clean">
+		<delete dir="${classes.dir}"/>
+		<delete dir="${jar.dir}"/>
+		<delete dir="${build.dir}"/>
+	</target>
+	
+	<target name="prepare" depends="clean">
+		<mkdir dir="${build.dir}"/>
+		<mkdir dir="${classes.dir}"/>
+		<mkdir dir="${jar.dir}"/>
+		<mkdir dir="${src.dir}"/>
+	</target>
+	
+	<target name="compile" depends="prepare">
+		<javac srcdir="${src.dir}" source="1.7" target="1.7" classpathref="path.classpath" debug="true" debuglevel="lines,vars,source" destdir="${classes.dir}"/> 
+	</target>
+	
+	<target name="compileExternos" depends="prepare">
+		<javac srcdir="${src.dir}" source="1.7" target="1.7" classpathref="path.classpath" debug="true" debuglevel="lines,vars,source" destdir="${classes.dir}"/>
+	</target>
+	
+	<target name="compileImportacionExt" depends="prepare">
+		<javac srcdir="${srcExt.dir}" source="1.7" target="1.7" classpathref="path.classpath" debug="true" debuglevel="lines,vars,source" destdir="${classes.dir}"/>
+	</target>	
+	
+	<!-- Convert project class path to string property -->
+	 <pathconvert property="mf.classpath" pathsep=" ">
+	    <path refid="path.classpath" />
+	    <flattenmapper />
+	</pathconvert> 
+	
+	<pathconvert property="mf.comisiones.classpath" pathsep=" ">
+	    <path refid="comisiones.path.classpath" />
+	    <flattenmapper />
+	</pathconvert>
+	
+	<pathconvert property="mf.importacion.classpath" pathsep=" ">
+	    <path refid="importacion.path.classpath" />
+	    <flattenmapper />
+	</pathconvert>
+		
+	<pathconvert property="mf.generaPdf.classpath" pathsep=" ">
+	    <path refid="generaPdf.path.classpath" />
+	    <flattenmapper />
+	</pathconvert>
+	
+	<pathconvert property="mf.envioPolizasExternas.classpath" pathsep=" ">
+	    <path refid="envioPolizasExternas.path.classpath" />
+	    <flattenmapper />
+	</pathconvert>
+	
+	<pathconvert property="mf.suplementosSbp.classpath" pathsep=" ">
+	    <path refid="suplementosSbp.path.classpath" />
+	    <flattenmapper />
+	</pathconvert>
+	
+	<pathconvert property="mf.recepcionAgroseguro.classpath" pathsep=" ">
+	    <path refid="recepcionAgroseguro.path.classpath" />
+	    <flattenmapper />
+	</pathconvert>
+	
+	<pathconvert property="mf.importacionPolizasExt.classpath" pathsep=" ">
+	    <path refid="importacionPolizasExt.path.classpath" />
+	    <flattenmapper />
+	</pathconvert>
+	
+	<pathconvert property="mf.gastosRenovables.classpath" pathsep=" ">
+	    <path refid="gastosRenovables.path.classpath" />
+	    <flattenmapper />
+	</pathconvert>
+	
+	<pathconvert property="mf.cargaPolizasRenovables.classpath" pathsep=" ">
+	    <path refid="cargaPolizasRenovables.path.classpath" />
+	    <flattenmapper />
+	</pathconvert>
+	
+	<!-- Pet. 50775 ** MODIF TAM (19.03.2018) ** Inicio  -->
+	<pathconvert property="mf.incidenciasListAsuntos.classpath" pathsep=" ">
+	    <path refid="incidenciasListAsuntos.path.classpath" />
+	    <flattenmapper />
+	</pathconvert>
+	<!-- Pet. 50775 ** MODIF TAM (19.03.2018) ** Fin  -->
+	
+	<pathconvert property="mf.seguimientoPolizas.classpath" pathsep=" ">
+	    <path refid="seguimientoPolizas.path.classpath" />
+	    <flattenmapper />
+	</pathconvert>
+	
+	<pathconvert property="mf.procesarPolizasRenovables.classpath" pathsep=" ">
+	    <path refid="procesarPolizasRenovables.path.classpath" />
+	    <flattenmapper />
+	</pathconvert>
+	
+	<pathconvert property="mf.updateEstadosPolRenovables.classpath" pathsep=" ">
+	    <path refid="updateEstadosPolRenovables.path.classpath" />
+	    <flattenmapper />
+	</pathconvert>
+	
+	<pathconvert property="mf.envioCuentasRenovables.classpath" pathsep=" ">
+	    <path refid="envioCuentasRenovables.path.classpath" />
+	    <flattenmapper />
+	</pathconvert>
+	
+	<pathconvert property="mf.updateFechaEntradaVigor.classpath" pathsep=" ">
+	    <path refid="updateFechaEntradaVigor.path.classpath" />
+	    <flattenmapper />
+	</pathconvert>
+	
+	<pathconvert property="mf.pruebaOracle.classpath" pathsep=" ">
+	    <path refid="pruebaOracle.path.classpath" />
+	    <flattenmapper />
+	</pathconvert>
+	
+	<pathconvert property="mf.documentacionged.classpath" pathsep=" ">
+	    <path refid="documentacionged.path.classpath" />
+	    <flattenmapper />
+	</pathconvert>
+	
+	<pathconvert property="mf.cargaRecibosEmitidos.classpath" pathsep=" ">
+	    <path refid="cargaRecibosEmitidos.path.classpath" />
+	    <flattenmapper />
+	</pathconvert>
+	
+	<pathconvert property="mf.cargaCondicionados.classpath" pathsep=" ">
+	    <path refid="cargaCondicionados.path.classpath" />
+	    <flattenmapper />
+	</pathconvert>
+	
+	<pathconvert property="mf.cargaComisiones.classpath" pathsep=" ">
+	    <path refid="cargaComisiones.path.classpath" />
+	    <flattenmapper />
+	</pathconvert>
+	
+	<target name="jar.fileuploader">
+		<jar destfile="${jar.dir}/${jar.fileuploader.name}.jar" basedir="${classes.dir}" includes="**/${jar.fileuploader.name}.class">
+			<manifest>
+				<attribute name="Main-Class" value="${file-uploader-main-class}"/>
+				<attribute name="Class-Path" value="${mf.classpath}"/>
+			</manifest>
+		</jar>
+	</target>
+	
+	<target name="jar.filedownloader">
+		<jar destfile="${jar.dir}/${jar.filedownloader.name}.jar" basedir="${classes.dir}" includes="**/${jar.filedownloader.name}.class">
+			<manifest>
+				<attribute name="Main-Class" value="${file-downloader-main-class}"/>
+				<attribute name="Class-Path" value="${mf.classpath}"/>
+			</manifest>
+		</jar>
+	</target>
+	
+	<target name="jar.acuserecibofinder">
+		<jar destfile="${jar.dir}/${jar.acuserecibofinder.name}.jar" basedir="${classes.dir}" includes="**/${jar.acuserecibofinder.name}.class">
+			<manifest>
+				<attribute name="Main-Class" value="${acuse-recibo-main-class}"/>
+				<attribute name="Class-Path" value="${mf.classpath}"/>
+			</manifest>
+		</jar>
+	</target>
+	
+	<target name="jar.recepcionfinder">
+		<jar destfile="${jar.dir}/${jar.recepcionfinder.name}.jar" basedir="${classes.dir}" includes="**/${jar.recepcionfinder.name}.class">
+			<manifest>
+				<attribute name="Main-Class" value="${recepcion-main-class}"/>
+				<attribute name="Class-Path" value="${mf.classpath}"/>
+			</manifest>
+		</jar>
+	</target>
+	
+	<target name="jar.comprobadorestadopoliza">
+		<jar destfile="${jar.dir}/${jar.comprobadorestadopoliza.name}.jar" basedir="${classes.dir}" includes="**/${jar.comprobadorestadopoliza.name}.class">
+			<manifest>
+				<attribute name="Main-Class" value="${comprobador-estado-poliza-main-class}"/>
+				<attribute name="Class-Path" value="${mf.classpath}"/>
+			</manifest>
+		</jar>
+	</target>
+	
+	<target name="jar.generadorsqlestadopoliza">
+		<jar destfile="${jar.dir}/${jar.generadorsqlestadopoliza.name}.jar" basedir="${classes.dir}" includes="**/${jar.generadorsqlestadopoliza.name}.class">
+			<manifest>
+				<attribute name="Main-Class" value="${generadorsql-estado-poliza-main-class}"/>
+				<attribute name="Class-Path" value="${mf.classpath}"/>
+			</manifest>
+		</jar>
+	</target>
+	
+	<target name="jar.xmltranformer">
+		<jar destfile="${jar.dir}/${jar.xmlTransormer.name}.jar" basedir="${classes.dir}" includes="**/${jar.xmlTransormer.name}.class">
+			<manifest>
+				<attribute name="Main-Class" value="${xmlTransormer-main-class}"/>
+				<attribute name="Class-Path" value="${mf.classpath}"/>
+			</manifest>
+		</jar>
+	</target>
+	
+	<target name="jar.xmlidupdater">
+		<jar destfile="${jar.dir}/${jar.xmlIdUpdater.name}.jar" basedir="${classes.dir}" includes="**/${jar.xmlIdUpdater.name}.class">
+			<manifest>
+				<attribute name="Main-Class" value="${xmlIdUpdater-main-class}"/>
+				<attribute name="Class-Path" value="${mf.classpath}"/>
+			</manifest>
+		</jar>
+	</target>
+	
+	<target name="jar.contratacionws">
+		<jar destfile="${jar.dir}/${jar.contratacionws.name}.jar">
+			<manifest>
+				<attribute name="Main-Class" value="${contratacionws-main-class}"/>
+				<attribute name="Class-Path" value="${mf.classpath}"/>
+			</manifest>
+			<fileset dir="${classes.dir}" includes="**/${jar.contratacionws.name}.class"/>
+			<fileset dir="${classes.dir}" includes="**/util/*.class"/>
+			<fileset dir="${classes.dir}" includes="**/security/*.class"/>
+			<fileset dir="${src.dir}" includes="**/*.properties"/>
+		</jar>
+	</target>
+	
+	<target name="jar.comisiones">
+		<jar destfile="${jar.dir}/${jar.comisiones.name}.jar">
+			<manifest>
+				<attribute name="Main-Class" value="${comisiones-main-class}"/>
+				<attribute name="Class-Path" value="${mf.comisiones.classpath}"/>
+			</manifest>
+			<fileset dir="${classes.dir}" includes="**/comisiones/**/*.class **/bbdd/*.class"/>
+			<fileset dir="${src.dir}" includes="**/ImportacionBuzonInfovia.properties"/>
+			<fileset dir="${src.dir}" includes="**/hibernate.cfg.xml"/>
+			<fileset dir="${src.dir}" includes="**/log4j.properties"/>
+		</jar>
+	</target>
+				
+	<target name="jar.pruebaZip">
+		<jar destfile="${jar.dir}/utlzip.jar">
+			<manifest>
+				<attribute name="Main-Class" value="com.rsi.agp.UTLZip"/>
+				<attribute name="Class-Path" value="${mf.classpath}"/>
+			</manifest>
+			<fileset dir="${classes.dir}" includes="**/UTLZip.class"/>
+		</jar>
+	</target>
+	
+	<target name="jar.all" depends="compile">
+		<antcall target="jar.fileuploader"></antcall>
+		<antcall target="jar.filedownloader"></antcall>
+		<antcall target="jar.acuserecibofinder"></antcall>
+		<antcall target="jar.comprobadorestadopoliza"></antcall>
+		<antcall target="jar.generadorsqlestadopoliza"></antcall>
+		<antcall target="jar.recepcionfinder"></antcall>
+		<antcall target="jar.xmltranformer"></antcall>
+		<antcall target="jar.xmlidupdater"></antcall>
+		<antcall target="jar.contratacionws"></antcall>
+		<antcall target="jar.comisiones"></antcall>
+		<antcall target="jar.importacion"></antcall>
+		<antcall target="jar.generaPdf"></antcall>
+		<antcall target="jar.envioPolizasExternas"></antcall>
+		<antcall target="jar.recepcionAgroseguro"></antcall>
+		<antcall target="jar.importacionPolizasExt"></antcall>
+		<antcall target="jar.suplementosSbp"></antcall>
+		<antcall target="jar.gastosRenovables"></antcall>
+		<!-- Pet. 50775 ** MODIF TAM (20.03.2018) ** Inicio  -->
+		<antcall target="jar.incidenciasListAsuntos"></antcall>
+		<!-- Pet. 50777 ** MODIF IGT (18.01.2019) ** Inicio  -->
+		<antcall target="jar.seguimientoPolizas"></antcall>
+		<antcall target="jar.documentacionged"></antcall>
+		<antcall target="jar.cargaRecibosEmitidos"></antcall>
+		<antcall target="jar.cargaCondicionados"></antcall>
+		<antcall target="jar.cargaComisiones"></antcall>
+	</target>
+	
+	<target name="main" depends="jar.all">
+		<echo message="Main target completed.." />
+	</target>
+	
+	<target name="jar.importacion">
+		<jar destfile="${jar.dir}/${jar.importacion.name}.jar">
+			<manifest>
+				<attribute name="Main-Class" value="${importacion-main-class}"/>
+				<attribute name="Class-Path" value="${mf.importacion.classpath}"/>
+			</manifest>
+			<fileset dir="${classes.dir}" includes="**/importacionCondicionado/**/*.class"/>
+			
+			<fileset dir="${src.dir}" includes="**/agp_importacion.properties"/>
+			<fileset dir="${src.dir}" includes="**/log4j.properties"/>
+			<fileset dir="${src.dir}" includes="**/hibernate.cfg.xml"/>
+		</jar>
+	</target>
+	
+	<target name="jar.generaPdf">
+		<jar destfile="${jar.dir}/${jar.generaPdf.name}.jar">
+			<manifest>
+				<attribute name="Main-Class" value="${generaPdf-main-class}"/>
+				<attribute name="Class-Path" value="${mf.generaPdf.classpath}"/>
+			</manifest>
+			<fileset dir="${classes.dir}" includes="**/pdf/**/*.class"/>
+		</jar>
+	</target>
+	
+	<target name="jar.envioPolizasExternas">
+		<jar destfile="${jar.dir}/${jar.envioPolizasExternas.name}.jar">
+			<manifest>
+				<attribute name="Main-Class" value="${envioPolizasExternas-main-class}"/>
+				<attribute name="Class-Path" value="${mf.envioPolizasExternas.classpath}"/>
+			</manifest>
+			<fileset dir="${classes.dir}" includes="**/EnvioPolizasExternas*.class **/bbdd/**/*.class"/>
+			<fileset dir="${classes.dir}" includes="**/ValidaPolizasExternas*.class"/>
+			<fileset dir="${classes.dir}" includes="**/FileUploader*.class"/>
+			<fileset dir="${src.dir}" includes="**/agp_plz_externas.properties"/>
+			<fileset dir="${src.dir}" includes="**/agp_conexion.properties"/>
+			<fileset dir="${src.dir}" includes="**/log4j.properties"/>
+			<fileset dir="${src.dir}" includes="**/hibernate.cfg.xml"/>
+		</jar>
+	</target>
+	
+	<target name="jar.validaPolizasExternas">
+		<jar destfile="${jar.dir}/${jar.validaPolizasExternas.name}.jar">
+			<manifest>
+				<attribute name="Main-Class" value="${validaPolizasExternas-main-class}"/>
+				<attribute name="Class-Path" value="${mf.validaPolizasExternas.classpath}"/>
+			</manifest>
+			<fileset dir="${classes.dir}" includes="**/EnvioPolizasExternas*.class **/bbdd/**/*.class"/>
+			<fileset dir="${src.dir}" includes="**/agp_plz_externas.properties"/>
+			<fileset dir="${src.dir}" includes="**/agp_conexion.properties"/>
+			<fileset dir="${src.dir}" includes="**/log4j.properties"/>
+			<fileset dir="${src.dir}" includes="**/hibernate.cfg.xml"/>
+		</jar>
+	</target>
+	
+	<target name="jar.recepcionAgroseguro">
+		<jar destfile="${jar.dir}/${jar.recepcionAgroseguro.name}.jar">
+			<manifest>
+				<attribute name="Main-Class" value="${recepcionAgroseguro-main-class}"/>
+				<attribute name="Class-Path" value="${mf.recepcionAgroseguro.classpath}"/>
+			</manifest>
+			<fileset dir="${classes.dir}" includes="**/RecepcionAgroseguro.class **/bbdd/**/*.class **/common/**/*.class"/>
+			<fileset dir="${src.dir}" includes="**/agp_recepcion.properties"/>
+			<fileset dir="${src.dir}" includes="**/agp_conexion.properties"/>
+			<fileset dir="${src.dir}" includes="**/log4j.properties"/>
+		</jar>
+	</target>
+	
+	<target name="jar.importacionPolizasExt">
+		<jar destfile="${jar.dir}/${jar.importacionPolizasExt.name}.jar">
+			<manifest>
+				<attribute name="Main-Class" value="${importacionPolizasExt-main-class}"/>
+				<attribute name="Class-Path" value="${mf.importacionPolizasExt.classpath}"/>
+			</manifest>
+			<fileset dir="${classes.dir}" includes="**/importacion/*.class **/bbdd/*.class **/common/**/ImportacionConstants.class **/procesarPolizasRenovables/*.class"/>
+			
+			<fileset dir="${src.dir}" includes="**/webservices.properties"/>
+			<fileset dir="${src.dir}" includes="**/log4j.properties"/>
+			<fileset dir="${src.dir}" includes="**/hibernate.cfg.xml"/>
+			<fileset dir="${src.dir}" includes="**/agp_plz_externas.properties"/>
+			<fileset dir="${src.dir}" includes="**/agp_conexion.properties"/>
+		</jar>
+	</target>
+	
+	<target name="jar.gastosRenovables">
+		<jar destfile="${jar.dir}/${jar.gastosRenovables.name}.jar">
+			<manifest>
+				<attribute name="Main-Class" value="${gastosRenovables-main-class}"/>
+				<attribute name="Class-Path" value="${mf.gastosRenovables.classpath}"/>
+			</manifest>
+			<fileset dir="${classes.dir}" includes="**/renovables/*.class **/common/**/GastosRenovablesConstants.class"/>
+			
+			<fileset dir="${src.dir}" includes="**/webservices.properties"/>
+			<fileset dir="${src.dir}" includes="**/log4j.properties"/>
+			<fileset dir="${src.dir}" includes="**/hibernate.cfg.xml"/>
+			<fileset dir="${src.dir}" includes="**/agp_gastos_renovacion.properties"/>
+		</jar>
+	</target>
+	
+	<target name="jar.suplementosSbp">
+		<jar destfile="${jar.dir}/${jar.suplementosSbp.name}.jar">
+			<manifest>
+				<attribute name="Main-Class" value="${suplementosSbp-main-class}"/>
+				<attribute name="Class-Path" value="${mf.suplementosSbp.classpath}"/>
+			</manifest>
+			<fileset dir="${classes.dir}" includes="**/sobreprecio/*.class **/importacionCondicionado/**/*.class **/common/**/ImportacionConstants.class"/>
+			
+			<fileset dir="${src.dir}" includes="**/webservices.properties"/>
+			<fileset dir="${src.dir}" includes="**/log4j.properties"/>
+			<fileset dir="${src.dir}" includes="**/hibernate.cfg.xml"/>
+			<fileset dir="${src.dir}" includes="**/agp_sbp.properties"/>
+		</jar>
+	</target>
+	
+	<target name="jar.cargaPolizasRenovables">
+		<jar destfile="${jar.dir}/${jar.cargaPolizasRenovables.name}.jar">
+			<manifest>
+				<attribute name="Main-Class" value="${cargaPolizasRenovables-main-class}"/>
+				<attribute name="Class-Path" value="${mf.cargaPolizasRenovables.classpath}"/>
+			</manifest>
+			<fileset dir="${classes.dir}" includes="**/cargaPolizasRenovables/*.class **/common/**/CPRConstants.class"/>
+			
+			<fileset dir="${src.dir}" includes="**/webservices.properties"/>
+			<fileset dir="${src.dir}" includes="**/log4j.properties"/>
+			<fileset dir="${src.dir}" includes="**/hibernate.cfg.xml"/>
+			<fileset dir="${src.dir}" includes="**/agp_carga_plz_renovables.properties"/>
+		</jar>
+	</target>
+	<!-- Pet. 50775 ** MODIF TAM (19.03.2018) ** Inicio -->
+	<target name="jar.incidenciasListAsuntos">
+		<jar destfile="${jar.dir}/${jar.incidenciasListAsuntos.name}.jar">
+			<manifest>
+				<attribute name="Main-Class" value="${incidenciasListAsuntos-main-class}"/>
+				<attribute name="Class-Path" value="${mf.incidenciasListAsuntos.classpath}"/>
+			</manifest>
+			<fileset dir="${classes.dir}" includes="**/incidenciasListAsuntos/*.class **/common/**/IncidenciasListAsuntosConstants.class"/>
+			<fileset dir="${classes.dir}" includes="**/incidenciasListAsuntos/BBDDIncidenciasListAsuntos.class **/incidenciasListAsuntos/BBDDIncidenciasListAsuntos.class"/>
+			<fileset dir="${classes.dir}" includes="**/bbdd/Conexion.class"/>
+			
+			<fileset dir="${src.dir}" includes="**/webservices.properties"/>
+			<fileset dir="${src.dir}" includes="**/log4j.properties"/>
+			<fileset dir="${src.dir}" includes="**/hibernate.cfg.xml"/>
+
+			<fileset dir="${src.dir}" includes="**/agp.properties"/>
+			<fileset dir="${src.dir}" includes="**/agp_conexion.properties"/>
+			
+		</jar>
+	</target>
+	<!-- Pet. 50775 ** MODIF TAM (19.03.2018) ** Fin -->
+	
+	<target name="jar.seguimientoPolizas">
+		<jar destfile="${jar.dir}/${jar.seguimientoPolizas.name}.jar">
+			<manifest>
+				<attribute name="Main-Class" value="${seguimientoPolizas-main-class}"/>
+				<attribute name="Class-Path" value="${mf.seguimientoPolizas.classpath}"/>
+			</manifest>
+			<fileset dir="${classes.dir}" includes="**/seguimiento/*.class"/>
+			<fileset dir="${classes.dir}" includes="**/bbdd/Conexion.class"/>
+			
+			<fileset dir="${src.dir}" includes="**/webservices.properties"/>
+			<fileset dir="${src.dir}" includes="**/log4j.properties"/>
+			<fileset dir="${src.dir}" includes="**/hibernate.cfg.xml"/>
+
+			<fileset dir="${src.dir}" includes="**/agp.properties"/>
+			<fileset dir="${src.dir}" includes="**/agp_conexion.properties"/>
+			<fileset dir="${src.dir}" includes="**/agp_seguimiento.properties"/>
+		</jar>
+	</target>
+	
+	<target name="jar.procesarPolizasRenovables">
+		<jar destfile="${jar.dir}/${jar.procesarPolizasRenovables.name}.jar">
+			<manifest>
+				<attribute name="Main-Class" value="${procesarPolizasRenovables-main-class}"/>
+				<attribute name="Class-Path" value="${mf.procesarPolizasRenovables.classpath}"/>
+			</manifest>
+			<fileset dir="${classes.dir}" includes="**/procesarPolizasRenovables/*.class **/common/**/CPRConstants.class"/>
+			<fileset dir="${classes.dir}" includes="**/importacion/BBDDImportesUtil.class **/importacion/BBDDPolizaUtil.class"/>
+			<fileset dir="${classes.dir}" includes="**/bbdd/Conexion.class"/>
+			<fileset dir="${src.dir}" includes="**/webservices.properties"/>
+			<fileset dir="${src.dir}" includes="**/log4j.properties"/>
+			<fileset dir="${src.dir}" includes="**/hibernate.cfg.xml"/>
+			<fileset dir="${src.dir}" includes="**/agp_procesar_plz_renovables.properties"/>
+			<fileset dir="${src.dir}" includes="**/agp.properties"/>
+			<fileset dir="${src.dir}" includes="**/agp_conexion.properties"/>
+		</jar>
+	</target>
+	
+	<target name="jar.updateEstadosPolRenovables">
+		<jar destfile="${jar.dir}/${jar.updateEstadosPolRenovables.name}.jar">
+			<manifest>
+				<attribute name="Main-Class" value="${updateEstadosPolRenovables-main-class}"/>
+				<attribute name="Class-Path" value="${mf.updateEstadosPolRenovables.classpath}"/>
+			</manifest>
+			<fileset dir="${classes.dir}" includes="**/cargaPolizasRenovables/*.class **/procesarPolizasRenovables/*.class **/updateEstadosPolRenovables/*.class **/common/**/UPRConstants.class"/>
+			<fileset dir="${classes.dir}" includes="**/bbdd/Conexion.class"/>    
+			<fileset dir="${src.dir}" includes="**/webservices.properties"/>
+			<fileset dir="${src.dir}" includes="**/log4j.properties"/>
+			<fileset dir="${src.dir}" includes="**/hibernate.cfg.xml"/>
+			<fileset dir="${src.dir}" includes="**/agp_procesar_plz_renovables.properties"/>
+			<fileset dir="${src.dir}" includes="**/agp.properties"/>
+			<fileset dir="${src.dir}" includes="**/agp_conexion.properties"/>
+		</jar>
+	</target>
+	
+	<target name="jar.pruebaOracle">
+		<jar destfile="${jar.dir}/${jar.pruebaOracle.name}.jar">
+			<manifest>
+				<attribute name="Main-Class" value="${pruebaOracle-main-class}"/>
+				<attribute name="Class-Path" value="${mf.pruebaOracle.classpath}"/>
+			</manifest>
+			<fileset dir="${classes.dir}" includes="**/pruebaOracle/PruebaOracle.class"/>
+						
+			<fileset dir="${src.dir}" includes="**/log4j.properties"/>
+			<fileset dir="${src.dir}" includes="**/hibernate.cfg.xml"/>
+		</jar>
+	</target>
+	
+	<target name="jar.envioCuentasRenovables">
+		<jar destfile="${jar.dir}/${jar.envioCuentasRenovables.name}.jar">
+			<manifest>
+				<attribute name="Main-Class" value="${envioCuentasRenovables-main-class}"/>
+				<attribute name="Class-Path" value="${mf.envioCuentasRenovables.classpath}"/>
+			</manifest>
+			<fileset dir="${classes.dir}" includes="**/envioCuentasRenovables/*.class **/common/**/EnvioCuentasRenovablesConstants.class"/>
+			<fileset dir="${classes.dir}" includes="**/FileUploader*.class"/>	
+			<fileset dir="${src.dir}" includes="**/log4j.properties"/>
+			<fileset dir="${src.dir}" includes="**/hibernate.cfg.xml"/>
+			<fileset dir="${src.dir}" includes="**/envioCuentasRenovables.properties"/>
+		</jar>
+	</target>
+	
+	<target name="jar.updateFechaEntradaVigor">
+		<jar destfile="${jar.dir}/${jar.updateFechaEntradaVigor.name}.jar">
+			<manifest>
+				<attribute name="Main-Class" value="${updateFechaEntradaVigor-main-class}"/>
+				<attribute name="Class-Path" value="${mf.updateFechaEntradaVigor.classpath}"/>
+			</manifest>
+			<fileset dir="${classes.dir}" includes="**/bbdd/*.class **/updateFechaEntradaVigor/*.class **/common/**/UpdateFEVConstants.class"/>
+			<fileset dir="${src.dir}" includes="**/log4j.properties"/>
+			<fileset dir="${src.dir}" includes="**/agp_update_fecha_entrada_vigor.properties"/>			
+			<fileset dir="${src.dir}" includes="**/webservices.properties"/>
+			<fileset dir="${src.dir}" includes="**/agp_conexion.properties"/>
+			
+		</jar>
+	</target>
+	
+	<target name="jar.documentacionged">
+		<jar destfile="${jar.dir}/${jar.documentacionged.name}.jar">
+			<manifest>
+				<attribute name="Main-Class" value="${documentacionged-main-class}"/>
+				<attribute name="Class-Path" value="${mf.documentacionged.classpath}"/>
+			</manifest>
+			<fileset dir="${classes.dir}" includes="**/ged/**/*.class"/>
+			<fileset dir="${src.dir}" includes="**/hibernate.cfg.xml"/>
+			<fileset dir="${src.dir}" includes="**/log4j.properties"/>
+			<fileset dir="${src.dir}" includes="**/webservices.properties"/>
+			<fileset dir="${src.dir}" includes="**/agp.properties"/>
+			<fileset dir="${src.dir}" includes="**/agp_informes_jasper.properties"/>
+		</jar>
+	</target>
+	
+	<target name="jar.cargaRecibosEmitidos">
+		<jar destfile="${jar.dir}/${jar.cargaRecibosEmitidos.name}.jar">
+			<manifest>
+				<attribute name="Main-Class" value="${cargaRecibosEmitidos-main-class}"/>
+				<attribute name="Class-Path" value="${mf.cargaRecibosEmitidos.classpath}"/>
+			</manifest>
+			<fileset dir="${classes.dir}" includes="**/cargaRecibos/*.class"/>
+			
+			<fileset dir="${src.dir}" includes="**/log4j.properties"/>
+			<fileset dir="${src.dir}" includes="**/hibernate.cfg.xml"/>
+
+			<fileset dir="${src.dir}" includes="**/agp.properties"/>
+			<fileset dir="${src.dir}" includes="**/agp_conexion.properties"/>
+			<fileset dir="${src.dir}" includes="**/agp_procesar_ficheros.properties"/>
+		</jar>
+	</target>
+	
+	<target name="jar.cargaCondicionados">
+		<jar destfile="${jar.dir}/${jar.cargaCondicionados.name}.jar">
+			<manifest>
+				<attribute name="Main-Class" value="${cargaCondicionados-main-class}"/>
+				<attribute name="Class-Path" value="${mf.cargaCondicionados.classpath}"/>
+			</manifest>
+			<fileset dir="${classes.dir}" includes="**/cargaCondicionados/*.class"/>
+			<fileset dir="${classes.dir}" includes="**/importacionCondicionado/util/ConfigImportacionCondicionado.class"/>
+			
+			<fileset dir="${src.dir}" includes="**/log4j.properties"/>
+			<fileset dir="${src.dir}" includes="**/hibernate.cfg.xml"/>
+
+			<fileset dir="${src.dir}" includes="**/agp.properties"/>
+			<fileset dir="${src.dir}" includes="**/agp_conexion.properties"/>
+			<fileset dir="${src.dir}" includes="**/agp_procesar_ficheros.properties"/>
+			<fileset dir="${src.dir}" includes="**/agp_importacion.properties"/>
+		</jar>
+	</target>
+	
+	<target name="jar.cargaComisiones">
+			<jar destfile="${jar.dir}/${jar.cargaComisiones.name}.jar">
+				<manifest>
+					<attribute name="Main-Class" value="${cargaComisiones-main-class}"/>
+					<attribute name="Class-Path" value="${mf.cargaComisiones.classpath}"/>
+				</manifest>
+				<fileset dir="${classes.dir}" includes="**/cargaComisiones/*.class"/>
+				
+				<fileset dir="${src.dir}" includes="**/log4j.properties"/>
+				<fileset dir="${src.dir}" includes="**/hibernate.cfg.xml"/>
+
+				<fileset dir="${src.dir}" includes="**/agp.properties"/>
+				<fileset dir="${src.dir}" includes="**/agp_conexion.properties"/>
+				<fileset dir="${src.dir}" includes="**/agp_coms_auto.properties"/>
+			</jar>
+		</target>
+</project>

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="declaracionSeguro_hojaParcelas_distCosteParcela2015" pageWidth="555" pageHeight="802" whenNoDataType="AllSectionsNoDetail" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0">
+	<parameter name="IDDISTCOSTE2" class="java.math.BigDecimal"/>
+	<parameter name="HOJA" class="java.math.BigDecimal"/>
+	<parameter name="NUMERO" class="java.math.BigDecimal"/>
+	<parameter name="CODTIPOCAPITAL" class="java.math.BigDecimal"/>
+	<queryString>
+		<![CDATA[select round( (dcp.primacomercialneta/dcp.capital_asegurado)*100,2) as tasacom, dcp.costetomador as costetomador
+from o02agpe0.tb_dist_coste_parcelas_2015 dcp
+where dcp.iddistcoste= $P{IDDISTCOSTE2}
+and   dcp.hoja=$P{HOJA}
+and   dcp.numero=$P{NUMERO}
+and   dcp.tipo=$P{CODTIPOCAPITAL}]]>
+	</queryString>
+	<field name="tasacom" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="costetomador" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<variable name="SHOW_FOOT" class="java.lang.Boolean" resetType="None">
+		<variableExpression><![CDATA[new Boolean(true)]]></variableExpression>
+		<initialValueExpression><![CDATA[]]></initialValueExpression>
+	</variable>
+	<variable name="SHOW_BACK" class="java.lang.Boolean" resetType="None">
+		<variableExpression><![CDATA[new Boolean(true)]]></variableExpression>
+		<initialValueExpression><![CDATA[]]></initialValueExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<columnHeader>
+		<band height="9">
+			<staticText>
+				<reportElement x="8" y="0" width="65" height="8"/>
+				<textElement>
+					<font size="6" isBold="true"/>
+				</textElement>
+				<text><![CDATA[TASA COMERCIAL :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="266" y="0" width="65" height="8"/>
+				<textElement>
+					<font size="6" isBold="true"/>
+				</textElement>
+				<text><![CDATA[COSTE TOMADOR:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="73" y="0" width="35" height="8"/>
+				<textElement>
+					<font size="6" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{tasacom}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00¤" isBlankWhenNull="true">
+				<reportElement x="346" y="0" width="82" height="8"/>
+				<textElement>
+					<font size="6"/>
+				</textElement>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{costetomador}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="1" splitType="Stretch"/>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

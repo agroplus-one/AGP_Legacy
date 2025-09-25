@@ -1,0 +1,171 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 29-nov-2010 13:49:42 by Hibernate Tools 3.3.0.GA -->
+<hibernate-mapping>
+    <class name="com.rsi.agp.dao.tables.siniestro.Siniestro" table="TB_SINIESTROS">
+        <id name="id" type="long">
+            <column name="ID" precision="15" scale="0" />
+            <generator class="sequence">
+            	<param name="sequence">SQ_SINIESTROS</param>
+            </generator>        
+        </id>
+        <many-to-one name="comunicaciones" class="com.rsi.agp.dao.tables.poliza.Comunicaciones" fetch="select" insert="false" update="false">
+            <column name="IDENVIO" precision="15" scale="0" />
+        </many-to-one>		
+        <many-to-one name="estadoSiniestro" class="com.rsi.agp.dao.tables.siniestro.EstadoSiniestro" fetch="select" lazy="no-proxy">
+            <column name="ESTADO" precision="2" scale="0" />
+        </many-to-one>
+        <many-to-one name="poliza" class="com.rsi.agp.dao.tables.poliza.Poliza" fetch="select" lazy="no-proxy">
+            <column name="IDPOLIZA" precision="15" scale="0" />
+        </many-to-one>
+        <!-- JANV 05/04/2016 Necesitamos la fecha de envio desde la vista para que la información tenga coherencia
+        ya que el cruce siniestros-comunicaciones no tiene toda la información (falta la de webservice) -->
+        <property name="fechaEnvio" type="java.util.Date" formula="(select max(su.fenv) from o02agpe0.vw_siniestros_utilidades su where su.idpoliza=idpoliza and su.numsiniestro=numsiniestro)"/>
+        <property name="nombre" type="string">
+            <column name="NOMBRE" length="50" />
+        </property>
+        <property name="apellido1" type="string">
+            <column name="APELLIDO1" length="50" />
+        </property>
+        <property name="apellido2" type="string">
+            <column name="APELLIDO2" length="50" />
+        </property>
+        <property name="razonsocial" type="string">
+            <column name="RAZONSOCIAL" length="100" />
+        </property>
+        <property name="clavevia" type="string">
+            <column name="CLAVEVIA" length="2" />
+        </property>
+        <property name="direccion" type="string">
+            <column name="DIRECCION" length="200" />
+        </property>
+        <property name="numvia" type="string">
+            <column name="NUMVIA" length="5" />
+        </property>
+        <property name="piso" type="string">
+            <column name="PISO" length="12" />
+        </property>
+        <property name="bloque" type="string">
+            <column name="BLOQUE" length="10" />
+        </property>
+        <property name="escalera" type="string">
+            <column name="ESCALERA" length="10" />
+        </property>
+        <property name="codprovincia" type="java.math.BigDecimal">
+            <column name="CODPROVINCIA" precision="2" scale="0" />
+        </property>
+        <property name="codlocalidad" type="java.math.BigDecimal">
+            <column name="CODLOCALIDAD" precision="3" scale="0" />
+        </property>
+        <property name="sublocalidad" type="string">
+            <column name="SUBLOCALIDAD" length="4" />
+        </property>
+        <property name="codpostal" type="java.math.BigDecimal">
+            <column name="CODPOSTAL" precision="5" scale="0" />
+        </property>
+        <property name="telefono1" type="string">
+            <column name="TELEFONO1" length="10" />
+        </property>
+        <property name="telefono2" type="string">
+            <column name="TELEFONO2" length="10" />
+        </property>
+        <property name="telefono3" type="string">
+            <column name="TELEFONO3" length="10" />
+        </property>
+        <property name="codriesgo" type="java.lang.Short">
+            <column name="CODRIESGO" precision="2" scale="0" />
+        </property>
+        <property name="fechaocurrencia" type="java.util.Date">
+            <column name="FECHAOCURRENCIA" />
+        </property>
+        <property name="observaciones" type="string">
+            <column name="OBSERVACIONES" length="2000" />
+        </property>
+        <property name="numsiniestro" type="java.math.BigDecimal">
+            <column name="NUMSINIESTRO" precision="6" scale="0" />
+        </property>
+        <property name="fecfirmasiniestro" type="java.util.Date">
+            <column name="FECFIRMASINIESTRO" />
+        </property>
+        <property name="idCopy" type="java.lang.Long">
+            <column name="IDCOPY" precision="15" scale="0" />
+        </property>
+        <property name="xml" type="clob">
+            <column name="XML">
+                <comment>Fichero enviado a Agroseguro</comment>
+            </column>
+        </property>
+        <property name="numinternoenvio" type="java.math.BigDecimal">
+            <column name="NUMINTERNOENVIO" precision="6" scale="0">
+                <comment>Identificador del envio del siniestro</comment>
+            </column>
+        </property>
+        <property name="numerosiniestro" type="java.math.BigDecimal">
+            <column name="NUMEROSINIESTRO" precision="15" scale="0">
+                <comment>N&#250;mero de siniestro recibido en el acuse de la confirmaci&#243;n de siniestros por SW</comment>
+            </column>
+        </property>
+         <property name="numeroSerie" type="java.lang.Integer">
+            <column name="SERIE" precision="4" scale="0">
+                <comment>N&#250;mero de serie del siniestro que se recibe en el acuse de recibo</comment>
+            </column>
+        </property>
+        <property name="telefonoFijoAsegurado" type="string">
+			<column name="TELEFONOFIJOASEGURADO" length="9">
+				<comment>Telefono fijo del Asegurado</comment>
+			</column>
+		</property>
+		<property name="telefonoMovilAsegurado" type="string">
+			<column name="TELEFONOMOVILASEGURADO" length="9">
+				<comment>Telefono m&#243;vil del Asegurado</comment>
+			</column>
+		</property>
+		 <property name="emailAsegurado" type="string">
+			<column name="EMAILASEGURADO" length="50">
+				<comment>Correo electr&#243;nico del Asegurado</comment>
+			</column>
+		</property>
+		
+		<!-- Pet. 63473 ** MODIF TAM (30.11.2021) ** Inicio  -->
+		<property name="fechaBaja" type="java.util.Date">
+            <column name="FECHA_BAJA" />
+        </property>
+        <!-- Pet. 63473 ** MODIF TAM (30.11.2021) ** Fin  -->
+        
+        <!-- 
+        <set name="siniestroSWConfirmacions" table="TB_SINIESTRO_SW_CONFIRMACION" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDSINIESTRO" precision="15" scale="0" not-null="true">
+                    <comment>Identificador del siniestro asociado</comment>
+                </column>
+            </key>
+            <one-to-many class="com.rsi.agp.dao.tables.siniestro.SiniestroSWConfirmacion" />
+        </set>
+        <set name="siniestroSWValidacions" table="TB_SINIESTRO_SW_VALIDACION" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDSINIESTRO" precision="15" scale="0" not-null="true">
+                    <comment>Identificador del siniestro asociado</comment>
+                </column>
+            </key>
+            <one-to-many class="com.rsi.agp.dao.tables.siniestro.SiniestroSWValidacion" />
+        </set>
+         -->
+        
+        <property name="usuarioAlta" type="string"             formula="(select sh.CODUSUARIO from o02agpe0.VW_SINIESTRO_HIST_ESTADOS_ASC sh where sh.IDSINIESTRO = ID and rownum=1)"/>
+            
+        <property name="usuarioDefinitiva" type="string"       formula="(select sh.CODUSUARIO from o02agpe0.VW_SINIESTRO_HIST_ESTADOS_DESC sh where sh.IDSINIESTRO = ID  and sh.ESTADO=5 and rownum=1)"/>
+        
+        <property name="fechaAlta" type="java.util.Date"       formula="(select sh.FECHA from o02agpe0.VW_SINIESTRO_HIST_ESTADOS_ASC sh where sh.IDSINIESTRO = ID  and rownum=1)"/>
+        
+        <property name="fechaDefinitiva" type="java.util.Date" formula="(select sh.FECHA from o02agpe0.VW_SINIESTRO_HIST_ESTADOS_DESC sh where sh.IDSINIESTRO = ID and sh.ESTADO=5 and rownum=1)"/>
+           
+        <set name="parcelasSiniestros" table="TB_SINIESTRO_PARCELAS" inverse="true" lazy="extra" fetch="select" cascade="delete">
+            <key>
+                <column name="IDSINIESTRO" precision="15" scale="0" not-null="true"/>
+            </key>
+            <one-to-many class="com.rsi.agp.dao.tables.siniestro.ParcelaSiniestro" />
+        </set>
+        
+    </class>
+</hibernate-mapping>

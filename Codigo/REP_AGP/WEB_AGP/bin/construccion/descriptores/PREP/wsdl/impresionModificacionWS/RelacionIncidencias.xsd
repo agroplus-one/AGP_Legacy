@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<x:schema 
+	targetNamespace="http://www.agroseguro.es/RelacionIncidencias"
+	xmlns="http://www.agroseguro.es/RelacionIncidencias"
+	xmlns:pks="http://www.agroseguro.es/RelacionIncidencias"
+	xmlns:x="http://www.w3.org/2001/XMLSchema"
+	xmlns:ti="http://www.agroseguro.es/Tipos" 
+	xmlns:ec="http://www.agroseguro.es/SeguroAgrario/EstadoContratacion"
+	xmlns:la="http://www.agroseguro.es/ListaAsuntos"
+> 
+
+	<!-- Importacion de la definicion de tipos genericos -->
+	<x:import
+		namespace="http://www.agroseguro.es/Tipos"
+		schemaLocation="Tipos.xsd" />
+	
+	<x:import 
+		namespace="http://www.agroseguro.es/SeguroAgrario/EstadoContratacion"
+		schemaLocation="EstadoContratacion.xsd" />
+		
+	<x:import 
+		namespace="http://www.agroseguro.es/ListaAsuntos"
+		schemaLocation="ListaAsuntos.xsd" />	
+		
+	<x:element name="RelacionIncidencias" type="RelacionIncidencias" >
+		<x:annotation>
+			<x:documentation>
+				Elemento Raiz
+			</x:documentation>
+		</x:annotation>
+	</x:element>
+	
+	<x:complexType name="RelacionIncidencias">
+		<x:sequence>
+            <x:element name="Incidencia" type="Incidencia" minOccurs="1" maxOccurs="unbounded" />		
+        </x:sequence>
+		<x:attribute name="plan" type="ti:Plan" use="optional"/>
+		<x:attribute name="referencia" type="ti:Poliza_Referencia_Unificada" use="optional" />
+		<x:attribute name="linea" type="ti:Linea_Codigo" use="optional"/>
+		<x:attribute name="nif" type="ti:NIFCIF" use="optional" />
+		<x:attributeGroup ref="ti:PeticionSW" />
+	</x:complexType>
+		
+	<x:complexType name="Incidencia">
+		<x:attribute name="anio" use="required" type="ec:AnioIncidencia" />
+		<x:attribute name="numero" use="required" type="ec:NumeroIncidencia" />
+		<x:attribute name="asunto" type="la:DescriptivoAsunto" use="required" />
+		<x:attribute name="codigoAsunto" use="required" type="la:CodigoAsunto" />	
+		<x:attribute name="estado" use="required" type="ec:CodigoEstadoIncidencia" />
+		<x:attribute name="descriptivoEstado" use="required" type="ec:DescriptivoEstadoIncidencia" />	
+		<x:attribute name="fechaEstado" use="required" type="x:date" />
+		<x:attribute name="codigoDocumentoAfectado" use="required" type="ec:CodigoEstadoIncidencia" />	
+		<x:attribute name="descriptivoDocumentoAfectado" use="required" type="DescriptivoDocumentoAfectado" />	
+		<x:attribute name="referencia" type="ti:Poliza_Referencia_Unificada" use="optional" />
+		<x:attribute name="tipoPoliza"	type="ti:Poliza_Referencia_Tipo" use="optional"/>
+		<x:attribute name="idEnvio" use="optional" type="IdEnvio" />
+		<x:attribute name="observaciones" use="optional" type="ObservacionesIncidencia" />
+		<x:attribute name="numeroDocumentos" type="x:int" use="required" />
+	</x:complexType>
+	
+	<x:simpleType name="DescriptivoDocumentoAfectado">
+		<x:restriction base="x:string">
+			<x:maxLength value="25" />
+		</x:restriction>
+	</x:simpleType>
+	
+	<x:simpleType name="IdEnvio">
+		<x:restriction base="x:string">
+			<x:maxLength value="14" />
+		</x:restriction>
+	</x:simpleType>
+	
+	<x:simpleType name="ObservacionesIncidencia">
+		<x:restriction base="x:string">
+			<x:maxLength value="143" />
+		</x:restriction>
+	</x:simpleType>
+	
+</x:schema>

@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema targetNamespace="http://www.agroseguro.es/DesignacionBeneficiarios"
+	xmlns="http://www.agroseguro.es/DesignacionBeneficiarios"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:ti="http://www.agroseguro.es/Tipos" >
+	
+	<xs:import namespace="http://www.agroseguro.es/Tipos" schemaLocation="Tipos.xsd" />
+	
+	<xs:element name="DesignacionBeneficiarios" type="DesignacionBeneficiarios" />
+		
+	<xs:complexType name="DesignacionBeneficiarios">
+		<xs:sequence>
+			<xs:choice maxOccurs="1" minOccurs="1">
+				<xs:element name="Colectivo" type="Colectivo" maxOccurs="1" minOccurs="1" />
+				<xs:element name="Tomador" type="Tomador" maxOccurs="1" minOccurs="1" />
+			</xs:choice>
+			<xs:element name="Asegurado" type="Asegurado" maxOccurs="1" minOccurs="1" />
+			<xs:element name="Beneficiarios" type="Beneficiarios" maxOccurs="1" minOccurs="1" />
+		</xs:sequence>
+		<xs:attributeGroup ref="ti:PlanLinea" />
+		<xs:attribute name="referencia" use="optional" type="ti:Poliza_Referencia_Unificada" />
+		<xs:attribute name="digitoControl" use="optional" type="ti:DigitoControl" />
+		<xs:attribute name="nifSocio" use="optional" type="ti:NIFCIF" />
+	</xs:complexType>
+
+	<xs:complexType name="Colectivo">
+		<xs:attributeGroup ref="ti:ReferenciaColectivo" />
+	</xs:complexType>
+
+	<xs:complexType name="Tomador">
+		<xs:sequence>
+			<xs:group ref="ti:NombrePersona" 							minOccurs="1" maxOccurs="1" />
+			<xs:element name="Direccion" 		type="ti:Direccion" 	minOccurs="0" maxOccurs="1" />
+			<xs:element name="DatosContacto" 	type="ti:DatosContacto" minOccurs="0" maxOccurs="1" />
+		</xs:sequence>
+		<xs:attribute name="nif" type="ti:NIFCIF" use="required" />
+	</xs:complexType>
+	
+	<xs:complexType name="Asegurado">
+		<xs:sequence>
+			<xs:group ref="ti:NombrePersona" minOccurs="1"	maxOccurs="1" />
+		</xs:sequence>
+		<xs:attribute name="nif" type="ti:NIFCIF" use="required" />
+	</xs:complexType>
+
+	<xs:complexType name="DatosBeneficiario">
+		<xs:sequence>
+			<xs:group ref="ti:NombrePersona" 							minOccurs="1"	maxOccurs="1" />
+			<xs:element name="Direccion" 		type="ti:Direccion" 	minOccurs="0" 	maxOccurs="1" />
+			<xs:element name="DatosContacto" 	type="ti:DatosContacto" minOccurs="0" 	maxOccurs="1" />
+		</xs:sequence>
+		<xs:attribute name="nif" type="ti:NIFCIF" use="required" />
+	</xs:complexType>
+
+	<xs:complexType name="Beneficiarios">
+		<xs:sequence>
+			<xs:element name="Beneficiario" type="Beneficiario" maxOccurs="unbounded" minOccurs="1" />
+		</xs:sequence>
+	</xs:complexType>
+	
+	<xs:complexType name="Beneficiario">
+		<xs:sequence>
+			<xs:element name="DatosBeneficiario" 	 type="DatosBeneficiario" 	maxOccurs="1" minOccurs="1" />
+			<xs:element name="Cesion" 			 	 type="Cesion" 				maxOccurs="1" minOccurs="1" />
+			<xs:element name="CuentaAbonoSiniestros" type="Cuenta" 				maxOccurs="1" minOccurs="0" />
+		</xs:sequence>
+		<xs:attribute name="fechaAlta" type="xs:date" use="optional" />
+		<xs:attribute name="fechaUltimaModificacion" type="xs:date" use="optional" />
+	</xs:complexType>
+	
+	<xs:complexType name="Cesion">
+		<xs:choice maxOccurs="1" minOccurs="1">
+			<xs:element name="Importe" 	  type="ImporteCesion" 		maxOccurs="1" minOccurs="1" />
+			<xs:element name="Porcentaje" type="PorcentajeCesion" 	maxOccurs="1" minOccurs="1" />
+			<xs:element name="Parcelas"   type="ParcelasCedidas" 	maxOccurs="1" minOccurs="1" />
+			<xs:element name="Explotaciones"   type="ExplotacionesCedidas" 	maxOccurs="1" minOccurs="1" />
+		</xs:choice>
+	</xs:complexType>
+	
+	<xs:complexType name="ImporteCesion">
+		<xs:attribute name="importe" 	type="ti:ImportePositivo" use="required" />
+	</xs:complexType>
+	
+	<xs:complexType name="PorcentajeCesion">
+		<xs:attribute name="porcentaje" type="PorcentajeCesionTipo" use="required" />
+	</xs:complexType>
+	
+	<xs:complexType name="ParcelasCedidas">
+		<xs:sequence>
+			<xs:element name="Parcela" type="ParcelaCedida" maxOccurs="unbounded" minOccurs="1" />
+		</xs:sequence>
+	</xs:complexType>
+	
+	<xs:complexType name="ExplotacionesCedidas">
+		<xs:sequence>
+			<xs:element name="Explotacion" type="ExplotacionCedida" maxOccurs="unbounded" minOccurs="1" />
+		</xs:sequence>
+	</xs:complexType>
+	
+	<xs:complexType name="ParcelaCedida">
+		<xs:attribute name="hoja" 	 	type="ti:Parcela_Hoja" 		use="required" />
+		<xs:attribute name="parcela" 	type="ti:Parcela_Numero" 	use="required" />
+		<xs:attribute name="porcentaje" type="PorcentajeCesionTipo"	use="required" />
+	</xs:complexType>
+
+	<xs:complexType name="ExplotacionCedida">
+		<xs:sequence>
+			<xs:element name="Especie" 		type="Especie" 		maxOccurs="1" minOccurs="1" />
+			<xs:element name="TipoCapital" 	type="TipoCapital" 	maxOccurs="1" minOccurs="1" />
+			<xs:element name="Regimen" 		type="Regimen" 		maxOccurs="1" minOccurs="1" />
+		</xs:sequence>
+		<xs:attribute name="explotacion"	type="ti:NumeroExplotacion" use="required" />
+		<xs:attribute name="rega" 			type="ti:Codigo_REGA" 		use="required" />
+		<xs:attribute name="porcentaje" 	type="PorcentajeCesionTipo"	use="required" />
+	</xs:complexType>
+
+	<xs:complexType name="Especie">
+		<xs:attribute name="especie" 	 	type="ti:Especie" 				use="required" />
+		<xs:attribute name="descriptivo" 	type="ti:Especie_Descripcion" 	use="required" />
+	</xs:complexType>
+
+	<xs:complexType name="TipoCapital">
+		<xs:attribute name="tipoCapital" 	type="ti:TipoCapital" 				use="required" />
+		<xs:attribute name="descriptivo" 	type="ti:TipoCapitalDescripcion" 	use="required" />
+	</xs:complexType>
+	
+	<xs:complexType name="Regimen">
+		<xs:attribute name="regimen" 	 	type="ti:Regimen" 				use="required" />
+		<xs:attribute name="descriptivo" 	type="ti:Regimen_Descripcion" 	use="required" />
+	</xs:complexType>
+
+
+	<xs:complexType name="Cuenta">
+		<xs:attribute name="banco" 	 		type="ti:CCC_Banco" 	use="required" />
+		<xs:attribute name="agencia" 	 	type="ti:CCC_Oficina" 	use="required" />
+		<xs:attribute name="digitoControl"	type="ti:CCC_DC" 		use="required" />
+		<xs:attribute name="cuenta" 	 	type="ti:CCC_Cuenta" 	use="required" />
+	</xs:complexType>
+	
+	<xs:simpleType name="PorcentajeCesionTipo">
+		<xs:restriction base="xs:decimal">
+			<xs:fractionDigits value="2" />
+			<xs:minInclusive value="0.00" />
+			<xs:maxInclusive value="100.00" />
+		</xs:restriction>
+	</xs:simpleType>
+	
+</xs:schema>

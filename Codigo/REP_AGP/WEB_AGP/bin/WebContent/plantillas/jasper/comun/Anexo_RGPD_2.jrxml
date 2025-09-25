@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.16.0.final using JasperReports Library version 3.6.1  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Anexo_RGPD" pageWidth="555" pageHeight="700" whenNoDataType="AllSectionsNoDetail" columnWidth="515" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" isIgnorePagination="true">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="style1" fill="Solid" lineSpacing="Single"/>
+	<parameter name="SUBREPORT_COMUN_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["."]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<variable name="SHOW_FOOT" class="java.lang.Boolean" resetType="None">
+		<variableExpression><![CDATA[new Boolean(false)]]></variableExpression>
+		<initialValueExpression><![CDATA[]]></initialValueExpression>
+	</variable>
+	<variable name="SHOW_BACK" class="java.lang.Boolean" resetType="None">
+		<variableExpression><![CDATA[new Boolean(false)]]></variableExpression>
+		<initialValueExpression><![CDATA[]]></initialValueExpression>
+	</variable>
+	<title>
+		<band height="640" splitType="Stretch">
+			<image>
+				<reportElement x="0" y="40" width="161" height="64"/>
+				<imageExpression class="java.lang.String"><![CDATA[$P{SUBREPORT_COMUN_DIR}+"/images/logo_rga.gif"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="290" y="62" width="225" height="18">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Right" lineSpacing="Single" markup="html">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Información básica sobre]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="290" y="80" width="225" height="18">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Right" lineSpacing="Single" markup="html">
+					<font size="12" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Protección de datos]]></text>
+			</staticText>
+			<image>
+				<reportElement x="470" y="10" width="45" height="30"/>
+				<imageExpression><![CDATA[$P{SUBREPORT_COMUN_DIR}+"/images/efr.png"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="0" y="120" width="515" height="22"/>
+				<textElement textAlignment="Left" lineSpacing="Single" markup="html">
+					<font size="7" isBold="true" isItalic="false"/>
+				</textElement>
+				<text><![CDATA[ESTE DOCUMENTO SUSTITUYE Y DEJA SIN EFECTO CUALQUIER OTRA INFORMACIÓN RELATIVA A PROTECCIÓN DE DATOS RECOGIDA EN CUALQUIERA DE LOS DOCUMENTOS PRECONTRACTUALES.]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="0" y="155" width="515" height="22">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement lineSpacing="Single">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA["RGA Seguros Generales Rural, S.A. de Seguros y Reaseguros C/Basauri, 14 (28023) Madrid Correo electrónico de contacto de la compañía: cat@segurosrga.es.\nContacto Delegado de Protección de Datos: correo postal al DPO RGA C/Basauri, 14 (28023) Madrid, o correo electrónico dpo_rga@segurosrga.es"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="145" width="515" height="10">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement lineSpacing="Single">
+					<font size="7" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["1. Responsable"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="180" width="515" height="10">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement lineSpacing="Single">
+					<font size="7" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["2. Finalidades y Legitimación"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="190" width="515" height="10">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement lineSpacing="Single">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Finalidades de naturaleza contractual:"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="10" y="200" width="505" height="30">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement lineSpacing="Single">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression class=""><![CDATA["a) Establecer las condiciones del seguro que nos solicita y realizar la selección de riesgos, teniendo en cuenta los datos que nos facilite para elaborar su perfil de riesgo, mediante tratamientos automatizados o no.\nb) Celebrar, mantener y seguir el cumplimiento del seguro que pueda contratar con la Compañía, a través de la entidad Agroseguro (Agrupación Española de Entidades Aseguradoras de los Seguros Agrarios Combinados, S.A)."]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="235" width="515" height="10">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
+				<textElement lineSpacing="Single">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Finalidades de naturaleza contractual:"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="10" y="245" width="505" height="65">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement lineSpacing="Single">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression class=""><![CDATA["a) Desarrollar acciones comerciales en general, y en particular, ofrecerle y/o recomendarle nuestros productos y servicios, que puedan resultar de su interés, dentro de su expectativa razonable de privacidad, basada en su historial de contratación con nosotros. La recomendación de productos podrá basarse en un perfilado que, en algunos casos, se llevará a cabo utilizando medios basados únicamente en el tratamiento automatizado de sus datos.\nb) Crear modelos de comportamiento a través de datos seudonimizados y anónimos, que también permitan ajustarnos a tus necesidades e intereses. \nc) Auditar la calidad de los servicios que prestamos. \nd) Si finalmente no contratara el seguro, conservar sus datos por un plazo no superior al establecido legalmente a contar desde la emisión de la oferta, para llevar a cabo el mantenimiento y seguimiento de la misma. \nPuede consultar información más detallada sobre nuestros tratamientos, o la forma en la que puede oponerse a ellos, en el apartado 'Protección de Datos' que se encuentra en nuestra web www.segurosrga.es"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="314" width="515" height="20">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
+				<textElement lineSpacing="Single">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression class=""><![CDATA["Otras finalidades basadas en el consentimiento:\nLas que usted pudiera consentir expresamente en la contratación del producto."]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="340" width="515" height="10">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement lineSpacing="Single">
+					<font size="7" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["3. Destinatarios"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="10" y="350" width="505" height="30">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement lineSpacing="Single">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression class=""><![CDATA["a) Agroseguro (Agrupación Española de Entidades Aseguradoras de los Seguros Agrarios Combinados, S.A).\nb) Organismos Públicos competentes, Jueces y Tribunales, cuando la Compañía tenga la obligación legal de facilitarlos.\nc) Entidades financieras para la gestión de cobros y pagos."]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="380" width="515" height="45">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement lineSpacing="Single">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression class=""><![CDATA["Además, la compañía cuenta con la colaboración de algunos terceros proveedores de servicios que tienen acceso a sus datos personales y que tratan los referidos datos en nombre y por cuenta de la Compañía como consecuencia de su prestación de servicios. En concreto, y a título enunciativo y no limitativo, los citados proveedores desempeñan sus servicios en los siguientes sectores: servicios de custodia y digitalización de documentación, servicios de mediación de seguros, servicios reconocimientos médicos para selección de riesgos, servicios de gestión administrativa y atención de clientes, servicios de auditoría de calidad de servicios o servicios de desarrollo tecnológico."]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="430" width="515" height="10">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement lineSpacing="Single">
+					<font size="7" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["4. Derechos"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="440" width="515" height="40">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement lineSpacing="Single">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression class=""><![CDATA["Podrá acceder, rectificar, suprimir sus datos, oponerse al uso de los mismos, revocar sus consentimientos, así como ejercer otros derechos reconocidos por la normativa como el derecho de portabilidad, limitación del tratamiento, o presentar reclamaciones ante la Agencia de Protección de Datos, o a nuestro Delegado de Protección de Datos. Puede ejercer estos derechos dirigiéndose a la Compañía o al Delegado de Protección de Datos, así como presentar una reclamación ante la Agencia Española de Protección de Datos."]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="490" width="515" height="10">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement lineSpacing="Single">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA["La Compañía obtiene sus datos de las siguientes fuentes:"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="480" width="515" height="10">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement lineSpacing="Single">
+					<font size="7" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["5. Procedencia"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="10" y="500" width="505" height="30">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement lineSpacing="Single">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression class=""><![CDATA["a) La información que Usted nos facilite y la que se genere del mantenimiento de la relación contractual.\nb) La información que obtenemos a través de la Caja Rural o entidad financiera cuyas redes de distribución se ceden a RGA Mediación OBSV, S.A. u otros Operadores de Banca Seguros autorizados, si usted realiza la solicitud del producto a través de la misma, o de la misma forma si hubiera utilizado otros Agentes o Colaboradores externos en la contratación."]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="543" width="515" height="40">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
+				<textElement lineSpacing="Single">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Respecto de aquellos datos de terceros interesados que eventualmente nos pudiera proporcionar a lo largo del proceso de contratación (p.ej., beneficiarios o asegurados), recae sobre Usted la responsabilidad de que los mismos sean ciertos, completos y exactos en el momento de aportarlos. Usted garantiza haber obtenido previamente y contar con el consentimiento expreso de dichos terceros para la comunicación de sus datos a la Compañía y a transmitirles la información sobre dicho tratamiento que se recoge en el presente documento."]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="533" width="515" height="10">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
+				<textElement lineSpacing="Single">
+					<font size="7" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["6. Datos de terceros interesados"]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

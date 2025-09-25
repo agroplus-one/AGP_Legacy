@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 20-oct-2011 10:25:42 by Hibernate Tools 3.3.0.GA -->
+<hibernate-mapping>
+    <class name="com.rsi.agp.dao.tables.comisiones.RgaComisionesPendientes" table="TB_RGA_COMISIONES_PENDIENTES">
+        <id name="id" type="long">
+            <column name="ID" precision="15" scale="0" />
+            <generator class="sequence">
+            	<param name="sequence">SQ_RGA_COMISIONES_PENDIENTES</param>
+            </generator>
+        </id>
+        <many-to-one name="cierre" class="com.rsi.agp.dao.tables.comisiones.Cierre" fetch="select">
+            <column name="IDCIERRE" precision="15" scale="0" not-null="true" />
+        </many-to-one>
+        <property name="codent" type="java.math.BigDecimal">
+            <column name="CODENT" precision="4" scale="0">
+                <comment>C&#243;digo Entidad</comment>
+            </column>
+        </property>
+        <property name="codcol" type="string">
+            <column name="CODCOL" length="8">
+                <comment>C&#243;digo Colectivo</comment>
+            </column>
+        </property>
+        <property name="codlin" type="java.math.BigDecimal">
+            <column name="CODLIN" precision="3" scale="0">
+                <comment>C&#243;digo de la l&#237;nea</comment>
+            </column>
+        </property>
+        <property name="codpln" type="java.math.BigDecimal">
+            <column name="CODPLN" precision="4" scale="0">
+                <comment>N&#250;mero de plan</comment>
+            </column>
+        </property>
+        <property name="feccar" type="date">
+            <column name="FECCAR" length="7">
+                <comment>Fecha de carga de los ficheros</comment>
+            </column>
+        </property>
+        <property name="gaspen" type="java.math.BigDecimal">
+            <column name="GASPEN" precision="11">
+                <comment>Gastos pendientes</comment>
+            </column>
+        </property>
+        <property name="fase" type="string">
+            <column name="FASE" length="4" not-null="true">
+                <comment>identificador de fase</comment>
+            </column>
+        </property>
+    </class>
+</hibernate-mapping>

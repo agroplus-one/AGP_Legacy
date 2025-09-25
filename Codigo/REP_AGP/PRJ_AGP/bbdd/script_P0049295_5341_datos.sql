@@ -1,0 +1,13 @@
+INSERT INTO o02agpe0.TB_GED_CONFIG VALUES ('CODSecEnt', '9996', 'GED SW parametro entrada');
+INSERT INTO o02agpe0.TB_GED_CONFIG VALUES ('CODSecIp', '33.3.333.333', 'GED SW parametro entrada');
+INSERT INTO o02agpe0.TB_GED_CONFIG VALUES ('codigoEntidad', '9996', 'GED SW parametro entrada');
+INSERT INTO o02agpe0.TB_GED_CONFIG VALUES ('codcia', '1', 'GED SW parametro entrada');
+INSERT INTO o02agpe0.TB_GED_CONFIG VALUES ('acuerdo', ' ', 'GED SW parametro entrada');
+INSERT INTO o02agpe0.TB_GED_CONFIG VALUES ('tipomovimiento', 'PRC', 'GED SW parametro entrada');
+INSERT INTO o02agpe0.TB_GED_CONFIG VALUES ('firma', '6', 'GED SW parametro entrada');
+INSERT INTO o02agpe0.TB_GED_CONFIG VALUES ('gedftpserver', 'lnxsftp1', 'Servidor FTP de GED para depositar documentacion');
+INSERT INTO o02agpe0.TB_GED_CONFIG VALUES ('gedftpport', '22', 'Puerto FTP de GED para depositar documentacion');
+INSERT INTO o02agpe0.TB_GED_CONFIG VALUES ('gedftpuser', 'x02rga02', 'Usuario FTP de GED para depositar documentacion');
+INSERT INTO o02agpe0.TB_GED_CONFIG VALUES ('gedftppwd', 'W6DA4*p8', 'Password FTP de GED para depositar documentacion');
+INSERT INTO o02agpe0.TB_GED_CONFIG VALUES ('gedftpdir', '/SFTP/RGA_GED/agro', 'Directorio FTP de GED para depositar documentacion');
+INSERT INTO o02agpe0.TB_GED_CONFIG VALUES ('gedurl', 'http://seguros01.ruralvia.com/ged/InfDocumServlet?do=LEERDOCEXTERIOR' || '&' || 'MODULO=AGR' || '&' || 'IDDOCUMENTUM={0}' || '&' || 'USUARIO={1}' || '&' || 'ENTIDAD={2}', 'Plantilla de URL para la obtencion de documentacion de GED');

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<x:schema 
+	targetNamespace="http://www.agroseguro.es/SeguroAgrario/CuponModificacion"
+	xmlns="http://www.agroseguro.es/SeguroAgrario/CuponModificacion"
+	xmlns:x="http://www.w3.org/2001/XMLSchema"
+	xmlns:ti="http://www.agroseguro.es/Tipos" > 
+
+	<!-- Importacion de la definicion de tipos genericos -->
+	<x:import namespace="http://www.agroseguro.es/Tipos" schemaLocation="Tipos.xsd" />
+
+	<x:element name="CuponModificacion" type="Cupon" />
+
+	<x:complexType name="Cupon">
+		<x:attribute name="idCupon" use="required" type="idCupon" />
+		<x:attribute name="fechaHora" use="required" type="x:dateTime" />
+		<x:attribute name="referencia" use="required" type="ti:Poliza_Referencia_Unificada" />
+		<x:attributeGroup ref="ti:PlanLinea" />
+	</x:complexType>
+
+	<x:simpleType name="idCupon">
+		<x:restriction base="x:string">
+			<x:length value="14" />
+			<x:pattern value="SW[A-Z0-9]{12}" />
+		</x:restriction>
+	</x:simpleType>
+</x:schema>

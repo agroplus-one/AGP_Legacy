@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.16.0.final using JasperReports Library version 3.6.1  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="declaracionSeguro_condicion3.jrxml" pageWidth="555" pageHeight="802" whenNoDataType="AllSectionsNoDetail" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" isFloatColumnFooter="true">
+	<property name="ireport.zoom" value="1.9965000000000006"/>
+	<property name="ireport.x" value="31"/>
+	<property name="ireport.y" value="0"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="DataAdapter.xml"/>
+	<import value="java.util.*"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA[""]]></defaultValueExpression>
+	</parameter>
+	<parameter name="ID" class="java.lang.Integer"/>
+	<parameter name="FECHA" class="java.util.Date"/>
+	<parameter name="IBAN_ASEG" class="java.lang.String"/>
+	<parameter name="CUENTA_1" class="java.lang.String"/>
+	<parameter name="CUENTA_2" class="java.lang.String"/>
+	<parameter name="CUENTA_3" class="java.lang.String"/>
+	<parameter name="CUENTA_4" class="java.lang.String"/>
+	<parameter name="CUENTA_5" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT ASE.NOMBRE || ' ' || ASE.APELLIDO1 || ' ' || ASE.APELLIDO2 AS NOMBRE,
+       ASE.RAZONSOCIAL AS ASEG_RAZON,
+       ASE.TIPOIDENTIFICACION,
+       TOM.RAZONSOCIAL,
+       LIN.NOMLINEA,
+       L.NOMLOCALIDAD,
+       substr(PP.CCCBANCO,0,4) as c1,
+       substr(PP.CCCBANCO,5,4) as c2,
+       substr(PP.CCCBANCO,9,4) as c3,
+       substr(PP.CCCBANCO,13,4) as c4,
+       substr(PP.CCCBANCO,17,4) as c5,
+       PP.IBAN,
+      to_char(NVL(po.fechaenvio,sysdate),'DD "de" MONTH "de" YYYY', 'NLS_DATE_LANGUAGE = spanish') as FENVIO
+
+  FROM o02agpe0.TB_POLIZAS      PO,
+       o02agpe0.TB_ASEGURADOS   ASE,
+       o02agpe0.TB_COLECTIVOS   CO,
+       o02agpe0.TB_TOMADORES    TOM,
+       o02agpe0.TB_LINEAS       LIN,
+       o02agpe0.TB_PAGOS_POLIZA PP,
+       o02agpe0.TB_LOCALIDADES  L,
+       o02agpe0.TB_COMUNICACIONES c
+
+ WHERE PO.IDASEGURADO = ASE.ID
+   AND PP.IDPOLIZA(+) = PO.IDPOLIZA
+   AND PO.IDCOLECTIVO = CO.ID
+   AND CO.CIFTOMADOR = TOM.CIFTOMADOR
+   AND TOM.CODENTIDAD = ASE.CODENTIDAD
+   AND PO.LINEASEGUROID = LIN.LINEASEGUROID
+   AND TOM.CODPROVINCIA = L.CODPROVINCIA
+   AND TOM.SUBLOCALIDAD = L.SUBLOCALIDAD
+   AND TOM.CODLOCALIDAD = L.CODLOCALIDAD
+   AND PO.IDENVIO = C.IDENVIO (+)
+   AND PO.IDPOLIZA = $P{ID}]]>
+	</queryString>
+	<field name="NOMBRE" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="ASEG_RAZON" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="TIPOIDENTIFICACION" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="RAZONSOCIAL" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="NOMLINEA" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="NOMLOCALIDAD" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="IBAN" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="c1" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="c2" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="c3" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="c4" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="c5" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="FENVIO" class="java.lang.String"/>
+	<variable name="IBAN" class="java.lang.String">
+		<variableExpression><![CDATA[( $F{IBAN}!= null ? $F{IBAN}:$P{IBAN_ASEG})]]></variableExpression>
+	</variable>
+	<variable name="c1" class="java.lang.String">
+		<variableExpression><![CDATA[( $F{c1}!= null ? $F{c1}:$P{CUENTA_1})]]></variableExpression>
+	</variable>
+	<variable name="c2" class="java.lang.String">
+		<variableExpression><![CDATA[( $F{c2}!= null ? $F{c2}:$P{CUENTA_2})]]></variableExpression>
+	</variable>
+	<variable name="c3" class="java.lang.String">
+		<variableExpression><![CDATA[( $F{c3}!= null ? $F{c3}:$P{CUENTA_3})]]></variableExpression>
+	</variable>
+	<variable name="c4" class="java.lang.String">
+		<variableExpression><![CDATA[( $F{c4}!= null ? $F{c4}:$P{CUENTA_4})]]></variableExpression>
+	</variable>
+	<variable name="c5" class="java.lang.String">
+		<variableExpression><![CDATA[( $F{c5}!= null ? $F{c5}:$P{CUENTA_5})]]></variableExpression>
+	</variable>
+	<variable name="SHOW_FOOT" class="java.lang.Boolean" resetType="None">
+		<variableExpression><![CDATA[new Boolean(true)]]></variableExpression>
+		<initialValueExpression><![CDATA[]]></initialValueExpression>
+	</variable>
+	<variable name="SHOW_BACK" class="java.lang.Boolean" resetType="None">
+		<variableExpression><![CDATA[new Boolean(true)]]></variableExpression>
+		<initialValueExpression><![CDATA[]]></initialValueExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="66" splitType="Stretch">
+			<subreport>
+				<reportElement x="10" y="11" width="535" height="55"/>
+				<subreportParameter name="SUBREPORT_DIR">
+					<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="ID">
+					<subreportParameterExpression><![CDATA[$P{ID}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression class="java.lang.String"><![CDATA[$P{SUBREPORT_DIR} + "declaracionSeguro_cabecera.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="250">
+			<textField>
+				<reportElement x="36" y="6" width="318" height="13"/>
+				<textElement lineSpacing="Single">
+					<font size="6"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{TIPOIDENTIFICACION}.equals( "CIF" ) ? $F{ASEG_RAZON} : $F{NOMBRE}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="13" y="6" width="23" height="13"/>
+				<textElement lineSpacing="Single">
+					<font size="6"/>
+				</textElement>
+				<text><![CDATA[D./Dª. ]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="13" y="24" width="527" height="17" isPrintWhenDetailOverflows="true"/>
+				<textElement lineSpacing="Single">
+					<font size="6"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["Autorizo a " + $F{RAZONSOCIAL} + " a que firme en mi nombre, en calidad de Asegurado, y manifiesto conocer íntegramente y aceptar expresamente el contenido de las Condiciones Generales y Especiales que regula el Seguro de " + $F{NOMLINEA}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="13" y="41" width="526" height="16" isPrintWhenDetailOverflows="true"/>
+				<textElement textAlignment="Justified" lineSpacing="Single">
+					<font size="6"/>
+				</textElement>
+				<text><![CDATA[Declaro que los datos que figuran en el borrador de Declaración son correctos, obligandome a facilitar cuantos datos e informaciones me sean requeridos que justifiquen la debida concesión de subvenciones.
+]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="14" y="57" width="525" height="31" isPrintWhenDetailOverflows="true"/>
+				<textElement lineSpacing="Single">
+					<font size="6"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["Autorizo a su vez, que el importe a pagar me sea adeudado en mi cuenta con IBAN "+ $V{IBAN} + " " + $V{c1}+ " " + $V{c2}+ " " + $V{c3}+ " "
++ $V{c4} + " "  + $V{c5}+ " y autorizo al tomador del seguro a enviar mis datos de número de cuenta a Agroseguro para que, "
++ "en el caso de que Agroseguro proceda a regularizar la prima del citado seguro,de acuerdo a lo previsto en las condiciones especiales, "
++ "sea adeudado en la misma."]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="334" y="100" width="78" height="13"/>
+				<textElement lineSpacing="Single">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[El Asegurado]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="136" y="87" width="24" height="13"/>
+				<textElement lineSpacing="Single">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[En]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="160" y="87" width="113" height="13"/>
+				<textElement lineSpacing="Single">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{NOMLOCALIDAD}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="273" y="87" width="11" height="13"/>
+				<textElement lineSpacing="Single">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[a]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="284" y="87" width="181" height="13"/>
+				<textElement lineSpacing="Single">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{FENVIO}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="116" y="100" width="95" height="13"/>
+				<textElement lineSpacing="Single">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[La Entidad Aseguradora]]></text>
+			</staticText>
+			<image>
+				<reportElement x="112" y="115" width="105" height="40"/>
+				<imageExpression class="java.lang.String"><![CDATA[$P{SUBREPORT_DIR} + "/images/Sello_RGA_Firma.gif"]]></imageExpression>
+			</image>
+		</band>
+	</detail>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

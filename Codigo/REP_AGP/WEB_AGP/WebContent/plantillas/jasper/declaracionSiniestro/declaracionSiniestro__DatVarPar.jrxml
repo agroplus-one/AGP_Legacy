@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="declaracionSiniestro__DatVarPar" pageWidth="80" pageHeight="18" columnWidth="80" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0">
+	<property name="ireport.zoom" value="8.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="ID" class="java.lang.Integer"/>
+	<queryString>
+		<![CDATA[select t.idsiniestrocapaseg,t.codconcepto,t.valor
+from tb_siniestro_cap_aseg_dv t
+where t.idsiniestrocapaseg =$P{ID}
+order by codconcepto desc]]>
+	</queryString>
+	<field name="IDSINIESTROCAPASEG" class="java.lang.Integer"/>
+	<field name="CODCONCEPTO" class="java.lang.Integer"/>
+	<field name="VALOR" class="java.lang.String"/>
+	<group name="IDPARCELA">
+		<groupExpression><![CDATA[]]></groupExpression>
+	</group>
+	<detail>
+		<band height="9" splitType="Stretch">
+			<textField pattern="" isBlankWhenNull="true">
+				<reportElement positionType="Float" x="0" y="0" width="80" height="9" printWhenGroupChanges="IDPARCELA"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.5" lineStyle="Solid"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="7" pdfFontName="Courier"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{VALOR}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

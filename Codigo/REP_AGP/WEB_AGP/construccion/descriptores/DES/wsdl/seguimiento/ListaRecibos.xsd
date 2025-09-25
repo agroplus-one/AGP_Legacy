@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<x:schema
+	targetNamespace="http://www.agroseguro.es/SeguroAgrario/ListaRecibos"
+	xmlns="http://www.agroseguro.es/SeguroAgrario/ListaRecibos"
+	xmlns:x="http://www.w3.org/2001/XMLSchema"
+	xmlns:ti="http://www.agroseguro.es/Tipos"
+	xmlns:dv="http://www.agroseguro.es/SeguroAgrario/Contratacion/DatosVariables">
+
+	<x:import namespace="http://www.agroseguro.es/Tipos"
+		schemaLocation="Tipos.xsd" />
+
+	<x:element name="ListaRecibos" type="ListaRecibos" />
+
+	<x:complexType name="ListaRecibos">
+		<x:sequence>
+			<x:element name="Fase" type="Fase" minOccurs="1" maxOccurs="unbounded" />
+		</x:sequence>
+	</x:complexType>
+
+	<x:complexType name="Fase">
+		<x:sequence>
+			<x:element name="Recibo" type="Recibo" minOccurs="0" maxOccurs="1" />
+		</x:sequence>
+		<x:attribute name="plan" use="required" type="ti:Plan" />
+		<x:attribute name="fase" use="required" type="ti:Fase_Codigo" />
+		<x:attribute name="fechaEmisionRecibo" use="required" type="x:date" />
+	</x:complexType>
+
+	<x:complexType name="Recibo">
+		<x:attribute name="recibo" use="required" type="ti:Recibo_Codigo" />
+	</x:complexType>
+</x:schema>

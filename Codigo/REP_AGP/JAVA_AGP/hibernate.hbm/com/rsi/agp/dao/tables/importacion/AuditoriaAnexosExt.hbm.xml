@@ -1,0 +1,77 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping>
+	<class name="com.rsi.agp.dao.tables.importacion.AuditoriaCalcAnxExt"
+		table="TB_AUDIT_CALC_ANEXO_EXT">
+		<comment>Auditoría sobre las solicitudes de calculo de anexos</comment>
+		<id name="id" type="long">
+			<column name="ID" precision="15" scale="0" />
+			<generator class="sequence">
+				<param name="sequence">SQ_TB_AUDIT_CALC_ANEXO_EXT_ID</param>
+			</generator>
+		</id>
+		<property name="codigoInterno" type="string">
+			<column name="CODIGO_INTERNO" precision="12" not-null="true">
+				<comment>C&#243;digo interno</comment>
+			</column>
+		</property>
+		<property name="horaLlamada" type="java.util.Date">
+			<column name="HORA_LLAMADA" not-null="true">
+				<comment>Hora en la que se registró la llamada</comment>
+			</column>
+		</property>
+		<property name="referencia" type="string">
+			<column name="REFERENCIA" precision="7" not-null="false">
+				<comment>Referencia de la p&#243;liza</comment>
+			</column>
+		</property>
+		<property name="plan" type="java.math.BigDecimal">
+			<column name="PLAN" precision="4" scale="0" not-null="false">
+				<comment>Plan de la p&#243;liza</comment>
+			</column>
+		</property>
+		<property name="tipoPoliza" type="string">
+			<column name="TIPO_POLIZA" precision="1" not-null="false">
+				<comment>Tipo de p&#243;liza</comment>
+			</column>
+		</property>
+		<property name="idCupon" type="string">
+			<column name="IDCUPON" precision="14" not-null="true">
+				<comment>Identificador del cup&#243;n</comment>
+			</column>
+		</property>
+		<property name="calcularSituacionActual" type="java.math.BigDecimal">
+			<column name="CALCULAR_SIT_ACT" precision="1" scale="0" not-null="false">
+				<comment>Plan de la p&#243;liza</comment>
+			</column>
+		</property>
+		<property name="polizaModificacion" type="clob">
+			<column name="MODIFICACION_PLZ"/>
+		</property>
+		<property name="calculoModificacion" type="clob">
+			<column name="CALCULO_MODIFICACION"/>
+		</property>
+		<property name="calculoOriginal" type="clob">
+			<column name="CALCULO_ORIGINAL"/>
+		</property>
+		<property name="diferenciasCoste" type="clob">
+			<column name="DIFERENCIAS_COSTE"/>
+		</property>
+		<property name="resultado" type="java.math.BigDecimal">
+			<column name="RESULTADO" precision="1" scale="0" not-null="true">
+				<comment>Resultado obtenido del cálculo anexo</comment>
+			</column>
+		</property>
+		<property name="mensaje" type="string">
+			<column name="MENSAJE" precision="1000">
+				<comment>Mensaje que informa del resultado</comment>
+			</column>
+		</property>
+		<property name="servicio" type="string">
+            <column name="SERVICIO" precision="2">
+                <comment>Servicio invocado</comment>
+            </column>
+        </property>
+	</class>
+</hibernate-mapping>

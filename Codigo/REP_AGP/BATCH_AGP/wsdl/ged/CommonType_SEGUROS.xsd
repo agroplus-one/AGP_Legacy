@@ -1,0 +1,2178 @@
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+	xmlns:seg="http://www.ruralserviciosinformaticos.com/XSD/SEGUROS/CommonType_SEGUROS/"
+	xmlns:core="http://www.ruralserviciosinformaticos.com/XSD/CORE/CommonType_CORE/"
+	xmlns:core2="http://www.ruralserviciosinformaticos.com/XSD/CORE/CommonType_CORE_2/"
+	xmlns:xop="http://www.w3.org/2004/08/xop/include"
+	targetNamespace="http://www.ruralserviciosinformaticos.com/XSD/SEGUROS/CommonType_SEGUROS/"
+	elementFormDefault="qualified">
+	<import
+		namespace="http://www.ruralserviciosinformaticos.com/XSD/CORE/CommonType_CORE/"
+		schemaLocation="./CommonType_CORE.xsd" />
+	<import
+		namespace="http://www.ruralserviciosinformaticos.com/XSD/CORE/CommonType_CORE_2/"
+		schemaLocation="./CommonType_CORE_2.xsd" />
+	<import namespace="http://www.w3.org/2004/08/xop/include"
+		schemaLocation="./Mtom.xsd" />
+	<!-- P19388 Servicio Web Documentación de Pratus-CAT 24/09/2013 LFS -->
+	<simpleType name="t_codcia">
+		<annotation>
+			<documentation>Compañía de la póliza </documentation>
+		</annotation>
+		<restriction base="string">
+			<minLength value="1" />
+			<maxLength value="2" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_codtec">
+		<annotation>
+			<documentation>Producto técnico de la póliza </documentation>
+		</annotation>
+		<restriction base="string">
+			<minLength value="1" />
+			<maxLength value="4" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_annumsin">
+		<annotation>
+			<documentation>Año del siniestro </documentation>
+		</annotation>
+		<restriction base="int">
+			<minInclusive value="1900" />
+			<maxExclusive value="10000" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_numstro">
+		<annotation>
+			<documentation>Número del siniestro </documentation>
+		</annotation>
+		<restriction base="string">
+			<minLength value="1" />
+			<maxLength value="8" />
+			<pattern value="\d{1,8}" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_codmedia">
+		<annotation>
+			<documentation>Código de mediador de la póliza </documentation>
+		</annotation>
+		<restriction base="string">
+			<minLength value="1" />
+			<maxLength value="4" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_refbdweb">
+		<annotation>
+			<documentation>
+				Referencia del documento en gestor de contenidos de
+				RGA
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<minLength value="1" />
+			<maxLength value="20" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_tipodweb">
+		<annotation>
+			<documentation>Tipo de documento </documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="4" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_subtdweb">
+		<annotation>
+			<documentation>Subtipo de documento </documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="4" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_codusua">
+		<annotation>
+			<documentation>Código de usuario </documentation>
+		</annotation>
+		<restriction base="string">
+			<minLength value="1" />
+			<maxLength value="20" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_destinatario">
+		<annotation>
+			<documentation>Destinatario del documento en el expediente
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="100" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_nombreDoc">
+		<annotation>
+			<documentation>Nombre del fichero en servidor FTP </documentation>
+		</annotation>
+		<restriction base="string">
+			<minLength value="1" />
+			<maxLength value="30" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_ref_sesion_rga">
+		<annotation>
+			<documentation>Referencia única de la petición al Servicio Web
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<minLength value="1" />
+			<maxLength value="50" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_idDoc">
+		<annotation>
+			<documentation>Identificador único de Documentum </documentation>
+		</annotation>
+		<restriction base="string">
+			<minLength value="1" />
+			<maxLength value="16" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_formatoDoc">
+		<annotation>
+			<documentation>Extensión del fichero (sin punto) </documentation>
+		</annotation>
+		<restriction base="string">
+			<pattern value="[a-zA-Z0-9]*" />
+			<minLength value="1" />
+			<maxLength value="10" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_codigoRetorno">
+		<restriction base="short" />
+	</simpleType>
+	<!-- P19388 Servicio Web de Consultas (Multicanalidad) 30/10/2015 VPS -->
+	<complexType name="t_modeloEntrada">
+		<annotation>
+			<documentation>Objeto de entrada al servicio web ConsultasWS
+			</documentation>
+		</annotation>
+		<sequence>
+			<element name="company" type="seg:t_company" />
+			<element name="criteria" type="seg:t_Criteria" minOccurs="0"
+				maxOccurs="unbounded" />
+			<element name="culture" type="seg:t_culture" minOccurs="0" />
+			<element name="dataKey" type="seg:t_dataKey" minOccurs="0" />
+			<element name="isList" type="seg:t_islist" minOccurs="0" />
+			<element name="page" type="seg:t_page" minOccurs="0" />
+			<element name="pageSize" type="seg:t_pageSize" minOccurs="0" />
+			<element name="resultType" type="seg:t_ResultType" minOccurs="0" />
+			<element name="sortProperties" type="seg:t_sortproperties"
+				minOccurs="0" />
+			<element name="sortOrders" type="seg:t_sortOrders" minOccurs="0" />
+			<element name="userName" type="seg:t_userName" minOccurs="0" />
+			<element name="workspaceAttribute" type="seg:t_workspaceAttribute"
+				minOccurs="0" />
+			<element name="workspaceId" type="seg:t_workspaceId"
+				minOccurs="0" />
+		</sequence>
+	</complexType>
+	<simpleType name="t_company">
+		<annotation>
+			<documentation>Compañía que ejecuta la acción </documentation>
+		</annotation>
+		<restriction base="string">
+			<minLength value="1" />
+			<maxLength value="15" />
+		</restriction>
+	</simpleType>
+	<complexType name="t_Criteria">
+		<annotation>
+			<documentation>
+				Elemento clave valor con datos para ejecución de
+				transacción
+			</documentation>
+		</annotation>
+		<sequence>
+			<element name="name" type="seg:t_name" minOccurs="0" />
+			<element name="value" type="seg:t_value" minOccurs="0" />
+		</sequence>
+	</complexType>
+	<simpleType name="t_name">
+		<annotation>
+			<documentation>Nombre de la clave </documentation>
+		</annotation>
+		<restriction base="string" />
+	</simpleType>
+	<simpleType name="t_value">
+		<annotation>
+			<documentation>Valor de la clave </documentation>
+		</annotation>
+		<restriction base="string" />
+	</simpleType>
+	<simpleType name="t_culture">
+		<annotation>
+			<documentation>Cultura para el formato de los datos </documentation>
+		</annotation>
+		<restriction base="string" />
+	</simpleType>
+	<simpleType name="t_dataKey">
+		<annotation>
+			<documentation>Transacción a la que se realiza la llamada
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<minLength value="1" />
+			<maxLength value="10" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_islist">
+		<annotation>
+			<documentation>Cultura para el formato de los datos </documentation>
+		</annotation>
+		<restriction base="boolean" />
+	</simpleType>
+	<simpleType name="t_page">
+		<annotation>
+			<documentation>Número de página de petición </documentation>
+		</annotation>
+		<restriction base="int" />
+	</simpleType>
+	<simpleType name="t_pageSize">
+		<annotation>
+			<documentation>Tamaño de la página </documentation>
+		</annotation>
+		<restriction base="int" />
+	</simpleType>
+	<simpleType name="t_ResultType">
+		<annotation>
+			<documentation>Tipo de formato requerido (XML, Json o ByteArray)
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<enumeration value="Json" />
+			<enumeration value="Xml" />
+			<enumeration value="ByteArray" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_sortproperties">
+		<annotation>
+			<documentation>Propiedad sobre la que se ordena </documentation>
+		</annotation>
+		<restriction base="string" />
+	</simpleType>
+	<simpleType name="t_sortOrders">
+		<annotation>
+			<documentation>Tipo de ordenación </documentation>
+		</annotation>
+		<restriction base="string" />
+	</simpleType>
+	<simpleType name="t_userName">
+		<annotation>
+			<documentation>Usuario </documentation>
+		</annotation>
+		<restriction base="string">
+			<minLength value="1" />
+			<maxLength value="8" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_workspaceAttribute">
+		<annotation>
+			<documentation>Espacio de trabajo </documentation>
+		</annotation>
+		<restriction base="string" />
+	</simpleType>
+	<simpleType name="t_workspaceId">
+		<annotation>
+			<documentation>ID del espacio de trabajo </documentation>
+		</annotation>
+		<restriction base="string" />
+	</simpleType>
+	<complexType name="t_modeloSalida">
+		<annotation>
+			<documentation>Objeto de salida al servicio web de Consultas WS
+			</documentation>
+		</annotation>
+		<sequence>
+			<element name="codigoError" type="seg:t_codigoError" />
+			<element name="descError" type="seg:t_descError" />
+			<element name="resultData" type="seg:t_resultData" />
+		</sequence>
+	</complexType>
+	<simpleType name="t_codigoError">
+		<annotation>
+			<documentation>Código de error </documentation>
+		</annotation>
+		<restriction base="string" />
+	</simpleType>
+	<simpleType name="t_descError">
+		<annotation>
+			<documentation>Descripción de error </documentation>
+		</annotation>
+		<restriction base="string" />
+	</simpleType>
+	<simpleType name="t_resultData">
+		<annotation>
+			<documentation>
+				Datos de respuesta del servicio (traducción de la
+				llamada a Json o XML)
+			</documentation>
+		</annotation>
+		<restriction base="string" />
+	</simpleType>
+	<!-- P19388 Servicio Web de Contratación (Multicanalidad). 30/10/2015 VPS -->
+	<complexType name="t_modeloEntradaC">
+		<annotation>
+			<documentation>Objeto de entrada al servicio web ContratacionWS
+			</documentation>
+		</annotation>
+		<sequence>
+			<element name="operationHeader" type="seg:t_operationHeader"
+				minOccurs="1" />
+			<element name="operationInfo" type="seg:t_operationInfo"
+				minOccurs="1" />
+		</sequence>
+	</complexType>
+	<complexType name="t_modeloSalidaC">
+		<annotation>
+			<documentation>Objeto de salida al servicio web ContratacionWS
+			</documentation>
+		</annotation>
+		<sequence>
+			<element name="codigoError" type="seg:t_codigoError" />
+			<element name="descError" type="seg:t_descError" />
+			<element name="operationHeader" type="seg:t_operationHeader" />
+			<element name="operationInfo" type="seg:t_operationInfo" />
+			<element name="responseStatus" type="seg:t_responseStatus" />
+		</sequence>
+	</complexType>
+	<complexType name="t_operationHeader">
+		<annotation>
+			<documentation>Cabecera de la operación </documentation>
+		</annotation>
+		<sequence>
+			<element name="requestInfo" type="seg:t_requestInfo"
+				minOccurs="1" />
+			<element name="userInfo" type="seg:t_userInfo" minOccurs="1" />
+		</sequence>
+	</complexType>
+	<complexType name="t_requestInfo">
+		<annotation>
+			<documentation>Información de la llamada </documentation>
+		</annotation>
+		<sequence>
+			<element name="operationCode" type="seg:t_operationCode"
+				minOccurs="1" />
+			<element name="operationProduct" type="seg:t_operationProduct"
+				minOccurs="0" />
+			<element name="operationType" type="seg:t_operationType"
+				minOccurs="1" />
+			<element name="operationDescription" type="seg:t_operationDescription"
+				minOccurs="0" />
+			<element name="operationTimestamp" type="seg:t_operationTimestamp"
+				minOccurs="0" />
+			<element name="operationGuid" type="seg:t_operationGuid"
+				minOccurs="0" />
+			<element name="operationSession" type="seg:t_operationSession"
+				minOccurs="0" />
+		</sequence>
+	</complexType>
+	<simpleType name="t_operationCode">
+		<annotation>
+			<documentation>Código de la operación </documentation>
+		</annotation>
+		<restriction base="string" />
+	</simpleType>
+	<simpleType name="t_operationProduct">
+		<annotation>
+			<documentation>Producto de la operación </documentation>
+		</annotation>
+		<restriction base="string" />
+	</simpleType>
+	<simpleType name="t_operationType">
+		<annotation>
+			<documentation>Tipo o formato de la operación </documentation>
+		</annotation>
+		<restriction base="string" />
+	</simpleType>
+	<simpleType name="t_operationDescription">
+		<annotation>
+			<documentation>Descripción de la operación </documentation>
+		</annotation>
+		<restriction base="string" />
+	</simpleType>
+	<simpleType name="t_operationTimestamp">
+		<annotation>
+			<documentation>Hora de la operación </documentation>
+		</annotation>
+		<restriction base="string" />
+	</simpleType>
+	<simpleType name="t_operationGuid">
+		<annotation>
+			<documentation>Guid de la operación </documentation>
+		</annotation>
+		<restriction base="string" />
+	</simpleType>
+	<simpleType name="t_operationSession">
+		<annotation>
+			<documentation>Sesión de la operación </documentation>
+		</annotation>
+		<restriction base="string" />
+	</simpleType>
+	<complexType name="t_userInfo">
+		<annotation>
+			<documentation>Información del usuario </documentation>
+		</annotation>
+		<sequence>
+			<element name="Origin" type="seg:t_origin" minOccurs="1" />
+			<element name="Company" type="seg:t_company" minOccurs="1" />
+			<element name="Office" type="seg:t_office" minOccurs="0" />
+			<element name="Employee" type="seg:t_employee" minOccurs="0" />
+			<element name="Terminal" type="seg:t_terminal" minOccurs="0" />
+			<element name="Email" type="seg:t_email" minOccurs="0" />
+			<element name="Profile" type="seg:t_profile" minOccurs="0" />
+			<element name="User" type="seg:t_userName" minOccurs="1" />
+			<element name="Culture" type="seg:t_culture" minOccurs="0" />
+		</sequence>
+	</complexType>
+	<simpleType name="t_origin">
+		<annotation>
+			<documentation>Origen de la operación </documentation>
+		</annotation>
+		<restriction base="string" />
+	</simpleType>
+	<simpleType name="t_office">
+		<annotation>
+			<documentation>Oficina que ejecuta la acción </documentation>
+		</annotation>
+		<restriction base="string" />
+	</simpleType>
+	<simpleType name="t_employee">
+		<annotation>
+			<documentation>Empleado que ejecuta la operación </documentation>
+		</annotation>
+		<restriction base="string" />
+	</simpleType>
+	<simpleType name="t_terminal">
+		<annotation>
+			<documentation>Terminal desde donde se ejecuta la operación
+			</documentation>
+		</annotation>
+		<restriction base="string" />
+	</simpleType>
+	<simpleType name="t_email">
+		<annotation>
+			<documentation>Email responsable de la ejecución de la operación
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="100" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_profile">
+		<annotation>
+			<documentation>Perfil responsable de la ejecución de la operación
+			</documentation>
+		</annotation>
+		<restriction base="string" />
+	</simpleType>
+	<complexType name="t_operationInfo">
+		<annotation>
+			<documentation>Información de la operación, datos de entrada
+			</documentation>
+		</annotation>
+		<sequence>
+			<element name="documentos" type="seg:t_documentos" minOccurs="0" />
+			<element name="rawData" type="seg:t_rawData" minOccurs="1" />
+		</sequence>
+	</complexType>
+	<complexType name="t_documentos">
+		<annotation>
+			<documentation>Array de documentos </documentation>
+		</annotation>
+		<sequence>
+			<element name="documento" type="seg:t_documento" minOccurs="0"
+				maxOccurs="unbounded" />
+		</sequence>
+	</complexType>
+	<complexType name="t_documento">
+		<annotation>
+			<documentation>Representación de un documento </documentation>
+		</annotation>
+		<sequence>
+			<element name="Content" type="seg:t_Content" minOccurs="0" />
+			<element name="ContentType" type="seg:t_ContentType"
+				minOccurs="0" />
+			<element name="DocumentContextType" type="seg:t_DocumentContextType"
+				minOccurs="0" />
+			<element name="Name" type="seg:t_Name" minOccurs="0" />
+			<element name="Publicable" type="seg:t_Publicable" minOccurs="0" />
+			<element name="ConBarras" type="seg:t_ConBarras" minOccurs="0" />
+		</sequence>
+	</complexType>
+	<simpleType name="t_Content">
+		<annotation>
+			<documentation>Array de bytes del documento </documentation>
+		</annotation>
+		<restriction base="base64Binary" />
+	</simpleType>
+	<simpleType name="t_ContentType">
+		<annotation>
+			<documentation>ContentType del documento </documentation>
+		</annotation>
+		<restriction base="string" />
+	</simpleType>
+	<simpleType name="t_DocumentContextType">
+		<annotation>
+			<documentation>Context Type del documento </documentation>
+		</annotation>
+		<restriction base="string" />
+	</simpleType>
+	<simpleType name="t_Name">
+		<annotation>
+			<documentation>Nombre del documento </documentation>
+		</annotation>
+		<restriction base="string" />
+	</simpleType>
+	<simpleType name="t_Publicable">
+		<annotation>
+			<documentation>Documento publicable </documentation>
+		</annotation>
+		<restriction base="string" />
+	</simpleType>
+	<simpleType name="t_ConBarras">
+		<annotation>
+			<documentation>Código de barras </documentation>
+		</annotation>
+		<restriction base="string" />
+	</simpleType>
+	<complexType name="t_rawData">
+		<annotation>
+			<documentation>Array de Datos (Data) </documentation>
+		</annotation>
+		<sequence>
+			<element name="data" type="seg:t_data" minOccurs="0"
+				maxOccurs="unbounded" />
+		</sequence>
+	</complexType>
+	<complexType name="t_data">
+		<annotation>
+			<documentation>
+				Elemento clave valor con datos para ejecución de
+				transacción
+			</documentation>
+		</annotation>
+		<sequence>
+			<element name="Key" type="seg:t_name" />
+			<element name="Value" type="seg:t_value" />
+		</sequence>
+	</complexType>
+	<complexType name="t_responseStatus">
+		<annotation>
+			<documentation>
+				Array de códigos de respuesta de la ejecución de la
+				operación.
+			</documentation>
+		</annotation>
+		<sequence>
+			<element name="ResponseEstatusData" type="seg:t_ResponseEstatusData"
+				minOccurs="0" maxOccurs="unbounded" />
+		</sequence>
+	</complexType>
+	<complexType name="t_ResponseEstatusData">
+		<annotation>
+			<documentation>Elemento de respuesta de la operación </documentation>
+		</annotation>
+		<sequence>
+			<element name="responseCode" type="seg:t_codigoError" />
+			<element name="ResponseDescription" type="seg:t_descError" />
+			<element name="status" type="seg:t_status" minOccurs="0" />
+		</sequence>
+	</complexType>
+	<simpleType name="t_status">
+		<annotation>
+			<documentation>Estado o Tipo del error </documentation>
+		</annotation>
+		<restriction base="string" />
+	</simpleType>
+	<!-- P19125 Añadimos los tipos para el WS de Decesos. 10/03/2016 VPS -->
+	<simpleType name="t_clase_siniestro">
+		<annotation>
+			<documentation>
+				Clase del siniestro 4 - Rechazo sin intervención 5 -
+				Normal
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<minLength value="1" />
+			<maxLength value="1" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_indicador_gestora">
+		<annotation>
+			<documentation> Indicador de la gestora que tramita el siniestro
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="1" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_cod_oper_asistencia">
+		<annotation>
+			<documentation>Código de la operadora de asistencia </documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="4" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_cod_causa_asistencia">
+		<annotation>
+			<documentation>
+				Código de la causa de asistencia 51 - Fallecimiento 55
+				- Fallecimiento
+				Neonato 56 - Amputación para enterramiento
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="4" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_cod_motivo_rechazo">
+		<annotation>
+			<documentation>
+				Código del motivo del rechazo 05-Riesgo no cubierto
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="2" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_tipo_accion">
+		<annotation>
+			<documentation>
+				Tipo de acción a realizar en el siniestro 1 - Añadir
+				observaciones al
+				siniestro 2 - Cambio de tomador
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="2" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_texto_obs">
+		<annotation>
+			<documentation>Texto de las observaciones al siniestro
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="1200" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_origen_obs">
+		<annotation>
+			<documentation>Origen de las observaciones al siniestro
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="1" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_num_poliza">
+		<annotation>
+			<documentation>Número de póliza </documentation>
+		</annotation>
+		<restriction base="string">
+			<minLength value="1" />
+			<maxLength value="8" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_fecha">
+		<annotation>
+			<documentation>Campos con formato de fecha </documentation>
+		</annotation>
+		<restriction base="string">
+			<minLength value="1" />
+			<maxLength value="10" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_descripcion_hechos">
+		<annotation>
+			<documentation>
+				Descripción de los hechos ocurridos en el siniestro
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="100" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_tabla_garantias">
+		<annotation>
+			<documentation>Garantías contratadas </documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="120" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_num_asegurado">
+		<annotation>
+			<documentation>Número de asegurado dentro de un siniestro
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="2" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_obs_tomador">
+		<annotation>
+			<documentation>Texto de las observaciones en el cambio de tomador
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="100" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_nif">
+		<annotation>
+			<documentation>NIF que identifica a la persona </documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="10" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_sistemaOrigen">
+		<annotation>
+			<documentation>
+				Determina el sistema de origen de la petición o el
+				origen desde donde se
+				extraen los datos
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<enumeration value="01" />
+			<enumeration value="02" />
+			<enumeration value="03" />
+			<enumeration value="04" />
+			<enumeration value="05" />
+			<enumeration value="06" />
+			<enumeration value="07" />
+			<enumeration value="08" />
+			<enumeration value="09" />
+			<enumeration value="10" />
+			<enumeration value="11" />
+			<enumeration value="12" />
+			<enumeration value="13" />
+			<enumeration value="14" />
+			<enumeration value="15" />
+			<enumeration value="16" />
+			<enumeration value="17" />
+			<enumeration value="18" />
+			<enumeration value="19" />
+			<enumeration value="20" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_identificadorEmpresa">
+		<annotation>
+			<documentation>
+				Código de identificación de la empresa que realiza la
+				acción 01 RGA
+				Seguros Generales Rural, S. A. de Seguros y Reaseguro
+				02 RGA Rural
+				Vida, S.A. de Seguros y Reaseguros 03 RGA Rural
+				Pensiones 04 Rural
+				Grupo Asegurador, Agrupación de Interés Económico
+				05 RGA Mediación,
+				Operador de Banca-Seguros Vinculado, S.A 99
+				Desconocido
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="2" />
+			<enumeration value="01" />
+			<enumeration value="02" />
+			<enumeration value="03" />
+			<enumeration value="04" />
+			<enumeration value="05" />
+			<enumeration value="99" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_numContPlanRef">
+		<annotation>
+			<documentation>
+				Numero de Póliza del Cliente donde proviene la
+				información.
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="250" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_oficina">
+		<annotation>
+			<documentation>Código que representa a una oficina. </documentation>
+		</annotation>
+		<restriction base="string">
+			<length value="4" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_codigoEstado">
+		<annotation>
+			<documentation>
+				Código que representa el estado de una póliza 01 Vigor
+				02 Anulado 99
+				Desconocido
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="2" />
+			<enumeration value="01" />
+			<enumeration value="02" />
+			<enumeration value="99" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_numCertificado">
+		<annotation>
+			<documentation>
+				Nro de Certificado correspondiente a persona/bien
+				asegurado objeto del
+				Siniestro.
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="6" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_rolPersona">
+		<annotation>
+			<documentation>
+				Código que determina el rol de una persona dentro del
+				contrato o de la
+				póliza
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<length value="4" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_numSecuencial">
+		<annotation>
+			<documentation>Numero de Secuencia </documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="10" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_numSiniestroOtraCia">
+		<annotation>
+			<documentation>
+				Número de siniestro en el sistema de otra compañía,
+				por ejemplo para las
+				empresas de asistencia.
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="20" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_codigoEstadoSiniestros">
+		<annotation>
+			<documentation>
+				Describe los posibles estados en los que puede estar
+				un siniestro: VV
+				Abierto AA Anulado RR Reapeturado ZZ Desconocido
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<enumeration value="VV" />
+			<enumeration value="AA" />
+			<enumeration value="RR" />
+			<enumeration value="ZZ" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_ramo_cod_tec">
+		<annotation>
+			<documentation>
+				Ramo del producto técnico de una póliza. Representa
+				las dos primeras
+				posiciones del producto técnico.
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="4" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_nombre_cod_tec">
+		<annotation>
+			<documentation>Nombre del producto técnico del seguro </documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="50" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_num_poliza_vida">
+		<annotation>
+			<documentation>Número de póliza del negocio de Vida de RGA
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="20" />
+			<minLength value="1" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_forma_pago">
+		<annotation>
+			<documentation>
+				Forma de pago de los recibos de la póliza: - A: Anual
+				- S: Semestral - T:
+				Trimestral - M: Mensual - U: Única - C:
+				Cuatrimestral - B: Bianual
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<length value="1" />
+			<enumeration value="A" />
+			<enumeration value="S" />
+			<enumeration value="T" />
+			<enumeration value="M" />
+			<enumeration value="U" />
+			<enumeration value="C" />
+			<enumeration value="B" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_marca_tarifa_plana_multitranquilidad">
+		<annotation>
+			<documentation>
+				Marca del indicador de Tarifa Plana de
+				Multitranquilidad de RGA. 0: No
+				tiene marca TPM. 1: Sí tiene marca
+				TPM.
+			</documentation>
+		</annotation>
+		<restriction base="int">
+			<enumeration value="0" />
+			<enumeration value="1" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_entidad_aseguradora">
+		<annotation>
+			<documentation>Nombre de la entidad aseguradora </documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="30" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_bien_asegurado">
+		<annotation>
+			<documentation>
+				Identifica el bien asegurado en la póliza. Este campo
+				es versátil y puede
+				albergar varios tipos de bienes en función del
+				tipo de elemento
+				asegurado.
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="50" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_num_poliza_general">
+		<annotation>
+			<documentation>Número de póliza genérico. </documentation>
+		</annotation>
+		<restriction base="string">
+			<minLength value="1" />
+			<maxLength value="50" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_importe_poliza">
+		<annotation>
+			<documentation>Importe X de la póliza </documentation>
+		</annotation>
+		<restriction base="double" />
+	</simpleType>
+	<simpleType name="t_forma_pago_generico">
+		<annotation>
+			<documentation>Forma/Plan de pago (según producto) genérico.
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="500" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_cuenta_bancaria">
+		<annotation>
+			<documentation>Número de cuenta de X de la póliza. </documentation>
+		</annotation>
+		<restriction base="string">
+			<minLength value="1" />
+			<maxLength value="35" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_nombre">
+		<annotation>
+			<documentation>Nombre completo del X </documentation>
+		</annotation>
+		<restriction base="string">
+			<minLength value="0" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_direccion">
+		<annotation>
+			<documentation>Dirección completa de X de la póliza </documentation>
+		</annotation>
+		<restriction base="string">
+			<minLength value="0" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_tipo_poliza">
+		<annotation>
+			<documentation>Tipo de póliza según producto </documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="2" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_tipo_documento">
+		<annotation>
+			<documentation>
+				Tipo del documento de identificación. Posibles
+				valores: 01 - CIF 02 -
+				TARJETA DE RESIDENCIA 03 - C.I.F. PROVISIONAL
+				16 - C.I.F.EXTRANJERO
+				DE NO RESIDENTE 51 - NIF 53 - NIE 66 - TARJETA
+				DE RESIDENCIA
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<enumeration value="01" />
+			<enumeration value="02" />
+			<enumeration value="03" />
+			<enumeration value="16" />
+			<enumeration value="51" />
+			<enumeration value="53" />
+			<enumeration value="66" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_numIdentificativo">
+		<annotation>
+			<documentation>Numero Identificativo de la Persona </documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="14" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_nombre_tomador">
+		<annotation>
+			<documentation>Nombre del Tomador / Asegurado. </documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="105" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_direccion_riesgo">
+		<annotation>
+			<documentation>Dirección del riesgo. </documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="150" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_beneficiario">
+		<annotation>
+			<documentation>Beneficiario de la póliza. </documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="250" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_cod_garantia">
+		<annotation>
+			<documentation>Código de garantía contratada. </documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="6" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_desc_riesgo">
+		<annotation>
+			<documentation>Descripción del riesgo. </documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="1270" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_num_recib">
+		<annotation>
+			<documentation>Número del recibo </documentation>
+		</annotation>
+		<restriction base="decimal">
+			<totalDigits value="8" />
+			<fractionDigits value="0" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_origen_recib">
+		<annotation>
+			<documentation>
+				Origen del recibo. Posibles valores: AN - Extorno por
+				anulación C -
+				Cartera DC - Devengo de cartera DP - Devengo de
+				producción EX -
+				Extorno de producción P - Producción S - Suplemento
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<enumeration value="AN" />
+			<enumeration value="C" />
+			<enumeration value="DC" />
+			<enumeration value="DP" />
+			<enumeration value="EX" />
+			<enumeration value="P" />
+			<enumeration value="S" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_cod_situac_recib">
+		<annotation>
+			<documentation>
+				Código de situación del recibo. Posibles valores: E -
+				Emitido F -
+				Facturado R - Precobrado C - Cobrado G - Gestión de cobro
+				P -
+				Impagado A - Anulado
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<enumeration value="E" />
+			<enumeration value="F" />
+			<enumeration value="R" />
+			<enumeration value="C" />
+			<enumeration value="G" />
+			<enumeration value="P" />
+			<enumeration value="A" />
+		</restriction>
+	</simpleType>
+	<complexType name="t_datos_poliza">
+		<annotation>
+			<documentation>Datos detallados de una póliza. </documentation>
+		</annotation>
+		<sequence>
+			<element name="producto" type="seg:t_codtec" />
+			<element name="numeroPoliza" type="seg:t_num_poliza" />
+			<element name="compania" type="seg:t_company" />
+			<element name="descripcionProducto" type="seg:t_nombre_cod_tec"
+				minOccurs="0" />
+			<element name="numeroRiesgo" type="core:t_riesgo" />
+			<element name="codigoProvincia" type="core2:t_cod_provincia_ag"
+				minOccurs="0" />
+			<element name="codigoSituacion" type="seg:t_status" />
+			<element name="fechaEfectoInicial" type="core:t_fecha" />
+			<element name="fechaVencimiento" type="core:t_fecha"
+				minOccurs="0" />
+			<element name="nombreTomador" type="seg:t_nombre_tomador" />
+			<element name="direccionRiesgo" type="seg:t_direccion_riesgo"
+				minOccurs="0" />
+			<element name="poblacion" type="core2:t_nomb_localidad_ag"
+				minOccurs="0" />
+			<element name="codigoPostal" type="core2:t_cod_postal_ag"
+				minOccurs="0" />
+			<element name="numeroDocumentoTomador" type="core:t_num_doc" />
+			<element name="codigoMediador" type="seg:t_codmedia" />
+			<element name="codigoOficina" type="seg:t_oficina" minOccurs="0" />
+			<element name="beneficiario" type="seg:t_beneficiario"
+				minOccurs="0" />
+			<element name="numeroGarantias" type="core:t_number_of_records"
+				minOccurs="0" />
+			<element name="garantiaContratada" type="seg:t_cod_garantia" />
+			<element name="capitalGarantia" type="core:t_importe" />
+			<element name="descripcionRiesgo" type="seg:t_desc_riesgo" />
+			<element name="descripcionGarantias" type="seg:t_tabla_garantias" />
+			<element name="yearRecibo" type="core2:t_fecha_anio"
+				minOccurs="0" />
+			<element name="numeroRecibo" type="seg:t_num_recib"
+				minOccurs="0" />
+			<element name="origenRecibo" type="seg:t_origen_recib"
+				minOccurs="0" />
+			<element name="fechaEfectoRecibo" type="core:t_fecha"
+				minOccurs="0" />
+			<element name="fechaVencimientoRecibo" type="core:t_fecha"
+				minOccurs="0" />
+			<element name="codigoSituacionRecibo" type="seg:t_cod_situac_recib"
+				minOccurs="0" />
+		</sequence>
+	</complexType>
+	<simpleType name="t_desc_garantias">
+		<annotation>
+			<documentation>
+				Descripción de las garantias contratadas en la póliza.
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="1270" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_desc_producto">
+		<annotation>
+			<documentation>Descripción del producto técnico de la póliza.
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="100" />
+		</restriction>
+	</simpleType>
+	<!-- Servicios cs Omega -->
+	<simpleType name="t_garantia">
+		<annotation>
+			<documentation>Garantia 3. </documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="100" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_garantia_2">
+		<annotation>
+			<documentation>Garantia 2. </documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="25" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_garantia_3">
+		<annotation>
+			<documentation>Garantia 3 </documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="75" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_bien">
+		<annotation>
+			<documentation>Descripción del producto técnico de la póliza.
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="100" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_referencia_nota">
+		<annotation>
+			<documentation>Referencia de la nota </documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="6" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_texto_400">
+		<annotation>
+			<documentation>Texto. </documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="400" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_asesoramiento">
+		<annotation>
+			<documentation>Asesoramiento </documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="1" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_entidad_4000">
+		<annotation>
+			<documentation> Descripcion de entidades separadas por #
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="4000" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_clausula">
+		<annotation>
+			<documentation>Clausula de documento. </documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="8" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_prima">
+		<annotation>
+			<documentation>prima. </documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="13" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_prima_2">
+		<annotation>
+			<documentation>prima </documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="15" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_provincia">
+		<annotation>
+			<documentation>Nombre Provincia </documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="20" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_poblacion">
+		<annotation>
+			<documentation>Nombre Poblacion </documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="30" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_pais">
+		<annotation>
+			<documentation>Nombre Pais </documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="100" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_cabecera">
+		<annotation>
+			<documentation>Titular de la cabecera </documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="75" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_nota">
+		<annotation>
+			<documentation>Descripción del producto técnico de la póliza.
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="10" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_nota_mandato">
+		<annotation>
+			<documentation>Descripción del producto técnico de la póliza.
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="100" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_nomb_segmento">
+		<annotation>
+			<documentation>Nombre segmento </documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="100" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_desc_suplemento">
+		<annotation>
+			<documentation>Descripción suplemento. </documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="80" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_descr_riesgo">
+		<annotation>
+			<documentation>Descripción del producto técnico de la póliza.
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="254" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_desc_campanna">
+		<annotation>
+			<documentation>Descripción de la campaña. </documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="30" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_cod_campanna">
+		<annotation>
+			<documentation>Codigo de la campaña </documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="4" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_duracion">
+		<annotation>
+			<documentation>Duracion de la poliza. </documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="25" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_num_proyecto">
+		<annotation>
+			<documentation>Numero proyecto de una poliza. </documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="8" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_desc_pdf">
+		<annotation>
+			<documentation>Nombre del pdf </documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="50" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_fecha_larga">
+		<annotation>
+			<documentation>Fecha formato largo </documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="25" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_fecha_corta">
+		<annotation>
+			<documentation>Fecha formato corto </documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="10" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_emitido">
+		<annotation>
+			<documentation>Emitido </documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="50" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_referencia_doc">
+		<annotation>
+			<documentation>Referencia del documento </documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="10" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_nombre_completo">
+		<annotation>
+			<documentation>Nombre Completo </documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="52" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_forma_pago_seg">
+		<annotation>
+			<documentation>Forma Pago Seguro. </documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="15" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_metros">
+		<annotation>
+			<documentation>Superficie en metros cuadrados </documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="10" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_num_empleados">
+		<annotation>
+			<documentation>Numero de Empleados </documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="4" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_actividad">
+		<annotation>
+			<documentation>Actividad </documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="50" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_domic_ampl">
+		<annotation>
+			<documentation>Domicilio ampliado </documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="65" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_domicilio">
+		<annotation>
+			<documentation>Domicilio </documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="50" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_caracter">
+		<annotation>
+			<documentation>Caracter que toma el tomador. </documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="50" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_empleado">
+		<annotation>
+			<documentation>Identificacion del empleado </documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="4" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_modalidad">
+		<annotation>
+			<documentation>Modalidad del seguro </documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="4" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_cod_documento">
+		<annotation>
+			<documentation>Codigo del documento </documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="2" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_tipo_activo_doc">
+		<annotation>
+			<documentation>Tipo de movimiento activo del documento
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="10" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_cod_tipo_documento">
+		<annotation>
+			<documentation>Codigo del Tipo del documento </documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="3" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_suplemento">
+		<annotation>
+			<documentation>Codigo del suplemento </documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="10" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_acuerdo">
+		<annotation>
+			<documentation>Acuerdo del contrato del seguro </documentation>
+		</annotation>
+		<restriction base="string">
+			<minLength value="1" />
+			<maxLength value="10" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_cod_ac_seg">
+		<annotation>
+			<documentation>Codigo Acuerdo del contrato del seguro </documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="14" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_proteccion">
+		<annotation>
+			<documentation>Proteccion de garantias </documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="150" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_num_clausula">
+		<annotation>
+			<documentation>Numero clausula </documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="3" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_det_clausula">
+		<annotation>
+			<documentation>Detalle Clausula </documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="75" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_nombre_entidad">
+		<annotation>
+			<documentation>Nombre entidad </documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="80" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_clausula_apli">
+		<annotation>
+			<documentation>Clausula aplicada </documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="150" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_clausula_apli_2">
+		<annotation>
+			<documentation>Clausula aplicada 2 </documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="80" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_idioma">
+		<annotation>
+			<documentation>Idioma </documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="2" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_tipo_mvto_doc">
+		<annotation>
+			<documentation>Tipo movimiento del documento </documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="6" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_nombre_mediador">
+		<annotation>
+			<documentation>Nombre del mediador </documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="25" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_anyo">
+		<annotation>
+			<documentation>Año de construccion </documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="4" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_grupo">
+		<annotation>
+			<documentation>Nos indica el grupo al que pertenece el acuerdo
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="2" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_ref_orden">
+		<annotation>
+			<documentation>Código de referencia de la Orden de Domiciliación
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="35" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_aclaracion_riesgo">
+		<annotation>
+			<documentation>Aclaración del Riesgo </documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="762" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_clausula_especial">
+		<annotation>
+			<documentation>Cláusulas Especiales </documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="300" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_clausula_seguro">
+		<annotation>
+			<documentation>Descripción clausula seguro </documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="250" />
+		</restriction>
+	</simpleType>
+	<!-- cs Omega -->
+	<simpleType name="t_codEntidadPoliza">
+		<annotation>
+			<documentation>Código de la entidad de la póliza </documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="4" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_idenPersonaPoliza">
+		<annotation>
+			<documentation>
+				Documento de identificación de la persona en la
+				poliza.
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="20" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_estadoSiniestro">
+		<annotation>
+			<documentation>Indica el estado del siniestro. </documentation>
+		</annotation>
+		<restriction base="string">
+			<enumeration value="Abierto" />
+			<enumeration value="Cerrado" />
+			<enumeration value="Reabierto" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_claseSiniestro">
+		<annotation>
+			<documentation>Clase de siniesntro. </documentation>
+		</annotation>
+		<restriction base="string">
+			<enumeration value="Normal" />
+			<enumeration value="Reparable" />
+			<enumeration value="Indemnizable" />
+			<enumeration value="Mixto" />
+			<enumeration value="Rechazado" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_cod_causa_siniestro">
+		<annotation>
+			<documentation>Identifica la causa del siniestro </documentation>
+		</annotation>
+		<restriction base="integer">
+			<maxInclusive value="99" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_nom_empresa_asist">
+		<annotation>
+			<documentation>Nombre de la empresa que presta la asistencia
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="20" />
+		</restriction>
+	</simpleType>
+	<!-- Servicios cs Omega -->
+	<simpleType name="t_base_revalorizacion">
+		<annotation>
+			<documentation>Indicador de base de Revalorizacion </documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="10" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_indicador">
+		<annotation>
+			<documentation>Indicador de Respuesta (SI,NO,--) </documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="2" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_importe">
+		<annotation>
+			<documentation>Importe </documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="20" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_saldo">
+		<annotation>
+			<documentation>Saldo </documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="14" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_capital">
+		<annotation>
+			<documentation>Capital </documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="21" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_precio">
+		<annotation>
+			<documentation>Precio </documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="11" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_detalle">
+		<annotation>
+			<documentation>Detalle </documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="70" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_asistencia">
+		<annotation>
+			<documentation>Descripcion </documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="12" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_capital_hueso">
+		<annotation>
+			<documentation>Capital Huesos </documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="23" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_revalorizacion">
+		<annotation>
+			<documentation>Revalorizacion </documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="9" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_cuota">
+		<annotation>
+			<documentation>Cuota </documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="17" />
+		</restriction>
+	</simpleType>
+	<!-- Fin cs Omega -->
+	<simpleType name="t_codigo_plan">
+		<annotation>
+			<documentation>Código de plan para Agroseguro </documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="4" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_apellido">
+		<annotation>
+			<documentation>Apellido Persona </documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="100" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_codbarras_rga">
+		<annotation>
+			<documentation>Codigo de Barras RGA </documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="9" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_ind_firma">
+		<annotation>
+			<documentation>Indicador Firma </documentation>
+		</annotation>
+		<restriction base="int" />
+	</simpleType>
+	<complexType name="DocumentoMtom">
+		<annotation>
+			<documentation>Documento en tecnología MTOM </documentation>
+		</annotation>
+		<sequence>
+			<element name="referencia" type="seg:t_referencia_mtom" />
+		</sequence>
+	</complexType>
+	<simpleType name="t_referencia_mtom">
+		<annotation>
+			<documentation>Referencia al fichero adjunto </documentation>
+		</annotation>
+		<restriction base="string" />
+	</simpleType>
+	<simpleType name="t_centro_emision">
+		<annotation>
+			<documentation>Centro de emision del documento </documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="4" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_idPersonaMdm">
+		<annotation>
+			<documentation>
+				Código identificativo de la persona en el sistema de
+				origen
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="10" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_cod_aplicacion_origen">
+		<annotation>
+			<documentation>Código de la Aplicación de Origen </documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="3" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_prod_generico">
+		<annotation>
+			<documentation>Producto generico </documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="4" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_numSolicitud">
+		<annotation>
+			<documentation>Número de solicitud</documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="10" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_idDocumento">
+		<annotation>
+			<documentation>Nombre del documento</documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="50" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_indTableta">
+		<annotation>
+			<documentation>Indicador de tableta</documentation>
+		</annotation>
+		<restriction base="integer" />
+	</simpleType>
+	<simpleType name="t_numPropuesta">
+		<annotation>
+			<documentation>Número de propuesta</documentation>
+		</annotation>
+		<restriction base="decimal" />
+	</simpleType>
+	<simpleType name="t_origenDocu">
+		<annotation>
+			<documentation>Origen del documento</documentation>
+		</annotation>
+		<restriction base="decimal">
+			<totalDigits value="1" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_tipoMovimiento">
+		<annotation>
+			<documentation>Tipo de movimiento</documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="3" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_negocio">
+		<annotation>
+			<documentation>
+				Tipo de negocio. Posibles valores: VID => Vida PEN =>
+				Pensiones SIN =>
+				Siniestros DIV => Diversos
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<enumeration value="VID" />
+			<enumeration value="PEN" />
+			<enumeration value="SIN" />
+			<enumeration value="DIV" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_codigo_fondo">
+		<annotation>
+			<documentation>Código de fondo de pensiones.</documentation>
+		</annotation>
+		<restriction base="int">
+			<maxInclusive value="99" />
+			<minInclusive value="0" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_cod_plan">
+		<annotation>
+			<documentation>Código de plan de pensiones.</documentation>
+		</annotation>
+		<restriction base="int">
+			<maxInclusive value="999" />
+			<minInclusive value="0" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_cod_participe">
+		<annotation>
+			<documentation>Código del partícipe en pensiones.</documentation>
+		</annotation>
+		<restriction base="int">
+			<maxInclusive value="9999999" />
+			<minInclusive value="0" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_nif_pas">
+		<annotation>
+			<documentation>
+				Campo que describe el identificador de una persona. Se
+				permite DNI, NIE,
+				Pasaporte,....
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="14" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_clase_documental">
+		<annotation>
+			<documentation>Código de la clase documental de Documentum
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="50" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_altura_asegurado">
+		<annotation>
+			<documentation>Altura física del asegurado. </documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="6" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_peso_asegurado">
+		<annotation>
+			<documentation>Peso físico del asegurado. </documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="13" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_iban">
+		<annotation>
+			<documentation>IBAN asociado a póliza. </documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="34" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_fechaDia">
+		<restriction base="short">
+			<maxInclusive value="31" />
+			<minInclusive value="1" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_fechaMes">
+		<restriction base="string">
+			<minLength value="1" />
+			<maxLength value="10" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_fechaAnio">
+		<restriction base="short">
+			<totalDigits value="4" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_indicadorSN">
+		<restriction base="string">
+			<length value="1" />
+			<enumeration value="S" />
+			<enumeration value="N" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_nombreOficina">
+		<restriction base="string">
+			<maxLength value="50" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_nombreSucursal">
+		<restriction base="string">
+			<maxLength value="50" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_rutaDocumento">
+		<restriction base="string" />
+	</simpleType>
+	<simpleType name="t_tipo_vivienda">
+		<restriction base="string">
+			<enumeration value="PI" />
+			<enumeration value="CH" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_codigo_postal">
+		<restriction base="string">
+			<pattern value="[0-9]{5}" />
+			<maxLength value="5" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_situacion_vivienda">
+		<restriction base="string">
+			<enumeration value="U" />
+			<enumeration value=" D" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_modalidad_hogar">
+		<restriction base="string">
+			<maxLength value="1" />
+			<enumeration value="T" />
+			<enumeration value="P" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_tipo_contratacion">
+		<restriction base="string">
+			<length value="1" />
+			<enumeration value="C" />
+			<enumeration value="E" />
+			<enumeration value="O" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_metros_int">
+		<restriction base="int">
+		</restriction>
+	</simpleType>
+	<simpleType name="t_uso_vivienda">
+		<restriction base="string">
+			<maxLength value="1" />
+			<enumeration value="P" />
+			<enumeration value="S" />
+			<enumeration value="A" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_fecha_date">
+		<restriction base="date">
+		</restriction>
+	</simpleType>
+	<simpleType name="t_operationCode_int">
+		<restriction base="int">
+		</restriction>
+	</simpleType>
+	<simpleType name="t_codcia_int">
+		<restriction base="int">
+		</restriction>
+	</simpleType>
+	<simpleType name="t_prod_generico_int">
+		<restriction base="int">
+			<totalDigits value="4" />
+		</restriction>
+	</simpleType>
+	<simpleType name="t_num_poliza_int">
+		<annotation>
+			<documentation>Número de póliza </documentation>
+		</annotation>
+		<restriction base="int">
+		</restriction>
+	</simpleType>
+	<simpleType name="t_num_proyecto_int">
+		<annotation>
+			<documentation>Numero proyecto de una poliza. </documentation>
+		</annotation>
+		<restriction base="int">
+		</restriction>
+	</simpleType>
+</schema>

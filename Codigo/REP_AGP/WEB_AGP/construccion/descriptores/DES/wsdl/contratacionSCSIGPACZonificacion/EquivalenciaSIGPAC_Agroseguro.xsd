@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<x:schema 
+	targetNamespace="http://www.agroseguro.es/SeguroAgrario/EquivalenciaSIGPAC_Agroseguro"
+	xmlns="http://www.agroseguro.es/SeguroAgrario/EquivalenciaSIGPAC_Agroseguro"
+	xmlns:pks="http://www.agroseguro.es/SeguroAgrario/EquivalenciaSIGPAC_Agroseguro"
+	xmlns:x="http://www.w3.org/2001/XMLSchema"
+	xmlns:ti="http://www.agroseguro.es/Tipos" 
+	>
+	
+	<x:import
+		namespace="http://www.agroseguro.es/Tipos"
+		schemaLocation="Tipos.xsd" />
+
+	<x:element name="EquivalenciaSIGPAC_Agroseguro" type="EquivalenciaSIGPAC_Agroseguro" />
+	
+	<x:complexType name="EquivalenciaSIGPAC_Agroseguro" >
+		<x:sequence>
+			<x:element name="SIGPAC" type="DescriptivoSIGPAC" minOccurs="1" maxOccurs="1" />
+			<x:element name="AmbitoEquivalenteAgroseguro" type="AmbitoEquivalenteAgroseguro" minOccurs="1" maxOccurs="unbounded" />
+		</x:sequence>
+		<x:attributeGroup ref="ti:PeticionSW" />
+		<x:attribute name="provinciaSIGPAC" type="ti:Provincia_Codigo" use="required"/>
+	   	<x:attribute name="terminoSIGPAC" type="ti:Termino_Codigo" use="required" />
+	   	<x:attribute name="agregadoSIGPAC" type="ti:SIGPAC_Agregado" use="required" />
+	   	<x:attribute name="zonaSIGPAC" type="ti:SIGPAC_Zona" use="required" />
+	   	<x:attribute name="poligonoSIGPAC" type="ti:SIGPAC_Poligono" use="required" />
+	   	<x:attribute name="parcelaSIGPAC" type="ti:SIGPAC_Parcela" use="required" />
+		<x:attribute name="plan" type="ti:Plan" use="optional" />
+        <x:attribute name="linea" type="ti:Linea_Codigo" use="optional" />
+		<x:attribute name="cultivo" type="ti:Cultivo_Codigo" use="optional" />
+	</x:complexType>
+	
+	<x:complexType name="DescriptivoSIGPAC" >
+		<x:sequence>
+			<x:element name="Envelope" type="Envelope" minOccurs="0" maxOccurs="1" />
+			<x:element name="Recinto" type="Recinto" minOccurs="0" maxOccurs="unbounded" />
+		</x:sequence>
+		<x:attribute name="descriptivo" type="x:string" />
+		<x:attribute name="superficie" type="SIGPAC_Superficie" />
+		<x:attribute name="fechaInformacion" type="x:date" />
+	</x:complexType>
+	
+	<x:complexType name="Envelope" >
+		<x:attribute name="datum" type="x:string" />
+		<x:attribute name="la1" type="Coordenada" />
+		<x:attribute name="lo1" type="Coordenada" />
+		<x:attribute name="la2" type="Coordenada" />
+		<x:attribute name="lo2" type="Coordenada" />
+	</x:complexType>
+	
+	<x:complexType name="Recinto" >
+		<x:attribute name="numero" type="NumeroSIGPAC" />
+		<x:attribute name="superficie" type="SIGPAC_Superficie" />
+		<x:attribute name="pendiente" type="Pendiente" />
+		<x:attribute name="uso" type="UsoRecinto" />
+		<x:attribute name="descriptivoUso" type="x:string" />
+		<x:attribute name="coeficienteRegadio" type="CoeficienteRegadio" />
+	</x:complexType>
+
+	<x:complexType name="AmbitoEquivalenteAgroseguro" >
+		<x:sequence>
+			<x:element name="AmbitoAgroseguro" type="AmbitoAgroseguro" minOccurs="1" maxOccurs="1" />
+			<x:element name="AmbitoINE" type="AmbitoINE" minOccurs="1" maxOccurs="1" />
+		</x:sequence>
+	</x:complexType>	
+	
+	<x:complexType name="AmbitoAgroseguro" >
+		<x:sequence>
+			<x:element name="provincia" type="Provincia" minOccurs="1" maxOccurs="1"  />
+			<x:element name="comarca" type="Comarca" minOccurs="0" maxOccurs="1"  />
+			<x:element name="termino" type="Termino" minOccurs="1" maxOccurs="1"  />
+			<x:element name="subTermino" type="Subtermino" minOccurs="0" maxOccurs="1"  />
+			<x:element name="zonaRiesgo" type="ZonaRiesgo" minOccurs="0" maxOccurs="1"  />
+		</x:sequence>
+		<x:attribute name="zonificacionestimada" type="ti:SiNo" use="optional" />
+	</x:complexType>
+	
+	<x:complexType name="Provincia" >
+		<x:attribute name="codigo" type="ti:Provincia_Codigo" use="required" />
+		<x:attribute name="descriptivo" type="ti:Provincia_Descripcion" use="required" />
+	</x:complexType>
+	
+	<x:complexType name="Comarca" >
+		<x:attribute name="codigo" type="ti:Comarca_Codigo" use="required" />
+		<x:attribute name="descriptivo" type="x:string" use="required" />
+	</x:complexType>
+	
+	<x:complexType name="Termino" >
+		<x:attribute name="codigo" type="ti:Termino_Codigo" use="required" />
+		<x:attribute name="descriptivo" type="x:string" use="required" />
+	</x:complexType>
+	
+	<x:complexType name="Subtermino" >
+		<x:attribute name="codigo" type="ti:Subtermino_Codigo" use="required" />
+		<x:attribute name="descriptivo" type="x:string" use="required" />
+	</x:complexType>
+	
+	<x:complexType name="ZonaRiesgo" >
+		<x:attribute name="codigo" type="x:int" use="required" />
+	</x:complexType>
+	
+	<x:complexType name="AmbitoINE" >
+		<x:sequence>
+			<x:element name="provincia" type="Provincia" minOccurs="1" maxOccurs="1"  />
+			<x:element name="termino" type="Termino" minOccurs="1" maxOccurs="1"  />	
+		</x:sequence>	
+	</x:complexType>
+	
+	<x:simpleType name="Coordenada">
+		<x:restriction base="x:decimal">
+			<x:totalDigits value="7" />
+			<x:fractionDigits value="5" />
+			<x:minInclusive value="-90.00000" />
+			<x:maxInclusive value="90.00000" />
+		</x:restriction>
+	</x:simpleType>
+	
+	<x:simpleType name="NumeroSIGPAC">
+		<x:restriction base="x:int">
+			<x:totalDigits value="5" />
+		</x:restriction>
+	</x:simpleType>
+	
+	<x:simpleType name="UsoRecinto">
+		<x:restriction base="x:string">
+			<x:length value="2" />		
+		</x:restriction>	
+	</x:simpleType>
+	
+	<x:simpleType name="CoeficienteRegadio">
+		<x:restriction base="x:int">
+			<x:totalDigits value="3" />
+			<x:minInclusive value="0" />
+			<x:maxInclusive value="100" />		
+		</x:restriction>	
+	</x:simpleType>
+	
+	<x:simpleType name="SIGPAC_Superficie">
+		<x:restriction base="x:decimal">
+			<x:totalDigits value="9" />
+			<x:fractionDigits value="4" />
+			<x:minInclusive value="0" />
+			<x:maxInclusive value="99999.9999" />
+		</x:restriction>
+	</x:simpleType>
+
+	<x:simpleType name="Pendiente"> 
+		<x:restriction base="x:decimal">
+			<x:totalDigits value="4" />
+			<x:fractionDigits value="1" />
+			<x:minInclusive value="0" />
+			<x:maxInclusive value="100.0" />			
+		</x:restriction>
+	</x:simpleType>	
+
+</x:schema>

@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<x:schema 
+	targetNamespace="http://www.agroseguro.es/Recibos/ComisionesCobroDeudaAplazada"
+	xmlns="http://www.agroseguro.es/Recibos/ComisionesCobroDeudaAplazada" 
+	xmlns:x="http://www.w3.org/2001/XMLSchema"
+	xmlns:ti="http://www.agroseguro.es/ITipos" 
+>
+
+	<x:import
+		namespace="http://www.agroseguro.es/ITipos" 
+		schemaLocation="../commons/Tipos.xsd" />
+
+	<x:element name="Fases" type="Fases" />
+	
+	<x:complexType name="Fases">
+		<x:sequence>
+			<x:element name="FaseAbono" type="FaseAbono" minOccurs="1" maxOccurs="unbounded" />
+		</x:sequence>
+	</x:complexType>
+	
+	<x:complexType name="FaseAbono">
+		<x:sequence>
+				<x:element name="DetallesAbonos" type="DetallesAbonos" maxOccurs="unbounded" minOccurs="1" />
+		</x:sequence>
+		<x:attribute name="plan" use="required" type="ti:Plan" />
+		<x:attribute name="fase" use="required" type="ti:Fase_Codigo" />			
+	</x:complexType>
+	
+	<x:complexType name="DetallesAbonos">
+		<x:sequence>
+			<x:choice maxOccurs="1" minOccurs="1">
+				<x:element name="Individual" type="Individual" maxOccurs="1" minOccurs="1"/>
+				<x:element name="Colectivo" type="Colectivo" maxOccurs="1" minOccurs="1" />
+			</x:choice>
+		</x:sequence>
+	</x:complexType>
+
+	<x:complexType name="Colectivo">
+		<x:sequence>
+			<x:choice maxOccurs="1" minOccurs="1">
+				<x:element name="NombreApellidos" type="ti:NombreApellidos" maxOccurs="1" minOccurs="0"/>
+				<x:element name="RazonSocial" type="ti:RazonSocial" maxOccurs="1" minOccurs="0"/>
+			</x:choice>
+			<x:element name="Polizas" type="Polizas" minOccurs="1" maxOccurs="1" />
+		</x:sequence>			
+		<x:attribute name="referencia" use="required" type="ti:Colectivo_Referencia" />	
+		<x:attribute name="digitoControl" use="required" type="ti:DigitoControl" />	
+		<x:attribute name="codigoInterno" use="required" type="ti:CodigoInternoEntidad" />	
+	</x:complexType>
+	
+	<x:complexType name="Individual">
+		<x:sequence>
+			<x:choice maxOccurs="1" minOccurs="1">
+				<x:element name="NombreApellidos" type="ti:NombreApellidos" maxOccurs="1" minOccurs="0"/>
+				<x:element name="RazonSocial" type="ti:RazonSocial" maxOccurs="1" minOccurs="0"/>
+			</x:choice>
+			<x:element name="Polizas" type="Polizas" minOccurs="1" maxOccurs="1" />
+		</x:sequence>			
+		<x:attribute name="referencia" use="required" type="ti:Poliza_Referencia" />		
+		<x:attribute name="digitoControl" use="required" type="ti:DigitoControl" />	
+	</x:complexType>
+	
+	<x:complexType name="Polizas">
+		<x:sequence>
+			<x:element name="Poliza" type="Poliza" minOccurs="1" maxOccurs="unbounded" />
+		</x:sequence>
+	</x:complexType>
+	
+	<x:complexType name="Poliza">
+		<x:sequence>
+			<x:element name="Asegurado" type="Asegurado" maxOccurs="1" minOccurs="1" />	
+			<x:element name="Gastos" type="Gastos" maxOccurs="1" minOccurs="1" />	
+		</x:sequence>
+		<x:attribute name="linea" use="required" type="ti:Linea_Codigo" />
+		<x:attribute name="referencia" use="required" type="ti:Poliza_Referencia_Creciente" />
+		<x:attribute name="digitoControl" use="required" type="ti:DigitoControl" />		
+		<x:attribute name="tipoReferencia" use="required" type="ti:Poliza_Referencia_Tipo" />		
+		<x:attribute name="recibo" use="required" type="ti:Recibo_Codigo" />	
+		<x:attribute name="codigoInterno" use="required" type="ti:CodigoInternoEntidad" />
+	</x:complexType>
+	
+	<x:complexType name="Asegurado">
+		<x:sequence>
+			<x:choice maxOccurs="1" minOccurs="1">
+				<x:element name="NombreApellidos" type="ti:NombreApellidos" maxOccurs="1" minOccurs="1"/> 
+				<x:element name="RazonSocial" type="ti:RazonSocial" maxOccurs="1" minOccurs="1"/>
+			</x:choice>			
+		</x:sequence>		
+	</x:complexType>
+	
+	<x:complexType name="Gastos">
+		 <x:attribute name="primaComercialNeta" type="ti:ImporteLargoPositivo" use="required" />
+		 <x:attribute name="gastosAdminEntidad" type="ti:ImporteLargoPositivo" use="required" />
+		 <x:attribute name="gastosAdqEntidad" type="ti:ImporteLargoPositivo" use="required" />
+		 <x:attribute name="comisionesMediador" type="ti:ImporteLargoPositivo" use="required" />
+		 <x:attribute name="total" type="ti:ImporteLargoPositivo" use="required" />
+		 <x:attribute name="gastosAdminEntidadAbon" type="ti:ImporteLargoPositivo" use="required" />
+		 <x:attribute name="gastosAdqEntidadAbon" type="ti:ImporteLargoPositivo" use="required" />
+		 <x:attribute name="comisionesMediadorAbon" type="ti:ImporteLargoPositivo" use="required" />
+		 <x:attribute name="totalAbonados" type="ti:ImporteLargoPositivo" use="required" />
+	</x:complexType>
+		
+		
+</x:schema>

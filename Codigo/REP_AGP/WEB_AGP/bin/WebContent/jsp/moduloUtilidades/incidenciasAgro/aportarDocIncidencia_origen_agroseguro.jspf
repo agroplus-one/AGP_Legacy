@@ -1,0 +1,214 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+
+<%@ include file="/jsp/common/static/taglibs.jsp"%>
+<%@ include file="/jsp/common/static/setHeader.jsp"%>
+
+<fieldset style="width:39%; float:left; margin-right:10px; text-align:left;">
+	<legend>
+		<c:if test="${not consulta}">
+			<input type="radio" class="literal" value="p" name="tipoEnvio" />
+		</c:if>
+		<!-- MODIF TAM (14.06.2018). En la consulta que se muestre también el radio button pero bloqueado -->
+		<c:if test="${consulta}">
+			<input type="radio" class="literal" value="p" name="tipoEnvio" disabled="disabled"/>
+		</c:if>
+		<!-- MODIF TAM (14.06.2018). Fin -->
+		<span class="literal">Póliza</span>
+	</legend>
+	<%--Pet. 50775 ** MODIF TAM (14.05.2018) ** Resolución Incidencia Maquetación --%> 
+	<%--<div> --%>
+	<div style="width:100%; text-align:left;">
+		<%--<span> --%>
+		<span>
+			<label for="plan" class="literal">Plan:</label>
+			<c:choose>
+				<c:when test="${consulta}">
+					<input value="${docIncForm.incidencias.codplan}" class="dato poliza" size="4" id="plan_poliza" disabled="disabled" />
+				</c:when>
+				<c:otherwise>
+					<form:input path="incidencias.codplan" cssClass="dato poliza" size="4" id="plan_poliza" maxlength="4" />
+					<label class="campoObligatorio"	id="campoObligatorio_planPol" title="Campo obligatorio"> *</label>
+				</c:otherwise>
+			</c:choose>		
+		</span>
+		<%--<span> --%>
+		<span>
+			<label for="referencia" class="literal">Referencia:</label>
+			<c:choose>
+				<c:when test="${consulta}">
+					<input value="${docIncForm.incidencias.referencia}" class="dato poliza" size="7" id="referencia" disabled="disabled"/>
+				</c:when>
+				<c:otherwise>
+					<form:input path="incidencias.referencia" cssClass="dato poliza" size="7" id="referencia" maxlength="7" onchange="this.value=this.value.toUpperCase();"/>
+					<label class="campoObligatorio"	id="campoObligatorio_referencia" title="Campo obligatorio"> *</label>
+				</c:otherwise>
+			</c:choose>		
+		</span>
+		<%--<span> --%>		
+		<span>
+			<label for="tiporef" class="literal">Tipo:</label>
+			<c:choose>
+				<c:when test="${consulta}">
+					<c:choose>
+						<c:when test="${docIncForm.incidencias.tiporef eq 'P'}">
+							<input type="text" class="dato incidencia" size="11" id="tiporef" value="Principal" disabled="disabled"/>
+						</c:when>
+						<c:otherwise>
+							<input type="text" class="dato incidencia" size="11" id="tiporef" value="Complementaria" disabled="disabled"/>
+							<label class="campoObligatorio"	id="campoObligatorio_tiporef" title="Campo obligatorio"> *</label>
+						</c:otherwise>
+					</c:choose>
+				</c:when>
+				<c:otherwise>
+					<form:select path="incidencias.tiporef" cssClass="dato poliza" id="tiporef">
+						<c:choose>
+							<c:when test="${docIncForm.incidencias.tiporef eq 'P'}">
+								<option value="P" selected="selected">Principal</option>
+							</c:when>
+							<c:otherwise>
+								<option value="P">Principal</option>
+							</c:otherwise>
+						</c:choose>
+						<c:choose>
+							<c:when test="${docIncForm.incidencias.tiporef eq 'C'}">
+								<option value="C" selected="selected">Complementaria</option>
+							</c:when>
+							<c:otherwise>
+								<option value="C">Complementaria</option>
+							</c:otherwise>
+						</c:choose>									
+					</form:select>
+				</c:otherwise>
+			</c:choose>
+		</span>
+	</div>
+</fieldset>
+
+<%--<fieldset style="width: 70%;"> --%>
+<fieldset style="width:auto; text-align:left;"> 
+	<legend>
+		<c:if test="${not consulta}">
+			<input type="radio" class="literal" value="aseg" name="tipoEnvio">
+		</c:if>
+		<!-- MODIF TAM (14.06.2018). En la consulta que se muestre también el radio button pero bloqueado -->
+		<c:if test="${consulta}">
+			<input type="radio" class="literal" value="aseg" name="tipoEnvio" disabled="disabled" />
+		</c:if>
+		<!-- MODIF TAM (14.06.2018). Fin -->		
+		<span class="literal">Asegurado</span>
+	</legend>
+	<%--Pet. 50775 ** MODIF TAM (14.05.2018) ** Resolución Incidencia Maquetación --%> 
+	<%--<div> --%>
+	<div style="text-align:left;">
+
+		<span>		
+			<label for="plan" class="literal">Plan:</label>
+			<c:choose>
+				<c:when test="${consulta}">
+					<input value="${docIncForm.incidencias.codplan}" class="dato asegurado" size="4" id="plan" disabled="disabled"/>
+				</c:when>
+				<c:otherwise>
+					<form:input path="incidencias.codplan" cssClass="dato asegurado" size="4"  id="plan" maxlength="4" onchange="javascript:lupas.limpiarCampos('linea', 'desc_linea');" />
+					<label class="campoObligatorio"	id="campoObligatorio_planAse" title="Campo obligatorio"> *</label>
+				</c:otherwise>
+			</c:choose>		
+		</span>
+
+		<span>		
+			<label for="codlinea" class="literal">Línea</label>
+			<c:choose>
+				<c:when test="${consulta}">
+					<input value="${docIncForm.incidencias.codlinea}" class="dato asegurado" size="4" id="linea" disabled="disabled"/>
+				</c:when>
+				<c:otherwise>
+					<form:input path="incidencias.codlinea" cssClass="dato asegurado" id="linea" size="3" maxlength="3" onchange="javascript:lupas.limpiarCampos('desc_linea');" />
+					<input Class="dato asegurado" id="desc_linea" size="32" readonly="true" value="${nomLinea}"/>
+					<label class="campoObligatorio"	id="campoObligatorio_linea" title="Campo obligatorio"> *</label>
+					<img src="jsp/img/magnifier.png" style="cursor: hand;" onclick="javascript:lupas.muestraTabla('Linea','principio', '', '');" alt="Buscar Línea" title="Buscar Línea" />
+				</c:otherwise>
+			</c:choose>		
+		</span> 
+						
+		<%--<span> --%>		
+		<span>
+			<label for="nifaseg" class="literal">CIF/NIF Aseg.</label>
+			<c:choose>
+				<c:when test="${consulta}">
+					<input value="${docIncForm.incidencias.nifaseg}" class="dato asegurado"  size="10" id="nifaseg" disabled="disabled"/>
+				</c:when>
+				<c:otherwise>
+					<form:input path="incidencias.nifaseg" cssClass="dato asegurado" size="10" maxlength="9" id="nifaseg" onchange="this.value=this.value.toUpperCase();"/>
+					<label class="campoObligatorio"	id="campoObligatorio_nifaseg" title="Campo obligatorio"> *</label>
+				</c:otherwise>
+			</c:choose>		
+		</span>
+	</div>
+</fieldset>
+<br/>
+
+<%--<fieldset style="width: 70%;"> --%>
+<fieldset style="width:38%; float:left; margin-right:10px; text-align:left;">
+	<legend>
+		<c:if test="${not consulta}">
+			<input type="radio" class="literal" value="i" name="tipoEnvio">
+		</c:if>
+		<!-- MODIF TAM (14.06.2018). En la consulta que se muestre también el radio button pero bloqueado -->
+		<c:if test="${consulta}">
+			<input type="radio" class="literal" value="i" name="tipoEnvio" disabled="disabled"/>
+		</c:if>
+		<!-- MODIF TAM (14.06.2018). Fin -->
+		<span class="literal">Incidencia</span>
+	</legend>
+	<span>
+		<label for="anhoincidencia" class="literal">Año</label>
+		<c:choose>
+			<c:when test="${consulta}">
+				<input value="${docIncForm.incidencias.anhoincidencia}" class="dato incidencia" size="5" id="anhoincidencia" disabled="disabled"/>
+			</c:when>
+			<c:otherwise>
+				<form:input path="incidencias.anhoincidencia" cssClass="dato incidencia" size="5" id="anhoincidencia" maxlength="4" />
+				<label class="campoObligatorio"	id="campoObligatorio_anhoincidencia" title="Campo obligatorio"> *</label>
+			</c:otherwise>
+		</c:choose>		
+	</span>
+	<span>
+		<label for="numincidencia" class="literal">Nº incidencia</label>			
+		<c:choose>
+			<c:when test="${consulta}">
+				<input value="${docIncForm.incidencias.numincidencia}" class="dato incidencia" size="9" id="numincidencia" disabled="disabled"/>
+			</c:when>
+			<c:otherwise>
+				<form:input path="incidencias.numincidencia" cssClass="dato incidencia" size="9" id="numincidencia" maxlength="6" />
+				<label class="campoObligatorio"	id="campoObligatorio_numincidencia" title="Campo obligatorio"> *</label>
+			</c:otherwise>
+		</c:choose>		
+	</span>
+</fieldset>
+	
+<fieldset style="width:auto; text-align:left;">	
+	<legend>
+		<c:if test="${not consulta}">
+			<input type="radio" class="literal" value="am" name="tipoEnvio">
+		</c:if>
+		<!-- MODIF TAM (14.06.2018). En la consulta que se muestre también el radio button pero bloqueado -->
+		<c:if test="${consulta}">
+			<input type="radio" class="literal" value="am" name="tipoEnvio" disabled="disabled"/>
+		</c:if>
+		<!-- MODIF TAM (14.06.2018). Fin -->
+		<span class="literal">Cupón</span>
+	</legend>
+	<span>
+		<label for="idenvio" class="literal">Cupón</label>
+		<c:choose>
+			<c:when test="${consulta}">
+				<input value="${docIncForm.incidencias.idenvio}" class="dato anexo" id="idenvio" disabled="disabled"/>
+			</c:when>
+			<c:otherwise>
+				<form:input path="incidencias.idenvio" cssClass="dato anexo" id="idenvio" maxlength="14"/>
+				<label class="campoObligatorio"	id="campoObligatorio_idenvio" title="Campo obligatorio"> *</label>
+			</c:otherwise>
+		</c:choose>
+		</span>
+	</fielset>
+</fieldset>
+	

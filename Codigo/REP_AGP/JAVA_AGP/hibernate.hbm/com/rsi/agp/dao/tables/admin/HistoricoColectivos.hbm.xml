@@ -1,0 +1,89 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 26-jul-2011 10:19:55 by Hibernate Tools 3.3.0.GA -->
+<hibernate-mapping>
+    <class name="com.rsi.agp.dao.tables.admin.HistoricoColectivos" table="TB_HISTORICO_COLECTIVOS">
+        <comment>Hist&#243;rico de colectivos</comment>
+        <id name="id" type="long">
+            <column name="ID" precision="15" scale="0" />
+                       <generator class="sequence">
+            	<param name="sequence">SQ_HISTORICO_COLECTIVOS</param>
+            </generator>
+        </id>
+        <many-to-one name="tomador" class="com.rsi.agp.dao.tables.admin.Tomador" fetch="select" lazy="no-proxy">
+            <column name="CODENTIDAD" precision="4" scale="0" not-null="true"/>
+            <column name="CIFTOMADOR" length="9" not-null="true"/>
+        </many-to-one>
+        <many-to-one name="colectivo" class="com.rsi.agp.dao.tables.admin.Colectivo" fetch="select">
+            <column name="IDCOLECTIVO" precision="15" scale="0">
+                <comment>Identificador del colectivo en TB_COLECTIVOS</comment>
+            </column>
+        </many-to-one>
+        <many-to-one name="linea" class="com.rsi.agp.dao.tables.poliza.Linea" fetch="select" lazy="no-proxy">
+            <column name="LINEASEGUROID" precision="15" scale="0" not-null="true">
+                <comment>Identificador de plan/linea</comment>
+            </column>
+        </many-to-one>
+        <many-to-one name="subentidadMediadora" class="com.rsi.agp.dao.tables.admin.SubentidadMediadora" fetch="select" lazy="no-proxy">
+            <column name="ENTMEDIADORA" precision="4" scale="0">
+                <comment>Entidad mediadora</comment>
+            </column>
+            <column name="SUBENTMEDIADORA" precision="4" scale="0">
+                <comment>Subentidad mediadora</comment>
+            </column>
+        </many-to-one>
+        <property name="referencia" type="string">
+            <column name="REFERENCIA" length="7" />
+        </property>
+        <property name="nomcolectivo" type="string">
+            <column name="NOMCOLECTIVO" length="50" />
+        </property>        
+        <property name="activo" type="java.lang.Character">
+            <column name="ACTIVO" length="1" />
+        </property>
+        <property name="pctdescuentocol" type="java.math.BigDecimal">
+            <column name="PCTDESCUENTOCOL" precision="5" />
+        </property>
+        <property name="pctprimerpago" type="java.math.BigDecimal">
+            <column name="PCTPRIMERPAGO" precision="5" />
+        </property>
+        <property name="fechaprimerpago" type="date">
+            <column name="FECHAPRIMERPAGO" length="7" />
+        </property>
+        <property name="pctsegundopago" type="java.math.BigDecimal">
+            <column name="PCTSEGUNDOPAGO" precision="5" />
+        </property>
+        <property name="fechasegundopago" type="date">
+            <column name="FECHASEGUNDOPAGO" length="7" />
+        </property>
+        <property name="dc" type="string">
+            <column name="DC" length="2" />
+        </property>
+        <property name="fechaoperacion" type="java.util.Date">
+            <column name="FECHAOPERACION" not-null="true" />
+        </property>
+        <property name="tipooperacion" type="java.lang.Character">
+            <column name="TIPOOPERACION" length="1" not-null="true" />
+        </property>
+        <property name="codusuario" type="string">
+            <column name="CODUSUARIO" length="8" not-null="true" />
+        </property>
+        <property name="fechacambio" type="java.util.Date">
+            <column name="FECHACAMBIO"/>            
+        </property>
+        <property name="fechaefecto" type="date">
+            <column name="FECHAEFECTO" length="7" />            
+        </property>
+        <property name="fechabaja" type="date">
+            <column name="FECHABAJA" length="7">
+                <comment>Fecha de baja del colectivo</comment>
+            </column>
+        </property>   
+        <property name="envioIbanAgro" type="java.lang.Character"> 
+            <column name="ENVIO_IBAN_AGRO" length="1"> 
+                <comment>Indicador de env&#237;o del IBAN a Agroseguros asignado al colectivo</comment> 
+            </column> 
+        </property>      
+    </class>
+</hibernate-mapping>

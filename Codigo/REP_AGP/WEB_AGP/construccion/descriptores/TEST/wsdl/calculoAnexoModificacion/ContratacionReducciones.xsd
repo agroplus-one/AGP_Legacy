@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema targetNamespace="http://www.agroseguro.es/Contratacion/Reducciones"
+	xmlns="http://www.agroseguro.es/Contratacion/Reducciones"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:con="http://www.agroseguro.es/Contratacion"
+	xmlns:ti="http://www.agroseguro.es/Tipos"
+	xmlns:ds="http://www.agroseguro.es/Contratacion/DeclaracionSubvenciones"
+	xmlns:cp="http://www.agroseguro.es/Contratacion/CostePoliza"
+	xmlns:dv="http://www.agroseguro.es/Contratacion/DatosVariables"
+	xmlns:oprs="http://www.agroseguro.es/SeguroAgrario/Contratacion/OP/RelacionSocios"
+	xmlns:opcf="http://www.agroseguro.es/SeguroAgrario/Contratacion/OP/CostesFijos"
+	xmlns:parred="http://www.agroseguro.es/Contratacion/ParcelaReduccion"> 
+	
+		
+	<xs:import namespace="http://www.agroseguro.es/Contratacion/CostePoliza"
+		schemaLocation="CostePoliza.xsd" />
+
+    <xs:import namespace="http://www.agroseguro.es/Contratacion/DeclaracionSubvenciones"
+		schemaLocation="DeclaracionSubvenciones.xsd" />
+		
+	<xs:import namespace="http://www.agroseguro.es/Tipos"
+		schemaLocation="Tipos.xsd" />
+		
+ 	<xs:import namespace="http://www.agroseguro.es/Contratacion/DatosVariables"
+		schemaLocation="DatosVariables.xsd" />
+		
+	<xs:import namespace="http://www.agroseguro.es/SeguroAgrario/Contratacion/OP/RelacionSocios"
+		schemaLocation="RelacionSocios_OP.xsd" />
+	
+	<xs:import namespace="http://www.agroseguro.es/SeguroAgrario/Contratacion/OP/CostesFijos"
+		schemaLocation="CostesFijos_OP.xsd"	/>		
+	
+	<xs:import namespace="http://www.agroseguro.es/Contratacion"
+		schemaLocation="Contratacion.xsd" />
+
+	<xs:import namespace="http://www.agroseguro.es/Contratacion/ParcelaReduccion"
+		schemaLocation="ParcelaReduccion.xsd" />		
+		
+		
+	<xs:element name="PolizaReducciones" type="PolizaReducciones" />
+	
+	<xs:complexType name="PolizaReducciones">
+		<xs:sequence>
+			<xs:choice maxOccurs="1" minOccurs="1">
+				<xs:element name="Colectivo" type="con:Colectivo" maxOccurs="1" minOccurs="1" />
+				<xs:element name="Tomador" type="con:Tomador" maxOccurs="1" minOccurs="0" />
+			</xs:choice>
+			<xs:element name="Asegurado" type="con:Asegurado" maxOccurs="1" minOccurs="1" />
+			<xs:element name="Entidad" type="con:Entidad" maxOccurs="1" minOccurs="1" />
+			<xs:element name="Cobertura" type="con:Cobertura" maxOccurs="1" minOccurs="1" />
+			<xs:element name="ObjetosAsegurados" type="ObjetosAsegurados" maxOccurs="1" minOccurs="1" />
+			<xs:element name="Pago" type="con:Pago" maxOccurs="1" minOccurs="0" />
+			<xs:choice minOccurs="0" maxOccurs="1">
+				<xs:element name="CostePoliza" type="cp:CostePoliza" maxOccurs="1" minOccurs="1"/>
+				<xs:element name="DistribucionCoste" type="cp:DistribucionCoste" maxOccurs="1" minOccurs="1" />
+			</xs:choice>
+			<xs:element name="SubvencionesDeclaradas" type="ds:SubvencionesDeclaradas" maxOccurs="1" minOccurs="0" />
+			<xs:element name="RelacionSocios" type="ds:RelacionSocios" maxOccurs="1" minOccurs="0" />
+			<xs:element name="RelacionSociosOP" type="oprs:RelacionSociosOP" maxOccurs="1" minOccurs="0" />
+			<xs:element name="CostesFijosOP" type="opcf:CostesFijosOP" maxOccurs="1" minOccurs="0" />
+		</xs:sequence>
+		<xs:attributeGroup ref="ti:PlanLinea" />
+		<xs:attribute name="referencia" use="optional" type="ti:Poliza_Referencia_Unificada" />
+		<xs:attribute name="digitoControl" use="optional" type="ti:DigitoControl" />
+		<xs:attribute name="fechaFirmaSeguro" type="xs:date" use="required" />
+		<xs:attribute name="modalidadSeguro" type="ti:ModalidadSeguro" use="optional" />
+	</xs:complexType>
+						
+	<xs:complexType name="ObjetosAsegurados">
+		<xs:sequence>
+			<xs:element name="Parcela" minOccurs="1" maxOccurs="unbounded" type="parred:ParcelaReduccion"/>
+		</xs:sequence>
+	</xs:complexType>	
+</xs:schema>

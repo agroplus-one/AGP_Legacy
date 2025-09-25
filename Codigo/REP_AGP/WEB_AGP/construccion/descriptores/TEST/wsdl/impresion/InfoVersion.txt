@@ -1,0 +1,35 @@
+IMPRESIONSCPOLIZA
+-----------------
+
+DESCRIPCION DE LOS FICHEROS
+---------------------------
+
+- ImpresionSCPoliza.wsdl
+
+Descriptor del servicio Web que permite obtener en PDF la Póliza 
+en su situación original o actual.
+
+- Tipos.xsd
+
+Esquema que contiene las definiciones de tipos que se emplean en 
+los registros.
+
+
+VERSIONES
+---------
+1.0.0 : 11-01-2010. Versión inicial.
+
+1.0.1 : 10-03-2010. Alteraciones en los siguientes esquemas:
+
+- Tipos.xsd
+
+1.0.2 : 22-11-2010. Alteraciones en los siguientes esquemas:
+
+- Tipos.xsd
+
+Tipo Modulo_ConceptoPrincial pasa a tener minInclusive = 1.
+Valor mínimo 0 para TipoAlternativa, CicloCultivo, DenominacionOrigen, 
+Densidad, Destino, Edad, NumeroAniosDesdePoda, PracticaCultural, 
+SistemaConduccion, SistemaCultivo, SistemaProduccion, SitemaProteccion, 
+MarcoPlantacion, TipoPlantacion.
+Se quitan las anotaciones.

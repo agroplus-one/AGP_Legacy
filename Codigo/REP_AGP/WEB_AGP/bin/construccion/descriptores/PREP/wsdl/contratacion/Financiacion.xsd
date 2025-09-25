@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema targetNamespace="http://www.agroseguro.es/SeguroAgrario/Financiacion"
+	xmlns="http://www.agroseguro.es/SeguroAgrario/Financiacion"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:ti="http://www.agroseguro.es/Tipos"
+	version="1.0" 
+>
+
+	<xs:import
+		namespace="http://www.agroseguro.es/Tipos"
+		schemaLocation="Tipos.xsd" />
+
+	<xs:element name="Financiacion" type="Financiacion" />
+
+	<xs:complexType name="Financiacion">
+		<xs:sequence>
+			<xs:element name="Fraccionamiento" type="Fraccionamiento" minOccurs="0" maxOccurs="1" />
+			<xs:element name="FraccionamientoN" type="FraccionamientoN" minOccurs="0" maxOccurs="unbounded" />
+			<xs:element name="Periodo" type="Periodo" minOccurs="1" maxOccurs="unbounded" />
+		</xs:sequence>
+		<xs:attribute name="costeTomador" type="ti:ImportePositivo" use="required" />
+		<xs:attribute name="plan" type="ti:ImportePositivo" use="required" />
+		<xs:attribute name="linea" type="ti:ImportePositivo" use="required" />		
+		<xs:attribute name="modulo" type="ti:Cobertura_Modulo" use="optional" />
+		<xs:attribute name="periodoFraccionamiento" type="ti:ImportePositivo" use="optional" />
+		<xs:attribute name="pctCosteTomador" type="ti:ImportePositivo" use="optional" />
+		<xs:attribute name="importeCosteTomador" type="ti:ImportePositivo" use="optional"/>
+		<xs:attribute name="importeAval" type="ti:ImportePositivo" use="optional" />
+	</xs:complexType>
+
+	<xs:complexType name="Fraccionamiento">
+		<xs:sequence>
+			<xs:element name="Fraccionamiento1" type="DetalleFraccionamiento" minOccurs="1" maxOccurs="1" />
+			<xs:element name="Fraccionamiento2" type="DetalleFraccionamiento" minOccurs="1" maxOccurs="1" />
+			<xs:element name="Fraccionamiento3" type="DetalleFraccionamiento" minOccurs="0" maxOccurs="1" />
+			<xs:element name="Fraccionamiento4" type="DetalleFraccionamiento" minOccurs="0" maxOccurs="1" />
+		</xs:sequence>
+	</xs:complexType>
+	
+	<xs:complexType name="FraccionamientoN">
+		<xs:sequence>
+			<xs:element name="Fraccionamiento" type="DetalleFraccionamientoN" minOccurs="2" maxOccurs="unbounded" />
+		</xs:sequence>
+		<xs:attribute name="codigo" type="ti:PeriodoFraccionamiento" use="required" />
+	</xs:complexType>
+	
+	<xs:complexType name="DetalleFraccionamiento">
+		<xs:attribute name="importe" type="ti:ImportePositivo" use="required" />
+		<xs:attribute name="pctCosteTomador" type="ti:TantoPorCien" use="required" />
+	</xs:complexType>	
+	
+	<xs:complexType name="DetalleFraccionamientoN">
+		<xs:attribute name="numeroplazo" type="numero_plazo" use="required" />
+		<xs:attribute name="importe" type="ti:ImportePositivo" use="required" />
+		<xs:attribute name="pctCosteTomador" type="ti:TantoPorCien" use="required" />
+		<xs:attribute name="dias" type="ti:Codigo3" use="required" />
+	</xs:complexType>
+	
+	<xs:complexType name="Periodo">
+		<xs:sequence>
+			<xs:element name="Pago" type="Pago" minOccurs="1" maxOccurs="1" />
+			<xs:element name="DistribucionCoste" type="DistribucionCoste" minOccurs="1" maxOccurs="1" />
+		</xs:sequence>
+		<xs:attribute name="meses" type="ti:PeriodoFraccionamiento" use="optional" />
+		<xs:attribute name="codigoPeriodo" type="ti:PeriodoFraccionamiento" use="optional" />
+		<xs:attribute name="descripcion" type="Descipcion_Codigo" use="optional" />
+		<xs:attribute name="pctRecargoAval" type="ti:TantoPorCien" use="optional" />
+		<xs:attribute name="pctRecargoFraccionamiento" type="ti:TantoPorCien" use="required"/>
+		<xs:attribute name="aplicadoMinimoSAECA" type="xs:boolean" use="optional" /> 
+	</xs:complexType>
+	
+	<xs:complexType name="Pago">
+		<xs:attribute name="importe" type="ti:ImportePositivo" use="required" />		
+	</xs:complexType>
+	
+	<xs:complexType name="DistribucionCoste">
+		<xs:attribute name="recargoAval" type="ti:ImportePositivo" use="required" />
+		<xs:attribute name="recargoFraccionamiento" type="ti:ImportePositivo" use="required" />
+		<xs:attribute name="totalCosteTomador" type="ti:ImportePositivo" use="required"/>
+	</xs:complexType>
+	
+	<xs:simpleType name="numero_plazo">
+		<xs:restriction base="xs:int">
+			<xs:totalDigits value="2" />
+			<xs:minInclusive value="1" />			
+		</xs:restriction>
+	</xs:simpleType>
+	
+	<xs:simpleType name="Descipcion_Codigo">
+		<xs:restriction base="xs:string" />
+	</xs:simpleType>
+
+</xs:schema>

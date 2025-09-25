@@ -1,0 +1,845 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reporteSolicitudReduccionCapital" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="29" bottomMargin="29">
+	<property name="ireport.scriptlethandling" value="2"/>
+	<property name="ireport.encoding" value="UTF-8"/>
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="1158"/>
+	<import value="net.sf.jasperreports.engine.*"/>
+	<import value="java.util.*"/>
+	<import value="net.sf.jasperreports.engine.data.*"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA[""]]></defaultValueExpression>
+	</parameter>
+	<parameter name="DRIVER_MANAGER" class="java.sql.DriverManager" isForPrompting="false"/>
+	<parameter name="SUBREPORT_CONNECTION" class="java.sql.Connection" isForPrompting="false"/>
+	<parameter name="ID" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[select distinct
+    a.nombre a_nombre, a.apellido1 a_apellido1, a.apellido2 a_apellido2, a.nifcif a_nifcif,
+    l.nomlinea l_nombre, l.codplan l_codplan, l.codlinea l_codlinea,
+    p.referencia p_referencia, p.dc p_dc,
+    c.idcolectivo c_idcolectivo, c.dc c_dc,
+    rc.codmotivoriesgo rc_codmotivoriesgo, rc.motivo rc_motivo, rc.fechadanios rc_fechadanios,
+    t.ciftomador t_ciftomador, t.razonsocial t_razonsocial,
+    to_char(NVL(com.fecha_envio,sysdate),'DD "de" MONTH "de" YYYY', 'NLS_DATE_LANGUAGE = spanish') as FENVIO
+from tb_asegurados a, tb_lineas l, tb_tomadores t, tb_polizas p, tb_anexo_red rc left join TB_COMUNICACIONES com on com.idenvio = rc.idenvio, tb_colectivos c
+where rc.idpoliza = p.idpoliza
+    and p.idasegurado = a.id
+    and p.idcolectivo = c.id
+    and c.ciftomador = t.ciftomador
+    and p.lineaseguroid = l.lineaseguroid
+    and a.codentidad = t.codentidad
+and rc.id = $P{ID}]]>
+	</queryString>
+	<field name="A_NOMBRE" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="A_APELLIDO1" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="A_APELLIDO2" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="A_NIFCIF" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="L_NOMBRE" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="L_CODPLAN" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="L_CODLINEA" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="P_REFERENCIA" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="P_DC" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="C_IDCOLECTIVO" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="C_DC" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="RC_CODMOTIVORIESGO" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="RC_MOTIVO" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="RC_FECHADANIOS" class="java.sql.Timestamp">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="T_CIFTOMADOR" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="T_RAZONSOCIAL" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="FENVIO" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<variable name="REF_COLECTIVO" class="java.lang.String">
+		<variableExpression><![CDATA[$P{REPORT_PARAMETERS_MAP}.get("REF_COLECTIVO").toString()]]></variableExpression>
+	</variable>
+	<variable name="NUM_DECLARACION" class="java.lang.String">
+		<variableExpression><![CDATA[$P{REPORT_PARAMETERS_MAP}.get("NUM_DECLARACION").toString()]]></variableExpression>
+	</variable>
+	<variable name="IMAGE_PATH" class="java.lang.String">
+		<variableExpression><![CDATA["http://"
++
+$P{REPORT_PARAMETERS_MAP}.get("SERVER_HOST").toString()
++
+("" == $P{REPORT_PARAMETERS_MAP}.get("SERVER_PORT").toString() ? "" : ":" + $P{REPORT_PARAMETERS_MAP}.get("SERVER_PORT").toString())
++
+$P{REPORT_PARAMETERS_MAP}.get("CONTEXT_PATH").toString()
++
+$P{REPORT_PARAMETERS_MAP}.get("IMAGE_DIR").toString()]]></variableExpression>
+	</variable>
+	<variable name="FECHA" class="java.util.Date">
+		<variableExpression><![CDATA[new java.util.Date()]]></variableExpression>
+	</variable>
+	<variable name="MES_FECHA" class="java.lang.String">
+		<variableExpression><![CDATA[]]></variableExpression>
+	</variable>
+	<background>
+		<band height="784" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="250" width="555" height="143" forecolor="#E3DEDE"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None">
+					<font fontName="SansSerif" size="72" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[BORRADOR]]></text>
+			</staticText>
+		</band>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="64" splitType="Stretch">
+			<staticText>
+				<reportElement key="staticText-4" x="205" y="7" width="194" height="18"/>
+				<box>
+					<topPen lineWidth="0.25" lineStyle="Solid"/>
+					<leftPen lineWidth="0.25" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.25" lineStyle="Solid"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="9" isBold="false" pdfFontName="Courier-Bold"/>
+				</textElement>
+				<text><![CDATA[Solicitud de Reducción de Capital]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement key="textField" x="399" y="25" width="64" height="18"/>
+				<box leftPadding="3">
+					<leftPen lineWidth="0.25" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.25" lineStyle="Solid"/>
+					<rightPen lineWidth="0.25" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="9" isBold="false" pdfFontName="Courier-Bold"/>
+				</textElement>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{L_CODLINEA}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement key="textField" x="205" y="25" width="194" height="18"/>
+				<box leftPadding="3">
+					<topPen lineWidth="0.0" lineStyle="Solid"/>
+					<leftPen lineWidth="0.25" lineStyle="Solid" lineColor="#000033"/>
+					<bottomPen lineWidth="0.25" lineStyle="Solid"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000033"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="9" isBold="false" pdfFontName="Courier-Bold"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["De: "+$F{L_NOMBRE}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement key="staticText-53" x="399" y="7" width="64" height="18"/>
+				<box leftPadding="3">
+					<topPen lineWidth="0.25" lineStyle="Solid"/>
+					<leftPen lineWidth="0.25" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.25" lineStyle="Solid"/>
+					<rightPen lineWidth="0.25" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="9" isBold="false" pdfFontName="Courier-Bold"/>
+				</textElement>
+				<text><![CDATA[Código]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement key="textField-17" x="205" y="42" width="258" height="18"/>
+				<box leftPadding="3">
+					<topPen lineWidth="0.0" lineStyle="Solid"/>
+					<leftPen lineWidth="0.25" lineStyle="Solid" lineColor="#000033"/>
+					<bottomPen lineWidth="0.25" lineStyle="Solid"/>
+					<rightPen lineWidth="0.25" lineStyle="Solid" lineColor="#000033"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="9" isBold="false" pdfFontName="Courier-Bold"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["Plan: "+$F{L_CODPLAN}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="false">
+				<reportElement key="textField-29" x="474" y="50" width="45" height="9"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="6" pdfFontName="Courier"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["Página "+$V{PAGE_NUMBER}+" de"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report" isBlankWhenNull="false">
+				<reportElement key="textField-30" x="518" y="50" width="15" height="9"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="6" pdfFontName="Courier"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[""+$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="288" splitType="Stretch">
+			<rectangle>
+				<reportElement key="rectangle-1" x="4" y="169" width="541" height="50"/>
+				<graphicElement>
+					<pen lineWidth="0.25" lineStyle="Solid"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement key="staticText-26" x="4" y="108" width="67" height="16"/>
+				<box leftPadding="2"/>
+				<textElement textAlignment="Justified" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="6" isBold="false" pdfFontName="Courier"/>
+				</textElement>
+				<text><![CDATA[Ref. Aplic/Indiv.]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement key="textField-4" x="72" y="129" width="73" height="16"/>
+				<box leftPadding="3">
+					<topPen lineWidth="0.25" lineStyle="Solid"/>
+					<leftPen lineWidth="0.25" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.25" lineStyle="Solid"/>
+					<rightPen lineWidth="0.25" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="9" pdfFontName="Courier"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{C_IDCOLECTIVO}+($F{C_DC} == null ? "" : "-"+$F{C_DC})]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement key="staticText-9" x="5" y="1" width="388" height="19"/>
+				<textElement verticalAlignment="Bottom">
+					<font size="9" isBold="true" pdfFontName="Courier-Bold"/>
+				</textElement>
+				<text><![CDATA[I. DATOS DE IDENTIFICACIÓN DEL SEGURO CUYA MODIFICACIÓN SE SOLICITA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-54" x="4" y="22" width="541" height="11"/>
+				<box>
+					<topPen lineWidth="0.25" lineStyle="Solid"/>
+					<leftPen lineWidth="0.25" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.25" lineStyle="Solid"/>
+					<rightPen lineWidth="0.25" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8" isBold="false" pdfFontName="Courier-Bold"/>
+				</textElement>
+				<text><![CDATA[TOMADOR]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-55" x="4" y="33" width="430" height="12"/>
+				<box leftPadding="3">
+					<leftPen lineWidth="0.25" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="6" isBold="false" pdfFontName="Courier"/>
+				</textElement>
+				<text><![CDATA[APELLIDOS Y NOMBRES O DENOMINACIÓN SOCIAL]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-57" x="434" y="33" width="111" height="12"/>
+				<box leftPadding="3">
+					<leftPen lineWidth="0.25" lineStyle="Solid"/>
+					<rightPen lineWidth="0.25" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="6" isBold="false" pdfFontName="Courier"/>
+				</textElement>
+				<text><![CDATA[D.N.I. o C.I.F.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-59" x="4" y="64" width="541" height="11"/>
+				<box>
+					<topPen lineWidth="0.25" lineStyle="Solid"/>
+					<leftPen lineWidth="0.25" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.25" lineStyle="Solid"/>
+					<rightPen lineWidth="0.25" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8" isBold="false" pdfFontName="Courier-Bold"/>
+				</textElement>
+				<text><![CDATA[ASEGURADO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-60" x="4" y="75" width="143" height="12"/>
+				<box leftPadding="3">
+					<leftPen lineWidth="0.25" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="6" isBold="false" pdfFontName="Courier"/>
+				</textElement>
+				<text><![CDATA[1º APELLIDO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-62" x="434" y="75" width="111" height="12"/>
+				<box leftPadding="3">
+					<leftPen lineWidth="0.25" lineStyle="Solid"/>
+					<rightPen lineWidth="0.25" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="6" isBold="false" pdfFontName="Courier"/>
+				</textElement>
+				<text><![CDATA[D.N.I. o C.I.F.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-66" x="147" y="75" width="143" height="12"/>
+				<box leftPadding="3">
+					<leftPen lineWidth="0.25" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="6" isBold="false" pdfFontName="Courier"/>
+				</textElement>
+				<text><![CDATA[2º APELLIDO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-67" x="290" y="75" width="144" height="12"/>
+				<box leftPadding="3">
+					<leftPen lineWidth="0.25" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="6" isBold="false" pdfFontName="Courier"/>
+				</textElement>
+				<text><![CDATA[NOMBRE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-69" x="4" y="129" width="67" height="16"/>
+				<box leftPadding="2"/>
+				<textElement textAlignment="Justified" verticalAlignment="Middle">
+					<font size="6" isBold="false" pdfFontName="Courier"/>
+				</textElement>
+				<text><![CDATA[Ref. Colectivo]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement key="textField-19" x="72" y="108" width="73" height="16"/>
+				<box leftPadding="3">
+					<topPen lineWidth="0.25" lineStyle="Solid"/>
+					<leftPen lineWidth="0.25" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.25" lineStyle="Solid"/>
+					<rightPen lineWidth="0.25" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="9" pdfFontName="Courier"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{P_REFERENCIA}+ ($F{P_DC} == null ? "" : "-"+$F{P_DC})]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement key="staticText-70" x="4" y="149" width="388" height="19"/>
+				<textElement verticalAlignment="Bottom">
+					<font size="9" isBold="true" pdfFontName="Courier-Bold"/>
+				</textElement>
+				<text><![CDATA[II. MOTIVO DE LA SOLICITUD]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-71" x="13" y="178" width="71" height="10"/>
+				<textElement textAlignment="Center" verticalAlignment="Bottom">
+					<font size="6" isBold="false" pdfFontName="Courier"/>
+				</textElement>
+				<text><![CDATA[CAUSA DE LOS DAÑOS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-72" x="13" y="201" width="71" height="10"/>
+				<textElement textAlignment="Center" verticalAlignment="Bottom">
+					<font size="6" isBold="false" pdfFontName="Courier"/>
+				</textElement>
+				<text><![CDATA[FECHA DE LOS DAÑOS]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement key="textField-20" x="90" y="174" width="200" height="16"/>
+				<box leftPadding="3">
+					<topPen lineWidth="0.25" lineStyle="Solid"/>
+					<leftPen lineWidth="0.25" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.25" lineStyle="Solid"/>
+					<rightPen lineWidth="0.25" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="8" pdfFontName="Courier"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{RC_MOTIVO}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy" isBlankWhenNull="true">
+				<reportElement key="textField-21" x="90" y="198" width="55" height="16"/>
+				<box leftPadding="3">
+					<topPen lineWidth="0.25" lineStyle="Solid"/>
+					<leftPen lineWidth="0.25" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.25" lineStyle="Solid"/>
+					<rightPen lineWidth="0.25" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="8" pdfFontName="Courier"/>
+				</textElement>
+				<textFieldExpression class="java.util.Date"><![CDATA[$F{RC_FECHADANIOS}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement key="staticText-73" x="320" y="174" width="22" height="16"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="6" isBold="false" pdfFontName="Courier"/>
+				</textElement>
+				<text><![CDATA[Cód:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement key="textField-22" x="348" y="174" width="30" height="16"/>
+				<box leftPadding="3">
+					<topPen lineWidth="0.25" lineStyle="Solid"/>
+					<leftPen lineWidth="0.25" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.25" lineStyle="Solid"/>
+					<rightPen lineWidth="0.25" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="8" pdfFontName="Courier"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{RC_CODMOTIVORIESGO}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement key="staticText-74" x="4" y="228" width="541" height="19"/>
+				<textElement textAlignment="Left" verticalAlignment="Bottom">
+					<font size="9" isBold="true" pdfFontName="Courier-Bold"/>
+				</textElement>
+				<text><![CDATA[III. BIENES ASEGURADOS A LOS QUE AFECTA LA SOLICITUD DE REDUCCION DE CAPITAL]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-75" x="4" y="248" width="461" height="10"/>
+				<box>
+					<topPen lineWidth="0.25" lineStyle="Solid"/>
+					<leftPen lineWidth="0.25" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.25" lineStyle="Solid"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="6" isBold="false" pdfFontName="Courier-Bold"/>
+				</textElement>
+				<text><![CDATA[DATOS DE LA DECLARACION DEL SEGURO A LA QUE AFECTA LA REDUCCION DE CAPITAL SOLICITADA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-76" x="4" y="258" width="104" height="10"/>
+				<box>
+					<leftPen lineWidth="0.25" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.25" lineStyle="Solid"/>
+					<rightPen lineWidth="0.3" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="5" isBold="false" pdfFontName="Courier-Bold"/>
+				</textElement>
+				<text><![CDATA[CODIGOS IDENTIFICACION PARCELA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-77" x="465" y="268" width="80" height="20"/>
+				<box>
+					<leftPen lineWidth="0.25" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.25" lineStyle="Solid"/>
+					<rightPen lineWidth="0.25" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="4" isBold="false" pdfFontName="Courier"/>
+				</textElement>
+				<text><![CDATA[Prod. Existente tras
+los daños]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-78" x="4" y="268" width="16" height="20"/>
+				<box>
+					<leftPen lineWidth="0.25" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.25" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="4" isBold="false" pdfFontName="Courier"/>
+				</textElement>
+				<text><![CDATA[prov.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-79" x="20" y="268" width="20" height="20"/>
+				<box>
+					<leftPen lineWidth="0.25" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.25" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="4" isBold="false" pdfFontName="Courier"/>
+				</textElement>
+				<text><![CDATA[comar.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-80" x="40" y="268" width="30" height="20"/>
+				<box>
+					<leftPen lineWidth="0.25" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.25" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="4" isBold="false" pdfFontName="Courier"/>
+				</textElement>
+				<text><![CDATA[termino
+municipal]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-81" x="70" y="268" width="38" height="10"/>
+				<box>
+					<leftPen lineWidth="0.25" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.25" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="5" isBold="false" pdfFontName="Courier"/>
+				</textElement>
+				<text><![CDATA[PARCELA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-82" x="70" y="278" width="17" height="10"/>
+				<box>
+					<leftPen lineWidth="0.25" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.25" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="4" isBold="false" pdfFontName="Courier"/>
+				</textElement>
+				<text><![CDATA[hoja]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-83" x="86" y="278" width="22" height="10"/>
+				<box>
+					<leftPen lineWidth="0.25" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.25" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="4" isBold="false" pdfFontName="Courier"/>
+				</textElement>
+				<text><![CDATA[número]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-84" x="108" y="268" width="19" height="20"/>
+				<box>
+					<topPen lineWidth="0.25" lineStyle="Solid"/>
+					<leftPen lineWidth="0.25" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.25" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="4" isBold="false" pdfFontName="Courier"/>
+				</textElement>
+				<text><![CDATA[cultivo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-85" x="127" y="268" width="24" height="20"/>
+				<box>
+					<topPen lineWidth="0.25" lineStyle="Solid"/>
+					<leftPen lineWidth="0.25" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.25" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="4" isBold="false" pdfFontName="Courier"/>
+				</textElement>
+				<text><![CDATA[variedad]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-86" x="151" y="268" width="48" height="10"/>
+				<box>
+					<topPen lineWidth="0.25" lineStyle="Solid"/>
+					<leftPen lineWidth="0.25" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.25" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="5" isBold="false" pdfFontName="Courier"/>
+				</textElement>
+				<text><![CDATA[ID CATASTRAL]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-87" x="199" y="268" width="142" height="10"/>
+				<box>
+					<topPen lineWidth="0.25" lineStyle="Solid"/>
+					<leftPen lineWidth="0.25" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.25" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="5" isBold="false" pdfFontName="Courier"/>
+				</textElement>
+				<text><![CDATA[SIGPAC]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-88" x="151" y="278" width="24" height="10"/>
+				<box>
+					<leftPen lineWidth="0.25" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.25" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="4" isBold="false" pdfFontName="Courier"/>
+				</textElement>
+				<text><![CDATA[poligono]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-89" x="175" y="278" width="24" height="10"/>
+				<box>
+					<leftPen lineWidth="0.25" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.25" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="4" isBold="false" pdfFontName="Courier"/>
+				</textElement>
+				<text><![CDATA[parcela]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-90" x="199" y="278" width="15" height="10"/>
+				<box>
+					<leftPen lineWidth="0.25" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.25" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="4" isBold="false" pdfFontName="Courier"/>
+				</textElement>
+				<text><![CDATA[prov.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-91" x="213" y="278" width="22" height="10"/>
+				<box>
+					<leftPen lineWidth="0.25" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.25" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="4" isBold="false" pdfFontName="Courier"/>
+				</textElement>
+				<text><![CDATA[termino]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-92" x="234" y="278" width="24" height="10"/>
+				<box>
+					<leftPen lineWidth="0.25" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.25" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="4" isBold="false" pdfFontName="Courier"/>
+				</textElement>
+				<text><![CDATA[agregad]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-93" x="258" y="278" width="17" height="10"/>
+				<box>
+					<leftPen lineWidth="0.25" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.25" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="4" isBold="false" pdfFontName="Courier"/>
+				</textElement>
+				<text><![CDATA[zona]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-94" x="274" y="278" width="24" height="10"/>
+				<box>
+					<leftPen lineWidth="0.25" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.25" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="4" isBold="false" pdfFontName="Courier"/>
+				</textElement>
+				<text><![CDATA[poligono]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-95" x="297" y="278" width="23" height="10"/>
+				<box>
+					<leftPen lineWidth="0.25" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.25" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="4" isBold="false" pdfFontName="Courier"/>
+				</textElement>
+				<text><![CDATA[parcela]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-96" x="321" y="278" width="20" height="10"/>
+				<box>
+					<leftPen lineWidth="0.25" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.25" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="4" isBold="false" pdfFontName="Courier"/>
+				</textElement>
+				<text><![CDATA[recinto]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-97" x="341" y="268" width="20" height="20"/>
+				<box>
+					<topPen lineWidth="0.25" lineStyle="Solid"/>
+					<leftPen lineWidth="0.25" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.25" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="4" isBold="false" pdfFontName="Courier"/>
+				</textElement>
+				<text><![CDATA[Tipo
+Capital]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-98" x="361" y="268" width="41" height="20"/>
+				<box>
+					<topPen lineWidth="0.25" lineStyle="Solid"/>
+					<leftPen lineWidth="0.25" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.25" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="4" isBold="false" pdfFontName="Courier"/>
+				</textElement>
+				<text><![CDATA[Superficie]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-99" x="401" y="268" width="64" height="20"/>
+				<box>
+					<topPen lineWidth="0.25" lineStyle="Solid"/>
+					<leftPen lineWidth="0.25" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.25" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="4" isBold="false" pdfFontName="Courier"/>
+				</textElement>
+				<text><![CDATA[Prod. total Declarada
+en el seguro ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-100" x="465" y="248" width="80" height="20"/>
+				<box>
+					<topPen lineWidth="0.25" lineStyle="Solid"/>
+					<leftPen lineWidth="0.25" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.25" lineStyle="Solid"/>
+					<rightPen lineWidth="0.25" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="5" isBold="false" pdfFontName="Courier-Bold"/>
+				</textElement>
+				<text><![CDATA[SITUACION DE LA PARCELA
+TRAS LA REDUCCIÓN]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement key="textField-23" x="4" y="44" width="430" height="15"/>
+				<box leftPadding="3">
+					<leftPen lineWidth="0.25" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.25" lineStyle="Solid"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font size="9" isBold="false" pdfFontName="Courier"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{T_RAZONSOCIAL}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement key="textField-24" x="4" y="86" width="143" height="15"/>
+				<box leftPadding="3">
+					<leftPen lineWidth="0.25" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.25" lineStyle="Solid"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font size="9" pdfFontName="Courier"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{A_APELLIDO1}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement key="textField-25" x="147" y="86" width="143" height="15"/>
+				<box leftPadding="3">
+					<leftPen lineWidth="0.25" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.25" lineStyle="Solid"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font size="9" pdfFontName="Courier"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{A_APELLIDO2}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement key="textField-26" x="290" y="86" width="144" height="15"/>
+				<box leftPadding="3">
+					<leftPen lineWidth="0.25" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.25" lineStyle="Solid"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font size="9" pdfFontName="Courier"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{A_NOMBRE}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement key="textField-27" x="434" y="86" width="111" height="15"/>
+				<box leftPadding="3">
+					<leftPen lineWidth="0.25" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.25" lineStyle="Solid"/>
+					<rightPen lineWidth="0.25" lineStyle="Solid"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font size="9" pdfFontName="Courier"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{A_NIFCIF}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement key="textField-28" x="434" y="44" width="111" height="15"/>
+				<box leftPadding="3">
+					<leftPen lineWidth="0.25" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.25" lineStyle="Solid"/>
+					<rightPen lineWidth="0.25" lineStyle="Solid"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font size="9" pdfFontName="Courier"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{T_CIFTOMADOR}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="344" splitType="Stretch">
+			<subreport isUsingCache="false">
+				<reportElement key="subreport-1" x="4" y="0" width="541" height="340"/>
+				<subreportParameter name="ID">
+					<subreportParameterExpression><![CDATA[$P{ID}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression class="java.lang.String"><![CDATA["declaracionReduccionCapital_Parcelas.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="88" splitType="Stretch">
+			<staticText>
+				<reportElement key="staticText-30" x="3" y="1" width="547" height="27"/>
+				<textElement textAlignment="Justified" verticalAlignment="Top" lineSpacing="Single">
+					<font fontName="SansSerif" size="7" isBold="false" pdfFontName="Courier"/>
+				</textElement>
+				<text><![CDATA[El Asegurado o el Tomador en su nombre, declara que la presente solicitud se ajusta, en cuanto a la solicitud de reducción de capital solicitada, a las causas expresamente establecidas en las condiciones especiales que rigen el Seguro.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="244" y="32" width="14" height="10"/>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[a]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="258" y="32" width="120" height="10"/>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{FENVIO}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

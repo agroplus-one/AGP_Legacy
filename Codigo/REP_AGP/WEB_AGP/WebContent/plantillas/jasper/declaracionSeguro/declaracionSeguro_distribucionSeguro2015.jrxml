@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="declaracionSeguro_distribucionSeguro2015" pageWidth="555" pageHeight="802" whenNoDataType="AllSectionsNoDetail" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="2ef307f7-ebd9-4ec2-af4a-75a5c1e67654">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<subDataset name="dataset1" uuid="49fa60f7-81f9-4f40-a20f-20bdd9ea07ed"/>
+	<parameter name="ID" class="java.lang.Integer"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA[""]]></defaultValueExpression>
+	</parameter>
+	<parameter name="grupoNegocio1" class="java.math.BigDecimal"/>
+	<parameter name="isPagoFraccionado" class="java.lang.Boolean"/>
+	<parameter name="esGanado" class="java.lang.Boolean">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="subvCCAA2015" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[select c.PRIMACOMERCIAL,
+       					c.PRIMACOMERCIALNETA,
+       					c.RECARGOCONSORCIO,
+				        c.RECIBOPRIMA,
+				        c.COSTETOMADOR,
+				        nvl(c.RECARGOAVAL,0) as RECARGOAVAL,
+				        nvl(c.RECARGOFRACCIONAMIENTO,0) as RECARGOFRACCIONAMIENTO,
+				        c.TOTALCOSTETOMADOR,
+				        c.ID as "IDCOSTE",
+					c.IMPORTE_PAGO_FRACC,
+					c.IMPORTE_PAGO_FRACC_AGR,
+					g.descripcion
+  				from o02agpe0.tb_distribucion_costes_2015 c,
+				     o02agpe0.tb_sc_c_grupos_negocio g
+ 				where c.idpoliza = $P{ID}
+					and c.grupo_negocio = g.grupo_negocio
+					and (g.grupo_negocio = $P{grupoNegocio1})
+					order by g.grupo_negocio]]>
+	</queryString>
+	<field name="PRIMACOMERCIAL" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PRIMACOMERCIALNETA" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="RECARGOCONSORCIO" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="RECIBOPRIMA" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="COSTETOMADOR" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="RECARGOAVAL" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="RECARGOFRACCIONAMIENTO" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="TOTALCOSTETOMADOR" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="IDCOSTE" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="IMPORTE_PAGO_FRACC" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="IMPORTE_PAGO_FRACC_AGR" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="descripcion" class="java.lang.String"/>
+	<variable name="ROW_SUM_TCT" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{TOTALCOSTETOMADOR}]]></variableExpression>
+		<initialValueExpression><![CDATA[]]></initialValueExpression>
+	</variable>
+	<variable name="ROW_SUM_RAVAL" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{RECARGOAVAL}]]></variableExpression>
+		<initialValueExpression><![CDATA[]]></initialValueExpression>
+	</variable>
+	<variable name="ROW_SUM_RFRACC" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{RECARGOFRACCIONAMIENTO}]]></variableExpression>
+		<initialValueExpression><![CDATA[]]></initialValueExpression>
+	</variable>
+	<variable name="TCT_PAGAR" class="java.math.BigDecimal">
+		<variableExpression><![CDATA[$V{ROW_SUM_TCT}.add($V{ROW_SUM_RAVAL}).add($V{ROW_SUM_RFRACC})]]></variableExpression>
+	</variable>
+	<variable name="SHOW_FOOT" class="java.lang.Boolean" resetType="None">
+		<variableExpression><![CDATA[new Boolean(true)]]></variableExpression>
+		<initialValueExpression><![CDATA[]]></initialValueExpression>
+	</variable>
+	<variable name="SHOW_BACK" class="java.lang.Boolean" resetType="None">
+		<variableExpression><![CDATA[new Boolean(true)]]></variableExpression>
+		<initialValueExpression><![CDATA[]]></initialValueExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="172" splitType="Stretch">
+			<staticText>
+				<reportElement positionType="Float" x="0" y="19" width="193" height="15" uuid="c601c4b3-19a6-42a8-836b-42d411bc4ebe"/>
+				<box leftPadding="0"/>
+				<textElement verticalAlignment="Top">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Prima Comercial................................................:]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" pattern="#,##0.00¤" isBlankWhenNull="true">
+				<reportElement x="194" y="19" width="65" height="15" uuid="d9b3bc9a-98cc-4ba1-87a8-68071f8eb7ab"/>
+				<textElement textAlignment="Right">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{PRIMACOMERCIAL}]]></textFieldExpression>
+			</textField>
+			<subreport>
+				<reportElement positionType="Float" x="0" y="34" width="261" height="26" isRemoveLineWhenBlank="true" isPrintWhenDetailOverflows="true"/>
+				<subreportParameter name="IDCOSTE">
+					<subreportParameterExpression><![CDATA[$F{IDCOSTE}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<returnValue subreportVariable="SHOW_FOOT" toVariable="SHOW_FOOT"/>
+				<returnValue subreportVariable="SHOW_BACK" toVariable="SHOW_BACK"/>
+				<subreportExpression class="java.lang.String"><![CDATA[$P{SUBREPORT_DIR} + "declaracionSeguro_distribucionSeguro_bonifRecar2015.jasper"]]></subreportExpression>
+			</subreport>
+			<staticText>
+				<reportElement positionType="Float" x="0" y="60" width="193" height="15" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="2a05d293-1e4a-4269-b342-730bdab68122">
+					<printWhenExpression><![CDATA[new Boolean ($F{PRIMACOMERCIALNETA}!= null)]]></printWhenExpression>
+				</reportElement>
+				<textElement>
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Prima Comercial Neta........................................:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" x="0" y="75" width="193" height="15" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="f9c6018c-3a80-4b86-b3ae-cc9a5e1bb858">
+					<printWhenExpression><![CDATA[new Boolean ($F{RECARGOCONSORCIO}!= null)]]></printWhenExpression>
+				</reportElement>
+				<textElement>
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Recargo FLCCS.................................................:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" x="0" y="90" width="193" height="15" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="2d381f6d-d048-4d67-98a2-0cac4af27522"/>
+				<textElement>
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Recibo de Prima................................................:]]></text>
+			</staticText>
+			<textField pattern="#,##0.00¤" isBlankWhenNull="true">
+				<reportElement positionType="Float" x="194" y="60" width="65" height="15" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="86a4959d-c49f-4cb9-a8bf-c6a20d0eec97"/>
+				<textElement textAlignment="Right">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{PRIMACOMERCIALNETA}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00¤" isBlankWhenNull="true">
+				<reportElement positionType="Float" x="194" y="90" width="65" height="15" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="7e2e69d8-6f1a-43ee-9db0-6c53a240d51a"/>
+				<textElement textAlignment="Right">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{RECIBOPRIMA}]]></textFieldExpression>
+			</textField>
+			<subreport>
+				<reportElement positionType="Float" x="0" y="105" width="261" height="20" isRemoveLineWhenBlank="true" isPrintWhenDetailOverflows="true" uuid="37b79842-1626-467c-9908-522c672abdf5"/>
+				<subreportParameter name="IDCOSTE">
+					<subreportParameterExpression><![CDATA[$F{IDCOSTE}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<returnValue subreportVariable="SHOW_FOOT" toVariable="SHOW_FOOT"/>
+				<returnValue subreportVariable="SHOW_BACK" toVariable="SHOW_BACK"/>
+				<subreportExpression class="java.lang.String"><![CDATA[$P{SUBREPORT_DIR} + "declaracionSeguro_distribucionSeguro_subvENESA2015.jasper"]]></subreportExpression>
+			</subreport>
+			<subreport>
+				<reportElement positionType="Float" x="0" y="125" width="261" height="22" isRemoveLineWhenBlank="true" isPrintWhenDetailOverflows="true" uuid="8e7d080c-bf8d-41c4-935f-c9001bc497aa"/>
+				<subreportParameter name="IDCOSTE">
+					<subreportParameterExpression><![CDATA[$F{IDCOSTE}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<returnValue subreportVariable="SHOW_FOOT" toVariable="SHOW_FOOT"/>
+				<returnValue subreportVariable="SHOW_BACK" toVariable="SHOW_BACK"/>
+				<subreportExpression class="java.lang.String"><![CDATA[$P{SUBREPORT_DIR} + "declaracionSeguro_distribucionSeguro_subvCCAA2015.jasper"]]></subreportExpression>
+			</subreport>
+			<staticText>
+				<reportElement positionType="Float" x="0" y="149" width="193" height="15" isPrintWhenDetailOverflows="true" uuid="0115c24d-808a-4e61-aaaf-b3593e2cc930"/>
+				<textElement>
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Coste Tomador..................................................:]]></text>
+			</staticText>
+			<textField pattern="#,##0.00¤" isBlankWhenNull="true">
+				<reportElement positionType="Float" x="194" y="149" width="65" height="15" isPrintWhenDetailOverflows="true" uuid="e7e57427-57b6-4cd6-b6e0-f46b0fcc11de"/>
+				<textElement textAlignment="Right">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{COSTETOMADOR}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="#,##0.00¤" isBlankWhenNull="true">
+				<reportElement x="96" y="4" width="79" height="15" uuid="fa4073fc-5ad0-49e3-b75b-aebebf5b0bc2"/>
+				<textElement textAlignment="Center">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{descripcion}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00¤" isBlankWhenNull="true">
+				<reportElement positionType="Float" x="194" y="75" width="65" height="15" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="da669ad7-7b4f-43c6-a939-aeb938919996"/>
+				<textElement textAlignment="Right">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{RECARGOCONSORCIO}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

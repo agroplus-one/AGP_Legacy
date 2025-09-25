@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="declaracionSeguro_condicion4" pageWidth="555" pageHeight="700" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" isIgnorePagination="true">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<variable name="SHOW_FOOT" class="java.lang.String">
+		<variableExpression><![CDATA[new String("VACIO")]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="590" splitType="Stretch">
+			<staticText>
+				<reportElement x="11" y="10" width="527" height="20"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[     CAJA RURAL DE CASTILLA LA MANCHA	  	]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="11" y="30" width="527" height="20"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[     MEDIACIÓN OPERADOR DE  BANCA SEGUROS VINCULADO S.L.    ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="11" y="62" width="527" height="20"/>
+				<textElement textAlignment="Center">
+					<font size="10"/>
+				</textElement>
+				<text><![CDATA[Nota Informativa Previa a la celebración de un contrato de seguro.	             ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="11" y="93" width="527" height="21"/>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[CAJA RURAL DE CASTILLA LA MANCHA MEDIACIÓN OPERADOR DE BANCA SEGUROS VINCULADO, S.L., CIF B-45663614, con domicilio en C/ Méjico nº 2 Toledo, inscrita en el R.M. de Toledo, Tomo 1408, Folio 156, Hoja TO-27862, inscripción 1ª y en el Registro Administrativo Especial de la Dirección General de Seguros y Fondos de Pensiones con la Clave OV 0037, Registro Único de Mediadores  www.dgsfp.meh.es  dispone de seguro de responsabilidad civil y capacidad financiera exigida legalmente.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="11" y="127" width="527" height="15"/>
+				<textElement>
+					<font size="8" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[En cumplimiento de lo establecido en el art.42 de la Ley 26/2006 de Mediación de  Seguros y Reaseguros Privados  le informamos:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="11" y="152" width="527" height="46"/>
+				<textElement>
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Caja Rural de Castilla-La Mancha Mediación Operador de Banca Seguros Vinculado (en adelante OBS-V), no está contractualmente obligado a realizar actividades de mediación en seguros exclusivamente con una o varias Entidades Aseguradoras, ni tiene la obligación impuesta a los corredores de seguros de realizar un análisis objetivo. El Cliente tiene derecho a solicitar la relación de las Entidades Aseguradoras para las que el OBS-V está mediando el producto.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="11" y="211" width="527" height="32"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[En caso de queja o reclamación respecto a la actuación del OBS-V, el cliente podrá dirigirse a los Departamentos o Servicios de Atención al Cliente de las Entidades Aseguradoras colaboradoras. Asimismo, el cliente podrá formular reclamaciones por escrito ante El Servicio de Reclamaciones de la DGSFP del Ministerio de Economía y Hacienda Pº de la Castellana, 44. 28046 Madrid. Para la admisión y tramitación de estas reclamaciones, el cliente deberá acreditar que ha transcurrido el plazo de dos meses desde la fecha de la presentación de la reclamación ante el Departamento o Servicio de Atención al Cliente de la Entidad Aseguradora sin que haya sido resuelta o que haya sido denegada su admisión o desestimada su petición.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="11" y="260" width="527" height="60"/>
+				<textElement>
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Se informa que el asesoramiento prestado tiene como finalidad la contratación de un seguro, y no cualquier otro producto que pueda comercializar la entidad de crédito Caja Rural de Castilla-La Mancha, así como todas las actividades de mediación anexas a dicha contratación. Dichas actividades consisten en la presentación, propuesta o realización de trabajos previos a la celebración de un contrato de seguro o de reaseguro, o de celebración de estos contratos, así como la asistencia en la gestión y ejecución de dichos contratos, en particular en caso de siniestro. ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="11" y="320" width="527" height="47"/>
+				<textElement>
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[En cumplimiento de la normativa vigente sobre protección de datos de carácter personal y de la Ley 26/2006 de Mediación de Seguros y Reaseguros Privados, le informamos que los datos que nos proporciona serán recogidos en un fichero titularidad de la Entidad Aseguradora con la cual se realice el contrato de seguro. A tenor de lo dispuesto en la mencionada Ley 26/2006, el Operador de Banca Seguros Vinculado es considerada encargada del tratamiento de los datos recabados. ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="11" y="378" width="527" height="43"/>
+				<textElement>
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[El ejercicio de los derechos de acceso, rectificación, cancelación y oposición se podrán llevar a cabo en los términos legales mediante comunicación a Caja Rural de Castilla-La Mancha Mediación Operador de Banca Seguros Vinculado S.L. a la dirección c/ Méjico,2 45004 Toledo, dirigiéndose al Departamento de Atención al Cliente. Daremos traslado a la Entidad Aseguradora de su petición en el caso de que ya hubiera contratado un seguro con la misma.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="11" y="431" width="527" height="26"/>
+				<textElement>
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[En base a las informaciones facilitadas por el cliente, le hemos propuesto la contratación de un seguro ajustado a sus exigencias y necesidades.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="11" y="470" width="527" height="33"/>
+				<textElement>
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Con la firma del presente documento nos presta su consentimiento para el tratamiento de los datos de carácter personal, incluido cualquier dato de salud que sea necesario para la actividad de mediación que Caja Rural de Castilla-La Mancha Mediación Operador de Banca Seguros Vinculado  va a realizar.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="11" y="513" width="527" height="15"/>
+				<textElement>
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[En ………………………….. a …..…… de …………………….de 200……]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="11" y="541" width="55" height="14"/>
+				<textElement>
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Firma/recibí :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="11" y="570" width="235" height="20"/>
+				<textElement>
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[NOMBRE, APELLIDOS,DNI O DENOMINACIÓN SOCIAL, CIF.                                                                                                                     ]]></text>
+			</staticText>
+			<image>
+				<reportElement x="342" y="541" width="100" height="44"/>
+				<imageExpression class="java.lang.String"><![CDATA["./images/logo_cajaruraltoledo.JPG"]]></imageExpression>
+			</image>
+			<image>
+				<reportElement x="442" y="13" width="48" height="37"/>
+				<imageExpression class="java.lang.String"><![CDATA["./images/logo_rsi.JPG"]]></imageExpression>
+			</image>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

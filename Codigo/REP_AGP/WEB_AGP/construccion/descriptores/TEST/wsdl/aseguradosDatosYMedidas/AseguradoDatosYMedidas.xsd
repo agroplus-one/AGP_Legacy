@@ -1,0 +1,309 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<x:schema 
+	targetNamespace="http://www.agroseguro.es/SeguroAgrario/AseguradoDatosYMedidas"
+	xmlns="http://www.agroseguro.es/SeguroAgrario/AseguradoDatosYMedidas"
+	xmlns:pks="http://www.agroseguro.es/SeguroAgrario/AseguradoDatosYMedidas"
+	xmlns:x="http://www.w3.org/2001/XMLSchema"
+	xmlns:c="http://www.agroseguro.es/SeguroAgrario/Contratacion" 
+	xmlns:r="http://www.agroseguro.es/SeguroCreciente/Condicionado" 
+	xmlns:t="http://www.agroseguro.es/Tipos" 
+	xmlns:ti="http://www.agroseguro.es/SeguroCreciente/Condicionado/Tipos" >
+	
+	<!-- Importacion de la definición de contratación -->
+	<x:import 
+		namespace="http://www.agroseguro.es/SeguroAgrario/Contratacion" 
+		schemaLocation="ContratacionSeguroAgrario.xsd" />
+	<x:import 
+		namespace="http://www.agroseguro.es/SeguroCreciente/Condicionado" 
+		schemaLocation="Condicionado.xsd" />
+	<x:import 
+		namespace="http://www.agroseguro.es/SeguroCreciente/Condicionado/Tipos" 
+		schemaLocation="Condicionado_Tipos.xsd" />
+	<x:import
+		namespace="http://www.agroseguro.es/Tipos"
+		schemaLocation="Tipos.xsd" />
+
+	<x:element name="AseguradoDatosYMedidas" type="AseguradoDatosYMedidas" />
+	
+	<x:complexType name="AseguradoDatosYMedidas" >
+		<x:sequence>
+			<x:element name="DatosPersonales" type="DatosPersonales" />
+			<x:element name="Medidas" type="Medidas" minOccurs="0" />
+		</x:sequence>
+		<x:attribute name="mostrarProximasSubvenciones" type="x:boolean" use="optional" />
+		<x:attribute name="fechaEstudio" type="x:date" use="optional" />
+		<x:attributeGroup ref="t:PeticionSW" />
+	</x:complexType>
+		
+	<x:complexType name="DatosPersonales" >
+		<x:sequence>
+			<x:element name="Asegurado" type="c:Asegurado" minOccurs="0"/>
+			<x:element name="SeguridadSocial" maxOccurs="1" minOccurs="0" type="c:SeguridadSocial" />
+			<x:element name="RelacionSocios" type="c:RelacionSocios" maxOccurs="1" minOccurs="0" >
+				<x:key name="Socio_PK">
+					<x:selector xpath="c:Socio" />
+					<x:field xpath="@numero" />
+				</x:key>
+			</x:element>
+			<x:element name="AseguradoNoSubvencionable" type="AseguradoNoSubvencionable" minOccurs="0" />
+			<x:element name="ControlAccesoSubvenciones" type="ControlAccesoSubvenciones" minOccurs="0" maxOccurs="1" >
+				<x:key name="pk_organismo">
+					<x:selector xpath="pks:Organismo" />
+					<x:field xpath="@organismo" />
+				</x:key>
+			</x:element>
+			<x:element name="ProximoControlAccesoSubvenciones" type="ProximoControlAccesoSubvenciones" minOccurs="0" maxOccurs="1" >
+				<x:key name="pk_proximoorganismo">
+					<x:selector xpath="pks:ProximoOrganismo" />
+					<x:field xpath="@organismo" />
+				</x:key>
+			</x:element>	
+		</x:sequence>
+		<x:attribute name="nif" type="t:NIFCIF" use="required" />
+	</x:complexType>
+	
+	<x:complexType name="AseguradoNoSubvencionable" >
+		<x:sequence>
+			<x:element name="SentenciaJudicial" type="SentenciaJudicial" minOccurs="0" maxOccurs="unbounded"/>
+		</x:sequence>
+		<x:attribute name="EntePublico" type="t:SiNo" />
+	</x:complexType>
+ 
+	<x:complexType name="SentenciaJudicial" >
+		<x:attribute name="Organismo" type="ti:CodigoOrganismo" use="required" />
+		<x:attribute name="FechaEfectoSentencia" type="x:date" use="required" />
+		<x:attribute name="FechaFinSentencia" type="x:date" use="required" />			
+	</x:complexType>
+	
+	<x:complexType name="Medidas" >
+		<x:sequence>
+			<x:element name="Modulo" type="Modulo" minOccurs="0" maxOccurs="unbounded" />
+			<x:element name="MedidasClub" type="MedidasClub" minOccurs="0" maxOccurs="unbounded" />
+			<x:element name="PorcentajeModulacionENESA" type="PorcentajeModulacionENESA" minOccurs="0" maxOccurs="1" />
+		</x:sequence>
+		<x:attributeGroup ref="t:PlanLinea" />
+	</x:complexType>
+	
+	<x:complexType name="Modulo" >
+		<x:sequence>
+			<x:element name="RenovacionENESA" type="AseguradosSubvencionAdicionalRenovacionContratacionEnesa" minOccurs="0" maxOccurs="unbounded" />
+			<x:element name="AutorizacionContratacion" type="AseguradosAutorizacionContratacion" minOccurs="0" maxOccurs="unbounded" />
+			<x:element name="MedidasFranquicia" type="MedidasFranquicia" minOccurs="0" maxOccurs="unbounded" />
+			<x:element name="BonificacionPorRenovacion" type="BonificacionPorRenovacion" minOccurs="0" maxOccurs="unbounded" />
+		</x:sequence>
+		<x:attribute name="modulo" type="ti:Modulo" /> 
+	</x:complexType>	
+
+	<x:complexType name="AseguradosSubvencionAdicionalRenovacionContratacionEnesa" >
+		<!-- tabla 12 -->
+		<x:attribute name="rendimientoIndividualizado" type="ti:TipoRendimiento" use="optional" />
+		<x:attribute name="garantizado" type="ti:Garantizado" use="optional" />    	
+		<x:attribute name="aniosContratacion" use="required" >
+			<x:simpleType>
+				<x:restriction base="x:decimal">
+					<x:totalDigits value="1" />
+					<x:fractionDigits value="0" />
+					<x:pattern value="[12]"> 
+						<x:annotation>
+							<x:documentation>
+								1: Contratación el año anterior
+								2: Contratación en 2 años anteriores
+							</x:documentation>
+						</x:annotation>
+					</x:pattern>
+				</x:restriction>
+			</x:simpleType>
+		</x:attribute>
+		<x:attribute name="provincia" type="ti:Provincia" use="required" />    	
+	</x:complexType>  
+
+	<x:complexType name="MedidasClub" >
+		<!-- tabla 18 -->	
+		<x:sequence>
+			<x:element name="AplicacionMedida" type="AplicacionMedida" minOccurs="0" maxOccurs="unbounded" />
+		</x:sequence>
+		<x:attribute name="grupoNegocio" type="t:GrupoNegocio" use="optional" />
+		<x:attribute name="especie" type="t:Especie" use="optional" />
+		<x:attribute name="especieDeducible" type="t:Especie" use="optional" />
+		<x:attribute name="grupoMedidaClub" type="ti:GrupoMedida" use="required" />
+		<x:attribute name="tipoMedidaClub" type="ti:TipoMedidaClub" use="required" />
+		<x:attribute name="bonificacionRecargo" type="ti:Porcentaje" use="required" />     	
+		<x:attribute name="aplicacionRendimientos" use="optional" >
+			<x:simpleType>
+				<x:restriction base="x:token">
+					<x:length value="1" />
+					<x:enumeration value="1" />
+					<x:enumeration value="2" />
+				</x:restriction>
+			</x:simpleType>
+		</x:attribute>
+		<x:attribute name="coeficienteRendimientosMaximoAsegurado" type="ti:Coeficiente" use="optional" />
+		<x:attribute name="tablaRendimientos" use="optional" >
+			<x:simpleType>
+				<x:restriction base="x:decimal">
+					<x:totalDigits value="2" />
+					<x:fractionDigits value="0" />
+					<x:enumeration value="0" />					
+					<x:enumeration value="1" />
+					<x:enumeration value="2" />
+				</x:restriction>
+			</x:simpleType>
+		</x:attribute>
+	</x:complexType>
+
+	<x:complexType name="AseguradosAutorizacionContratacion" >
+		<!-- tabla 19 -->
+		<x:sequence>
+			<x:element name="CondicionCobertura" minOccurs="0" maxOccurs="1">
+				<x:complexType>
+					<x:sequence>
+						<x:element name="Garantizado" minOccurs="0" maxOccurs="1" >
+							<x:complexType>
+								<x:attributeGroup ref="r:FactorRiesgoCubierto" />
+								<x:attribute name="valor" type="ti:Garantizado" use="required" />	
+							</x:complexType>
+						</x:element>	
+	
+						<x:element name="FechaFinGarantias" minOccurs="0" maxOccurs="1" >
+							<x:complexType>
+								<x:attributeGroup ref="r:FactorRiesgoCubierto" />
+								<x:attribute name="valor" type="x:date" use="required" />
+							</x:complexType>
+						</x:element>
+						
+						<x:element name="RiesgoCubiertoElegido" minOccurs="0" maxOccurs="1" >
+							<x:complexType>
+								<x:attributeGroup ref="r:FactorRiesgoCubierto" />
+								<x:attribute name="valor" type="ti:RiesgoCubiertoElegido" use="required" />
+							</x:complexType>
+						</x:element>
+					</x:sequence>
+				</x:complexType>
+			</x:element>
+		</x:sequence>
+
+		<x:attributeGroup ref="r:EspecieAgricola" />
+
+		<x:attribute name="nivelRiesgo" type="ti:NivelRiesgo" use="optional" />     	
+		<x:attribute name="coeficienteRendimientos" type="ti:Coeficiente" use="optional" />
+		<x:attribute name="rendimientoPermitido" type="ti:RendimientoPermitido" use="optional" />
+		<x:attribute name="provincia" type="ti:Provincia" use="optional" />				    	
+		<x:attribute name="grupoVarietal" type="t:Entero3Posiciones" use="optional" />				    	
+		<x:attribute name="tipoMarcoPlantacion" type="t:MarcoPlantacion" use="optional" />		
+		<x:attribute name="caracteristicaExplotacion" type="t:CaracteristicasExplotacion" use="optional" />		
+		<x:attribute name="revisionRendimientos" type="t:SiNo" use="optional" />		
+	</x:complexType>
+
+	<x:complexType name="MedidasFranquicia">
+		<!-- tabla 134 -->
+		<x:attribute name="cultivo" type="ti:Cultivo" use="required" />
+		<x:attribute name="conceptoPrincipalModulo" type="ti:ConceptoPrincipalModulo" use="required" />    	
+		<x:attribute name="codigoRiesgoCubierto" type="ti:CodigoRiesgosCubiertos" use="required" />
+		<x:attribute name="riesgoCubiertoElegido" type="ti:RiesgoCubiertoElegido" use="required" />
+		<x:attribute name="franquicia" type="ti:Franquicia" use="required" />
+	</x:complexType>	
+
+	<x:complexType name="BonificacionPorRenovacion">
+		<!-- tabla 138 -->
+		<x:attribute name="porcentaje" type="ti:Porcentaje" use="required" />
+	</x:complexType>
+	
+	<x:complexType name="PorcentajeModulacionENESA">
+		<x:attribute name="limiteSubvencion" type="t:LimiteSubv" use="required" />
+		<x:attribute name="porcentajeModulacion" type="t:TantoPorCien" use="required" /> 
+		<x:attribute name="coeficienteModulacion" type="t:CoeficienteModulacion" use="required" />
+		<x:attribute name="generico" type="t:SN" use="optional"/>
+	</x:complexType>
+	
+	<x:complexType name="ControlAccesoSubvenciones">
+		<x:sequence>			
+			<x:element name="Organismo" type="Organismo" maxOccurs="unbounded" minOccurs="1" />
+		</x:sequence>
+	</x:complexType>
+	
+	<x:complexType name="Organismo">
+		<x:sequence>			
+			<x:element name="Subvencion" type="Subvencion" maxOccurs="unbounded" minOccurs="0" />
+		</x:sequence>
+		<x:attribute name="organismo" type="t:Organismo_Codigo" use="required" />
+		<x:attribute name="descriptivoOrganismo" type="t:Observaciones" use="required" />
+		<x:attribute name="ejercicio" type="t:Plan" use="optional" />
+		<x:attribute name="infoAdicional" type="t:Observaciones" use="optional" />
+	</x:complexType>
+	
+	<x:complexType name="Subvencion">
+		<x:attribute name="tipo" type="ti:TipoSubvencion" use="required" />
+		<x:attribute name="descriptivoSubvencion" type="t:Observaciones" use="required" /> 
+		<x:attribute name="plan" type="t:Plan" use="optional" />
+		<x:attribute name="codigoGrupoSeguro" type="t:CodigoGrupoSeguro" use="optional" />
+		<x:attribute name="descriptivoGrupoSeguro" type="t:Observaciones" use="optional" />
+		<x:attribute name="permitida" type="t:SiNo" use="optional" />
+		<x:attribute name="infoAdicional" type="t:Observaciones" use="optional" />
+	</x:complexType>
+
+	<x:complexType name="ProximoControlAccesoSubvenciones">
+		<x:sequence>			
+			<x:element name="Organismo" type="ProximoOrganismo" maxOccurs="unbounded" minOccurs="1" />
+		</x:sequence>
+	</x:complexType>
+
+	<x:complexType name="ProximoOrganismo">
+		<x:sequence>			
+			<x:element name="Subvencion" type="ProximoSubvencion" maxOccurs="unbounded" minOccurs="0" />
+		</x:sequence>
+		<x:attribute name="organismo" type="t:Organismo_Codigo" use="required" />
+		<x:attribute name="descriptivoOrganismo" type="t:Observaciones" use="required" />
+		<x:attribute name="fechaEfecto" type="x:date" use="required" />
+		<x:attribute name="ejercicio" type="t:Plan" use="optional" />
+		<x:attribute name="infoAdicional" type="t:Observaciones" use="optional" />
+	</x:complexType>
+
+	<x:complexType name="ProximoSubvencion">
+		<x:attribute name="tipo" type="ti:TipoSubvencion" use="required" />
+		<x:attribute name="descriptivoSubvencion" type="t:Observaciones" use="required" /> 
+		<x:attribute name="fechaEfecto" type="x:date" use="required" />
+		<x:attribute name="plan" type="t:Plan" use="optional" />
+		<x:attribute name="codigoGrupoSeguro" type="t:CodigoGrupoSeguro" use="optional" />
+		<x:attribute name="descriptivoGrupoSeguro" type="t:Observaciones" use="optional" />
+		<x:attribute name="permitida" type="t:SiNo" use="optional" />
+		<x:attribute name="infoAdicional" type="t:Observaciones" use="optional" />
+	</x:complexType>
+	
+	<x:complexType name="AplicacionMedida" >
+		<x:sequence>
+			<x:element name="AmbitoAplicacion" type="AmbitoAplicacion" minOccurs="0" maxOccurs="unbounded" />
+		</x:sequence>
+		<x:attribute name="observacion" type="x:string" use="required" /> 
+		<x:attribute name="fechaLimitePago" type="x:date" use="required" />
+	</x:complexType>
+	
+	<x:complexType name="AmbitoAplicacion" >
+		<x:sequence>
+			<x:element name="Provincia" type="Provincia" minOccurs="1" maxOccurs="1" />
+			<x:element name="Comarca" type="Comarca" minOccurs="0" maxOccurs="1" />
+			<x:element name="Termino" type="Termino" minOccurs="0" maxOccurs="1" />
+			<x:element name="Subtermino" type="Subtermino" minOccurs="0" maxOccurs="1" />
+		</x:sequence>
+	</x:complexType>
+	
+	<x:complexType name="Provincia" >
+		<x:attribute name="codigo" type="t:Provincia_Codigo" use="required" />
+		<x:attribute name="descriptivo" type="t:Provincia_Descripcion" use="required" />			
+	</x:complexType>
+	
+	<x:complexType name="Comarca" >
+		<x:attribute name="codigo" type="t:Comarca_Codigo" use="required" />
+		<x:attribute name="descriptivo" type="t:Observaciones" use="required" />			
+	</x:complexType>
+	
+	<x:complexType name="Termino" >
+		<x:attribute name="codigo" type="t:Termino_Codigo" use="required" />
+		<x:attribute name="descriptivo" type="t:Observaciones" use="required" />			
+	</x:complexType>
+	
+	<x:complexType name="Subtermino" >
+		<x:attribute name="codigo" type="t:Subtermino_Codigo" use="required" />
+		<x:attribute name="descriptivo" type="t:Observaciones" use="required" />			
+	</x:complexType>
+	
+</x:schema>

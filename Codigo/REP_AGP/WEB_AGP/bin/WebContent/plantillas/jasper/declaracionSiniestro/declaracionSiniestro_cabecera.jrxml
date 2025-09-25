@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="declaracionSeguro_cabecera" pageWidth="555" pageHeight="802" whenNoDataType="AllSectionsNoDetail" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="ID" class="java.lang.Integer"/>
+	<queryString>
+		<![CDATA[SELECT DISTINCT (LI.CODLINEA ||'     '||LI.NOMLINEA) AS LINEA,
+       LI.CODPLAN,
+       PO.REFERENCIA,
+       (CO.IDCOLECTIVO ||'-'||CO.DC) AS REFCOLECTIVO
+FROM TB_POLIZAS PO, TB_LINEAS LI, TB_COLECTIVOS CO
+WHERE CO.LINEASEGUROID = LI.LINEASEGUROID
+AND CO.ID = PO.IDCOLECTIVO
+AND PO.IDPOLIZA = $P{ID}]]>
+	</queryString>
+	<field name="LINEA" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CODPLAN" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="REFERENCIA" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="REFCOLECTIVO" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="55" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="30" width="77" height="15"/>
+				<textElement>
+					<font size="7" isBold="true" pdfFontName="Courier-Bold"/>
+				</textElement>
+				<text><![CDATA[Ref. Colectivo:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="202" y="0" width="50" height="15"/>
+				<textElement>
+					<font size="7" isBold="true" pdfFontName="Courier-Bold"/>
+				</textElement>
+				<text><![CDATA[Linea:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="181" y="30" width="71" height="15"/>
+				<textElement>
+					<font size="7" isBold="true" pdfFontName="Courier-Bold"/>
+				</textElement>
+				<text><![CDATA[Declaración:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="202" y="15" width="50" height="15"/>
+				<textElement>
+					<font size="7" isBold="true" pdfFontName="Courier-Bold"/>
+				</textElement>
+				<text><![CDATA[Plan:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="77" y="30" width="104" height="15"/>
+				<textElement>
+					<font size="7" pdfFontName="Courier"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{REFCOLECTIVO}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="252" y="30" width="100" height="15"/>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{REFERENCIA}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="252" y="0" width="275" height="15"/>
+				<textElement>
+					<font size="7" pdfFontName="Courier"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{LINEA}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="252" y="15" width="275" height="15"/>
+				<textElement>
+					<font size="7" pdfFontName="Courier"/>
+				</textElement>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{CODPLAN}]]></textFieldExpression>
+			</textField>			
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

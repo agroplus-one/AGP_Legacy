@@ -1,0 +1,639 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="declaracionSeguro_datosPago" pageWidth="555" pageHeight="802" whenNoDataType="AllSectionsNoDetail" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="ID" class="java.lang.Integer"/>
+	<parameter name="tipoPago" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT DISTINCT DECODE(FORMAPAGO, 'C', 'COMPLETO', 'FRACCIONADO') AS FORMAPAGO,
+                (SELECT ph.FECHA_PAGO
+                   FROM o02agpe0.TB_POLIZAS ph
+                  WHERE ph.IDPOLIZA = PO.IDPOLIZA) AS FECHAENVIO,
+                PP.IMPORTE,
+                DECODE(EN.CODENTIDAD, NULL, '', EN.CODENTIDAD || ' - ' || EN.NOMENTIDAD) AS NOMENTIDAD,
+                DECODE(PP.DOMICILIADO, 'S', 'SI', 'NO') AS DOMICILIADO,
+                NVL(PP.IBAN, '    ') ||
+                NVL(PP.CCCBANCO, '                    ') AS IBAN,
+                PP.ENVIO_IBAN_AGRO AS ENVIO_IBAN_AGRO,
+                DECODE(PP.DEST_DOMICILIACION,
+                       'A',
+                       DECODE(A.TIPOIDENTIFICACION,
+                              'NIF',
+                              NVL(A.NOMBRE, '') || ' ' ||
+                              NVL(A.APELLIDO1, '') || ' ' ||
+                              NVL(A.APELLIDO2, ''),
+                              'CIF',
+                              NVL(A.RAZONSOCIAL, '')),
+                       'T',
+                       NVL(T.RAZONSOCIAL, ''),
+                       'O',
+                       NVL(PP.TITULAR_CUENTA, ''),
+                       '') AS TITULAR,
+                DA.NUMERO_AVAL AS NUMERO_AVAL,
+                DA.IMPORTE_AVAL AS IMPORTE_AVAL,
+                (SELECT DBG.DESCRIPCION
+                   FROM o02agpe0.TB_SC_C_DATOS_BUZON_GENERAL DBG,
+                        o02agpe0.TB_DISTRIBUCION_COSTES_2015 DC
+                  WHERE DBG.CODCPTO = 1018
+                    AND DBG.VALOR_CPTO = DC.PERIODO_FRACC
+                    AND PO.IDPOLIZA = DC.IDPOLIZA) AS PERIODO
+  FROM o02agpe0.TB_PAGOS_POLIZA       PP,
+       o02agpe0.TB_POLIZAS            PO,
+       o02agpe0.TB_ENTIDADES          EN,
+       o02agpe0.TB_DATOS_AVAL_POLIZAS DA,
+       o02agpe0.TB_ASEGURADOS         A,
+       o02agpe0.TB_COLECTIVOS         C,
+       o02agpe0.TB_TOMADORES          T
+ WHERE SUBSTR(PP.CCCBANCO, 1, 4) = EN.CODENTIDAD(+)
+   AND PO.IDPOLIZA = $P{ID}
+   AND PP.IDPOLIZA = PO.IDPOLIZA
+   AND PP.IDPOLIZA = DA.IDPOLIZA(+)
+   AND PO.IDASEGURADO = A.ID
+   AND PO.IDCOLECTIVO = C.ID
+   AND T.CIFTOMADOR = C.CIFTOMADOR
+   AND T.CODENTIDAD = C.CODENTIDAD]]>
+	</queryString>
+	<field name="FORMAPAGO" class="java.lang.String"/>
+	<field name="FECHAENVIO" class="java.sql.Timestamp"/>
+	<field name="IMPORTE" class="java.math.BigDecimal"/>
+	<field name="NOMENTIDAD" class="java.lang.String"/>
+	<field name="DOMICILIADO" class="java.lang.String"/>
+	<field name="IBAN" class="java.lang.String"/>
+	<field name="ENVIO_IBAN_AGRO" class="java.lang.String"/>
+	<field name="TITULAR" class="java.lang.String"/>
+	<field name="NUMERO_AVAL" class="java.lang.String"/>
+	<field name="PERIODO" class="java.lang.String"/>
+	<field name="IMPORTE_AVAL" class="java.math.BigDecimal"/>
+	<variable name="SHOW_FOOT" class="java.lang.Boolean" resetType="None">
+		<variableExpression><![CDATA[new Boolean(true)]]></variableExpression>
+		<initialValueExpression><![CDATA[]]></initialValueExpression>
+	</variable>
+	<variable name="SHOW_BACK" class="java.lang.Boolean" resetType="None">
+		<variableExpression><![CDATA[new Boolean(true)]]></variableExpression>
+		<initialValueExpression><![CDATA[]]></initialValueExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="240" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="240" height="15"/>
+				<textElement>
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DATOS DE PAGO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="8" y="15" width="110" height="15"/>
+				<textElement>
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Forma de pago...............:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="8" y="45" width="110" height="15"/>
+				<textElement>
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fecha de transferencia..:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="8" y="60" width="110" height="15"/>
+				<textElement>
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Importe abonado............:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="8" y="75" width="110" height="15"/>
+				<textElement>
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Banco..............................:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="105" width="530" height="30"/>
+				<textElement textAlignment="Justified">
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[Los presentes datos son facilitados por la Entidad Aseguradora y el Tomador bajo su exclusiva responsabilidad de veracidad. Su simple consignación en la póliza no supone en ningún caso ni su aceptación ni su convalidación por Agroseguro, quedando dichos datos sujetos a posterior comprobación. Conocida con posterioridad la existencia de cualquier inexactitud, Agroseguro podrá ejercitar todas aquellas acciones que legalmente correspondan.]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement isPrintRepeatedValues="false" x="118" y="15" width="122" height="15"/>
+				<textElement textAlignment="Left">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{FORMAPAGO}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy" isBlankWhenNull="true">
+				<reportElement isPrintRepeatedValues="false" x="118" y="45" width="122" height="15"/>
+				<textElement textAlignment="Left">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.sql.Timestamp"><![CDATA[$F{FECHAENVIO}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00¤" isBlankWhenNull="true">
+				<reportElement isPrintRepeatedValues="false" x="118" y="60" width="110" height="15"/>
+				<textElement textAlignment="Left">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{IMPORTE}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement isPrintRepeatedValues="false" x="118" y="75" width="185" height="15"/>
+				<textElement textAlignment="Left">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{NOMENTIDAD}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="8" y="30" width="110" height="15"/>
+				<textElement>
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Domiciliación..................:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement isPrintRepeatedValues="false" x="118" y="30" width="122" height="15"/>
+				<textElement textAlignment="Left">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{DOMICILIADO}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement isPrintRepeatedValues="false" x="118" y="90" width="185" height="15"/>
+				<textElement textAlignment="Left">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{tipoPago}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="8" y="90" width="110" height="15"/>
+				<textElement>
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Forma de pago Cliente..:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="178" width="530" height="30">
+					<printWhenExpression><![CDATA[Boolean.valueOf($F{ENVIO_IBAN_AGRO}.equals("S"))]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Justified">
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[Nº cuenta IBAN para el cobro del importe de las siguientes fracciones, en caso de elegir fraccionamiento del pago de la prima, así como el pago de los posibles siniestros]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="4" y="142" width="523" height="15">
+					<printWhenExpression><![CDATA[Boolean.valueOf($F{ENVIO_IBAN_AGRO}.equals("S"))]]></printWhenExpression>
+				</reportElement>
+			</rectangle>
+			<staticText>
+				<reportElement x="10" y="144" width="127" height="15">
+					<printWhenExpression><![CDATA[Boolean.valueOf($F{ENVIO_IBAN_AGRO}.equals("S"))]]></printWhenExpression>
+				</reportElement>
+				<textElement>
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CÓDIGO IBAN DE LA CUENTA]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="4" y="157" width="22" height="15">
+					<printWhenExpression><![CDATA[Boolean.valueOf($F{ENVIO_IBAN_AGRO}.equals("S"))]]></printWhenExpression>
+				</reportElement>
+			</rectangle>
+			<rectangle>
+				<reportElement x="26" y="157" width="22" height="15">
+					<printWhenExpression><![CDATA[Boolean.valueOf($F{ENVIO_IBAN_AGRO}.equals("S"))]]></printWhenExpression>
+				</reportElement>
+			</rectangle>
+			<rectangle>
+				<reportElement x="48" y="157" width="22" height="15">
+					<printWhenExpression><![CDATA[Boolean.valueOf($F{ENVIO_IBAN_AGRO}.equals("S"))]]></printWhenExpression>
+				</reportElement>
+			</rectangle>
+			<rectangle>
+				<reportElement x="70" y="157" width="22" height="15">
+					<printWhenExpression><![CDATA[Boolean.valueOf($F{ENVIO_IBAN_AGRO}.equals("S"))]]></printWhenExpression>
+				</reportElement>
+			</rectangle>
+			<rectangle>
+				<reportElement x="92" y="157" width="22" height="15">
+					<printWhenExpression><![CDATA[Boolean.valueOf($F{ENVIO_IBAN_AGRO}.equals("S"))]]></printWhenExpression>
+				</reportElement>
+			</rectangle>
+			<rectangle>
+				<reportElement x="114" y="157" width="22" height="15">
+					<printWhenExpression><![CDATA[Boolean.valueOf($F{ENVIO_IBAN_AGRO}.equals("S"))]]></printWhenExpression>
+				</reportElement>
+			</rectangle>
+			<rectangle>
+				<reportElement x="136" y="157" width="22" height="15">
+					<printWhenExpression><![CDATA[Boolean.valueOf($F{ENVIO_IBAN_AGRO}.equals("S"))]]></printWhenExpression>
+				</reportElement>
+			</rectangle>
+			<rectangle>
+				<reportElement x="158" y="157" width="22" height="15">
+					<printWhenExpression><![CDATA[Boolean.valueOf($F{ENVIO_IBAN_AGRO}.equals("S"))]]></printWhenExpression>
+				</reportElement>
+			</rectangle>
+			<rectangle>
+				<reportElement x="180" y="157" width="22" height="15">
+					<printWhenExpression><![CDATA[Boolean.valueOf($F{ENVIO_IBAN_AGRO}.equals("S"))]]></printWhenExpression>
+				</reportElement>
+			</rectangle>
+			<rectangle>
+				<reportElement x="202" y="157" width="22" height="15">
+					<printWhenExpression><![CDATA[Boolean.valueOf($F{ENVIO_IBAN_AGRO}.equals("S"))]]></printWhenExpression>
+				</reportElement>
+			</rectangle>
+			<rectangle>
+				<reportElement x="222" y="157" width="22" height="15">
+					<printWhenExpression><![CDATA[Boolean.valueOf($F{ENVIO_IBAN_AGRO}.equals("S"))]]></printWhenExpression>
+				</reportElement>
+			</rectangle>
+			<rectangle>
+				<reportElement x="244" y="157" width="22" height="15">
+					<printWhenExpression><![CDATA[Boolean.valueOf($F{ENVIO_IBAN_AGRO}.equals("S"))]]></printWhenExpression>
+				</reportElement>
+			</rectangle>
+			<rectangle>
+				<reportElement x="266" y="157" width="22" height="15">
+					<printWhenExpression><![CDATA[Boolean.valueOf($F{ENVIO_IBAN_AGRO}.equals("S"))]]></printWhenExpression>
+				</reportElement>
+			</rectangle>
+			<rectangle>
+				<reportElement x="288" y="157" width="22" height="15">
+					<printWhenExpression><![CDATA[Boolean.valueOf($F{ENVIO_IBAN_AGRO}.equals("S"))]]></printWhenExpression>
+				</reportElement>
+			</rectangle>
+			<rectangle>
+				<reportElement x="307" y="157" width="22" height="15">
+					<printWhenExpression><![CDATA[Boolean.valueOf($F{ENVIO_IBAN_AGRO}.equals("S"))]]></printWhenExpression>
+				</reportElement>
+			</rectangle>
+			<rectangle>
+				<reportElement x="329" y="157" width="22" height="15">
+					<printWhenExpression><![CDATA[Boolean.valueOf($F{ENVIO_IBAN_AGRO}.equals("S"))]]></printWhenExpression>
+				</reportElement>
+			</rectangle>
+			<rectangle>
+				<reportElement x="351" y="157" width="22" height="15">
+					<printWhenExpression><![CDATA[Boolean.valueOf($F{ENVIO_IBAN_AGRO}.equals("S"))]]></printWhenExpression>
+				</reportElement>
+			</rectangle>
+			<rectangle>
+				<reportElement x="373" y="157" width="22" height="15">
+					<printWhenExpression><![CDATA[Boolean.valueOf($F{ENVIO_IBAN_AGRO}.equals("S"))]]></printWhenExpression>
+				</reportElement>
+			</rectangle>
+			<rectangle>
+				<reportElement x="395" y="157" width="22" height="15">
+					<printWhenExpression><![CDATA[Boolean.valueOf($F{ENVIO_IBAN_AGRO}.equals("S"))]]></printWhenExpression>
+				</reportElement>
+			</rectangle>
+			<rectangle>
+				<reportElement x="417" y="157" width="22" height="15">
+					<printWhenExpression><![CDATA[Boolean.valueOf($F{ENVIO_IBAN_AGRO}.equals("S"))]]></printWhenExpression>
+				</reportElement>
+			</rectangle>
+			<rectangle>
+				<reportElement x="439" y="157" width="22" height="15">
+					<printWhenExpression><![CDATA[Boolean.valueOf($F{ENVIO_IBAN_AGRO}.equals("S"))]]></printWhenExpression>
+				</reportElement>
+			</rectangle>
+			<rectangle>
+				<reportElement x="461" y="157" width="22" height="15">
+					<printWhenExpression><![CDATA[Boolean.valueOf($F{ENVIO_IBAN_AGRO}.equals("S"))]]></printWhenExpression>
+				</reportElement>
+			</rectangle>
+			<rectangle>
+				<reportElement x="483" y="157" width="22" height="15">
+					<printWhenExpression><![CDATA[Boolean.valueOf($F{ENVIO_IBAN_AGRO}.equals("S"))]]></printWhenExpression>
+				</reportElement>
+			</rectangle>
+			<rectangle>
+				<reportElement x="505" y="157" width="22" height="15">
+					<printWhenExpression><![CDATA[Boolean.valueOf($F{ENVIO_IBAN_AGRO}.equals("S"))]]></printWhenExpression>
+				</reportElement>
+			</rectangle>
+			<textField isBlankWhenNull="true">
+				<reportElement isPrintRepeatedValues="false" x="4" y="157" width="22" height="15">
+					<printWhenExpression><![CDATA[Boolean.valueOf($F{ENVIO_IBAN_AGRO}.equals("S"))]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{IBAN}.substring(0, 1)]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement isPrintRepeatedValues="false" x="26" y="157" width="22" height="15">
+					<printWhenExpression><![CDATA[Boolean.valueOf($F{ENVIO_IBAN_AGRO}.equals("S"))]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{IBAN}.substring( 1, 2 )]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement isPrintRepeatedValues="false" x="48" y="157" width="22" height="15">
+					<printWhenExpression><![CDATA[Boolean.valueOf($F{ENVIO_IBAN_AGRO}.equals("S"))]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{IBAN}.substring( 2, 3 )]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement isPrintRepeatedValues="false" x="70" y="157" width="22" height="15">
+					<printWhenExpression><![CDATA[Boolean.valueOf($F{ENVIO_IBAN_AGRO}.equals("S"))]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{IBAN}.substring( 3, 4 )]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement isPrintRepeatedValues="false" x="92" y="157" width="22" height="15">
+					<printWhenExpression><![CDATA[Boolean.valueOf($F{ENVIO_IBAN_AGRO}.equals("S"))]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{IBAN}.substring( 4, 5 )]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement isPrintRepeatedValues="false" x="114" y="157" width="22" height="15">
+					<printWhenExpression><![CDATA[Boolean.valueOf($F{ENVIO_IBAN_AGRO}.equals("S"))]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{IBAN}.substring( 5, 6 )]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement isPrintRepeatedValues="false" x="136" y="157" width="22" height="15">
+					<printWhenExpression><![CDATA[Boolean.valueOf($F{ENVIO_IBAN_AGRO}.equals("S"))]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{IBAN}.substring( 6,7 )]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement isPrintRepeatedValues="false" x="158" y="157" width="22" height="15">
+					<printWhenExpression><![CDATA[Boolean.valueOf($F{ENVIO_IBAN_AGRO}.equals("S"))]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{IBAN}.substring( 7,8 )]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement isPrintRepeatedValues="false" x="180" y="157" width="22" height="15">
+					<printWhenExpression><![CDATA[Boolean.valueOf($F{ENVIO_IBAN_AGRO}.equals("S"))]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{IBAN}.substring( 8,9 )]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement isPrintRepeatedValues="false" x="202" y="157" width="20" height="15">
+					<printWhenExpression><![CDATA[Boolean.valueOf($F{ENVIO_IBAN_AGRO}.equals("S"))]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{IBAN}.substring( 9,10 )]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement isPrintRepeatedValues="false" x="222" y="157" width="22" height="15">
+					<printWhenExpression><![CDATA[Boolean.valueOf($F{ENVIO_IBAN_AGRO}.equals("S"))]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{IBAN}.substring( 10,11 )]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement isPrintRepeatedValues="false" x="244" y="157" width="22" height="15">
+					<printWhenExpression><![CDATA[Boolean.valueOf($F{ENVIO_IBAN_AGRO}.equals("S"))]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{IBAN}.substring( 11,12 )]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement isPrintRepeatedValues="false" x="266" y="157" width="22" height="15">
+					<printWhenExpression><![CDATA[Boolean.valueOf($F{ENVIO_IBAN_AGRO}.equals("S"))]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{IBAN}.substring( 12,13 )]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement isPrintRepeatedValues="false" x="288" y="157" width="19" height="15">
+					<printWhenExpression><![CDATA[Boolean.valueOf($F{ENVIO_IBAN_AGRO}.equals("S"))]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{IBAN}.substring( 13,14 )]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement isPrintRepeatedValues="false" x="307" y="157" width="22" height="15">
+					<printWhenExpression><![CDATA[Boolean.valueOf($F{ENVIO_IBAN_AGRO}.equals("S"))]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{IBAN}.substring( 14,15 )]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement isPrintRepeatedValues="false" x="329" y="157" width="22" height="15">
+					<printWhenExpression><![CDATA[Boolean.valueOf($F{ENVIO_IBAN_AGRO}.equals("S"))]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{IBAN}.substring( 15,16 )]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement isPrintRepeatedValues="false" x="351" y="157" width="22" height="15">
+					<printWhenExpression><![CDATA[Boolean.valueOf($F{ENVIO_IBAN_AGRO}.equals("S"))]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{IBAN}.substring( 16,17 )]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement isPrintRepeatedValues="false" x="373" y="157" width="22" height="15">
+					<printWhenExpression><![CDATA[Boolean.valueOf($F{ENVIO_IBAN_AGRO}.equals("S"))]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{IBAN}.substring( 17,18 )]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement isPrintRepeatedValues="false" x="395" y="157" width="22" height="15">
+					<printWhenExpression><![CDATA[Boolean.valueOf($F{ENVIO_IBAN_AGRO}.equals("S"))]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{IBAN}.substring( 18,19 )]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement isPrintRepeatedValues="false" x="417" y="157" width="22" height="15">
+					<printWhenExpression><![CDATA[Boolean.valueOf($F{ENVIO_IBAN_AGRO}.equals("S"))]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{IBAN}.substring( 19,20 )]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement isPrintRepeatedValues="false" x="439" y="157" width="22" height="15">
+					<printWhenExpression><![CDATA[Boolean.valueOf($F{ENVIO_IBAN_AGRO}.equals("S"))]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{IBAN}.substring( 20,21 )]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement isPrintRepeatedValues="false" x="461" y="157" width="22" height="15">
+					<printWhenExpression><![CDATA[Boolean.valueOf($F{ENVIO_IBAN_AGRO}.equals("S"))]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{IBAN}.substring( 21,22 )]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement isPrintRepeatedValues="false" x="483" y="157" width="22" height="15">
+					<printWhenExpression><![CDATA[Boolean.valueOf($F{ENVIO_IBAN_AGRO}.equals("S"))]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{IBAN}.substring( 22,23 )]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement isPrintRepeatedValues="false" x="505" y="157" width="22" height="15">
+					<printWhenExpression><![CDATA[Boolean.valueOf($F{ENVIO_IBAN_AGRO}.equals("S"))]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{IBAN}.substring( 23,24 )]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="204" width="136" height="15">
+					<printWhenExpression><![CDATA[Boolean.valueOf($F{ENVIO_IBAN_AGRO}.equals("S"))]]></printWhenExpression>
+				</reportElement>
+				<textElement>
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[TITULAR DE LA CUENTA IBAN:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement isPrintRepeatedValues="false" x="136" y="204" width="394" height="15">
+					<printWhenExpression><![CDATA[Boolean.valueOf($F{ENVIO_IBAN_AGRO}.equals("S"))]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Left">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{TITULAR}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="222" width="95" height="15">
+					<printWhenExpression><![CDATA[Boolean.valueOf($F{FORMAPAGO}.equals( "FRACCIONADO" ))]]></printWhenExpression>
+				</reportElement>
+				<textElement>
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fraccionamiento.........:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="218" y="222" width="100" height="15">
+					<printWhenExpression><![CDATA[Boolean.valueOf($F{FORMAPAGO}.equals( "FRACCIONADO" ))]]></printWhenExpression>
+				</reportElement>
+				<textElement>
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nº Aval de SAECA.........:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="370" y="222" width="80" height="15">
+					<printWhenExpression><![CDATA[Boolean.valueOf($F{FORMAPAGO}.equals( "FRACCIONADO" ))]]></printWhenExpression>
+				</reportElement>
+				<textElement>
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Importe Aval.........:]]></text>
+			</staticText>
+			<textField pattern="#,##0.00¤" isBlankWhenNull="false">
+				<reportElement isPrintRepeatedValues="false" x="318" y="222" width="44" height="15">
+					<printWhenExpression><![CDATA[Boolean.valueOf($F{FORMAPAGO}.equals( "FRACCIONADO" ))]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Left">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{NUMERO_AVAL}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00¤" isBlankWhenNull="true">
+				<reportElement isPrintRepeatedValues="false" x="451" y="222" width="80" height="15">
+					<printWhenExpression><![CDATA[Boolean.valueOf($F{FORMAPAGO}.equals( "FRACCIONADO" ))]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Left">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{IMPORTE_AVAL}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00¤" isBlankWhenNull="false">
+				<reportElement isPrintRepeatedValues="false" x="95" y="222" width="120" height="15">
+					<printWhenExpression><![CDATA[Boolean.valueOf($F{FORMAPAGO}.equals( "FRACCIONADO" ))]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Left">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{PERIODO}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="189" width="530" height="11">
+					<printWhenExpression><![CDATA[Boolean.valueOf($F{ENVIO_IBAN_AGRO}.equals("S"))]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Justified">
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[y en general todas las operaciones económicas derivadas del contrato del seguro en caso de que corresponda, así como la prorroga en su caso.]]></text>
+			</staticText>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

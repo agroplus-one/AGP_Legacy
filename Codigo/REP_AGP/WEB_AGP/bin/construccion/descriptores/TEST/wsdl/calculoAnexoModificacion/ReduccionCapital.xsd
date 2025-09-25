@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?><x:schema xmlns:x="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.agroseguro.es/SeguroAgrario/Contratacion/ReduccionCapital" xmlns="http://www.agroseguro.es/SeguroAgrario/Contratacion/ReduccionCapital" xmlns:ti="http://www.agroseguro.es/Tipos">
+
+	<x:import namespace="http://www.agroseguro.es/Tipos" schemaLocation="Tipos.xsd"/>
+
+	<x:element name="PolizaReduccionCapital" type="PolizaReduccionCapital"/>
+	
+	<x:complexType name="PolizaReduccionCapital">
+		<x:sequence>
+			<x:element maxOccurs="1" minOccurs="1" name="Motivo" type="ti:Motivo_ReduccionCapital"/>			
+			<x:element maxOccurs="1" minOccurs="1" name="ObjetosAsegurados" type="ObjetosAsegurados">
+				<x:key name="Parcela_PK">
+					<x:selector xpath="Parcela"/>
+					<x:field xpath="@hoja"/>
+					<x:field xpath="@numero"/>			
+				</x:key>
+			</x:element>	
+		</x:sequence>
+		<x:attribute name="plan" type="ti:Plan" use="required"/>
+		<x:attribute name="referencia" type="ti:Poliza_Referencia_Creciente" use="required"/>
+		<x:attribute name="modulo" type="ti:Cobertura_Modulo" use="required"/>
+	</x:complexType>
+
+	<x:complexType name="ObjetosAsegurados">
+		<x:sequence>
+			<x:element maxOccurs="unbounded" minOccurs="1" name="Parcela" type="ParcelaReducida"/>
+		</x:sequence>
+	</x:complexType>
+	
+	<x:complexType name="ParcelaReducida">
+		<x:sequence>
+			<x:element maxOccurs="1" minOccurs="1" name="CapitalesAsegurados" type="CapitalesAsegurados">
+				<x:key name="CapitalAsegurado_PK">
+					<x:selector xpath="CapitalAsegurado"/>
+					<x:field xpath="@tipo"/>
+				</x:key>
+			</x:element>
+		</x:sequence>
+		<x:attribute name="hoja" type="ti:Parcela_Hoja" use="required"/>
+		<x:attribute name="numero" type="ti:Parcela_Numero" use="required"/>
+	</x:complexType>
+	
+	<x:complexType name="CapitalesAsegurados">
+		<x:sequence>
+			<x:element maxOccurs="unbounded" minOccurs="1" name="CapitalAsegurado" type="CapitalAsegurado"/>
+		</x:sequence>
+	</x:complexType>
+
+	<x:complexType name="CapitalAsegurado">
+		<x:attribute default="0" name="tipo" type="ti:TipoCapital" use="optional"/>
+		<x:attribute name="produccionTrasReduccion" type="ti:ProduccionKG" use="required"/>
+	</x:complexType> 
+
+</x:schema>

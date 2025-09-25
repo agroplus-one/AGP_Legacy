@@ -1,0 +1,173 @@
+INFORMACION DE USO RESTRINGIDO
+----------------------------------------------------------------------------------------------------------------------------
+El contenido de este documento es propiedad de AGROSEGURO, no pudiendo ser reproducido, ni comunicado total o parcialmente, 
+a personas sin la autorización expresa del propietario.
+----------------------------------------------------------------------------------------------------------------------------
+
+ContratacionRenovaciones
+-----------------------
+
+archivo	                    			namespace                      				version
+--------------------------------------  ---------------------------------------  	----------
+- EstadoRenovacion.xsd          	   	EstadoRenovacion							6.0
+- ListaPolizasRenovables.xsd			ListaPolizasRenovables						3.0
+
+- Contratacion.xsd                 		Contratacion        	    	  			7.0
+- CostePoliza.xsd						Contratacion/CostePoliza					1.0
+- DatosVariablesUnificado.xsd			Contratacion/DatosVariables    				1.0
+- DeclaracionSubvenciones.xsd			Contratacion/DeclaracionSubvenciones		1.0
+- Explotacion.xsd						Contratacion/Explotacion					1.0
+- Parcela.xsd							Contratacion/Parcela						1.0
+
+
+- Tipos.xsd             				Tipos			 							26.0
+- xmime.xsd								http://www.w3.org/2005/05/xmlmime
+- policy.xml
+
+
+DESCRIPCION DE LOS FICHEROS
+---------------------------
+
+- ContratacionRenovaciones.wsdl
+Descriptor del servicio Web que permite gestionar las renovaciones de pólizas que se van a producir consultando
+las mismas y enviando los gastos que se quieren aplicar a las mismas en el momento de la trenovación. Sin manejo
+de cabeceras de seguridad.
+Pensado para manejar la seguridad delegando en los módulos de seguridad
+de los lenguajes de programación a través de políticas de aserciones.
+
+- policy.xml
+Política de seguridad según especificación WS-SecurityPolicy con UsernameToken
+de Oasis.
+
+- ContratacionRenovaciones_con_cabeceras_seguridad.wsdl
+Idem ContratacionRenovaciones.wsdl pero con cabecera de seguridad WS-Security, para
+manejar la seguridad a través de los bindings de XML generados en cada lenguaje
+de programación.
+
+- EstadoRenovacion.xsd             
+Esquema de la estructura de información del estado de renovación de una póliza.
+
+- ListaPolizasRenovables.xsd		
+Esquema de la estructura de información del estado de renovación de una lista de pólizas.
+
+- Contratacion.xsd
+Esquema entrante de validación de la Póliza unificada del Seguro Creciente
+donde se definen los registros de esa Póliza.
+
+- CostePoliza.xsd
+Esquema de distribucion de coste de la póliza unificada
+
+- DatosVariablesUnificado.xsd                   
+Esquema de datos variables de la póliza unificada
+
+- DeclaracionSubvenciones.xsd
+Esquema de subvenciones de la póliza unificada
+
+- Explotacion.xsd
+Esquema de explotación de la póliza unificada
+
+- Parcela.xsd
+Esquema de parcela de la póliza unificada
+
+- Tipos.xsd
+Esquema que contiene el diccionario de tipos común de Agroseguro.
+
+- xmime.xsd
+Esquema de validación de tipos XMLMIME de W3C
+
+-policy.xml
+
+1.0.14 : 24-09-2020.
+-------------------------------------------------------------------------------------------
+- Contratacion.xsd: Se añade la etiqueta opcional CuentaCobroSiniestros
+
+1.0.13 : 11-07-2017.
+-------------------------------------------------------------------------------------------
+- Infoversion.txt: inclusión de párrafo legal por ISO27001.
+
+1.0.12 : 20-01-2016.
+-------------------------------------------------------------------------------------------
+- Modificados ListaPolizasRenovables.xsd: 
+	-Atributo linea del elemento "ListaPolizasRenovables" cambiado a opcional. El cambio no afecta al servicio web
+	de renovaciones; se realiza para soportar ZIPs de envíos de comunicaciones diarias con varias líneas contenidas
+	en el mismo fichero (ver documento DES-D-0107: Situación actualizada de la Póliza y de otros documentos.)
+
+1.0.11 : 13-04-2016.
+-------------------------------------------------------------------------------------------
+- Modificados EstadoRenovacion.xsd: 
+	-Añadido atributo "costeTotalTomadorAnterior" al elemento "Renovacion"
+	-Añadido atributo "primaComercialBaseNeta" al elemento "CosteGrupoNegocio"
+	-Añadido el elemento "Fraccionamiento" al elemento "Renovacion"
+
+1.0.10 : 14-01-2016.
+-------------------------------------------------------------------------------------------
+- Modificados ListaPolizasRenovables.xsd: 
+	-Se modifica el párametro estado de la cabecera por listaEstados
+
+1.0.9 : 15-10-2015.
+-------------------------------------------------------------------------------------------
+- Modificados los wsdl del servicio: añadidos parámetros "ListaEstados" y "GastosComunicados"
+	 a la operación de "ListaPolizasRenovables"
+- EstadoRenovacion.xsd: 
+	-Incluida nueva etiqueta BonificacionRecargo en CosteGrupoNegocio
+
+1.0.8 : 30-07-2015.
+-------------------------------------------------------------------------------------------
+- EstadoRenovacion.xsd: 
+	-Incluidos nuevos atributos opcionales "forma" y "domiciliado"
+
+1.0.7 : 24-04-2015.
+-------------------------------------------------------------------------------------------
+- EstadoRenovacion.xsd: 
+	-Incluido nuevo atributo opcional "nombreTomador"
+	-Añadidos nuevos elementos a la etiqueta "Renovacion"
+		*GastosAplicados(grupoNegocio, administración, importeAdministracion, adquisicion,importeAdquisicion, comisionMediador, importeComisionMediador) 
+		*CosteGrupoNegocio(grupoNegocio, primaComercial, primaComercialNeta) 
+
+1.0.6 : 16-03-2015.
+-------------------------------------------------------------------------------------------
+- EstadoRenovacion.xsd: incluido nuevo atributo opcional fase
+- ContratacionRenovaciones.wsdl y ContratacionRenovaciones_con_cabeceras_seguridad.wsdl: 
+  nuevas operaciones impresionProrroga() y recuperacionExplotaciones()
+
+1.0.5 : 27-02-2015.
+-------------------------------------------------------------------------------------------
+- EstadoRenovacion.xsd: incluidos nuevos atributos opcionales
+		fechaComunicacion
+		costeTotalTomador
+		numeroRecibo
+		fechaDomiciliacion
+		importeDomiciliar
+		IBAN
+		destinatarioDomiciliacion
+
+1.0.4 : 26-02-2015.
+-------------------------------------------------------------------------------------------
+- ListaPolizasRenovables.xsd: actualización del tipo del atributo referencia de Poliza para 
+   permitir referencias de poliza antiguas
+- EstadoRenovacion.xsd: incluidos nuevos atributos
+- ListaPolizasRenovables.xsd: nuevo parámetro de selección por estado.
+- ContratacionRenovaciones.xsd y ContratacionRenovaciones_con_cabeceras_seguridad.xsd:
+   nuevo parámetro de selección por estado.
+
+
+1.0.3 : 17-02-2015.
+-------------------------------------------------------------------------------------------
+Cambio en Contratacion.xsd y Tipos.xsd el tipo del atributo referencia de la etiqueta Poliza para 
+permitir referencias de poliza antiguas
+
+
+1.0.2 : 10-02-2015.
+-------------------------------------------------------------------------------------------
+Empaquetados los esquemas de la póliza unificada para poder devolver una póliza con la operación
+Consulta del detalle de una renovación.
+
+
+1.0.1 : 06-02-2015.
+-------------------------------------------------------------------------------------------
+Corregidos descriptivos de documentación de las operaciones en los wsdls.
+
+
+1.0.0 : 05-02-2015.
+-------------------------------------------------------------------------------------------
+Versión inicial.

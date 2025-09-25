@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<x:schema
+	targetNamespace="http://www.agroseguro.es/CostePoliza/CosteObjetoAsegurado"
+	xmlns="http://www.agroseguro.es/CostePoliza/CosteObjetoAsegurado"
+	xmlns:x="http://www.w3.org/2001/XMLSchema"
+	xmlns:ti="http://www.agroseguro.es/Tipos"
+	xmlns:cp="http://www.agroseguro.es/Contratacion/CostePoliza"
+	xmlns:dv="http://www.agroseguro.es/Contratacion/DatosVariables"
+	elementFormDefault="qualified">
+
+	<x:import namespace="http://www.agroseguro.es/Tipos"
+		schemaLocation="Tipos.xsd" />
+	<x:import namespace="http://www.agroseguro.es/Contratacion/CostePoliza"
+		schemaLocation="CostePoliza.xsd" />
+	<x:import namespace="http://www.agroseguro.es/Contratacion/DatosVariables"
+		schemaLocation="DatosVariables.xsd" />
+	<x:import namespace="http://www.agroseguro.es/DistribucionCoste/DatosAdicionalesObjetoAsegurado"
+		schemaLocation="DatosAdicionalesObjetoAseguradoUnificado.xsd" />
+
+	<x:complexType name="CosteObjetoAsegurado">
+		<x:sequence>
+			<x:element name="CosteGrupoNegocio" type="CosteGrupoNegocio"
+				maxOccurs="unbounded" minOccurs="1" />
+			<x:element name="SubvencionDesglose"
+				type="SubvencionDesglose" minOccurs="0" maxOccurs="unbounded" />
+			<x:element name="DatosAdicionales"
+				type="DatosAdicionales" minOccurs="0" maxOccurs="1" />
+		</x:sequence>
+		<x:attribute name="capitalAsegurado"
+			type="ti:ImportePositivoNegativo" use="required" />
+		<x:attribute name="tasaComercialBase" type="ti:TantoPorCien"
+			use="required" />
+		<x:attribute name="tasaComercial" type="ti:TantoPorCien"
+			use="required" />
+		<x:anyAttribute namespace="http://www.agroseguro.es/DistribucionCoste/DatosAdicionalesObjetoAsegurado" processContents="lax" />
+	</x:complexType>
+	
+	<x:complexType name="DatosAdicionales">
+		<x:sequence>
+			<x:any minOccurs="1" maxOccurs="unbounded" namespace="http://www.agroseguro.es/DistribucionCoste/DatosAdicionalesObjetoAsegurado"
+				processContents="lax" />
+		</x:sequence>
+		<x:anyAttribute namespace="http://www.agroseguro.es/DistribucionCoste/DatosAdicionalesObjetoAsegurado" processContents="lax" />
+	</x:complexType>	
+	
+	<x:complexType name="SubvencionDesglose">
+		<x:sequence>
+				<x:element name="SubvencionesCoberturas" type="SubvencionesCoberturas" minOccurs="0" maxOccurs="unbounded" />
+		</x:sequence>
+		<x:attribute name="codigoOrganismo" type="ti:Organismo_Codigo"
+			use="required" />
+		<x:attribute name="tipo" use="required"
+			type="ti:Subvencion_Tipo" />
+		<x:attribute name="pctSubvencion" use="optional"
+				type="ti:TantoPorCien" />
+		<x:attribute name="valorUnitario" use="optional"
+				type="ti:ValorUnitario" />
+		<x:attribute name="importe" use="required"
+			type="ti:ImportePositivoNegativo" />
+	</x:complexType>
+	
+	<x:complexType name="SubvencionesCoberturas">
+		<x:attributeGroup ref="dv:FactoresModulo" />			
+	</x:complexType>
+	
+	<x:complexType name="CosteGrupoNegocio">
+		<x:sequence>
+			<x:element name="BonificacionRecargo" type="BonificacionRecargo" minOccurs="0" maxOccurs="unbounded" />
+			<x:element name="SubvencionEnesa" type="SubvencionEnesa" minOccurs="0" maxOccurs="unbounded" />
+			<x:element name="SubvencionCCAA" type="SubvencionCCAA" minOccurs="0" maxOccurs="unbounded" />
+		</x:sequence>
+		<x:attribute name="grupoNegocio" type="ti:GrupoNegocio" use="optional" />		
+		<x:attribute name="primaComercial" type="ti:ImportePositivoNegativo" use="required" />
+		<x:attribute name="primaComercialNeta" type="ti:ImportePositivoNegativo" use="required" />
+		<x:attribute name="recargoConsorcio" type="ti:ImportePositivoNegativo" use="required" />		
+		<x:attribute name="reciboPrima" type="ti:ImportePositivoNegativo" use="required" />
+		<x:attribute name="costeTomador" type="ti:ImportePositivoNegativo" use="required" />
+	</x:complexType>
+
+	<x:complexType name="BonificacionRecargo">
+		<x:attribute name="codigo" type="ti:BonificacionRecargo_Codigo" use="required" />
+		<x:attribute name="importe" type="ti:ImportePositivoNegativo" use="required" />
+	</x:complexType>	
+	
+	<x:complexType name="SubvencionEnesa">
+		<x:attribute name="tipo" type="ti:Subvencion_Tipo" use="required" />
+		<x:attribute name="importe" type="ti:ImportePositivoNegativo" use="required" />	
+	</x:complexType>
+	
+	<x:complexType name="SubvencionCCAA">
+		<x:attribute name="codigoOrganismo" type="ti:Organismo_Codigo" use="required" />
+		<x:attribute name="importe" type="ti:ImportePositivoNegativo" use="required" />		
+	</x:complexType>
+	
+</x:schema>

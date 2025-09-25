@@ -1,0 +1,385 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="ContratacionSCAsegurado" 
+	targetNamespace="http://www.agroseguro.es/serviciosWeb/ContratacionSCAsegurado/" 
+	xmlns:agr="http://www.agroseguro.es/serviciosWeb/ContratacionSCAsegurado/" 
+	xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" 
+	xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" 
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	xmlns:xmime="http://www.w3.org/2005/05/xmlmime"
+	xmlns:ti="http://www.agroseguro.es/Tipos"
+	xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd"
+	xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd">
+  <wsdl:types>
+    <xsd:schema elementFormDefault="qualified"
+    	targetNamespace="http://www.agroseguro.es/serviciosWeb/ContratacionSCAsegurado/"
+    	xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	  <xsd:import namespace="http://www.w3.org/2005/05/xmlmime"
+				schemaLocation="xmime.xsd" />
+	  <xsd:import namespace="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd"
+				schemaLocation="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd" />				
+	  <xsd:import namespace="http://www.agroseguro.es/Tipos"
+				schemaLocation="Tipos.xsd" />
+      <xsd:element name="aseguradoDatosYMedidasRequest">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="nif" type="ti:NIF" />
+			<xsd:element name="plan" type="ti:Plan" nillable="true" minOccurs="0" />
+            <xsd:element name="linea" type="ti:Linea_Codigo" nillable="true" minOccurs="0" />
+			<xsd:element name="mostrarProximasSubvenciones" type="xsd:boolean" nillable="true" minOccurs="0" />
+			<xsd:element name="fechaEstudio" type="xsd:date" nillable="true" minOccurs="0" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+	  
+      <xsd:element name="aseguradoDatosYMedidasResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+			<xsd:element name="aseguradoDatosYMedidas" xmime:expectedContentTypes="text/xml" type="xmime:base64Binary" />
+		  </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>	
+ 
+	  <xsd:element name="aseguradoInfoSaldoENESARequest">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="nif" type="ti:NIF" />
+			<xsd:element name="plan" type="ti:Plan" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+	  
+      <xsd:element name="aseguradoInfoSaldoENESAResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+			<xsd:element name="aseguradoInfoSaldoENESA" xmime:expectedContentTypes="text/xml" type="xmime:base64Binary" />
+		  </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>	  
+	  
+ 	  <xsd:element name="aseguradoDerechosRGPDRequest">
+        <xsd:complexType>
+          <xsd:sequence>
+			<xsd:element name="nif" type="ti:NIF" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+	  
+      <xsd:element name="aseguradoDerechosRGPDResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+			<xsd:element name="aseguradoDerechosRGPD" xmime:expectedContentTypes="text/xml" type="xmime:base64Binary" />
+		  </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+	  
+	  <xsd:element name="derechosRGPDRequest">
+        <xsd:complexType>
+          <xsd:sequence>
+			<xsd:element name="fechaDesde" type="xsd:date" />
+			<xsd:element name="fechaHasta" type="xsd:date" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+	  
+      <xsd:element name="derechosRGPDResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+			<xsd:element name="derechosRGPD" xmime:expectedContentTypes="text/xml" type="xmime:base64Binary" />
+		  </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+	  
+      <xsd:element name="agrFallo"
+				xmlns:agr="http://www.agroseguro.es/serviciosWeb/ContratacionSCAsegurado/">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:annotation>
+					Lista de mensajes de error de AGROSEGURO
+				</xsd:annotation>
+				<xsd:element name="error" type="agr:Error"
+					maxOccurs="unbounded" minOccurs="0" />
+			</xsd:sequence>
+		</xsd:complexType>
+	  </xsd:element>
+	  <xsd:complexType name="Error"
+		xmlns:agr="http://www.agroseguro.es/serviciosWeb/ContratacionSCAsegurado/">
+		<xsd:sequence>
+			<xsd:element name="codigo" type="xsd:int" />
+			<xsd:element name="mensaje" type="xsd:string" />
+		</xsd:sequence>
+	  </xsd:complexType>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="Header">
+    <wsdl:part name="Security" element="wsse:Security" />
+  </wsdl:message>
+  <wsdl:message name="AgrException">
+		<wsdl:part name="parameters" element="agr:agrFallo"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="aseguradoDatosYMedidasRequest">
+	<wsdl:part name="parameters"
+			element="agr:aseguradoDatosYMedidasRequest">
+	</wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="aseguradoDatosYMedidasResponse">
+	<wsdl:part name="parameters"
+			element="agr:aseguradoDatosYMedidasResponse">
+	</wsdl:part>
+  </wsdl:message>
+  
+  <wsdl:message name="aseguradoInfoSaldoENESARequest">
+	<wsdl:part name="parameters"
+			element="agr:aseguradoInfoSaldoENESARequest">
+	</wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="aseguradoInfoSaldoENESAResponse">
+	<wsdl:part name="parameters"
+			element="agr:aseguradoInfoSaldoENESAResponse">
+	</wsdl:part>
+  </wsdl:message>
+  
+  <wsdl:message name="aseguradoDerechosRGPDRequest">
+	<wsdl:part name="parameters"
+			element="agr:aseguradoDerechosRGPDRequest">
+	</wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="aseguradoDerechosRGPDResponse">
+	<wsdl:part name="parameters"
+			element="agr:aseguradoDerechosRGPDResponse">
+	</wsdl:part>
+  </wsdl:message>  
+  <wsdl:message name="derechosRGPDRequest">
+	<wsdl:part name="parameters"
+			element="agr:derechosRGPDRequest">
+	</wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="derechosRGPDResponse">
+	<wsdl:part name="parameters"
+			element="agr:derechosRGPDResponse">
+	</wsdl:part>
+  </wsdl:message>
+  
+  
+  <wsdl:portType name="ContratacionSCAsegurado">
+    <wsdl:operation name="aseguradoDatosYMedidas">
+      <wsdl:documentation>
+				Operación de consulta de Datos personales y las Medidas del Asegurado: 
+				
+				Este servicio sirve fundamentalmente para saber los datos personales y las medidas
+				del asegurado, cuyo NIF se ha introducido como parámetro de entrada, de que dispone
+				Agroseguro en el momento de la invocación del servicio.
+				Si sólo se manda como parámetro el NIF se devolverá la información de los datos
+				personales del asegurado, las causas de exclusión de subvención por sentencias judiciales
+				o ente publico en el caso de existir y la información correspondiente al CIAS 
+				(Control Integral de Acceso a Subvenciones) del asegurado.
+				Si además aparecen los parámetros plan/línea, se devolverá la información de las
+				medidas del asegurado para ese plan/línea.
+				
+				Parámetro de entrada:
+
+				•	NIF: Alfanumérico de 2 a 9 posiciones. Obligatorio
+				•	Plan: numérico de cuatro posiciones. Opcional, deberá ir acompañado de la línea
+				•	Línea: numérico de tres posiciones. Opcional, deberá ir acompañada del plan
+				•	MostrarProximasSubvenciones: booleano. Opcional
+				•	FechaEstudio: fecha. Opcional
+				
+				Se devolverá la siguiente información :
+
+				- Se generará un XML con los datos personales (dirección, teléfono, etc), las causas
+				de exclusión de subvención por sentencias judiciales o ente publico en el caso de existir,
+				el CIAS del asegurado y las medidas del plan/línea seleccionado (si dichos parámetros están 
+				rellenos), del asegurado cuyo NIF se ha introducido como parámetro de entrada.
+				El esquema XSD de dicho fichero se denomina: "AseguradoDatosYMedidas.xsd".
+				
+				- Si el asegurado no pertenece a la entidad que realiza la petición, se devolverá toda la 
+				información del mismo salvo los datos personales.
+				
+				- Si el asegurado no existe en el sistema, no ha contratado ninguna póliza en el año en curso 
+				o el anterior, o se produce un error en el servicio, se devuelve un error mediante el mecanismo 
+				SOAPFault y no se genera ningún adjunto XML.
+				
+	  </wsdl:documentation>
+      <wsdl:input message="agr:aseguradoDatosYMedidasRequest" />
+	  <wsdl:output message="agr:aseguradoDatosYMedidasResponse" />
+	  <wsdl:fault name="AgrException" message="agr:AgrException" />
+    </wsdl:operation>
+    
+	<wsdl:operation name="aseguradoInfoSaldoENESA">
+      <wsdl:documentation>
+				Operación de consulta de los datos relativos al saldo de 60 Euros de ENESA por plan/nif: 
+				
+				Este servicio sirve para informar acerca de la situación del saldo de la reducción de la subvención que ENESA 
+				aplica a la contratación de un asegurado en un plan. Se devolverá la siguiente información:
+				
+				-	Saldo total aplicado para ese asegurado y plan.
+				-	Saldo consumido por referencia de contratación (ya sea principal o complementario) solo de aquellas 
+					contrataciones que sean de la cartera de la Entidad que haga la consulta
+				-	El resto hasta alcanzar el total descontado solo se ofrecerá como una cifra sin más detalles.
+
+				
+				Parámetro de entrada:
+
+				•	NIF: Alfanumérico de 2 a 9 posiciones. Obligatorio
+				•	Plan: numérico de cuatro posiciones. Obligatorio
+				
+				Se devolverá la siguiente información :
+
+				- Se generará un XML con la información del saldo de ese asegurado y plan según se describe en el esquema 
+				AseguradoInfoSaldoENESA.xsd.
+								
+				- Si el asegurado no existe en el sistema, no se encuentra información que devolver para el plan pedido, 
+				o se produce un error en el servicio, se devuelve un error mediante el mecanismo SOAPFault y no se genera ningún adjunto XML.
+				
+	  </wsdl:documentation>
+      <wsdl:input message="agr:aseguradoInfoSaldoENESARequest" />
+	  <wsdl:output message="agr:aseguradoInfoSaldoENESAResponse" />
+	  <wsdl:fault name="AgrException" message="agr:AgrException" />
+    </wsdl:operation>
+	
+	<wsdl:operation name="aseguradoDerechosRGPD">
+	  <wsdl:documentation>
+				Operación de consulta de la información relativa a los derechos que el asegurado ha solicitado ejercer sobre sus datos personales en Agroseguro.
+				
+				Este servicio sirve para informar acerca del estado del ejercicio de derechos del Asegurado sobre sus datos personales en Agroseguro.
+				Se devolverá la siguiente información para cada uno de los derechos que el asegurado ha solicitado ejercer sobre sus datos personales:
+				
+				-	Identificador del derecho.
+				-	Descripción del derecho.
+				-	Última fecha de solicitud.
+				
+				Parámetro de entrada:
+
+				•	NIF: Alfanumérico de 2 a 9 posiciones. Obligatorio
+				
+				Se devolverá la siguiente información:
+				
+				- Se generará un XML con la información de cada uno de los derechos que el asegurado ha solicitado ejercer sobre sus datos personales en Agroseguro
+				según se describe en el esquema AseguradoDerechosRGPD.xsd.
+								
+				- Si el asegurado no existe en el sistema, no se encuentra información que devolver para el nif pedido, o se produce
+				un error en el servicio, se devuelve un error mediante el mecanismo SOAPFault y no se genera ningún adjunto XML.
+				
+	  </wsdl:documentation>
+	  <wsdl:input message="agr:aseguradoDerechosRGPDRequest" />
+	  <wsdl:output message="agr:aseguradoDerechosRGPDResponse" />
+	  <wsdl:fault name="AgrException" message="agr:AgrException" />
+	</wsdl:operation>
+	
+	<wsdl:operation name="derechosRGPD">
+      <wsdl:documentation>
+				Operación de consulta de la información relativa a los derechos que los asegurados de la entidad solicitante han ejercercido sobre sus datos personales en Agroseguro.
+				
+				Se devolverá la siguiente información para cada uno de los derechos que los asegurados han solicitado ejercer sobre sus datos personales:
+				
+				-	Identificador del derecho.
+				-	Descripción del derecho.
+				-	Última fecha de solicitud.
+				
+				Parámetro de entrada:
+
+				•	fechaDesde: Date. Obligatorio
+				•	fechaHasta: Date. Obligatorio
+				
+				Se devolverá la siguiente información:
+				
+				- Se generará un XML con la información de cada uno de los derechos que los asegurados han solicitado ejercer sobre sus datos personales en Agroseguro
+				según se describe en el esquema AseguradoDerechosRGPD.xsd.
+								
+				- Si el asegurado no existe en el sistema, no se encuentra información que devolver para el nif pedido, o se produce
+				un error en el servicio, se devuelve un error mediante el mecanismo SOAPFault y no se genera ningún adjunto XML.
+				
+	  </wsdl:documentation>
+      <wsdl:input message="agr:derechosRGPDRequest" />
+	  <wsdl:output message="agr:derechosRGPDResponse" />
+	  <wsdl:fault name="AgrException" message="agr:AgrException" />
+    </wsdl:operation>
+	
+  </wsdl:portType>
+  <wsdl:binding name="ContratacionSCAseguradoSOAP" 
+  		type="agr:ContratacionSCAsegurado">
+    <soap:binding style="document" 
+    	transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="aseguradoDatosYMedidas">
+      <soap:operation 
+      		soapAction="aseguradoDatosYMedidas"/>
+      <wsdl:input>
+		<soap:header wsdl:required="true" message="agr:Header" part="Security" use="literal" />
+		<soap:body use="literal" />
+	  </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="AgrException">
+		<soap:fault name="AgrException" use="literal" />
+	  </wsdl:fault>
+    </wsdl:operation>
+	
+	<wsdl:operation name="aseguradoInfoSaldoENESA">
+      <soap:operation 
+      		soapAction="aseguradoInfoSaldoENESA"/>
+      <wsdl:input>
+		<soap:header wsdl:required="true" message="agr:Header" part="Security" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="AgrException">
+		<soap:fault name="AgrException" use="literal" />
+	  </wsdl:fault>
+    </wsdl:operation>
+	
+	<wsdl:operation name="aseguradoDerechosRGPD">
+      <soap:operation 
+      		soapAction="aseguradoDerechosRGPD"/>
+      <wsdl:input>
+		<soap:header wsdl:required="true" message="agr:Header" part="Security" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="AgrException">
+		<soap:fault name="AgrException" use="literal" />
+	  </wsdl:fault>
+    </wsdl:operation>
+	
+	<wsdl:operation name="derechosRGPD">
+      <soap:operation 
+      		soapAction="derechosRGPD"/>
+      <wsdl:input>
+		<soap:header wsdl:required="true" message="agr:Header" part="Security" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="AgrException">
+		<soap:fault name="AgrException" use="literal" />
+	  </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ContratacionSCAsegurado">
+    <wsdl:documentation>
+			Mediante este proceso se podrá solicitar la información sobre 
+			datos personales y medidas aplicables al asegurado para un plan/línea
+			determinado.
+
+			La información se devolverá dentro de archivos XML enviados como
+			Adjunto (Attachment) en formato MTOM.
+	</wsdl:documentation>
+    <wsdl:port binding="agr:ContratacionSCAseguradoSOAP" 
+    		name="ContratacionSCAseguradoSOAP">
+      <wsdl:documentation>
+				La primera dirección es el entorno de pruebas y no tiene
+				una resolución asignada en Internet, por lo que se deberá
+				incluir en la máquina local o en el servidor de nombres
+				local con la siguiente dirección: 195.235.42.35
+				
+				La segunda dirección es el entorno de producción.
+	  </wsdl:documentation>
+	  <soap:address
+				location="https://www.agroseguro.es/csca/V1R0/services/ContratacionSCAsegurado" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

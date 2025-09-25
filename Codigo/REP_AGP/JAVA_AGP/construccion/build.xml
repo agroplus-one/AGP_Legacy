@@ -1,0 +1,377 @@
+<project name="JAVA AGROPLUS" default="all">
+
+	<!-- PROPERTIES -->
+	<property file="${basedir}/../../PRJ_AGP/construccion/build.general.properties"/>
+	<property file="${basedir}/../../PRJ_AGP/construccion/libraries.properties"/>
+	
+	<!-- NEXUS -->
+	<echo message="cogemos el jar: ${ant-contrib.jar}" />           
+	<taskdef resource="net/sf/antcontrib/antlib.xml">
+	<!-- NEXUS LOCAL -->
+	<classpath>
+		<pathelement location="${ant-contrib.jar}"/>
+	</classpath>
+	<!-- NEXUS LOCAL -->
+	</taskdef>
+	
+	<echo message="Creamos las carpetas para descargar los jar" />
+	<mkdir dir="${iText.dir}" />
+	<mkdir dir="${poi.dir}" />
+	<mkdir dir="${barcode4j.dir}" />
+	<mkdir dir="${dynamicjasper.dir}" />
+	<mkdir dir="${batik.dir}" />
+	<mkdir dir="${xmlsecurity.dir}" />
+	
+	<!-- <property name="urlNexus" value="[http://ic-nexus.risa/repository/Toolchain-Maven]" /> -->
+	<property name="urlNexus" value="http://ic-nexus.risa/repository/maven-central" />
+	    
+	<var name="adenda" value="" />
+	<!-- <var name="urlNexus" value="urlNexus" /> -->
+	
+	<target name="inicializaNexus">
+	    <echo message="entorno : ${entorno}" />                        
+	    <switch value="${entorno}">
+	    	<case value="LOCAL">
+	    		<echo message="Se procede a iniciarlizar Nexus para el entorno --> LOCAL" />                
+	    		<!-- <var name="adenda" value = "-SNAPSHOT"/> -->
+	    	</case>
+	        <case value="DESA">
+	            <echo message="Se procede a iniciarlizar Nexus para el entorno --> DESARROLLO" />                
+	        </case>
+	        <case value="TEST">
+	            <echo message="Se procede a iniciarlizar Nexus para el entorno --> TEST" />
+	            <!-- <var name="adenda" value = "-RC1"/> -->
+	        </case>
+	        <default>
+	        	<echo message="Se procede a iniciarlizar Nexus para el entorno --> PRODUCCION" />
+	            <echo message="Prod" />
+	        </default>
+	    </switch>   
+	</target>
+	
+	<!--<import file="Nexus.xml"/>-->
+    <property name="entorno" value="${entorno}" />            
+      
+    <target name="resolveDependencies" depends="inicializaNexus">
+    	<!-- prueba itext -->
+    	<property name="nLibItextA" value="itext-pdfa-5.5.0.jar" />
+    	<property name="gLibItextA" value="/com/itextpdf/itext-pdfa/5.5.0" />
+    	<get src="${urlNexus}${gLibItextA}/${nLibItextA}" dest="${iText.dir}/${nLibItextA}" usetimestamp="true" /> 	  
+    	
+    	<property name="nLibItext" value="itextpdf-5.5.0.jar" />
+    	<property name="gLibItext" value="/com/itextpdf/itextpdf/5.5.0" />
+    	<get src="${urlNexus}${gLibItext}/${nLibItext}" dest="${iText.dir}/${nLibItext}" usetimestamp="true" /> 	 
+    	<!-- prueba itext -->
+    	
+    	<!-- prueba poi -->
+    	
+		<property name="nLibPoi" value="poi-3.10.1.jar" />
+		<property name="gLibPoi" value="/org/apache/poi/poi/3.10.1" />
+		<get src="${urlNexus}${gLibPoi}/${nLibPoi}" dest="${poi.dir}/${nLibPoi}" usetimestamp="true" />	    
+		<!-- prueba poi -->
+    	
+    	<!-- prueba barcode4j -->
+    	
+    	<property name="nLibBarcode4j" value="barcode4j-2.1.jar" />
+    	<property name="gLibBarcode4j" value="/net/sf/barcode4j/barcode4j/2.1" />
+    	<get src="${urlNexus}${gLibBarcode4j}/${nLibBarcode4j}" dest="${barcode4j.dir}/${nLibBarcode4j}" usetimestamp="true" /> 	    
+    	<!-- prueba barcode4j -->
+    	
+    	<!-- prueba jasperreports -->
+    	<mkdir dir="${jasperreports.dir}" />
+    	<property name="nLibJasperreports" value="jasperreports-6.0.0.jar" />
+    	<property name="gLibJasperreports" value="/net/sf/jasperreports/jasperreports/6.0.0" />
+    	<get src="${urlNexus}${gLibJasperreports}/${nLibJasperreports}" dest="${jasperreports.dir}/${nLibJasperreports}" usetimestamp="true" /> 	    
+    	<!-- prueba jasperreports -->
+    	
+    	<!-- prueba jasper -->
+    	
+    	<property name="nLibDynamicJasper" value="DynamicJasper-5.0.5.jar" />
+    	<property name="gLibDynamicJasper" value="/ar/com/fdvs/DynamicJasper/5.0.5" />
+    	<get src="${urlNexus}${gLibDynamicJasper}/${nLibDynamicJasper}" dest="${dynamicjasper.dir}/${nLibDynamicJasper}" usetimestamp="true" /> 	    
+    	<!-- prueba jasper -->
+    	
+    	<!-- prueba batik -->
+    	
+    	<property name="nLibBatikBridge" value="batik-bridge-1.7.jar" />
+    	<property name="gLibBatikBridge" value="/org/apache/xmlgraphics/batik-bridge/1.7" />
+    	<get src="${urlNexus}${gLibBatikBridge}/${nLibBatikBridge}" dest="${batik.dir}/${nLibBatikBridge}" usetimestamp="true" /> 	    
+    	
+    	<property name="nLibBatikGvt" value="batik-gvt-1.7.jar" />
+    	<property name="gLibBatikGvt" value="/org/apache/xmlgraphics/batik-gvt/1.7" />
+    	<get src="${urlNexus}${gLibBatikGvt}/${nLibBatikGvt}" dest="${batik.dir}/${nLibBatikGvt}" usetimestamp="true" />
+    	
+    	<property name="nLibBatikUtil" value="batik-util-1.7.jar" />
+    	<property name="gLibBatikUtil" value="/org/apache/xmlgraphics/batik-util/1.7" />
+    	<get src="${urlNexus}${gLibBatikUtil}/${nLibBatikUtil}" dest="${batik.dir}/${nLibBatikUtil}" usetimestamp="true" /> 
+    	
+    	<property name="nLibBatikSvgDom" value="batik-svg-dom-1.7.jar" />
+    	<property name="gLibBatikSvgDom" value="/org/apache/xmlgraphics/batik-svg-dom/1.7" />
+    	<get src="${urlNexus}${gLibBatikSvgDom}/${nLibBatikSvgDom}" dest="${batik.dir}/${nLibBatikSvgDom}" usetimestamp="true" />
+    	
+    	<property name="nLibBatikDom" value="batik-dom-1.7.jar" />
+    	<property name="gLibBatikDom" value="/org/apache/xmlgraphics/batik-dom/1.7" />
+    	<get src="${urlNexus}${gLibBatikDom}/${nLibBatikDom}" dest="${batik.dir}/${nLibBatikDom}" usetimestamp="true" />
+    	
+    	<property name="nLibBatikScript" value="batik-script-1.7.jar" />
+    	<property name="gLibBatikScript" value="/org/apache/xmlgraphics/batik-script/1.7" />
+    	<get src="${urlNexus}${gLibBatikScript}/${nLibBatikScript}" dest="${batik.dir}/${nLibBatikScript}" usetimestamp="true" />
+    	
+    	<property name="nLibBatikCss" value="batik-css-1.7.jar" />
+    	<property name="gLibBatikCss" value="/org/apache/xmlgraphics/batik-css/1.7" />
+    	<get src="${urlNexus}${gLibBatikCss}/${nLibBatikCss}" dest="${batik.dir}/${nLibBatikCss}" usetimestamp="true" />
+
+    	<property name="nLibBatikSvggen" value="batik-svggen-1.7.jar" />
+    	<property name="gLibBatikSvggen" value="/org/apache/xmlgraphics/batik-svggen/1.7" />
+    	<get src="${urlNexus}${gLibBatikSvggen}/${nLibBatikSvggen}" dest="${batik.dir}/${nLibBatikSvggen}" usetimestamp="true" />
+    		
+    	<property name="nLibBatikAwt" value="batik-awt-util-1.7.jar" />
+    	<property name="gLibBatikAwt" value="/org/apache/xmlgraphics/batik-awt-util/1.7" />
+    	<get src="${urlNexus}${gLibBatikAwt}/${nLibBatikAwt}" dest="${batik.dir}/${nLibBatikAwt}" usetimestamp="true" />
+		
+    	<property name="nLibBatikAnim" value="batik-anim-1.7.jar" />
+    	<property name="gLibBatikAnim" value="/org/apache/xmlgraphics/batik-anim/1.7" />
+    	<get src="${urlNexus}${gLibBatikAnim}/${nLibBatikAnim}" dest="${batik.dir}/${nLibBatikAnim}" usetimestamp="true" />
+				
+    	<property name="nLibBatikParser" value="batik-parser-1.7.jar" />
+    	<property name="gLibBatikParser" value="/org/apache/xmlgraphics/batik-parser/1.7" />
+    	<get src="${urlNexus}${gLibBatikParser}/${nLibBatikParser}" dest="${batik.dir}/${nLibBatikParser}" usetimestamp="true" />
+		
+    	<property name="nLibBatikXml" value="batik-xml-1.7.jar" />
+    	<property name="gLibBatikXml" value="/org/apache/xmlgraphics/batik-xml/1.7" />
+    	<get src="${urlNexus}${gLibBatikXml}/${nLibBatikXml}" dest="${batik.dir}/${nLibBatikXml}" usetimestamp="true" />
+    	
+    	<property name="nLibBatikExt" value="batik-ext-1.7.jar" />
+    	<property name="gLibBatikExt" value="/org/apache/xmlgraphics/batik-ext/1.7" />
+    	<get src="${urlNexus}${gLibBatikExt}/${nLibBatikExt}" dest="${batik.dir}/${nLibBatikExt}" usetimestamp="true" />
+    	
+    	<property name="nLibBatikCodec" value="batik-codec-1.7.jar" />
+    	<property name="gLibBatikCodec" value="/org/apache/xmlgraphics/batik-codec/1.7" />
+    	<get src="${urlNexus}${gLibBatikCodec}/${nLibBatikCodec}" dest="${batik.dir}/${nLibBatikCodec}" usetimestamp="true" />
+    	
+		<property name="nLibBatikExtension" value="batik-extension-1.7.jar" />
+    	<property name="gLibBatikExtension" value="/org/apache/xmlgraphics/batik-extension/1.7" />
+    	<get src="${urlNexus}${gLibBatikExtension}/${nLibBatikExtension}" dest="${batik.dir}/${nLibBatikExtension}" usetimestamp="true" />
+    	
+    	<property name="nLibBatikSwing" value="batik-swing-1.7.jar" />
+    	<property name="gLibBatikSwing" value="/org/apache/xmlgraphics/batik-swing/1.7" />
+    	<get src="${urlNexus}${gLibBatikSwing}/${nLibBatikSwing}" dest="${batik.dir}/${nLibBatikSwing}" usetimestamp="true" />
+    	
+    	<property name="nLibBatikTranscoder" value="batik-transcoder-1.7.jar" />
+    	<property name="gLibBatikTranscoder" value="/org/apache/xmlgraphics/batik-transcoder/1.7" />
+    	<get src="${urlNexus}${gLibBatikTranscoder}/${nLibBatikTranscoder}" dest="${batik.dir}/${nLibBatikTranscoder}" usetimestamp="true" />
+    	
+    	<property name="nLibBatikGuiU" value="batik-gui-util-1.7.jar" />
+    	<property name="gLibBatikGuiU" value="/org/apache/xmlgraphics/batik-gui-util/1.7" />
+    	<get src="${urlNexus}${gLibBatikGuiU}/${nLibBatikGuiU}" dest="${batik.dir}/${nLibBatikGuiU}" usetimestamp="true" />
+    	<!-- prueba batik -->
+    	
+    	<!-- prueba xml-apis-ext -->
+    	<property name="nLibXmlApiExt" value="xml-apis-ext-1.3.04.jar" />
+    	<property name="gLibXmlApiExt" value="/xml-apis/xml-apis-ext/1.3.04" />
+    	<get src="${urlNexus}${gLibXmlApiExt}/${nLibXmlApiExt}" dest="${batik.dir}/${nLibXmlApiExt}" usetimestamp="true" />
+    	<!-- prueba xml-apis-ext -->	
+    	
+    	<!-- prueba xmlsec -->
+    	
+    	<property name="nLibXmlsec" value="xmlsec-1.5.1.jar" />
+    	<property name="gLibXmlsec" value="/org/apache/santuario/xmlsec/1.5.1" />
+    	<get src="${urlNexus}${gLibXmlsec}/${nLibXmlsec}" dest="${xmlsecurity.dir}/${nLibXmlsec}" usetimestamp="true" />	    
+    	<!-- prueba xmlsec -->
+    	
+	</target>
+	
+	<path id="path.classpath">
+		<pathelement location="${hibernate.jar}"/>
+		<pathelement location="${oracle.jar}"/>
+		<pathelement location="${log4j.jar}"/>
+		<pathelement location="${bsh.jar}"/>
+		<pathelement location="${commons-logging.jar}"/>
+		<pathelement location="${commons-collections.jar}"/>
+		<pathelement location="${commons-beanutils.jar}"/>
+		<pathelement location="${commons-io.jar}"/>
+		<pathelement location="${commons-lang.jar}"/>
+		<pathelement location="${commons-codec.jar}"/>
+		<pathelement location="${commons-net.jar}"/>
+		<pathelement location="${dom4j.jar}"/>
+		<pathelement location="${cglib.jar}"/>
+		<pathelement location="${asm.jar}"/>
+		<pathelement location="${jtidy.jar}"/>
+		<pathelement location="${iTextPdf.jar}"/>	
+		<pathelement location="${iTextPdfa.jar}"/>
+		<pathelement location="${jmesa.jar}"/>
+		<pathelement location="${poi.jar}"/>
+		<pathelement location="${jsch.jar}"/>
+		<pathelement location="${dist}/schemas.jar"/>
+		<pathelement location="${dist}/wsAgroseguro.jar"/>
+		<!-- JasperReports -->
+		<pathelement location="${jasperreports.jar}"/>	
+		<pathelement location="${jaspercompiler.jar}"/>
+		<pathelement location="${jasperfonts.jar}"/>
+		<pathelement location="${dynamicjasper.jar}"/>	
+		<!-- JavaCsv -->
+		<pathelement location="${dist}/javacsv.jar}"/>
+		<!-- ftps -->
+		<pathelement location="${bcutil.jar}"/>
+		<pathelement location="${bctls.jar}"/>
+		<pathelement location="${bcprov.jar}"/>
+		
+		<fileset dir="${slf4j-api.dir}" >
+			<include name="**/*.jar"/>
+		</fileset>
+		<fileset dir="${hibernate.tools.dir}" >
+			<include name="**/*.jar"/>
+		</fileset>
+		<fileset dir="${jakarta-standard.dir}" >
+			<include name="**/*.jar"/>
+		</fileset>
+		<fileset dir="${spring.dir}" >
+			<include name="**/*.jar"/>
+		</fileset>
+		<fileset dir="${servletapi.dir}" >
+			<include name="**/*.jar"/>
+		</fileset>
+		<fileset dir="${displaytag.dir}" >
+			<include name="**/*.jar"/>
+		</fileset>
+		<fileset dir="${blazeds.dir}" >
+			<include name="**/*.jar"/>
+		</fileset>
+		<fileset dir="${xmlbeans.dir}" >
+			<include name="**/*.jar"/>
+		</fileset>	
+		<fileset dir="${javamail.dir}" >
+			<include name="**/*.jar"/>
+		</fileset>
+		<fileset dir="${jersey.dir}" >
+			<include name="**/*.jar"/>
+		</fileset>
+		<fileset dir="${jsr.dir}" >
+			<include name="**/*.jar"/>
+		</fileset>
+		<fileset dir="${xmlsecurity.dir}" >
+			<include name="**/*.jar"/>
+		</fileset> 
+		<!-- TMR Añadimos la ruta dist porque a Ant es necesario decirle donde estan los jars nuevos para que compile -->
+		<fileset dir="${dist}" >
+			<include name="**/*.jar"/>
+		</fileset>
+	</path>
+
+	<!-- TASKS -->
+    <taskdef name="xmlbean" classname="org.apache.xmlbeans.impl.tool.XMLBean">
+		<classpath refid="path.classpath"/>
+	</taskdef>
+	
+	<!-- Hibernate Tools en http://www.hibernate.org/subprojects/tools.html -->
+	<taskdef name="hibernatetool" classname="org.hibernate.tool.ant.HibernateToolTask">
+		<classpath refid="path.classpath"/>
+	</taskdef>
+	
+	<!-- TARGETS -->
+	
+	<target name="all" depends="jar"/>
+
+	<target name="init" depends="clean">
+		<tstamp>
+			<format property="now" pattern="dd/MM/yyyy" offset="1"/>
+		</tstamp>
+		<echo message="*******************************************************"/>
+		<echo message="***************** JAVA AGROPLUS ***********************"/>
+		<echo message="*******************************************************"/>
+		<mkdir dir="${dist}"/>
+		<mkdir dir="${build}"/>
+		
+	</target>
+
+	<target name="compile" depends="init">
+		<!-- Compila las clases -->
+		<javac includeantruntime="false" srcdir="${src}" destdir="${build}" includes="**/*.java,**/*.xml" debug="true" target="1.7" source="1.7">
+			<classpath refid="path.classpath"/>
+		</javac>
+		<!-- Copia los properties -->
+		<copy todir="${build}">
+			<fileset dir="${src}/jmesa/main" includes="**/*.properties" />
+		</copy>
+		<!-- Copia los hbm -->
+		<copy todir="${build}">
+			<fileset dir="../../${hbm.dir}" includes="**/*.xml" />
+		</copy>
+		<!-- Copia los certs -->
+		<copy todir="${build}">
+			<fileset dir="${src}/service/main" includes="**/*.pfx" />
+		</copy>
+	</target>	
+	
+	<target name="jar" depends="compile">
+		<jar jarfile="${dist}/${jar_name}.jar" basedir="${build}" includes="**/*.class,**/*.xml,**/*.properties,**/*.pfx"/>
+	</target>
+
+	<target name="clean" depends="resolveDependencies">
+		<delete dir="${build}"/>
+	</target>
+
+	<target name="doc" depends="init,doc_project" description="Genera el Javadoc del proyecto"/>
+
+	<target name="doc_project" depends="init" description="Genera el Javadoc del Proyecto">
+		<mkdir dir="${documentation_dir}"/>
+		<javadoc packagenames="*" destdir="${documentation_dir}">
+			<classpath refid="path.classpath"/>
+			<sourcepath>
+				<pathelement location="${src}"/>
+			</sourcepath>
+			<doctitle><![CDATA[<h1>${project_name} - ${now}</h1>]]></doctitle>
+			<bottom><![CDATA[<i>Copyright &#169; 2010 RSI/T-Systems</i>]]></bottom>
+			<link href="http://java.sun.com/reference/api/index.html"/>
+		</javadoc>
+	</target>
+	
+	<!-- Hibernate Target -->
+
+	<target name="gen_hibernate" description="Genera el codigo fuente para Hibernate">
+		<!-- <delete dir="${src}/dao/main/com/rsi/agp/dao/tables"/> -->
+		<delete dir="C:/temp/fuentes/java/dao/main"/>
+		<delete dir="C:/temp/fuentes/hbm"/>
+		<hibernatetool destdir="C:/temp/fuentes/java/dao/main">
+			<jdbcconfiguration 
+							configurationfile="${path_descr_entorno}/hibernate.cfg.xml"
+							revengfile="${path_descr_entorno}/hibernate.reveng.xml"
+							detectmanytomany="true" 
+							detectoptimisticlock="true"
+							description="Generates Pojos based on AgroPlus Tables"
+						/>
+			<hbm2hbmxml destdir="C:/temp/fuentes/hbm" templatepath="${path_descr_entorno}" templateprefix="hbm/"/>
+			<hbmtemplate templateprefix="pojo/"
+						 templatepath="${path_descr_entorno}"
+			             template="pojo/Pojo.ftl"
+			             filepattern="{package-name}/{class-name}.java">
+			       <property key="jdk5" value="true"/>
+			       <property key="ejb3" value="false"/>
+			</hbmtemplate>
+		</hibernatetool>
+	</target>
+	
+	<!-- XMLBean target -->
+	<target name="xmlbeans">
+		<xmlbean destfile="${dist}/schemas.jar" classpathref="path.classpath" failonerror="true">
+		  <fileset dir="${src}">
+		  	<exclude name="**/*.xsd"/>
+		  </fileset>
+		  <fileset dir="${basedir}/../schemas">
+		  	<include name="**/*.*"/>
+		  </fileset>
+		</xmlbean>
+	</target>
+	
+	<target name="xmlbeansPruebas">
+		<xmlbean destfile="${dist}/schemasPruebas.jar" classpathref="path.classpath" failonerror="true">
+		  <fileset dir="${src}">
+		  	<exclude name="**/*.xsd"/>
+		  </fileset>
+		  <fileset dir="${basedir}/../schemas2">
+		  	<include name="**/*.*"/>
+		  </fileset>
+		</xmlbean>
+	</target>
+	
+</project>

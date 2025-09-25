@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="declaracionSeguro_datosTomador" pageWidth="555" pageHeight="802" whenNoDataType="AllSectionsNoDetail" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="ID" class="java.lang.Integer"/>
+	<queryString>
+		<![CDATA[select distinct (v.abreviatura||' '|| t.domicilio ||' '|| t.numvia) as DOMICILIO,
+        t.numvia,
+        t.piso,
+        t.bloque,
+        t.escalera,
+        t.codpostal,
+        t.telefono,
+        t.email,
+        t.movil,
+	t.razonsocial,
+        l.nomlocalidad,
+        pr.nomprovincia,
+        e.nomentidad,
+        t.ciftomador
+        from o02agpe0.tb_colectivos c, o02agpe0.tb_polizas p, o02agpe0.tb_tomadores t, o02agpe0.tb_vias v, o02agpe0.tb_localidades l, o02agpe0.tb_entidades e, o02agpe0.tb_provincias pr
+        where p.idcolectivo = c.id
+        and c.codentidad = t.codentidad
+        and c.ciftomador = t.ciftomador
+        and v.clave = t.clavevia
+        and t.codprovincia = l.codprovincia
+        and t.sublocalidad = l.sublocalidad
+        and t.codlocalidad = l.codlocalidad
+        and t.codentidad = e.codentidad
+        and pr.codprovincia = t.codprovincia
+        and p.idpoliza = $P{ID}]]>
+	</queryString>
+	<field name="DOMICILIO" class="java.lang.String"/>
+	<field name="NUMVIA" class="java.lang.String"/>
+	<field name="PISO" class="java.lang.String"/>
+	<field name="BLOQUE" class="java.lang.String"/>
+	<field name="ESCALERA" class="java.lang.String"/>
+	<field name="CODPOSTAL" class="java.math.BigDecimal"/>
+	<field name="TELEFONO" class="java.lang.String"/>
+	<field name="EMAIL" class="java.lang.String"/>
+	<field name="MOVIL" class="java.lang.String"/>
+	<field name="RAZONSOCIAL" class="java.lang.String"/>
+	<field name="NOMLOCALIDAD" class="java.lang.String"/>
+	<field name="NOMPROVINCIA" class="java.lang.String"/>
+	<field name="NOMENTIDAD" class="java.lang.String"/>
+	<field name="CIFTOMADOR" class="java.lang.String"/>
+	<variable name="SHOW_FOOT" class="java.lang.Boolean" resetType="None">
+		<variableExpression><![CDATA[new Boolean(true)]]></variableExpression>
+		<initialValueExpression><![CDATA[]]></initialValueExpression>
+	</variable>
+	<variable name="SHOW_BACK" class="java.lang.Boolean" resetType="None">
+		<variableExpression><![CDATA[new Boolean(true)]]></variableExpression>
+		<initialValueExpression><![CDATA[]]></initialValueExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="55" splitType="Stretch">
+			<textField isBlankWhenNull="true">
+				<reportElement x="0" y="13" width="484" height="13"/>
+				<textElement>
+					<font fontName="SansSerif" size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{RAZONSOCIAL}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="271" y="39" width="55" height="13"/>
+				<textElement>
+					<font fontName="SansSerif" size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{MOVIL}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="0" width="242" height="13"/>
+				<textElement>
+					<font fontName="SansSerif" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DATOS DEL TOMADOR]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="208" y="26" width="24" height="13"/>
+				<textElement>
+					<font fontName="SansSerif" size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Blq:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="0" y="39" width="28" height="13"/>
+				<textElement>
+					<font fontName="SansSerif" size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{CODPOSTAL}.toString()]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="173" y="26" width="35" height="13"/>
+				<textElement>
+					<font fontName="SansSerif" size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{PISO}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="326" y="26" width="57" height="13"/>
+				<textElement>
+					<font fontName="SansSerif" size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Localidad:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="112" y="26" width="61" height="13"/>
+				<textElement>
+					<font fontName="SansSerif" size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Piso/Letra:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="291" y="26" width="24" height="13"/>
+				<textElement>
+					<font fontName="SansSerif" size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{ESCALERA}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="35" y="39" width="58" height="13"/>
+				<textElement>
+					<font fontName="SansSerif" size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{NOMPROVINCIA}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="238" y="26" width="26" height="13"/>
+				<textElement>
+					<font fontName="SansSerif" size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{BLOQUE}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="334" y="0" width="57" height="13"/>
+				<textElement>
+					<font fontName="SansSerif" size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[NIF/CIF:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="391" y="0" width="150" height="13"/>
+				<textElement>
+					<font fontName="SansSerif" size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{CIFTOMADOR}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="365" y="39" width="190" height="13"/>
+				<textElement>
+					<font fontName="SansSerif" size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{EMAIL}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="264" y="26" width="27" height="13"/>
+				<textElement>
+					<font fontName="SansSerif" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Esc:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="160" y="39" width="55" height="13"/>
+				<textElement>
+					<font fontName="SansSerif" size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{TELEFONO}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="112" y="39" width="49" height="13"/>
+				<textElement>
+					<font fontName="SansSerif" size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Tfno.Fijo:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="326" y="39" width="39" height="13"/>
+				<textElement>
+					<font fontName="SansSerif" size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[e-mail:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="215" y="39" width="56" height="13"/>
+				<textElement>
+					<font fontName="SansSerif" size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Tfno. Móvil:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="0" y="26" width="112" height="13"/>
+				<textElement>
+					<font fontName="SansSerif" size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{DOMICILIO}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="383" y="26" width="172" height="13"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="SansSerif" size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{NOMLOCALIDAD}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="28" y="39" width="7" height="13"/>
+				<textElement>
+					<font fontName="SansSerif" size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[-]]></text>
+			</staticText>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

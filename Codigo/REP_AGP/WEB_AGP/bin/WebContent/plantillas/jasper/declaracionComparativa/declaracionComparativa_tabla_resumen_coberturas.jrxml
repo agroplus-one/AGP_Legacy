@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="DynamicReport" pageWidth="595" pageHeight="842" whenNoDataType="AllSectionsNoDetail" columnWidth="595" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="10" scriptletClass="ar.com.fdvs.dj.core.DJDefaultScriptlet" whenResourceMissingType="Key">
+	<style name="dj_style_1_" isDefault="false" mode="Transparent" forecolor="#000000" backcolor="#FFFFFF" fill="Solid" radius="0" scaleImage="Clip" hAlign="Center" vAlign="Middle" rotation="None" isBlankWhenNull="true" fontName="SansSerif" fontSize="5" isBold="true" isItalic="false" isUnderline="false" isPdfEmbedded="false">
+		<pen lineWidth="0.0" lineStyle="Solid"/>
+		<box padding="2">
+			<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="dj_style_2_" isDefault="false" mode="Transparent" forecolor="#000000" backcolor="#FFFFFF" fill="Solid" radius="0" scaleImage="Clip" hAlign="Center" vAlign="Middle" rotation="None" isBlankWhenNull="true" fontName="SansSerif" fontSize="6" isBold="false" isItalic="false" isUnderline="false" isPdfEmbedded="false">
+		<pen lineWidth="0.0" lineStyle="Solid"/>
+		<box padding="2">
+			<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="SansSerif_for_column_COLUMN_0_" isDefault="false" mode="Transparent" forecolor="#000000" backcolor="#FFFFFF" fill="Solid" radius="0" scaleImage="Clip" hAlign="Center" vAlign="Middle" rotation="None" isBlankWhenNull="true" fontName="SansSerif" fontSize="6" isBold="false" isItalic="false" isUnderline="false" isPdfEmbedded="false">
+		<pen lineWidth="0.0" lineStyle="Solid"/>
+		<box padding="2">
+			<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="SansSerif_for_column_COLUMN_1_" isDefault="false" mode="Transparent" forecolor="#000000" backcolor="#FFFFFF" fill="Solid" radius="0" scaleImage="Clip" hAlign="Center" vAlign="Middle" rotation="None" isBlankWhenNull="true" fontName="SansSerif" fontSize="6" isBold="false" isItalic="false" isUnderline="false" isPdfEmbedded="false">
+		<pen lineWidth="0.0" lineStyle="Solid"/>
+		<box padding="2">
+			<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="SansSerif_for_column_COLUMN_2_" isDefault="false" mode="Transparent" forecolor="#000000" backcolor="#FFFFFF" fill="Solid" radius="0" scaleImage="Clip" hAlign="Center" vAlign="Middle" rotation="None" isBlankWhenNull="true" fontName="SansSerif" fontSize="6" isBold="false" isItalic="false" isUnderline="false" isPdfEmbedded="false">
+		<pen lineWidth="0.0" lineStyle="Solid"/>
+		<box padding="2">
+			<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="SansSerif_for_column_COLUMN_3_" isDefault="false" mode="Transparent" forecolor="#000000" backcolor="#FFFFFF" fill="Solid" radius="0" scaleImage="Clip" hAlign="Center" vAlign="Middle" rotation="None" isBlankWhenNull="true" fontName="SansSerif" fontSize="6" isBold="false" isItalic="false" isUnderline="false" isPdfEmbedded="false">
+		<pen lineWidth="0.0" lineStyle="Solid"/>
+		<box padding="2">
+			<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="SansSerif_for_column_COLUMN_4_" isDefault="false" mode="Transparent" forecolor="#000000" backcolor="#FFFFFF" fill="Solid" radius="0" scaleImage="Clip" hAlign="Center" vAlign="Middle" rotation="None" isBlankWhenNull="true" fontName="SansSerif" fontSize="6" isBold="false" isItalic="false" isUnderline="false" isPdfEmbedded="false">
+		<pen lineWidth="0.0" lineStyle="Solid"/>
+		<box padding="2">
+			<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="SansSerif_for_column_COLUMN_5_" isDefault="false" mode="Transparent" forecolor="#000000" backcolor="#FFFFFF" fill="Solid" radius="0" scaleImage="Clip" hAlign="Center" vAlign="Middle" rotation="None" isBlankWhenNull="true" fontName="SansSerif" fontSize="6" isBold="false" isItalic="false" isUnderline="false" isPdfEmbedded="false">
+		<pen lineWidth="0.0" lineStyle="Solid"/>
+		<box padding="2">
+			<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="SansSerif_for_column_COLUMN_6_" isDefault="false" mode="Transparent" forecolor="#000000" backcolor="#FFFFFF" fill="Solid" radius="0" scaleImage="Clip" hAlign="Center" vAlign="Middle" rotation="None" isBlankWhenNull="true" fontName="SansSerif" fontSize="6" isBold="false" isItalic="false" isUnderline="false" isPdfEmbedded="false">
+		<pen lineWidth="0.0" lineStyle="Solid"/>
+		<box padding="2">
+			<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+		</box>
+	</style>
+	<field name="garantia" class="java.lang.String"/>
+	<field name="riesgosCubiertos" class="java.lang.String"/>
+	<field name="celdas[0]" class="java.lang.String"/>
+	<field name="celdas[1]" class="java.lang.String"/>
+	<field name="celdas[2]" class="java.lang.String"/>
+	<field name="celdas[3]" class="java.lang.String"/>
+	<field name="celdas[4]" class="java.lang.String"/>
+	<pageHeader>
+		<band/>
+	</pageHeader>
+	<columnHeader>
+		<band height="30">
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement key="header_GARANTIA" style="dj_style_1_" positionType="Float" stretchType="RelativeToTallestObject" x="0" y="0" width="60" height="30" isPrintWhenDetailOverflows="true"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA["GARANTIA"]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement key="header_RIESGOS CUBIERTOS" style="dj_style_1_" positionType="Float" stretchType="RelativeToTallestObject" x="60" y="0" width="90" height="30" isPrintWhenDetailOverflows="true"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA["RIESGOS CUBIERTOS"]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement key="header_% CAPITAL ASEGURADO" style="dj_style_1_" positionType="Float" stretchType="RelativeToTallestObject" x="150" y="0" width="72" height="30" isPrintWhenDetailOverflows="true"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA["% CAPITAL ASEGURADO"]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement key="header_CALCULO INDEMNIZACION" style="dj_style_1_" positionType="Float" stretchType="RelativeToTallestObject" x="222" y="0" width="72" height="30" isPrintWhenDetailOverflows="true"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA["CALCULO INDEMNIZACION"]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement key="header_% MINIMO INDEMNIZABLE" style="dj_style_1_" positionType="Float" stretchType="RelativeToTallestObject" x="294" y="0" width="72" height="30" isPrintWhenDetailOverflows="true"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA["% MINIMO INDEMNIZABLE"]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement key="header_TIPO FRANQUICIA" style="dj_style_1_" positionType="Float" stretchType="RelativeToTallestObject" x="366" y="0" width="72" height="30" isPrintWhenDetailOverflows="true"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA["TIPO FRANQUICIA"]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement key="header_% FRANQUICIA" style="dj_style_1_" positionType="Float" stretchType="RelativeToTallestObject" x="438" y="0" width="72" height="30" isPrintWhenDetailOverflows="true"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA["% FRANQUICIA"]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="13" splitType="Prevent">
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement style="SansSerif_for_column_COLUMN_0_" positionType="Float" stretchType="RelativeToTallestObject" x="0" y="0" width="60" height="13" isPrintWhenDetailOverflows="true"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{garantia}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement style="SansSerif_for_column_COLUMN_1_" positionType="Float" stretchType="RelativeToTallestObject" x="60" y="0" width="90" height="13" isPrintWhenDetailOverflows="true"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{riesgosCubiertos}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement style="SansSerif_for_column_COLUMN_2_" positionType="Float" stretchType="RelativeToTallestObject" x="150" y="0" width="72" height="13" isPrintWhenDetailOverflows="true"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{celdas[0]}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement style="SansSerif_for_column_COLUMN_3_" positionType="Float" stretchType="RelativeToTallestObject" x="222" y="0" width="72" height="13" isPrintWhenDetailOverflows="true"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{celdas[1]}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement style="SansSerif_for_column_COLUMN_4_" positionType="Float" stretchType="RelativeToTallestObject" x="294" y="0" width="72" height="13" isPrintWhenDetailOverflows="true"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{celdas[2]}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement style="SansSerif_for_column_COLUMN_5_" positionType="Float" stretchType="RelativeToTallestObject" x="366" y="0" width="72" height="13" isPrintWhenDetailOverflows="true"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{celdas[3]}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement style="SansSerif_for_column_COLUMN_6_" positionType="Float" stretchType="RelativeToTallestObject" x="438" y="0" width="72" height="13" isPrintWhenDetailOverflows="true"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{celdas[4]}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band/>
+	</pageFooter>
+	<summary>
+		<band/>
+	</summary>
+</jasperReport>

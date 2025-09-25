@@ -1,0 +1,1 @@
+drop trigger o02agpe0.tg_asegurado_nif_entidad;

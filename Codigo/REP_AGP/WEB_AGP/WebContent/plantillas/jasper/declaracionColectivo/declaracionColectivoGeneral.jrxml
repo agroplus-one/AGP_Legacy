@@ -1,0 +1,593 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="declaracionColectivo" pageWidth="595" pageHeight="842" whenNoDataType="AllSectionsNoDetail" columnWidth="595" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" isSummaryNewPage="true">
+	<property name="ireport.scriptlethandling" value="2"/>
+	<property name="ireport.encoding" value="UTF-8"/>
+	<property name="ireport.zoom" value="2.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="719"/>
+	<import value="net.sf.jasperreports.engine.*"/>
+	<import value="java.util.*"/>
+	<import value="net.sf.jasperreports.engine.data.*"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA[""]]></defaultValueExpression>
+	</parameter>
+	<parameter name="DRIVER_MANAGER" class="java.sql.DriverManager" isForPrompting="false"/>
+	<parameter name="SUBREPORT_CONNECTION" class="java.sql.Connection" isForPrompting="false"/>
+	<parameter name="ID" class="java.math.BigDecimal"/>
+	<parameter name="LINEASEGUROID" class="java.lang.Long"/>
+	<parameter name="datasource" class="net.sf.jasperreports.engine.data.JRBeanCollectionDataSource" isForPrompting="false"/>
+	<parameter name="tablaSubreport" class="net.sf.jasperreports.engine.JasperReport" isForPrompting="false"/>
+	<parameter name="FECHA" class="java.util.Date"/>
+	<parameter name="COPIA_1" class="java.lang.String"/>
+	<parameter name="COPIA_2" class="java.lang.String"/>
+	<parameter name="COPIA_3" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[select  col.id,tom.codentidad,
+        tom.ciftomador,
+        tom.razonsocial,
+        tom.clavevia,
+        tom.domicilio,
+        tom.numvia,
+        tom.piso,
+        tom.bloque,
+        tom.escalera,
+        LPAD(tom.codlocalidad, 3, '0') as codlocalstr,
+	    LPAD(tom.codprovincia, 2, '0') as codprovstr,
+        tom.sublocalidad,
+	    LPAD(tom.codpostal, 5, '0') as codpostalstr,
+        tom.telefono,
+        tom.movil,
+        tom.email,
+        tom.repre_nombre,
+        tom.repre_ap1,
+        tom.repre_ap2,
+        tom.repre_nif,
+        col.lineaseguroid,
+        col.idcolectivo,
+        col.dc,
+	    col.iban,
+	    col.ccc_entidad,
+	    col.ccc_oficina,
+	    col.ccc_dc,
+	    col.ccc_cuenta,
+	    col.observaciones,
+	    ent.nomentidad,
+        NVL (TRIM(sub.NOMSUBENTIDAD), TRIM (sub.NOMBRE) || ' ' || TRIM (sub.APELLIDO1) || ' ' || TRIM (sub.APELLIDO2)) nomsubentidad,
+        sub.codsubentidad,
+	    LPAD(sub.IDTIPOMEDIADOR_AGRO, 2, '0') as tipomedstr,
+	    prov.nomprovincia,
+	    loc.nomlocalidad,
+	    sub.codentidad as codent,
+	    via.nombre as nombrevia,
+      (select count(*) crm from tb_entidades ent_sub, tb_grupo_entidades gr_sub
+       where ent_sub.idgrupo = gr_sub.id and gr_sub.descripcion like '%CRM%' and ent_sub.codentidad = ent.codentidad) crm
+from o02agpe0.tb_colectivos col
+  inner join o02agpe0.tb_entidades ent on (col.codentidad = ent.codentidad)
+  inner join o02agpe0.tb_subentidades_mediadoras sub on (col.entmediadora = sub.codentidad and col.subentmediadora = sub.codsubentidad)
+  inner join o02agpe0.tb_tomadores tom on (tom.CODENTIDAD = col.codentidad and tom.CIFTOMADOR = col.ciftomador)
+  inner join o02agpe0.tb_provincias prov on (tom.codprovincia = prov.codprovincia)
+  inner join o02agpe0.tb_localidades loc on (tom.codprovincia = loc.codprovincia and tom.codlocalidad = loc.codlocalidad and tom.sublocalidad = loc.sublocalidad)
+  inner join o02agpe0.tb_vias via on (tom.clavevia = via.clave)
+where col.id = $P{ID}]]>
+	</queryString>
+	<field name="CODENTIDAD" class="java.lang.String"/>
+	<field name="CIFTOMADOR" class="java.lang.String"/>
+	<field name="RAZONSOCIAL" class="java.lang.String"/>
+	<field name="CLAVEVIA" class="java.lang.String"/>
+	<field name="DOMICILIO" class="java.lang.String"/>
+	<field name="NUMVIA" class="java.lang.String"/>
+	<field name="PISO" class="java.lang.String"/>
+	<field name="BLOQUE" class="java.lang.String"/>
+	<field name="ESCALERA" class="java.lang.String"/>
+	<field name="CODLOCALSTR" class="java.lang.String"/>
+	<field name="CODPROVSTR" class="java.lang.String"/>
+	<field name="SUBLOCALIDAD" class="java.lang.String"/>
+	<field name="CODPOSTALSTR" class="java.lang.String"/>
+	<field name="TELEFONO" class="java.lang.String"/>
+	<field name="MOVIL" class="java.lang.String"/>
+	<field name="EMAIL" class="java.lang.String"/>
+	<field name="REPRE_NOMBRE" class="java.lang.String"/>
+	<field name="REPRE_AP1" class="java.lang.String"/>
+	<field name="REPRE_AP2" class="java.lang.String"/>
+	<field name="REPRE_NIF" class="java.lang.String"/>
+	<field name="LINEASEGUROID" class="java.lang.String"/>
+	<field name="IDCOLECTIVO" class="java.lang.String"/>
+	<field name="DC" class="java.lang.String"/>
+	<field name="CCC_ENTIDAD" class="java.lang.String"/>
+	<field name="CCC_OFICINA" class="java.lang.String"/>
+	<field name="CCC_DC" class="java.lang.String"/>
+	<field name="CCC_CUENTA" class="java.lang.String"/>
+	<field name="OBSERVACIONES" class="java.lang.String"/>
+	<field name="NOMENTIDAD" class="java.lang.String"/>
+	<field name="NOMSUBENTIDAD" class="java.lang.String"/>
+	<field name="CODSUBENTIDAD" class="java.lang.String"/>
+	<field name="TIPOMEDSTR" class="java.lang.String"/>
+	<field name="NOMPROVINCIA" class="java.lang.String"/>
+	<field name="NOMLOCALIDAD" class="java.lang.String"/>
+	<field name="CODENT" class="java.lang.String"/>
+	<field name="NOMBREVIA" class="java.lang.String"/>
+	<field name="CRM" class="java.lang.String"/>
+	<field name="IBAN" class="java.lang.String"/>
+	<variable name="REF_COLECTIVO" class="java.lang.String">
+		<variableExpression><![CDATA[$P{REPORT_PARAMETERS_MAP}.get("REF_COLECTIVO").toString()]]></variableExpression>
+	</variable>
+	<variable name="NUM_DECLARACION" class="java.lang.String">
+		<variableExpression><![CDATA[$P{REPORT_PARAMETERS_MAP}.get("NUM_DECLARACION").toString()]]></variableExpression>
+	</variable>
+	<variable name="FECHA" class="java.util.Date">
+		<variableExpression><![CDATA[new java.util.Date()]]></variableExpression>
+	</variable>
+	<variable name="MES_FECHA" class="java.lang.String">
+		<variableExpression><![CDATA[]]></variableExpression>
+	</variable>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<detail>
+		<band height="140">
+			<subreport>
+				<reportElement x="0" y="0" width="595" height="140"/>
+				<subreportParameter name="CODPROVSTR">
+					<subreportParameterExpression><![CDATA[$F{CODPROVSTR}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="CCC_OFICINA">
+					<subreportParameterExpression><![CDATA[$F{CCC_OFICINA}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="CIFTOMADOR">
+					<subreportParameterExpression><![CDATA[$F{CIFTOMADOR}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="CLAVEVIA">
+					<subreportParameterExpression><![CDATA[$F{CLAVEVIA}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="BLOQUE">
+					<subreportParameterExpression><![CDATA[$F{BLOQUE}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="DOMICILIO">
+					<subreportParameterExpression><![CDATA[$F{DOMICILIO}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="NUMVIA">
+					<subreportParameterExpression><![CDATA[$F{NUMVIA}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="NOMSUBENTIDAD">
+					<subreportParameterExpression><![CDATA[$F{NOMSUBENTIDAD}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="REPRE_NOMBRE">
+					<subreportParameterExpression><![CDATA[$F{REPRE_NOMBRE}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="NOMLOCALIDAD">
+					<subreportParameterExpression><![CDATA[$F{NOMLOCALIDAD}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="REPRE_NIF">
+					<subreportParameterExpression><![CDATA[$F{REPRE_NIF}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="SUBREPORT_CONNECTION">
+					<subreportParameterExpression><![CDATA[$P{SUBREPORT_CONNECTION}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="CODSUBENTIDAD">
+					<subreportParameterExpression><![CDATA[$F{CODSUBENTIDAD}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="LINEASEGUROID">
+					<subreportParameterExpression><![CDATA[$F{LINEASEGUROID}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="DRIVER_MANAGER">
+					<subreportParameterExpression><![CDATA[$P{DRIVER_MANAGER}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="CODLOCALSTR">
+					<subreportParameterExpression><![CDATA[$F{CODLOCALSTR}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="ESCALERA">
+					<subreportParameterExpression><![CDATA[$F{ESCALERA}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="IDCOLECTIVO">
+					<subreportParameterExpression><![CDATA[$F{IDCOLECTIVO}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="ID">
+					<subreportParameterExpression><![CDATA[$P{ID}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="EMAIL">
+					<subreportParameterExpression><![CDATA[$F{EMAIL}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="datasource">
+					<subreportParameterExpression><![CDATA[$P{datasource}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="CCC_ENTIDAD">
+					<subreportParameterExpression><![CDATA[$F{CCC_ENTIDAD}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="MOVIL">
+					<subreportParameterExpression><![CDATA[$F{MOVIL}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="REPRE_AP1">
+					<subreportParameterExpression><![CDATA[$F{REPRE_AP1}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="FECHA">
+					<subreportParameterExpression><![CDATA[$P{FECHA}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="COPIA">
+					<subreportParameterExpression><![CDATA[$P{COPIA_1}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="REPRE_AP2">
+					<subreportParameterExpression><![CDATA[$F{REPRE_AP2}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="DC">
+					<subreportParameterExpression><![CDATA[$F{DC}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="NOMPROVINCIA">
+					<subreportParameterExpression><![CDATA[$F{NOMPROVINCIA}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="TELEFONO">
+					<subreportParameterExpression><![CDATA[$F{TELEFONO}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="NOMBREVIA">
+					<subreportParameterExpression><![CDATA[$F{NOMBREVIA}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="SUBLOCALIDAD">
+					<subreportParameterExpression><![CDATA[$F{SUBLOCALIDAD}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="tablaSubreport">
+					<subreportParameterExpression><![CDATA[$P{tablaSubreport}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="IBAN">
+					<subreportParameterExpression><![CDATA[$F{IBAN}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="SUBREPORT_DIR">
+					<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="CODENTIDAD">
+					<subreportParameterExpression><![CDATA[$F{CODENTIDAD}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="PISO">
+					<subreportParameterExpression><![CDATA[$F{PISO}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="RAZONSOCIAL">
+					<subreportParameterExpression><![CDATA[$F{RAZONSOCIAL}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="NOMENTIDAD">
+					<subreportParameterExpression><![CDATA[$F{NOMENTIDAD}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="TIPOMEDSTR">
+					<subreportParameterExpression><![CDATA[$F{TIPOMEDSTR}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="CCC_CUENTA">
+					<subreportParameterExpression><![CDATA[$F{CCC_CUENTA}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="CODPOSTALSTR">
+					<subreportParameterExpression><![CDATA[$F{CODPOSTALSTR}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="CODENT">
+					<subreportParameterExpression><![CDATA[$F{CODENT}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="CCC_DC">
+					<subreportParameterExpression><![CDATA[$F{CCC_DC}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="OBSERVACIONES">
+					<subreportParameterExpression><![CDATA[$F{OBSERVACIONES}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="CRM">
+					<subreportParameterExpression><![CDATA[$F{CRM}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression class="java.lang.String"><![CDATA[$P{SUBREPORT_DIR} + "declaracionColectivo.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="140">
+			<subreport>
+				<reportElement x="0" y="0" width="595" height="140"/>
+				<subreportParameter name="COPIA">
+					<subreportParameterExpression><![CDATA[$P{COPIA_1}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression class="java.lang.String"><![CDATA[$P{SUBREPORT_DIR} + "declaracionColectivoRGPD.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="140">
+			<subreport>
+				<reportElement x="0" y="0" width="595" height="140"/>
+				<subreportParameter name="CODPROVSTR">
+					<subreportParameterExpression><![CDATA[$F{CODPROVSTR}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="CCC_OFICINA">
+					<subreportParameterExpression><![CDATA[$F{CCC_OFICINA}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="CIFTOMADOR">
+					<subreportParameterExpression><![CDATA[$F{CIFTOMADOR}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="CLAVEVIA">
+					<subreportParameterExpression><![CDATA[$F{CLAVEVIA}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="BLOQUE">
+					<subreportParameterExpression><![CDATA[$F{BLOQUE}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="DOMICILIO">
+					<subreportParameterExpression><![CDATA[$F{DOMICILIO}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="NUMVIA">
+					<subreportParameterExpression><![CDATA[$F{NUMVIA}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="NOMSUBENTIDAD">
+					<subreportParameterExpression><![CDATA[$F{NOMSUBENTIDAD}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="REPRE_NOMBRE">
+					<subreportParameterExpression><![CDATA[$F{REPRE_NOMBRE}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="NOMLOCALIDAD">
+					<subreportParameterExpression><![CDATA[$F{NOMLOCALIDAD}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="REPRE_NIF">
+					<subreportParameterExpression><![CDATA[$F{REPRE_NIF}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="SUBREPORT_CONNECTION">
+					<subreportParameterExpression><![CDATA[$P{SUBREPORT_CONNECTION}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="CODSUBENTIDAD">
+					<subreportParameterExpression><![CDATA[$F{CODSUBENTIDAD}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="LINEASEGUROID">
+					<subreportParameterExpression><![CDATA[$F{LINEASEGUROID}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="DRIVER_MANAGER">
+					<subreportParameterExpression><![CDATA[$P{DRIVER_MANAGER}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="CODLOCALSTR">
+					<subreportParameterExpression><![CDATA[$F{CODLOCALSTR}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="ESCALERA">
+					<subreportParameterExpression><![CDATA[$F{ESCALERA}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="IDCOLECTIVO">
+					<subreportParameterExpression><![CDATA[$F{IDCOLECTIVO}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="ID">
+					<subreportParameterExpression><![CDATA[$P{ID}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="EMAIL">
+					<subreportParameterExpression><![CDATA[$F{EMAIL}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="datasource">
+					<subreportParameterExpression><![CDATA[$P{datasource}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="CCC_ENTIDAD">
+					<subreportParameterExpression><![CDATA[$F{CCC_ENTIDAD}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="MOVIL">
+					<subreportParameterExpression><![CDATA[$F{MOVIL}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="REPRE_AP1">
+					<subreportParameterExpression><![CDATA[$F{REPRE_AP1}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="FECHA">
+					<subreportParameterExpression><![CDATA[$P{FECHA}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="COPIA">
+					<subreportParameterExpression><![CDATA[$P{COPIA_2}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="REPRE_AP2">
+					<subreportParameterExpression><![CDATA[$F{REPRE_AP2}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="DC">
+					<subreportParameterExpression><![CDATA[$F{DC}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="NOMPROVINCIA">
+					<subreportParameterExpression><![CDATA[$F{NOMPROVINCIA}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="TELEFONO">
+					<subreportParameterExpression><![CDATA[$F{TELEFONO}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="NOMBREVIA">
+					<subreportParameterExpression><![CDATA[$F{NOMBREVIA}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="SUBLOCALIDAD">
+					<subreportParameterExpression><![CDATA[$F{SUBLOCALIDAD}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="tablaSubreport">
+					<subreportParameterExpression><![CDATA[$P{tablaSubreport}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="IBAN">
+					<subreportParameterExpression><![CDATA[$F{IBAN}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="SUBREPORT_DIR">
+					<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="CODENTIDAD">
+					<subreportParameterExpression><![CDATA[$F{CODENTIDAD}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="PISO">
+					<subreportParameterExpression><![CDATA[$F{PISO}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="RAZONSOCIAL">
+					<subreportParameterExpression><![CDATA[$F{RAZONSOCIAL}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="NOMENTIDAD">
+					<subreportParameterExpression><![CDATA[$F{NOMENTIDAD}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="TIPOMEDSTR">
+					<subreportParameterExpression><![CDATA[$F{TIPOMEDSTR}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="CCC_CUENTA">
+					<subreportParameterExpression><![CDATA[$F{CCC_CUENTA}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="CODPOSTALSTR">
+					<subreportParameterExpression><![CDATA[$F{CODPOSTALSTR}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="CODENT">
+					<subreportParameterExpression><![CDATA[$F{CODENT}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="CCC_DC">
+					<subreportParameterExpression><![CDATA[$F{CCC_DC}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="OBSERVACIONES">
+					<subreportParameterExpression><![CDATA[$F{OBSERVACIONES}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="CRM">
+					<subreportParameterExpression><![CDATA[$F{CRM}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression class="java.lang.String"><![CDATA[$P{SUBREPORT_DIR} + "declaracionColectivo.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="140">
+			<subreport>
+				<reportElement x="0" y="0" width="595" height="140"/>
+				<subreportParameter name="COPIA">
+					<subreportParameterExpression><![CDATA[$P{COPIA_2}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression class="java.lang.String"><![CDATA[$P{SUBREPORT_DIR} + "declaracionColectivoRGPD.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="140">
+			<subreport>
+				<reportElement x="0" y="0" width="595" height="140"/>
+				<subreportParameter name="CODPROVSTR">
+					<subreportParameterExpression><![CDATA[$F{CODPROVSTR}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="CCC_OFICINA">
+					<subreportParameterExpression><![CDATA[$F{CCC_OFICINA}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="CIFTOMADOR">
+					<subreportParameterExpression><![CDATA[$F{CIFTOMADOR}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="CLAVEVIA">
+					<subreportParameterExpression><![CDATA[$F{CLAVEVIA}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="BLOQUE">
+					<subreportParameterExpression><![CDATA[$F{BLOQUE}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="DOMICILIO">
+					<subreportParameterExpression><![CDATA[$F{DOMICILIO}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="NUMVIA">
+					<subreportParameterExpression><![CDATA[$F{NUMVIA}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="NOMSUBENTIDAD">
+					<subreportParameterExpression><![CDATA[$F{NOMSUBENTIDAD}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="REPRE_NOMBRE">
+					<subreportParameterExpression><![CDATA[$F{REPRE_NOMBRE}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="NOMLOCALIDAD">
+					<subreportParameterExpression><![CDATA[$F{NOMLOCALIDAD}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="REPRE_NIF">
+					<subreportParameterExpression><![CDATA[$F{REPRE_NIF}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="SUBREPORT_CONNECTION">
+					<subreportParameterExpression><![CDATA[$P{SUBREPORT_CONNECTION}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="CODSUBENTIDAD">
+					<subreportParameterExpression><![CDATA[$F{CODSUBENTIDAD}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="LINEASEGUROID">
+					<subreportParameterExpression><![CDATA[$F{LINEASEGUROID}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="DRIVER_MANAGER">
+					<subreportParameterExpression><![CDATA[$P{DRIVER_MANAGER}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="CODLOCALSTR">
+					<subreportParameterExpression><![CDATA[$F{CODLOCALSTR}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="ESCALERA">
+					<subreportParameterExpression><![CDATA[$F{ESCALERA}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="IDCOLECTIVO">
+					<subreportParameterExpression><![CDATA[$F{IDCOLECTIVO}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="ID">
+					<subreportParameterExpression><![CDATA[$P{ID}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="EMAIL">
+					<subreportParameterExpression><![CDATA[$F{EMAIL}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="datasource">
+					<subreportParameterExpression><![CDATA[$P{datasource}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="CCC_ENTIDAD">
+					<subreportParameterExpression><![CDATA[$F{CCC_ENTIDAD}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="MOVIL">
+					<subreportParameterExpression><![CDATA[$F{MOVIL}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="REPRE_AP1">
+					<subreportParameterExpression><![CDATA[$F{REPRE_AP1}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="FECHA">
+					<subreportParameterExpression><![CDATA[$P{FECHA}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="COPIA">
+					<subreportParameterExpression><![CDATA[$P{COPIA_3}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="REPRE_AP2">
+					<subreportParameterExpression><![CDATA[$F{REPRE_AP2}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="DC">
+					<subreportParameterExpression><![CDATA[$F{DC}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="NOMPROVINCIA">
+					<subreportParameterExpression><![CDATA[$F{NOMPROVINCIA}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="TELEFONO">
+					<subreportParameterExpression><![CDATA[$F{TELEFONO}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="NOMBREVIA">
+					<subreportParameterExpression><![CDATA[$F{NOMBREVIA}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="SUBLOCALIDAD">
+					<subreportParameterExpression><![CDATA[$F{SUBLOCALIDAD}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="tablaSubreport">
+					<subreportParameterExpression><![CDATA[$P{tablaSubreport}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="IBAN">
+					<subreportParameterExpression><![CDATA[$F{IBAN}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="SUBREPORT_DIR">
+					<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="CODENTIDAD">
+					<subreportParameterExpression><![CDATA[$F{CODENTIDAD}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="PISO">
+					<subreportParameterExpression><![CDATA[$F{PISO}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="RAZONSOCIAL">
+					<subreportParameterExpression><![CDATA[$F{RAZONSOCIAL}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="NOMENTIDAD">
+					<subreportParameterExpression><![CDATA[$F{NOMENTIDAD}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="TIPOMEDSTR">
+					<subreportParameterExpression><![CDATA[$F{TIPOMEDSTR}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="CCC_CUENTA">
+					<subreportParameterExpression><![CDATA[$F{CCC_CUENTA}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="CODPOSTALSTR">
+					<subreportParameterExpression><![CDATA[$F{CODPOSTALSTR}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="CODENT">
+					<subreportParameterExpression><![CDATA[$F{CODENT}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="CCC_DC">
+					<subreportParameterExpression><![CDATA[$F{CCC_DC}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="OBSERVACIONES">
+					<subreportParameterExpression><![CDATA[$F{OBSERVACIONES}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="CRM">
+					<subreportParameterExpression><![CDATA[$F{CRM}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression class="java.lang.String"><![CDATA[$P{SUBREPORT_DIR} + "declaracionColectivo.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="140">
+			<subreport>
+				<reportElement x="0" y="0" width="595" height="140"/>
+				<subreportParameter name="COPIA">
+					<subreportParameterExpression><![CDATA[$P{COPIA_3}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression class="java.lang.String"><![CDATA[$P{SUBREPORT_DIR} + "declaracionColectivoRGPD.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+</jasperReport>

@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="explotaciones" pageWidth="555" pageHeight="802" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0">
+	<import value="com.rsi.agp.core.util.NumberUtils"/>
+	<parameter name="linea" class="com.rsi.agp.dao.tables.poliza.Linea"/>
+	<parameter name="idCupon" class="java.lang.String"/>
+	<parameter name="SUB_DATA_SOURCE" class="java.util.List"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String"/>
+	<parameter name="imprimirAnexoWsPPl" class="java.lang.Boolean"/>
+	<parameter name="estadoPol" class="java.lang.String"/>
+	<parameter name="esRenovable" class="java.lang.String"/>
+	<parameter name="tituloInforme" class="java.lang.String">
+		<parameterDescription><![CDATA[tituloInforme]]></parameterDescription>
+	</parameter>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="provincia" class="java.lang.String">
+		<fieldDescription><![CDATA[provincia]]></fieldDescription>
+	</field>
+	<field name="termino" class="java.lang.String">
+		<fieldDescription><![CDATA[termino]]></fieldDescription>
+	</field>
+	<field name="rega" class="java.lang.String"/>
+	<field name="comarca" class="java.lang.String">
+		<fieldDescription><![CDATA[comarca]]></fieldDescription>
+	</field>
+	<field name="sigla" class="java.lang.String">
+		<fieldDescription><![CDATA[sigla]]></fieldDescription>
+	</field>
+	<field name="latitud" class="java.lang.String">
+		<fieldDescription><![CDATA[latitud]]></fieldDescription>
+	</field>
+	<field name="longitud" class="java.lang.String">
+		<fieldDescription><![CDATA[longitud]]></fieldDescription>
+	</field>
+	<field name="especie" class="java.lang.String">
+		<fieldDescription><![CDATA[especie]]></fieldDescription>
+	</field>
+	<field name="regimen" class="java.lang.String">
+		<fieldDescription><![CDATA[regimen]]></fieldDescription>
+	</field>
+	<field name="subexplotacion" class="java.lang.String">
+		<fieldDescription><![CDATA[subexplotacion]]></fieldDescription>
+	</field>
+	<field name="gruposRaza" class="java.util.List">
+		<fieldDescription><![CDATA[gruposRaza]]></fieldDescription>
+	</field>
+	<field name="numExplotacion" class="java.lang.Number"/>
+	<field name="riesgosCubiertos" class="java.util.List">
+		<fieldDescription><![CDATA[riesgosCubiertos]]></fieldDescription>
+	</field>
+	<group name="group_numExplotacionLinea">
+		<groupExpression><![CDATA[$F{numExplotacion}]]></groupExpression>
+		<groupFooter>
+			<band height="8">
+				<line>
+					<reportElement x="0" y="4" width="549" height="1" forecolor="#999999"/>
+				</line>
+			</band>
+		</groupFooter>
+	</group>
+	<group name="group_numExpotacion">
+		<groupExpression><![CDATA[$F{numExplotacion}]]></groupExpression>
+		<groupFooter>
+			<band height="33">
+				<subreport>
+					<reportElement positionType="Float" mode="Transparent" x="0" y="0" width="554" height="31" isRemoveLineWhenBlank="true" isPrintWhenDetailOverflows="true" backcolor="#FFFFFF"/>
+					<subreportParameter name="SUBREPORT_DIR">
+						<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
+					</subreportParameter>
+					<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{riesgosCubiertos})]]></dataSourceExpression>
+					<subreportExpression class="java.lang.String"><![CDATA[$P{SUBREPORT_DIR} + "explotaciones_riesgosCubiertos.jasper"]]></subreportExpression>
+				</subreport>
+			</band>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="48" splitType="Stretch">
+			<subreport>
+				<reportElement mode="Transparent" x="0" y="1" width="555" height="23" backcolor="#FFFFFF"/>
+				<subreportParameter name="SUBREPORT_DIR">
+					<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="SUB_DATA_SOURCE">
+					<subreportParameterExpression><![CDATA[$P{SUB_DATA_SOURCE}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="imprimirAnexoWsPPl">
+					<subreportParameterExpression><![CDATA[$P{imprimirAnexoWsPPl}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="idCupon">
+					<subreportParameterExpression><![CDATA[$P{idCupon}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="tituloInforme">
+					<subreportParameterExpression><![CDATA[$P{tituloInforme}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="esRenovable">
+					<subreportParameterExpression><![CDATA[$P{esRenovable}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="linea">
+					<subreportParameterExpression><![CDATA[$P{linea}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="estadoPol">
+					<subreportParameterExpression><![CDATA[$P{estadoPol}]]></subreportParameterExpression>
+				</subreportParameter>
+				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($P{SUB_DATA_SOURCE})]]></dataSourceExpression>
+				<subreportExpression class="java.lang.String"><![CDATA[$P{SUBREPORT_DIR} + "cabeceraGanado.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="84" splitType="Stretch">
+			<textField isBlankWhenNull="true">
+				<reportElement x="248" y="40" width="99" height="10"/>
+				<textElement verticalAlignment="Middle">
+					<font size="6"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{rega}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="44" y="12" width="126" height="10"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{provincia}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="392" y="11" width="163" height="10"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{termino}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="77" y="53" width="112" height="10"/>
+				<textElement verticalAlignment="Middle">
+					<font size="6"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{especie}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="234" y="11" width="114" height="10"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{comarca}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="248" y="53" width="197" height="10"/>
+				<textElement verticalAlignment="Middle">
+					<font size="6"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{regimen}]]></textFieldExpression>
+			</textField>
+			<subreport>
+				<reportElement positionType="Float" mode="Transparent" x="0" y="63" width="554" height="20" isRemoveLineWhenBlank="true" isPrintWhenDetailOverflows="true" backcolor="#FFFFFF"/>
+				<subreportParameter name="SUBREPORT_DIR">
+					<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
+				</subreportParameter>
+				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{gruposRaza})]]></dataSourceExpression>
+				<subreportExpression class="java.lang.String"><![CDATA[$P{SUBREPORT_DIR} + "explotaciones_gruposRaza.jasper"]]></subreportExpression>
+			</subreport>
+			<staticText>
+				<reportElement x="0" y="27" width="170" height="12"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DATOS DE LA EXPLOTACIÓN]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="186" y="11" width="48" height="10"/>
+				<textElement verticalAlignment="Middle">
+					<font size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Comarca:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="348" y="11" width="44" height="10"/>
+				<textElement verticalAlignment="Middle">
+					<font size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Término:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="12" width="41" height="10"/>
+				<textElement verticalAlignment="Middle">
+					<font size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Provincia:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="39" width="74" height="10"/>
+				<textElement verticalAlignment="Middle">
+					<font size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nº Explotación:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="185" y="40" width="63" height="10"/>
+				<textElement verticalAlignment="Middle">
+					<font size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Código REGA:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="186" y="53" width="62" height="10"/>
+				<textElement verticalAlignment="Middle">
+					<font size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Régimen:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="53" width="55" height="10"/>
+				<textElement verticalAlignment="Middle">
+					<font size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Especie:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="77" y="39" width="69" height="10"/>
+				<textElement verticalAlignment="Middle">
+					<font size="6"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Number"><![CDATA[$F{numExplotacion}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="347" y="40" width="70" height="10" isRemoveLineWhenBlank="true">
+					<printWhenExpression><![CDATA[new Boolean($F{subexplotacion}!= null)]]></printWhenExpression>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Subexplotación:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="488" y="40" width="90" height="10" isRemoveLineWhenBlank="true"/>
+				<textElement verticalAlignment="Middle">
+					<font size="6"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{sigla}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="417" y="40" width="43" height="10" isRemoveLineWhenBlank="true"/>
+				<textElement verticalAlignment="Middle">
+					<font size="6"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{subexplotacion}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="460" y="40" width="28" height="10">
+					<printWhenExpression><![CDATA[new Boolean($F{sigla}!= null)]]></printWhenExpression>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Sigla:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="0" width="170" height="12"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[SITUACIÓN DE LA EXPLOTACIÓN]]></text>
+			</staticText>
+		</band>
+		<band/>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+</jasperReport>

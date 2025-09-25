@@ -1,0 +1,440 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="declaracionSeguro" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<property name="ireport.callouts" value="##Mon Sep 27 11:54:24 CEST 2010"/>
+	<style name="table" isDefault="false">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TH" isDefault="false" mode="Opaque" backcolor="#7FFFD4">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_CH" isDefault="false" mode="Opaque" backcolor="#BFFFEA">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TD" isDefault="false" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[new Boolean($V{REPORT_COUNT}.intValue()%2==0)]]></conditionExpression>
+			<style isDefault="false" style="table_TD" backcolor="#EFFFF9"/>
+		</conditionalStyle>
+	</style>
+	<style name="table 1" isDefault="false">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_TH" isDefault="false" mode="Opaque" backcolor="#7FFFD4">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_CH" isDefault="false" mode="Opaque" backcolor="#BFFFEA">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_TD" isDefault="false" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2" isDefault="false">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2_TH" isDefault="false" mode="Opaque" backcolor="#7FFFD4">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2_CH" isDefault="false" mode="Opaque" backcolor="#BFFFEA">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2_TD" isDefault="false" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[new Boolean($V{REPORT_COUNT}.intValue()%2==0)]]></conditionExpression>
+			<style isDefault="false" style="table 2_TD" backcolor="#EFFFF9"/>
+		</conditionalStyle>
+	</style>
+	<style name="table 3" isDefault="false">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 3_TH" isDefault="false" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 3_CH" isDefault="false" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 3_TD" isDefault="false" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 4" isDefault="false">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 4_TH" isDefault="false" mode="Opaque" backcolor="#7FFFD4">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 4_CH" isDefault="false" mode="Opaque" backcolor="#BFFFEA">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 4_TD" isDefault="false" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[new Boolean($V{REPORT_COUNT}.intValue()%2==0)]]></conditionExpression>
+			<style isDefault="false" style="table 4_TD" backcolor="#EFFFF9"/>
+		</conditionalStyle>
+	</style>
+	<style name="table 5" isDefault="false">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 5_TH" isDefault="false" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 5_CH" isDefault="false" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 5_TD" isDefault="false" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA[""]]></defaultValueExpression>
+	</parameter>
+	<parameter name="ID" class="java.lang.Integer"/>
+	<parameter name="tablaSubreport" class="net.sf.jasperreports.engine.JasperReport" isForPrompting="false"/>
+	<parameter name="datasource" class="net.sf.jasperreports.engine.data.JRBeanCollectionDataSource" isForPrompting="false"/>
+	<parameter name="COB_PARCELAS" class="java.util.Map" isForPrompting="false"/>
+	<queryString>
+		<![CDATA[SELECT COUNT(*) AS SOCIOS
+  FROM o02agpe0.TB_SOCIOS SO, o02agpe0.TB_POLIZAS PO, o02agpe0.TB_SUBV_ENESA_SOCIOS SS, o02agpe0.TB_SC_C_SUBVS_ENESA SL, o02agpe0.TB_SC_C_TIPO_SUBV_ENESA EN
+ WHERE PO.IDASEGURADO = SO.IDASEGURADO
+   AND PO.IDASEGURADO = SS.IDASEGURADO
+   AND PO.IDPOLIZA = SS.IDPOLIZA
+   AND SS.IDSUBVENESA = SL.ID
+   AND SS.LINEASEGUROID = SL.LINEASEGUROID
+   AND SL.CODTIPOSUBVENESA = EN.CODTIPOSUBVENESA
+   AND PO.IDPOLIZA = $P{ID}]]>
+	</queryString>
+	<field name="SOCIOS" class="java.math.BigDecimal"/>
+	<variable name="FECHA" class="java.util.Date">
+		<variableExpression><![CDATA[new java.util.Date()]]></variableExpression>
+	</variable>
+	<variable name="MES_FECHA" class="java.lang.String">
+		<variableExpression><![CDATA[]]></variableExpression>
+	</variable>
+	<variable name="SHOW_FOOT" class="java.lang.String" resetType="None">
+		<variableExpression><![CDATA[new String("NORMAL")]]></variableExpression>
+		<initialValueExpression><![CDATA[]]></initialValueExpression>
+	</variable>
+	<background>
+		<band height="802" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="250" width="555" height="143" forecolor="#E3DEDE"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None">
+					<font fontName="SansSerif" size="72" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[BORRADOR]]></text>
+			</staticText>
+		</band>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="25">
+			<break>
+				<reportElement x="0" y="0" width="100" height="1"/>
+			</break>
+			<subreport runToBottom="true">
+				<reportElement x="0" y="0" width="555" height="25"/>
+				<subreportParameter name="COB_PARCELAS">
+					<subreportParameterExpression><![CDATA[$P{COB_PARCELAS}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="ID">
+					<subreportParameterExpression><![CDATA[$P{ID}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression class="java.lang.String"><![CDATA[$P{SUBREPORT_DIR} + "declaracionSeguroComplementario_hojaParcelas.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="100" splitType="Stretch">
+			<printWhenExpression><![CDATA[new Boolean((($V{SHOW_FOOT}.equals("NORMAL") || $V{SHOW_FOOT}.equals("ULTIMO"))?true : false))]]></printWhenExpression>
+			<staticText>
+				<reportElement positionType="Float" x="0" y="41" width="146" height="13">
+					<printWhenExpression><![CDATA[new Boolean($V{SHOW_FOOT}.equals("NORMAL"))]]></printWhenExpression>
+				</reportElement>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[La Entidad Aseguradora]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" x="269" y="41" width="121" height="13">
+					<printWhenExpression><![CDATA[new Boolean($V{SHOW_FOOT}.equals("NORMAL"))]]></printWhenExpression>
+				</reportElement>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[El Tomador]]></text>
+			</staticText>
+			<textField evaluationTime="Report">
+				<reportElement positionType="Float" x="0" y="0" width="313" height="13">
+					<printWhenExpression><![CDATA[new Boolean((($V{SHOW_FOOT}.equals("NORMAL") || $V{SHOW_FOOT}.equals("ULTIMO"))?true : false))]]></printWhenExpression>
+				</reportElement>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["El presente documento se compone de "+ $V{PAGE_NUMBER} +" páginas impresas"]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement positionType="Float" x="146" y="41" width="123" height="13">
+					<printWhenExpression><![CDATA[new Boolean($V{SHOW_FOOT}.equals("NORMAL"))]]></printWhenExpression>
+				</reportElement>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[El Mediador]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="30" y="13" width="312" height="13"/>
+				<textElement/>
+				<text><![CDATA[_____________________________________________________________________________]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" x="390" y="41" width="121" height="13">
+					<printWhenExpression><![CDATA[new Boolean($V{SHOW_FOOT}.equals("NORMAL"))]]></printWhenExpression>
+				</reportElement>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[El Asegurado]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" x="146" y="53" width="51" height="13">
+					<printWhenExpression><![CDATA[new Boolean($V{SHOW_FOOT}.equals("NORMAL"))]]></printWhenExpression>
+				</reportElement>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Código:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="370" y="16" width="17" height="10"/>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[de]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="387" y="16" width="26" height="10">
+					<printWhenExpression><![CDATA[new Boolean($V{FECHA}.getMonth() == 2 -1)]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[Febrero]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="342" y="16" width="14" height="10"/>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[a]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="387" y="16" width="33" height="10">
+					<printWhenExpression><![CDATA[new Boolean($V{FECHA}.getMonth() == 8 -1)]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[Agosto]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="356" y="16" width="14" height="10"/>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[new Integer($V{FECHA}.getDate())]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="387" y="16" width="37" height="10">
+					<printWhenExpression><![CDATA[new Boolean($V{FECHA}.getMonth() == 11 -1)]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[Noviembre]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="428" y="16" width="15" height="10"/>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[de]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="387" y="16" width="23" height="10">
+					<printWhenExpression><![CDATA[new Boolean($V{FECHA}.getMonth() == 1 -1)]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[Enero]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="387" y="16" width="37" height="10">
+					<printWhenExpression><![CDATA[new Boolean($V{FECHA}.getMonth() == 12 -1)]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[Diciembre]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="387" y="16" width="32" height="10">
+					<printWhenExpression><![CDATA[new Boolean($V{FECHA}.getMonth() == 3 -1)]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[Marzo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="387" y="16" width="41" height="10">
+					<printWhenExpression><![CDATA[new Boolean($V{FECHA}.getMonth() == 9 -1)]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[Septiembre]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="387" y="16" width="33" height="10">
+					<printWhenExpression><![CDATA[new Boolean($V{FECHA}.getMonth() == 7 - 1)]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[Julio]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="443" y="16" width="109" height="10"/>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[String.valueOf(new SimpleDateFormat("dd-MMM-yyyy").format($V{FECHA})).substring(7,11)]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="387" y="16" width="30" height="10">
+					<printWhenExpression><![CDATA[new Boolean($V{FECHA}.getMonth() == 6 -1)]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[Junio]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="387" y="16" width="38" height="10">
+					<printWhenExpression><![CDATA[new Boolean($V{FECHA}.getMonth() == 4 -1)]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[Abril]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="387" y="16" width="33" height="10">
+					<printWhenExpression><![CDATA[new Boolean($V{FECHA}.getMonth() ==10 -1)]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[Octubre]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="387" y="16" width="24" height="10">
+					<printWhenExpression><![CDATA[new Boolean($V{FECHA}.getMonth() == 5 -1)]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[Mayo]]></text>
+			</staticText>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="12" splitType="Stretch">
+			<textField evaluationTime="Page">
+				<reportElement x="523" y="0" width="32" height="12">
+					<printWhenExpression><![CDATA[new Boolean((($V{SHOW_FOOT}.equals("NORMAL") || $V{SHOW_FOOT}.equals("ULTIMO"))?true : false))]]></printWhenExpression>
+				</reportElement>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="502" y="0" width="21" height="12">
+					<printWhenExpression><![CDATA[new Boolean((($V{SHOW_FOOT}.equals("NORMAL") || $V{SHOW_FOOT}.equals("ULTIMO"))?true : false))]]></printWhenExpression>
+				</reportElement>
+				<textElement>
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Pag.:]]></text>
+			</staticText>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch">
+			<printWhenExpression><![CDATA[new Boolean((($V{SHOW_FOOT}.equals("ULTIMO"))?true : false))]]></printWhenExpression>
+		</band>
+	</summary>
+</jasperReport>

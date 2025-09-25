@@ -1,0 +1,421 @@
+INFORMACION DE USO RESTRINGIDO
+----------------------------------------------------------------------------------------------------------------------------
+El contenido de este documento es propiedad de AGROSEGURO, no pudiendo ser reproducido, ni comunicado total o parcialmente, 
+a personas sin la autorización expresa del propietario.
+----------------------------------------------------------------------------------------------------------------------------
+
+SEGUIMIENTOSCPOLIZA
+-------------------
+
+archivo				                namespace		                      		version
+
+- SituacionActualizadaPoliza.xsd		SeguroAgrario/Recibos              	     	15.0
+- DatosVariables.xsd                	SeguroAgrario/Contratacion/DatosVariables   10.0
+- Tipos.xsd          		        	Tipos		                                29.0
+- RecibosEmitidos.xsd					/Recibos/Emitidos							7.0
+- ListaRecibos.xsd				   		/SeguroAgrario/ListaRecibos
+- DistribucionCostesSeguroAgrario.xsd	SeguroAgrario/DistribucionCostesSeguroAgrario
+- DistribucionCoste.xsd					SeguroAgrario/DistribucionCoste
+- CosteParcela.xsd						SeguroAgrario/DistribucionCoste/Parcela							2.0
+- DatosAdicionalesCabecera.xsd			SeguroAgrario/DistribucionCoste/DatosAdicionalesCabecera		1.1
+- DatosAdicionalesObjetoAsegurado.xsd	SeguroAgrario/DistribucionCoste/DatosAdicionalesObjetoAsegurado	1.1
+- Parcela.xsd							SeguroAgrario/DistribucionCoste/Parcela	1.1
+- Condicionado_Tipos.xsd				SeguroCreciente/Condicionado/Tipos
+
+- Contratacion.xsd                 				Contratacion        	      					7.0
+- CostePoliza.xsd								Contratacion/CostePoliza						1.0
+- DatosVariablesUnificado.xsd                   Contratacion/DatosVariables    					1.0
+- DeclaracionSubvenciones.xsd					Contratacion/DeclaracionSubvenciones			1.0
+- Explotacion.xsd								Contratacion/Explotacion						1.0
+- Parcela.xsd									Contratacion/Parcela							1.0
+- CosteParcelaUnificada.xsd						CostePoliza/Parcela								2.0
+- CosteExplotacionUnificada.xsd					CostePoliza/Explotacion							2.0
+- CosteObjetoAsegurado.xsd						CostePoliza/CosteObjetoAsegurado								2.0
+- DatosAdicionalesCabeceraUnificado.xsd					DistribucionCoste/DatosAdicionalesCabecera						2.0
+- DatosAdicionalesObjetoAseguradoUnificado.xsd			DistribucionCoste/DatosAdicionalesObjetoAsegurado				1.0
+- DistribucionCostesSeguro.xsd					DistribucionCostesSeguro						2.0
+- CuponModificacion.xsd
+- EstadoContratacion.xsd
+
+- SeguimientoContratacion.xsd			SeguimientoContratacion						1.0
+
+DESCRIPCION DE LOS FICHEROS
+---------------------------
+	
+- SeguimientoSCPoliza.wsdl
+
+Descriptor del servicio Web que permite consultar el estado en el  
+que se encuentra una Póliza del Seguro Creciente. Agrupa funciones 
+de lista de Recibos, consulta del estado o situación actual de la 
+Póliza y consulta de los recibos de la Póliza.Sin especificación de seguridad. 
+Pensado para manejar la seguridad delegando en los módulos de seguridad de los 
+lenguajes de programación a través de políticas de aserciones.
+
+- SeguimientoSCPoliza_con_cabeceras_seguridad.wsdl
+
+Idem SeguimientoSCPoliza.wsdl pero con cabecera de seguridad WS-Security, para
+manejar la seguridad a través de los bindings de XML generados en cada lenguaje
+de programación.
+
+- SituacionActualizadaPoliza.xsd
+
+Esquema entrante para la consulta de la situación actual de una 
+Póliza que establece el diseño del envio de Copy's de la Póliza 
+del Seguro Creciente.
+
+- DatosVariables.xsd
+
+Esquema que contiene definiciones de datos variables de la Póliza
+del Seguro Creciente.
+
+- Tipos.xsd
+
+Esquema que contiene las definiciones de tipos que se emplean en 
+los registros.
+
+- ListaRecibos.xsd
+
+Esquema saliente que contiene una lista de todos los recibos de una 
+Póliza del Seguro Creciente consultada.
+
+- RecibosEmitidos.xsd
+
+Esquema saliente que establece el diseño del envio de Recibos del 
+Seguro Creciente.
+
+- policy.xml
+Política de seguridad según especificación WS-SecurityPolicy con UsernameToken
+de Oasis.
+
+- xmime.xsd
+Esquema de validación de tipos XMLMIME de W3C
+
+- DistribucionCostesSeguroAgrario.xsd
+
+Esquema saliente con los costes para la función de cálculo obtenidos 
+a partir de los datos la Póliza enviados.
+
+- DistribucionCoste.xsd
+Esquema saliente con los costes de cabecera conforme a la nueva formulación SAC 
+vigente a partir del 2015
+
+- DatosAdicionalesCabecera.xsd
+Esquema que contiene datos adicionales de la distribucion de coste de cabecera 
+
+- DatosAdicionalesObjetoAsegurado.xsd
+Esquema que contiene datos adicionales de la distribucion de coste de un objeto asegurado
+
+- Parcela.xsd
+Esquema que contiene los datos de el objeto asegurado parcela con la nueva formulación y fraccionamiento
+de la distribución de coste
+
+- Condicionado_Tipos.xsd
+Esquema que contiene las definiciones de tipos que se emplean en 
+los registros del condicionado.
+
+- CosteParcela.xsd
+Esquema que contiene los datos de el objeto asegurado parcela con la nueva formulación y fraccionamiento
+de la distribución de coste
+
+- Contratacion.xsd
+Esquema entrante de validación de la Póliza unificada del Seguro Creciente
+donde se definen los registros de esa Póliza.
+
+- CostePoliza.xsd
+Esquema de distribucion de coste de la póliza unificada
+
+- DatosVariablesUnificado.xsd                   
+Esquema de datos variables de la póliza unificada
+
+- DeclaracionSubvenciones.xsd
+Esquema de subvenciones de la póliza unificada
+
+- Explotacion.xsd
+Esquema de explotación de la póliza unificada
+
+- Parcela.xsd
+Esquema de parcela de la póliza unificada
+
+- CosteParcelaUnificada.xsd						
+Esquema de costes de parcela de la póliza unificada
+
+- CosteExplotacionUnificada.xsd
+Esquema de costes de explotación de la póliza unificada
+
+- CosteObjetoAsegurado.xsd						
+Esquema de costes comunes de los objetos asegurados de la póliza unificada
+
+- DatosAdicionalesCabeceraUnificado.xsd
+Esquema que contiene datos adicionales de la distribucion de coste de cabecera de la póliza unificada
+
+- DatosAdicionalesObjetoAseguradoUnificado.xsd
+Esquema que contiene datos adicionales de la distribucion de coste de parcela de la póliza unificada
+
+- DistribucionCostesSeguro.xsd
+Esquema saliente con los costes para la función de cálculo de la póliza unificada obtenidos 
+a partir de los datos de la Póliza unificada enviados.
+
+- EstadoContratacion.xsd
+Resumen de cómo se encuentra en el momento de realizar la petición la contratación y la última
+petición de modificación que se hizo por cupón sobre la misma.
+
+- SeguimientoContratacion.xsd
+Esquema saliente que contiene una lista de pólizas y propuestas de renovación con datos sobre su estado,
+su última incidencia de modificación, su último recibo e informaciones como la suspensión de garantías.
+
+
+VERSIONES
+---------
+1.0.24 : 30-09-2020.
+-------------------------------------------------------------------------------------------
+- Contratacion.xsd: Se añade la etiqueta opcional CuentaCobroSiniestros
+- SituacionActualizadaPoliza.xsd: Se añade la etiqueta opcional CuentaCobroSiniestros
+
+
+1.0.23 : 26-10-2018
+---------------------------------------------------------------------------
+- Se modifican los WSDLs:
+    - Se incluye de nuevo el parámetro cambioEstadoHasta para la operación "seguimientoEstadoContratacion"
+    - Se cambia el tipo del parámetro referencia de "xsd:string" a "ti:Poliza_Referencia_Unificada"
+    - Se cambia el tipo del parámetro mediador de "xsd:string" a "ti:CodigoInternoEntidad"
+    - Se cambia el tipo de los parámetros nifTomador y nifAsegurado de "ti:NIFCIF" a "ti:NIF"
+
+- Se modifica el esquema SeguimientoContratacion.xsd:
+    - Se cambia el tipo del atributo causa del elemento InfoAdicional de "Entero2Posiciones" a "CausaInfoAdicional"
+      admitiéndose como valor mínimo el 0
+
+
+1.0.22 : 09-10-2018
+---------------------------------------------------------------------------
+- Se modifican los WSDLs para incluir la nueva operación "seguimientoEstadoContratacion"
+- Nuevo fichero SeguimientoContratacion.xsd
+
+1.0.21 : 21-05-2018
+---------------------------------------------------------------------------
+- RecibosEmitidos.xsd: Se añaden los atributos opcionales destinatario y domiciliado a la etiqueta IndividualAplicacion
+- Se modifican los WSDLs para eliminar la operación "seguimientoEstadoPoliza" y dejar el interfaz del servicio
+  compatible con la versión 1.0.18
+- Se elimina el fichero ListaEstadosPoliza.xsd
+
+1.0.20 : 20-04-2018
+---------------------------------------------------------------------------
+- Se modifican los WSDLs para corregir la errata 'MinOcurrs' por 'MinOccurs'. 
+
+1.0.19 : 17-04-2018
+---------------------------------------------------------------------------
+- Se modifican los WSDLs para incluir la nueva operación "seguimientoEstadoPoliza" 
+- Nuevo fichero ListaEstadosPoliza.xsd
+
+1.0.18 : 05-04-2018
+---------------------------------------------------------------------------
+- SituacionActualizadaPoliza.xsd
+	Se añade el atributo opcional domiciliado a la etiqueta Pago
+	Se añaden los atributos opcionales destinatario y titular a la etiqueta Cuenta
+- Tipos.xsd
+	Actualización a última versión
+- InfoVersion.txt: inclusión de párrafo legal por ISO27001.
+
+
+1.0.17 : 11-10-2016
+---------------------------------------------------------------------------
+- Actualizados de esquemas del seguro unificado a sus últimas versiones:
+	CosteExplotacionUnificada.xsd
+	CosteObjetoAsegurado.xsd
+	CosteParcela.xsd
+	CosteParcelaUnificada.xsd
+	DatosAdicionalesObjetoAseguradoUnificado.xsd
+	DistribucionCostesSeguro.xsd
+	DistribucionCostesSeguroAgrario.xsd
+	Tipos.xsd
+- EstadoContratacion.xsd: añadida sección opcional GastosAplicados.
+
+
+1.0.16 : 10-06-2015
+---------------------------------------------------------------------------
+- SeguimientoSCPoliza.wsdl y SeguimientoSCPoliza_con_cabeceras_seguridad.wsdl: Modificado método de "consultarEstadoResponse"
+  para que devuelva dos documentos en vez de tres.
+- EstadoContratacion.xsd: se incluye la fase y se cambia el tipo del atributo referencia de póliza a referencia unificada.
+
+
+1.0.15 : 01-06-2015
+---------------------------------------------------------------------------
+- Nuevo fichero EstadoContratacion.xsd
+- Se incluyen los XSD de la póliza unificada de agrícola-ganado
+- Se incluyen los XSD de distribución de costes unificado
+
+
+1.0.14 : 15-01-2014
+---------------------------------------------------------------------------
+Versión con WSDLs separados
+-Se modifican los WSDLs para incluir minoccurs = "0" en las etiquetas nillables
+-Se incluye la nueva operación "consultarCostesRecibo" 
+Se añaden los esquemas:
+- DistribucionCostesSeguroAgrario.xsd
+- DistribucionCoste.xsd
+- DatosAdicionalesCabecera.xsd
+- DatosAdicionalesObjetoAsegurado.xsd
+- Parcela.xsd
+- Condicionado_Tipos.xsd
+
+
+1.0.13 : 29-12-2014
+---------------------------------------------------------------------------
+Se cambian los esquemas:
+-RecibosEmitidos.xsd: corrección de tipo de BonificacionesRecargos
+-Tipos.xsd: cambio de tipo Entero3Posiciones y añadidos nuevos tipos
+
+
+1.0.12 : 29-12-2014
+---------------------------------------------------------------------------
+Se cambian los esquemas:
+-Tipos.xsd: añadido tipo Entero3Posiciones
+
+
+1.0.11 : 29-12-2014
+---------------------------------------------------------------------------
+Se cambian los esquemas:
+
+- SituacionActualizadaPoliza.xsd: 
+Nuevos tipos para formulación SAC y fraccionamiento SAECA
+
+- RecibosEmitidos.xsd
+Ampliación nº de recibo a siete posiciones
+
+- Tipos.xsd
+Nuevos tipos para formulación SAC y fraccionamiento SAECA
+
+
+1.0.9 : 10-10-2011.
+---------------------------------------------------------------------------
+Se cambian los esquemas:
+
+- SituacionActualizadaPoliza.xsd: Se cambia el rango del tipo de mediador,
+admitiéndose como valor mínimo el 0. Antes tenía un rango de [1-99] y ahora 
+pasa a valer [0-99].
+
+1.0.8 : 29-08-2011.
+---------------------------------------------------------------------------
+Se cambian los esquemas:
+
+- ListaRecibos.xsd: Se puede omitir la etiqueta de recibo, para las pólizas
+que llevan cambios no económicos notificables y por lo tanto tienen recibo 0. 
+
+- SituacionActualizadaPoliza.xsd: Se permite omitir el atributo "recibo" de la 
+etiqueta póliza, para las pólizas cuya situación actualizada se corresponde 
+con cambios no económicos notificables y que por ello tienen recibo 0.
+
+
+1.0.7 : 08-06-2011.
+---------------------------------------------------------------------------
+Se elimina el esquema Poliza.xsd al haberse empaquetado de nuevo en el ZIP por error.
+Dicho esquema fue renombrado por SituacionActualizadaPoliza.xsd en la versión 1.0.2.
+
+
+
+1.0.6 : 30-05-2011.
+---------------------------------------------------------------------------
+
+Alteraciones en los siguientes esquemas:
+
+- DatosVariables.xsd
+La etiqueta Alt pasa a llamarse Rot
+
+- Tipos.xsd
+El tipo Alternativa pasa a llamarse Rotacion
+
+
+
+1.0.5 : 18-04-2011.
+---------------------------------------------------------------------------
+
+- SituacionActualizadaPoliza.xsd
+
+Se elimina el atributo numeroUnidades dentro del elemento CapitalAsegurado.
+
+
+
+1.0.4 : 21-02-2011.
+---------------------------------------------------------------------------
+
+- SituacionActualizadaPoliza.xsd
+
+Se elimina el tipo de referencia dentro del elemento Poliza.
+Se han diferenciado entre Principal y Complementario los atributos: marca de anulada/refundida,
+     fecha de entrada en vigor y fecha de firma de seguro.
+Dentro de una póliza se diferenciarán los elementos que no se comparten con el complementario
+     desdoblando en 2 los siguientes elementos: Mediador, Cobertura, Pago,DistribucioCoste,
+     SubvencionEnesa, SubvencionOrganismo.
+La producción de las parcelas se ha subdividido en Producción Principal y Producción Complementario.
+
+
+- DatosVariables.xsd
+Nuevas etiquetas de datos variables CodCert, EdadCubi, EdadEstr, MatCubi, MatEstr, TipInst	
+
+- Tipos.xsd
+
+Valor minimo 1 para SIGPAC@parcela y SIGPAC@poligono
+Nuevos tipos para dar soporte a los Datos variables añadidos.
+
+
+
+1.0.3 : 22-11-2010.
+---------------------------------------------------------------------------
+
+Alteraciones en los siguientes esquemas:
+
+- SituacionActualizadaPoliza.xsd
+
+Cambia la cardinalidad de la etiqueta Poliza dentro de la etiqueta Individual: 1 a varios (unbounded).
+
+- RecibosEmitidos.xsd
+
+Cambia la cardinalidad de la etiqueta DetalleCompensac: 0 a varios (unbounded).
+
+- DatosVariables.xsd
+
+Nuevas etiquetas de DatosVariables: CodIGP, Met, Met2, ValFij.
+Se quita IGP en la Denominación de Origen.
+
+- Tipos.xsd
+
+Tipo Modulo_ConceptoPrincial pasa a tener minInclusive = 1.
+Valor mínimo 0 para TipoAlternativa, CicloCultivo, DenominacionOrigen, 
+Densidad, Destino, Edad, NumeroAniosDesdePoda, PracticaCultural, 
+SistemaConduccion, SistemaCultivo, SistemaProduccion, SitemaProteccion, 
+MarcoPlantacion, TipoPlantacion.
+Se quitan las anotaciones.
+
+
+
+1.0.2 : 06-08-2010.
+---------------------------------------------------------------------------
+
+Se ha cambiado el contenido del esquema Poliza.xsd.
+Se ha cambiado el nombre del esquema Poliza.xsd por SituacionActualizadaPoliza.xsd.		     	
+
+
+
+1.0.1 : 10-03-2010.
+---------------------------------------------------------------------------
+
+Alteraciones en los siguientes esquemas:
+
+- Poliza.xsd
+
+Se ha introducido un elemento raíz "Fase".
+
+- DatosVariables.xsd
+
+- Tipos.xsd
+
+- RecibosEmitidos.xsd
+
+Se ha eliminado una línea que hacía referencia a un XSL innecesario.
+Se ha eliminado un espacio en blanco en el tipo SubvencionCCAA.
+
+
+
+1.0.0 : 11-01-2010.
+---------------------------------------------------------------------------
+
+Versión inicial.

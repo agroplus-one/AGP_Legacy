@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="declaracionSeguro_hojaParcelas_totalNoPlanton" pageWidth="555" pageHeight="802" whenNoDataType="AllSectionsNoDetail" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="cfa47899-0767-4dc5-bc30-48d8e8f42c11">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<import value="com.rsi.agp.core.util.NumberUtils"/>
+	<parameter name="HOJA" class="java.math.BigDecimal"/>
+	<parameter name="IDPOLIZA" class="java.lang.Integer"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA[""]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT COUNT(distinct(PA.IDPARCELA)) AS NUM_PARCELAS,
+       SUM(CA.INCREMENTOPRODUCCION) AS PRODUCCION,
+       SUM(CA.SUPERFICIE) AS SUPERFICIE,
+       SUM(CA.PRECIO * CA.INCREMENTOPRODUCCION) AS PRECIO_PRODUCCION
+  FROM o02agpe0.TB_PARCELAS             PA,
+       o02agpe0.TB_CAPITALES_ASEGURADOS CA,
+       o02agpe0.TB_SC_C_TIPO_CAPITAL    TC
+ WHERE CA.IDPARCELA = PA.IDPARCELA
+   AND CA.CODTIPOCAPITAL = TC.CODTIPOCAPITAL
+   AND CA.ALTAENCOMPLEMENTARIO = 'S'
+   AND TC.CODCONCEPTO = 68
+   AND PA.HOJA = $P{HOJA}
+   AND PA.IDPOLIZA = $P{IDPOLIZA}]]>
+	</queryString>
+	<field name="NUM_PARCELAS" class="java.lang.String"/>
+	<field name="SUPERFICIE" class="java.math.BigDecimal"/>
+	<field name="PRODUCCION" class="java.math.BigDecimal"/>
+	<field name="PRECIO_PRODUCCION" class="java.math.BigDecimal"/>
+	<variable name="SHOW_FOOT" class="java.lang.Boolean" resetType="None">
+		<variableExpression><![CDATA[new Boolean(true)]]></variableExpression>
+		<initialValueExpression><![CDATA[]]></initialValueExpression>
+	</variable>
+	<variable name="SHOW_BACK" class="java.lang.Boolean" resetType="None">
+		<variableExpression><![CDATA[new Boolean(true)]]></variableExpression>
+		<initialValueExpression><![CDATA[]]></initialValueExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="14" splitType="Stretch">
+			<printWhenExpression><![CDATA[Boolean.valueOf(!($F{NUM_PARCELAS}.toString()).equals("0"))]]></printWhenExpression>
+			<textField>
+				<reportElement mode="Transparent" x="0" y="0" width="188" height="14" backcolor="#FFFFFF" uuid="768c0df1-a6c8-4fc4-8254-d011746156b3"/>
+				<box leftPadding="5" rightPadding="2">
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle" markup="none">
+					<font size="6" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["CAPITALES PRODUCCIÓN"]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="188" y="0" width="70" height="14" uuid="c3cea056-5499-49f4-864d-6df44642b3be"/>
+				<box rightPadding="2">
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="6" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{NUM_PARCELAS}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00" isBlankWhenNull="true">
+				<reportElement x="380" y="0" width="70" height="14" uuid="4c5071a3-b96f-461a-9166-29c7c9b0ce7b"/>
+				<box rightPadding="2">
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{SUPERFICIE}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00" isBlankWhenNull="true">
+				<reportElement x="450" y="0" width="93" height="14" uuid="002bc93d-1cc5-4565-94da-378f08ccf5ff"/>
+				<box rightPadding="2">
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{PRECIO_PRODUCCION}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00" isBlankWhenNull="true">
+				<reportElement x="258" y="0" width="107" height="14" uuid="ca02e565-8aff-4513-bf37-babca669dc04"/>
+				<box rightPadding="2">
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{PRODUCCION}]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="true">
+				<reportElement x="365" y="0" width="15" height="14" uuid="639b9037-3b00-4d82-9845-4a8a2d4691d8"/>
+				<box rightPadding="2">
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font size="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Kg."]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="15">
+			<printWhenExpression><![CDATA[Boolean.valueOf(!($F{NUM_PARCELAS}.toString()).equals("0"))]]></printWhenExpression>
+			<subreport>
+				<reportElement positionType="Float" mode="Transparent" x="0" y="1" width="543" height="14" isRemoveLineWhenBlank="true" backcolor="#FFFFFF" uuid="d76daae4-e28d-4ec0-9cae-994d50d8879c"/>
+				<subreportParameter name="IDPOLIZA">
+					<subreportParameterExpression><![CDATA[$P{IDPOLIZA}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="SUBREPORT_DIR">
+					<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="HOJA">
+					<subreportParameterExpression><![CDATA[$P{HOJA}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<returnValue subreportVariable="SHOW_FOOT" toVariable="SHOW_FOOT"/>
+				<returnValue subreportVariable="SHOW_BACK" toVariable="SHOW_BACK"/>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "declaracionSeguro_hojaParcelas_resValAseg_ProduccionCplDesglose.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

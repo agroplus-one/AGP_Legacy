@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema targetNamespace="http://www.agroseguro.es/Contratacion/Parcela"
+	xmlns="http://www.agroseguro.es/Contratacion/Parcela"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:ti="http://www.agroseguro.es/Tipos" 
+	xmlns:dv="http://www.agroseguro.es/Contratacion/DatosVariables"
+>
+	<xs:import
+		namespace="http://www.agroseguro.es/Tipos"
+		schemaLocation="Tipos.xsd" />
+
+	<xs:import
+		namespace="http://www.agroseguro.es/Contratacion/DatosVariables"
+		schemaLocation="DatosVariablesUnificado.xsd" />
+	
+	<xs:element name="Parcela" >
+		<xs:complexType >
+			<xs:sequence>
+				<xs:element name="Ubicacion"  maxOccurs="1" minOccurs="1" type="ti:Ambito" />
+				<xs:element name="Cosecha" maxOccurs="1" minOccurs="1" type="Cosecha"/>
+				<xs:element name="SIGPAC" maxOccurs="1" minOccurs="0" type="ti:SIGPAC" />
+			</xs:sequence>
+			<xs:attribute name="hoja" use="required" type="ti:Parcela_Hoja" />
+			<xs:attribute name="numero" use="required" type="ti:Parcela_Numero" />
+			<xs:attribute name="nombre" use="optional" type="ti:Parcela_Nombre" />
+		</xs:complexType >
+	</xs:element>
+
+	<xs:complexType name="Cosecha">
+		<xs:sequence>
+			<xs:element name="CapitalesAsegurados" type="CapitalesAsegurados" minOccurs="1" maxOccurs="1" >
+				<xs:key name="CapitalAsegurado_PK">
+					<xs:selector xpath="CapitalAsegurado" />
+					<xs:field xpath="@tipo" />
+				</xs:key>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="cultivo" use="required" type="ti:Cultivo_Codigo" />
+		<xs:attribute name="variedad" use="required" type="ti:Variedad_Codigo" />
+	</xs:complexType>
+
+	<xs:complexType name="CapitalesAsegurados">
+		<xs:sequence>
+			<xs:element name="CapitalAsegurado" type="CapitalAsegurado" minOccurs="1" maxOccurs="unbounded" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="CapitalAsegurado">
+		<xs:sequence>
+			<xs:element name="DatosVariables" type="dv:DatosVariables" minOccurs="0" maxOccurs="1" />
+		</xs:sequence>
+		<xs:attribute name="tipo" type="ti:TipoCapital" use="optional" default="0" />
+		<xs:attribute name="superficie" type="ti:Parcela_Superficie" use="required" />
+		<xs:attribute name="precio" type="ti:Precio" use="optional" />
+		<xs:attribute name="produccion" use="required" type="ti:ProduccionKG" />
+	</xs:complexType> 
+	
+</xs:schema>

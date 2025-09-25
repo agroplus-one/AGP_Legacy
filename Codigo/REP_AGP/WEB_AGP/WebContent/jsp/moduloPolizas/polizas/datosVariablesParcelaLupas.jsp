@@ -1,0 +1,24 @@
+<%@ include file="/jsp/common/lupas/lupasDVAgro/lupaNumAniosPoda.jsp"%>
+<%@ include file="/jsp/common/lupas/lupasDVAgro/lupaSistemaConduccion.jsp"%>
+<%@ include file="/jsp/common/lupas/lupasDVAgro/lupaVistaCicloCultivo.jsp"%>
+<%@ include file="/jsp/common/lupas/lupasDVAgro/lupaVistaDenomOrigen.jsp"%>
+<%@ include file="/jsp/common/lupas/lupasDVAgro/lupaVistaDestino.jsp"%>		
+<%@ include file="/jsp/common/lupas/lupasDVAgro/lupaVistaFechaFinGarantias.jsp"%>	
+<%@ include file="/jsp/common/lupas/lupasDVAgro/lupaVistaIGP.jsp"%>	
+<%@ include file="/jsp/common/lupas/lupasDVAgro/lupaVistaMarcoPlantacion.jsp"%>
+<%@ include file="/jsp/common/lupas/lupasDVAgro/lupaVistaMaterialCubierta.jsp"%>
+<%@ include file="/jsp/common/lupas/lupasDVAgro/lupaVistaPorFactores.jsp"%>	
+<%@ include file="/jsp/common/lupas/lupasDVAgro/lupaVistaPracticaCultural.jsp"%>	
+<%@ include file="/jsp/common/lupas/lupasDVAgro/lupaVistaPracticaCultural305.jsp"%>	
+<%@ include file="/jsp/common/lupas/lupasDVAgro/lupaVistaRotacion.jsp"%>
+<%@ include file="/jsp/common/lupas/lupasDVAgro/lupaVistaSistemaCultivo.jsp"%>
+<%@ include file="/jsp/common/lupas/lupasDVAgro/lupaVistaSistemaCultivo312.jsp"%>
+<%@ include file="/jsp/common/lupas/lupasDVAgro/lupaVistaSistemaProduccion.jsp"%>
+<%@ include file="/jsp/common/lupas/lupasDVAgro/lupaVistaSistemaProteccion.jsp"%>
+<%@ include file="/jsp/common/lupas/lupasDVAgro/lupaVistaTipoPlantacion.jsp"%>
+
+<%@ include file="/jsp/common/lupas/lupasDVAgro/lupaVistaTipoInstalacion.jsp"%>
+<%@ include file="/jsp/common/lupas/lupasDVAgro/lupaVistaMaterialEstructura.jsp"%>
+<%@ include file="/jsp/common/lupas/lupasDVAgro/lupaVistaMaterialEstructuraInst.jsp"%>
+<%@ include file="/jsp/common/lupas/lupasDVAgro/lupaVistaMaterialCubiertaInst.jsp"%>
+<%@ include file="/jsp/common/lupas/lupasDVAgro/lupaVistaSistemaCultivo310.jsp"%>

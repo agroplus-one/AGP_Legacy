@@ -1,0 +1,116 @@
+package com.rsi.agp.core.util;
+
+import java.math.BigDecimal;
+
+public class ConstantsRC {
+	
+	public static final String ID_KEY = "ID";
+	public static final String ID_VALUE = "id";
+	public static final String COD_IMPUESTO_KEY = "COD_IMPUESTO";
+	public static final String COD_IMPUESTO_VALUE = "impuestoSbp.codigo";
+	public static final String NOM_IMPUESTO_KEY = "NOM_IMPUESTO";
+	public static final String NOM_IMPUESTO_VALUE = "impuestoSbp.descripcion";
+	public static final String VALOR_KEY = "VALOR";
+	public static final String VALOR_VALUE = "valor";
+	public static final String BASE_KEY = "BASE";
+	public static final String BASE_VALUE = "baseSbp.base";
+	public static final String PLAN_KEY = "PLAN";
+	public static final String PLAN_VALUE = "codPlan";
+	public static final String PLAN_POLIZA_VAL = "plan";
+	public static final String ID_POLIZA_KEY = "ID_POLIZA";
+	public static final String ID_POLIZA_VAL = "idpoliza";
+	public static final String ENTIDAD_KEY = "ENTIDAD";
+	public static final String ENTIDAD_VAL = "entidad";
+	public static final String OFICINA_KEY = "OFICINA";
+	public static final String OFICINA_VAL = "oficina";
+	public static final String USUARIO_KEY = "USUARIO";
+	public static final String USUARIO_VAL = "usuario";
+	public static final String LINEA_KEY = "LINEA";
+	public static final String LINEA_VAL = "linea";
+	public static final String REF_COL_KEY = "REF_COLECTIVO";
+	public static final String REF_COL_VAL = "refcolectivo";
+	public static final String DC_COL_KEY = "DC_COLECTIVO";
+	public static final String DC_COL_VAL = "dccolectivo";
+	public static final String DC_POLIZA_KEY = "DC_POLIZA";
+	public static final String DC_POLIZA_VAL = "dcpoliza";
+	public static final String REF_POLIZA_KEY = "REF_POLIZA";
+	public static final String REF_POLIZA_VAL = "refpoliza";
+	public static final String NIFCIF_KEY = "NIFCIF";
+	public static final String NIFCIF_VAL = "nifcif";
+	public static final String CLASE_KEY = "CLASE";
+	public static final String CLASE_VAL = "clase";
+	public static final String MODULO_KEY = "MODULO";
+	public static final String MODULO_VAL = "modulo";
+	public static final String ESTADO_POL_KEY = "ESTADO_POL";
+	public static final String ESTADO_POL_VAL = "estadopol";
+	public static final String DES_ESTADO_POL_KEY = "DES_ESTADO_POL";
+	public static final String DES_ESTADO_POL_VAL = "desestadopol";
+	public static final String ABR_ESTADO_POL_KEY = "ABR_ESTADO_POL";
+	public static final String ABR_ESTADO_POL_VAL = "abrestadopol";
+	public static final String FEC_ENVIO_RC_KEY = "FECENVIORC";
+	public static final String FEC_ENVIO_RC_VAL = "fecenviorc";
+	public static final String SUMA_ASEGURADA_KEY = "SUMA_ASEGURADA";
+	public static final String SUMA_ASEGURADA_VAL = "sumaasegurada";
+	public static final String IMPORTE_KEY = "IMPORTE";
+	public static final String IMPORTE_VAL = "importe";
+	public static final String ESTADO_RC_KEY = "ESTADO_RC";
+	public static final String ESTADO_RC_VAL = "estadorc"; //"estadorc"
+	public static final String DES_ESTADO_RC_KEY = "DES_ESTADO_RC";
+	public static final String DES_ESTADO_RC_VAL = "abreviatura"; //"desestadorc"
+	public static final String ERROR_RC_KEY = "ERROR_RC";
+	public static final String ERROR_RC_VAL = "errorrc";
+	public static final String DETALLE_KEY = "DETALLE";
+	public static final String DETALLE_VAL = "detalle";
+	public static final String REF_OMEGA_KEY = "REF_OMEGA";
+	public static final String REF_OMEGA_VAL = "refomega";
+	public static final String COD_ESPECIE_RC_KEY = "COD_ESPECIE_RC";
+	public static final String COD_ESPECIE_RC_VAL = "codespecierc";
+	public static final String N_SOLICITUD_KEY = "N_SOLICITUD";
+	public static final String N_SOLICITUD_VAL = "nsolicitud";
+	
+	public static final Long BASE_IMP_PRIMA_NETA = Long.valueOf(1);
+	public static final Long BASE_IMP_SUMA_ASEGURADA = Long.valueOf(2);
+	public static final Long BASE_IMP_PRIMA_NETA_ARB = Long.valueOf(3);
+	
+	public static final BigDecimal ESTADO_RC_BORRADOR = BigDecimal.valueOf(0);
+	public static final BigDecimal ESTADO_RC_PROVISIONAL = BigDecimal.valueOf(1);
+	public static final BigDecimal ESTADO_RC_DEFINITIVA = BigDecimal.valueOf(2);
+	public static final BigDecimal ESTADO_RC_PDTE_ACEPTACION = BigDecimal.valueOf(3);
+	public static final BigDecimal ESTADO_RC_ENV_ERRONEA = BigDecimal.valueOf(4);
+	public static final BigDecimal ESTADO_RC_ENV_CORRECTA = BigDecimal.valueOf(5);
+	public static final BigDecimal ESTADO_RC_ANULADA = BigDecimal.valueOf(6);
+	
+	public static final String PARAMETRO_POLIZA = "poliza";
+	public static final String PARAMETRO_NUMERO = "numero";
+	public static final String PARAMETRO_PRODUCTO = "producto";
+	public static final String PARAMETRO_CAJA = "caja";
+	public static final String PARAMETRO_OFICINA = "oficina";
+	public static final String PARAMETRO_MEDIADOR = "mediador";
+	public static final String PARAMETRO_DURACION = "duracion";
+	public static final String PARAMETRO_ASEGURADOR = "asegurador";
+	public static final String PARAMETRO_PREFIJO_TOMADOR = "tomador_";
+	public static final String PARAMETRO_PREFIJO_ASEGURADO = "asegurado_";
+	public static final String PARAMETRO_NOMBRE_COMPLETO = "nombreCompleto";
+	public static final String PARAMETRO_TELEFONO = "telefono";
+	public static final String PARAMETRO_EMAIL = "email";
+	public static final String PARAMETRO_IDENTIFICADOR = "identificador";
+	public static final String PARAMETRO_DOMICILIO = "domicilio";
+	public static final String PARAMETRO_POBLACION = "poblacion";
+	public static final String PARAMETRO_PROVINCIA = "provincia";
+	public static final String PARAMETRO_CODIGO_POSTAL = "codigoPostal";
+	public static final String PARAMETRO_EXPLOTACIONES_DATASOURCE = "explotaciones";
+	public static final String PARAMETRO_SUMA_ASEGURADA = "sumaAsegurada";
+	public static final String PARAMETRO_FRANQUICIA = "franquicia";
+	public static final String PARAMETRO_CIUDAD_EMISION = "CIUDAD_EMISION";
+	public static final String PARAMETRO_FECHA_EMISION = "FECHA";
+	public static final String PARAMETRO_ENTIDAD_CUENTA_CORRIENTE = "entidadCC";
+	public static final String PARAMETRO_IBAN_CUENTA_CORRIENTE = "IBANCC";
+	public static final String PARAMETRO_TITULAR_CUENTA_CORRIENTE = "titularCC";
+	public static final String PARAMETRO_PRIMA_NETA_ANUAL = "primaNetaAnual";
+	public static final String PARAMETRO_RECIBOS_DATASOURCE = "recibos";
+	public static final String PARAMETRO_VALOR_IMP = "valorImp";
+	public static final String PARAMETRO_DESC_IMP = "descImp";
+	public static final String PARAMETRO_TOTAL_RECIBO = "totalRecibo";
+	public static final String PARAMETRO_FORMA_PAGO = "formaPago";
+	public static final String PARAMETRO_PRIMA_NETA = "primaNeta";
+}

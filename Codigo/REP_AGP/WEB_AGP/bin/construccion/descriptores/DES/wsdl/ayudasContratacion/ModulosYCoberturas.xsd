@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<x:schema 
+	targetNamespace="http://www.agroseguro.es/ModulosYCoberturas"
+	xmlns="http://www.agroseguro.es/ModulosYCoberturas"
+	xmlns:pks="http://www.agroseguro.es/ModulosYCoberturas"
+	xmlns:x="http://www.w3.org/2001/XMLSchema"
+	xmlns:ti="http://www.agroseguro.es/Tipos" 
+	>
+	
+	<x:import
+		namespace="http://www.agroseguro.es/Tipos"
+		schemaLocation="Tipos.xsd" />
+		
+	<x:element name="ModulosYCoberturas" type="ModulosYCoberturas" />
+	
+	<x:complexType name="ModulosYCoberturas" >
+		<x:sequence>
+			<x:element name="Modulo" type="Modulo" minOccurs="1" maxOccurs="unbounded" />
+			<x:element name="Explotaciones" type="Explotaciones" minOccurs="1" maxOccurs="1" />
+		</x:sequence>
+		<x:attributeGroup ref="ti:PeticionSW" />
+	</x:complexType>
+	
+	<x:complexType name="Modulo">
+		<x:sequence>
+        	<x:element name="Cobertura" type="Cobertura" minOccurs="1" maxOccurs="unbounded" />
+        </x:sequence>
+		<x:attribute name="modulo" type="ti:Cobertura_Modulo" use="required" />
+	</x:complexType>
+		
+	<x:complexType name="Cobertura">
+		<x:sequence>
+			<x:element name="VinculacionFila" type="VinculacionFila" minOccurs="0" maxOccurs="unbounded" />
+			<x:element name="DatoVariable" type="DatoVariable" minOccurs="0" maxOccurs="unbounded" />        	
+        </x:sequence>
+		<x:attribute name="fila" type="x:int" use="required" />
+		<x:attribute name="conceptoPrincipalModulo" type="ti:Modulo_ConceptoPrincipal" use="required" />
+		<x:attribute name="descripcionCPM" type="x:string" use="required" />
+		<x:attribute name="riesgoCubierto" type="ti:CodigoRiesgosCubiertos" use="required" />
+		<x:attribute name="descripcionRC" type="x:string" use="required" />
+		<x:attribute name="elegible" type="ti:SoN" use="required" />
+		<x:attribute name="tipoCobertura" type="x:string" use="optional" />
+	</x:complexType>	
+	
+	<x:complexType name="VinculacionFila">
+		<x:sequence>
+        	<x:element name="Fila" type="Fila" minOccurs="1" maxOccurs="unbounded" />
+        </x:sequence>
+		<x:attribute name="elegida" type="ti:SoN" use="required" />
+	</x:complexType>
+	
+	<x:complexType name="Fila">
+		<x:attribute name="fila" type="x:int" use="required" />
+		<x:attribute name="elegida" type="ti:SoN" use="required" />
+	</x:complexType>
+	
+	<x:complexType name="DatoVariable">
+		<x:sequence>
+        	<x:element name="Valor" type="Valor" minOccurs="0" maxOccurs="unbounded" />
+        </x:sequence>
+		<x:attribute name="columna" type="x:int" use="required" />
+		<x:attribute name="codigoConcepto" type="ti:CodigoConcepto" use="required" />
+		<x:attribute name="nombre" type="ti:ConceptoNombre" use="required" />
+		<x:attribute name="descripcion" type="ti:ConceptoDescripcion" use="required" />
+		<x:attribute name="longitud" type="ti:ConceptoLongitud" use="required" />
+		<x:attribute name="decimales" type="ti:ConceptoDecimales" use="required" /> 
+		<x:attribute name="tipoNaturaleza" type="ti:ConceptoTipoNaturaleza" use="required" /> 
+		<x:attribute name="descripcionNaturaleza" type="ti:ConceptoDescripcionNaturaleza" use="required" /> 
+		<x:attribute name="etiquetaXML" type="ti:etiquetaXML" use="required" /> 
+		<x:attribute name="tipoValor" type="x:string" use="required" />
+		<x:attribute name="observaciones" type="x:string" use="required" />
+	</x:complexType>
+	
+	<x:complexType name="Valor">
+		<x:sequence>
+        	<x:element name="VinculacionCelda" type="VinculacionCelda" minOccurs="0" maxOccurs="1" />
+        </x:sequence>
+		<x:attribute name="valor" type="x:int" use="required" />
+		<x:attribute name="descripcion" type="x:string" use="required" />
+	</x:complexType>
+	
+	<x:complexType name="VinculacionCelda">
+		<x:attribute name="filaMadre" type="x:int" use="required" />
+		<x:attribute name="columnaMadre" type="x:int" use="required" />
+		<x:attribute name="valorMadre" type="x:int" use="required" />
+		<x:attribute name="nombre" type="x:string" use="required" />
+		<x:attribute name="descripcion" type="x:string" use="required" />
+	</x:complexType>
+	
+	<x:complexType name="Explotaciones">
+		<x:sequence>
+        	<x:element name="Explotacion" type="Explotacion" minOccurs="1" maxOccurs="unbounded" />
+        </x:sequence>
+	</x:complexType>
+	
+	<x:complexType name="Explotacion">
+		<x:sequence>
+        	<x:element name="GrupoRaza" type="GrupoRaza" minOccurs="1" maxOccurs="unbounded" />
+			<x:element name="Cobertura" type="Cobertura" minOccurs="0" maxOccurs="unbounded" />
+        </x:sequence>
+		<x:attribute name="especie" type="ti:Especie" use="required" />
+		<x:attribute name="descriptivoEspecie" type="ti:Especie_Descripcion" use="required" />
+		<x:attribute name="regimen" type="ti:Regimen" use="required" />
+		<x:attribute name="descriptivoRegimen" type="ti:Regimen_Descripcion" use="required" />
+		<x:attribute name="numero" type="ti:NumeroExplotacion" use="optional" />
+		<x:attribute name="rega" type="ti:Codigo_REGA" use="optional" />
+		<x:attribute name="subexplotacion" type="ti:Subexplotacion" use="optional" />
+	</x:complexType>
+	
+	<x:complexType name="GrupoRaza">
+		<x:sequence>
+        	<x:element name="Cobertura" type="Cobertura" minOccurs="0" maxOccurs="unbounded" />
+        	<x:element name="TipoCapital" type="TipoCapital" minOccurs="1" maxOccurs="unbounded" />
+        </x:sequence>
+        <x:attribute name="grupoRaza" type="ti:GrupoRaza" use="required" />
+		<x:attribute name="descriptivo" type="ti:GrupoRaza_Descripcion" use="required" />
+	</x:complexType>	
+	
+	<x:complexType name="TipoCapital">
+		<x:sequence>
+        	<x:element name="Cobertura" type="Cobertura" minOccurs="0" maxOccurs="unbounded" />
+        	<x:element name="TipoAnimal" type="TipoAnimal" minOccurs="1" maxOccurs="unbounded" />
+        </x:sequence>
+        <x:attribute name="tipoCapital" type="ti:TipoCapital" use="required" />
+		<x:attribute name="descriptivo" type="ti:TipoCapitalDescripcion" use="required" />
+	</x:complexType>	
+	
+	<x:complexType name="TipoAnimal">
+		<x:sequence>
+        	<x:element name="Cobertura" type="Cobertura" minOccurs="0" maxOccurs="unbounded" />
+        </x:sequence>
+        <x:attribute name="tipoAnimal" type="ti:TipoAnimal" use="required" />
+		<x:attribute name="descriptivo" type="ti:TipoAnimal_Descripcion" use="required" />
+	</x:complexType>
+	
+</x:schema>

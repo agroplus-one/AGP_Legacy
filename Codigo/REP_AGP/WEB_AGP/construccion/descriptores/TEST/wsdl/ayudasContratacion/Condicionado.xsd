@@ -1,0 +1,1159 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:c="http://www.agroseguro.es/SeguroCreciente/Condicionado" xmlns:r="http://www.agroseguro.es/SeguroCreciente/Condicionado" xmlns:ti="http://www.agroseguro.es/SeguroCreciente/Condicionado/Tipos" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://www.agroseguro.es/SeguroCreciente/Condicionado">
+
+
+<xs:import namespace="http://www.agroseguro.es/SeguroCreciente/Condicionado/Tipos" schemaLocation="./Condicionado_Tipos.xsd"/>
+<xs:include schemaLocation="./Condicionado_Registros.xsd"/>
+
+	<xs:simpleType name="NumeroTabla">
+		<xs:restriction base="ti:NumeroTabla"/>
+	</xs:simpleType>
+
+	<xs:attributeGroup name="PlanLinea">
+		<xs:attribute name="plan" type="ti:Plan" use="required"/>
+		<xs:attribute name="linea" type="ti:Linea" use="required"/>						
+	</xs:attributeGroup>
+
+	<xs:element name="CondicionadoPlanLinea" type="c:CondicionadoPlanLinea"/>
+	<xs:element name="CondicionadoPlan" type="c:CondicionadoPlan"/>
+	<xs:element name="CondicionadoGeneral" type="c:CondicionadoGeneral">
+		<xs:key name="cgKey">
+			<xs:selector xpath="*"/>
+			<xs:field xpath="@numeroTabla"/>
+		</xs:key>
+	</xs:element>
+	
+	<xs:complexType name="CondicionadoPlanLinea">
+		<xs:choice maxOccurs="1" minOccurs="1">
+			<xs:element name="Cultivos">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" minOccurs="0" name="RG" type="r:Cultivos"/>
+					</xs:sequence>
+					<xs:attribute fixed="0001" name="numeroTabla" type="c:NumeroTabla" use="required"/>
+				</xs:complexType>
+			</xs:element>			
+		
+			<xs:element name="Variedades">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" minOccurs="0" name="RG" type="r:Variedades"/>
+					</xs:sequence>
+					<xs:attribute fixed="0002" name="numeroTabla" type="c:NumeroTabla" use="required"/>
+				</xs:complexType>
+			</xs:element>			
+					
+			<xs:element name="Modulos">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" minOccurs="0" name="RG" type="r:Modulos"/>
+					</xs:sequence>
+					<xs:attribute fixed="0003" name="numeroTabla" type="c:NumeroTabla" use="required"/>
+				</xs:complexType>
+			</xs:element>			
+		
+			<xs:element name="RiesgosCubiertosModulo">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" minOccurs="0" name="RG" type="r:RiesgosCubiertosModulo"/>
+					</xs:sequence>
+					<xs:attribute fixed="0004" name="numeroTabla" type="c:NumeroTabla" use="required"/>
+				</xs:complexType>
+			</xs:element>			
+		
+			<xs:element name="CodigosDenominacionOrigen">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" minOccurs="0" name="RG" type="r:CodigosDenominacionOrigen"/>
+					</xs:sequence>
+					<xs:attribute fixed="0005" name="numeroTabla" type="c:NumeroTabla" use="required"/>
+				</xs:complexType>
+			</xs:element>			
+		
+			<xs:element name="ConceptosCubiertosModulo">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" minOccurs="0" name="RG" type="r:ConceptosCubiertosModulo"/>
+					</xs:sequence>
+					<xs:attribute fixed="0006" name="numeroTabla" type="c:NumeroTabla" use="required"/>
+				</xs:complexType>
+			</xs:element>			
+		
+			<xs:element name="Precios">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" minOccurs="0" name="RG" type="r:Precios"/>
+					</xs:sequence>
+					<xs:attribute fixed="0007" name="numeroTabla" type="c:NumeroTabla" use="required"/>
+				</xs:complexType>
+			</xs:element>			
+					
+			<xs:element name="CaracteristicasGrupoTasa">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" minOccurs="0" name="CaracteristicaGrupoTasa" type="r:CaracteristicasGrupoTasa"/>
+					</xs:sequence>
+					<xs:attribute fixed="0008" name="numeroTabla" type="c:NumeroTabla" use="required"/>
+				</xs:complexType>
+			</xs:element>			
+		
+			<xs:element name="LimitesRendimiento">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" minOccurs="0" name="RG" type="r:LimitesRendimiento"/>
+					</xs:sequence>
+					<xs:attribute fixed="0009" name="numeroTabla" type="c:NumeroTabla" use="required"/>
+				</xs:complexType>
+			</xs:element>			
+		
+			<xs:element name="CaracteristicasModulo">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" minOccurs="0" name="RG" type="r:CaracteristicasModulo"/>
+					</xs:sequence>
+					<xs:attribute fixed="0010" name="numeroTabla" type="c:NumeroTabla" use="required"/>
+				</xs:complexType>
+			</xs:element>
+		
+			<xs:element name="VinculacionesValoresModulo">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" minOccurs="0" name="RG" type="r:VinculacionesValoresModulo"/>
+					</xs:sequence>
+					<xs:attribute fixed="0011" name="numeroTabla" type="c:NumeroTabla" use="required"/>
+				</xs:complexType>
+			</xs:element>
+		
+			<xs:element name="AseguradosSubvencionAdicionalRenovacionContratacionEnesa">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" minOccurs="0" name="RG" type="r:AseguradosSubvencionAdicionalRenovacionContratacionEnesa"/>
+					</xs:sequence>
+					<xs:attribute fixed="0012" name="numeroTabla" type="c:NumeroTabla" use="required"/>					
+				</xs:complexType>
+			</xs:element>
+		
+			<xs:element name="SubvencionesEnesa">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" minOccurs="0" name="RG" type="r:SubvencionesEnesa"/>
+					</xs:sequence>
+					<xs:attribute fixed="0013" name="numeroTabla" type="c:NumeroTabla" use="required"/>
+				</xs:complexType>
+			</xs:element>
+		
+			<xs:element name="SubvencionesCCAA">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" minOccurs="0" name="RG" type="r:SubvencionesCCAA"/>
+					</xs:sequence>
+					<xs:attribute fixed="0014" name="numeroTabla" type="c:NumeroTabla" use="required"/>
+				</xs:complexType>
+			</xs:element>
+		
+			<xs:element name="SistemasReduccionSubvencionesEnesaCCAA">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" minOccurs="0" name="RG" type="r:SistemasReduccionSubvencionesEnesaCCAA"/>
+					</xs:sequence>
+					<xs:attribute fixed="0016" name="numeroTabla" type="c:NumeroTabla" use="required"/>
+				</xs:complexType>
+			</xs:element>
+		
+			<xs:element name="Medidas">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" minOccurs="0" name="RG" type="r:Medidas"/>
+					</xs:sequence>
+					<xs:attribute fixed="0018" name="numeroTabla" type="c:NumeroTabla" use="required"/>
+				</xs:complexType>
+			</xs:element>			
+		
+			<xs:element name="AseguradosAutorizacionContratacion">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" minOccurs="0" name="RG" type="r:AseguradosAutorizacionContratacion"/>
+					</xs:sequence>
+					<xs:attribute fixed="0019" name="numeroTabla" type="c:NumeroTabla" use="required"/>
+				</xs:complexType>
+			</xs:element>			
+		
+			<xs:element name="FechasContratacionAgricola">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" minOccurs="0" name="RG" type="r:FechasContratacionAgricola"/>
+					</xs:sequence>
+					<xs:attribute fixed="0024" name="numeroTabla" type="c:NumeroTabla" use="required"/>
+				</xs:complexType>
+			</xs:element>			
+		
+			<xs:element name="PorcentajesReduccionRendimientosAmbito">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" minOccurs="0" name="RG" type="r:PorcentajesReduccionRendimientosAmbito"/>
+					</xs:sequence>
+					<xs:attribute fixed="0027" name="numeroTabla" type="c:NumeroTabla" use="required"/>
+				</xs:complexType>
+			</xs:element>			
+		
+			<xs:element name="BonificacionMedidaPreventiva">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" minOccurs="0" name="RG" type="r:BonificacionMedidaPreventiva"/>
+					</xs:sequence>
+					<xs:attribute fixed="0028" name="numeroTabla" type="c:NumeroTabla" use="required"/>
+				</xs:complexType>
+			</xs:element>			
+		
+			<xs:element name="Comisiones">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" minOccurs="0" name="RG" type="r:Comisiones"/>
+					</xs:sequence>
+					<xs:attribute fixed="0029" name="numeroTabla" type="c:NumeroTabla" use="required"/>
+				</xs:complexType>
+			</xs:element>			
+
+			<xs:element name="CondicionesParticularesAplicadasComisiones">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" minOccurs="0" name="RG" type="r:CondicionesParticularesAplicadasComisiones"/>
+					</xs:sequence>
+					<xs:attribute fixed="0030" name="numeroTabla" type="c:NumeroTabla" use="required"/>
+				</xs:complexType>
+			</xs:element>			
+		
+			<xs:element name="IncompatibilidadesSubvencionesDeclarables">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" minOccurs="0" name="RG" type="r:IncompatibilidadesSubvencionesDeclarables"/>
+					</xs:sequence>
+					<xs:attribute fixed="0032" name="numeroTabla" type="c:NumeroTabla" use="required"/>
+				</xs:complexType>
+			</xs:element>			
+					
+			<xs:element name="Descuentos">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" minOccurs="0" name="RG" type="r:Descuentos"/>
+					</xs:sequence>
+					<xs:attribute fixed="0041" name="numeroTabla" type="c:NumeroTabla" use="required"/>
+				</xs:complexType>
+			</xs:element>			
+		
+			<xs:element name="AmbitosAsegurables">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" minOccurs="0" name="RG" type="r:AmbitosAsegurables"/>
+					</xs:sequence>
+					<xs:attribute fixed="0043" name="numeroTabla" type="c:NumeroTabla" use="required"/>					
+				</xs:complexType>
+			</xs:element>
+		
+			<xs:element name="RiesgosTasables">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" minOccurs="0" name="RG" type="r:RiesgosTasables"/>
+					</xs:sequence>
+					<xs:attribute fixed="0044" name="numeroTabla" type="c:NumeroTabla" use="required"/>					
+				</xs:complexType>
+			</xs:element>
+		
+			<xs:element name="IncompatibilidadesContratacion">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" minOccurs="0" name="RG" type="r:IncompatibilidadesContratacion"/>
+					</xs:sequence>
+					<xs:attribute fixed="0046" name="numeroTabla" type="c:NumeroTabla" use="required"/>					
+				</xs:complexType>
+			</xs:element>
+					
+			<xs:element name="RiesgosCubiertos">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" minOccurs="0" name="RG" type="r:RiesgosCubiertos"/>
+					</xs:sequence>
+					<xs:attribute fixed="0073" name="numeroTabla" type="c:NumeroTabla" use="required"/>					
+				</xs:complexType>
+			</xs:element>
+		
+			<xs:element name="RiesgosTarificables">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" minOccurs="0" name="RG" type="r:RiesgosTarificables"/>
+					</xs:sequence>
+					<xs:attribute fixed="0074" name="numeroTabla" type="c:NumeroTabla" use="required"/>					
+				</xs:complexType>
+			</xs:element>
+		
+			<xs:element name="RelacionRiesgosCubiertosTarificables">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" minOccurs="0" name="RG" type="r:RelacionRiesgosCubiertosTarificables"/>
+					</xs:sequence>
+					<xs:attribute fixed="0075" name="numeroTabla" type="c:NumeroTabla" use="required"/>					
+				</xs:complexType>
+			</xs:element>
+		
+			<xs:element name="EstadoFenologico">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" minOccurs="0" name="RG" type="r:EstadoFenologico"/>
+					</xs:sequence>
+					<xs:attribute fixed="0087" name="numeroTabla" type="c:NumeroTabla" use="required"/>					
+				</xs:complexType>
+			</xs:element>
+
+			<xs:element name="TablaExternaBonus">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" minOccurs="0" name="RG" type="r:TablaExternaBonus"/>
+					</xs:sequence>
+					<xs:attribute fixed="0111" name="numeroTabla" type="c:NumeroTabla" use="required"/>
+				</xs:complexType>
+			</xs:element>
+
+			<xs:element name="MascaraPrecios">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" minOccurs="0" name="RG" type="r:MascaraPrecios"/>
+					</xs:sequence>
+					<xs:attribute fixed="9007" name="numeroTabla" type="c:NumeroTabla" use="required"/>					
+				</xs:complexType>
+			</xs:element>
+		
+			<xs:element name="MascaraCaracteristicasGrupoTasa">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" minOccurs="0" name="RG" type="r:MascaraCaracteristicasGrupoTasa"/>
+					</xs:sequence>
+					<xs:attribute fixed="9008" name="numeroTabla" type="c:NumeroTabla" use="required"/>					
+				</xs:complexType>
+			</xs:element>
+		
+			<xs:element name="MascaraLimitesRendimiento">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" minOccurs="0" name="RG" type="r:MascaraLimitesRendimiento"/>
+					</xs:sequence>
+					<xs:attribute fixed="9009" name="numeroTabla" type="c:NumeroTabla" use="required"/>					
+				</xs:complexType>
+			</xs:element>
+		
+			<xs:element name="MascaraFechasContratacionAgricola">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" minOccurs="0" name="RG" type="r:MascaraFechasContratacionAgricola"/>
+					</xs:sequence>
+					<xs:attribute fixed="9024" name="numeroTabla" type="c:NumeroTabla" use="required"/>					
+				</xs:complexType>
+			</xs:element>
+			
+			<xs:element name="MascaraRendimientosCaracteristicasEspecificas">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" minOccurs="0" name="RG" type="r:MascaraRendimientosCaracteristicasEspecificas"/>
+					</xs:sequence>
+					<xs:attribute fixed="9137" name="numeroTabla" type="c:NumeroTabla" use="required"/>					
+				</xs:complexType>
+			</xs:element>
+			
+			<xs:element name="ValoresFactorLinea">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" minOccurs="0" name="RG" type="r:ValoresFactorLinea"/>
+					</xs:sequence>
+					<xs:attribute fixed="0117" name="numeroTabla" type="c:NumeroTabla" use="required"/>
+				</xs:complexType>
+			</xs:element>
+			
+			<xs:element name="TiposSubvencionesIncompatiblesCalculadas">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" minOccurs="0" name="RG" type="r:TiposSubvencionesIncompatiblesCalculadas"/>
+					</xs:sequence>
+					<xs:attribute fixed="0120" name="numeroTabla" type="c:NumeroTabla" use="required"/>
+				</xs:complexType>
+			</xs:element>
+			
+			<xs:element name="FechasGarantia">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" minOccurs="0" name="RG" type="r:FechasGarantia"/>
+					</xs:sequence>
+					<xs:attribute fixed="0121" name="numeroTabla" type="c:NumeroTabla" use="required"/>
+				</xs:complexType>
+			</xs:element>
+			
+			<xs:element name="FechasRecoleccion">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" minOccurs="0" name="RG" type="r:FechasRecoleccion"/>
+					</xs:sequence>
+					<xs:attribute fixed="0122" name="numeroTabla" type="c:NumeroTabla" use="required"/>
+				</xs:complexType>
+			</xs:element>
+			
+			<xs:element name="MedidasAsociadasHistorialAsegurado">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" minOccurs="0" name="RG" type="r:MedidasAsociadasHistorialAsegurado"/>
+					</xs:sequence>
+					<xs:attribute fixed="0124" name="numeroTabla" type="c:NumeroTabla" use="required"/>
+				</xs:complexType>
+			</xs:element>
+			
+			<xs:element name="RelacionEspeciesSeguroCrecienteEspeciesSeguroTradicional">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" minOccurs="0" name="RG" type="r:RelacionEspeciesSeguroCrecienteEspeciesSeguroTradicional"/>
+					</xs:sequence>
+					<xs:attribute fixed="0125" name="numeroTabla" type="c:NumeroTabla" use="required"/>
+				</xs:complexType>
+			</xs:element>
+			
+			<xs:element name="FormulacionCondicionesTipologiaExplotacion">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" minOccurs="0" name="RG" type="r:FormulacionCondicionesTipologiaExplotacion"/>
+					</xs:sequence>
+					<xs:attribute fixed="0127" name="numeroTabla" type="c:NumeroTabla" use="required"/>
+				</xs:complexType>				
+			</xs:element>
+			
+			<xs:element name="CondicionesAsociadasTipologiaExplotacion">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" minOccurs="0" name="RG" type="r:CondicionesAsociadasTipologiaExplotacion"/>
+					</xs:sequence>
+					<xs:attribute fixed="0128" name="numeroTabla" type="c:NumeroTabla" use="required"/>
+				</xs:complexType>
+			</xs:element>
+			
+			<xs:element name="ValoresFactorEspecieAmbito">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" minOccurs="0" name="RG" type="r:ValoresFactorEspecieAmbito"/>
+					</xs:sequence>
+					<xs:attribute fixed="0129" name="numeroTabla" type="c:NumeroTabla" use="required"/>
+				</xs:complexType>
+			</xs:element>
+			
+			<xs:element name="MedidasFranquicia">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" minOccurs="0" name="RG" type="r:MedidasFranquicia"/>
+					</xs:sequence>
+					<xs:attribute fixed="0134" name="numeroTabla" type="c:NumeroTabla" use="required"/>
+				</xs:complexType>
+			</xs:element>
+			
+			<xs:element name="TablaExternaEleccionCultivo">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" minOccurs="0" name="RG" type="r:TablaExternaEleccionCultivo"/>
+					</xs:sequence>
+					<xs:attribute fixed="0135" name="numeroTabla" type="c:NumeroTabla" use="required"/>
+				</xs:complexType>
+			</xs:element>
+			
+			<xs:element name="ModulosAplicablesMedida">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" minOccurs="0" name="RG" type="r:ModulosAplicablesMedida"/>
+					</xs:sequence>
+					<xs:attribute fixed="0136" name="numeroTabla" type="c:NumeroTabla" use="required"/>
+				</xs:complexType>
+			</xs:element>
+			
+			<xs:element name="RendimientosCaracteristicasEspecificas">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" minOccurs="0" name="RG" type="r:RendimientosCaracteristicasEspecificas"/>
+					</xs:sequence>
+					<xs:attribute fixed="0137" name="numeroTabla" type="c:NumeroTabla" use="required"/>
+				</xs:complexType>
+			</xs:element>
+			
+			<xs:element name="BonificacionPorRenovacion">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" minOccurs="0" name="RG" type="r:BonificacionPorRenovacion"/>
+					</xs:sequence>
+					<xs:attribute fixed="0138" name="numeroTabla" type="c:NumeroTabla" use="required"/>
+				</xs:complexType>
+			</xs:element>
+			
+			<xs:element name="PorcentajesComisionPorEstratosPrima">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" minOccurs="0" name="RG" type="r:PorcentajesComisionPorEstratosPrima"/>
+					</xs:sequence>
+					<xs:attribute fixed="0143" name="numeroTabla" type="c:NumeroTabla" use="required"/>
+				</xs:complexType>
+			</xs:element>
+			
+			<xs:element name="RendimientosMaximosParcela">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" minOccurs="0" name="RG" type="r:RendimientosMaximosParcela"/>
+					</xs:sequence>
+					<xs:attribute fixed="0144" name="numeroTabla" type="c:NumeroTabla" use="required"/>
+				</xs:complexType>
+			</xs:element>
+			
+			<xs:element name="CondicionesFraccionamiento">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" minOccurs="0" name="RG" type="r:CondicionesFraccionamiento"/>
+					</xs:sequence>
+					<xs:attribute fixed="0145" name="numeroTabla" type="c:NumeroTabla" use="required"/>
+				</xs:complexType>
+			</xs:element>
+			
+			<xs:element name="GruposVarietales">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" minOccurs="0" name="RG" type="r:GruposVarietales"/>
+					</xs:sequence>
+					<xs:attribute fixed="0149" name="numeroTabla" type="c:NumeroTabla" use="required"/>
+				</xs:complexType>
+			</xs:element>
+			
+			<xs:element name="RendimientosMediosParcela">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" minOccurs="0" name="RG" type="r:RendimientosMediosParcela"/>
+					</xs:sequence>
+					<xs:attribute fixed="0174" name="numeroTabla" type="c:NumeroTabla" use="required"/>					
+				</xs:complexType>
+			</xs:element>
+			
+			<xs:element name="ImporteMinimoRecargoAval">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" minOccurs="0" name="RG" type="r:ImporteMinimoRecargoAval"/>
+					</xs:sequence>
+					<xs:attribute fixed="0447" name="numeroTabla" type="c:NumeroTabla" use="required"/>
+				</xs:complexType>
+			</xs:element>			
+						
+		</xs:choice>
+		<xs:attributeGroup ref="c:PlanLinea"/>		
+	</xs:complexType>
+
+	<xs:complexType name="CondicionadoPlan">
+		<xs:choice maxOccurs="1" minOccurs="1">
+			<xs:element name="Tarifas">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" minOccurs="0" name="RG" type="r:Tarifas"/>
+					</xs:sequence>
+					<xs:attribute fixed="0017" name="numeroTabla" type="c:NumeroTabla" use="required"/>
+				</xs:complexType>
+			</xs:element>			
+			
+			<xs:element name="PrimasRiesgo">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" minOccurs="0" name="RG" type="r:PrimasRiesgo"/>
+					</xs:sequence>
+					<xs:attribute fixed="0045" name="numeroTabla" type="c:NumeroTabla" use="required"/>					
+				</xs:complexType>
+			</xs:element>
+			
+			<xs:element name="GruposSubvenciones">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" minOccurs="0" name="RG" type="r:GruposSubvenciones"/>
+					</xs:sequence>
+					<xs:attribute fixed="0118" name="numeroTabla" type="c:NumeroTabla" use="required"/>					
+				</xs:complexType>
+			</xs:element>
+			
+			<xs:element name="TiposSubvencionesGrupo">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" minOccurs="0" name="RG" type="r:TiposSubvencionesGrupo"/>
+					</xs:sequence>
+					<xs:attribute fixed="0119" name="numeroTabla" type="c:NumeroTabla" use="required"/>					
+				</xs:complexType>
+			</xs:element>
+			
+			<xs:element name="PorcentajeRecargoConsorcio">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" minOccurs="0" name="RG" type="r:PorcentajeRecargoConsorcio"/>
+					</xs:sequence>
+					<xs:attribute fixed="0173" name="numeroTabla" type="c:NumeroTabla" use="required"/>					
+				</xs:complexType>
+			</xs:element>					
+		</xs:choice>
+		<xs:attribute name="plan" type="ti:Plan" use="required"/>						
+	</xs:complexType>				
+
+	<xs:complexType name="CondicionadoGeneral">
+		<xs:choice maxOccurs="1" minOccurs="1">
+			<xs:element name="RelacionTablas">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" minOccurs="0" name="RG" type="r:RelacionTablas"/>
+					</xs:sequence>
+					<xs:attribute fixed="9000" name="numeroTabla" type="c:NumeroTabla" use="required"/>
+				</xs:complexType>
+			</xs:element>			
+
+			<xs:element name="CondicionesParticulares">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" minOccurs="0" name="RG" type="r:CondicionesParticulares"/>
+					</xs:sequence>
+					<xs:attribute fixed="0031" name="numeroTabla" type="c:NumeroTabla" use="required"/>
+				</xs:complexType>
+			</xs:element>			
+			
+			<xs:element name="Bancos">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" minOccurs="0" name="RG" type="r:Bancos"/>
+					</xs:sequence>
+					<xs:attribute fixed="0040" name="numeroTabla" type="c:NumeroTabla" use="required"/>
+				</xs:complexType>
+			</xs:element>			
+
+			<xs:element name="ZonificacionSIGPAC">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" minOccurs="0" name="RG" type="r:ZonificacionSIGPAC"/>
+					</xs:sequence>
+					<xs:attribute fixed="0042" name="numeroTabla" type="c:NumeroTabla" use="required"/>					
+				</xs:complexType>
+			</xs:element>
+		
+			<xs:element name="Organismos">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" minOccurs="0" name="RG" type="r:Organismos"/>
+					</xs:sequence>
+					<xs:attribute fixed="0047" name="numeroTabla" type="c:NumeroTabla" use="required"/>
+				</xs:complexType>
+			</xs:element>			
+		
+			<xs:element name="AseguradosNoSubvencionables">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" minOccurs="0" name="RG" type="r:AseguradosNoSubvencionables"/>
+					</xs:sequence>
+					<xs:attribute fixed="0048" name="numeroTabla" type="c:NumeroTabla" use="required"/>
+				</xs:complexType>
+			</xs:element>			
+		
+			<xs:element name="Garantizado">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" minOccurs="0" name="RG" type="r:Garantizado"/>
+					</xs:sequence>
+					<xs:attribute fixed="0050" name="numeroTabla" type="c:NumeroTabla" use="required"/>
+				</xs:complexType>
+			</xs:element>			
+			
+			<xs:element name="MedidaPreventiva">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" minOccurs="0" name="RG" type="r:MedidaPreventiva"/>
+					</xs:sequence>
+					<xs:attribute fixed="0051" name="numeroTabla" type="c:NumeroTabla" use="required"/>
+				</xs:complexType>
+			</xs:element>			
+		
+			<xs:element name="SistemaCultivo">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" minOccurs="0" name="RG" type="r:SistemaCultivo"/>
+					</xs:sequence>
+					<xs:attribute fixed="0052" name="numeroTabla" type="c:NumeroTabla" use="required"/>
+				</xs:complexType>
+			</xs:element>			
+			
+			<xs:element name="Rotaciones">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" minOccurs="0" name="RG" type="r:Rotaciones"/>
+					</xs:sequence>
+					<xs:attribute fixed="0053" name="numeroTabla" type="c:NumeroTabla" use="required"/>
+				</xs:complexType>
+			</xs:element>			
+			
+			<xs:element name="PracticaCultural">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" minOccurs="0" name="RG" type="r:PracticaCultural"/>
+					</xs:sequence>
+					<xs:attribute fixed="0054" name="numeroTabla" type="c:NumeroTabla" use="required"/>
+				</xs:complexType>
+			</xs:element>			
+			
+			<xs:element name="CaracteristicasExplotacion">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" minOccurs="0" name="RG" type="r:CaracteristicasExplotacion"/>
+					</xs:sequence>
+					<xs:attribute fixed="0055" name="numeroTabla" type="c:NumeroTabla" use="required"/>
+				</xs:complexType>
+			</xs:element>			
+			
+			<xs:element name="Destino">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" minOccurs="0" name="RG" type="r:Destino"/>
+					</xs:sequence>
+					<xs:attribute fixed="0056" name="numeroTabla" type="c:NumeroTabla" use="required"/>
+				</xs:complexType>
+			</xs:element>			
+		
+			<xs:element name="NivelRiesgo">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" minOccurs="0" name="RG" type="r:NivelesRiesgo"/>
+					</xs:sequence>
+					<xs:attribute fixed="0057" name="numeroTabla" type="c:NumeroTabla" use="required"/>
+				</xs:complexType>
+			</xs:element>			
+		
+			<xs:element name="TiposSubvencionesENESA">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" minOccurs="0" name="RG" type="r:TiposSubvencionesENESA"/>
+					</xs:sequence>
+					<xs:attribute fixed="0060" name="numeroTabla" type="c:NumeroTabla" use="required"/>
+				</xs:complexType>
+			</xs:element>			
+		
+			<xs:element name="TiposSubvencionesCCAA">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" minOccurs="0" name="RG" type="r:TiposSubvencionesCCAA"/>
+					</xs:sequence>
+					<xs:attribute fixed="0061" name="numeroTabla" type="c:NumeroTabla" use="required"/>
+				</xs:complexType>
+			</xs:element>			
+		
+			<xs:element name="GruposSeguro">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" minOccurs="0" name="RG" type="r:GruposSeguro"/>
+					</xs:sequence>
+					<xs:attribute fixed="0070" name="numeroTabla" type="c:NumeroTabla" use="required"/>
+				</xs:complexType>
+			</xs:element>			
+		
+			<xs:element name="Lineas">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" minOccurs="0" name="RG" type="r:Lineas"/>
+					</xs:sequence>
+					<xs:attribute fixed="0071" name="numeroTabla" type="c:NumeroTabla" use="required"/>
+				</xs:complexType>
+			</xs:element>			
+		
+			<xs:element name="Riesgos">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" minOccurs="0" name="RG" type="r:Riesgos"/>
+					</xs:sequence>
+					<xs:attribute fixed="0072" name="numeroTabla" type="c:NumeroTabla" use="required"/>
+				</xs:complexType>
+			</xs:element>			
+		
+			<xs:element name="CalculoIndemnizacion">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" minOccurs="0" name="RG" type="r:CalculoIndemnizacion"/>
+					</xs:sequence>
+					<xs:attribute fixed="0076" name="numeroTabla" type="c:NumeroTabla" use="required"/>
+				</xs:complexType>
+			</xs:element>			
+		
+			<xs:element name="GastosSalvamento">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" minOccurs="0" name="RG" type="r:GastosSalvamento"/>
+					</xs:sequence>
+					<xs:attribute fixed="0077" name="numeroTabla" type="c:NumeroTabla" use="required"/>
+				</xs:complexType>
+			</xs:element>			
+		
+			<xs:element name="DenominacionOrigen">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" minOccurs="0" name="RG" type="r:DenominacionOrigen"/>
+					</xs:sequence>
+					<xs:attribute fixed="0078" name="numeroTabla" type="c:NumeroTabla" use="required"/>
+				</xs:complexType>
+			</xs:element>			
+		
+			<xs:element name="ProteccionCultivo">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" minOccurs="0" name="RG" type="r:ProteccionCultivo"/>
+					</xs:sequence>
+					<xs:attribute fixed="0079" name="numeroTabla" type="c:NumeroTabla" use="required"/>
+				</xs:complexType>
+			</xs:element>			
+		
+			<xs:element name="TipoCapital">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" minOccurs="0" name="RG" type="r:TipoCapital"/>
+					</xs:sequence>
+					<xs:attribute fixed="0080" name="numeroTabla" type="c:NumeroTabla" use="required"/>
+				</xs:complexType>
+			</xs:element>			
+		
+			<xs:element name="DanoCubierto">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" minOccurs="0" name="RG" type="r:DanoCubierto"/>
+					</xs:sequence>
+					<xs:attribute fixed="0081" name="numeroTabla" type="c:NumeroTabla" use="required"/>
+				</xs:complexType>
+			</xs:element>			
+		
+			<xs:element name="TipoFranquicia">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" minOccurs="0" name="RG" type="r:TipoFranquicia"/>
+					</xs:sequence>
+					<xs:attribute fixed="0082" name="numeroTabla" type="c:NumeroTabla" use="required"/>
+				</xs:complexType>
+			</xs:element>			
+		
+			<xs:element name="MarcoPlantacion">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" minOccurs="0" name="RG" type="r:MarcoPlantacion"/>
+					</xs:sequence>
+					<xs:attribute fixed="0083" name="numeroTabla" type="c:NumeroTabla" use="required"/>
+				</xs:complexType>
+			</xs:element>			
+		
+			<xs:element name="SistemaConduccion">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" minOccurs="0" name="RG" type="r:SistemaConduccion"/>
+					</xs:sequence>
+					<xs:attribute fixed="0084" name="numeroTabla" type="c:NumeroTabla" use="required"/>
+				</xs:complexType>
+			</xs:element>			
+		
+			<xs:element name="PorcentajeFranquiciaElegible">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" minOccurs="0" name="RG" type="r:PorcentajeFranquiciaElegible"/>
+					</xs:sequence>
+					<xs:attribute fixed="0089" name="numeroTabla" type="c:NumeroTabla" use="required"/>
+				</xs:complexType>
+			</xs:element>			
+				
+			<xs:element name="MinimoIndemnizableElegible">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" minOccurs="0" name="RG" type="r:MinimoIndemnizableElegible"/>
+					</xs:sequence>
+					<xs:attribute fixed="0090" name="numeroTabla" type="c:NumeroTabla" use="required"/>
+				</xs:complexType>
+			</xs:element>			
+		
+			<xs:element name="TipoPlantacion">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" minOccurs="0" name="RG" type="r:TipoPlantacion"/>
+					</xs:sequence>
+					<xs:attribute fixed="0091" name="numeroTabla" type="c:NumeroTabla" use="required"/>
+				</xs:complexType>
+			</xs:element>			
+
+			<xs:element name="HistorialAsegurado">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" minOccurs="0" name="RG" type="r:HistorialAsegurado"/>
+					</xs:sequence>
+					<xs:attribute fixed="0092" name="numeroTabla" type="c:NumeroTabla" use="required"/>
+				</xs:complexType>
+			</xs:element>			
+		
+			<xs:element name="SistemasReduccionSubvenciones">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" minOccurs="0" name="RG" type="r:SistemasReduccionSubvenciones"/>
+					</xs:sequence>
+					<xs:attribute fixed="0093" name="numeroTabla" type="c:NumeroTabla" use="required"/>
+				</xs:complexType>
+			</xs:element>			
+
+		
+			<xs:element name="BasesCalculoSubvenciones">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" minOccurs="0" name="RG" type="r:BasesCalculoSubvenciones"/>
+					</xs:sequence>
+					<xs:attribute fixed="0095" name="numeroTabla" type="c:NumeroTabla" use="required"/>
+				</xs:complexType>
+			</xs:element>			
+
+			<xs:element name="ConceptoPrincipalModulo">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" minOccurs="0" name="RG" type="r:ConceptoPrincipalModulo"/>
+					</xs:sequence>
+					<xs:attribute fixed="0098" name="numeroTabla" type="c:NumeroTabla" use="required"/>
+				</xs:complexType>
+			</xs:element>			
+
+			<xs:element name="TiposRendimiento">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" minOccurs="0" name="RG" type="r:TiposRendimiento"/>
+					</xs:sequence>
+					<xs:attribute fixed="0102" name="numeroTabla" type="c:NumeroTabla" use="required"/>
+				</xs:complexType>
+			</xs:element>
+
+			<xs:element name="CapitalAseguradoElegible">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" minOccurs="0" name="RG" type="r:CapitalAseguradoElegible"/>
+					</xs:sequence>
+					<xs:attribute fixed="0103" name="numeroTabla" type="c:NumeroTabla" use="required"/>
+				</xs:complexType>
+			</xs:element>
+
+				
+			<xs:element name="CodigosReduccionRendimientos">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" minOccurs="0" name="RG" type="r:CodigosReduccionRendimientos"/>
+					</xs:sequence>
+					<xs:attribute fixed="0104" name="numeroTabla" type="c:NumeroTabla" use="required"/>
+				</xs:complexType>
+			</xs:element>			
+			
+			<xs:element name="SistemasProduccion">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" minOccurs="0" name="RG" type="r:SistemasProduccion"/>
+					</xs:sequence>
+					<xs:attribute fixed="0105" name="numeroTabla" type="c:NumeroTabla" use="required"/>
+				</xs:complexType>
+			</xs:element>
+			
+			<xs:element name="NumeroAnosDesdePoda">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" minOccurs="0" name="RG" type="r:NumeroAnosDesdePoda"/>
+					</xs:sequence>
+					<xs:attribute fixed="0106" name="numeroTabla" type="c:NumeroTabla" use="required"/>
+				</xs:complexType>
+			</xs:element>
+			
+			<xs:element name="SistemasProteccion">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" minOccurs="0" name="RG" type="r:SistemasProteccion"/>
+					</xs:sequence>
+					<xs:attribute fixed="0107" name="numeroTabla" type="c:NumeroTabla" use="required"/>
+				</xs:complexType>
+			</xs:element>
+
+			<xs:element name="CicloCultivo">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" minOccurs="0" name="RG" type="r:CicloCultivo"/>
+					</xs:sequence>
+					<xs:attribute fixed="0108" name="numeroTabla" type="c:NumeroTabla" use="required"/>
+				</xs:complexType>
+			</xs:element>
+
+			<xs:element name="Terminos">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" minOccurs="0" name="RG" type="r:Terminos"/>
+					</xs:sequence>
+					<xs:attribute fixed="0110" name="numeroTabla" type="c:NumeroTabla" use="required"/>
+				</xs:complexType>
+			</xs:element>
+			
+			<xs:element name="GruposCultivosZonificaciones">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" minOccurs="0" name="RG" type="r:GrupoCultivosZonificaciones"/>
+					</xs:sequence>
+					<xs:attribute fixed="0112" name="numeroTabla" type="c:NumeroTabla" use="required"/>
+				</xs:complexType>
+			</xs:element>
+
+			<xs:element name="LineasFamiliasZonificaciones">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" minOccurs="0" name="RG" type="r:LineaFamiliaZonificaciones"/>
+					</xs:sequence>
+					<xs:attribute fixed="0113" name="numeroTabla" type="c:NumeroTabla" use="required"/>
+				</xs:complexType>
+			</xs:element>
+
+			<xs:element name="CultivosGruposCultivosZonificaciones">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" minOccurs="0" name="RG" type="r:CultivoGrupoCultivosZonificaciones"/>
+					</xs:sequence>
+					<xs:attribute fixed="0114" name="numeroTabla" type="c:NumeroTabla" use="required"/>
+				</xs:complexType>
+			</xs:element>
+
+			<xs:element name="FamiliasZonificaciones">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" minOccurs="0" name="RG" type="r:FamiliaZonificaciones"/>
+					</xs:sequence>
+					<xs:attribute fixed="0115" name="numeroTabla" type="c:NumeroTabla" use="required"/>
+				</xs:complexType>
+			</xs:element>
+			
+			<xs:element name="IGP">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" minOccurs="0" name="RG" type="r:IGP"/>
+					</xs:sequence>
+					<xs:attribute fixed="0116" name="numeroTabla" type="c:NumeroTabla" use="required"/>
+				</xs:complexType>
+			</xs:element>
+			
+			<xs:element name="ProvinciasOrganismo">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" minOccurs="0" name="RG" type="r:ProvinciasOrganismo"/>
+					</xs:sequence>
+					<xs:attribute fixed="0123" name="numeroTabla" type="c:NumeroTabla" use="required"/>
+				</xs:complexType>
+			</xs:element>
+			
+			<xs:element name="AtributosTipologiaExplotacion">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" minOccurs="0" name="RG" type="r:AtributosTipologiaExplotacion"/>
+					</xs:sequence>
+					<xs:attribute fixed="0126" name="numeroTabla" type="c:NumeroTabla" use="required"/>
+				</xs:complexType>
+			</xs:element>
+			
+			<xs:element name="TipoInstalacion">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" minOccurs="0" name="RG" type="r:TipoInstalacion"/>
+					</xs:sequence>
+					<xs:attribute fixed="0130" name="numeroTabla" type="c:NumeroTabla" use="required"/>
+				</xs:complexType>
+			</xs:element>
+			
+			<xs:element name="MaterialEstructura">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" minOccurs="0" name="RG" type="r:MaterialEstructura"/>
+					</xs:sequence>
+					<xs:attribute fixed="0131" name="numeroTabla" type="c:NumeroTabla" use="required"/>
+				</xs:complexType>
+			</xs:element>
+			
+			<xs:element name="MaterialCubierta">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" minOccurs="0" name="RG" type="r:MaterialCubierta"/>
+					</xs:sequence>
+					<xs:attribute fixed="0132" name="numeroTabla" type="c:NumeroTabla" use="required"/>
+				</xs:complexType>
+			</xs:element>
+			
+			<xs:element name="CertificadoInstalacion">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" minOccurs="0" name="RG" type="r:CertificadoInstalacion"/>
+					</xs:sequence>
+					<xs:attribute fixed="0133" name="numeroTabla" type="c:NumeroTabla" use="required"/>
+				</xs:complexType>
+			</xs:element>
+			
+			<xs:element name="TipoTerreno">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" minOccurs="0" name="RG" type="r:TipoTerreno"/>
+					</xs:sequence>
+					<xs:attribute fixed="0139" name="numeroTabla" type="c:NumeroTabla" use="required"/>
+				</xs:complexType>
+			</xs:element>
+			
+			<xs:element name="TipoMasa">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" minOccurs="0" name="RG" type="r:TipoMasa"/>
+					</xs:sequence>
+					<xs:attribute fixed="0140" name="numeroTabla" type="c:NumeroTabla" use="required"/>
+				</xs:complexType>
+			</xs:element>
+			
+			<xs:element name="Pendiente">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" minOccurs="0" name="RG" type="r:Pendiente"/>
+					</xs:sequence>
+					<xs:attribute fixed="0141" name="numeroTabla" type="c:NumeroTabla" use="required"/>
+				</xs:complexType>
+			</xs:element>
+			
+			<xs:element name="NumeroAnosDesdeDescorche">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" minOccurs="0" name="RG" type="r:NumeroAnosDesdeDescorche"/>
+					</xs:sequence>
+					<xs:attribute fixed="0142" name="numeroTabla" type="c:NumeroTabla" use="required"/>
+				</xs:complexType>
+			</xs:element>
+			
+			<xs:element name="BonificacionesRecargos">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" minOccurs="0" name="RG" type="r:BonificacionesRecargos"/>
+					</xs:sequence>
+					<xs:attribute fixed="0147" name="numeroTabla" type="c:NumeroTabla" use="required"/>
+				</xs:complexType>
+			</xs:element>
+			
+			<xs:element name="TipificacionRecibos">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" minOccurs="0" name="RG" type="r:TipificacionRecibos"/>
+					</xs:sequence>
+					<xs:attribute fixed="0148" name="numeroTabla" type="c:NumeroTabla" use="required"/>
+				</xs:complexType>
+			</xs:element>
+			
+			<xs:element name="TipificacionParcela">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" minOccurs="0" name="RG" type="r:TipificacionParcela"/>
+					</xs:sequence>
+					<xs:attribute fixed="0175" name="numeroTabla" type="c:NumeroTabla" use="required"/>
+				</xs:complexType>
+			</xs:element>
+			
+			<xs:element name="AmbitoSIGPAC">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" minOccurs="0" name="RG" type="r:Terminos"/>
+					</xs:sequence>
+					<xs:attribute fixed="0176" name="numeroTabla" type="c:NumeroTabla" use="required"/>
+				</xs:complexType>
+			</xs:element>
+						
+		</xs:choice>
+	</xs:complexType>
+</xs:schema>

@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.rsi.agp.dao.tables.familias.Familia" table="TP_FAMILIA_SEGURO">
+        <comment>Tabla de familias</comment>
+         <id name="codFamilia" type="java.lang.Long">
+            <column name="COD_FAMILIA_SEG"  precision="3" scale="0"/>
+        </id>
+         <property name="nomFamilia" type="string">
+            <column name="DETALLE" length="255" not-null="true">
+                <comment></comment>
+            </column>
+        </property>
+    </class>
+</hibernate-mapping>

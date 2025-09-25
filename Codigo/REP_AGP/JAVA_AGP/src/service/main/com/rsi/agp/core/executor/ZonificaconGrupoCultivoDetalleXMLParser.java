@@ -1,0 +1,98 @@
+package com.rsi.agp.core.executor;
+
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.math.BigDecimal;
+
+import javax.xml.stream.FactoryConfigurationError;
+import javax.xml.stream.XMLStreamException;
+import javax.xml.stream.XMLStreamReader;
+
+import org.xml.sax.SAXException;
+
+import com.rsi.agp.core.webapp.util.StringUtils;
+import com.rsi.agp.dao.tables.cgen.ZonificacionGrupoCultivoDetalle;
+import com.rsi.agp.dao.tables.cgen.ZonificacionGrupoCultivoDetalleId;
+
+public class ZonificaconGrupoCultivoDetalleXMLParser extends GenericXMLParser {
+	
+	public static void main(String[] args){
+		
+		//TEMPORAL
+		/*args = new String[4];
+		args[0] = "D:\\borrar\\CultivosGruposCultivosZonificaciones.xml";
+		args[1] = "D:\\borrar\\CultivosGruposCultivosZonificaciones.csv";
+		args[2] = "1";
+		args[3] = "DD/MM/YYYY";*/
+		//FIN TEMPORAL
+		
+		if (args.length != 4) {
+			System.out.println("Usage: java " + ZonificaconGrupoCultivoDetalleXMLParser.class.getName()
+					+ " <XML that needs to be transformed>" + " <Output file>" + " <LineaseguroId>" + " <dateFormat>");
+			System.exit(1);
+		}
+		try {
+			ZonificaconGrupoCultivoDetalleXMLParser parser = new ZonificaconGrupoCultivoDetalleXMLParser();
+			parser.setTagPrincipal(GenericXMLParser.TAG_RG);
+			parser.procesarFichero(args[0], args[1], new Long(args[2]), args[3]);
+		} catch (FileNotFoundException e) {
+			System.out.println("Error al buscar el fichero el fichero de Cultivos Grupos Cultivos Zonificaciones " + e.getMessage());
+			System.exit(2);
+		} catch (SAXException e) {
+			System.out.println("Error al crear el XMLReader " + e.getMessage());
+			System.exit(3);
+		} catch (IOException e) {
+			System.out.println("Error de entrada/salida al parsear el fichero de Cultivos Grupos Cultivos Zonificaciones " + e.getMessage());
+			System.exit(4);
+		} catch (XMLStreamException e) {
+			System.out.println("Error al parsear el XML: " + e.getMessage());
+			System.exit(5);
+		} catch (FactoryConfigurationError e) {
+			System.out.println("Error al crear el parseador XML: " + e.getMessage());
+			System.exit(6);
+		} catch (Exception e) {
+			System.out.println("Error indefinido al parsear el XML: " + e.getMessage());
+			//e.printStackTrace();
+			System.exit(7);
+		}
+	}
+	
+	@Override
+	protected String generaInsert(Object reg, String dateFormat) {
+		ZonificacionGrupoCultivoDetalle registro = (ZonificacionGrupoCultivoDetalle)reg;
+		String sql = "";
+		sql += registro.getId().getCodgrpcultivo().trim() + ";" + StringUtils.nullToString(registro.getId().getCodlinea()) + ";";
+		sql += registro.getId().getCodcultivo() + ";";
+		return sql;
+	}
+
+	@Override
+	protected Object generaRegistro(Object actual, String tag, XMLStreamReader parser, int id, Long lineaseguroid) {
+		ZonificacionGrupoCultivoDetalle registro;
+		if (actual == null){
+			registro = new ZonificacionGrupoCultivoDetalle();
+		}
+		else{
+			registro = (ZonificacionGrupoCultivoDetalle) actual;
+		}
+		
+		if (this.getTagPrincipal().equals(tag)){
+			ZonificacionGrupoCultivoDetalleId idActual = new ZonificacionGrupoCultivoDetalleId();
+			
+			if (!StringUtils.nullToString(parser.getAttributeValue(null, "grupCul")).equals("")){
+				idActual.setCodgrpcultivo(StringUtils.nullToString(parser.getAttributeValue(null, "grupCul")));
+			}
+			
+			if (!StringUtils.nullToString(parser.getAttributeValue(null, "linea")).equals("")){
+				idActual.setCodlinea(new BigDecimal(StringUtils.nullToString(parser.getAttributeValue(null, "linea").trim())));
+			}
+			
+			if (!StringUtils.nullToString(parser.getAttributeValue(null, "cultivo")).equals("")){
+				idActual.setCodcultivo(new BigDecimal(StringUtils.nullToString(parser.getAttributeValue(null, "cultivo").trim())));
+			}
+			
+			registro.setId(idActual);
+		}
+		return registro;
+	}
+}

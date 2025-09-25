@@ -1,0 +1,594 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.16.0.final using JasperReports Library version 3.6.1  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="PolizaSobreprecio" pageWidth="555" pageHeight="900" whenNoDataType="AllSectionsNoDetail" columnWidth="515" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<property name="ireport.scriptlethandling" value="2"/>
+	<property name="ireport.encoding" value="UTF-8"/>
+	<import value="net.sf.jasperreports.engine.*"/>
+	<import value="java.util.*"/>
+	<import value="net.sf.jasperreports.engine.data.*"/>
+	<import value="com.rsi.agp.core.util.NumberUtils"/>
+	<parameter name="sourceParcelas" class="net.sf.jasperreports.engine.data.JRBeanCollectionDataSource" isForPrompting="false"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String">
+		<defaultValueExpression><![CDATA[""]]></defaultValueExpression>
+	</parameter>
+	<parameter name="totalSumAsegurada" class="java.math.BigDecimal"/>
+	<parameter name="descRiesgo" class="java.lang.String"/>
+	<parameter name="franquicia" class="java.lang.String"/>
+	<parameter name="primaTotal" class="java.lang.String"/>
+	<parameter name="periodoCarencia" class="java.lang.String"/>
+	<parameter name="riesgoGarantizado" class="java.lang.String"/>
+	<parameter name="NOTA_VERTICAL" class="java.lang.String"/>
+	<parameter name="NOTA_SUBTITULO" class="java.lang.String"/>
+	<parameter name="TIPO_POLIZA" class="java.lang.String"/>
+	<parameter name="NOTA_TEXTO" class="java.lang.String"/>
+	<parameter name="NOTA_UBICACION_FOTO" class="java.lang.String"/>
+	<parameter name="NOTA_RUTA_FOTO" class="java.lang.String"/>
+	<parameter name="NOTA_TITULO" class="java.lang.String"/>
+	<parameter name="caja" class="java.lang.String"/>
+	<parameter name="oficina" class="java.lang.String"/>
+	<parameter name="entMed" class="java.lang.String"/>
+	<parameter name="subEntMed" class="java.lang.String"/>
+	<parameter name="SUBREPORT_COMUN_DIR" class="java.lang.String"/>
+	<parameter name="aseguradoVulnerable" class="java.lang.Boolean"/>
+	<parameter name="RUTA_IPID" class="java.lang.String">
+		<defaultValueExpression><![CDATA["."]]></defaultValueExpression>
+	</parameter>
+	<parameter name="HAS_NOTA_INFORMATIVA" class="java.lang.String">
+		<defaultValueExpression><![CDATA["FALSE"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="SHOW_ENT_SUBENT_MED" class="java.lang.Boolean">
+		<defaultValueExpression><![CDATA[new Boolean("FALSE")]]></defaultValueExpression>
+	</parameter>
+	<parameter name="numSolicitud" class="java.lang.String"/>
+	<parameter name="PLAN" class="java.lang.String"/>
+	<parameter name="P_BARCODE" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[select 1 from dual]]>
+	</queryString>
+	<field name="polizaPpal.referencia" class="java.lang.String"/>
+	<field name="polizaPpal.asegurado.nombre" class="java.lang.String"/>
+	<field name="polizaPpal.asegurado.apellido1" class="java.lang.String"/>
+	<field name="polizaPpal.asegurado.apellido2" class="java.lang.String"/>
+	<field name="polizaPpal.asegurado.nifcif" class="java.lang.String"/>
+	<field name="polizaPpal.linea.codlinea" class="java.math.BigDecimal"/>
+	<field name="polizaPpal.linea.nomlinea" class="java.lang.String"/>
+	<field name="polizaPpal.linea.codplan" class="java.math.BigDecimal"/>
+	<field name="polizaPpal.colectivo.idcolectivo" class="java.lang.String"/>
+	<field name="polizaPpal.colectivo.dc" class="java.lang.String"/>
+	<field name="polizaPpal.dc" class="java.math.BigDecimal"/>
+	<field name="polizaPpal.asegurado.tipoidentificacion" class="java.lang.String"/>
+	<field name="polizaPpal.asegurado.razonsocial" class="java.lang.String"/>
+	<field name="importe" class="java.math.BigDecimal"/>
+	<variable name="FECHA" class="java.util.Date">
+		<variableExpression><![CDATA[new java.util.Date()]]></variableExpression>
+	</variable>
+	<variable name="MES_FECHA" class="java.lang.String"/>
+	<variable name="SHOW_FOOT" class="java.lang.Boolean" resetType="None">
+		<variableExpression><![CDATA[new Boolean(false)]]></variableExpression>
+		<initialValueExpression><![CDATA[]]></initialValueExpression>
+	</variable>
+	<background>
+		<band height="802" splitType="Stretch">
+			<image isUsingCache="true" evaluationTime="Page">
+				<reportElement x="79" y="229" width="390" height="384">
+					<printWhenExpression><![CDATA[new Boolean(!($V{PAGE_NUMBER}.intValue() <= (Boolean.valueOf($P{HAS_NOTA_INFORMATIVA}).booleanValue() ? 3 : 2)))]]></printWhenExpression>
+				</reportElement>
+				<imageExpression class="java.lang.String"><![CDATA[$P{SUBREPORT_DIR} + "/images/marcaAgua.jpg"]]></imageExpression>
+			</image>
+		</band>
+	</background>
+	<detail>
+		<band height="12">
+			<subreport runToBottom="false">
+				<reportElement x="0" y="1" width="555" height="11" isRemoveLineWhenBlank="true">
+					<printWhenExpression><![CDATA[Boolean.valueOf($P{HAS_NOTA_INFORMATIVA})]]></printWhenExpression>
+				</reportElement>
+				<subreportParameter name="SUBREPORT_DIR">
+					<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="NOTA_VERTICAL">
+					<subreportParameterExpression><![CDATA[$P{NOTA_VERTICAL}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="NOTA_SUBTITULO">
+					<subreportParameterExpression><![CDATA[$P{NOTA_SUBTITULO}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="entidad">
+					<subreportParameterExpression><![CDATA[$P{SHOW_ENT_SUBENT_MED}.booleanValue() ? $P{entMed} : $P{caja}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="numSolicitud">
+					<subreportParameterExpression><![CDATA[$P{numSolicitud}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="TIPO_POLIZA">
+					<subreportParameterExpression><![CDATA[$P{TIPO_POLIZA}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="REPORT_CONNECTION">
+					<subreportParameterExpression><![CDATA[$P{REPORT_CONNECTION}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="NOTA_TEXTO">
+					<subreportParameterExpression><![CDATA[$P{NOTA_TEXTO}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="oficina">
+					<subreportParameterExpression><![CDATA[$P{SHOW_ENT_SUBENT_MED}.booleanValue() ? $P{subEntMed} : $P{oficina}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="NOTA_UBICACION_FOTO">
+					<subreportParameterExpression><![CDATA[$P{NOTA_UBICACION_FOTO}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="NOTA_RUTA_FOTO">
+					<subreportParameterExpression><![CDATA[$P{NOTA_RUTA_FOTO}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="NOTA_TITULO">
+					<subreportParameterExpression><![CDATA[$P{NOTA_TITULO}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="P_BARCODE">
+					<subreportParameterExpression><![CDATA[$P{P_BARCODE}]]></subreportParameterExpression>
+				</subreportParameter>
+				<returnValue subreportVariable="SHOW_FOOT" toVariable="SHOW_FOOT"/>
+				<subreportExpression class="java.lang.String"><![CDATA[$P{aseguradoVulnerable}.booleanValue() ? $P{SUBREPORT_DIR} + "polizaSobreprecio_notaInformativa_AV.jasper" : $P{SUBREPORT_DIR} + "polizaSobreprecio_notaInformativa.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="12">
+			<break>
+				<reportElement x="0" y="10" width="100" height="1"/>
+			</break>
+			<subreport runToBottom="false">
+				<reportElement isPrintRepeatedValues="false" x="0" y="0" width="555" height="12" forecolor="#009999" backcolor="#FFFFFF"/>
+				<subreportParameter name="PLAN">
+					<subreportParameterExpression><![CDATA[$P{PLAN}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="numSolicitud">
+					<subreportParameterExpression><![CDATA[$P{numSolicitud}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="RUTA_IPID">
+					<subreportParameterExpression><![CDATA[$P{RUTA_IPID}]]></subreportParameterExpression>
+				</subreportParameter>
+				<returnValue subreportVariable="SHOW_FOOT" toVariable="SHOW_FOOT"/>
+				<subreportExpression class="java.lang.String"><![CDATA[$P{SUBREPORT_DIR} + "polizaSobreprecio_ipid.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="12">
+			<break>
+				<reportElement x="0" y="10" width="100" height="1"/>
+			</break>
+			<subreport runToBottom="false">
+				<reportElement isPrintRepeatedValues="false" x="0" y="0" width="555" height="12" forecolor="#009999" backcolor="#FFFFFF"/>
+				<subreportParameter name="PLAN">
+					<subreportParameterExpression><![CDATA[$P{PLAN}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="numSolicitud">
+					<subreportParameterExpression><![CDATA[$P{numSolicitud}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="RUTA_IPID">
+					<subreportParameterExpression><![CDATA[$P{RUTA_IPID}]]></subreportParameterExpression>
+				</subreportParameter>
+				<returnValue subreportVariable="SHOW_FOOT" toVariable="SHOW_FOOT"/>
+				<subreportExpression class="java.lang.String"><![CDATA[$P{SUBREPORT_DIR} + "polizaSobreprecio_ipid2.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="347" splitType="Stretch">
+			<staticText>
+				<reportElement key="staticText-70" x="4" y="39" width="158" height="15"/>
+				<textElement verticalAlignment="Bottom" lineSpacing="Single">
+					<font fontName="SansSerif" size="10" isBold="true" isUnderline="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[DESCRIPCIÓN DEL RIESGO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-9" x="4" y="5" width="479" height="15"/>
+				<textElement textAlignment="Center" verticalAlignment="Bottom" lineSpacing="Single">
+					<font fontName="SansSerif" size="10" isBold="true" isUnderline="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[COTIZACIÓN DE SEGURO DE SOBREPRECIO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-70" x="4" y="111" width="158" height="15"/>
+				<textElement verticalAlignment="Bottom" lineSpacing="Single">
+					<font fontName="SansSerif" size="10" isBold="true" isUnderline="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[SITUACIÓN DEL RIESGO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-102" x="6" y="126" width="501" height="18"/>
+				<box leftPadding="2"/>
+				<textElement verticalAlignment="Middle" lineSpacing="Single">
+					<font fontName="SansSerif" size="10" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[Parcelas relacionadas en la póliza de Agroseguro que se cita a continuación:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-102" x="22" y="144" width="136" height="16"/>
+				<box leftPadding="2"/>
+				<textElement verticalAlignment="Middle" lineSpacing="Single">
+					<font fontName="SansSerif" size="9" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[- Asegurado.......................: ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-102" x="22" y="178" width="136" height="16"/>
+				<box leftPadding="2"/>
+				<textElement verticalAlignment="Middle" lineSpacing="Single">
+					<font fontName="SansSerif" size="9" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[- Línea...............................: ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-102" x="22" y="161" width="136" height="16"/>
+				<box leftPadding="2"/>
+				<textElement verticalAlignment="Middle" lineSpacing="Single">
+					<font fontName="SansSerif" size="9" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[- Nif/Cif Asegurado............: ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-102" x="22" y="212" width="136" height="16"/>
+				<box leftPadding="2"/>
+				<textElement verticalAlignment="Middle" lineSpacing="Single">
+					<font fontName="SansSerif" size="9" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[- Número de Colectivo.......: ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-102" x="22" y="195" width="136" height="16"/>
+				<box leftPadding="2"/>
+				<textElement verticalAlignment="Middle" lineSpacing="Single">
+					<font fontName="SansSerif" size="9" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[- Plan.................................:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-102" x="22" y="229" width="136" height="16"/>
+				<box leftPadding="2"/>
+				<textElement verticalAlignment="Middle" lineSpacing="Single">
+					<font fontName="SansSerif" size="9" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[- Número de declaración...: ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-70" x="6" y="263" width="158" height="15"/>
+				<textElement verticalAlignment="Bottom" lineSpacing="Single">
+					<font fontName="SansSerif" size="10" isBold="true" isUnderline="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[SUMA ASEGURADA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-102" x="2" y="280" width="481" height="39"/>
+				<box leftPadding="2"/>
+				<textElement verticalAlignment="Middle" lineSpacing="Single">
+					<font fontName="SansSerif" size="10" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[La suma asegurada se corresponde con la diferencia en precio entre el precio asegurado por Agroseguro y el precio de mercado, con los límites detallados a continuación:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="158" y="147" width="203" height="13"/>
+				<textElement lineSpacing="Single"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[( $F{polizaPpal.asegurado.tipoidentificacion}.equals("CIF") ? $F{polizaPpal.asegurado.razonsocial}
+    : $F{polizaPpal.asegurado.nombre} + " " + $F{polizaPpal.asegurado.apellido1} + " " + $F{polizaPpal.asegurado.apellido2})]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="159" y="162" width="203" height="13"/>
+				<textElement lineSpacing="Single"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{polizaPpal.asegurado.nifcif}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="178" y="178" width="203" height="13"/>
+				<textElement lineSpacing="Single"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[( $F{polizaPpal.linea.nomlinea} !=null ? " - " + $F{polizaPpal.linea.nomlinea} : "" )]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="159" y="196" width="203" height="13"/>
+				<textElement lineSpacing="Single"/>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{polizaPpal.linea.codplan}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="211" y="230" width="86" height="13"/>
+				<textElement lineSpacing="Single"/>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{polizaPpal.dc}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="159" y="214" width="203" height="13"/>
+				<textElement lineSpacing="Single"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{polizaPpal.colectivo.idcolectivo} + " - " + $F{polizaPpal.colectivo.dc}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="159" y="178" width="65" height="13"/>
+				<textElement lineSpacing="Single"/>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{polizaPpal.linea.codlinea}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="160" y="230" width="64" height="13"/>
+				<textElement lineSpacing="Single"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[( $F{polizaPpal.referencia} !=null ? $F{polizaPpal.referencia}+" - " : "" )]]></textFieldExpression>
+			</textField>
+			<subreport>
+				<reportElement x="0" y="332" width="515" height="15" isRemoveLineWhenBlank="true"/>
+				<subreportParameter name="totalSumAsegurada">
+					<subreportParameterExpression><![CDATA[$P{totalSumAsegurada}]]></subreportParameterExpression>
+				</subreportParameter>
+				<dataSourceExpression><![CDATA[$P{sourceParcelas}]]></dataSourceExpression>
+				<returnValue subreportVariable="SHOW_FOOT" toVariable="SHOW_FOOT"/>
+				<subreportExpression class="java.lang.String"><![CDATA[$P{SUBREPORT_DIR} + "polizaSobreprecio_parcelas.jasper"]]></subreportExpression>
+			</subreport>
+			<textField>
+				<reportElement x="4" y="55" width="477" height="47"/>
+				<textElement lineSpacing="Single"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{descRiesgo}]]></textFieldExpression>
+			</textField>
+		</band>
+		<band height="163">
+			<staticText>
+				<reportElement key="staticText-70" positionType="Float" x="5" y="130" width="158" height="15"/>
+				<textElement verticalAlignment="Bottom" lineSpacing="Single">
+					<font fontName="SansSerif" size="10" isBold="true" isUnderline="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[PRECIO DEL SEGURO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-70" positionType="Float" x="6" y="86" width="158" height="15"/>
+				<textElement verticalAlignment="Bottom" lineSpacing="Single">
+					<font fontName="SansSerif" size="10" isBold="true" isUnderline="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[FRANQUICIA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-70" x="6" y="7" width="158" height="15"/>
+				<textElement verticalAlignment="Bottom" lineSpacing="Single">
+					<font fontName="SansSerif" size="10" isBold="true" isUnderline="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[RIESGOS GARANTIZADOS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-70" positionType="Float" x="6" y="44" width="158" height="15"/>
+				<textElement verticalAlignment="Bottom" lineSpacing="Single">
+					<font fontName="SansSerif" size="10" isBold="true" isUnderline="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[PERIODO DE CARENCIA]]></text>
+			</staticText>
+			<textField pattern="" isBlankWhenNull="true">
+				<reportElement positionType="Float" x="6" y="148" width="509" height="15"/>
+				<textElement textAlignment="Left" lineSpacing="Single" markup="styled">
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{primaTotal} + "  <style isBold='true'>" + NumberUtils.formatear($F{importe},2) + " €</style>"]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement positionType="Float" x="7" y="103" width="474" height="16" isPrintWhenDetailOverflows="true"/>
+				<textElement lineSpacing="Single"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{franquicia}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement positionType="Float" x="7" y="24" width="435" height="14" isPrintWhenDetailOverflows="true"/>
+				<textElement lineSpacing="Single" markup="styled"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{riesgoGarantizado}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement positionType="Float" x="7" y="61" width="473" height="16" isPrintWhenDetailOverflows="true"/>
+				<textElement lineSpacing="Single"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{periodoCarencia}]]></textFieldExpression>
+			</textField>
+		</band>
+		<band height="50">
+			<subreport>
+				<reportElement x="-21" y="3" width="555" height="47"/>
+				<subreportParameter name="SUBREPORT_COMUN_DIR">
+					<subreportParameterExpression><![CDATA[$P{SUBREPORT_COMUN_DIR}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<returnValue subreportVariable="SHOW_FOOT" toVariable="SHOW_FOOT"/>
+				<subreportExpression class="java.lang.String"><![CDATA[$P{aseguradoVulnerable}.booleanValue() ? $P{SUBREPORT_COMUN_DIR} + "Anexo_RGPD_2_AV.jasper" : $P{SUBREPORT_COMUN_DIR} + "Anexo_RGPD_2.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="150" splitType="Stretch">
+			<textField evaluationTime="Page">
+				<reportElement positionType="Float" x="442" y="130" width="37" height="13"/>
+				<textElement lineSpacing="Single">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["Página "+ $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement positionType="Float" x="471" y="130" width="37" height="13"/>
+				<textElement lineSpacing="Single">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[" de " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="155" y="130" width="95" height="10">
+					<printWhenExpression><![CDATA[$V{SHOW_FOOT}]]></printWhenExpression>
+				</reportElement>
+				<textElement lineSpacing="Single">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[String.valueOf(new SimpleDateFormat("dd-MMM-yyyy").format($V{FECHA})).substring(7,11)]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="98" y="130" width="42" height="10">
+					<printWhenExpression><![CDATA[new Boolean($V{FECHA}.getMonth() == 8 - 1 && $V{SHOW_FOOT}.booleanValue())]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[Agosto]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="98" y="130" width="42" height="10">
+					<printWhenExpression><![CDATA[new Boolean($V{FECHA}.getMonth() == 9 - 1 && $V{SHOW_FOOT}.booleanValue())]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[Septiembre]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="98" y="130" width="41" height="10">
+					<printWhenExpression><![CDATA[new Boolean($V{FECHA}.getMonth() == 5 - 1 && $V{SHOW_FOOT}.booleanValue())]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[Mayo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="98" y="130" width="41" height="10">
+					<printWhenExpression><![CDATA[new Boolean($V{FECHA}.getMonth() == 2 - 1 && $V{SHOW_FOOT}.booleanValue())]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[Febrero]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="139" y="130" width="14" height="10">
+					<printWhenExpression><![CDATA[$V{SHOW_FOOT}]]></printWhenExpression>
+				</reportElement>
+				<textElement lineSpacing="Single">
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[de]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="98" y="130" width="41" height="10">
+					<printWhenExpression><![CDATA[new Boolean($V{FECHA}.getMonth() == 11 - 1 && $V{SHOW_FOOT}.booleanValue())]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[Noviembre]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="83" y="130" width="15" height="10">
+					<printWhenExpression><![CDATA[$V{SHOW_FOOT}]]></printWhenExpression>
+				</reportElement>
+				<textElement lineSpacing="Single">
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[de]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="98" y="130" width="41" height="10">
+					<printWhenExpression><![CDATA[new Boolean($V{FECHA}.getMonth() == 7 - 1 && $V{SHOW_FOOT}.booleanValue())]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[Julio]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="99" y="130" width="40" height="10">
+					<printWhenExpression><![CDATA[new Boolean($V{FECHA}.getMonth() ==10 - 1 && $V{SHOW_FOOT}.booleanValue())]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[Octubre]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="99" y="130" width="40" height="10">
+					<printWhenExpression><![CDATA[new Boolean($V{FECHA}.getMonth() == 1 - 1 && $V{SHOW_FOOT}.booleanValue())]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[Enero]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="100" y="130" width="39" height="10">
+					<printWhenExpression><![CDATA[new Boolean($V{FECHA}.getMonth() == 4 - 1 && $V{SHOW_FOOT}.booleanValue())]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[Abril]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="99" y="130" width="40" height="10">
+					<printWhenExpression><![CDATA[new Boolean($V{FECHA}.getMonth() == 6 - 1 && $V{SHOW_FOOT}.booleanValue())]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[Junio]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="61" y="130" width="22" height="10">
+					<printWhenExpression><![CDATA[$V{SHOW_FOOT}]]></printWhenExpression>
+				</reportElement>
+				<textElement lineSpacing="Single">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[new Integer($V{FECHA}.getDate())]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="99" y="130" width="41" height="10">
+					<printWhenExpression><![CDATA[new Boolean($V{FECHA}.getMonth() == 12 - 1 && $V{SHOW_FOOT}.booleanValue())]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[Diciembre]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-102" x="5" y="124" width="36" height="22">
+					<printWhenExpression><![CDATA[$V{SHOW_FOOT}]]></printWhenExpression>
+				</reportElement>
+				<box leftPadding="2"/>
+				<textElement verticalAlignment="Middle" lineSpacing="Single">
+					<font fontName="SansSerif" size="10" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[Fecha:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="98" y="130" width="41" height="10">
+					<printWhenExpression><![CDATA[new Boolean($V{FECHA}.getMonth() == 3 - 1 && $V{SHOW_FOOT}.booleanValue())]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[Marzo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-102" x="5" y="59" width="463" height="16">
+					<printWhenExpression><![CDATA[$V{SHOW_FOOT}]]></printWhenExpression>
+				</reportElement>
+				<box leftPadding="2"/>
+				<textElement verticalAlignment="Middle" lineSpacing="Single">
+					<font fontName="SansSerif" size="10" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[El presente documento no tiene valor contractual alguno.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-102" x="5" y="77" width="502" height="45">
+					<printWhenExpression><![CDATA[$V{SHOW_FOOT}]]></printWhenExpression>
+				</reportElement>
+				<box leftPadding="2"/>
+				<textElement verticalAlignment="Middle" lineSpacing="Single">
+					<font fontName="SansSerif" size="10" isBold="true" isUnderline="true" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[En caso de conformidad con la presente oferta y emisión  de la póliza,  el Tomador/Asegurado acepta la emisión automática de suplementos  y regularización de prima, derivados de la modificación de la póliza base de Agroseguro.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="6" y="48" width="150" height="10">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<printWhenExpression><![CDATA[$V{SHOW_FOOT}]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Bottom" lineSpacing="Single">
+					<font size="6" isBold="true"/>
+				</textElement>
+				<text><![CDATA[EL ASEGURADOR]]></text>
+			</staticText>
+			<image>
+				<reportElement x="45" y="5" width="80" height="39">
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<printWhenExpression><![CDATA[$V{SHOW_FOOT}]]></printWhenExpression>
+				</reportElement>
+				<imageExpression class="java.lang.String"><![CDATA[$P{SUBREPORT_DIR} + "/images/FirmaPablo.png"]]></imageExpression>
+			</image>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

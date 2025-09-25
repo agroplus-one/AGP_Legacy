@@ -1,0 +1,337 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="declaracionSeguro_ExplotacionesGanado" pageWidth="555" pageHeight="802" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="87df3ed5-a286-49f4-b03a-5cfff1e51ed6">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["D:\\Agroplus\\REP_AGP\\WEB_AGP\\WebContent\\plantillas\\jasper\\declaracionSeguro\\"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="ID" class="java.lang.Integer"/>
+	<parameter name="SUBREPORT_DIR1" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["D:\\Agroplus\\REP_AGP\\WEB_AGP\\WebContent\\plantillas\\jasper\\declaracionSeguro\\"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="SUBREPORT_DIR2" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["D:\\Agroplus\\REP_AGP\\WEB_AGP\\WebContent\\plantillas\\jasper\\declaracionSeguro\\"]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     *
+FROM
+     "VW_INF_EXPLOTACIONES_GANADO" VW_INF_EXPLOTACIONES_GANADO
+WHERE
+     IDPOLIZA = $P{ID}]]>
+	</queryString>
+	<field name="ID" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="IDPOLIZA" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PROVINCIA" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="COMARCA" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="TERMINO" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="REGA" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="SIGLA" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="SUBEXPLOTACION" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="LATITUD" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="LONGITUD" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="ESPECIE" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="REGIMEN" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="GRUPORAZA" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="TIPOCAPITAL" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="TIPOANIMAL" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="GRUPOLISTADO" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CONDICIONPARTICULAR" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="AUTORIZACIONESPECIAL" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="NUMANIMALES" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PRECIO" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="TASACOMERCIAL" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="COSTETOMADOR" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<group name="GrupoId" keepTogether="true">
+		<groupExpression><![CDATA[$F{ID}]]></groupExpression>
+		<groupHeader>
+			<band height="73">
+				<frame>
+					<reportElement x="10" y="0" width="535" height="72" uuid="33a1cd0e-b6b3-40f7-8816-663e9dd5235a"/>
+					<box leftPadding="0" rightPadding="0">
+						<pen lineWidth="0.0"/>
+						<topPen lineWidth="0.0"/>
+						<leftPen lineWidth="0.0"/>
+						<bottomPen lineWidth="0.0"/>
+						<rightPen lineWidth="0.0"/>
+					</box>
+					<textField>
+						<reportElement x="67" y="11" width="117" height="16" uuid="e95a30fe-2aa4-4a2f-bb3c-4dcb7c98becf"/>
+						<textFieldExpression><![CDATA[$F{PROVINCIA}]]></textFieldExpression>
+					</textField>
+					<textField>
+						<reportElement x="238" y="11" width="108" height="16" uuid="854a8e4a-ba95-4c04-9c36-5c0be3dfb467"/>
+						<textFieldExpression><![CDATA[$F{COMARCA}]]></textFieldExpression>
+					</textField>
+					<staticText>
+						<reportElement x="6" y="11" width="56" height="16" uuid="e5abbe6b-7f66-4564-ab1c-c0220cd4b0c7"/>
+						<text><![CDATA[Provincia:]]></text>
+					</staticText>
+					<staticText>
+						<reportElement x="190" y="11" width="45" height="16" uuid="41458168-c818-4915-bacb-8aa1af8f4ec6"/>
+						<text><![CDATA[Comarca:]]></text>
+					</staticText>
+					<staticText>
+						<reportElement x="353" y="11" width="44" height="16" uuid="4571bf2b-6eaf-4e92-b697-a0611edd3045"/>
+						<text><![CDATA[Término:]]></text>
+					</staticText>
+					<staticText>
+						<reportElement x="6" y="32" width="38" height="16" uuid="5041ba1b-d69e-4549-94d6-35a45b5b59e6"/>
+						<text><![CDATA[REGA:]]></text>
+					</staticText>
+					<staticText>
+						<reportElement x="190" y="32" width="38" height="16" uuid="7dfb3134-1f36-431f-8408-8b741d03e8d1"/>
+						<text><![CDATA[Sigla:]]></text>
+					</staticText>
+					<staticText>
+						<reportElement x="268" y="32" width="78" height="16" uuid="1ba7874e-2c37-4b9c-bf04-3ccbd608f123"/>
+						<text><![CDATA[Subexplotación:]]></text>
+					</staticText>
+					<textField isBlankWhenNull="true">
+						<reportElement x="353" y="32" width="25" height="16" uuid="b1853856-8fa8-46cf-8e0a-b9991be4e7a2"/>
+						<textFieldExpression><![CDATA[$F{SUBEXPLOTACION}]]></textFieldExpression>
+					</textField>
+					<staticText>
+						<reportElement x="457" y="32" width="41" height="16" uuid="06437186-ebf8-47f1-8895-b360f048f37d"/>
+						<text><![CDATA[Longitud:]]></text>
+					</staticText>
+					<staticText>
+						<reportElement x="381" y="32" width="37" height="16" uuid="5833bee5-7d3e-4cb1-9604-1d8c3c3401bb"/>
+						<text><![CDATA[Latitud:]]></text>
+					</staticText>
+					<textField isBlankWhenNull="true">
+						<reportElement x="420" y="32" width="34" height="16" uuid="f7c3728e-4350-43a7-9a61-ee31487145dc"/>
+						<textFieldExpression><![CDATA[$F{LATITUD}]]></textFieldExpression>
+					</textField>
+					<textField isBlankWhenNull="true">
+						<reportElement x="499" y="32" width="34" height="16" uuid="da1539ab-4fd2-4bb1-9220-7b229713cd06"/>
+						<textFieldExpression><![CDATA[$F{LONGITUD}]]></textFieldExpression>
+					</textField>
+					<staticText>
+						<reportElement x="6" y="54" width="44" height="16" uuid="83f03c57-abd7-4e5b-b825-d419cac0196a"/>
+						<text><![CDATA[Especie:]]></text>
+					</staticText>
+					<staticText>
+						<reportElement x="186" y="54" width="49" height="16" uuid="2e775705-c698-4dd3-9d2c-b564f7a9743a"/>
+						<text><![CDATA[Régimen:]]></text>
+					</staticText>
+					<textField>
+						<reportElement x="67" y="54" width="116" height="16" uuid="32c43e59-11f1-4896-8057-bb7264ad7ede"/>
+						<textFieldExpression><![CDATA[$F{ESPECIE}]]></textFieldExpression>
+					</textField>
+					<textField>
+						<reportElement x="235" y="54" width="108" height="16" uuid="3e35219f-48f9-46bc-94ec-5ef8f1015ae9"/>
+						<textFieldExpression><![CDATA[$F{REGIMEN}]]></textFieldExpression>
+					</textField>
+					<textField>
+						<reportElement x="68" y="34" width="115" height="14" uuid="69e37ee4-7886-43cf-b8f0-bf44fd29a622"/>
+						<textFieldExpression><![CDATA[$F{REGA}]]></textFieldExpression>
+					</textField>
+					<textField>
+						<reportElement x="238" y="32" width="25" height="16" uuid="321e7d71-fb75-493a-a8ee-dcd878ac7333"/>
+						<textFieldExpression><![CDATA[$F{SIGLA}]]></textFieldExpression>
+					</textField>
+					<textField>
+						<reportElement x="399" y="11" width="134" height="16" uuid="58a600eb-e2f3-4c56-8889-eb08880e458e"/>
+						<textFieldExpression><![CDATA[$F{TERMINO}]]></textFieldExpression>
+					</textField>
+				</frame>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="7">
+				<rectangle>
+					<reportElement x="10" y="2" width="543" height="4" backcolor="#FFFFFF" uuid="6dbeea7d-dfce-4819-bba4-6ae88514d455"/>
+				</rectangle>
+			</band>
+		</groupFooter>
+	</group>
+	<group name="GrupoListado" keepTogether="true">
+		<groupExpression><![CDATA[$F{GRUPOLISTADO}]]></groupExpression>
+		<groupHeader>
+			<band height="70">
+				<frame>
+					<reportElement x="16" y="1" width="529" height="68" uuid="2383ffcc-d6c6-459e-a8b6-ae74d5890e0f"/>
+					<box>
+						<pen lineWidth="1.0"/>
+						<topPen lineWidth="1.0"/>
+						<leftPen lineWidth="1.0"/>
+						<bottomPen lineWidth="1.0"/>
+						<rightPen lineWidth="1.0"/>
+					</box>
+					<staticText>
+						<reportElement x="17" y="6" width="56" height="16" uuid="bb4817d9-228f-4517-b305-0561d9186620"/>
+						<text><![CDATA[Grupo raza:]]></text>
+					</staticText>
+					<staticText>
+						<reportElement x="182" y="6" width="64" height="16" uuid="f46ea3ad-ca0b-40d6-8d9d-f5909ec4b9de"/>
+						<text><![CDATA[Tipo Capital:]]></text>
+					</staticText>
+					<staticText>
+						<reportElement x="354" y="6" width="58" height="16" uuid="68436bd3-39c9-4bb5-8430-242e2e35ef32"/>
+						<text><![CDATA[Tipo Animal:]]></text>
+					</staticText>
+					<textField>
+						<reportElement x="78" y="6" width="99" height="16" uuid="42aa6292-c941-4622-b8ac-d4e8f05697f6"/>
+						<textFieldExpression><![CDATA[$F{GRUPORAZA}]]></textFieldExpression>
+					</textField>
+					<textField>
+						<reportElement x="252" y="6" width="100" height="16" uuid="e8c35d77-3f3d-4748-a093-e631b5873ddd"/>
+						<textFieldExpression><![CDATA[$F{TIPOCAPITAL}]]></textFieldExpression>
+					</textField>
+					<textField isBlankWhenNull="true">
+						<reportElement x="416" y="6" width="100" height="16" uuid="2c79add7-8523-4c61-b986-78fc2c975d8d"/>
+						<textFieldExpression><![CDATA[$F{TIPOANIMAL}]]></textFieldExpression>
+					</textField>
+					<staticText>
+						<reportElement x="17" y="27" width="79" height="16" uuid="dca194b3-4220-4849-b60a-d4bddc53c40a"/>
+						<text><![CDATA[Cond. Particular:]]></text>
+					</staticText>
+					<staticText>
+						<reportElement x="184" y="27" width="100" height="16" uuid="f52c7dfe-6d83-4322-8c81-b8c1b58229b2"/>
+						<text><![CDATA[Autorización especial:]]></text>
+					</staticText>
+					<textField>
+						<reportElement x="96" y="27" width="82" height="16" uuid="93d5d115-0b4c-4a36-824e-ccbb6132c80e"/>
+						<textFieldExpression><![CDATA[$F{CONDICIONPARTICULAR}]]></textFieldExpression>
+					</textField>
+					<textField>
+						<reportElement x="291" y="27" width="100" height="16" uuid="82f1afeb-1c2e-4061-baf8-bd045820c7ef"/>
+						<textFieldExpression><![CDATA[$F{AUTORIZACIONESPECIAL}]]></textFieldExpression>
+					</textField>
+					<staticText>
+						<reportElement x="18" y="48" width="68" height="16" uuid="73e321f1-1582-4b57-8fb0-ad009e37a1d1"/>
+						<textElement>
+							<font isBold="true"/>
+						</textElement>
+						<text><![CDATA[Nº Animales]]></text>
+					</staticText>
+					<staticText>
+						<reportElement x="143" y="48" width="40" height="16" uuid="d64c726c-fbd7-4ddd-add4-1c79cda6f169"/>
+						<textElement>
+							<font isBold="true"/>
+						</textElement>
+						<text><![CDATA[Precio]]></text>
+					</staticText>
+					<staticText>
+						<reportElement x="271" y="48" width="82" height="16" uuid="a13b6cbc-cc3a-40d7-aae4-9691def06ca7"/>
+						<textElement>
+							<font isBold="true"/>
+						</textElement>
+						<text><![CDATA[Tasa comercial]]></text>
+					</staticText>
+					<staticText>
+						<reportElement x="398" y="48" width="80" height="16" uuid="a82ff158-310d-4357-ab8c-bf554f42e005"/>
+						<textElement>
+							<font isBold="true"/>
+						</textElement>
+						<text><![CDATA[Coste Tomador]]></text>
+					</staticText>
+					<textField isBlankWhenNull="true">
+						<reportElement x="86" y="48" width="52" height="16" uuid="7b47a39c-6990-4f38-ae42-e57879cc972d"/>
+						<textFieldExpression><![CDATA[$F{NUMANIMALES}]]></textFieldExpression>
+					</textField>
+					<textField>
+						<reportElement x="183" y="48" width="83" height="16" uuid="df7923bd-df70-45ea-8c44-080c14ab69f7"/>
+						<textFieldExpression><![CDATA[$F{PRECIO}]]></textFieldExpression>
+					</textField>
+					<textField>
+						<reportElement x="356" y="48" width="41" height="16" uuid="18a9bd74-941c-45d1-888a-120f341478d4"/>
+						<textFieldExpression><![CDATA[$F{TASACOMERCIAL}]]></textFieldExpression>
+					</textField>
+					<textField>
+						<reportElement x="478" y="48" width="38" height="16" uuid="1daa4d6e-a67f-45a9-9d84-89ee093ae6ea"/>
+						<textFieldExpression><![CDATA[$F{COSTETOMADOR}]]></textFieldExpression>
+					</textField>
+				</frame>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band/>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="13" splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="65" splitType="Stretch">
+			<subreport>
+				<reportElement x="2" y="15" width="553" height="44" uuid="fe736153-ae05-44a9-9d35-0faf3970a4b1"/>
+				<subreportParameter name="ID">
+					<subreportParameterExpression><![CDATA[$P{ID}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "declaracionSeguro_cabecera.jasper"]]></subreportExpression>
+			</subreport>
+			<staticText>
+				<reportElement x="7" y="3" width="186" height="11" uuid="21fa508f-ab97-4a3b-9a23-5807aab51623"/>
+				<textElement>
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[P100-SEGURO CRECIENTE DE DAÑOS]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="22" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="1" width="356" height="20" uuid="3aaa94dd-d135-4564-b1b8-04faf2790645"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[LISTADO DE LAS EXPLOTACIONES:]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+</jasperReport>

@@ -1,0 +1,142 @@
+<%@ include file="/jsp/common/static/taglibs.jsp"%>
+
+<script language="javascript">
+
+$(document).ready(function(){
+	controlCamCoberturas();
+	<%-- MPM 13/08/12 --%>
+	<%-- Si se ha seleccionado el modo lectura se deshabilitan todos los checks y combos directamente, sin tratar cada caso en particular --%>
+    <c:if test="${modoLectura}">	
+        $("input[type=checkbox]").each(function(){ $(this).attr('disabled','disabled');}); 
+        $("select").each(function(){ $(this).attr('disabled','disabled');});
+    </c:if>
+	
+		var URL = UTIL.antiCacheRand(document
+				.getElementById("mainform").action);
+		document.getElementById("mainform").action = URL;
+
+		$('#mainform').validate({
+			onclick : false,
+			onfocusout : false,
+			onkeyup : false,
+			errorLabelContainer : "#panelAlertasValidacion",
+			wrapper : "li"
+			 
+		});
+	
+		$('select').each(function() {
+		    $(this).rules('add', {
+		    	elegiblesPorRiesgoElegidos : true
+		    });
+		});
+		/*** 01/02/2021 DNF PET.63485.FIII validamos el check de RC elegible*/
+		$('checkbox').each(function() {
+		    $(this).rules('add', {
+		    	checksRellenos : true
+		    });
+		});
+		/*** fin 01/02/2021 DNF PET.63485.FIII*/
+});
+
+jQuery.validator.addMethod("elegiblesPorRiesgoElegidos",
+		elegiblesPorRiesgoElegidos,
+		"Debe indicar los valores elegibles para la cobertura");
+/*** 01/02/2021 DNF PET.63485.FIII validamos el check de RC elegible*/
+jQuery.validator.addMethod("checksRellenos",checksRellenos,"Debe seleccionar al menos una opción");
+
+function checksRellenos() 
+{ 
+	 var checksRellenos = $("(input:checkbox):checked");
+	 return checksRellenos.length > 0;
+}    
+/*** fin 01/02/2021 DNF PET.63485.FIII */
+
+/*
+Comprueba si todos los valores elegibles se han elegido
+ */
+
+function elegiblesPorRiesgoElegidos() {
+	var validacion = true;
+	
+	var ids = $('#lstIdCeldasEleg').val();
+	var mostradasArr = ids.split(',');
+	
+	for (m = 0; m < mostradasArr.length; m++) { // solo recorremos los selects de los divs mostrados.
+		// Para todos los combos habilitados en los apartados 'Condiciones coberturas' 
+		if (mostradasArr[m] != '') {
+		//if ($(mostradasArr[m]).val() != 0)	
+			$("select[id^='" + mostradasArr[m] + "']:enabled").each(
+					function() {
+						idCombo = $(this).attr('id');
+						idCampoObligatorio = "campoObligatorio" + idCombo; //idCombo.replace('select_','campoObligatorioSelect_');
+						if ($(this).val()/*.length*/ == 0) {
+							// Mostrar * rojos
+							
+							$("[id^=" + idCampoObligatorio + "]").each(
+									function() {
+										$(this).show();
+									});
+							validacion = false;
+						} else {
+							// Oculta * rojos
+							
+							$("[id^=" + idCampoObligatorio + "]").each(
+									function() {
+										$(this).hide();
+									});
+						}
+					});
+		}
+	}
+	return validacion;
+}
+
+
+function seleccionarCoberturasElegidas(){
+	<%-- DAA 16/07/2012 --%>
+	<c:forEach items="${anexoModificacion.coberturas}" var="coberturaAnexo">
+		<c:if test="${coberturaAnexo.codconcepto != '363'}" >
+			$("#selectAnexo_${coberturaAnexo.codconceptoppalmod}_${coberturaAnexo.codriesgocubierto}_${coberturaAnexo.codconcepto}").val('${coberturaAnexo.codvalor}');
+			<%--ESC-14460 ** MODIF TAM (02.07.2021) ** Inicio --%>
+			<c:if test="${coberturaAnexo.codconcepto != '106'}" >
+				listaAnexosSelec = listaAnexosSelec + ${coberturaAnexo.codconceptoppalmod}+"_"+${coberturaAnexo.codriesgocubierto}+"_"+${coberturaAnexo.codconcepto}+"#"+${coberturaAnexo.codvalor}+",";
+			</c:if> 	
+			<%--ESC-14460 ** MODIF TAM (02.07.2021) ** Fin --%>
+		</c:if> 
+		<c:if test="${coberturaAnexo.codconcepto == '363'}" >	
+			<c:if test="${coberturaAnexo.codvalor == -1}" >
+				$('#checkAnexo_${coberturaAnexo.codconceptoppalmod}_${coberturaAnexo.codriesgocubierto}_${coberturaAnexo.codconcepto}').attr('checked', true);
+			</c:if> 
+			<c:if test="${coberturaAnexo.codvalor == -2}" >
+				$('#checkAnexo_${coberturaAnexo.codconceptoppalmod}_${coberturaAnexo.codriesgocubierto}_${coberturaAnexo.codconcepto}').attr('checked', false);
+			</c:if>
+		</c:if>
+	</c:forEach>
+	<%-- MPM 13/08/12 --%>
+	<%-- Si se ha seleccionado el modo lectura se deshabilitan todos los checks y combos directamente, sin tratar cada caso en particular --%>
+    <c:if test="${modoLectura}">	
+        $("input[type=checkbox]").each(function(){ $(this).attr('disabled','disabled');}); 
+        $("select").each(function(){ $(this).attr('disabled','disabled');});
+    </c:if>
+}
+
+<%-- MPM 23/08/2012 --%>
+<%-- Copia al cuadro del anexo las coberturas elegibles seleccionadas de la póliza si en el combo de módulos se selecciona el mismo al que pertenece --%>
+<%-- la póliza --%>
+function seleccionarCoberturasPolizaElegidas(){
+	<%-- DAA 16/07/2012 --%>
+	<c:forEach items="${coberturas}" var="cobertura">
+		<c:if test="${cobertura.codconcepto != '363'}" >
+			$("#selectAnexo_${cobertura.codconceptoppalmod}_${cobertura.codriesgocubierto}_${cobertura.codconcepto}").val('${cobertura.codvalor}');
+		</c:if> 
+		<c:if test="${cobertura.codconcepto == '363'}" >
+			<c:if test="${cobertura.codvalor == -1 || cobertura.codvalor == 'S'}" >
+				$('#checkAnexo_${cobertura.codconceptoppalmod}_${cobertura.codriesgocubierto}_${cobertura.codconcepto}').attr('checked', true);
+			</c:if> 
+			<c:if test="${cobertura.codvalor == -2 || cobertura.codvalor == 'N'}" >
+				$('#checkAnexo_${cobertura.codconceptoppalmod}_${cobertura.codriesgocubierto}_${cobertura.codconcepto}').attr('checked', false);
+			</c:if>
+		</c:if>
+	</c:forEach>
+}
+</script>

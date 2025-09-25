@@ -1,0 +1,430 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.20.0.final using JasperReports Library version 3.6.1  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Comisiones de impagados 2015 +" pageWidth="1770" pageHeight="595" orientation="Landscape" whenNoDataType="AllSectionsNoDetail" columnWidth="1730" leftMargin="20" rightMargin="20" topMargin="0" bottomMargin="20">
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="3501"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="source" class="net.sf.jasperreports.engine.JRDataSource"/>
+	<field name="entmediadora" class="java.lang.Integer"/>
+	<field name="subentmediadora" class="java.lang.Integer"/>
+	<field name="idcolectivo" class="java.lang.String"/>
+	<field name="ciftomador" class="java.lang.String"/>
+	<field name="nomTomador" class="java.lang.String"/>
+	<field name="plan" class="java.lang.Integer"/>
+	<field name="linea" class="java.lang.Integer"/>
+	<field name="fase" class="java.lang.Integer"/>
+	<field name="recibo" class="java.lang.Integer"/>
+	<field name="referencia" class="java.lang.String"/>
+	<field name="importeSaldoPdte" class="java.math.BigDecimal"/>
+	<field name="grupoNegocio" class="java.lang.Character"/>
+	<field name="importeCobroRecibido" class="java.math.BigDecimal"/>
+	<field name="gaAdmin" class="java.math.BigDecimal"/>
+	<field name="gaAdq" class="java.math.BigDecimal"/>
+	<field name="gaCommedEntidad" class="java.math.BigDecimal"/>
+	<field name="gaCommedEsmed" class="java.math.BigDecimal"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="85" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="1750" height="52"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+					<font size="20" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[LISTADO DE COMISIONES DE IMPAGADOS 2015 +]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="52" width="60" height="20"/>
+				<box>
+					<topPen lineWidth="0.5" lineStyle="Solid"/>
+					<leftPen lineWidth="0.5" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.5" lineStyle="Solid"/>
+					<rightPen lineWidth="0.5" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Left" lineSpacing="Single"/>
+				<text><![CDATA[E Med]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="52" width="60" height="20"/>
+				<box>
+					<topPen lineWidth="0.5" lineStyle="Solid"/>
+					<leftPen lineWidth="0.5" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.5" lineStyle="Solid"/>
+					<rightPen lineWidth="0.5" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Left" lineSpacing="Single"/>
+				<text><![CDATA[E Med]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="60" y="52" width="60" height="20"/>
+				<box>
+					<topPen lineWidth="0.5" lineStyle="Solid"/>
+					<leftPen lineWidth="0.5" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.5" lineStyle="Solid"/>
+					<rightPen lineWidth="0.5" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Left" lineSpacing="Single"/>
+				<text><![CDATA[S Med]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="120" y="52" width="80" height="20"/>
+				<box>
+					<topPen lineWidth="0.5" lineStyle="Solid"/>
+					<leftPen lineWidth="0.5" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.5" lineStyle="Solid"/>
+					<rightPen lineWidth="0.5" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Left" lineSpacing="Single"/>
+				<text><![CDATA[Colectivo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="200" y="52" width="100" height="20"/>
+				<box>
+					<topPen lineWidth="0.5" lineStyle="Solid"/>
+					<leftPen lineWidth="0.5" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.5" lineStyle="Solid"/>
+					<rightPen lineWidth="0.5" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Left" lineSpacing="Single"/>
+				<text><![CDATA[CIF Tomador]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="300" y="52" width="355" height="20">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.5" lineStyle="Solid"/>
+					<leftPen lineWidth="0.5" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.5" lineStyle="Solid"/>
+					<rightPen lineWidth="0.5" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Left" lineSpacing="Single"/>
+				<text><![CDATA[Nombre Tomador]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="655" y="52" width="60" height="20"/>
+				<box>
+					<topPen lineWidth="0.5" lineStyle="Solid"/>
+					<leftPen lineWidth="0.5" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.5" lineStyle="Solid"/>
+					<rightPen lineWidth="0.5" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Left" lineSpacing="Single"/>
+				<text><![CDATA[Plan]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="715" y="52" width="60" height="20"/>
+				<box>
+					<topPen lineWidth="0.5" lineStyle="Solid"/>
+					<leftPen lineWidth="0.5" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.5" lineStyle="Solid"/>
+					<rightPen lineWidth="0.5" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Left" lineSpacing="Single"/>
+				<text><![CDATA[Línea]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="775" y="52" width="60" height="20"/>
+				<box>
+					<topPen lineWidth="0.5" lineStyle="Solid"/>
+					<leftPen lineWidth="0.5" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.5" lineStyle="Solid"/>
+					<rightPen lineWidth="0.5" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Left" lineSpacing="Single"/>
+				<text><![CDATA[Fase]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="835" y="52" width="60" height="20"/>
+				<box>
+					<topPen lineWidth="0.5" lineStyle="Solid"/>
+					<leftPen lineWidth="0.5" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.5" lineStyle="Solid"/>
+					<rightPen lineWidth="0.5" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Left" lineSpacing="Single"/>
+				<text><![CDATA[Recibo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="895" y="52" width="100" height="20"/>
+				<box>
+					<topPen lineWidth="0.5" lineStyle="Solid"/>
+					<leftPen lineWidth="0.5" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.5" lineStyle="Solid"/>
+					<rightPen lineWidth="0.5" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Left" lineSpacing="Single"/>
+				<text><![CDATA[Póliza]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="995" y="52" width="110" height="20"/>
+				<box>
+					<topPen lineWidth="0.5" lineStyle="Solid"/>
+					<leftPen lineWidth="0.5" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.5" lineStyle="Solid"/>
+					<rightPen lineWidth="0.5" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Left" lineSpacing="Single"/>
+				<text><![CDATA[Saldo Pendiente]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1105" y="52" width="90" height="20"/>
+				<box>
+					<topPen lineWidth="0.5" lineStyle="Solid"/>
+					<leftPen lineWidth="0.5" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.5" lineStyle="Solid"/>
+					<rightPen lineWidth="0.5" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Left" lineSpacing="Single"/>
+				<text><![CDATA[Cobro Recibido]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1195" y="52" width="50" height="20"/>
+				<box>
+					<topPen lineWidth="0.5" lineStyle="Solid"/>
+					<leftPen lineWidth="0.5" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.5" lineStyle="Solid"/>
+					<rightPen lineWidth="0.5" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Left" lineSpacing="Single"/>
+				<text><![CDATA[G.N.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1245" y="52" width="110" height="20"/>
+				<box>
+					<topPen lineWidth="0.5" lineStyle="Solid"/>
+					<leftPen lineWidth="0.5" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.5" lineStyle="Solid"/>
+					<rightPen lineWidth="0.5" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Left" lineSpacing="Single"/>
+				<text><![CDATA[Total gastos admin.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1355" y="52" width="100" height="20"/>
+				<box>
+					<topPen lineWidth="0.5" lineStyle="Solid"/>
+					<leftPen lineWidth="0.5" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.5" lineStyle="Solid"/>
+					<rightPen lineWidth="0.5" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Left" lineSpacing="Single"/>
+				<text><![CDATA[Total gastos Adq.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1455" y="52" width="90" height="20"/>
+				<box>
+					<topPen lineWidth="0.5" lineStyle="Solid"/>
+					<leftPen lineWidth="0.5" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.5" lineStyle="Solid"/>
+					<rightPen lineWidth="0.5" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Left" lineSpacing="Single"/>
+				<text><![CDATA[Total gastos ent.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1545" y="52" width="110" height="20"/>
+				<box>
+					<topPen lineWidth="0.5" lineStyle="Solid"/>
+					<leftPen lineWidth="0.5" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.5" lineStyle="Solid"/>
+					<rightPen lineWidth="0.5" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Left" lineSpacing="Single"/>
+				<text><![CDATA[Total gastos ES-Med]]></text>
+			</staticText>
+		</band>
+	</title>
+	<detail>
+		<band height="25" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="60" height="20"/>
+				<box>
+					<topPen lineWidth="0.5" lineStyle="Solid"/>
+					<leftPen lineWidth="0.5" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.5" lineStyle="Solid"/>
+					<rightPen lineWidth="0.5" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Left" lineSpacing="Single"/>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$F{entmediadora}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="60" y="0" width="60" height="20"/>
+				<box>
+					<topPen lineWidth="0.5" lineStyle="Solid"/>
+					<leftPen lineWidth="0.5" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.5" lineStyle="Solid"/>
+					<rightPen lineWidth="0.5" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Left" lineSpacing="Single"/>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$F{subentmediadora}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="120" y="0" width="80" height="20"/>
+				<box>
+					<topPen lineWidth="0.5" lineStyle="Solid"/>
+					<leftPen lineWidth="0.5" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.5" lineStyle="Solid"/>
+					<rightPen lineWidth="0.5" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Left" lineSpacing="Single"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{idcolectivo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="200" y="0" width="100" height="20"/>
+				<box>
+					<topPen lineWidth="0.5" lineStyle="Solid"/>
+					<leftPen lineWidth="0.5" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.5" lineStyle="Solid"/>
+					<rightPen lineWidth="0.5" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Left" lineSpacing="Single"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{ciftomador}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="300" y="0" width="355" height="20"/>
+				<box>
+					<topPen lineWidth="0.5" lineStyle="Solid"/>
+					<leftPen lineWidth="0.5" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.5" lineStyle="Solid"/>
+					<rightPen lineWidth="0.5" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Left" lineSpacing="Single"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{nomTomador}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="655" y="0" width="60" height="20"/>
+				<box>
+					<topPen lineWidth="0.5" lineStyle="Solid"/>
+					<leftPen lineWidth="0.5" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.5" lineStyle="Solid"/>
+					<rightPen lineWidth="0.5" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Left" lineSpacing="Single"/>
+				<textFieldExpression class=""><![CDATA[$F{plan}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="715" y="0" width="60" height="20"/>
+				<box>
+					<topPen lineWidth="0.5" lineStyle="Solid"/>
+					<leftPen lineWidth="0.5" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.5" lineStyle="Solid"/>
+					<rightPen lineWidth="0.5" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Left" lineSpacing="Single"/>
+				<textFieldExpression class=""><![CDATA[$F{linea}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="775" y="0" width="60" height="20"/>
+				<box>
+					<topPen lineWidth="0.5" lineStyle="Solid"/>
+					<leftPen lineWidth="0.5" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.5" lineStyle="Solid"/>
+					<rightPen lineWidth="0.5" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Left" lineSpacing="Single"/>
+				<textFieldExpression class=""><![CDATA[$F{fase}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="835" y="0" width="60" height="20"/>
+				<box>
+					<topPen lineWidth="0.5" lineStyle="Solid"/>
+					<leftPen lineWidth="0.5" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.5" lineStyle="Solid"/>
+					<rightPen lineWidth="0.5" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Left" lineSpacing="Single"/>
+				<textFieldExpression class=""><![CDATA[$F{recibo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="895" y="0" width="100" height="20"/>
+				<box>
+					<topPen lineWidth="0.5" lineStyle="Solid"/>
+					<leftPen lineWidth="0.5" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.5" lineStyle="Solid"/>
+					<rightPen lineWidth="0.5" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Left" lineSpacing="Single"/>
+				<textFieldExpression class=""><![CDATA[$F{referencia}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="995" y="0" width="110" height="20"/>
+				<box>
+					<topPen lineWidth="0.5" lineStyle="Solid"/>
+					<leftPen lineWidth="0.5" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.5" lineStyle="Solid"/>
+					<rightPen lineWidth="0.5" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Right" lineSpacing="Single"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{importeSaldoPdte}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="1105" y="0" width="90" height="20"/>
+				<box>
+					<topPen lineWidth="0.5" lineStyle="Solid"/>
+					<leftPen lineWidth="0.5" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.5" lineStyle="Solid"/>
+					<rightPen lineWidth="0.5" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Right" lineSpacing="Single"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{importeCobroRecibido}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="1245" y="0" width="110" height="20"/>
+				<box>
+					<topPen lineWidth="0.5" lineStyle="Solid"/>
+					<leftPen lineWidth="0.5" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.5" lineStyle="Solid"/>
+					<rightPen lineWidth="0.5" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Right" lineSpacing="Single"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{gaAdmin}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="1355" y="0" width="100" height="20"/>
+				<box>
+					<topPen lineWidth="0.5" lineStyle="Solid"/>
+					<leftPen lineWidth="0.5" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.5" lineStyle="Solid"/>
+					<rightPen lineWidth="0.5" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Right" lineSpacing="Single"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{gaAdq}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="1455" y="0" width="90" height="20"/>
+				<box>
+					<topPen lineWidth="0.5" lineStyle="Solid"/>
+					<leftPen lineWidth="0.5" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.5" lineStyle="Solid"/>
+					<rightPen lineWidth="0.5" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Right" lineSpacing="Single"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{gaCommedEntidad}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="1545" y="0" width="110" height="20"/>
+				<box>
+					<topPen lineWidth="0.5" lineStyle="Solid"/>
+					<leftPen lineWidth="0.5" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.5" lineStyle="Solid"/>
+					<rightPen lineWidth="0.5" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Right" lineSpacing="Single"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{gaCommedEsmed}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="1195" y="0" width="50" height="20"/>
+				<box>
+					<topPen lineWidth="0.5" lineStyle="Solid"/>
+					<leftPen lineWidth="0.5" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.5" lineStyle="Solid"/>
+					<rightPen lineWidth="0.5" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Left" lineSpacing="Single"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{grupoNegocio}.toString()]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

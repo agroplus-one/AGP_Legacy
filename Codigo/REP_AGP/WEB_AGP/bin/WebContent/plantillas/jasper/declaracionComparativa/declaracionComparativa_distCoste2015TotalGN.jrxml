@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.16.0.final using JasperReports Library version 3.6.1  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="declaracionComparativa_distCoste2015TotalGN" pageWidth="575" pageHeight="602" columnWidth="575" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="DataAdapter.xml"/>
+	<property name="com.jaspersoft.studio.unit." value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageHeight" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.topMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.bottomMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.leftMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.rightMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnSpacing" value="pixel"/>
+	<parameter name="ID" class="java.lang.Integer"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA[""]]></defaultValueExpression>
+	</parameter>
+	<parameter name="isPagoFraccionado" class="java.lang.Boolean"/>
+	<parameter name="esGanado" class="java.lang.Boolean">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="codModulo" class="java.lang.String"/>
+	<parameter name="grupoNegPrimero" class="java.lang.String"/>
+	<parameter name="grupoNegSegundo" class="java.lang.String"/>
+	<parameter name="idComparativa" class="java.math.BigDecimal"/>
+	<parameter name="pctRecargo" class="java.math.BigDecimal"/>
+	<queryString>
+		<![CDATA[select   sum (nvl(c.COSTETOMADOR,0)) as COSTETOMADOR,
+	sum (nvl(c.RECARGOAVAL,0)) as RECARGOAVAL,
+	sum (nvl(c.RECARGOFRACCIONAMIENTO,0)) as RECARGOFRACCIONAMIENTO,
+	sum (nvl(c.TOTALCOSTETOMADOR,0)) as TOTALCOSTETOMADOR,
+	sum (nvl(c.IMPORTE_PAGO_FRACC,0)) as IMPORTE_PAGO_FRACC,
+	sum (nvl(c.IMPORTE_PAGO_FRACC_AGR,0)) as IMPORTE_PAGO_FRACC_AGR,
+  	count(c.idcomparativa) as numGrusposNegocio
+from 	tb_distribucion_costes_2015 c,
+	tb_sc_c_grupos_negocio g
+where c.codmodulo = $P{codModulo}
+and c.grupo_negocio = g.grupo_negocio
+and c.idcomparativa=$P{idComparativa}]]>
+	</queryString>
+	<field name="COSTETOMADOR" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="RECARGOAVAL" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="RECARGOFRACCIONAMIENTO" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="TOTALCOSTETOMADOR" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="IMPORTE_PAGO_FRACC" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="IMPORTE_PAGO_FRACC_AGR" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="NUMGRUSPOSNEGOCIO" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<variable name="isPagoFraccionado" class="java.lang.Boolean" resetType="Page">
+		<variableExpression><![CDATA[new Boolean($F{IMPORTE_PAGO_FRACC}.compareTo( new BigDecimal("0") )==1
+            ||$F{IMPORTE_PAGO_FRACC_AGR}.compareTo( new BigDecimal("0") )==1
+)]]></variableExpression>
+	</variable>
+	<variable name="RecargoFracc" class="java.math.BigDecimal">
+		<variableExpression><![CDATA[( $P{pctRecargo}!=null?
+      $F{COSTETOMADOR}.multiply(
+          $P{pctRecargo}.divide(
+              new BigDecimal(100)))  :
+    $F{RECARGOFRACCIONAMIENTO} )]]></variableExpression>
+	</variable>
+	<variable name="recargoAval" class="java.math.BigDecimal">
+		<variableExpression><![CDATA[$F{RECARGOAVAL}.divide($F{NUMGRUSPOSNEGOCIO})]]></variableExpression>
+	</variable>
+	<variable name="recargoFraccionamiento" class="java.math.BigDecimal">
+		<variableExpression><![CDATA[$F{RECARGOFRACCIONAMIENTO}.divide($F{NUMGRUSPOSNEGOCIO})]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<detail>
+		<band height="40" splitType="Stretch">
+			<subreport runToBottom="false">
+				<reportElement positionType="Float" isPrintRepeatedValues="false" x="0" y="0" width="575" height="40" isRemoveLineWhenBlank="true">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<subreportParameter name="SUBREPORT_DIR">
+					<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="esGanado">
+					<subreportParameterExpression><![CDATA[$P{esGanado}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="codModulo">
+					<subreportParameterExpression><![CDATA[$P{codModulo}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="grupoNegPrimero">
+					<subreportParameterExpression><![CDATA[$P{grupoNegPrimero}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="ID">
+					<subreportParameterExpression><![CDATA[$P{ID}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="idComparativa">
+					<subreportParameterExpression><![CDATA[$P{idComparativa}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="isPagoFraccionado">
+					<subreportParameterExpression><![CDATA[$V{isPagoFraccionado}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression class="java.lang.String"><![CDATA[$P{SUBREPORT_DIR} + "declaracionComparativa_distCoste2023.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+</jasperReport>

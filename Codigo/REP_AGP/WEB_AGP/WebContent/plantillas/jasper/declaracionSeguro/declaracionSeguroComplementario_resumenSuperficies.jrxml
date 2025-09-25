@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="declaracionSeguroComplementario_resumenSuperficies" pageWidth="555" pageHeight="802" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0">
+	<parameter name="ID" class="java.lang.Integer"/>
+	<queryString>
+		<![CDATA[select PA.CODPROVINCIA,
+       PA.CODCOMARCA,
+       PA.CODTERMINO,
+       PA.CODCULTIVO,
+       PA.CODVARIEDAD,
+       SUM(C.SUPERFICIE) AS SUPERFICIE,
+       SUM(C.INCREMENTOPRODUCCION) AS PRODUCCION
+FROM o02agpe0.TB_PARCELAS PA, o02agpe0.TB_CAPITALES_ASEGURADOS C
+WHERE PA.IDPOLIZA = $P{ID}
+      AND C.IDPARCELA = PA.IDPARCELA
+      AND PA.ALTAENCOMPLEMENTARIO = 'S'
+GROUP BY PA.CODPROVINCIA,
+      PA.CODCOMARCA,
+      PA.CODTERMINO,
+      PA.CODCULTIVO,
+      PA.CODVARIEDAD
+ORDER BY PA.CODPROVINCIA,
+      PA.CODCOMARCA,
+      PA.CODTERMINO,
+      PA.CODCULTIVO,
+      PA.CODVARIEDAD]]>
+	</queryString>
+	<field name="CODPROVINCIA" class="java.lang.String"/>
+	<field name="CODCOMARCA" class="java.lang.String"/>
+	<field name="CODVARIEDAD" class="java.lang.String"/>
+	<field name="SUPERFICIE" class="java.math.BigDecimal"/>
+	<field name="PRODUCCION" class="java.math.BigDecimal"/>
+	<field name="CODTERMINO" class="java.lang.String"/>
+	<field name="CODCULTIVO" class="java.lang.String"/>
+	<variable name="TotalSuperficie" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{SUPERFICIE}.plus()]]></variableExpression>
+	</variable>
+	<variable name="TotalProduccion" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{PRODUCCION}.plus()]]></variableExpression>
+	</variable>
+	<variable name="SHOW_FOOT" class="java.lang.Boolean" resetType="None">
+		<variableExpression><![CDATA[new Boolean(true)]]></variableExpression>
+		<initialValueExpression><![CDATA[]]></initialValueExpression>
+	</variable>
+	<variable name="SHOW_BACK" class="java.lang.Boolean" resetType="None">
+		<variableExpression><![CDATA[new Boolean(true)]]></variableExpression>
+		<initialValueExpression><![CDATA[]]></initialValueExpression>
+	</variable>
+	<columnHeader>
+		<band height="41">
+			<staticText>
+				<reportElement mode="Transparent" x="0" y="10" width="545" height="13" backcolor="#FFFFFF"/>
+				<textElement>
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[RESUMEN COSECHAS ASEGURADAS (Datos informativos, incluye todos los Términos)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="235" y="27" width="52" height="14"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Superficie]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="186" y="27" width="40" height="14"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8" isBold="true" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Variedad]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="7" y="27" width="40" height="14"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8" isBold="true" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Provincia]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="291" y="27" width="62" height="14"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Producción]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="142" y="27" width="40" height="14"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8" isBold="true" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Cultivo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="50" y="27" width="40" height="14"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8" isBold="true" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Comarca]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="93" y="27" width="40" height="14"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8" isBold="true" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Término]]></text>
+			</staticText>
+			<line>
+				<reportElement positionType="Float" mode="Transparent" x="7" y="40" width="346" height="1" forecolor="#333333"/>
+			</line>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="11" splitType="Stretch">
+			<textField isBlankWhenNull="true">
+				<reportElement x="7" y="0" width="40" height="11"/>
+				<textElement textAlignment="Right">
+					<font size="6"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{CODPROVINCIA}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="186" y="0" width="40" height="11"/>
+				<textElement textAlignment="Right">
+					<font size="6"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{CODVARIEDAD}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="142" y="0" width="40" height="11"/>
+				<textElement textAlignment="Right">
+					<font size="6"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{CODCULTIVO}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="50" y="0" width="40" height="11"/>
+				<textElement textAlignment="Right">
+					<font size="6"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{CODCOMARCA}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="93" y="0" width="40" height="11"/>
+				<textElement textAlignment="Right">
+					<font size="6"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{CODTERMINO}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.00" isBlankWhenNull="true">
+				<reportElement x="291" y="0" width="62" height="11"/>
+				<textElement textAlignment="Right">
+					<font size="6"/>
+				</textElement>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{PRODUCCION}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.00" isBlankWhenNull="true">
+				<reportElement x="235" y="0" width="52" height="11"/>
+				<textElement textAlignment="Right">
+					<font size="6"/>
+				</textElement>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{SUPERFICIE}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<summary>
+		<band height="20">
+			<textField pattern="###0.00" isBlankWhenNull="true">
+				<reportElement x="235" y="1" width="52" height="11"/>
+				<textElement textAlignment="Right">
+					<font size="6" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$V{TotalSuperficie}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.00" isBlankWhenNull="true">
+				<reportElement x="291" y="1" width="62" height="11"/>
+				<textElement textAlignment="Right">
+					<font size="6" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$V{TotalProduccion}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement positionType="Float" mode="Transparent" x="235" y="0" width="115" height="1" forecolor="#999999"/>
+			</line>
+		</band>
+	</summary>
+</jasperReport>

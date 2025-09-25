@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.16.0.final using JasperReports Library version 3.6.1  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="literalesDistCostes2023" pageWidth="555" pageHeight="802" whenNoDataType="AllSectionsNoDetail" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="DataAdapter.xml"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.unit." value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageHeight" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.topMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.bottomMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.leftMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.rightMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnSpacing" value="pixel"/>
+	<subDataset name="dataset1"/>
+	<parameter name="ID" class="java.lang.Integer"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA[""]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select  nvl(null,'')  as CODMODULO,
+              nvl(null,'') as DESCRIPCION,
+			  'Prima Comercial' as PRIMACOMERCIAL,
+              'Prima Comercial Neta' as PRIMACOMERCIALNETA,
+              'Recargo FLCCS' as RECARGOCONSORCIO,
+			  'Recibo de Prima' as RECIBOPRIMA,
+			   'Coste Tomador' as COSTETOMADOR
+  from dual]]>
+	</queryString>
+	<field name="CODMODULO" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="CODMODULO"/>
+	</field>
+	<field name="DESCRIPCION" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="DESCRIPCION"/>
+		<property name="com.jaspersoft.studio.field.label" value=""/>
+	</field>
+	<field name="PRIMACOMERCIAL" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="PRIMACOMERCIAL"/>
+		<property name="com.jaspersoft.studio.field.name" value="PRIMACOMERCIAL"/>
+	</field>
+	<field name="PRIMACOMERCIALNETA" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="PRIMACOMERCIALNETA"/>
+		<property name="com.jaspersoft.studio.field.name" value="PRIMACOMERCIALNETA"/>
+	</field>
+	<field name="RECARGOCONSORCIO" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="RECARGOCONSORCIO"/>
+		<property name="com.jaspersoft.studio.field.name" value="RECARGOCONSORCIO"/>
+	</field>
+	<field name="RECIBOPRIMA" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="RECIBOPRIMA"/>
+		<property name="com.jaspersoft.studio.field.name" value="RECIBOPRIMA"/>
+	</field>
+	<field name="COSTETOMADOR" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="COSTETOMADOR"/>
+		<property name="com.jaspersoft.studio.field.name" value="COSTETOMADOR"/>
+	</field>
+	<detail>
+		<band height="45" splitType="Stretch">
+			<textField>
+				<reportElement x="10" y="30" width="160" height="15">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+				</reportElement>
+				<textElement lineSpacing="Single"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{PRIMACOMERCIAL}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="80" y="0" width="100" height="14"/>
+				<textElement lineSpacing="Single"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{CODMODULO}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="10" y="15" width="79" height="15"/>
+				<textElement textAlignment="Left" lineSpacing="Single">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{DESCRIPCION}]]></textFieldExpression>
+			</textField>
+		</band>
+		<band height="30" splitType="Prevent">
+			<subreport isUsingCache="false">
+				<reportElement positionType="Float" x="0" y="0" width="555" height="30" isRemoveLineWhenBlank="true">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
+				<subreportParameter name="ID">
+					<subreportParameterExpression><![CDATA[$P{ID}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="SUBREPORT_DIR">
+					<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression class="java.lang.String"><![CDATA[$P{SUBREPORT_DIR} + "literales_distribucionSeguro_bon2023.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="45">
+			<textField>
+				<reportElement x="10" y="15" width="160" height="15">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<textElement lineSpacing="Single"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{RECARGOCONSORCIO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="10" y="0" width="160" height="15">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement lineSpacing="Single"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{PRIMACOMERCIALNETA}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="10" y="30" width="160" height="15">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement lineSpacing="Single"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{RECIBOPRIMA}]]></textFieldExpression>
+			</textField>
+		</band>
+		<band height="90" splitType="Prevent">
+			<subreport isUsingCache="false" runToBottom="false">
+				<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="555" height="90" isRemoveLineWhenBlank="true">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<subreportParameter name="ID">
+					<subreportParameterExpression><![CDATA[$P{ID}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="SUBREPORT_DIR">
+					<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression class="java.lang.String"><![CDATA[$P{SUBREPORT_DIR} + "literales_distribucionSeguro_subvEnesa2023.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="90" splitType="Prevent">
+			<subreport isUsingCache="false" runToBottom="false">
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="0" y="0" width="555" height="90" isRemoveLineWhenBlank="true">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
+				<subreportParameter name="ID">
+					<subreportParameterExpression><![CDATA[$P{ID}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="SUBREPORT_DIR">
+					<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression class="java.lang.String"><![CDATA[$P{SUBREPORT_DIR} + "literales_distribucionSeguro_subvCCAA2023.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="15">
+			<textField>
+				<reportElement x="10" y="0" width="160" height="15">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+				</reportElement>
+				<textElement lineSpacing="Single"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{COSTETOMADOR}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

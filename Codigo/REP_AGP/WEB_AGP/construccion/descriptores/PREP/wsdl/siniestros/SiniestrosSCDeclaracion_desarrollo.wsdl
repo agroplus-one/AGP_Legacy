@@ -1,0 +1,245 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="SiniestrosSCDeclaracion"
+	targetNamespace="http://www.agroseguro.es/serviciosweb/SiniestrosSCDeclaracion/"
+	xmlns:agr="http://www.agroseguro.es/serviciosweb/SiniestrosSCDeclaracion/"
+	xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	xmlns:xmime="http://www.w3.org/2005/05/xmlmime"
+	xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd"
+	xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd">
+	<wsdl:types>
+		<xsd:schema elementFormDefault="qualified"
+			targetNamespace="http://www.agroseguro.es/serviciosweb/SiniestrosSCDeclaracion/"
+			xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+			<xsd:import namespace="http://www.w3.org/2005/05/xmlmime"
+				schemaLocation="xmime.xsd" />
+			<xsd:import	namespace="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd"
+				schemaLocation="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd" />
+			<xsd:element name="validarRequest">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="siniestro" xmime:expectedContentTypes="text/xml" type="xmime:base64Binary" />
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="validarResponse">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="acuseRecibo" xmime:expectedContentTypes="text/xml" type="xmime:base64Binary" />
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="confirmarRequest">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="siniestro" xmime:expectedContentTypes="text/xml" type="xmime:base64Binary" />
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="confirmarResponse">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="acuseRecibo" xmime:expectedContentTypes="text/xml" type="xmime:base64Binary" />
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="agrFallo"
+				xmlns:agr="http://www.agroseguro.es/serviciosweb/SiniestrosSCDeclaracion/">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:annotation>
+							Lista de mensajes de error de AGROSEGURO
+						</xsd:annotation>
+						<xsd:element name="error" type="agr:Error"	maxOccurs="unbounded" minOccurs="0" />
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:complexType name="Error"
+				xmlns:agr="http://www.agroseguro.es/serviciosweb/SiniestrosSCDeclaracion/">
+				<xsd:sequence>
+					<xsd:element name="codigo" type="xsd:int" />
+					<xsd:element name="mensaje" type="xsd:string" />
+				</xsd:sequence>
+			</xsd:complexType>
+		</xsd:schema>
+	</wsdl:types>
+	<wsdl:message name="Header">
+		<wsdl:part name="Security" element="wsse:Security" />
+	</wsdl:message>
+	<wsdl:message name="AgrException">
+		<wsdl:part name="parameters" element="agr:agrFallo"></wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="validarRequest">
+		<wsdl:part name="parameters" element="agr:validarRequest">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="validarResponse">
+		<wsdl:part name="parameters" element="agr:validarResponse">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="confirmarRequest">
+		<wsdl:part name="parameters" element="agr:confirmarRequest">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="confirmarResponse">
+		<wsdl:part name="parameters" element="agr:confirmarResponse">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:portType name="SiniestrosSCDeclaracion">
+		<wsdl:operation name="validar">
+			<wsdl:documentation>
+				Método de Validación de un Siniestro de una Póliza:
+				permitirá la validación de un siniestro de una
+				póliza en el sistema de Agroseguro.
+
+				En la petición se deberá facilitar:
+
+				- Fichero XML del siniestro. El procesamiento del fichero
+				XML del siniestro incluirá una validación previa del
+				siniestro para asegurar que el mismo no es incorrecto, ya sea
+				porque no cumple en estructura o por cualquier otra
+				causa. La validación de la estructura del XML quedará 
+				determinada por el esquema XSD: "DeclaracionSiniestros.xsd". 
+				Si se supera la validación previa el sistema devolverá un acuse
+				de recibo indicando que el siniestro es correcto. La definición 
+				y jerarquía de etiquetas del fichero XML del Siniestro que 
+				sirve de entrada aparece publicado en la Web de Agroseguro, 
+				en la última versión del documento: "Seguro	Creciente: Norma 
+				de Grabación de Siniestros Agrícolas DES-J-0016".
+
+				Se devolverá la siguiente información :
+
+				- Fichero XML de acuse de recibo. Se indicará si el 
+				documento del Siniestro es correcto o es incorrecto	en 
+				cuyo caso se devolverán los errores que se han producido.
+				El esquema XSD del acuse de recibo es "AcuseRecibo.xsd".
+
+				El procesamiento del fichero XML del siniestro determina
+				si el mismo es correcto o da lugar a errores que
+				aparecen en el atributo "tipo" de la etiqueta "Error"
+				del acuse de recibo.
+
+				En el XML acuse de recibo se indicará el "estado" del
+				"Documento", informando del resultado de la validación
+				del siniestro. El estado podrá ser:
+
+				• "Incorrecto" -código 2- si existe algún error	que 
+				impediría la grabación del siniestro.
+
+				• "Correcto" -código 1- si no aparecen errores.
+
+			</wsdl:documentation>
+			<wsdl:input message="agr:validarRequest"></wsdl:input>
+			<wsdl:output message="agr:validarResponse"></wsdl:output>
+			<wsdl:fault name="AgrException"
+				message="agr:AgrException">
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="confirmar">
+			<wsdl:documentation>
+				Método de Confirmación de un Siniestro de una Póliza:
+				permitirá la confirmación de un siniestro de una póliza en el 
+				sistema de Agroseguro.
+
+				En la petición se deberá facilitar:
+
+				- Fichero XML del siniestro. El procesamiento del fichero
+				XML del siniestro incluirá una validación previa del
+				siniestro para asegurar que el mismo no se rechace, ya sea
+				porque no cumple en estructura o por cualquier otra
+				causa que produzca un rechazo. La validación
+				de la estructura del XML quedará determinada por el
+				esquema XSD: "DeclaracionSiniestros.xsd". Si se
+				supera la validación previa el sistema grabará el siniestro
+				en el sistema y devolverá un acuse de recibo indicando que 
+				el siniestro es correcto. La definición y jerarquía de 
+				etiquetas del fichero XML del Siniestro que sirve de entrada 
+				aparece publicado en la Web de Agroseguro, en la última 
+				versión del documento: "Seguro Creciente: Norma de Grabación 
+				de Siniestros Agrícolas	DES-J-0016".
+
+				Se devolverá la siguiente información :
+
+				- Fichero XML de acuse de recibo. Tanto si el Siniestro se
+				rechazase, como si finalmente se consiguiese grabar con
+				éxito, se indicará si el documento del Siniestro es correcto 
+				o es incorrecto	en cuyo caso se devolverán los errores que 
+				se han producido. El esquema XSD del acuse de recibo es 
+				"AcuseRecibo.xsd".
+
+				El procesamiento del fichero XML del siniestro determina
+				si el mismo es correcto o da lugar a errores que
+				aparecen en el atributo "tipo" de la etiqueta "Error"
+				del acuse de recibo.
+
+				En el XML acuse de recibo se indicará el "estado" del
+				"Documento", informando del resultado del envío	del siniestro. 
+				El estado podrá ser:
+
+				• "Rechazado" -código 2- si existe algún error	que 
+				impide la grabación del siniestro.
+
+				• "Aceptado" -código 1- si no aparecen errores.
+
+				Si el siniestro ha sido aceptado se devolverá además en los
+				"DatosAsociados" los siguientes atributos: "anioSiniestro"
+				del siniestro, "numeroSiniestro" asignado al mismo, "digitoControl"
+				y "referenciaPoliza" donde se ha producido el siniestro y "plan".
+				
+			</wsdl:documentation>
+			<wsdl:input message="agr:confirmarRequest"></wsdl:input>
+			<wsdl:output message="agr:confirmarResponse"></wsdl:output>
+			<wsdl:fault name="AgrException"
+				message="agr:AgrException">
+			</wsdl:fault>
+		</wsdl:operation>
+	</wsdl:portType>
+	<wsdl:binding name="SiniestrosSCDeclaracionSOAP"
+		type="agr:SiniestrosSCDeclaracion">
+		<soap:binding style="document"
+			transport="http://schemas.xmlsoap.org/soap/http" />
+		<wsdl:operation name="validar">
+			<soap:operation	soapAction="validar" />
+			<wsdl:input>
+				<soap:header wsdl:required="true" message="agr:Header" part="Security" use="literal" />
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output><soap:body use="literal" /></wsdl:output>
+			<wsdl:fault name="AgrException"><soap:fault name="AgrException" use="literal" /></wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="confirmar">
+			<soap:operation	soapAction="confirmar" />
+			<wsdl:input>
+				<soap:header wsdl:required="true" message="agr:Header" part="Security" use="literal" />
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output><soap:body use="literal" /></wsdl:output>
+			<wsdl:fault name="AgrException"><soap:fault name="AgrException" use="literal" /></wsdl:fault>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:service name="SiniestrosSCDeclaracion">
+		<wsdl:documentation>
+			Mediante este proceso se podrá validar o confirmar un siniestro de
+			de una Póliza para su tramitación en Agroseguro. Recordamos que 
+			es aconsejable, aunque no es obligatorio, que antes del envío se 
+			invoque al procedimiento de validación.
+
+			La información devuelta será un archivo XML de acuse de
+			recibo enviado como un Adjunto (Attachment) en formato MTOM.
+		</wsdl:documentation>
+		<wsdl:port name="SiniestrosSCDeclaracionSOAP"
+			binding="agr:SiniestrosSCDeclaracionSOAP">
+			<wsdl:documentation>
+				La primera dirección es el entorno de pruebas y no tiene
+				una resolución asignada en Internet, por lo que se deberá
+				incluir en la máquina local o en el servidor de nombres
+				local con la siguiente dirección: 195.235.42.35
+				
+				La segunda dirección es el entorno de producción.
+			</wsdl:documentation>
+			<soap:address
+				location="https://195.235.42.35/sscd/V1R0/services/SiniestrosSCDeclaracion" />	  
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>

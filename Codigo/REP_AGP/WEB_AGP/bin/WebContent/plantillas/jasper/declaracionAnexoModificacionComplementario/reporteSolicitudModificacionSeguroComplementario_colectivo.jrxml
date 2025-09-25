@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reporteSolicitudModificacionSeguro_colectivo" pageWidth="224" pageHeight="36" whenNoDataType="AllSectionsNoDetail" columnWidth="224" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0">
+	<parameter name="ID" class="java.math.BigDecimal"/>
+	<queryString>
+		<![CDATA[SELECT COL.IDCOLECTIVO, COL.DC,COL.CIFTOMADOR
+FROM TB_POLIZAS PO, TB_COLECTIVOS COL
+WHERE PO.IDCOLECTIVO = COL.ID
+AND PO.IDPOLIZA = $P{ID}]]>
+	</queryString>
+	<field name="IDCOLECTIVO" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="DC" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CIFTOMADOR" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<detail>
+		<band height="36" splitType="Stretch">
+			<textField isBlankWhenNull="true">
+				<reportElement key="textField-50" x="111" y="22" width="110" height="12"/>
+				<box leftPadding="2">
+					<leftPen lineWidth="0.25" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.25" lineStyle="Solid"/>
+					<rightPen lineWidth="0.25" lineStyle="Solid"/>
+				</box>
+				<textElement verticalAlignment="Top">
+					<font fontName="SansSerif" size="7"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{CIFTOMADOR}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement key="staticText-120" x="111" y="14" width="110" height="8"/>
+				<box leftPadding="3">
+					<leftPen lineWidth="0.25" lineStyle="Solid"/>
+					<rightPen lineWidth="0.25" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="5" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[NIF Tomador]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-119" x="1" y="14" width="110" height="8"/>
+				<box leftPadding="3">
+					<leftPen lineWidth="0.25" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="5" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[Referencia]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement key="textField-49" x="1" y="22" width="110" height="12"/>
+				<box leftPadding="2">
+					<leftPen lineWidth="0.25" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.25" lineStyle="Solid"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid"/>
+				</box>
+				<textElement verticalAlignment="Top">
+					<font fontName="SansSerif" size="7"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{IDCOLECTIVO} + ($F{DC} == null ? "" :"-" + $F{DC})]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement key="staticText-118" x="1" y="2" width="220" height="12"/>
+				<box leftPadding="3">
+					<topPen lineWidth="0.25" lineStyle="Solid"/>
+					<leftPen lineWidth="0.25" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.25" lineStyle="Solid"/>
+					<rightPen lineWidth="0.25" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="8" isBold="false" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[COLECTIVO]]></text>
+			</staticText>
+		</band>
+	</detail>
+</jasperReport>

@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="declaracionRCGanado_datosPersonales" pageWidth="555" pageHeight="272" whenNoDataType="AllSectionsNoDetail" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0">
+	<parameter name="tomador_nombreCompleto" class="java.lang.Object"/>
+	<parameter name="tomador_identificador" class="java.lang.String"/>
+	<parameter name="tomador_email" class="java.lang.String"/>
+	<parameter name="tomador_telefono" class="java.lang.String"/>
+	<parameter name="tomador_domicilio" class="java.lang.String"/>
+	<parameter name="tomador_poblacion" class="java.lang.String"/>
+	<parameter name="tomador_codigoPostal" class="java.lang.String"/>
+	<parameter name="tomador_provincia" class="java.lang.String"/>
+	<parameter name="asegurado_nombreCompleto" class="java.lang.String"/>
+	<parameter name="asegurado_identificador" class="java.lang.String"/>
+	<parameter name="asegurado_telefono" class="java.lang.String"/>
+	<parameter name="asegurado_domicilio" class="java.lang.String"/>
+	<parameter name="asegurado_poblacion" class="java.lang.String"/>
+	<parameter name="asegurado_codigoPostal" class="java.lang.String"/>
+	<parameter name="asegurado_provincia" class="java.lang.String"/>
+	<parameter name="asegurado_email" class="java.lang.String"/>
+	<variable name="SHOW_FOOT" class="java.lang.Boolean" resetType="None">
+		<variableExpression><![CDATA[new Boolean(true)]]></variableExpression>
+		<initialValueExpression><![CDATA[]]></initialValueExpression>
+	</variable>
+	<variable name="SHOW_BACK" class="java.lang.Boolean" resetType="None">
+		<variableExpression><![CDATA[new Boolean(true)]]></variableExpression>
+		<initialValueExpression><![CDATA[]]></initialValueExpression>
+	</variable>
+	<title>
+		<band height="156" splitType="Stretch">
+			<rectangle>
+				<reportElement mode="Transparent" x="5" y="35" width="546" height="121"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="385" y="101" width="55" height="13"/>
+				<textElement>
+					<font fontName="SansSerif" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[N. IDENT]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="385" y="140" width="55" height="13"/>
+				<textElement>
+					<font fontName="SansSerif" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[PROVINCIA]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="75" y="38" width="298" height="13"/>
+				<textElement>
+					<font fontName="SansSerif" size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{tomador_nombreCompleto}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="385" y="51" width="54" height="13"/>
+				<textElement>
+					<font fontName="SansSerif" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[TELÉFONO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="10" y="114" width="64" height="13"/>
+				<textElement>
+					<font fontName="SansSerif" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[E-MAIL]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="10" y="140" width="64" height="13"/>
+				<textElement>
+					<font fontName="SansSerif" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[POBLACIÓN]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="10" y="51" width="64" height="13"/>
+				<textElement>
+					<font fontName="SansSerif" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[E-MAIL]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="10" y="38" width="64" height="13"/>
+				<textElement>
+					<font fontName="SansSerif" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[TOMADOR]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="385" y="38" width="54" height="13"/>
+				<textElement>
+					<font fontName="SansSerif" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[N. IDENT]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="385" y="114" width="55" height="13"/>
+				<textElement>
+					<font fontName="SansSerif" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[TELÉFONO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="10" y="127" width="64" height="13"/>
+				<textElement>
+					<font fontName="SansSerif" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DOMICILIO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="10" y="77" width="64" height="13"/>
+				<textElement>
+					<font fontName="SansSerif" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[POBLACIÓN]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="385" y="77" width="54" height="13"/>
+				<textElement>
+					<font fontName="SansSerif" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[PROVINCIA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="10" y="101" width="64" height="13"/>
+				<textElement>
+					<font fontName="SansSerif" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ASEGURADO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="10" y="18" width="242" height="13"/>
+				<textElement>
+					<font fontName="SansSerif" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DATOS PERSONALES]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="10" y="64" width="64" height="13"/>
+				<textElement>
+					<font fontName="SansSerif" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DOMICILIO]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="439" y="38" width="101" height="13"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{tomador_identificador}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="75" y="51" width="298" height="13"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{tomador_email}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="439" y="51" width="101" height="13"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{tomador_telefono}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="75" y="64" width="465" height="13"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{tomador_domicilio}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="75" y="77" width="298" height="13"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["("+$P{tomador_codigoPostal}+") "+ $P{tomador_poblacion}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="439" y="77" width="101" height="13"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{tomador_provincia}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="75" y="101" width="298" height="13"/>
+				<textElement>
+					<font fontName="SansSerif" size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{asegurado_nombreCompleto}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="440" y="101" width="101" height="13"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{asegurado_identificador}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="440" y="114" width="101" height="13"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{asegurado_telefono}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="75" y="127" width="466" height="13"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{asegurado_domicilio}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="75" y="114" width="309" height="13"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{asegurado_email}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="75" y="140" width="298" height="13"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["("+$P{asegurado_codigoPostal}+") "+ $P{asegurado_poblacion}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="440" y="140" width="101" height="13"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{asegurado_provincia}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+</jasperReport>

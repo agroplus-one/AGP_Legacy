@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<x:schema 
+	targetNamespace="http://www.agroseguro.es/SeguroAgrario/InfoLimiteMaximoDanos"
+	xmlns="http://www.agroseguro.es/SeguroAgrario/InfoLimiteMaximoDanos"
+	xmlns:pks="http://www.agroseguro.es/SeguroAgrario/InfoLimiteMaximoDanos"
+	xmlns:x="http://www.w3.org/2001/XMLSchema"
+	xmlns:ti="http://www.agroseguro.es/ITipos" 
+	>
+	
+	<x:import
+		namespace="http://www.agroseguro.es/ITipos"
+		schemaLocation="../commons/Tipos.xsd" />
+
+	<x:element name="InfoLimiteMaximoDanos" type="InfoLimiteMaximoDanos" />
+	
+	<x:complexType name="InfoLimiteMaximoDanos" >
+		<x:attributeGroup ref="ti:PeticionSW" />
+		<x:attribute name="plan" type="ti:Plan" use="required" />
+        <x:attribute name="linea" type="ti:Linea_Codigo" use="required" />
+		<x:attribute name="provinciaSIGPAC" type="ti:Provincia_Codigo" use="required"/>
+	   	<x:attribute name="terminoSIGPAC" type="ti:Termino_Codigo" use="required" />
+	   	<x:attribute name="agregadoSIGPAC" type="ti:SIGPAC_Agregado" use="required" />
+	   	<x:attribute name="zonaSIGPAC" type="ti:SIGPAC_Zona" use="required" />
+	   	<x:attribute name="poligonoSIGPAC" type="ti:SIGPAC_Poligono" use="required" />
+	   	<x:attribute name="parcelaSIGPAC" type="ti:SIGPAC_Parcela" use="required" />
+		<x:attribute name="recintoSIGPAC" type="ti:SIGPAC_Recinto" use="optional" />
+		<x:attribute name="limiteMaximoDanos" type="ti:TantoPorCien" use="required"/>
+	</x:complexType>
+	
+</x:schema>

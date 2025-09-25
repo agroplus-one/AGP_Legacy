@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	targetNamespace="http://www.agroseguro.es/Contratacion" xmlns="http://www.agroseguro.es/Contratacion"
+	xmlns:cp="http://www.agroseguro.es/Contratacion/CostePoliza"
+	xmlns:ds="http://www.agroseguro.es/Contratacion/DeclaracionSubvenciones"
+	xmlns:dv="http://www.agroseguro.es/Contratacion/DatosVariables"
+	xmlns:opcf="http://www.agroseguro.es/SeguroAgrario/Contratacion/OP/CostesFijos"
+	xmlns:oprs="http://www.agroseguro.es/SeguroAgrario/Contratacion/OP/RelacionSocios"
+	xmlns:ti="http://www.agroseguro.es/Tipos">
+	<xs:import namespace="http://www.agroseguro.es/Contratacion/CostePoliza"
+		schemaLocation="CostePoliza.xsd" />
+
+	<xs:import
+		namespace="http://www.agroseguro.es/Contratacion/DeclaracionSubvenciones"
+		schemaLocation="DeclaracionSubvenciones.xsd" />
+
+	<xs:import namespace="http://www.agroseguro.es/Tipos"
+		schemaLocation="Tipos.xsd" />
+
+	<xs:import namespace="http://www.agroseguro.es/Contratacion/DatosVariables"
+		schemaLocation="DatosVariablesUnificado.xsd" />
+
+	<xs:import
+		namespace="http://www.agroseguro.es/SeguroAgrario/Contratacion/OP/RelacionSocios"
+		schemaLocation="RelacionSocios_OP.xsd" />
+
+	<xs:import
+		namespace="http://www.agroseguro.es/SeguroAgrario/Contratacion/OP/CostesFijos"
+		schemaLocation="CostesFijos_OP.xsd" />
+
+	<xs:element name="Poliza" type="Poliza" />
+
+	<xs:complexType name="Poliza">
+		<xs:sequence>
+			<xs:choice maxOccurs="1" minOccurs="1">
+				<xs:element maxOccurs="1" minOccurs="1" name="Colectivo"
+					type="Colectivo" />
+				<xs:element maxOccurs="1" minOccurs="0" name="Tomador"
+					type="Tomador" />
+			</xs:choice>
+			<xs:element maxOccurs="1" minOccurs="1" name="Asegurado"
+				type="Asegurado" />
+			<xs:element maxOccurs="1" minOccurs="1" name="Entidad"
+				type="Entidad" />
+			<xs:element maxOccurs="1" minOccurs="1" name="Cobertura"
+				type="Cobertura" />
+			<xs:element maxOccurs="1" minOccurs="1" name="ObjetosAsegurados"
+				type="ObjetosAsegurados" />
+			<xs:element maxOccurs="1" minOccurs="0" name="Pago" type="Pago" />
+			<xs:choice maxOccurs="1" minOccurs="0">
+				<xs:element maxOccurs="1" minOccurs="1" name="CostePoliza"
+					type="cp:CostePoliza" />
+				<xs:element maxOccurs="1" minOccurs="1" name="DistribucionCoste"
+					type="cp:DistribucionCoste" />
+			</xs:choice>
+			<xs:element maxOccurs="1" minOccurs="0"
+				name="SubvencionesDeclaradas" type="ds:SubvencionesDeclaradas" />
+			<xs:element maxOccurs="1" minOccurs="0" name="RelacionSocios"
+				type="ds:RelacionSocios" />
+			<xs:element maxOccurs="1" minOccurs="0" name="RelacionSociosOP"
+				type="oprs:RelacionSociosOP" />
+			<xs:element maxOccurs="1" minOccurs="0" name="CostesFijosOP"
+				type="opcf:CostesFijosOP" />
+		</xs:sequence>
+		<xs:attributeGroup ref="ti:PlanLinea" />
+		<xs:attribute name="referencia" type="ti:Poliza_Referencia_Unificada"
+			use="optional" />
+		<xs:attribute name="digitoControl" type="ti:DigitoControl"
+			use="optional" />
+		<xs:attribute name="fechaFirmaSeguro" type="xs:date" use="required" />
+		<xs:attribute name="modalidadSeguro" type="ti:ModalidadSeguro"
+			use="optional" />
+	</xs:complexType>
+
+	<xs:complexType name="Colectivo">
+		<xs:attributeGroup ref="ti:ReferenciaColectivo" />
+		<xs:attribute name="nif" type="ti:NIFCIF" use="required" />
+	</xs:complexType>
+
+	<xs:complexType name="Tomador">
+		<xs:sequence>
+			<xs:group maxOccurs="1" minOccurs="1" ref="ti:NombrePersona" />
+			<xs:element maxOccurs="1" minOccurs="1" name="Direccion"
+				type="ti:Direccion" />
+			<xs:element maxOccurs="1" minOccurs="0" name="DatosContacto"
+				type="ti:DatosContacto" />
+		</xs:sequence>
+		<xs:attribute name="nif" type="ti:NIFCIF" use="required" />
+	</xs:complexType>
+
+	<xs:complexType name="Asegurado">
+		<xs:sequence>
+			<xs:group maxOccurs="1" minOccurs="0" ref="ti:NombrePersona" />
+			<xs:element maxOccurs="1" minOccurs="0" name="Direccion"
+				type="ti:Direccion" />
+			<xs:element maxOccurs="1" minOccurs="0" name="DatosContacto"
+				type="ti:DatosContacto" />
+		</xs:sequence>
+		<xs:attribute name="nif" type="ti:NIFCIF" use="required" />
+	</xs:complexType>
+
+	<xs:complexType name="Entidad">
+		<xs:sequence>
+			<xs:element maxOccurs="1" minOccurs="0" name="Mediador"
+				type="Mediador" />
+			<xs:element maxOccurs="unbounded" minOccurs="0" name="Gastos"
+				type="ti:Gastos" />
+		</xs:sequence>
+		<xs:attribute name="codigo" type="ti:Entidad_Codigo" use="required" />
+		<xs:attribute name="codigoInterno" type="ti:CodigoInternoEntidad"
+			use="required" />
+	</xs:complexType>
+
+	<xs:complexType name="Mediador">
+		<xs:sequence>
+			<xs:group maxOccurs="1" minOccurs="0" ref="ti:NombrePersona" />
+		</xs:sequence>
+		<xs:attribute name="tipo" type="ti:Mediador_Tipo" use="required" />
+		<xs:attribute name="retribucionAsegurado" type="ti:SiNo"
+			use="optional" />
+		<xs:attribute name="importeRetribucion" type="ti:ImporteRetribucionMediador"
+			use="optional" />
+	</xs:complexType>
+
+	<xs:complexType name="Cobertura">
+		<xs:all>
+			<xs:element maxOccurs="1" minOccurs="0" name="DatosVariables"
+				type="dv:DatosVariables" />
+		</xs:all>
+		<xs:attribute name="modulo" type="ti:Cobertura_Modulo"
+			use="required" />
+	</xs:complexType>
+
+	<xs:complexType name="Pago">
+		<xs:sequence>
+			<xs:element maxOccurs="1" minOccurs="0" name="Cuenta"
+				type="Cuenta" />
+			<xs:element maxOccurs="1" minOccurs="0" name="Fraccionamiento"
+				type="Fraccionamiento" />
+		</xs:sequence>
+		<xs:attribute name="forma" type="ti:FormaPago" use="optional" />
+		<xs:attribute name="domiciliado" type="ti:SN" use="optional" />
+		<xs:attribute name="fecha" type="xs:date" use="optional" />
+		<xs:attribute name="importe" type="ti:ImportePositivo"
+			use="optional" />
+		<xs:attribute name="banco" type="ti:CCC_Banco" use="optional" />
+	</xs:complexType>
+
+	<xs:complexType name="Cuenta">
+		<xs:attribute name="iban" type="ti:IBAN" use="required" />
+		<xs:attribute name="destinatario" type="ti:DestinatarioDomiciliacion"
+			use="optional" />
+		<xs:attribute name="titular" type="ti:TitularCuenta" use="optional" />
+	</xs:complexType>
+
+	<xs:complexType name="Aval">
+		<xs:attribute name="numero" type="ti:NumeroAval" use="required" />
+		<xs:attribute name="importe" type="ti:ImportePositivo"
+			use="required" />
+	</xs:complexType>
+
+	<xs:complexType name="ObjetosAsegurados">
+		<xs:sequence>
+			<xs:any maxOccurs="unbounded" minOccurs="1"
+				namespace=" http://www.agroseguro.es/Contratacion/Parcela         http://www.agroseguro.es/Contratacion/Explotacion"
+				processContents="lax" />
+		</xs:sequence>
+		<xs:anyAttribute
+			namespace=" http://www.agroseguro.es/Contratacion/Parcela         http://www.agroseguro.es/Contratacion/Explotacion"
+			processContents="lax" />
+	</xs:complexType>
+
+	<xs:complexType name="Fraccionamiento">
+		<xs:sequence>
+			<xs:element maxOccurs="1" minOccurs="0" name="Aval" type="Aval" />
+		</xs:sequence>
+		<xs:attribute name="periodo" type="ti:PeriodoFraccionamiento"
+			use="required" />
+	</xs:complexType>
+
+</xs:schema>

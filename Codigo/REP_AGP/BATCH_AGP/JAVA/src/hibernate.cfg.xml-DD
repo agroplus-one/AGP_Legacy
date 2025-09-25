@@ -1,0 +1,722 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+		"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+		"http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory name="agp_factory">
+    	<!-- Database connection settings -->
+        <property name="hibernate.connection.url">jdbc:oracle:thin:@exades-scan:2521:BANCAD</property>
+        <property name="hibernate.connection.driver_class">oracle.jdbc.driver.OracleDriver</property>
+        <property name="hibernate.connection.username">o02agpe0</property>
+        <property name="hibernate.connection.password">o02agpe0</property>
+        <property name="default_schema">O02AGPE0</property>
+        <property name="hibernate.connection.autocommit">true</property>
+        <property name="hibernate.connection.release_mode">after_statement</property>
+        
+        <!-- SQL dialect -->
+        <property name="hibernate.dialect">org.hibernate.dialect.Oracle10gDialect</property>
+
+        <!-- Echo all executed SQL to stdout (Disable it on production env.)-->
+        <property name="show_sql">true</property>
+        <property name="hibernate.format_sql">true</property>
+        <property name="hibernate.current_session_context_class">org.hibernate.context.ThreadLocalSessionContext</property>
+		
+		<mapping resource="com/rsi/agp/dao/tables/commons/Comarca.hbm.xml"/>
+		<mapping resource="com/rsi/agp/dao/tables/commons/Comunidad.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/commons/Localidad.hbm.xml"/>
+		<mapping resource="com/rsi/agp/dao/tables/commons/Oficina.hbm.xml"/>  
+		<mapping resource="com/rsi/agp/dao/tables/commons/Provincia.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/commons/RelacionTablaXml.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/commons/Termino.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/commons/Usuario.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/commons/Via.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/commons/TerminoSigpacAgro.hbm.xml"/> 	
+		
+		<mapping resource="com/rsi/agp/dao/tables/cpm/CPMTipoCapital.hbm.xml"/>
+						
+		<!-- TABLAS DEL MODULO DE ADMINISTRACION -->
+		<mapping resource="com/rsi/agp/dao/tables/admin/Asegurado.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/admin/AseguradoSWDatPerMed.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/admin/Clase.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/admin/ClaseDetalle.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/admin/ClaseDetalleGanado.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/admin/Colectivo.hbm.xml"/>
+		<mapping resource="com/rsi/agp/dao/tables/admin/HistoricoColectivos.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/admin/Correo.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/admin/CorreoGrupo.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/admin/DatoAsegurado.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/admin/Entidad.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/admin/EntidadMediadora.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/admin/Socio.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/admin/SubentidadMediadora.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/admin/TipoMediadorEntMed.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/admin/TipoMediador.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/admin/Tomador.hbm.xml"/> 
+		
+		<!-- TABLAS DE CONDICIONES ESPECIALES -->
+		<mapping resource="com/rsi/agp/dao/tables/cesp/GrupoAseguradoCe.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/cesp/ModuloCompatibleCe.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/cesp/PeriodoGarantiaCe.hbm.xml"/> 
+		
+		
+		<!-- TABLAS DEL CONDICIONADO GENERAL -->
+		<mapping resource="com/rsi/agp/dao/tables/cgen/Alternativa.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/cgen/AseguradoNoSubvencionable.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/cgen/AtributoTipoExplotacion.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/cgen/Banco.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/cgen/CalculoIndemnizacion.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/cgen/CapitalAseguradoElegible.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/cgen/CaracteristicaExplotacion.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/cgen/CertificadoInstalacion.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/cgen/CicloCultivo.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/cgen/CodigoReduccionRendimiento.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/cgen/ConceptoPpalModulo.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/cgen/DanioCubierto.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/cgen/DenominacionOrigen.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/cgen/Destino.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/cgen/Garantizado.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/cgen/GastoSalvamento.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/cgen/GrupoSeguro.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/cgen/HistorialAsegurado.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/cgen/IGP.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/cgen/LineaCondicionado.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/cgen/MarcoPlantacion.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/cgen/MedidaPreventiva.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/cgen/MinimoIndemnizableElegible.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/cgen/NivelRiesgo.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/cgen/NumAniosDesdePoda.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/cgen/NumAniosDesdeDescorche.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/cgen/Organismo.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/cgen/PctFranquiciaElegible.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/cgen/Pendiente.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/cgen/PeriodoGarantia.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/cgen/PracticaCultural.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/cgen/ProteccionCultivo.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/cgen/ProvinciaOrganismo.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/cgen/Riesgo.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/cgen/SistemaConduccion.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/cgen/SistemaCultivo.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/cgen/SistemaProduccion.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/cgen/SistemaProteccion.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/cgen/TablaCondicionado.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/cgen/TipoCapital.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/cgen/TipoFranquicia.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/cgen/TipoPlantacion.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/cgen/TipoRendimiento.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/cgen/TipoSubvencionCCAA.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/cgen/TipoSubvencionEnesa.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/cgen/MaterialEstructura.hbm.xml"/>
+		<mapping resource="com/rsi/agp/dao/tables/cgen/MaterialCubierta.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/cgen/TipificacionRecibos.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/cgen/TipoInstalacion.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/cgen/TipoMasa.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/cgen/TipoTerreno.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/cgen/ZonificacionFamilia.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/cgen/ZonificacionGrupoCultivo.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/cgen/ZonificacionSIGPAC.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/cgen/ZonificacionFamiliaDetalle.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/cgen/ZonificacionGrupoCultivoDetalle.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/coberturas/CuadroCobertura.hbm.xml"/> 
+		
+		
+		<!-- TABLAS DE LA CONFIGURACION DE PANTALLAS -->
+		<mapping resource="com/rsi/agp/dao/tables/config/DatoVariableDefault.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/config/ConfigAgp.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/config/ConfiguracionCampo.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/config/GrupoFactores.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/config/OrigenDatos.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/config/Pantalla.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/config/PantallaConfigurable.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/config/RelacionCampo.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/config/Seccion.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/config/TipoCampo.hbm.xml"/> 
+		
+		
+		<!-- TABLAS DEL CONDICIONADO POR PLAN/LINEA -->
+		<mapping resource="com/rsi/agp/dao/tables/cpl/AmbitoAsegurable.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/cpl/AsegSubvAdicionalEnesa.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/cpl/AseguradoAutorizado.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/cpl/AseguradoAutorizadoSC.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/cpl/BonificacionMedidaPreventiva.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/cpl/BonificacionRecargo.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/cpl/CaracteristicaModulo.hbm.xml"/>
+		<mapping resource="com/rsi/agp/dao/tables/cpl/CodigoDenominacionOrigen.hbm.xml"/>
+		<mapping resource="com/rsi/agp/dao/tables/cpl/ComisionAgraria.hbm.xml"/>
+		<mapping resource="com/rsi/agp/dao/tables/cpl/ConceptoCubiertoModulo.hbm.xml"/>
+		<mapping resource="com/rsi/agp/dao/tables/cpl/CondicionesAsociadasTipologiaExplotacion.hbm.xml"/>
+		<mapping resource="com/rsi/agp/dao/tables/cpl/CondicionesFraccionamiento.hbm.xml"/>
+		<mapping resource="com/rsi/agp/dao/tables/cpl/GrupoVarietales.hbm.xml"/>
+		<mapping resource="com/rsi/agp/dao/tables/cpl/Cultivo.hbm.xml"/>
+		<mapping resource="com/rsi/agp/dao/tables/cpl/Descuento.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/cpl/EstadoFenologico.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/cpl/FechaContratacionAgricola.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/cpl/FechaFinGarantia.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/cpl/FechaRecoleccion.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/cpl/FormulacionCondicionesTipologiaExplotacion.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/cpl/GrupoSubvenciones.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/cpl/GrupoTasaRiesgo.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/cpl/GrupoTasas.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/cpl/IncompatibilidadContratacion.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/cpl/IncompatibilidadTipoSubvDeclarable.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/cpl/LimiteRendimiento.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/cpl/RendimientoCaracteristicaEspecifica.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/cpl/MascaraFechaContrataAgricola.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/cpl/MascaraGrupoTasas.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/cpl/MascaraLimiteRendimiento.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/cpl/MascaraRendimientoCaracteristicaEspecifica.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/cpl/MascaraPrecio.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/cpl/Medida.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/cpl/MedidaFranquicia.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/cpl/MedidasAsociadasHistorialAsegurado.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/cpl/Modulo.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/cpl/ModuloAplicableMedida.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/cpl/PctRecargoConsorcio.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/cpl/Precio.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/cpl/PrimaRiesgo.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/cpl/ReduccionRdtoAmbito.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/cpl/RelEspeciesSCEspeciesST.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/cpl/RelRiesgoCubiertoTarificable.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/cpl/RendimientosRegistrosParcela.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/cpl/RiesgoCubierto.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/cpl/RiesgoCubiertoModulo.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/cpl/RiesgoTarificable.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/cpl/RiesgoTasable.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/cpl/SistemaReduccionSubvCCAA.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/cpl/SubvencionCCAA.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/cpl/SubvencionEnesa.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/cpl/SubvencionesGrupo.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/cpl/TablaBonus.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/cpl/TablaExternaCultivo.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/cpl/Tarifa.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/cpl/TiposSubvIncompCalculadas.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/cpl/Variedad.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/cpl/ValorEspecieAmbito.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/cpl/VinculacionValoresModulo.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/cpl/Factor.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/cpl/PctComisionEstratosPrima.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/cpl/RendimientosMediosParcela.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/cpl/TipificacionParcela.hbm.xml"/> 
+		
+		
+		<!-- GANADO -->
+		<mapping resource="com/rsi/agp/dao/tables/cgen/GruposNegocio.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/cgen/TipoCapitalConGrupoNegocio.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/cgen/FactoresIncluidosConceptoPrincipalModulo.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/cgen/AdaptacionRiesgo.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/cgen/ConceptosDeducibles.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/cgen/DatosBuzonGeneral.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/cpl/gan/AseguradoAutorizadoGanado.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/cpl/gan/RiesgoCubiertoModuloGanado.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/cpl/gan/VinculacionValoresModuloG.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/cpl/gan/FicheroVinculacionExternaG.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/cpl/gan/FicheroVinculacionExtEspAmbito.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/cpl/gan/VinculacionFilasModuloG.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/cpl/gan/VinculacionExtFilasModuloG.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/cpl/gan/GrupoTasasG.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/cpl/gan/GrupoTasaRiesgoG.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/cpl/gan/MascaraGrupoTasasG.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/cpl/gan/ValoresPermConceptosDeduciblesG.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/cpl/gan/RelValConceptXConceptDeduciblesG.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/cpl/gan/MedidaG.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/cpl/gan/Especie.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/cpl/gan/RegimenManejo.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/cpl/gan/GruposRazas.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/cpl/gan/TiposAnimalGanado.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/cpl/gan/ObligatoriedadTiposAnimal.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/cpl/gan/RelacionAnimales.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/cpl/gan/NumMinAnimalesColmenas.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/cpl/gan/PctValorMaxExplotacion.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/cpl/gan/DatosVariablesTipo.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/cpl/gan/PctAdaptacionRiesgo.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/cpl/gan/ValoresFactorEspecieAmbito.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/cpl/gan/AgrupacionExplotacion.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/cpl/gan/PrecioGanado.hbm.xml"/>
+		<mapping resource="com/rsi/agp/dao/tables/cpl/gan/FechaContratacion.hbm.xml"/>
+		<mapping resource="com/rsi/agp/dao/tables/cpl/gan/MascaraPrecioGanado.hbm.xml"/>
+		<mapping resource="com/rsi/agp/dao/tables/cpl/gan/MascaraFechaContratacion.hbm.xml"/>
+		<mapping resource="com/rsi/agp/dao/tables/cpl/gan/IncompatibilidadMismaPoliza.hbm.xml"/>
+		<mapping resource="com/rsi/agp/dao/tables/cpl/gan/IncompatibilidadOtraPoliza.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/cpl/gan/PesoCalculoPrecioAseg.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/cpl/gan/SuspensionCautelarContrato.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/cpl/gan/SubvencionEnesaGanado.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/cpl/gan/SubvencionCCAAGanado.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/cpl/gan/CodConceptoValorPermitido.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/cpl/gan/ReduccionEnesaCCAA.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/cpl/gan/RelEspeciesTradicional.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/cpl/gan/ImporteMinimoRecargoAval.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/cpl/gan/GarantiasMedidas.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/cpl/gan/MedidasFranquiciaGanado.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/cpl/gan/PeriodosFraccionamientos.hbm.xml"/> 
+		
+		
+		<!-- TABLAS DEL HISTORICO -->
+		<mapping resource="com/rsi/agp/dao/tables/log/HistoricoCambioIBAN.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/log/HistoricoCambioTitular.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/log/HistImportaciones.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/log/ImportacionTabla.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/log/TipoImportacion.hbm.xml"/> 
+		
+		
+		<!-- TABLAS DEL ORGANIZADOR -->
+		<mapping resource="com/rsi/agp/dao/tables/org/DiccionarioDatos.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/org/Formularios.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/org/NaturalezaAlternativa.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/org/OrganizadorInformacion.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/org/RelUsoTablaCondicionado.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/org/TipoNaturaleza.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/org/Ubicacion.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/org/Uso.hbm.xml"/> 
+		
+		
+		<!--  TABLAS DE PAC -->
+		<mapping resource="com/rsi/agp/dao/tables/pac/PacCargas.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/pac/PacCargasFichero.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/pac/PacAsegurados.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/pac/PacParcelas.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/pac/PacCapAseg.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/pac/PacDatosVariables.hbm.xml"/> 
+		
+		
+		<!-- TABLA DE PARAMETROS -->
+		<mapping resource="com/rsi/agp/dao/tables/param/Parametro.hbm.xml"/> 
+		
+		
+		<!-- TABLAS DE POLIZAS -->
+		<mapping resource="com/rsi/agp/dao/tables/poliza/PolizasSWFinanciacion.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/poliza/CapitalAsegurado.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/poliza/CapAsegRelModulo.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/poliza/CoberturaPoliza.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/poliza/ComparativaPoliza.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/poliza/ComparativaFija.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/poliza/Comunicaciones.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/poliza/DatoVariableParcela.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/poliza/DistribucionCoste.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/poliza/DistCosteParcela.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/poliza/DistCosteSubvencion.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/poliza/EnvioAgroseguro.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/poliza/EstadoPagoAgp.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/poliza/EstadoPoliza.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/poliza/TipoRdto.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/poliza/Linea.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/poliza/LineaGrupoNegocio.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/poliza/ImporteFraccionamiento.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/poliza/ModuloPoliza.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/poliza/ModuloPolizaCoberturaSW.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/poliza/PagoPoliza.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/poliza/Parcela.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/poliza/ParcelaSWZonifSIGPAC.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/poliza/ParcelaSWRendimiento.hbm.xml"/>
+		<mapping resource="com/rsi/agp/dao/tables/poliza/Poliza.hbm.xml"/>
+		<mapping resource="com/rsi/agp/dao/tables/poliza/PolizaHistoricoBorrado.hbm.xml"/>
+		<mapping resource="com/rsi/agp/dao/tables/poliza/DatosAval.hbm.xml"/>
+		<mapping resource="com/rsi/agp/dao/tables/poliza/PolizaPctComisiones.hbm.xml"/>
+		<mapping resource="com/rsi/agp/dao/tables/poliza/PolizasSWHojasCampo.hbm.xml"/>
+		<mapping resource="com/rsi/agp/dao/tables/poliza/PolizasHojasCampo.hbm.xml"/>
+		<mapping resource="com/rsi/agp/dao/tables/poliza/PolizasInfoHojasCampo.hbm.xml"/>
+		<mapping resource="com/rsi/agp/dao/tables/poliza/PolizasSWActas.hbm.xml"/>
+		<mapping resource="com/rsi/agp/dao/tables/poliza/PolizasActas.hbm.xml"/>
+		<mapping resource="com/rsi/agp/dao/tables/poliza/PolizasInfoActas.hbm.xml"/>
+		<mapping resource="com/rsi/agp/dao/tables/poliza/PolizasInfoHojaCampoTipoHoja.hbm.xml"/>
+		<mapping resource="com/rsi/agp/dao/tables/poliza/PolizasInfoHojaCampoTipoSituacion.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/poliza/PolizasInfoHojaCampoSituacion.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/poliza/PolizasInfoActasSituacion.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/poliza/PolizasInfoHojaCampoVistaHojaSituacion.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/poliza/HistoricoEstados.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/poliza/PolizaSocio.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/poliza/ParcelaCobertura.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/poliza/SubvParcelaCCAA.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/poliza/SubvParcelaENESA.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/poliza/SubvExplotacionCCAA.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/poliza/SubvExplotacionENESA.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/poliza/SubAseguradoCCAA.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/poliza/SubAseguradoENESA.hbm.xml"/>
+		<mapping resource="com/rsi/agp/dao/tables/poliza/SubAseguradoCCAAGanado.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/poliza/SubAseguradoENESAGanado.hbm.xml"/>
+		<mapping resource="com/rsi/agp/dao/tables/poliza/SubvencionSocio.hbm.xml"/>
+		<mapping resource="com/rsi/agp/dao/tables/poliza/SubvencionSocioGanado.hbm.xml"/>
+		<mapping resource="com/rsi/agp/dao/tables/poliza/NotaInformativa.hbm.xml"/>
+		<mapping resource="com/rsi/agp/dao/tables/poliza/VistaPlzHojaCampoActaTasacion.hbm.xml"/>
+		
+		
+		<!-- DISTRIBUCION COSTES 2015 -->
+		<mapping resource="com/rsi/agp/dao/tables/poliza/PolizaHistoricoDescuentos.hbm.xml"/>
+		<mapping resource="com/rsi/agp/dao/tables/poliza/dc2015/DistribucionCoste2015.hbm.xml"/>
+		<mapping resource="com/rsi/agp/dao/tables/poliza/dc2015/DistCosteSubvencion2015.hbm.xml"/>
+		<mapping resource="com/rsi/agp/dao/tables/poliza/dc2015/DistCosteParcela2015.hbm.xml"/>
+		<mapping resource="com/rsi/agp/dao/tables/poliza/dc2015/BonificacionRecargo2015.hbm.xml"/>
+		<mapping resource="com/rsi/agp/dao/tables/poliza/dc2015/DistCosteExplotaciones.hbm.xml"/> 
+		
+		
+		<!--  OTRAS TABLAS PROVISIONAL -->
+		<mapping resource="com/rsi/agp/dao/tables/recibos/ReciboBonificacionRecargo.hbm.xml"/> 
+		
+		
+		<!-- TABLA DE REFERENCIAS -->
+		<mapping resource="com/rsi/agp/dao/tables/ref/ReferenciaAgricola.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/admin/ColectivoReferencia.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/masc/CampoMascara.hbm.xml"/> 
+		
+		
+		<!-- TABLAS DE SINIESTROS -->
+		<mapping resource="com/rsi/agp/dao/tables/siniestro/DatVarCapAsegSiniestro.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/siniestro/CapAsegSiniestro.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/siniestro/ParcelaSiniestro.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/siniestro/EstadoSiniestro.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/siniestro/Siniestro.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/siniestro/SiniestroSWValidacion.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/siniestro/SiniestroSWConfirmacion.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/siniestro/SiniestroSWImpresion.hbm.xml"/> 
+		
+		
+		<!-- TABLAS DE ANEXO DE MODIFICACION -->
+		<mapping resource="com/rsi/agp/dao/tables/anexo/AnexoModificacion.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/anexo/AnexoModSWCalculo.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/anexo/AnexoModSWComparativas.hbm.xml"/>
+		<mapping resource="com/rsi/agp/dao/tables/anexo/AnexoModDistribucionCostes.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/anexo/AnexoModBonifRecargos.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/anexo/AnexoModSubvCCAA.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/anexo/AnexoModSubvEnesa.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/anexo/CapitalAsegurado.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/anexo/CapitalDTSVariable.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/anexo/Cobertura.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/anexo/Cupon.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/anexo/CuponPrevio.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/anexo/EstadoCuponPrevio.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/anexo/EstadoPlzAgroseguro.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/anexo/Estado.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/anexo/EstadoCupon.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/anexo/HistoricoCupon.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/anexo/Parcela.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/anexo/ParcelaAMSWZonifSIGPAC.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/anexo/ParcelaAMSWRendimiento.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/anexo/SubvDeclarada.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/anexo/EnviosSWAnulacion.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/anexo/EnviosSWConfirmacion.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/anexo/EnviosSWSolicitud.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/anexo/EnviosSWImpresion.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/anexo/EnviosSWXML.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/anexo/AnexoModSWValidacion.hbm.xml"/> 
+		
+		
+		<!-- TABLAS DE SOBREPRECIO -->
+		<mapping resource="com/rsi/agp/dao/tables/sbp/ErrorSbp.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/sbp/ErrorPlzSbp.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/sbp/EstadoPlzSbp.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/sbp/FechaContratacionSbp.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/sbp/ParcelaSbp.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/sbp/PolizaSbp.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/sbp/PrimaMinimaSbp.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/sbp/Sobreprecio.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/sbp/TasasSbp.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/sbp/TipoEnvio.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/sbp/BaseSbp.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/sbp/ImpuestoSbp.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/sbp/MtoImpuestoSbp.hbm.xml"/> 
+		
+		
+		<!-- VISTAS -->
+		<mapping resource="com/rsi/agp/dao/tables/poliza/VistaComparativas.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/orgDat/VistaMarcoPlantacion.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/orgDat/VistaMedidaPreventiva.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/orgDat/VistaPracticaCultural.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/orgDat/VistaPracticaCultural305.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/orgDat/VistaRotacion.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/orgDat/VistaSistemaProduccion.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/orgDat/VistaDenomOrigen.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/orgDat/VistaDestino.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/orgDat/VistaTipoPlantacion.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/orgDat/VistaIGP.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/orgDat/VistaIGPFactorAmbito.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/orgDat/VistaSistemaProteccion.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/orgDat/VistaCicloCultivo.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/commons/VistaDatosVariablesParcela.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/commons/VistaTerminosAsegurable.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/orgDat/VistaMaterialCubierta.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/orgDat/VistaMaterialEstructura.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/orgDat/VistaTipoInstalacion.hbm.xml"/> 	
+		<mapping resource="com/rsi/agp/dao/tables/orgDat/VistaCertificadoEstructura.hbm.xml"/> 	
+		<mapping resource="com/rsi/agp/dao/tables/orgDat/VistaSistemaCultivo.hbm.xml"/> 	
+		<mapping resource="com/rsi/agp/dao/tables/orgDat/VistaCodigoReduccionRendimiento.hbm.xml"/> 	
+		<mapping resource="com/rsi/agp/dao/tables/orgDat/VistaTipoPlantacion309.hbm.xml"/> 	
+		<mapping resource="com/rsi/agp/dao/tables/orgDat/VistaSistemaCultivo312.hbm.xml"/> 	
+		<mapping resource="com/rsi/agp/dao/tables/orgDat/VistaPorFactores.hbm.xml"/> 	
+		<mapping resource="com/rsi/agp/dao/tables/orgDat/VistaConceptoPpalModulo.hbm.xml"/> 	
+		<mapping resource="com/rsi/agp/dao/tables/orgDat/VistaTipoCapital.hbm.xml"/> 	
+		<mapping resource="com/rsi/agp/dao/tables/orgDat/VistaTipoCapitalGanado.hbm.xml"/> 	
+		
+		
+		<!-- TABLAS COPYS -->
+		<mapping resource="com/rsi/agp/dao/tables/copy/Asegurado.hbm.xml"/> 	
+		<mapping resource="com/rsi/agp/dao/tables/copy/CapitalAsegurado.hbm.xml"/> 	
+		<mapping resource="com/rsi/agp/dao/tables/copy/CoberturaPoliza.hbm.xml"/> 	
+		<mapping resource="com/rsi/agp/dao/tables/copy/Colectivo.hbm.xml"/> 	
+		<mapping resource="com/rsi/agp/dao/tables/copy/DatoVariableParcela.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/copy/PagoPoliza.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/copy/Parcela.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/copy/Poliza.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/copy/SubvencionDeclarada.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/copy/SubvencionEnesa.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/copy/SubvencionOrganismo.hbm.xml"/> 
+		
+		
+		<!-- TABLAS RECIBOS -->
+		<mapping resource="com/rsi/agp/dao/tables/recibos/Recibo.hbm.xml"/> 	
+		<mapping resource="com/rsi/agp/dao/tables/recibos/ReciboPoliza.hbm.xml"/> 	
+		<mapping resource="com/rsi/agp/dao/tables/recibos/ReciboSubv.hbm.xml"/> 	
+		<mapping resource="com/rsi/agp/dao/tables/recibos/ReciboPolizaSubv.hbm.xml"/> 	
+		<mapping resource="com/rsi/agp/dao/tables/recibos/ReciboDetCompensacion.hbm.xml"/> 	
+		<mapping resource="com/rsi/agp/dao/tables/cpl/CondicionesComisiones.hbm.xml"/> 	
+		<mapping resource="com/rsi/agp/dao/tables/cgen/Condicion.hbm.xml"/> 	
+		
+		
+		<!-- Clases para los errores de los servicios web -->
+		<mapping resource="com/rsi/agp/dao/tables/commons/ErrorWs.hbm.xml"/> 	
+		<mapping resource="com/rsi/agp/dao/tables/commons/ErrorWsAccion.hbm.xml"/> 	
+		<mapping resource="com/rsi/agp/dao/tables/commons/ErrorPerfiles.hbm.xml"/> 	
+		<mapping resource="com/rsi/agp/dao/tables/commons/ErrorWsTipo.hbm.xml"/> 	
+		
+		
+		<!-- Reducción capital -->
+		<mapping resource="com/rsi/agp/dao/tables/reduccionCap/ReduccionCapital.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/reduccionCap/Estado.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/reduccionCap/Parcela.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/reduccionCap/CapitalAsegurado.hbm.xml"/> 
+		
+		
+		<!-- Perfiles -->
+		<mapping resource="com/rsi/agp/dao/tables/commons/GrupoEntidades.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/commons/Perfil.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/commons/PerfilesGrupoEntidades.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/commons/IncompatibilidadClase.hbm.xml"/> 
+		
+		
+		<!--  Comisiones -->
+		<mapping resource="com/rsi/agp/dao/tables/comisiones/CultivosEntidades.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/comisiones/CultivosEntidadesHistorico.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/comisiones/GGEEntidades.hbm.xml"/> 	
+		<mapping resource="com/rsi/agp/dao/tables/comisiones/GGEEntidadesHistorico.hbm.xml"/> 	
+		<mapping resource="com/rsi/agp/dao/tables/comisiones/GGESubentidades.hbm.xml"/> 	
+		<mapping resource="com/rsi/agp/dao/tables/comisiones/GGESubentidadesHistorico.hbm.xml"/> 	
+		<mapping resource="com/rsi/agp/dao/tables/comisiones/CultivosSubentidades.hbm.xml"/> 	
+		<mapping resource="com/rsi/agp/dao/tables/comisiones/Descuentos.hbm.xml"/> 	
+		<mapping resource="com/rsi/agp/dao/tables/comisiones/Retencion.hbm.xml"/> 	
+		<mapping resource="com/rsi/agp/dao/tables/comisiones/DescuentosHistorico.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/comisiones/CultivosSubentidadesHistorico.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/comisiones/ImpuestoConsorcio.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/comisiones/Reglamento.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/comisiones/ReglamentoHist.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/comisiones/Cierre.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/comisiones/Fase.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/comisiones/Fichero.hbm.xml"/> 	
+		<mapping resource="com/rsi/agp/dao/tables/comisiones/FicheroContenido.hbm.xml"/> 	
+		<mapping resource="com/rsi/agp/dao/tables/comisiones/FicheroIncidencia.hbm.xml"/> 	
+		<mapping resource="com/rsi/agp/dao/tables/comisiones/reglamento/ReglamentoProduccionEmitida.hbm.xml"/> 	
+		<mapping resource="com/rsi/agp/dao/tables/comisiones/reglamento/ReglamentoProduccionEmitidaSituacion.hbm.xml"/> 	
+		<mapping resource="com/rsi/agp/dao/tables/comisiones/comisiones/Comision.hbm.xml"/> 	
+		<mapping resource="com/rsi/agp/dao/tables/comisiones/comisiones/ComisionAplicacion.hbm.xml"/> 	
+		<mapping resource="com/rsi/agp/dao/tables/comisiones/comisiones/ComisionAplicacionCondicionParticular.hbm.xml"/> 	
+		<mapping resource="com/rsi/agp/dao/tables/comisiones/comisiones/ComisionCondicionParticular.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/comisiones/impagados/ReciboImpagado.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/comisiones/impagados/InformeImpagados.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/comisiones/impagados/InformeImpagados2015.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/comisiones/recibosEmitidos/ReciboEmitido.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/comisiones/recibosEmitidos/ReciboEmitidoAplicacion.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/comisiones/recibosEmitidos/ReciboEmitidoApliBonRec.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/comisiones/recibosEmitidos/ReciboEmitidoSubvCCA.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/comisiones/recibosEmitidos/ReciboEmitidoDetComp.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/comisiones/recibosEmitidos/ReciboEmitidoApliSubvCCAA.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/comisiones/RgaComisiones.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/comisiones/RgaComisionesPendientes.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/comisiones/ReportCierre.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/comisiones/InformeMediadores.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/comisiones/InformeMediadoresMeses.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/comisiones/InformeMediadoresSaldos.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/comisiones/deudaAplazada/FicheroMult.hbm.xml"/> 	
+		<mapping resource="com/rsi/agp/dao/tables/comisiones/deudaAplazada/FicheroMultIncidencias.hbm.xml"/> 	
+		<mapping resource="com/rsi/agp/dao/tables/comisiones/deudaAplazada/FicheroMultContenido.hbm.xml"/> 	
+		<mapping resource="com/rsi/agp/dao/tables/comisiones/deudaAplazada/FaseMult.hbm.xml"/> 	
+		<mapping resource="com/rsi/agp/dao/tables/comisiones/deudaAplazada/DetalleAbonoColectivo.hbm.xml"/> 	
+		<mapping resource="com/rsi/agp/dao/tables/comisiones/deudaAplazada/DetalleAbonoIndividual.hbm.xml"/> 	
+		<mapping resource="com/rsi/agp/dao/tables/comisiones/deudaAplazada/DetalleAbonoPoliza.hbm.xml"/> 	
+		
+		
+		<!--  mtoInformes -->
+		<mapping resource="com/rsi/agp/dao/tables/mtoinf/Informe.hbm.xml"/> 	
+		<mapping resource="com/rsi/agp/dao/tables/mtoinf/DatoInformes.hbm.xml"/> 	
+		<mapping resource="com/rsi/agp/dao/tables/mtoinf/CamposCalculados.hbm.xml"/> 	
+		<mapping resource="com/rsi/agp/dao/tables/mtoinf/OperadorCamposCalculados.hbm.xml"/> 	
+		<mapping resource="com/rsi/agp/dao/tables/mtoinf/CondicionCamposCalculados.hbm.xml"/> 	
+		<mapping resource="com/rsi/agp/dao/tables/mtoinf/CamposPermitidos.hbm.xml"/> 	
+		<mapping resource="com/rsi/agp/dao/tables/mtoinf/ClasificacionRupturaCamposCalculados.hbm.xml"/> 	
+		<mapping resource="com/rsi/agp/dao/tables/mtoinf/ClasificacionRupturaCamposPermitidos.hbm.xml"/> 	
+		<mapping resource="com/rsi/agp/dao/tables/mtoinf/CondicionCamposPermitidos.hbm.xml"/> 	
+		<mapping resource="com/rsi/agp/dao/tables/mtoinf/OperadorCamposPermitido.hbm.xml"/> 	
+		<mapping resource="com/rsi/agp/dao/tables/mtoinf/RelVistaCampos.hbm.xml"/> 	
+		<mapping resource="com/rsi/agp/dao/tables/mtoinf/Vista.hbm.xml"/> 	
+		<mapping resource="com/rsi/agp/dao/tables/mtoinf/VistaCampo.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/mtoinf/EntidadAccesoRestringido.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/mtoinf/VistaCampoTipo.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/mtoinf/RelVistaPerfil.hbm.xml"/> 
+		
+		
+		<!-- Utilidades siniestros -->
+		<mapping resource="com/rsi/agp/dao/tables/siniestro/SiniestrosUtilidades.hbm.xml"/> 
+		
+		
+		<!-- Utilidades reduccion capital -->
+		<mapping resource="com/rsi/agp/dao/tables/reduccionCap/ReduccionCapitalUtilidades.hbm.xml"/> 
+		
+		
+		<!-- Informes - vistas -->
+		<mapping resource="com/rsi/agp/dao/tables/mtoinf/VistaMtoinfOperadores.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/mtoinf/VistaMtoinfClasificacionRuptura.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/mtoinf/VistaMtoinfCondiciones.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/mtoinf/VistaMtoinfDatosInformes.hbm.xml"/> 
+		
+		
+		<!-- Carga Condicionado -->
+		<mapping resource="com/rsi/agp/dao/tables/cargas/CargasCondicionado.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/cargas/CargasFicheros.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/cargas/CargasTablas.hbm.xml"/> 
+		
+		
+		<!-- Pagos -->
+		<mapping resource="com/rsi/agp/dao/tables/pagos/EstadosPago.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/pagos/EstadosPoliza.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/pagos/HistoricoPoliza.hbm.xml"/> 
+		
+		
+		<!-- Renovables -->
+		<mapping resource="com/rsi/agp/dao/tables/renovables/ColectivosRenovacion.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/renovables/EstadoRenovacionAgroplus.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/renovables/EstadoRenovacionAgroseguro.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/renovables/PolizaRenovable.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/renovables/VistaPolizaRenovable.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/renovables/PolizaRenovableHistoricoEstados.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/renovables/GastosRenovacion.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/renovables/PolizaRenovableEnvioIBANHistoricoEstados.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/renovables/PolizaRenovableEstadoEnvioIBAN.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/renovables/PolizaRenovableValidacionEnvioIBAN.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/renovables/GastosRenovacionAplicados.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/renovables/CosteGrupoNegocioRen.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/renovables/BonificacionRecargoRen.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/renovables/FraccionamientoRen.hbm.xml"/> 
+		
+		
+		<!-- Explotaciones -->
+		<mapping resource="com/rsi/agp/dao/tables/poliza/explotaciones/Explotacion.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/poliza/explotaciones/GrupoRaza.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/poliza/explotaciones/DatosVariable.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/poliza/explotaciones/PrecioAnimalesModulo.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/poliza/explotaciones/SWCargaExpPlzTradicional.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/poliza/explotaciones/ExplotacionCobertura.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/poliza/explotaciones/ExplotacionCoberturaVinculacion.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/poliza/explotaciones/SWModulosCoberturasExplotacion.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/poliza/explotaciones/ExplotacionCoberturaAnexo.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/poliza/explotaciones/ExplotacionCoberturaVincAnexo.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/poliza/explotaciones/SWModulosCobExplotacionAnexo.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/poliza/explotaciones/oddv/VistaAdapRiesgoEX.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/poliza/explotaciones/oddv/VistaAdapRiesgoGR.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/poliza/explotaciones/oddv/VistaAdapRiesgoTC.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/poliza/explotaciones/oddv/VistaAutorizacionEspecial.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/poliza/explotaciones/oddv/VistaCondicionesParticulares.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/poliza/explotaciones/oddv/VistaEmpresaGestora.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/poliza/explotaciones/oddv/VistaSistemaAlmacenamiento.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/poliza/explotaciones/oddv/VistaAlojamiento.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/poliza/explotaciones/oddv/VistaCalidadProduccion.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/poliza/explotaciones/oddv/VistaCalificacionSaneamiento.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/poliza/explotaciones/oddv/VistaCalificacionSanitaria.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/poliza/explotaciones/oddv/VistaControlOficialLechero.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/poliza/explotaciones/oddv/VistaCuencaHidrografica.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/poliza/explotaciones/oddv/VistaDuracionPeriodoProductivo.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/poliza/explotaciones/oddv/VistaExcepContratacionExplt.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/poliza/explotaciones/oddv/VistaExcepContratacionPoliza.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/poliza/explotaciones/oddv/VistaIgpDoGanado.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/poliza/explotaciones/oddv/VistaPureza.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/poliza/explotaciones/oddv/VistaTipoAseguradoGanado.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/poliza/explotaciones/oddv/VistaTipoGanaderia.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/poliza/explotaciones/oddv/VistaSistemaProdGanado.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/poliza/explotaciones/oddv/VistaDestinoGanado.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/poliza/explotaciones/oddv/VistaEspecie.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/poliza/explotaciones/oddv/VistaRegimenManejo.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/poliza/explotaciones/oddv/VistaGruposRazas.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/poliza/explotaciones/oddv/VistaTipoCapGrupoNegocio.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/poliza/explotaciones/oddv/VistaTiposAnimal.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/poliza/explotaciones/ExplotacionAnexo.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/poliza/explotaciones/GrupoRazaAnexo.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/poliza/explotaciones/DatosVarExplotacionAnexo.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/poliza/explotaciones/PrecioAnimalesModuloAnexo.hbm.xml"/> 
+		
+		
+		<!-- Comisiones con formato unificado -->
+		<mapping resource="com/rsi/agp/dao/tables/comisiones/unificado/ReciboUnificado.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/comisiones/unificado/IndividualUnificado.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/comisiones/unificado/GrupoNegocioUnificado.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/comisiones/unificado/FicheroUnificado.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/comisiones/unificado/FicheroContenidoUnificado.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/comisiones/unificado/FaseUnificado.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/comisiones/unificado/ColectivoUnificado.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/comisiones/unificado/AplicacionUnificado.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/comisiones/unificado/IndividualColectivoUnificado.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/comisiones/unificado/FicheroIncidenciasUnificado.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/comisiones/unificado/GastosAbonadosDeudaAplazadaUnificado.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/comisiones/unificado/FasesCerradas.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/comisiones/unificado/RgaUnifMediadores.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/comisiones/unificado/informes/InformeComisionesUnificado.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/comisiones/unificado/informes/InformeImpagadosUnificado.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/comisiones/unificado/informes/InformeDeudaAplazadaUnificado.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/comisiones/unificado/informes/cierre/InformeEntidades2015.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/comisiones/unificado/informes/cierre/InformeDetMediador2015.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/comisiones/unificado/informes/cierre/InformeTotMediador2015.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/comisiones/unificado/informes/cierre/InformeComsImpagados2015.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/comisiones/unificado/informes/cierre/InformeComsRGA2015.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/comisiones/unificado/informes/cierre/InformeEntidadesOperadores2015.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/comisiones/gastosentidad/AseguradoUnif17.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/comisiones/gastosentidad/GrupoNegocioUnif17.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/comisiones/gastosentidad/PolizaUnif17.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/comisiones/gastosentidad/ReciboUnif17.hbm.xml"/> 
+		
+		
+		<!-- Batch de comunicaciones externas -->
+		<mapping resource="com/rsi/agp/dao/tables/batch/comunicacionesExternas/ComunicacionExterna.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/batch/comunicacionesExternas/CorreduriaExterna.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/batch/comunicacionesExternas/ErrorComunicacionExterna.hbm.xml"/> 
+		
+		
+		<!-- Documentación Agroseguro -->
+		<mapping resource="com/rsi/agp/dao/tables/doc/DocAgroseguro.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/doc/DocAgroseguroExtPerm.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/doc/DocAgroseguroFichero.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/doc/DocAgroseguroTipo.hbm.xml"/> 
+		
+		
+		<!-- Responsabilidad civil ganado -->
+		<mapping resource="com/rsi/agp/dao/tables/rc/EspeciesRC.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/rc/RegimenRC.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/rc/LineasRC.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/rc/DatosRC.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/rc/SumaAseguradaRC.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/rc/ImpuestosRC.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/rc/ErroresRC.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/rc/EstadosRC.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/rc/PolizasRC.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/rc/PolizasHistEstadosRC.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/rc/PermisosPerfilRC.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/rc/VistaPolizasRC.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/admin/TipoMediadorAgro.hbm.xml"/> 
+		
+		
+		<!-- Incidencias Agroseguro P50775 -->
+		<mapping resource="com/rsi/agp/dao/tables/inc/AsuntosInc.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/inc/DocsAfectadosInc.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/inc/DocumentosInc.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/inc/EstadosInc.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/inc/Incidencias.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/inc/IncidenciasHist.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/inc/LlamadaWSInc.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/inc/TiposDocInc.hbm.xml"/> 
+		<mapping resource="com/rsi/agp/dao/tables/inc/VistaIncidenciasAgro.hbm.xml"/>
+		
+    </session-factory>
+</hibernate-configuration>
+

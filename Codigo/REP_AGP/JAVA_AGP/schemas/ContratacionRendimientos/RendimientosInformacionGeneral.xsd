@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<x:schema 
+	targetNamespace="http://www.agroseguro.es/SeguroAgrario/RendimientosInformacionGeneral" 
+	xmlns="http://www.agroseguro.es/SeguroAgrario/RendimientosInformacionGeneral"
+	xmlns:x="http://www.w3.org/2001/XMLSchema"  
+	xmlns:ti="http://www.agroseguro.es/ITipos"
+	elementFormDefault="qualified">
+	
+	<x:import namespace="http://www.agroseguro.es/ITipos"
+		schemaLocation="../commons/Tipos.xsd" />
+		
+	<x:element name="InformacionRendimientos" type="InformacionRendimientos" />
+	
+	<x:complexType name="InformacionRendimientos">
+		<x:sequence>
+			<x:element name="Modulo" type="Modulo" minOccurs="1" maxOccurs="unbounded" />
+		</x:sequence>
+		<x:attributeGroup ref="ti:PlanLinea" />
+		<x:attributeGroup ref="ti:PeticionSW" />	
+	</x:complexType>	
+	
+	<x:complexType name="Modulo">
+		<x:sequence>
+			<x:element name="TipoCapital" type="TipoCapital" minOccurs="1" maxOccurs="unbounded" />
+		</x:sequence>
+		<x:attribute name="modulo" use="required" type="ti:Cobertura_Modulo" />
+		<x:attribute name="agrupacion" use="required" type="Agrupacion" />
+	</x:complexType>
+	
+	<x:complexType name="TipoCapital">
+		<x:attribute name="tipo" use="required" type="ti:TipoCapital" />
+	</x:complexType>
+	
+	<x:simpleType name="Agrupacion">
+		<x:restriction base="x:string" />
+	</x:simpleType>
+	
+</x:schema>

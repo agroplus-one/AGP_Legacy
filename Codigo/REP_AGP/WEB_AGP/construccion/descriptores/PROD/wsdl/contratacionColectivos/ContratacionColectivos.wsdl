@@ -1,0 +1,469 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="ContratacionColectivos"
+	targetNamespace="http://www.agroseguro.es/serviciosweb/ContratacionColectivos/"
+	xmlns:agr="http://www.agroseguro.es/serviciosweb/ContratacionColectivos/"
+	xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	xmlns:xmime="http://www.w3.org/2005/05/xmlmime"
+	xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:ti="http://www.agroseguro.es/Tipos"
+	xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd"
+	xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd"
+	>
+	<wsdl:types>
+		<xsd:schema elementFormDefault="qualified"
+			targetNamespace="http://www.agroseguro.es/serviciosweb/ContratacionColectivos/"
+			xmlns:agr="http://www.agroseguro.es/serviciosweb/ContratacionColectivos/"
+			xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+			<xsd:import namespace="http://www.w3.org/2005/05/xmlmime"
+				schemaLocation="xmime.xsd" />
+				
+			<xsd:import	namespace="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd"
+				schemaLocation="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd" />
+			<xsd:import namespace="http://www.agroseguro.es/Tipos"
+				schemaLocation="Tipos.xsd" />
+
+			<xsd:complexType name="ParametrosListaColectivos">
+				<xsd:sequence>
+					<xsd:element name="plan" type="ti:Plan" />
+					<xsd:element name="linea" type="ti:Linea_Codigo" nillable="true" minOccurs="0" />
+					<xsd:element name="nifTomador" type="ti:NIF" nillable="true" minOccurs="0" />
+					<xsd:element name="iban" type="ti:IBAN" nillable="true" minOccurs="0" />
+					<xsd:element name="estado" type="agr:estado" nillable="true" minOccurs="0" />
+				</xsd:sequence>
+			</xsd:complexType>
+
+			<xsd:simpleType name="estado">
+				<xsd:restriction base="xsd:positiveInteger">
+					<xsd:totalDigits value="2" />
+					<xsd:minInclusive value="1" />
+				</xsd:restriction>
+			</xsd:simpleType>			
+
+			<xsd:complexType name="ParametrosConsultarColectivo">
+				<xsd:sequence>
+					<xsd:element name="plan" type="ti:Plan" />
+					<xsd:element name="referencia" type="ti:Colectivo_Referencia" />
+				</xsd:sequence>
+			</xsd:complexType>
+
+			<xsd:complexType name="ParametrosImpresionDocumentosColectivo">
+				<xsd:sequence>
+					<xsd:element name="plan" type="ti:Plan" />
+					<xsd:element name="referencia" type="ti:Colectivo_Referencia" />
+					<xsd:element name="tipoDocumento" type="agr:tipoDocumento" nillable="true" minOccurs="0" />
+				</xsd:sequence>
+			</xsd:complexType>
+
+			<xsd:simpleType name="tipoDocumento">
+				<xsd:restriction base="xsd:token">
+					<xsd:length value="2" />			 
+					<xsd:enumeration value="CO" />
+					<xsd:enumeration value="CG" />
+					<xsd:enumeration value="CE" />
+				</xsd:restriction>
+			</xsd:simpleType>			
+
+			<xsd:complexType name="ParametrosRegistrarColectivo">
+				<xsd:sequence>
+					<xsd:element name="colectivo" xmime:expectedContentTypes="text/xml" type="xmime:base64Binary" />
+				</xsd:sequence>
+			</xsd:complexType>
+
+			<xsd:complexType name="ParametrosValidarColectivo">
+				<xsd:sequence>
+					<xsd:element name="colectivo" xmime:expectedContentTypes="text/xml" type="xmime:base64Binary" />
+				</xsd:sequence>
+			</xsd:complexType>
+			
+			<xsd:complexType name="ParametrosEnviarDocumentosColectivo">
+				<xsd:sequence>
+					<xsd:element name="plan" type="ti:Plan" />
+					<xsd:element name="referencia" type="ti:Colectivo_Referencia" />
+					<xsd:element name="colectivo" xmime:expectedContentTypes="application/pdf" type="xmime:base64Binary" nillable="true" minOccurs="0"/>
+					<xsd:element name="condicionesGenerales" xmime:expectedContentTypes="application/pdf" type="xmime:base64Binary" nillable="true" minOccurs="0"/>
+					<xsd:element name="condicionesEspeciales" xmime:expectedContentTypes="application/pdf" type="xmime:base64Binary" nillable="true" minOccurs="0"/>
+				</xsd:sequence>
+			</xsd:complexType>			
+			
+			<xsd:element name="listaColectivosRequest" type="agr:ParametrosListaColectivos" />
+
+			<xsd:element name="listaColectivosResponse">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="listaColectivos" xmime:expectedContentTypes="text/xml" type="xmime:base64Binary" />
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+
+			<xsd:element name="consultarColectivoRequest" type="agr:ParametrosConsultarColectivo" />
+
+			<xsd:element name="consultarColectivoResponse">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="colectivo" xmime:expectedContentTypes="text/xml" type="xmime:base64Binary" />
+						<xsd:element name="estadoColectivo" xmime:expectedContentTypes="text/xml" type="xmime:base64Binary" />
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+
+			<xsd:element name="impresionDocumentosColectivoRequest" type="agr:ParametrosImpresionDocumentosColectivo" />
+
+			<xsd:element name="impresionDocumentosColectivoResponse">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="colectivo" xmime:expectedContentTypes="application/pdf" type="xmime:base64Binary" nillable="true" minOccurs="0"/>
+						<xsd:element name="condicionesGenerales" xmime:expectedContentTypes="application/pdf" type="xmime:base64Binary" nillable="true" minOccurs="0"/>
+						<xsd:element name="condicionesEspeciales" xmime:expectedContentTypes="application/pdf" type="xmime:base64Binary" nillable="true" minOccurs="0"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			
+			<xsd:element name="registrarColectivoRequest" type="agr:ParametrosRegistrarColectivo" />
+
+			<xsd:element name="registrarColectivoResponse">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="acuse" xmime:expectedContentTypes="text/xml" type="xmime:base64Binary" />
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>			
+
+			<xsd:element name="validarColectivoRequest" type="agr:ParametrosValidarColectivo" />
+
+			<xsd:element name="validarColectivoResponse">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="acuse" xmime:expectedContentTypes="text/xml" type="xmime:base64Binary" />
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>		
+			
+			<xsd:element name="enviarDocumentosColectivoRequest" type="agr:ParametrosEnviarDocumentosColectivo" />
+
+			<xsd:element name="enviarDocumentosColectivoResponse">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="acuse" xmime:expectedContentTypes="text/xml" type="xmime:base64Binary" />
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>					
+			
+			<xsd:element name="agrFallo"
+				xmlns:agr="http://www.agroseguro.es/serviciosweb/ContratacionColectivos/">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:annotation>
+							Lista de mensajes de error de AGROSEGURO
+						</xsd:annotation>
+						<xsd:element name="error" type="agr:Error"	maxOccurs="unbounded" minOccurs="0" />
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:complexType name="Error"
+				xmlns:agr="http://www.agroseguro.es/serviciosweb/ContratacionColectivos/">
+				<xsd:sequence>
+					<xsd:element name="codigo" type="xsd:int" />
+					<xsd:element name="mensaje" type="xsd:string" />
+				</xsd:sequence>
+			</xsd:complexType>
+		</xsd:schema>
+	</wsdl:types>
+	<wsdl:message name="Header">
+		<wsdl:part name="Security" element="wsse:Security" />
+	</wsdl:message>	
+	<wsdl:message name="AgrException">
+		<wsdl:part name="parameters" element="agr:agrFallo"/>
+	</wsdl:message>
+	<wsdl:message name="listaColectivosRequest">
+		<wsdl:part name="parameters" element="agr:listaColectivosRequest">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="listaColectivosResponse">
+		<wsdl:part name="parameters" element="agr:listaColectivosResponse">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="consultarColectivoRequest">
+		<wsdl:part name="parameters" element="agr:consultarColectivoRequest">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="consultarColectivoResponse">
+		<wsdl:part name="parameters" element="agr:consultarColectivoResponse">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="impresionDocumentosColectivoRequest">
+		<wsdl:part name="parameters" element="agr:impresionDocumentosColectivoRequest">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="impresionDocumentosColectivoResponse">
+		<wsdl:part name="parameters" element="agr:impresionDocumentosColectivoResponse">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="registrarColectivoRequest">
+		<wsdl:part name="parameters" element="agr:registrarColectivoRequest">
+		</wsdl:part>
+	</wsdl:message>	
+	<wsdl:message name="registrarColectivoResponse">
+		<wsdl:part name="parameters" element="agr:registrarColectivoResponse">
+		</wsdl:part>
+	</wsdl:message>	
+	<wsdl:message name="validarColectivoRequest">
+		<wsdl:part name="parameters" element="agr:validarColectivoRequest">
+		</wsdl:part>
+	</wsdl:message>		
+	<wsdl:message name="validarColectivoResponse">
+		<wsdl:part name="parameters" element="agr:validarColectivoResponse">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="enviarDocumentosColectivoRequest">
+		<wsdl:part name="parameters" element="agr:enviarDocumentosColectivoRequest">
+		</wsdl:part>
+	</wsdl:message>		
+	<wsdl:message name="enviarDocumentosColectivoResponse">
+		<wsdl:part name="parameters" element="agr:enviarDocumentosColectivoResponse">
+		</wsdl:part>
+	</wsdl:message>			
+
+	<wsdl:portType name="ContratacionColectivos">
+		<wsdl:operation name="listaColectivos">
+			<wsdl:documentation>
+				Método que devuelve un XML con una lista de colectivos acorde a los parámetros 
+				de entrada que se introduzcan en la petición. 
+				El esquema del documento es ListaColectivos.xsd
+
+				En la petición se deberá facilitar:
+
+				- Plan, obligatorio.
+
+				Al menos uno de los siguientes parámetros:
+				
+				- Línea, opcional.
+				- NIF del tomador, opcional.
+				- IBAN, opcional.
+				- Estado del colectivo, opcional.
+
+
+			</wsdl:documentation>
+			<wsdl:input message="agr:listaColectivosRequest"/>
+			<wsdl:output message="agr:listaColectivosResponse"/>
+			<wsdl:fault name="AgrException"
+				message="agr:AgrException">
+			</wsdl:fault>
+		</wsdl:operation>
+
+		<wsdl:operation name="consultarColectivo">
+			<wsdl:documentation>
+				Método que devuelve un XML con la información referente al colectivo solicitado y
+				otro XML indicando su estado y posibles errores.
+				Los esquemas de los documentos son Colectivo.xsd y AcuseRecibo.xsd
+
+				En la petición se deberá facilitar:
+
+				- Plan, obligatorio.
+				- Referencia de colectivo, obligatorio.
+
+			</wsdl:documentation>
+			<wsdl:input message="agr:consultarColectivoRequest"/>
+			<wsdl:output message="agr:consultarColectivoResponse"/>
+			<wsdl:fault name="AgrException"
+				message="agr:AgrException">
+			</wsdl:fault>
+		</wsdl:operation>
+
+		<wsdl:operation name="impresionDocumentosColectivo">
+			<wsdl:documentation>
+				Método que devuelve en formato PDF la información referente al colectivo y 
+				tipo de documento indicado.
+
+				En la petición se deberá facilitar:
+
+				- Plan, obligatorio.
+				- Referencia de colectivo, obligatorio.
+				- Tipo de documento, opcional
+
+				Si se indica tipo de documento se devolverá exclusivamente el PDF asociado
+				al tipo de documento indicado. En caso contrario se devolverán, en caso de estar disponibles, los siguientes documentos:
+				
+				- PDF del colectivo (tipo de documento CO)
+				- PDF de condiciones generales (tipo de documento CG)
+				- PDF de condiciones especiales (tipo de documento CE)
+
+			</wsdl:documentation>
+			<wsdl:input message="agr:impresionDocumentosColectivoRequest"/>
+			<wsdl:output message="agr:impresionDocumentosColectivoResponse"/>
+			<wsdl:fault name="AgrException"
+				message="agr:AgrException">
+			</wsdl:fault>
+		</wsdl:operation>
+
+		<wsdl:operation name="registrarColectivo">
+			<wsdl:documentation>
+				Método que permite registrar un nuevo colectivo en el sistema.
+
+				En la petición se deberá facilitar:
+
+				- XML del colectivo según el esquema Colectivo.xsd, obligatorio
+
+				Devuelve un XML con el acuse de recibo del colectivo que cumple el esquema AcuseRecibo.xsd
+
+			</wsdl:documentation>
+			<wsdl:input message="agr:registrarColectivoRequest"/>
+			<wsdl:output message="agr:registrarColectivoResponse"/>
+			<wsdl:fault name="AgrException"
+				message="agr:AgrException">
+			</wsdl:fault>
+		</wsdl:operation>
+		
+		<wsdl:operation name="validarColectivo">
+			<wsdl:documentation>
+				Método que permite validar un colectivo.
+
+				En la petición se deberá facilitar:
+
+				- XML del colectivo según el esquema Colectivo.xsd, obligatorio
+
+				Devuelve un XML con el acuse de recibo del colectivo que cumple el esquema AcuseRecibo.xsd
+
+			</wsdl:documentation>
+			<wsdl:input message="agr:validarColectivoRequest"/>
+			<wsdl:output message="agr:validarColectivoResponse"/>
+			<wsdl:fault name="AgrException"
+				message="agr:AgrException">
+			</wsdl:fault>
+		</wsdl:operation>	
+		
+		<wsdl:operation name="enviarDocumentosColectivo">
+			<wsdl:documentation>
+				Método que permite enviar la documentación firmada de un colectivo.
+
+				En la petición se deberá facilitar:
+				
+					- Plan: obligatorio
+					- Referencia de colectivo 
+					
+				y al menos uno de los siguientes documentos:
+
+				- PDF firmado del colectivo, opcional
+				- PDF firmado de condiciones generales del colectivo, opcional
+				- PDF firmado de condiciones especiales del colectivo, opcional
+
+				Devuelve un acuse de recibo que cumple el esquema AcuseRecibo.xsd para cada uno de los documentos recibidos.
+
+			</wsdl:documentation>
+			<wsdl:input message="agr:enviarDocumentosColectivoRequest"/>
+			<wsdl:output message="agr:enviarDocumentosColectivoResponse"/>
+			<wsdl:fault name="AgrException"
+				message="agr:AgrException">
+			</wsdl:fault>
+		</wsdl:operation>				
+		
+	</wsdl:portType>
+	<wsdl:binding name="ContratacionColectivosSOAP"
+		type="agr:ContratacionColectivos">
+		<soap:binding style="document"
+			transport="http://schemas.xmlsoap.org/soap/http" />
+		<wsdl:operation name="listaColectivos">
+			<soap:operation	soapAction="listaColectivos" />
+			<wsdl:input>
+				<soap:header wsdl:required="true" message="agr:Header" part="Security" use="literal" />
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+			<wsdl:fault name="AgrException">
+				<soap:fault name="AgrException" use="literal" />
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="consultarColectivo">
+			<soap:operation	soapAction="consultarColectivo" />
+			<wsdl:input>
+				<soap:header wsdl:required="true" message="agr:Header" part="Security" use="literal" />
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+			<wsdl:fault name="AgrException">
+				<soap:fault name="AgrException" use="literal" />
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="impresionDocumentosColectivo">
+			<soap:operation	soapAction="impresionDocumentosColectivo" />
+			<wsdl:input>
+				<soap:header wsdl:required="true" message="agr:Header" part="Security" use="literal" />
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+			<wsdl:fault name="AgrException">
+				<soap:fault name="AgrException" use="literal" />
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="registrarColectivo">
+			<soap:operation	soapAction="registrarColectivo" />
+			<wsdl:input>
+				<soap:header wsdl:required="true" message="agr:Header" part="Security" use="literal" />
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+			<wsdl:fault name="AgrException">
+				<soap:fault name="AgrException" use="literal" />
+			</wsdl:fault>
+		</wsdl:operation>
+		
+		<wsdl:operation name="validarColectivo">
+			<soap:operation	soapAction="validarColectivo" />
+			<wsdl:input>
+				<soap:header wsdl:required="true" message="agr:Header" part="Security" use="literal" />
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+			<wsdl:fault name="AgrException">
+				<soap:fault name="AgrException" use="literal" />
+			</wsdl:fault>
+		</wsdl:operation>
+		
+		<wsdl:operation name="enviarDocumentosColectivo">
+			<soap:operation	soapAction="enviarDocumentosColectivo" />
+			<wsdl:input>
+				<soap:header wsdl:required="true" message="agr:Header" part="Security" use="literal" />
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+			<wsdl:fault name="AgrException">
+				<soap:fault name="AgrException" use="literal" />
+			</wsdl:fault>
+		</wsdl:operation>		
+		
+
+	</wsdl:binding>
+	<wsdl:service name="ContratacionColectivos">
+		<wsdl:documentation>
+			Mediante este proceso se podrá consultar una lista de colectivos, el detalle de un colectivo concreto,
+			los documento asociados a un colectivo concreto, registrar un nuevo colectivo o validar un colectivo.
+
+			La información se devolverá dentro de archivos XML o PDF enviados como adjunto (Attachment) en formato MTOM.
+		</wsdl:documentation>
+		<wsdl:port name="ContratacionColectivosSOAP"
+			binding="agr:ContratacionColectivosSOAP">
+			<wsdl:documentation>
+				La primera dirección es el entorno de pruebas y no tiene
+				una resolución asignada en Internet, por lo que se deberá
+				incluir en la máquina local o en el servidor de nombres
+				local con la siguiente dirección: preproduccion.agroseguro.es
+
+				La segunda dirección es el entorno de producción.
+			</wsdl:documentation>
+			<soap:address
+				location="https://www.agroseguro.es/geco/V1R0/services/ContratacionColectivos" />
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>

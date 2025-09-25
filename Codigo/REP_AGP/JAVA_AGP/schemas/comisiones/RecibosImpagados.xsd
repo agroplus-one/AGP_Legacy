@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<x:schema 
+	targetNamespace="http://www.agroseguro.es/Recibos/Gastos"
+	xmlns="http://www.agroseguro.es/Recibos/Gastos" 
+	xmlns:x="http://www.w3.org/2001/XMLSchema"
+	xmlns:ti="http://www.agroseguro.es/ITipos" 
+>
+
+	<!-- Importacion de la definicion de tipos genericos -->
+	<x:import
+		namespace="http://www.agroseguro.es/ITipos"
+		schemaLocation="../commons/Tipos.xsd" />
+
+	<x:element name="Fase" type="Fase" />
+	
+	<x:complexType name="Fase">
+		<x:sequence>
+			<x:element name="Recibo" type="Recibo" minOccurs="1" maxOccurs="unbounded" />
+		</x:sequence>
+		<x:attribute name="ejercicioPago" use="required" type="ti:Recibo_Ejercicio" />
+		<x:attribute name="fase" use="required" type="ti:Fase_Codigo" />
+		<x:attribute name="fechaFaseCobros" use="required" type="x:date" />
+	</x:complexType>
+	
+	<x:complexType name="Recibo">
+		<x:sequence>
+			<x:choice maxOccurs="1" minOccurs="1">
+				<x:element name="NombreApellidos" type="ti:NombreApellidos" maxOccurs="1" minOccurs="1"/>
+				<x:element name="RazonSocial" type="ti:RazonSocial" maxOccurs="1" minOccurs="1"/>
+			</x:choice>
+			<x:choice maxOccurs="1" minOccurs="1">
+				<x:element name="Individual" type="Individual" maxOccurs="1" minOccurs="0"/>
+				<x:element name="Colectivo" type="Colectivo" maxOccurs="1" minOccurs="0" />
+				<x:element name="Poliza" type="Poliza" maxOccurs="1" minOccurs="0" />
+			</x:choice>
+			<x:choice maxOccurs="1" minOccurs="1">
+				<x:element name="GastosExternos" type="GastosExternos" maxOccurs="1" minOccurs="0" />
+				<x:element name="GastosEntidad" type="GastosEntidad" maxOccurs="1" minOccurs="0" />
+			</x:choice>
+		</x:sequence>
+		<x:attribute name="recibo" use="required" type="ti:Recibo_Codigo" />
+		<x:attribute name="plan" use="required" type="ti:Plan" />		
+		<x:attribute name="linea" use="required" type="ti:Linea_Codigo" />
+		<x:attribute name="grupoNegocio" type="ti:Recibo_GrupoNegocio" use="required" />
+	</x:complexType>
+
+	<x:complexType name="PolizaColectivoAbstract" abstract="true" >
+		<x:attribute name="digitoControl" use="required" type="ti:DigitoControl" />
+		<x:attribute name="codigoInterno" use="required" type="ti:CodigoInternoEntidad" />
+		<x:attribute name="localidad" use="required" type="ti:Localidad" />
+	</x:complexType>
+	
+	<x:complexType name="Individual">
+		<x:complexContent>
+			<x:extension base="PolizaColectivoAbstract">
+				<x:attribute name="referencia" use="required" type="ti:Poliza_Referencia" />		
+				<x:attribute name="tipoReferencia" use="optional" type="ti:Poliza_Referencia_Tipo" />		
+			</x:extension>
+		</x:complexContent>
+	</x:complexType>
+
+	<x:complexType name="Colectivo">
+		<x:complexContent>
+			<x:extension base="PolizaColectivoAbstract">
+				<x:attribute name="referencia" use="required" type="ti:Colectivo_Referencia" />
+			</x:extension>
+		</x:complexContent>
+	</x:complexType>
+	
+	<x:complexType name="Poliza">
+		<x:attribute name="referenciaColectivo" use="required" type="ti:Colectivo_Referencia" />
+		<x:attribute name="digitoControlColectivo" use="required" type="ti:DigitoControl" />	
+		<x:attribute name="codigoInternoColectivo" use="required" type="ti:CodigoInternoEntidad" />
+		<x:attribute name="localidad" use="required" type="ti:Localidad" />
+		<x:attribute name="referenciaPoliza" use="required" type="ti:Poliza_Referencia" />
+		<x:attribute name="digitoControlPoliza" use="required" type="ti:DigitoControl" />						
+		<x:attribute name="codigoInternoPoliza" use="required" type="ti:CodigoInternoEntidad" />
+		<x:attribute name="tipoReferencia" use="required" type="ti:Poliza_Referencia_Tipo" />		
+	</x:complexType>	
+
+	<x:complexType name="GastosExternos">
+		<x:sequence>
+			<x:element name="PendienteAbonoReciboImpagado" type="PendienteAbonoReciboImpagado" maxOccurs="1" minOccurs="1" />
+			<x:element name="CobroActual" type="CobroActual" maxOccurs="1" minOccurs="1" />
+			<x:element name="PendienteAbono" type="PendienteAbono" maxOccurs="1" minOccurs="1" />
+		</x:sequence>	
+	</x:complexType>
+	<x:complexType name="GastosEntidad">
+		<x:sequence>
+			<x:element name="PendienteAbonoReciboImpagado1" type="PendienteAbonoReciboImpagado1" maxOccurs="1" minOccurs="1" />
+			<x:element name="CobroActual1" type="CobroActual1" maxOccurs="1" minOccurs="1" />
+			<x:element name="PendienteAbono1" type="PendienteAbono1" maxOccurs="1" minOccurs="1" />
+		</x:sequence>	
+	</x:complexType> 	
+	
+	<x:complexType name="GastosExternosAbstract" abstract="true" >
+		<x:attribute name="gastosEntidad" type="ti:ImporteLargo" use="required" />
+		<x:attribute name="gastosComisiones" type="ti:ImporteLargo" use="required" />
+		<x:attribute name="totalGastos" type="ti:ImporteLargoPositivo" use="required" />
+	</x:complexType>
+	
+	<x:complexType name="GastosEntidadAbstract" abstract="true" >
+		<x:attribute name="gastosAdminEntidad" type="ti:ImporteLargo" use="required" />
+		<x:attribute name="gastosAdqEntidad" type="ti:ImporteLargo" use="required" />
+		<x:attribute name="comisionesMediador" type="ti:ImporteLargo" use="required" />
+		<x:attribute name="totalGastos" type="ti:ImporteLargoPositivo" use="required" />
+	</x:complexType>	
+	
+	<x:complexType name="PendienteAbonoReciboImpagado">
+		<x:complexContent>
+			<x:extension base="GastosExternosAbstract">
+				<x:attribute name="importeSaldoPendiente" type="ti:ImporteLargoPositivo" use="required" />
+			</x:extension>
+		</x:complexContent>
+	</x:complexType>
+	
+	<x:complexType name="PendienteAbonoReciboImpagado1">
+		<x:complexContent>
+			<x:extension base="GastosEntidadAbstract">
+				<x:attribute name="importeSaldoPendiente" type="ti:ImporteLargoPositivo" use="required" />
+			</x:extension>
+		</x:complexContent>
+	</x:complexType>	
+	
+	<x:complexType name="CobroActual">
+		<x:complexContent>
+			<x:extension base="GastosExternosAbstract">
+				<x:attribute name="importeCobroRecibido" type="ti:ImporteLargoPositivo" use="required" />
+			</x:extension>
+		</x:complexContent>
+	</x:complexType>
+	
+	<x:complexType name="CobroActual1">
+		<x:complexContent>
+			<x:extension base="GastosEntidadAbstract">
+				<x:attribute name="importeCobroRecibido" type="ti:ImporteLargoPositivo" use="required" />
+			</x:extension>
+		</x:complexContent>
+	</x:complexType>	
+
+	<x:complexType name="PendienteAbono">
+		<x:complexContent>
+			<x:extension base="GastosExternosAbstract" />
+		</x:complexContent>
+	</x:complexType>
+	
+	<x:complexType name="PendienteAbono1">
+		<x:complexContent>
+			<x:extension base="GastosEntidadAbstract" />
+		</x:complexContent>
+	</x:complexType>	
+	
+</x:schema>

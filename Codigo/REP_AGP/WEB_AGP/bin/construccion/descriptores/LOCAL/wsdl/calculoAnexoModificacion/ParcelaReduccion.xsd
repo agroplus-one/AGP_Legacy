@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+	targetNamespace="http://www.agroseguro.es/Contratacion/ParcelaReduccion" 
+	xmlns="http://www.agroseguro.es/Contratacion/ParcelaReduccion" 
+	xmlns:dv="http://www.agroseguro.es/Contratacion/DatosVariables" 
+	xmlns:ti="http://www.agroseguro.es/Tipos">
+	
+	<xs:import namespace="http://www.agroseguro.es/Tipos" schemaLocation="Tipos.xsd"/>
+	<xs:import namespace="http://www.agroseguro.es/Contratacion/DatosVariables" schemaLocation="DatosVariables.xsd"/>
+	
+	<xs:complexType name="ParcelaReduccion">
+		<xs:sequence>
+			<xs:element maxOccurs="1" minOccurs="0" name="Ubicacion" type="ti:Ambito"/>
+			<xs:element maxOccurs="1" minOccurs="1" name="Cosecha" type="Cosecha"/>
+			<xs:element maxOccurs="1" minOccurs="0" name="SIGPAC" type="ti:SIGPAC"/>
+		</xs:sequence>
+		<xs:attribute name="hoja" type="ti:Parcela_Hoja" use="required"/>
+		<xs:attribute name="numero" type="ti:Parcela_Numero" use="required"/>
+		<xs:attribute name="nombre" type="ti:Parcela_Nombre" use="optional"/>
+		<xs:attribute name="parcelaAgricola" type="ti:Codigo5" use="optional"/>
+	</xs:complexType>
+	<xs:complexType name="Cosecha">
+		<xs:sequence>
+			<xs:element maxOccurs="1" minOccurs="1" name="CapitalesAsegurados" type="CapitalesAsegurados">
+				<xs:key name="CapitalAsegurado_PK">
+					<xs:selector xpath="CapitalAsegurado"/>
+					<xs:field xpath="@tipo"/>
+				</xs:key>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="cultivo" type="ti:Cultivo_Codigo" use="required"/>
+		<xs:attribute name="variedad" type="ti:Variedad_Codigo" use="required"/>
+	</xs:complexType>
+	<xs:complexType name="CapitalesAsegurados">
+		<xs:sequence>
+			<xs:element maxOccurs="unbounded" minOccurs="1" name="CapitalAsegurado" type="CapitalAsegurado"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CapitalAsegurado">
+		<xs:sequence>
+			<xs:element maxOccurs="1" minOccurs="0" name="DatosVariables" type="dv:DatosVariables"/>
+			<xs:element maxOccurs="unbounded" minOccurs="0" name="CapitalReduccion" type="CapitalReduccion"/>
+		</xs:sequence>
+		<xs:attribute default="0" name="tipo" type="ti:TipoCapital" use="optional"/>
+		<xs:attribute name="superficie" type="ti:Parcela_Superficie" use="required"/>
+		<xs:attribute name="precio" type="ti:Precio" use="optional"/>
+		<xs:attribute name="produccion" type="ti:ProduccionKG" use="required"/>
+	</xs:complexType>
+	<xs:complexType name="CapitalReduccion">
+		<xs:sequence>
+			<xs:element maxOccurs="1" minOccurs="1" name="Motivo" type="ti:Motivo_ReduccionCapital"/>
+		</xs:sequence>	
+		<xs:attribute name="fechaRecepcion" type="xs:date" use="required"/>
+		<xs:attribute name="produccionAntesReduccion" type="ti:ProduccionKG" use="required"/>
+		<xs:attribute name="produccionTrasReduccion" type="ti:ProduccionKG" use="required"/>
+	</xs:complexType>
+	</xs:schema>

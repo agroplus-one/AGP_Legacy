@@ -1,0 +1,503 @@
+<project name="WEB AGROPLUS" default="all">
+
+	<property file="${basedir}/../../PRJ_AGP/construccion/build.general.properties"/>
+	<property file="${basedir}/../../PRJ_AGP/construccion/libraries.properties"/>
+	<property name="carpetaWS" value="${basedir}/descriptores/${entorno}/wsdl"/>
+	<property name="carpetaTLD" value="${basedir}/descriptores/${entorno}/tld"/>
+	<filter filtersfile="${basedir}/../../PRJ_AGP/construccion/build.general.properties"/>
+
+	<target name="all" depends="clean, copiar_clases, copiardescriptores, copiar_librerias, inicializaNexus, resolveDependencies" />
+
+	<target name="init">
+		<echo message="*******************************************************" />
+		<echo message="****************** WEB AGROPLUS ***********************" />
+		<echo message="*******************************************************" />
+	</target>
+	
+	<target name="build" depends="lanzar_ant_java, copiar_clases, copiardescriptores, copiar_librerias, inicializaNexus, resolveDependencies"/>
+	
+	<target name="lanzar_ant_java" depends="init">
+		<echo message="Construyendo Aplicacion Java..."/>
+		<ant inheritAll="false" antfile="${ant_java}"/>
+	</target>
+
+	<target name="copiar_clases" depends="init">			
+			<echo message="Copiando ficheros class desde ../../${java_dir}/build a ${web_content}/WEB-INF/classes" />
+			<copy todir="${web_content}/WEB-INF/classes">
+				<fileset dir="../../${java_dir}/build" includes="**/*.class,**/*.properties,**/*.pfx" />
+			</copy>
+			<copy todir="${web_content}/WEB-INF/classes">
+				<fileset dir="../../${hbm.dir}" includes="**/*.xml" />
+			</copy>
+	</target>
+
+	<target name="copiardescriptores" depends="init">
+		<mkdir dir="${web_content}/WEB-INF/classes"/>
+		<echo message="Copiando ficheros desde ${path_descr_entorno} a ${web_content}/WEB-INF/classes" />
+		<copy todir="${web_content}/WEB-INF/classes">
+			<fileset dir="${path_descr_entorno}">
+			    <include name="*.properties"/>
+    			<exclude name="**/*jmesa*"/>
+			</fileset>
+		</copy>
+		<copy todir="${web_content}/WEB-INF">
+			<fileset dir="${path_descr_entorno}" includes="jmesa*"/>
+		</copy>
+		<copy todir="${web_content}/WEB-INF">
+			<fileset dir="${path_descr_entorno}" includes="*.xml" />
+		</copy>
+		<mkdir dir="${web_content}/WEB-INF/wsdl"/>
+		<copy todir="${web_content}/WEB-INF/wsdl">
+			<fileset dir="${carpetaWS}" includes="**/*.*" />
+		</copy>
+		<mkdir dir="${web_content}/WEB-INF/tld"/>
+		<copy todir="${web_content}/WEB-INF/tld">
+			<fileset dir="${carpetaTLD}" includes="**/*.*" />
+		</copy>
+		<tstamp>
+			<format property="build_date" pattern="yyyyMMdd-HHmm" offset="1"/>
+		</tstamp>
+		<filter token="build_date" value="${build_date}"/>
+		<copy todir="${web_content}" filtering="on" overwrite="yes">
+			<fileset dir="${base}" includes="version.txt" />
+		</copy>
+	</target>
+
+	<target name="clean">
+		<delete dir="${web_content}/WEB-INF/classes"/>
+		<delete dir="${web_content}/WEB-INF/lib"/>
+		<delete dir="${web_content}/WEB-INF/wsdl"/>
+		<delete dir="${web_content}/WEB-INF/tld"/>
+	</target>
+
+	<echo message="cogemos el jar: ${ant-contrib.jar}" />           
+    <taskdef resource="net/sf/antcontrib/antlib.xml">
+    <!-- NEXUS LOCAL -->
+    <classpath>
+        <pathelement location="${ant-contrib.jar}"/>
+    </classpath>
+    <!-- NEXUS LOCAL -->
+    </taskdef>
+	
+	<!-- <property name="urlNexus" value="[http://ic-nexus.risa/repository/Toolchain-Maven]" /> -->
+	<property name="urlNexus" value="http://ic-nexus.risa/repository/maven-central" />
+	    
+	<var name="adenda" value="" />
+	<!-- <var name="urlNexus" value="urlNexus" /> -->
+	
+	<target name="inicializaNexus" depends="copiar_librerias">
+	    <echo message="entorno : ${entorno}" />                        
+	    <switch value="${entorno}">
+	    	<case value="LOCAL">
+	    		<echo message="Se procede a iniciarlizar Nexus para el entorno --> LOCAL" />                
+	    		<!-- <var name="adenda" value = "-SNAPSHOT"/> -->
+	    	</case>
+	        <case value="DESA">
+	            <echo message="Se procede a iniciarlizar Nexus para el entorno --> DESARROLLO" />                
+	        </case>
+	        <case value="TEST">
+	            <echo message="Se procede a iniciarlizar Nexus para el entorno --> TEST" />
+	            <!-- <var name="adenda" value = "-RC1"/> -->
+	        </case>
+	        <default>
+	        	<echo message="Se procede a iniciarlizar Nexus para el entorno --> PRODUCCION" />
+	            <echo message="Prod" />
+	        </default>
+	    </switch>   
+	</target>
+	
+	<!--<import file="Nexus.xml"/>-->
+	<property name="entorno" value="${entorno}" />          
+      
+    <target name="resolveDependencies" depends="inicializaNexus">
+    	
+    	<!-- prueba itext -->
+    	<property name="nLibItextA" value="itext-pdfa-5.5.0.jar" />
+    	<property name="gLibItextA" value="/com/itextpdf/itext-pdfa/5.5.0" />
+    	<get src="${urlNexus}${gLibItextA}/${nLibItextA}" dest="${web_content}/WEB-INF/lib/${nLibItextA}" usetimestamp="true" /> 	  
+    	
+    	<property name="nLibItext" value="itextpdf-5.5.0.jar" />
+    	<property name="gLibItext" value="/com/itextpdf/itextpdf/5.5.0" />
+    	<get src="${urlNexus}${gLibItext}/${nLibItext}" dest="${web_content}/WEB-INF/lib/${nLibItext}" usetimestamp="true" /> 	 
+    	<!-- prueba itext -->
+    	
+    	<!-- prueba xmlsec -->
+    	<property name="nLibXmlsec" value="xmlsec-1.5.1.jar" />
+    	<property name="gLibXmlsec" value="/org/apache/santuario/xmlsec/1.5.1" />
+    	<get src="${urlNexus}${gLibXmlsec}/${nLibXmlsec}" dest="${web_content}/WEB-INF/lib/${nLibXmlsec}" usetimestamp="true" /> 	    
+    	<!-- prueba xmlsec -->
+    	
+    	<!-- prueba poi -->
+		<property name="nLibPoi" value="poi-3.10.1.jar" />
+		<property name="gLibPoi" value="/org/apache/poi/poi/3.10.1" />
+		<get src="${urlNexus}${gLibPoi}/${nLibPoi}" dest="${web_content}/WEB-INF/lib/${nLibPoi}" usetimestamp="true" />	    
+		<!-- prueba poi -->
+    	
+    	<!-- prueba barcode4j -->
+    	<property name="nLibBarcode4j" value="barcode4j-2.1.jar" />
+    	<property name="gLibBarcode4j" value="/net/sf/barcode4j/barcode4j/2.1" />
+    	<get src="${urlNexus}${gLibBarcode4j}/${nLibBarcode4j}" dest="${web_content}/WEB-INF/lib/${nLibBarcode4j}" usetimestamp="true" /> 	    
+    	<!-- prueba barcode4j -->
+    	
+    	<!-- prueba jasperreports -->
+    	<property name="nLibJasperreports" value="jasperreports-6.0.0.jar" />
+    	<property name="gLibJasperreports" value="/net/sf/jasperreports/jasperreports/6.0.0" />
+    	<get src="${urlNexus}${gLibJasperreports}/${nLibJasperreports}" dest="${web_content}/WEB-INF/lib/${nLibJasperreports}" usetimestamp="true" /> 	    
+    	<!-- prueba jasperreports -->
+    	
+    	<!-- prueba jasper -->
+    	<property name="nLibDynamicJasper" value="DynamicJasper-5.0.5.jar" />
+    	<property name="gLibDynamicJasper" value="/ar/com/fdvs/DynamicJasper/5.0.5" />
+    	<get src="${urlNexus}${gLibDynamicJasper}/${nLibDynamicJasper}" dest="${web_content}/WEB-INF/lib/${nLibDynamicJasper}" usetimestamp="true" /> 	    
+    	<!-- prueba jasper -->
+
+    	<!-- prueba batik -->    
+    	<property name="nLibBatikBridge" value="batik-bridge-1.7.jar" />
+    	<property name="gLibBatikBridge" value="/org/apache/xmlgraphics/batik-bridge/1.7" />
+    	<get src="${urlNexus}${gLibBatikBridge}/${nLibBatikBridge}" dest="${web_content}/WEB-INF/lib/${nLibBatikBridge}" usetimestamp="true" /> 	    
+    	
+    	<property name="nLibBatikGvt" value="batik-gvt-1.7.jar" />
+    	<property name="gLibBatikGvt" value="/org/apache/xmlgraphics/batik-gvt/1.7" />
+    	<get src="${urlNexus}${gLibBatikGvt}/${nLibBatikGvt}" dest="${web_content}/WEB-INF/lib/${nLibBatikGvt}" usetimestamp="true" />
+    	
+    	<property name="nLibBatikUtil" value="batik-util-1.7.jar" />
+    	<property name="gLibBatikUtil" value="/org/apache/xmlgraphics/batik-util/1.7" />
+    	<get src="${urlNexus}${gLibBatikUtil}/${nLibBatikUtil}" dest="${web_content}/WEB-INF/lib/${nLibBatikUtil}" usetimestamp="true" /> 
+    	
+    	<property name="nLibBatikSvgDom" value="batik-svg-dom-1.7.jar" />
+    	<property name="gLibBatikSvgDom" value="/org/apache/xmlgraphics/batik-svg-dom/1.7" />
+    	<get src="${urlNexus}${gLibBatikSvgDom}/${nLibBatikSvgDom}" dest="${web_content}/WEB-INF/lib/${nLibBatikSvgDom}" usetimestamp="true" />
+    	
+    	<property name="nLibBatikDom" value="batik-dom-1.7.jar" />
+    	<property name="gLibBatikDom" value="/org/apache/xmlgraphics/batik-dom/1.7" />
+    	<get src="${urlNexus}${gLibBatikDom}/${nLibBatikDom}" dest="${web_content}/WEB-INF/lib/${nLibBatikDom}" usetimestamp="true" />
+    	
+    	<property name="nLibBatikScript" value="batik-script-1.7.jar" />
+    	<property name="gLibBatikScript" value="/org/apache/xmlgraphics/batik-script/1.7" />
+    	<get src="${urlNexus}${gLibBatikScript}/${nLibBatikScript}" dest="${web_content}/WEB-INF/lib/${nLibBatikScript}" usetimestamp="true" />
+    	
+    	<property name="nLibBatikCss" value="batik-css-1.7.jar" />
+    	<property name="gLibBatikCss" value="/org/apache/xmlgraphics/batik-css/1.7" />
+    	<get src="${urlNexus}${gLibBatikCss}/${nLibBatikCss}" dest="${web_content}/WEB-INF/lib/${nLibBatikCss}" usetimestamp="true" />
+
+    	<property name="nLibBatikSvggen" value="batik-svggen-1.7.jar" />
+    	<property name="gLibBatikSvggen" value="/org/apache/xmlgraphics/batik-svggen/1.7" />
+    	<get src="${urlNexus}${gLibBatikSvggen}/${nLibBatikSvggen}" dest="${web_content}/WEB-INF/lib/${nLibBatikSvggen}" usetimestamp="true" />
+    		
+    	<property name="nLibBatikAwt" value="batik-awt-util-1.7.jar" />
+    	<property name="gLibBatikAwt" value="/org/apache/xmlgraphics/batik-awt-util/1.7" />
+    	<get src="${urlNexus}${gLibBatikAwt}/${nLibBatikAwt}" dest="${web_content}/WEB-INF/lib/${nLibBatikAwt}" usetimestamp="true" />
+		
+    	<property name="nLibBatikAnim" value="batik-anim-1.7.jar" />
+    	<property name="gLibBatikAnim" value="/org/apache/xmlgraphics/batik-anim/1.7" />
+    	<get src="${urlNexus}${gLibBatikAnim}/${nLibBatikAnim}" dest="${web_content}/WEB-INF/lib/${nLibBatikAnim}" usetimestamp="true" />
+				
+    	<property name="nLibBatikParser" value="batik-parser-1.7.jar" />
+    	<property name="gLibBatikParser" value="/org/apache/xmlgraphics/batik-parser/1.7" />
+    	<get src="${urlNexus}${gLibBatikParser}/${nLibBatikParser}" dest="${web_content}/WEB-INF/lib/${nLibBatikParser}" usetimestamp="true" />
+		
+    	<property name="nLibBatikXml" value="batik-xml-1.7.jar" />
+    	<property name="gLibBatikXml" value="/org/apache/xmlgraphics/batik-xml/1.7" />
+    	<get src="${urlNexus}${gLibBatikXml}/${nLibBatikXml}" dest="${web_content}/WEB-INF/lib/${nLibBatikXml}" usetimestamp="true" />
+    	
+    	<property name="nLibBatikExt" value="batik-ext-1.7.jar" />
+    	<property name="gLibBatikExt" value="/org/apache/xmlgraphics/batik-ext/1.7" />
+    	<get src="${urlNexus}${gLibBatikExt}/${nLibBatikExt}" dest="${web_content}/WEB-INF/lib/${nLibBatikExt}" usetimestamp="true" />
+    	
+    	<property name="nLibBatikCodec" value="batik-codec-1.7.jar" />
+    	<property name="gLibBatikCodec" value="/org/apache/xmlgraphics/batik-codec/1.7" />
+    	<get src="${urlNexus}${gLibBatikCodec}/${nLibBatikCodec}" dest="${web_content}/WEB-INF/lib/${nLibBatikCodec}" usetimestamp="true" />
+    	
+		<property name="nLibBatikExtension" value="batik-extension-1.7.jar" />
+    	<property name="gLibBatikExtension" value="/org/apache/xmlgraphics/batik-extension/1.7" />
+    	<get src="${urlNexus}${gLibBatikExtension}/${nLibBatikExtension}" dest="${web_content}/WEB-INF/lib/${nLibBatikExtension}" usetimestamp="true" />
+    	
+    	<property name="nLibBatikSwing" value="batik-swing-1.7.jar" />
+    	<property name="gLibBatikSwing" value="/org/apache/xmlgraphics/batik-swing/1.7" />
+    	<get src="${urlNexus}${gLibBatikSwing}/${nLibBatikSwing}" dest="${web_content}/WEB-INF/lib/${nLibBatikSwing}" usetimestamp="true" />
+    	
+    	<property name="nLibBatikTranscoder" value="batik-transcoder-1.7.jar" />
+    	<property name="gLibBatikTranscoder" value="/org/apache/xmlgraphics/batik-transcoder/1.7" />
+    	<get src="${urlNexus}${gLibBatikTranscoder}/${nLibBatikTranscoder}" dest="${web_content}/WEB-INF/lib/${nLibBatikTranscoder}" usetimestamp="true" />
+    	
+    	<property name="nLibBatikGuiU" value="batik-gui-util-1.7.jar" />
+    	<property name="gLibBatikGuiU" value="/org/apache/xmlgraphics/batik-gui-util/1.7" />
+    	<get src="${urlNexus}${gLibBatikGuiU}/${nLibBatikGuiU}" dest="${web_content}/WEB-INF/lib/${nLibBatikGuiU}" usetimestamp="true" />
+    	<!-- prueba batik -->
+    	
+    	<!-- prueba xml-apis-ext -->
+    	<property name="nLibXmlApiExt" value="xml-apis-ext-1.3.04.jar" />
+    	<property name="gLibXmlApiExt" value="/xml-apis/xml-apis-ext/1.3.04" />
+    	<get src="${urlNexus}${gLibXmlApiExt}/${nLibXmlApiExt}" dest="${web_content}/WEB-INF/lib/${nLibXmlApiExt}" usetimestamp="true" />
+    	<!-- prueba xml-apis-ext -->
+    	
+    	<!-- hibernate.version=3.3.2 -->
+    	<!--
+    	<property name="nLibHibernate" value="hibernate-3.3.2.jar" />
+    	<property name="gLibHibernate" value="/org/hibernate/hibernate/3.3.2" />
+    	<get src="${urlNexus}${gLibHibernate}/${nLibHibernate}" dest="${web_content}/WEB-INF/lib/${nLibHibernate}" usetimestamp="true" />
+   	    	   	
+    	<property name="nLibPersistenceApi" value="persistence-api-1.0.jar" />
+    	<property name="gLibPersistenceApi" value="/javax/persistence/persistence-api/1.0" />
+    	<get src="${urlNexus}${gLibPersistenceApi}/${nLibPersistenceApi}" dest="${web_content}/WEB-INF/lib/${nLibPersistenceApi}" usetimestamp="true" />
+    	-->
+    	
+    	<!-- jta.version= -->
+    	
+    	<!-- oracle.version=10g -->
+    	
+    	<!-- log4j.version=1.2.11 -->
+    	
+    	<!-- hibernate.tools.version=3.3.0 -->
+    	
+    	<!-- bsh.version=2.0b1 -->
+    	
+    	<!-- freemarker.version=3.2.8 -->
+    	
+    	<!-- jtidy.version=r8-20060801 -->
+    	
+    	<!--
+    	<property name="nLibCommonsLogging" value="commons-logging-1.1.jar" />
+    	<property name="gLibCommonsLogging" value="/commons-logging/commons-logging/1.1" />
+    	<get src="${urlNexus}${gLibCommonsLogging}/${nLibCommonsLogging}" dest="${web_content}/WEB-INF/lib/${nLibCommonsLogging}" usetimestamp="true" />
+ 
+    	<property name="nLibCommonsCollections" value="commons-collections-3.2.1.jar" />
+    	<property name="gLibCommonsCollections" value="/commons-collections/commons-collections/3.2.1" />
+    	<get src="${urlNexus}${gLibCommonsCollections}/${nLibCommonsCollections}" dest="${web_content}/WEB-INF/lib/${nLibCommonsCollections}" usetimestamp="true" />
+    	-->
+    	
+    	<!-- commons-beanutils= -->
+    	
+    	<!-- commons-dbcp= -->
+    	
+    	<!-- commons-pool= -->
+    	
+    	<!-- commons-lang= -->
+    	
+    	<!-- commons-fileupload= -->
+    	
+    	<!-- commons-io -->
+    	
+    	<!-- commons-digester -->
+    	
+    	<!-- jdt.version=3.1.1 -->
+    	
+    	<!--
+    	<property name="nLibDom4j" value="dom4j-1.6.1.jar" />
+    	<property name="gLibDom4j" value="/dom4j/dom4j/1.6.1" />
+    	<get src="${urlNexus}${gLibDom4j}/${nLibDom4j}" dest="${web_content}/WEB-INF/lib/${nLibDom4j}" usetimestamp="true" />
+    	
+    	<property name="nLibSlf4jApi" value="slf4j-api-1.5.6.jar" />
+    	<property name="gLibSlf4jApi" value="/org/slf4j/slf4j-api/1.5.6" />
+    	<get src="${urlNexus}${gLibSlf4jApi}/${nLibSlf4jApi}" dest="${web_content}/WEB-INF/lib/${nLibSlf4jApi}" usetimestamp="true" />
+    	
+    	<property name="nLibSlf4jSimple" value="slf4j-simple-1.5.6.jar" />
+    	<property name="gLibSlf4jsimple" value="/org/slf4j/slf4j-simple/1.5.6" />
+    	<get src="${urlNexus}${gLibSlf4jsimple}/${nLibSlf4jSimple}" dest="${web_content}/WEB-INF/lib/${nLibSlf4jSimple}" usetimestamp="true" />
+    	-->   
+    	    	
+    	<!-- cglib.version=2.2 -->
+    	
+    	<!-- asm.version=2.2 -->
+
+    	<!--
+    	<property name="nLibSpring" value="spring-2.5.6.jar" />
+    	<property name="gLibSpring" value="/org/springframework/spring/2.5.6" />
+    	<get src="${urlNexus}${gLibSpring}/${nLibSpring}" dest="${web_content}/WEB-INF/lib/${nLibSpring}" usetimestamp="true" />
+    	-->
+    	
+    	<!-- jakarta-standard.version=1.1.2 -->
+    	
+    	<!-- servletapi.version= -->
+    	
+    	<!--
+    	<property name="nLibDisplaytag" value="displaytag-1.2.jar" />
+    	<property name="gLibDisplaytag" value="/displaytag/displaytag/1.2" />
+    	<get src="${urlNexus}${gLibDisplaytag}/${nLibDisplaytag}" dest="${web_content}/WEB-INF/lib/${nLibDisplaytag}" usetimestamp="true" />
+    	-->
+    	
+    	<!-- javassist.version=3.4 -->
+    	
+    	<!-- blazeds.version=3.2.0 -->
+    	
+    	<!-- iText.version=5.5.0 -->
+    	
+    	<!-- xmlsecurity.version=1.5.1 -->
+    	
+    	<!-- jasperreports.version=6.0.0 -->
+    	
+    	<!-- jaspercompiler.version= -->
+    	
+    	<!-- jasperfonts.version=3.6.1 -->
+    	
+    	<!-- dynamicjasper.version=5.0.4 -->
+    	
+    	<!-- commons-el.version= -->
+    	
+    	<!--
+    	<property name="nLibCommonsCodec" value="commons-codec-1.11.jar" />
+    	<property name="gLibCommonsCodec" value="/commons-codec/commons-codec/1.11" />
+    	<get src="${urlNexus}${gLibCommonsCodec}/${nLibCommonsCodec}" dest="${web_content}/WEB-INF/lib/${nLibCommonsCodec}" usetimestamp="true" />
+
+    	<property name="nLibXmlBeans" value="xmlbeans-2.3.0.jar" />
+    	<property name="gLibXmlBeans" value="/org/apache/xmlbeans/xmlbeans/2.3.0" />
+    	<get src="${urlNexus}${gLibXmlBeans}/${nLibXmlBeans}" dest="${web_content}/WEB-INF/lib/${nLibXmlBeans}" usetimestamp="true" />
+    	-->
+    	
+    	<!-- jaxws.version=2.1 -->
+    	
+    	<!-- jmesa.version=3.0.3 -->
+    	
+    	<!-- javamail.version=1.4 -->
+    	
+    	<!-- poi.version=3.10 -->
+    	
+    	<!-- jsch.version=0.1.44 -->
+    	
+    	<!-- jersey.version=1.19 -->
+    	
+    	<!-- jsr.version= -->
+    	
+    	<!-- commons-net.version=2.0 -->
+    
+    	<!--
+    	<property name="nLibBarcode4j" value="barcode4j-2.1.jar" />
+    	<property name="gLibBarcode4j" value="/net/sf/barcode4j/barcode4j/2.1" />
+    	<get src="${urlNexus}${gLibBarcode4j}/${nLibBarcode4j}" dest="${web_content}/WEB-INF/lib/${nLibBarcode4j}" usetimestamp="true" />
+    	-->
+    	
+    	<!-- batik.version=1.7 -->
+
+    	<!--
+    	<property name="nLibBcutil" value="bcutil-jdk18on-1.73.jar" />
+    	<property name="gLibBcutil" value="/org/bouncycastle/bcutil-jdk18on/1.73" />
+    	<get src="${urlNexus}${gLibBcutil}/${nLibBcutil}" dest="${web_content}/WEB-INF/lib/${nLibBcutil}" usetimestamp="true" />
+    	
+    	<property name="nLibBcprov" value="bcprov-jdk18on-1.73.jar" />
+    	<property name="gLibBcprov" value="/org/bouncycastle/bcprov-jdk18on/1.73" />
+    	<get src="${urlNexus}${gLibBcprov}/${nLibBcprov}" dest="${web_content}/WEB-INF/lib/${nLibBcprov}" usetimestamp="true" />
+    	    	    	
+    	<property name="nLibBcutil" value="bcutil-jdk18on-1.73.jar" />
+    	<property name="gLibBcutil" value="/org/bouncycastle/bcutil-jdk18on/1.73" />
+    	<get src="${urlNexus}${gLibBcutil}/${nLibBcutil}" dest="${web_content}/WEB-INF/lib/${nLibBcutil}" usetimestamp="true" />
+    	-->
+    	    	    	
+    	
+    	<!--<copy file="${displaytag.jar}" todir="${web_content}/WEB-INF/lib" flatten="true"/>
+    	<copy file="${basedir}/../../JAVA_AGP/dist/schemas.jar" todir="${web_content}/WEB-INF/lib" flatten="true"/>
+    	<copy file="${basedir}/../../JAVA_AGP/dist/wsAgroseguro.jar" todir="${web_content}/WEB-INF/lib" flatten="true"/>
+    	<copy file="${basedir}/../../JAVA_AGP/dist/javacsv.jar" todir="${web_content}/WEB-INF/lib" flatten="true"/>
+    	<copy file="${basedir}/../../JAVA_AGP/dist/DOCRGA_SRVMAESTRO.jar" todir="${web_content}/WEB-INF/lib" flatten="true"/>-->
+    </target>
+	
+	
+	<target name="copiar_librerias" depends="copiardescriptores">
+		<mkdir dir="${web_content}/WEB-INF/lib" />
+		<copy todir="${web_content}/WEB-INF/lib" flatten="true">
+			<fileset file="${hibernate.jar}" />
+			<fileset file="${persistence-api.jar}" />
+			<fileset file="${jta.jar}" />
+			<fileset file="${oracle.jar}" />
+			<fileset dir="${log4j.dir}" >
+				<include name="**/*.jar"/>
+			</fileset>
+			<fileset dir="${bsh.dir}" >
+				<include name="**/*.jar"/>
+			</fileset>
+			<fileset file="${dom4j.jar}" />
+			<fileset dir="${cglib.dir}" >
+				<include name="**/*.jar"/>
+			</fileset>
+			<fileset dir="${asm.dir}" >
+				<include name="**/*.jar"/>
+			</fileset>
+			<fileset dir="${hibernate.tools.dir}" >
+				<include name="hibernate-tools-3.3.0.jar"/>
+				<include name="freemarker.jar"/>
+			</fileset>
+			<fileset file="${commons-logging.jar}" />
+			<fileset file="${commons-collections.jar}" />
+			<fileset file="${commons-beanutils.jar}" />
+			<fileset file="${commons-dbcp.jar}" />
+			<fileset file="${commons-pool.jar}" />
+			<fileset file="${commons-lang.jar}" />
+			<fileset file="${commons-codec.jar}" />
+			<fileset file="${commons-io.jar}" />
+			<fileset file="${commons-fileupload.jar}" />
+			<fileset file="${commons-digester.jar}" />
+			<fileset file="${commons-el.jar}"/>
+			<fileset file="${commons-net.jar}"/>
+			<fileset file="${jdt.jar}" />
+			<fileset file="${jmesa.jar}" />
+			<!--<fileset file="${poi.jar}" />-->
+			<fileset file="${jsch.jar}" />
+			
+			<!-- JasperReports -->
+			<!--<fileset file="${jasperreports.jar}"/>-->
+			<fileset file="${jaspercompiler.jar}"/>
+			<fileset file="${jasperfonts.jar}"/>
+			<!--<fileset file="${dynamicjasper.jar}"/>-->
+			
+			<fileset file="${javacsv.jar}"/>		
+			
+			<!--<fileset file="${iTextPdf.jar}" />
+			<fileset file="${iTextPdfa.jar}" />-->
+			
+			<!--<fileset dir="${xmlsecurity.dir}" >
+				<include name="**/*.jar"/>
+			</fileset>
+			<fileset dir="${batik.dir}" >
+				<include name="**/*.jar"/>
+			</fileset>-->
+
+			<fileset dir="${slf4j-api.dir}" >
+				<include name="**/*.jar"/>
+			</fileset>
+			<fileset dir="${slf4j-simple.dir}" >
+				<include name="**/*.jar"/>
+			</fileset>
+			<fileset dir="${spring.dir}" >
+				<include name="**/*.jar"/>
+				<exclude name="commons-codec*.jar"/>
+			</fileset>
+			<fileset dir="${jakarta-standard.dir}" >
+				<include name="**/*.jar"/>
+			</fileset>
+			<fileset dir="${javassist.dir}" >
+				<include name="**/*.jar"/>
+			</fileset>
+			<fileset dir="${blazeds.dir}" >
+				<include name="**/*.jar"/>
+			</fileset>
+			<fileset dir="${xmlbeans.dir}" >
+				<include name="**/*.jar"/>
+			</fileset>
+			<fileset dir="${jersey.dir}" >
+				<include name="**/*.jar"/>
+			</fileset>
+			<fileset dir="${jsr.dir}" >
+				<include name="**/*.jar"/>
+			</fileset>
+			<!--<fileset dir="${barcode4j.dir}" >
+				<include name="**/*.jar"/>
+			</fileset>-->
+			<fileset dir="${bcutil.dir}" >
+				<include name="**/*.jar"/>
+			</fileset>
+			<fileset dir="${bctls.dir}" >
+				<include name="**/*.jar"/>
+			</fileset>
+			<fileset dir="${bcprov.dir}" >
+				<include name="**/*.jar"/>
+			</fileset>	
+		</copy>
+		
+		<copy file="${displaytag.jar}" todir="${web_content}/WEB-INF/lib" flatten="true"/>
+		<copy file="${basedir}/../../JAVA_AGP/dist/schemas.jar" todir="${web_content}/WEB-INF/lib" flatten="true"/>
+		<copy file="${basedir}/../../JAVA_AGP/dist/wsAgroseguro.jar" todir="${web_content}/WEB-INF/lib" flatten="true"/>
+		<copy file="${basedir}/../../JAVA_AGP/dist/javacsv.jar" todir="${web_content}/WEB-INF/lib" flatten="true"/>
+		<copy file="${basedir}/../../JAVA_AGP/dist/DOCRGA_SRVMAESTRO.jar" todir="${web_content}/WEB-INF/lib" flatten="true"/>
+	</target>
+	<!-- NEXUS -->
+	
+</project>

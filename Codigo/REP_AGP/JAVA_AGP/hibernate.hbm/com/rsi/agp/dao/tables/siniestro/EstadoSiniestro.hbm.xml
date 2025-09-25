@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 29-nov-2010 13:49:42 by Hibernate Tools 3.3.0.GA -->
+<hibernate-mapping>
+    <class name="com.rsi.agp.dao.tables.siniestro.EstadoSiniestro" table="TB_ESTADOS_SINIESTRO">
+        <id name="idestado" type="short">
+            <column name="IDESTADO" precision="2" scale="0" />
+            <generator class="assigned" />
+        </id>
+        <property name="descestado" type="string">
+            <column name="DESCESTADO" length="50" />
+        </property>
+        <set name="siniestros" table="TB_SINIESTROS" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="ESTADO" precision="2" scale="0" />
+            </key>
+            <one-to-many class="com.rsi.agp.dao.tables.siniestro.Siniestro" />
+        </set>
+    </class>
+</hibernate-mapping>

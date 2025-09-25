@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="declaracionSeguro_datosTomadorAseguradoCobertura_subvencionDeclarable" pageWidth="555" pageHeight="802" whenNoDataType="AllSectionsNoDetail" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="9a1c5bf4-178a-4c3c-a297-3dfce6ddfd2f">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="ID" class="java.lang.Integer"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA[""]]></defaultValueExpression>
+	</parameter>
+	<parameter name="esGanado" class="java.lang.Boolean">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="SUBREPORT_DIR1" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA[""]]></defaultValueExpression>
+	</parameter>
+	<parameter name="SUBREPORT_DIR2" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA[""]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT AG.REGIMENSEGSOCIAL,
+AG.NUMSEGSOCIAL
+  FROM o02agpe0.TB_POLIZAS PO, o02agpe0.TB_ASEGURADOS AG
+ WHERE PO.IDASEGURADO = AG.ID
+   AND PO.IDPOLIZA = $P{ID}]]>
+	</queryString>
+	<field name="REGIMENSEGSOCIAL" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="NUMSEGSOCIAL" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<variable name="SHOW_FOOT" class="java.lang.Boolean" resetType="None">
+		<variableExpression><![CDATA[new Boolean(true)]]></variableExpression>
+		<initialValueExpression><![CDATA[]]></initialValueExpression>
+	</variable>
+	<variable name="SHOW_BACK" class="java.lang.Boolean" resetType="None">
+		<variableExpression><![CDATA[new Boolean(true)]]></variableExpression>
+		<initialValueExpression><![CDATA[]]></initialValueExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="13" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="240" height="13" uuid="5ef4cd8c-4824-413c-8617-c929418aa75f"/>
+				<textElement>
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[SUBVENCIONES SOLICITADAS]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="24" splitType="Stretch">
+			<staticText>
+				<reportElement x="351" y="0" width="54" height="13" uuid="8eeead37-57b1-43d8-8356-d74b8f63ae80"/>
+				<textElement>
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Régimen:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1" y="0" width="108" height="13" uuid="9ecfdd93-1c89-4365-bf42-6634cd9de494"/>
+				<textElement>
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Tipo de subvención:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="160" y="0" width="72" height="13" uuid="db20fbbb-46c1-4038-9146-e82b4ff2949a"/>
+				<textElement>
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nº Seg. Social:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="405" y="0" width="73" height="13" uuid="bf2b5757-26c5-4b14-adbf-c5b55ad56de5"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{REGIMENSEGSOCIAL}]]></textFieldExpression>
+			</textField>
+			<subreport>
+				<reportElement mode="Transparent" x="0" y="13" width="376" height="10" backcolor="#FFFFFF" uuid="1b6bddf1-6d8c-42c1-8595-0515fd152626">
+					<printWhenExpression><![CDATA[new Boolean(!$P{esGanado}.booleanValue())]]></printWhenExpression>
+				</reportElement>
+				<subreportParameter name="ID">
+					<subreportParameterExpression><![CDATA[$P{ID}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<returnValue subreportVariable="SHOW_FOOT" toVariable="SHOW_FOOT"/>
+				<returnValue subreportVariable="SHOW_BACK" toVariable="SHOW_BACK"/>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "declaracionSeguro_datosTomadorAseguradoCobertura_subvencionDeclarable_tipo.jasper"]]></subreportExpression>
+			</subreport>
+			<textField isBlankWhenNull="true">
+				<reportElement x="232" y="0" width="119" height="13" uuid="8959955a-4e1d-4ae9-b8f4-49ad41502592"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{NUMSEGSOCIAL}!= null ? $F{NUMSEGSOCIAL}.substring(0,2) + "/" +$F{NUMSEGSOCIAL}.substring(2,10)+
+"/"+ $F{NUMSEGSOCIAL}.substring(10,12) : ""]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

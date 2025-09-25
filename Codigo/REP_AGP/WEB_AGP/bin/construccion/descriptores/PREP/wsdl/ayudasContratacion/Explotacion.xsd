@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<x:schema targetNamespace="http://www.agroseguro.es/Contratacion/Explotacion"
+	xmlns="http://www.agroseguro.es/Contratacion/Explotacion"
+	xmlns:x="http://www.w3.org/2001/XMLSchema"
+	xmlns:ti="http://www.agroseguro.es/Tipos" 
+	xmlns:dv="http://www.agroseguro.es/Contratacion/DatosVariables"
+>
+	
+	<x:import
+		namespace="http://www.agroseguro.es/Tipos"
+		schemaLocation="Tipos.xsd" />
+
+	<x:import
+		namespace="http://www.agroseguro.es/Contratacion/DatosVariables"
+		schemaLocation="DatosVariablesUnificado.xsd" />
+
+	<x:element name="Explotacion" >
+		<x:complexType>
+			<x:sequence>
+				<x:element name="Ubicacion" type="ti:Ambito" minOccurs="0" maxOccurs="1" />
+				<x:element name="Coordenadas" type="Coordenadas" minOccurs="0" maxOccurs="1" />
+				<x:element name="GrupoRaza" type="GrupoRaza" minOccurs="1" maxOccurs="unbounded" >
+				<!-- 
+					<x:key name="GrupoRaza_CapitalAseguradoPK">
+						<x:selector xpath="CapitalAsegurado" />
+						<x:field xpath="@tipo" />
+					</x:key>
+				-->			
+				</x:element>
+				<x:element name="DatosVariables" type="dv:DatosVariables" minOccurs="0" maxOccurs="1" /> 
+			</x:sequence>
+			<x:attribute name="numero" type="ti:NumeroExplotacion" use="optional" />
+			<x:attribute name="rega" type="ti:Codigo_REGA" use="optional" />
+			<x:attribute name="sigla" type="ti:Sigla" use="optional" />
+			<x:attribute name="subexplotacion" type="ti:Subexplotacion" use="optional" />
+			<x:attribute name="especie" type="ti:Especie" use="required" />
+			<x:attribute name="regimen" type="ti:Regimen" use="required" />
+		</x:complexType>
+	</x:element>
+
+
+
+	<x:complexType name="Coordenadas">
+		<x:attribute name="latitud" type="ti:Coordenada_Latitud" use="required" />
+		<x:attribute name="longitud" type="ti:Coordenada_Longitud" use="required" />
+	</x:complexType>	
+	
+	<x:complexType name="GrupoRaza" >
+		<x:sequence>
+			<x:element name="CapitalAsegurado" type="CapitalAsegurado" minOccurs="1" maxOccurs="unbounded" />
+			<x:element name="DatosVariables" type="dv:DatosVariables" minOccurs="0" maxOccurs="1" />			
+		</x:sequence>
+		<x:attribute name="grupoRaza" type="ti:GrupoRaza" use="required" />
+	</x:complexType>
+	
+	<x:complexType name="CapitalAsegurado" >
+		<x:sequence>
+			<x:element name="Animales" type="Animales" minOccurs="1" maxOccurs="unbounded" />
+			<x:element name="DatosVariables" type="dv:DatosVariables" minOccurs="0" maxOccurs="1" />			
+		</x:sequence>
+		<x:attribute name="tipo" type="ti:TipoCapital" use="required" />
+	</x:complexType>
+	
+	<x:complexType name="Animales" >
+		<x:sequence>
+			<x:element name="DatosVariables" type="dv:DatosVariables" minOccurs="0" maxOccurs="1" /> 
+		</x:sequence>	
+		<x:attribute name="tipo" type="ti:TipoAnimal" use="required" />
+		<x:attribute name="numero" type="ti:Numero_Animales" use="required" />
+		<x:attribute name="precio" type="ti:PrecioGanado" use="required" />
+	</x:complexType>
+	
+</x:schema>

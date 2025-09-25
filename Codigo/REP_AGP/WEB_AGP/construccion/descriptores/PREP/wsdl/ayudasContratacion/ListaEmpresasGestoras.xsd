@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<x:schema 
+	targetNamespace="http://www.agroseguro.es/ListaEmpresasGestoras"
+	xmlns="http://www.agroseguro.es/ListaEmpresasGestoras"
+	xmlns:pks="http://www.agroseguro.es/ListaEmpresasGestoras"
+	xmlns:x="http://www.w3.org/2001/XMLSchema"
+	xmlns:ti="http://www.agroseguro.es/Tipos" 
+	>
+	
+	<x:import
+		namespace="http://www.agroseguro.es/Tipos"
+		schemaLocation="Tipos.xsd" />
+
+	<x:element name="ListaEmpresasGestoras" type="ListaEmpresasGestoras" />
+	
+	<x:complexType name="ListaEmpresasGestoras" >
+		<x:sequence>
+			<x:element name="EmpresaGestora" type="EmpresaGestora" minOccurs="1" maxOccurs="unbounded" />
+		</x:sequence>
+		<x:attribute name="provincia" type="ti:Provincia_Codigo" use="required" />
+		<x:attribute name="termino" type="ti:Termino_Codigo" use="required" />
+		<x:attributeGroup ref="ti:PeticionSW" />
+	</x:complexType>
+	
+	<x:complexType name="EmpresaGestora">
+		<x:attribute name="nombre" type="ti:Gestora_Nombre" use="required" />
+		<x:attribute name="codigoGestoraElegible" type="ti:Gestora" use="optional" />
+	</x:complexType>
+		
+</x:schema>

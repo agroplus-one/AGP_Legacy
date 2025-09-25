@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="ContratacionSCRendimientos" 
+	targetNamespace="http://www.agroseguro.es/serviciosWeb/ContratacionSCRendimientos/" 
+	xmlns:agr="http://www.agroseguro.es/serviciosWeb/ContratacionSCRendimientos/" 
+	xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" 
+	xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" 
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	xmlns:xmime="http://www.w3.org/2005/05/xmlmime"
+	xmlns:ti="http://www.agroseguro.es/Tipos"
+  xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd"
+	xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd" >
+  <wsdl:types>
+    <xsd:schema elementFormDefault="qualified"
+    	targetNamespace="http://www.agroseguro.es/serviciosWeb/ContratacionSCRendimientos/"
+    	xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	  <xsd:import namespace="http://www.w3.org/2005/05/xmlmime"
+				schemaLocation="xmime.xsd" />
+      <xsd:import
+				namespace="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd"
+				schemaLocation="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd" />
+	  <xsd:import namespace="http://www.agroseguro.es/Tipos"
+				schemaLocation="Tipos.xsd" />
+      <xsd:element name="informarRendimientosRequest">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="plan" type="ti:Plan" />
+            <xsd:element name="linea" type="ti:Linea_Codigo" />
+            <xsd:element name="modulo" type="ti:Cobertura_Modulo" nillable="true" minOccurs="0"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+
+      <xsd:element name="informarRendimientosResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+			<xsd:element name="informarRendimientos" xmime:expectedContentTypes="text/xml" type="xmime:base64Binary" />
+		  </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+ 
+	  <xsd:element name="calcularRendimientosRequest">
+        <xsd:complexType>
+          <xsd:sequence>
+			<xsd:element name="poliza" xmime:expectedContentTypes="text/xml" type="xmime:base64Binary" />		  
+            <xsd:element name="ajuste" type="xsd:boolean" />
+            <xsd:element name="ajustarProducciones" type="ti:AjustarProducciones" nillable="true" minOccurs="0"/>
+			<xsd:element name="ajustarHistoricos" type="xsd:boolean" nillable="true" minOccurs="0"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      
+	  <xsd:element name="calcularRendimientosResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+			<xsd:element name="calcularRendimientos" xmime:expectedContentTypes="text/xml" type="xmime:base64Binary" />
+			</xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>	
+
+      <xsd:element name="agrFallo"
+				xmlns:agr="http://www.agroseguro.es/serviciosWeb/ContratacionSCRendimientos/">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:annotation>
+					Lista de mensajes de error de AGROSEGURO
+				</xsd:annotation>
+				<xsd:element name="error" type="agr:Error"
+					maxOccurs="unbounded" minOccurs="0" />
+			</xsd:sequence>
+		</xsd:complexType>
+	  </xsd:element>
+	  <xsd:complexType name="Error"
+		xmlns:agr="http://www.agroseguro.es/serviciosWeb/ContratacionSCRendimientos/">
+		<xsd:sequence>
+			<xsd:element name="codigo" type="xsd:int" />
+			<xsd:element name="mensaje" type="xsd:string" />
+		</xsd:sequence>
+	  </xsd:complexType>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="Header">
+    <wsdl:part name="Security" element="wsse:Security" />
+  </wsdl:message>
+  <wsdl:message name="AgrException">
+		<wsdl:part name="parameters" element="agr:agrFallo"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="informarRendimientosRequest">
+	<wsdl:part name="parameters"
+			element="agr:informarRendimientosRequest">
+	</wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="informarRendimientosResponse">
+	<wsdl:part name="parameters"
+			element="agr:informarRendimientosResponse">
+	</wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="calcularRendimientosRequest">
+	<wsdl:part name="parameters"
+			element="agr:calcularRendimientosRequest">
+	</wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="calcularRendimientosResponse">
+	<wsdl:part name="parameters"
+			element="agr:calcularRendimientosResponse">
+	</wsdl:part>
+  </wsdl:message>
+  
+  <wsdl:portType name="ContratacionSCRendimientos">
+    <wsdl:operation name="informarRendimientos">
+      <wsdl:documentation>
+				Operación de consulta de Información General de Rendimientos: 
+				
+				Este servicio sirve fundamentalmente para saber qué módulos,
+				tipos de capital y a qué nivel de agrupación (parcela, cosecha o ambos)
+				se requiere control de rendimientos en un producto.
+				
+				El objetivo de este servicio es orientar sobre la manera
+				en que hay que llamar al servicio relacionado de Cálculo de Rendimientos.
+
+				Parámetros de entrada:
+
+				•	Plan: numérico de cuatro posiciones. Obligatorio
+				•	Línea: numérico de tres posiciones. Obligatorio
+				•	Módulo de aseguramiento: carácter de cinco posiciones. Opcional
+
+				Se devolverá la siguiente información :
+
+				- Se generará un XML con los aspectos que hay que tener en cuenta 
+				de cara al cálculo de rendimientos para el Plan/Línea (Módulo)
+				indicado en la llamada. El esquema XSD de dicho fichero se 
+				denomina: "RendimientosInformacionGeneral.xsd".
+				
+				- Si el producto no está sujeto a control de rendimientos o se produce
+				un error en el servicio se devuelve un error que mediante el mecanismo
+				SOAPFault y no se genera ningún adjunto XML.
+	  </wsdl:documentation>
+      <wsdl:input message="agr:informarRendimientosRequest" />
+	  <wsdl:output message="agr:informarRendimientosResponse" />
+	  <wsdl:fault name="AgrException" message="agr:AgrException" />
+    </wsdl:operation>
+    <wsdl:operation name="calcularRendimientos">
+      <wsdl:documentation>
+				Operación de calculo de Rendimientos Permitidos en una póliza: 
+				
+				El presente servicio sirve para calcular los rendimientos permitidos
+				en las parcelas de una póliza dada, informando de las condiciones que
+				se han tenido en cuenta para dicho cálculo.
+				Además también sirve para ajustar las producciones indicadas en la
+				póliza de entrada de modo que cumplan los límites de rendimiento calculados.
+
+				Parámetros de entrada:
+				
+				•	Ajuste: de tipo lógico (verdadero/falso), para indicar si se quiere
+					realizar ajustes de límites. Obligatorio.
+				•	Ajustar producciones: de tipo carácter con dos valores posibles “max” ó “min”.
+					Opcional cuando en el primer parámetro se indica verdadero.
+					Cuando en el primer parámetro se indica que se quieren realizar ajustes (verdadero),
+					se puede indicar además cómo se quieren ajustar las producciones indicadas en la póliza,
+					ajustando al alza (hacia los límites máximos) o la baja (hacia los límites mínimos).
+				•	Ajustar históricos: de tipo lógico (verdadero/falso). Opcional cuando en el primer parámetro 
+					se indica verdadero. Sirve para indicar si se quiere incluir en el ajuste de producciones las 
+					parcelas con rendimiento histórico que tengan producción. Si se omite el parámetro o se indica 
+					falso, se respetarán las producciones distintas de cero que se hayan indicado en las parcelas 
+					de rendimiento histórico.
+
+				En la petición se deberá facilitar además como adjunto MTOM:
+
+				- Fichero XML de la póliza indicando al menos los datos imprescindibles para el cálculo.
+				La validación en estructura dicho esquema XSD se llama "CalculoSeguroAgrario.xsd"
+				
+				Se devolverá la siguiente información :
+
+				- Se generará un fichero XML con el resultado del cálculo de rendimientos y opcionalmente los ajustes.
+				El esquema XSD de dicho fichero se denomina: "RendimientosCalculo.xsd".
+				
+				- Si la póliza enviada no está sujeta a control de rendimientos o se produce
+				un error en el servicio se devuelve un error que mediante el mecanismo
+				SOAPFault y no se genera ningún adjunto XML.
+	  </wsdl:documentation>
+	  <wsdl:input message="agr:calcularRendimientosRequest" />
+	  <wsdl:output message="agr:calcularRendimientosResponse" />
+	  <wsdl:fault name="AgrException" message="agr:AgrException" />
+	</wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ContratacionSCRendimientosSOAP" 
+  		type="agr:ContratacionSCRendimientos">
+    <soap:binding style="document" 
+    	transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="informarRendimientos">
+      <soap:operation 
+      		soapAction="informarRendimientos"/>
+      <wsdl:input>
+        <soap:header use="literal" message="agr:Header"
+        part="Security" wsdl:required="true" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="AgrException">
+		<soap:fault name="AgrException" use="literal" />
+	  </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="calcularRendimientos">
+      <soap:operation 
+      		soapAction="calcularRendimientos"/>
+      <wsdl:input>
+        <soap:header use="literal" message="agr:Header"
+					part="Security" wsdl:required="true" />
+       	<soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="AgrException">
+		<soap:fault name="AgrException" use="literal" />
+	  </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ContratacionSCRendimientos">
+    <wsdl:documentation>
+			Mediante este proceso se podrá solicitar la información sobre 
+			módulos, tipos de capital y niveles de agrupación para los cuales
+			es necesario control de rendimientos en los diferentes productos, 
+			así como calcular los rendimientos permitidos para una póliza 
+			determinada informando de las condiciones que se han tenido en 
+			cuenta para dicho cálculo.
+
+			La información se devolverá dentro de archivos XML enviados como
+			Adjunto (Attachment) en formato MTOM.
+	</wsdl:documentation>
+    <wsdl:port binding="agr:ContratacionSCRendimientosSOAP" 
+    		name="ContratacionSCRendimientosSOAP">
+      <wsdl:documentation>
+				La primera dirección es el entorno de pruebas y no tiene
+				una resolución asignada en Internet, por lo que se deberá
+				incluir en la máquina local o en el servidor de nombres
+				local con la siguiente dirección: preproduccion.agroseguro.es
+				
+				La segunda dirección es el entorno de producción.
+	  </wsdl:documentation>
+	  <soap:address
+				location="https://www.agroseguro.es/cscr/V1R0/services/ContratacionSCRendimientos" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

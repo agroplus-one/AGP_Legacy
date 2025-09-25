@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:ti="http://www.agroseguro.es/serviciosweb/Tipos/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.agroseguro.es/serviciosweb/Tipos/" elementFormDefault="qualified">
+
+	<!-- Definicion de tipos  -->
+	<xsd:simpleType name="NIF">
+		<xsd:annotation>
+			<xsd:documentation>
+				Alfanumérico de 2 a 9 caracteres.
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:token">
+			<xsd:minLength value="2" />
+			<xsd:maxLength value="9" />
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="Plan">
+		<xsd:annotation>
+			<xsd:documentation>
+				Plan del Seguro numérico entero de 4 dígitos.
+			</xsd:documentation>
+		</xsd:annotation>  	  
+		<xsd:restriction base="xsd:positiveInteger">
+			<xsd:totalDigits value="4"/>
+			<xsd:minInclusive value="1980"/>
+		</xsd:restriction>		
+	</xsd:simpleType>
+	<xsd:simpleType name="Linea_Codigo">
+		<xsd:annotation>
+			<xsd:documentation>
+				Código de Línea de Seguro numérico entero de 3 dígitos
+				como máximo.
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:positiveInteger">
+			<xsd:totalDigits value="3"/>
+		</xsd:restriction>
+	</xsd:simpleType>			
+	<xsd:simpleType name="Poliza_Referencia">
+		<xsd:annotation>
+			<xsd:documentation>
+				Referencia de poliza. Alfanumérico de longitud 7. 
+				Los seis primeros caracteres serán dígitos del 0 al 9.
+				El septimo carácter será una letra mayúsculas de las
+				indicadas en la tabla de conversión: 1 2 3 4 5 6 7 
+				A B C D E F G H J K L M N P Q R S T V W X Y Z
+			</xsd:documentation>
+		</xsd:annotation>      
+		<xsd:restriction base="xsd:token">
+			<xsd:length value="7"/>
+			<xsd:pattern value="[0-9]{6}[A-HJ-PQ-TV-Z]{1}"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="Recibo">
+		<xsd:annotation>
+			<xsd:documentation>
+				Recibo numérico entero 6 dígitos.
+			</xsd:documentation>
+		</xsd:annotation>      
+		<xsd:restriction base="xsd:positiveInteger">
+			<xsd:totalDigits value="6"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="Porcentaje_Medida">
+		<xsd:annotation>
+			<xsd:documentation>
+				Numérico con 3 enteros y 2 decimales.
+				Puede ser cero para asegurados del Club sin Medidas.
+				Si es positivo (+) es bonificación.
+				Si es negativo (-) es recargo.
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:decimal">
+			<xsd:maxInclusive value="100.00"/>
+			<xsd:minInclusive value="-100.00"/>
+			<xsd:fractionDigits value="2"/>
+			<xsd:totalDigits value="5"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="Coeficiente_Rendimiento">
+		<xsd:annotation>
+			<xsd:documentation>
+				Numérico con 3 enteros y 2 decimales.
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:decimal">
+			<xsd:maxInclusive value="100.00"/>
+			<xsd:minInclusive value="0"/>
+			<xsd:fractionDigits value="2"/>
+			<xsd:totalDigits value="5"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="Tabla_Rendimientos">
+		<xsd:annotation>
+			<xsd:documentation>
+				Tabla de Rendimientos numérico entero 2 dígitos.
+				0 - Tabla General, 1 - Tabla Bonus				
+			</xsd:documentation>
+		</xsd:annotation>      
+		<xsd:restriction base="xsd:nonNegativeInteger">
+			<xsd:totalDigits value="2"/>
+		</xsd:restriction>
+	</xsd:simpleType>								
+</xsd:schema>

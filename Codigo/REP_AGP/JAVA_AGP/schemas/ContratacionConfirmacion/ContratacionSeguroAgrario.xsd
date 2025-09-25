@@ -1,0 +1,325 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<x:schema targetNamespace="http://www.agroseguro.es/SeguroAgrario/Contratacion"
+	xmlns="http://www.agroseguro.es/SeguroAgrario/Contratacion"
+	xmlns:x="http://www.w3.org/2001/XMLSchema"
+	xmlns:ti="http://www.agroseguro.es/Tipos" 
+	xmlns:dv="http://www.agroseguro.es/SeguroAgrario/Contratacion/DatosVariables"
+	xmlns:oprs="http://www.agroseguro.es/SeguroAgrario/Contratacion/OP/RelacionSocios"
+	xmlns:opcf="http://www.agroseguro.es/SeguroAgrario/Contratacion/OP/CostesFijos"
+>
+	
+	<x:import
+		namespace="http://www.agroseguro.es/ITipos"
+		schemaLocation="../commons/Tipos.xsd" />
+
+	<x:import
+		namespace="http://www.agroseguro.es/SeguroAgrario/Contratacion/DatosVariables"
+		schemaLocation="../commons/DatosVariables.xsd" />
+
+	<x:import
+		namespace="http://www.agroseguro.es/SeguroAgrario/Contratacion/OP/RelacionSocios"
+		schemaLocation="../ContratacionUtilidades/RelacionSocios_OP.xsd"
+	/>
+	
+	<x:import
+		namespace="http://www.agroseguro.es/SeguroAgrario/Contratacion/OP/CostesFijos"
+		schemaLocation="../ContratacionUtilidades/CostesFijos_OP.xsd"
+	/>
+				
+	<x:complexType name="Poliza">
+		<x:sequence>
+			<x:choice maxOccurs="1" minOccurs="1">
+				<x:element name="Colectivo" type="Colectivo" maxOccurs="1" minOccurs="1" />
+				<x:element name="Tomador" type="Tomador" maxOccurs="1" minOccurs="0" />
+			</x:choice>
+			<x:element name="Asegurado" type="Asegurado" maxOccurs="1" minOccurs="1" />
+			<x:element name="Entidad" type="Entidad" maxOccurs="1" minOccurs="1" />
+			<x:element name="Cobertura" type="Cobertura" maxOccurs="1" minOccurs="1" />
+			<x:element name="ObjetosAsegurados" type="ObjetosAsegurados" maxOccurs="1" minOccurs="1" />
+			<x:element name="Pago" type="Pago" maxOccurs="1" minOccurs="1" />
+			<x:choice minOccurs="1" maxOccurs="1">
+				<x:element name="DistribucionCoste" type="DistribucionCoste" minOccurs="1" maxOccurs="1" />
+				<x:element name="DistribucionCoste1" type="DistribucionCoste1" minOccurs="1" maxOccurs="1" />
+			</x:choice>
+			<x:element name="SubvencionesDeclaradas" type="SubvencionesDeclaradas" maxOccurs="1" minOccurs="0" />
+			<x:element name="RelacionSocios" type="RelacionSocios" maxOccurs="1" minOccurs="0" >
+				<x:key name="Socio_PK">
+					<x:selector xpath="Socio" />
+					<x:field xpath="@numero" />
+				</x:key>
+			</x:element>
+			<x:element name="RelacionSociosOP" type="oprs:RelacionSociosOP" maxOccurs="1" minOccurs="0" />
+			<x:element name="CostesFijosOP" type="opcf:CostesFijosOP" maxOccurs="1" minOccurs="0" />
+		</x:sequence>
+		<x:attributeGroup ref="ti:PlanLinea" />
+		<x:attribute name="referencia" use="optional" type="ti:Poliza_Referencia_Creciente" />
+		<x:attribute name="digitoControl" use="optional" type="ti:DigitoControl" />
+		<x:attribute name="fechaFirmaSeguro" type="x:date" use="required" />
+	</x:complexType>
+
+	<x:complexType name="Colectivo">
+		<x:attributeGroup ref="ti:ReferenciaColectivo" />
+		<x:attribute name="nif" use="required" type="ti:NIFCIF" />
+	</x:complexType>
+
+	<x:complexType name="Tomador">
+		<x:complexContent>
+			<x:restriction base="ti:Persona">
+				<x:sequence>
+					<x:group ref="ti:NombrePersona" maxOccurs="1" minOccurs="1" />
+					<x:element name="Direccion" type="ti:Direccion" minOccurs="1" maxOccurs="1" />
+					<x:element name="DatosContacto" type="ti:DatosContacto" minOccurs="0" maxOccurs="1" />					
+				</x:sequence>
+				<x:attribute name="nif" type="ti:NIFCIF" use="required" />
+			</x:restriction>
+		</x:complexContent>
+	</x:complexType>
+
+	<x:complexType name="Asegurado">
+		<x:complexContent>
+			<x:restriction base="ti:Persona">
+				<x:sequence>
+					<x:group ref="ti:NombrePersona" maxOccurs="1" minOccurs="1" />
+					<x:element name="Direccion" type="ti:Direccion" minOccurs="1" maxOccurs="1" />
+					<x:element name="DatosContacto" type="ti:DatosContacto" minOccurs="0" maxOccurs="1" />					
+				</x:sequence>
+				<x:attribute name="nif" type="ti:NIFCIF" use="required" />
+			</x:restriction>
+		</x:complexContent>
+	</x:complexType>
+
+	<x:complexType name="Entidad">
+		<x:sequence>
+			<x:element name="Mediador" type="Mediador" maxOccurs="1" minOccurs="0" />
+			<x:element name="Gastos" type="Gastos" maxOccurs="1" minOccurs="0" />
+		</x:sequence>
+		<x:attribute name="codigo" type="ti:Entidad_Codigo" use="required" />
+		<x:attribute name="codigoInterno" use="required" type="ti:CodigoInternoEntidad" />
+	</x:complexType>
+
+	<x:complexType name="Mediador">
+		<x:sequence>
+			<x:group ref="ti:NombrePersona" maxOccurs="1" minOccurs="0" />
+		</x:sequence>
+		<x:attribute name="tipo" type="ti:Mediador_Tipo" use="required" />
+		<x:attribute name="retribucionAsegurado" type="ti:SiNo" use="optional" />
+		<x:attribute name="importeRetribucion" type="ti:ImporteRetribucionMediador" use="optional" />
+	</x:complexType>
+
+	<x:complexType name="Gastos">
+		<x:attribute name="administracion" type="ti:PorcentajeGastos" use="required" />
+		<x:attribute name="adquisicion" type="ti:PorcentajeGastos" use="required" />
+		<x:attribute name="comisionMediador" type="ti:PorcentajeGastos" use="required" />
+	</x:complexType>
+	
+	<x:complexType name="Cobertura">
+		<x:sequence>
+			<x:element name="DatosVariables" type="dv:DatosVariables" minOccurs="0" maxOccurs="1" />
+		</x:sequence>
+		<x:attribute name="modulo" type="ti:Cobertura_Modulo" use="required" />
+	</x:complexType>
+	
+	<x:complexType name="DistribucionCoste">
+		<x:sequence>
+			<x:element name="BonificacionMedidasPreventivas" type="BonificacionMedidasPreventivas" minOccurs="0" maxOccurs="1" />
+			<x:choice maxOccurs="1" minOccurs="0">
+				<x:element name="BonificacionAsegurado" type="BonificacionAsegurado" minOccurs="1" maxOccurs="1"/>
+				<x:element name="RecargoAsegurado" type="RecargoAsegurado" minOccurs="1" maxOccurs="1"/>			
+			</x:choice>
+			<x:element name="Descuento" type="Descuento" minOccurs="0" maxOccurs="1" />
+			<x:element name="Consorcio" type="Consorcio" minOccurs="1" maxOccurs="1" />			
+			<x:element name="SubvencionEnesa" type="SubvencionEnesa" minOccurs="0" maxOccurs="unbounded" />
+			<x:element name="SubvencionCCAA" type="SubvencionCCAA" minOccurs="0" maxOccurs="unbounded" />			
+		</x:sequence>
+		<x:attribute name="primaComercial" type="ti:ImportePositivo" use ="required" />
+		<x:attribute name="primaNeta" type="ti:ImportePositivo" use ="required" />
+		<x:attribute name="costeNeto" type="ti:ImportePositivo" use ="required" />
+		<x:attribute name="cargoTomador" type="ti:ImportePositivo" use ="required" /> 		
+	</x:complexType>
+
+	<x:complexType name="DistribucionCoste1">
+		<x:sequence>
+			<x:element name="BonificacionRecargo" type="BonificacionRecargo" minOccurs="0" maxOccurs="unbounded" />
+			<x:element name="SubvencionEnesa" type="SubvencionEnesa" minOccurs="0" maxOccurs="unbounded" />
+			<x:element name="SubvencionCCAA" type="SubvencionCCAA" minOccurs="0" maxOccurs="unbounded" />
+		</x:sequence>
+		<x:attribute name="primaComercial" type="ti:ImportePositivo" use="required" />
+		<x:attribute name="primaComercialNeta" type="ti:ImportePositivo" use="required" />
+		<x:attribute name="recargoConsorcio" type="ti:ImportePositivo" use="required" />		
+		<x:attribute name="reciboPrima" type="ti:ImportePositivo" use="required" />
+		<x:attribute name="costeTomador" type="ti:ImportePositivo" use="required" />
+		<x:attribute name="totalCosteTomador" type="ti:ImportePositivo" use="required"/>
+		<x:attribute name="recargoAval" type="ti:ImportePositivo" use="optional" />
+		<x:attribute name="recargoFraccionamiento" type="ti:ImportePositivo" use="optional" />
+	</x:complexType>
+
+	<x:complexType name="BonificacionRecargo">
+		<x:attribute name="codigo" type="ti:BonificacionRecargo_Codigo" use="required" />
+		<x:attribute name="importe" type="ti:ImportePositivo" use="required" />
+	</x:complexType>	
+	
+	<x:complexType name="Importe" abstract="true">
+		<x:attribute name="importe" type="ti:ImportePositivo" use="required" />		
+	</x:complexType>
+
+	<x:complexType name="BonificacionMedidasPreventivas">
+		<x:complexContent>
+			<x:restriction base="Importe" >
+				<x:attribute name="importe" type="ti:ImportePositivo" use="required" />	
+			</x:restriction>	
+		</x:complexContent>
+	</x:complexType>
+
+	<x:complexType name="BonificacionAsegurado">
+		<x:complexContent>
+			<x:restriction base="Importe" >
+				<x:attribute name="importe" type="ti:ImportePositivo" use="required" />	
+			</x:restriction>	
+		</x:complexContent>
+	</x:complexType>
+
+	<x:complexType name="RecargoAsegurado">
+		<x:complexContent>
+			<x:restriction base="Importe" >
+				<x:attribute name="importe" type="ti:ImportePositivo" use="required" />	
+			</x:restriction>	
+		</x:complexContent>
+	</x:complexType>
+
+	<x:complexType name="Descuento">
+		<x:attribute name="ventanilla" type="ti:ImportePositivo" use="required" />
+		<x:attribute name="contratacionColectiva" type="ti:ImportePositivo" use="required" />
+	</x:complexType>
+
+	<x:complexType name="Consorcio">
+		<x:attribute name="reaseguro" type="ti:ImportePositivo" use="required" />	
+		<x:attribute name="recargo" type="ti:ImportePositivo" use="required" />
+	</x:complexType>
+	
+	<x:complexType name="SubvencionEnesa">
+		<x:attribute name="tipo" type="ti:Subvencion_Tipo" use="required" />
+		<x:attribute name="importe" type="ti:ImportePositivo" use="required" />	
+	</x:complexType>
+	
+	<x:complexType name="SubvencionCCAA">
+		<x:attribute name="codigoOrganismo" type="ti:Organismo_Codigo" use="required" />
+		<x:attribute name="importe" type="ti:ImportePositivo" use="required" />		
+	</x:complexType>
+	
+	<x:complexType name="Pago">
+		<x:sequence>
+			<x:element name="Cuenta" minOccurs="0" maxOccurs="1" type="Cuenta" />
+			<x:element name="Fraccionamiento" type="Fraccionamiento" maxOccurs="1" minOccurs="0"></x:element>
+		</x:sequence>
+		<x:attribute name="forma" type="ti:FormaPago" use="required" />
+		<x:attribute name="fecha" type="x:date" use="required" />
+		<x:attribute name="importe" type="ti:ImportePositivo" use="required" />
+		<x:attribute name="banco" type="ti:CCC_Banco" use="required" />
+	</x:complexType>
+
+	<x:complexType name="Cuenta">
+		<x:attribute name="iban" type="ti:IBAN" use="required" />
+	</x:complexType>
+	
+	<x:complexType name="Aval">
+		<x:attribute name="numero" type="ti:NumeroAval" use="required" />
+		<x:attribute name="importe" type="ti:ImportePositivo" use="required" />
+	</x:complexType>
+	
+	<x:complexType name="RelacionSocios">
+		<x:sequence>
+			<x:element name="Socio" maxOccurs="unbounded" minOccurs="1" type="Socio" />
+		</x:sequence>
+	</x:complexType>
+		
+	<x:complexType name="SubvencionesDeclaradas" >
+		<x:sequence>
+			<x:element name="SeguridadSocial" maxOccurs="1" minOccurs="0" type="SeguridadSocial" />
+			<x:element name="SubvencionDeclarada" type="SubvencionDeclarada" minOccurs="1" maxOccurs="unbounded" />
+		</x:sequence>
+	</x:complexType>
+
+	<x:complexType name="SubvencionDeclarada" >
+		<x:attribute name="tipo" type="ti:Subvencion_Tipo" use="required" />
+	</x:complexType>
+
+	<x:complexType name="SeguridadSocial" >
+		<x:attribute name="codigo" use="required" type="ti:SeguridadSocial_Codigo" />
+		<x:attribute name="numero" use="required" type="ti:SeguridadSocial_Numero" />
+		<x:attribute name="regimen" use="required" type="ti:SeguridadSocial_Regimen" />
+		<x:attribute name="provincia" use="required" type="ti:SeguridadSocial_Provincia" />
+	</x:complexType>
+	
+	<x:complexType name="Socio">
+		<x:sequence>
+			<x:group ref="ti:NombrePersona" maxOccurs="1" minOccurs="1" />
+			<x:sequence>
+				<x:element name="SubvencionesDeclaradas" type="SubvencionesDeclaradas" maxOccurs="1" minOccurs="0" />
+			</x:sequence>					
+		</x:sequence>
+		<x:attribute name="nif" type="ti:NIFCIF" use="required" /> 
+		<x:attribute name="numero" type="ti:Socio_Numero" use="required" />
+	</x:complexType>
+ 
+	<x:complexType name	="ObjetosAsegurados" >
+		<x:sequence>
+			<x:element name="Parcela" type="Parcela" minOccurs="1" maxOccurs="unbounded" />
+		</x:sequence>
+	</x:complexType>
+	
+	<x:complexType name="Parcela">
+		<x:sequence>
+			<x:element name="Ubicacion"  maxOccurs="1" minOccurs="1" type="ti:Ambito" />
+			<x:element name="Cosecha" maxOccurs="1" minOccurs="1" type="Cosecha"/>
+			<x:element name="SIGPAC" maxOccurs="1" minOccurs="0" type="ti:SIGPAC" />
+		</x:sequence>
+		<x:attribute name="hoja" use="required" type="ti:Parcela_Hoja" />
+		<x:attribute name="numero" use="required" type="ti:Parcela_Numero" />
+		<x:attribute name="nombre" use="optional" type="ti:Parcela_Nombre" />
+	</x:complexType>
+
+	<x:complexType name="Cosecha">
+		<x:sequence>
+			<x:element name="CapitalesAsegurados" type="CapitalesAsegurados" minOccurs="1" maxOccurs="1" >
+				<x:key name="CapitalAsegurado_PK">
+					<x:selector xpath="CapitalAsegurado" />
+					<x:field xpath="@tipo" />
+				</x:key>
+			</x:element>
+		</x:sequence>
+		<x:attribute name="cultivo" use="required" type="ti:Cultivo_Codigo" />
+		<x:attribute name="variedad" use="required" type="ti:Variedad_Codigo" />
+	</x:complexType>
+
+	<x:complexType name="CapitalesAsegurados">
+		<x:sequence>
+			<x:element name="CapitalAsegurado" type="CapitalAsegurado" minOccurs="1" maxOccurs="unbounded" />
+		</x:sequence>
+	</x:complexType>
+
+	<x:complexType name="CapitalAsegurado">
+		<x:sequence>
+			<x:element name="DatosVariables" type="dv:DatosVariables" minOccurs="0" maxOccurs="1" />
+		</x:sequence>
+		<x:attribute name="tipo" type="ti:TipoCapital" use="optional" default="0" />
+		<x:attribute name="superficie" type="ti:Parcela_Superficie" use="required" />
+		<x:attribute name="precio" type="ti:Precio" use="required" />
+		<x:attribute name="produccion" use="required" type="ti:ProduccionKG" />
+	</x:complexType> 
+
+	<x:element name="Poliza" type="Poliza" >
+		<x:key name="Parcela_PK">
+			<x:selector xpath="ObjetosAsegurados/Parcela" />
+			<x:field xpath="@hoja" />
+			<x:field xpath="@numero" />			
+		</x:key>
+	</x:element>
+
+	<x:complexType name="Fraccionamiento">
+		<x:sequence>
+			<x:element name="Aval" type="Aval" maxOccurs="1" minOccurs="0"></x:element>
+		</x:sequence>
+		<x:attribute name="periodo" type="ti:PeriodoFraccionamiento"></x:attribute>
+	</x:complexType>
+	
+</x:schema>

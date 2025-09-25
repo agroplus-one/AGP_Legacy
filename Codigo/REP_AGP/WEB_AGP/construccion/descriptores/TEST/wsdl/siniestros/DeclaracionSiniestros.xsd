@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<x:schema 
+	targetNamespace="http://www.agroseguro.es/SeguroAgrario/Siniestros"
+	xmlns="http://www.agroseguro.es/SeguroAgrario/Siniestros"
+	xmlns:pks="http://www.agroseguro.es/SeguroAgrario/Siniestros"
+	xmlns:x="http://www.w3.org/2001/XMLSchema"
+	xmlns:ti="http://www.agroseguro.es/Tipos" 
+	xmlns:dv="http://www.agroseguro.es/SeguroAgrario/Siniestros/DatosVariablesDS"	
+> 
+
+	<!-- Importacion de la definicion de tipos genericos -->
+	<x:import
+		namespace="http://www.agroseguro.es/Tipos"
+		schemaLocation="Tipos.xsd" />
+	<!-- Importacion de los datos variable Fecha Previstga de Recoleccion y Frutos Caidos -->
+	<x:import 
+		namespace="http://www.agroseguro.es/SeguroAgrario/Siniestros/DatosVariablesDS" 
+		schemaLocation="DatosVariablesDS.xsd" />
+	
+	<x:element name="Siniestro" type="Siniestro" >
+		<x:annotation>
+			<x:documentation>
+				Elemento Raiz
+			</x:documentation>
+		</x:annotation>
+		<x:key name="Siniestro_PK">
+			<x:selector xpath="Acta/IdentificacionActa" />
+			<x:field xpath="@serieActa" />			
+			<x:field xpath="@numeroActa" />
+		</x:key>
+		<x:key name="Parcela_PK">
+			<x:selector xpath="ObjetosSiniestrados/Parcela" />
+			<x:field xpath="@hoja" />
+			<x:field xpath="@numero" />			
+		</x:key>
+	</x:element>
+	
+	<x:complexType name="Siniestro">
+		<x:sequence>
+
+            <x:element name="Poliza" type="Poliza" minOccurs="1"
+				maxOccurs="1" />
+            <x:element name="Asegurado" type="Asegurado" minOccurs="1"
+				maxOccurs="1" />
+			<x:element name="PersonaContacto" type="PersonaContacto"
+				minOccurs="1" maxOccurs="1" />
+			<x:element name="Riesgo" type="Riesgo" minOccurs="1"
+				maxOccurs="1" />
+			<x:element name="ObjetosSiniestrados"
+				type="ObjetosSiniestrados" minOccurs="1" maxOccurs="1" />
+        </x:sequence>
+		<x:attribute name="numeroInterno" type="ti:Siniestro_NumeroInterno" use="required" />
+		<x:attribute name="fechaFirmaSiniestro" type="x:date" use="required" />
+		<x:attribute name="observacion" type="ti:Siniestro_Observacion" use="optional" />
+
+	</x:complexType>
+	
+	<x:complexType name="Poliza">
+		<x:attributeGroup ref="ti:PlanLinea" />
+		<x:attribute name="referenciaPoliza"  type="ti:Poliza_Referencia" />
+		<x:attribute name="referenciaColectivo"  type="ti:Colectivo_Referencia" />
+	</x:complexType>
+
+	<x:complexType name="Asegurado">
+		<x:sequence>
+			<x:group ref="ti:NombrePersona" maxOccurs="1" minOccurs="1" />
+			<x:element name="Direccion" type="Direccion" minOccurs="1" maxOccurs="1" />
+			<x:element name="DatosContacto" type="ti:DatosContacto" minOccurs="0" maxOccurs="1" />
+		</x:sequence>
+		<x:attribute name="nif" type="ti:NIFCIF" use="required" />
+		<x:attribute name="telefono" type="ti:Telefono" use="optional" />
+	</x:complexType>
+
+	<x:complexType name="PersonaContacto">
+		<x:sequence>
+			<x:group ref="ti:NombrePersona" maxOccurs="1" minOccurs="1" />
+			<x:element name="Direccion" type="Direccion" minOccurs="1" maxOccurs="1" />
+		</x:sequence>
+		<x:attribute name="telefono1" type="ti:Telefono" use="optional" />
+		<x:attribute name="telefono2" type="ti:Telefono" use="optional" />
+		<x:attribute name="telefono3" type="ti:Telefono" use="optional" />				
+	</x:complexType>
+		
+	<x:complexType name="Riesgo">
+		<x:attribute name="riesgoSiniestro" type="ti:Riesgo_Codigo" use="required" />
+		<x:attribute name="fechaOcurrencia" type="x:date" use="required"/>
+	</x:complexType>
+	
+	<x:complexType name	="ObjetosSiniestrados" >
+		<x:sequence>
+			<x:element name="Parcela" type="Parcela" minOccurs="1" maxOccurs="unbounded" >
+				<x:key name="TipoCapital_PK">
+					<x:selector xpath="Cosecha/CapitalesAsegurados/CapitalAsegurado" />
+					<x:field xpath="@tipo" />			
+				</x:key>
+			</x:element>
+		</x:sequence>		
+	</x:complexType>
+	
+	<x:complexType name="Parcela">                                                                                                                                                         
+		<x:sequence>
+			<x:element name="Ubicacion"  maxOccurs="1" minOccurs="0" type="ti:AmbitoOpcional" />
+			<x:choice minOccurs="1" maxOccurs="1">
+				<x:element name="Cosecha" maxOccurs="1" minOccurs="1" type="Cosecha"/>
+				<x:sequence >
+					<x:element name="Especie" maxOccurs="1" minOccurs="1" type="Especie"/>
+					<x:element name="DatosVariables" type="dv:DatosVariablesDS" minOccurs="0" maxOccurs="1" />
+				</x:sequence>
+			</x:choice>			
+			<x:element name="SIGPAC" maxOccurs="1" minOccurs="0" type="ti:SIGPAC" />			
+		</x:sequence>
+		<x:attribute name="hoja" use="optional" type="ti:Parcela_Hoja_Tradicional" />
+		<x:attribute name="numero" use="optional" type="ti:Parcela_Numero" />		
+		<x:attribute name="nombre" use="optional" type="ti:Parcela_Nombre" />
+		<x:attribute name="superficie" use="required" type="ti:Parcela_Superficie" />
+		<x:attribute name="parcelaAgricola" use="optional" type="ti:Codigo5" />
+		
+	</x:complexType>
+
+	<x:complexType name="Cosecha">
+		<x:sequence>
+			<x:element name="CapitalesAsegurados" type="CapitalesAsegurados" minOccurs="1" maxOccurs="1"/>
+		</x:sequence>	
+		<x:attribute name="cultivo" use="required" type="ti:Cultivo_Codigo" />
+		<x:attribute name="variedad" use="optional" type="ti:Variedad_Codigo" />		
+	</x:complexType>
+	
+	<x:complexType name="CapitalesAsegurados" >	
+		<x:sequence>
+			<x:element name="CapitalAsegurado" type="CapitalAsegurado" minOccurs="1" maxOccurs="unbounded" />
+		</x:sequence>
+	</x:complexType>
+	
+	<x:complexType name="CapitalAsegurado" >
+		<x:sequence>		
+			<x:element name="DatosVariables" type="dv:DatosVariablesDS" minOccurs="0" maxOccurs="1" />
+		</x:sequence>
+		<x:attribute name="superficie" use="required" type="ti:Parcela_Superficie" />
+		<x:attribute name="tipo" type="ti:TipoCapital" use="optional" default="0" />		
+	</x:complexType>	
+
+	<x:complexType name="Especie">
+		<x:attribute name="cultivo" use="required" type="ti:Cultivo_Codigo" />
+		<x:attribute name="variedad" use="optional" type="ti:Variedad_Codigo" />
+		<x:attribute name="opcion" use="optional" type="ti:Opcion" />		
+	</x:complexType>
+
+	<x:complexType name="Direccion">
+		<x:complexContent>
+			<x:extension base="ti:Direccion">
+				<x:sequence>
+				</x:sequence>
+				<x:attribute name="termino" type="ti:Termino_Codigo"
+					use="optional" />
+			</x:extension>
+		</x:complexContent>
+	</x:complexType>
+</x:schema>

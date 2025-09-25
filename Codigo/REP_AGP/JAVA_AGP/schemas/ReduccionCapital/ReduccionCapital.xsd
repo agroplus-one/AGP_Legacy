@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<x:schema xmlns:x="http://www.w3.org/2001/XMLSchema"
+	targetNamespace="http://www.agroseguro.es/SeguroAgrario/Contratacion/ReduccionCapital"
+	xmlns="http://www.agroseguro.es/SeguroAgrario/Contratacion/ReduccionCapital"
+	xmlns:ti="http://www.agroseguro.es/ITipos">
+
+	<x:import namespace="http://www.agroseguro.es/ITipos"
+		schemaLocation="../commons/Tipos.xsd" />
+
+	<x:element name="Poliza" type="Poliza" />
+
+	<x:complexType name="Poliza">
+		<x:sequence>
+			<x:choice maxOccurs="1" minOccurs="0">
+				<x:element maxOccurs="1" minOccurs="0" name="Colectivo"
+					type="Colectivo" />
+				<x:element maxOccurs="1" minOccurs="0" name="Tomador"
+					type="Tomador" />
+			</x:choice>
+			<x:element maxOccurs="1" minOccurs="1" name="Asegurado"
+				type="Asegurado" />
+			<x:element maxOccurs="1" minOccurs="1" name="Motivo" type="Motivo" />
+			<x:element maxOccurs="1" minOccurs="1" name="ObjetosAsegurados"
+				type="ObjetosAsegurados">
+				<x:key name="Parcela_PK">
+					<x:selector xpath="Parcela" />
+					<x:field xpath="@hoja" />
+					<x:field xpath="@numero" />
+				</x:key>
+			</x:element>
+		</x:sequence>
+		<x:attributeGroup ref="ti:PlanLinea" />
+		<x:attributeGroup ref="ti:ReferenciaPolizaCreciente" />
+		<x:attribute name="modulo" type="ti:Cobertura_Modulo" use="required" />
+		<x:attribute name="fechaFirmaSolicitud" type="x:date" use="required" />
+	</x:complexType>
+
+	<x:complexType name="Colectivo">
+		<x:attributeGroup ref="ti:ReferenciaColectivo" />
+		<x:attribute name="nif" type="ti:NIFCIF" use="required" />
+	</x:complexType>
+
+	<x:complexType name="Tomador">
+		<x:group ref="ti:NombrePersona" />
+		<x:attribute name="nif" type="ti:NIFCIF" use="required" />
+	</x:complexType>
+
+	<x:complexType name="Asegurado">
+		<x:group ref="ti:NombrePersona" />
+		<x:attribute name="nif" type="ti:NIFCIF" use="required" />
+	</x:complexType>
+
+
+	<x:complexType name="Motivo">
+		<x:attribute name="codigo" type="ti:Motivo_Codigo" use="optional" />
+		<x:attribute name="descripcion" type="ti:Motivo_Descripcion"
+			use="optional" />
+		<x:attribute name="fecha" type="x:date" use="required" />
+	</x:complexType>
+
+	<x:complexType name="ObjetosAsegurados">
+		<x:sequence>
+			<x:element maxOccurs="unbounded" minOccurs="1" name="Parcela"
+				type="Parcela" />
+		</x:sequence>
+	</x:complexType>
+
+	<x:complexType name="Parcela">
+		<x:sequence>
+			<x:element maxOccurs="1" minOccurs="1" name="Ubicacion"
+				type="ti:Ambito" />
+			<x:element maxOccurs="1" minOccurs="1" name="Cosecha" type="Cosecha" />
+			<x:element maxOccurs="1" minOccurs="0" name="SIGPAC" type="ti:SIGPAC" />
+		</x:sequence>
+		<x:attribute name="hoja" type="ti:Parcela_Hoja" use="required" />
+		<x:attribute name="numero" type="ti:Parcela_Numero" use="required" />
+	</x:complexType>
+
+	<x:complexType name="Cosecha">
+		<x:sequence>
+			<x:element maxOccurs="1" minOccurs="1" name="CapitalesAsegurados"
+				type="CapitalesAsegurados">
+				<x:key name="CapitalAsegurado_PK">
+					<x:selector xpath="CapitalAsegurado" />
+					<x:field xpath="@tipo" />
+				</x:key>
+			</x:element>
+		</x:sequence>
+		<x:attribute name="cultivo" type="ti:Cultivo_Codigo" use="required" />
+		<x:attribute name="variedad" type="ti:Variedad_Codigo"
+			use="required" />
+	</x:complexType>
+
+	<x:complexType name="CapitalesAsegurados">
+		<x:sequence>
+			<x:element maxOccurs="unbounded" minOccurs="1"
+				name="CapitalAsegurado" type="CapitalAsegurado" />
+		</x:sequence>
+	</x:complexType>
+
+	<x:complexType name="CapitalAsegurado">
+		<x:attribute default="0" name="tipo" type="ti:TipoCapital"
+			use="optional" />
+		<x:attribute name="superficie" type="ti:Parcela_Superficie"
+			use="required" />
+		<x:attribute name="precio" type="ti:Precio" use="optional" />
+		<x:attribute name="produccionDeclarada" type="ti:ProduccionKG"
+			use="required" />
+		<x:attribute name="produccionTrasDanos" type="ti:ProduccionKG"
+			use="required" />
+	</x:complexType>
+
+</x:schema>

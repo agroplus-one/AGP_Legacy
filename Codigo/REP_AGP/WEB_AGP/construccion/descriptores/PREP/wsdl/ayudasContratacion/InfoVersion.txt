@@ -1,0 +1,205 @@
+CONTRATACIONAYUDAS
+------------------
+
+
+archivo				                	namespace		                     			version
+--------------------------------		----------------------------------------		---------
+- DatosFijosVariablesPoliza.xsd			DatosFijosVariablesPoliza						5.0
+- DistribucionPreciosPoliza.xsd			DistribucionPreciosPoliza						3.0
+- ListaEmpresasGestoras.xsd			ListaEmpresasGestoras							1.0
+- ModulosYCoberturas.xsd			ModulosYCoberturas							3.0
+- PresupuestoContratacion.xsd			PresupuestoContratacion							1.5
+- DeclaracionSubvenciones.xsd			Contratacion/DeclaracionSubvenciones					1.0
+- Explotacion.xsd				Contratacion/Explotacion						2.0
+- Parcela.xsd					Contratacion/Parcela							2.0
+- DatosVariables.xsd           			Contratacion/DatosVariables    						4.0
+- CostesFijos_OP				SeguroAgrario/Contratacion/OP/CostesFijos				2.0
+- RelacionSocios_OP				SeguroAgrario/Contratacion/OP/RelacionSocios				1.0
+- CostePoliza.xsd				Contratacion/CostePoliza						1.0
+- Condicionado.xsd				SeguroCreciente/Condicionado		 				40.0
+- Condicionado_Registros.xsd    		SeguroCreciente/Condicionado					 	40.0
+- Condicionado_Tipos.xsd			SeguroCreciente/Condicionado/Tipos		 			27.0
+- Tipos.xsd        		                Tipos		                           	   			34.0.1
+- AyudaRiesgo.xsd				SeguroAgrario/Contratacion/AyudaRiesgo					1.0.0
+- AyudaCausa.xsd				SeguroAgrario/Contratacion/AyudaCausa					1.0.0
+- xmime.xsd								http://www.w3.org/2005/05/xmlmime
+- policy.xml
+
+
+DESCRIPCION DE LOS FICHEROS
+---------------------------
+	
+- ContratacionAyudas.wsdl
+Descriptor del servicio Web que incluye diversas funciones de apoyo a la contrataci n de p lizas
+dise adas para ser utilizadas desde los aplicativos de contrataci n de las Entidades. Pretende ser
+un sustituto de parte de las tablas de condicionado que se env an actualmente a las Entidades.
+Sin especificaci n de seguridad. Pensado para manejar la seguridad delegando en
+los m dulos de seguridad de los lenguajes de programaci n a trav s de pol ticas de aserciones.
+
+- policy.xml
+Pol tica de seguridad seg n especificaci n WS-SecurityPolicy con UsernameToken
+de Oasis.
+
+- ContratacionAyudas_con_cabeceras_seguridad.wsdl
+Idem ContratacionAyudas.wsdl pero con cabecera de seguridad WS-Security, para
+manejar la seguridad a trav s de los bindings de XML generados en cada lenguaje
+de programaci n.
+
+-DatosFijosVariablesPoliza.xsd
+Combinaciones v lidas de datos fijos y datos variables que no dependen de coberturas que puede
+tener una p liza para sus explotaciones y tipos de capital, atendiendo a una combinaci n de
+datos fijos v lida y su  mbito geogr fico.
+
+-DistribucionPreciosPoliza.xsd
+Precios m ximos y m nimos con los que se puede asegurar las explotaciones de una p liza ganadera
+en el momento de realizar la consulta.
+
+-ListaEmpresasGestoras.xsd
+Nombre de las empresas gestoras que prestan sus servicios de retirada de cad veres en un  mbito determinado
+
+-ModulosYCoberturas.xsd
+Elecciones de cobertura que se pueden escoger para una p liza.
+
+- PresupuestoContratacion.xsd
+Esquema entrante de c lculo de la P liza unificada del Seguro Creciente, que
+es como Contratacion.xsd pero con menos restricciones.
+
+- CostesFijos_OP.xsd
+Anexo con la declaraci n de gastos fijos de la explotaci n agr cola en el seguro
+de Costes Fijos de OP (Organizaci n de Productores)
+
+- RelacionSocios_OP.xsd
+Anexo con la lista de socios que suscriben el seguro de OP (Organizaci n de Productores)
+
+- CostePoliza.xsd
+Esquema de distribucion de coste de la p liza unificada
+
+- DeclaracionSubvenciones.xsd
+Esquema de subvenciones de la p liza unificada
+
+- Explotacion.xsd
+Esquema de explotaci n de la p liza unificada
+
+- Parcela.xsd
+Esquema de parcela de la p liza unificada
+
+-DatosVariables.xsd
+Esquema que contiene definiciones de datos variables de la P liza Unificada (Agr cola/Ganado)
+
+- Condicionado.xsd
+Define el elemento padre del documento (Condicionado) que esta estructurado
+en torno a tres elementos hijos (CondicionadoPlanLinea, CondicionadoPlan, CondicionadoGEneral)
+que agrupan las diferentes tablas.
+			
+- Condicionado_Registros.xsd
+Para cada tabla del Condicionado del seguro creciente se ha 
+definido un tipo complejo (ComplexType) que sirve como modelo
+de registro.
+
+- Condicionado_Tipos.xsd
+Este fichero contiene las definiciones de tipos simples que se 
+emplean en los registros del condicionado. Se ha definido un tipo simple
+s lo para algunos tipos de dato que se emplean en varias tablas.	
+
+- Tipos.xsd
+Esquema que contiene el diccionario de tipos com n de Agroseguro.
+
+- AyudaRiesgo.xsd
+Lista de riesgos tasables de Agroseguro
+
+- AyudaCausa.xsd
+Lista de Causas de Reduccion de capital de Agroseguro
+
+- xmime.xsd
+Esquema de validaci n de tipos XMLMIME de W3C
+
+
+
+VERSIONES
+---------
+1.0.20 : 06/08/2024
+-------------------------------------------------------------------------------------------
+- Se anade la operación ayudaCausas
+
+1.0.19 : 19/10/2023
+-------------------------------------------------------------------------------------------
+- Se solucionan los problemas de estructura en la operacion riesgos
+
+1.0.18 : 04-09-2023
+-------------------------------------------------------------------------------------------
+- Se a aden tipos para incluir importes negativos
+- Se a ade el esquema AyudaRiesgo.xsd, donde se indican los riesgos tasables de Agroseguro
+
+1.0.17 : 30-05-2023.
+-------------------------------------------------------------------------------------------
+- Modificaci n fechaNumerico a fechaCarga en ParametrosAmbitos
+
+1.0.16 : 05-05-2023.
+-------------------------------------------------------------------------------------------
+- Modificaci n para a adir nueva operaci n descarga de ambitos
+
+1.0.15 : 10-01-2022.
+-------------------------------------------------------------------------------------------
+- Modificaci n del esquema Explotacion para adecuarse a la nueva contrataci n por SIGPAC-REGA com opcionalidad del  mbito
+
+1.0.14 : 28-06-2021.
+-------------------------------------------------------------------------------------------
+- Se eliminan los esquemas agr colas por desaparici n de su uso el 01-07-2021
+- Modificaci n de los esquemas DatosVariables, Tipos y Parcela para adecuarse a la nueva ParcelaAgricola y a la contrataci n por SIGPAC
+
+1.0.13 : 30/11/2020
+- ModulosYCoberturas.xsd: El elemento DatosVariables pasa a ser opcional.
+
+1.0.12 : 21/09/2020
+- PresupuestoContratacion.xsd: Se a ade la etiqueta opcional CuentaCobroSiniestros
+
+1.0.11 : 30/04/2019
+- ContratacionAyudas.wsdl y ContratacionAyudas_con_cabeceras_seguridad.wsdl: Nuevo par metro opcional mostrarDependenciasDV en la operaci n datosFijosyVariablesPoliza.
+- DatosFijosVariablesPoliza.xsd: Nuevo elemento DatosVariables en etiqueta Valor y nuevo atributo mostrarDependenciasDV en etiqueta DatosFijosVariables.
+
+1.0.10 : 28/02/2018
+- DistribucionPreciosPoliza.xsd: nuevo atributo precioPactado.
+
+1.0.9: 
+- ContratacionAyudas.wsdl y ContratacionAyudas_con_cabeceras_seguridad.wsdl: eliminaci n de los mensajes de respuesta asociados a las operaciones eliminadas. Se hab an dejado
+por error y dan problemas en algunos clientes.
+
+1.0.8: 
+- ContratacionAyudas.wsdl y ContratacionAyudas_con_cabeceras_seguridad.wsdl: eliminaci n de las operaciones Razas y Pureza. Obtenci n de los grupos de razas: cambio de los
+par metros de salida por la devoluci n de un PDF con el extracto de las normas de contrataci n correspondiente a la combinaci n de par metros de entrada.
+- RazasProducto.xsd: eliminado.
+
+1.0.7 : 13/04/2016
+- ModulosYCoberturas.xsd: Se explosionan las explotaciones, de tal manera que se devuelven las mismas explotaciones y misma estructura que tiene la p liza.
+- DatosFijosVariablesPoliza.xsd: Nuevos atributos Grupo de Negocio a nivel de Tipo de Capital. Se a aden datos variables simpres (No dependen del riesgo) que vienen en cabecera de p liza.
+
+1.0.6 : 01/03/2016
+- ContratacionAyudas.wsdl y - ContratacionAyudas_con_cabeceras_seguridad.wsdl: nueva operaci n para obtener las coberturas contratadas en una p liza.
+- ModulosYCoberturas.xsd: versi n funcional para coberturas de ganado, devuelto por las operaciones obtener m dulos/coberturas y coberturas contratadas.
+
+1.0.5 : 13/10/2015
+- DatosFijosVariablesPoliza.xsd: Corregido namespace del tipo soloValoresPresupuesto (xsd:boolean -> x:boolean).
+
+1.0.4 : 13/10/2015
+- ContratacionAyudas.wsdl y ContratacionAyudas_con_cabeceras_seguridad.wsdl: Nuevo par metro opcional soloValoresPresupuesto.
+- DatosFijosVariablesPoliza.xsd: Nuevos atributos dependienteAmbito y permitidoPresupuesto en etiqueta Valor.
+
+
+1.0.3 : 23/04/2015
+- DatosFijosVariablesPoliza.xsd: Errata en atributo "mulptiple". Reubicaci n etiqueta DatosVariables de la explotaci n para que dependa de la especie/r gimen.
+
+1.0.2 : 17/04/2015
+- DatosFijosVariablesPoliza.xsd: cambiada cardinalidad etiqueta Valor. Algunos datos variables no est n codificados
+- PresupuestoContratacion.xsd: cambiada cardinalidad etiqueta Cobertura. Para la obtenci n de precios no hace falta.
+- DistribucionPreciosPoliza.xsd: cambiada obligatoriedad atributo criteriosUtilizados.
+
+1.0.1 : 14/04/2015
+-------------------------------------------------------------------------------------------
+- A adidos XSD faltantes de la p liza unificada: DeclaracionSubvenciones.xsd, CostePoliza.xsd, Explotacion.xsd, Parcela.xsd, CostesFijos_OP.xsd, RelacionSocios_OP.xsd
+- DatosFijosVariablesPoliza.xsd: corregidos tipos de dato GrupoRaza, TipoCapital, y TipoAnimal.
+- ContratacionAyudas.wsdl y ContratacionAyudas_con_cabeceras_seguridad.wsdl: cambiado tipo de datos del atributo "codigoRaza"
+
+
+1.0.0 : 10/04/2015
+-------------------------------------------------------------------------------------------
+- Versi n inicial.

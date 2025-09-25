@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 05-oct-2011 11:10:52 by Hibernate Tools 3.3.0.GA -->
+<hibernate-mapping>
+    <class name="com.rsi.agp.dao.tables.comisiones.ReportCierre" table="TB_COMS_REPORT_FICHEROS_CIERRE">
+        <id name="id" type="java.lang.Long">
+            <column name="ID" precision="15" scale="0" />
+            <generator class="sequence">
+            	<param name="sequence">SQ_COMS_FICHEROS_CIERRE</param>
+            </generator>
+        </id>
+        <many-to-one name="cierre" class="com.rsi.agp.dao.tables.comisiones.Cierre" fetch="select">
+            <column name="IDCIERRE" precision="15" scale="0" not-null="true">
+                <comment>ID del cierre al que pertenece el fichero</comment>
+            </column>
+        </many-to-one>
+        <property name="nombrefichero" type="string">
+            <column name="NOM_FICH_CIERRE" length="100" not-null="true">
+                <comment>Nombre del fichero</comment>
+            </column>
+        </property>
+        <property name="contenido" type="blob">
+            <column name="CONTENIDO">
+                <comment>Contenido literal del fichero</comment>
+            </column>
+        </property>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,51 @@
+#Servicio Web de contratacion
+contratacion.wsdl=/aplicaciones/AGP_AGROPLUS/FileManagers/wsdl/contratacion/ContratacionSCUtilidades.wsdl
+contratacion.location=http://www.agroseguro.es/serviciosweb/ContratacionSCUtilidades/
+contratacion.service=ContratacionSCUtilidades
+contratacion.port=ContratacionSCUtilidadesSOAP
+
+#Servicio Web de confirmacion
+confirmacion.wsdl=/aplicaciones/AGP_AGROPLUS/FileManagers/wsdl/confirmacion/ContratacionSCConfirmacion.wsdl
+confirmacion.location=http://www.agroseguro.es/serviciosweb/ContratacionSCConfirmacion/
+confirmacion.service=ContratacionSCConfirmacion
+confirmacion.port=ContratacionSCConfirmacionSOAP
+
+#Servicio Web de impresion
+impresion.wsdl=/aplicaciones/AGP_AGROPLUS/FileManagers/wsdl/impresion/ImpresionSCPoliza.wsdl
+impresion.location=http://www.agroseguro.es/serviciosweb/ImpresionSCPoliza/
+impresion.service=ImpresionSCPoliza
+impresion.port=ImpresionSCPolizaSOAP
+
+#Servicio Web de seguimiento
+seguimiento.wsdl=/aplicaciones/AGP_AGROPLUS/FileManagers/wsdl/seguimiento/SeguimientoSCPoliza.wsdl
+seguimiento.location=http://www.agroseguro.es/serviciosweb/SeguimientoSCPoliza/
+seguimiento.service=SeguimientoSCPoliza
+seguimiento.port=SeguimientoSCPolizaSOAP
+
+#Servicio Web de cálculo de la característica de la explotación
+caractExpl.wsdl=/aplicaciones/AGP_AGROPLUS/FileManagers/wsdl/caractExplotacion/CaracteristicaExplotacion.wsdl
+caractExpl.location=http://www.agroseguro.es/serviciosweb/CaracteristicaExplotacion/
+caractExpl.service=CaracteristicaExplotacion
+caractExpl.port=CaracteristicaExplotacionSOAP
+
+#Servicio Web de anexos de modificación
+anexoModificacionWS.wsdl=/aplicaciones/AGP_AGROPLUS/FileManagers/wsdl/anexoModificacionWS/ContratacionSCModificacion.wsdl
+anexoModificacionWS.location=http://www.agroseguro.es/serviciosWeb/ContratacionSCModificacion/
+anexoModificacionWS.service=ContratacionSCModificacion
+anexoModificacionWS.port=ContratacionSCModificacionSOAP
+
+security.user=rurale
+#security.password=qj5020
+security.password=q589462
+
+#Parámetros de configuración del proxy.
+#Indica si se debe utilizar proxy o no (true o false)
+proxy.on = false
+#Host del proxy
+proxy.host = 172.22.4.193
+#Puerto del proxy
+proxy.port = 8080
+#Usuario del proxy
+proxy.user = cajarural\\P02AGR01
+#Contraseña del proxy
+proxy.password = Fdc2M3w2

@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="declaracionSeguro_condicion2" pageWidth="555" pageHeight="700" whenNoDataType="AllSectionsNoDetail" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" isIgnorePagination="true">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="ID" class="java.lang.Integer"/>
+	<queryString>
+		<![CDATA[select em.*, sm.*, po.*, co.*, v.nombre as nombrevia, tm.domicilio, tm.numvia
+from o02agpe0.tb_subentidades_mediadoras sm, o02agpe0.tb_polizas po, o02agpe0.tb_colectivos co, o02agpe0.tb_tomadores tm, tb_vias v , o02agpe0.tb_entidades_mediadoras em
+where em.codentidad=sm.codentidad
+and co.id = po.idcolectivo
+and sm.codentidad = co.entmediadora
+and sm.codsubentidad = co.subentmediadora
+and po.idcolectivo = co.id
+and co.ciftomador = tm.ciftomador
+and co.codentidad = tm.codentidad
+and tm.clavevia = v.clave
+and po.idpoliza = $P{ID}]]>
+	</queryString>
+	<field name="CODENTIDAD" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="NOMENTIDAD" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CODSUBENTIDAD" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="NOMSUBENTIDAD" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="IDTIPOMEDIADOR_AGRO" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="IMPORTECOMISION" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="RETRIBUCION" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CODENTIDADNOMEDIADORA" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="IDTIPOMEDIADOR_RGA" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="TIPOIDENTIFICACION" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="NOMBRE" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="APELLIDO1" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="APELLIDO2" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="NIFCIF" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CODPOSTAL" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PAGODIRECTO" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="FECHABAJA" class="java.sql.Timestamp">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="IDPOLIZA" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="LINEASEGUROID" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="IDASEGURADO" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="IDCOLECTIVO" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="DISCRIMINANTE" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="OFICINA" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CODMODULO" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="REFERENCIA" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="IMPORTE" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="IDESTADO" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="IDENVIO" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="DC" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="XMLACUSECONTRATACION" class="oracle.sql.CLOB">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="TIPOREF" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PAGADA" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="BLOQUEADAPOR" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="FECHABLOQUEO" class="java.sql.Timestamp">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CLASE" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="TIENESINIESTROS" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="TIENEANEXORC" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="TIENEANEXOMP" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="ID" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CIFTOMADOR" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="NOMCOLECTIVO" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="ENTMEDIADORA" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="SUBENTMEDIADORA" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="ACTIVO" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PCTDESCUENTOCOL" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PCTPRIMERPAGO" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="FECHAPRIMERPAGO" class="java.sql.Timestamp">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PCTSEGUNDOPAGO" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="FECHASEGUNDOPAGO" class="java.sql.Timestamp">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="FECHACAMBIO" class="java.sql.Timestamp">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="FECHAEFECTO" class="java.sql.Timestamp">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="NOMBREVIA" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="DOMICILIO" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="NUMVIA" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<variable name="SHOW_FOOT" class="java.lang.Boolean" resetType="None">
+		<variableExpression><![CDATA[new Boolean(false)]]></variableExpression>
+		<initialValueExpression><![CDATA[]]></initialValueExpression>
+	</variable>
+	<variable name="SHOW_BACK" class="java.lang.Boolean" resetType="None">
+		<variableExpression><![CDATA[new Boolean(false)]]></variableExpression>
+		<initialValueExpression><![CDATA[]]></initialValueExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="406" splitType="Stretch">
+			<staticText>
+				<reportElement x="28" y="129" width="492" height="277"/>
+				<textElement textAlignment="Justified">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Seguros Generales Rural S.A. de Seguros y Reaseguros, posee una participación directa superior al 10% en RGA Mediación Operador de Banca Seguros Vinculado, S.A.
+
+RGA Mediación, Operador de Banca Seguros Vinculado, no está contractualmente obligado a realizar actividades de mediación en seguros exclusivamente con una o varias entidades aseguradoras ni a facilitar asesoramiento con arreglo a la obligación de llevar a cabo un análisis objetivo que se impone a los corredores de seguros.
+
+El asesoramiento prestado al cliente se facilita con la finalidad de contratar un seguro y no cualquier otro producto que pudiera comercializar la entidad de crédito, pudiendo el cliente solicitar información de los nombres de las entidades aseguradores con las que puedan realizar o, de hecho, realicen la actividad de mediación en el producto de seguro ofertado.
+
+Para presentar cualquier queja o reclamación con relación a RGA Mediación Operador de Banca Seguros Vinculado, los interesados deberán dirigirse por escrito al Servicio de Atención al Cliente o Defensor del Cliente de la Entidad Aseguradora que haya suscrito la póliza en la que RGA Mediación, Operador de Banca Seguros haya mediado, la cual deberá resolverla en el plazo de dos meses desde su presentación.
+
+En caso de disconformidad, con el resultado del pronunciamiento, el cliente podrá acudir al Servicio de Reclamaciones dependiente de la Dirección General de Seguros y Fondos de Pensiones y ello sin perjuicio de poder acudir a los Juzgados de 1ª Instancia competentes.
+
+En base a las informaciones facilitadas por el cliente, RGA Mediación, Operador de Banca Seguros Vinculado, S.A., ha propuesto a éste la contratación de un seguro, ajustado a sus exigencias y necesidades.
+
+De acuerdo con el artículo 5.1 de la L.O. 15/1999, de 13 de diciembre de Protección de Datos de Carácter Personal, le informamos que todos los datos que nos proporcione para la contratación de la póliza, serán incorporados a un fichero titularidad de la Compañía de Seguros con la que suscriba la póliza, siendo ésta la responsable del tratamiento, y el Operador de Banca-Seguros el encargado del tratamiento, por lo que los
+derechos de acceso, rectificación, cancelación u oposición los deberá ejercer ante la Compañía de Seguros.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="10" y="14" width="534" height="27"/>
+				<textElement textAlignment="Center">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[NOTA INFORMATIVA PREVIA A LA CELEBRACIÓN DE UN CONTRATO DE SEGURO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="28" y="41" width="492" height="26"/>
+				<textElement textAlignment="Justified">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[En cumplimiento de lo dispuesto en el artículo 42 de la Ley 26/2006, de 17 de julio, de Mediación de Seguros y Reaseguros Privados, se informa de forma previa a la celebración del contrato de seguro sobre los siguientes extremos:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="28" y="67" width="492" height="52"/>
+				<textElement textAlignment="Justified">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["La Entidad Mediadora del Seguro es RGA Mediacion, Operador de Banca Seguros Vinculado, S.A., con CIF A-79.490.264, domicilio social en España en la c/ Basauri nº 14, 28023 de Madrid, inscrita en el Registro Mercantil de Madrid, Tomo 8205, Folio 89, Hoja M-10188 y en el Registro Administrativo Especial de la Dirección General de Seguros y Fondos, clave OV-0006 (Paseo de la Castellana 44, 28046 Madrid; www.dgsfp.mineco.es) dependiente del Ministerio de Economía y Hacienda, quien se encarga del control y supervisión de su actividad."]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

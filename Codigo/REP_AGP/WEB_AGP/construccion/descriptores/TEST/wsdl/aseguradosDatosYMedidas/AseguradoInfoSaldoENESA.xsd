@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<x:schema 
+	targetNamespace="http://www.agroseguro.es/SeguroAgrario/AseguradoInfoSaldoENESA"
+	xmlns="http://www.agroseguro.es/SeguroAgrario/AseguradoInfoSaldoENESA"
+	xmlns:pks="http://www.agroseguro.es/SeguroAgrario/AseguradoInfoSaldoENESA"
+	xmlns:x="http://www.w3.org/2001/XMLSchema"
+	xmlns:t="http://www.agroseguro.es/Tipos" >
+	
+	<x:import
+		namespace="http://www.agroseguro.es/Tipos"
+		schemaLocation="Tipos.xsd" />
+
+	<x:element name="AseguradoInfoSaldoENESA" type="AseguradoInfoSaldoENESA" />
+	
+	<x:complexType name="AseguradoInfoSaldoENESA" >
+		<x:sequence>
+			<x:element name="SaldoTotal" type="SaldoTotal" minOccurs="1" maxOccurs="1"/>
+			<x:element name="SaldoAplicadoPoliza" type="SaldoAplicadoPoliza" minOccurs="0" maxOccurs="unbounded"/>
+			<x:element name="SaldoAplicadoResto" type="SaldoAplicadoResto" minOccurs="0" maxOccurs="1"/>
+		</x:sequence>
+		<x:attributeGroup ref="t:PeticionSW" />
+		<!-- Parametros de llamada -->
+		<x:anyAttribute namespace="##any" processContents="lax"/>
+	</x:complexType>
+		
+	<x:complexType name="SaldoTotal" >
+		<x:attribute name="aplicado" type="x:decimal" use="required" />
+		<x:attribute name="restante" type="x:decimal" use="required" />
+	</x:complexType>
+	
+	<x:complexType name="SaldoAplicadoPoliza" >
+		<x:attribute name="referencia" type="t:Poliza_Referencia_Unificada" use="required" />
+		<x:attribute name="tipoReferencia" type="t:Poliza_Referencia_Tipo" />
+		<x:attribute name="linea" type="t:Linea_Codigo" use="required" />
+		<x:attribute name="importe" type="x:decimal" use="required" />
+	</x:complexType>
+	
+	<x:complexType name="SaldoAplicadoResto" >
+		<x:attribute name="importe" type="x:decimal" use="required" />
+	</x:complexType>
+		
+</x:schema>

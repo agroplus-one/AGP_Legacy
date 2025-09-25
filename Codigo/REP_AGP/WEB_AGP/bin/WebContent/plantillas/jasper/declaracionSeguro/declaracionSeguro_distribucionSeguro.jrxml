@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="declaracionSeguro_distribucionSeguro" pageWidth="555" pageHeight="802" whenNoDataType="AllSectionsNoDetail" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<subDataset name="dataset1"/>
+	<parameter name="ID" class="java.lang.Integer"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA[""]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT CO.PRIMACOMERCIAL ,CO.BONIFMEDPREVENTIVAS ,CO.BONIFASEGURADO, CO.RECARGOASEGURADO, CO.PRIMANETA ,CO.DTOCOLECTIVO ,CO.REASEGURO ,CO.RECARGO ,CO.COSTENETO ,CO.CARGOTOMADOR
+FROM o02agpe0.TB_DISTRIBUCION_COSTES CO, o02agpe0.TB_POLIZAS PO
+WHERE CO.IDPOLIZA = PO.IDPOLIZA
+and po.idpoliza=$P{ID}]]>
+	</queryString>
+	<field name="PRIMACOMERCIAL" class="java.math.BigDecimal"/>
+	<field name="BONIFMEDPREVENTIVAS" class="java.math.BigDecimal"/>
+	<field name="BONIFASEGURADO" class="java.math.BigDecimal"/>
+	<field name="RECARGOASEGURADO" class="java.math.BigDecimal"/>
+	<field name="PRIMANETA" class="java.math.BigDecimal"/>
+	<field name="DTOCOLECTIVO" class="java.math.BigDecimal"/>
+	<field name="REASEGURO" class="java.math.BigDecimal"/>
+	<field name="RECARGO" class="java.math.BigDecimal"/>
+	<field name="COSTENETO" class="java.math.BigDecimal"/>
+	<field name="CARGOTOMADOR" class="java.math.BigDecimal"/>
+	<variable name="SHOW_FOOT" class="java.lang.Boolean" resetType="None">
+		<variableExpression><![CDATA[new Boolean(true)]]></variableExpression>
+		<initialValueExpression><![CDATA[]]></initialValueExpression>
+	</variable>
+	<variable name="SHOW_BACK" class="java.lang.Boolean" resetType="None">
+		<variableExpression><![CDATA[new Boolean(true)]]></variableExpression>
+		<initialValueExpression><![CDATA[]]></initialValueExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="151" splitType="Stretch">
+			<staticText>
+				<reportElement positionType="Float" x="14" y="15" width="255" height="15"/>
+				<box leftPadding="0"/>
+				<textElement verticalAlignment="Top">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Prima Comercial..........................................................:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="14" y="30" width="255" height="15">
+					<printWhenExpression><![CDATA[new Boolean ($F{BONIFMEDPREVENTIVAS}!= null)]]></printWhenExpression>
+				</reportElement>
+				<textElement>
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Bonif. Medidas Preventivas........................................:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="14" y="45" width="255" height="15">
+					<printWhenExpression><![CDATA[new Boolean ($F{BONIFASEGURADO}!= null)]]></printWhenExpression>
+				</reportElement>
+				<textElement>
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Importe Bonif. asegurado...........................................:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="14" y="45" width="255" height="15">
+					<printWhenExpression><![CDATA[new Boolean ($F{RECARGOASEGURADO}!= null)]]></printWhenExpression>
+				</reportElement>
+				<textElement>
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Importe Recargo asegurado...........................................:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="14" y="60" width="255" height="15"/>
+				<textElement>
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Prima Neta Bonif./Recar..............................................:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="14" y="75" width="255" height="15"/>
+				<textElement>
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Descuento Cont. Colectiva.........................................:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="14" y="90" width="255" height="15"/>
+				<textElement>
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Reaseguro del Consorcio...........................................:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="14" y="105" width="255" height="15"/>
+				<textElement>
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Recargo del Consorcio...............................................:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="14" y="120" width="255" height="15"/>
+				<textElement>
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Coste Neto....................................................................:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="0" width="240" height="15"/>
+				<textElement>
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DISTRIBUCIÓN DE COSTE DEL SEGURO]]></text>
+			</staticText>
+			<textField pattern="#,##0.00¤" isBlankWhenNull="true">
+				<reportElement x="210" y="15" width="65" height="15"/>
+				<textElement textAlignment="Right">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{PRIMACOMERCIAL}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00¤" isBlankWhenNull="true">
+				<reportElement x="230" y="30" width="145" height="15">
+					<printWhenExpression><![CDATA[new Boolean ($F{BONIFMEDPREVENTIVAS}!= null)]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Right">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{BONIFMEDPREVENTIVAS}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00¤" isBlankWhenNull="true">
+				<reportElement x="230" y="45" width="145" height="15">
+					<printWhenExpression><![CDATA[new Boolean ($F{BONIFASEGURADO}!= null)]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Right">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{BONIFASEGURADO}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00¤" isBlankWhenNull="true">
+				<reportElement x="230" y="45" width="45" height="15">
+					<printWhenExpression><![CDATA[new Boolean ($F{RECARGOASEGURADO}!= null)]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Right">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{RECARGOASEGURADO}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00¤" isBlankWhenNull="true">
+				<reportElement x="230" y="60" width="45" height="15"/>
+				<textElement textAlignment="Right">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{PRIMANETA}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00¤" isBlankWhenNull="true">
+				<reportElement x="210" y="90" width="65" height="15"/>
+				<textElement textAlignment="Right">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{REASEGURO}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00¤" isBlankWhenNull="true">
+				<reportElement x="230" y="105" width="45" height="15"/>
+				<textElement textAlignment="Right">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{RECARGO}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00¤" isBlankWhenNull="true">
+				<reportElement x="230" y="120" width="45" height="15"/>
+				<textElement textAlignment="Right">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{COSTENETO}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00¤" isBlankWhenNull="true">
+				<reportElement x="210" y="75" width="65" height="15"/>
+				<textElement textAlignment="Right">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{DTOCOLECTIVO}]]></textFieldExpression>
+			</textField>
+			<subreport>
+				<reportElement x="14" y="135" width="372" height="15" isRemoveLineWhenBlank="true"/>
+				<subreportParameter name="ID">
+					<subreportParameterExpression><![CDATA[$P{ID}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<returnValue subreportVariable="SHOW_FOOT" toVariable="SHOW_FOOT"/>
+				<returnValue subreportVariable="SHOW_BACK" toVariable="SHOW_BACK"/>
+				<subreportExpression class="java.lang.String"><![CDATA[$P{SUBREPORT_DIR} + "declaracionSeguro_distribucionSeguro_subCCAA.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="56">
+			<staticText>
+				<reportElement x="14" y="0" width="255" height="15"/>
+				<textElement>
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[A Cargo del Tomador..................................................:]]></text>
+			</staticText>
+			<textField pattern="#,##0.00¤" isBlankWhenNull="true">
+				<reportElement x="210" y="0" width="65" height="15"/>
+				<textElement textAlignment="Right">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{CARGOTOMADOR}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="23" width="530" height="33"/>
+				<textElement textAlignment="Justified">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[El coste Neto, resulta de incrementar la Prima de Reaseguro a percibir por el Consorcio de Compensación de Seguros y el Recargo destinado a financiar las funcionaes de liquidación de entidades aseguradoras, sobre la Prima Neta de Bonificaciones/Recargos una vez deducidos los descuentos.]]></text>
+			</staticText>
+		</band>
+	</detail>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema
+	targetNamespace="http://www.agroseguro.es/SeguroAgrario/Siniestros/DatosVariablesDS"
+	xmlns="http://www.agroseguro.es/SeguroAgrario/Siniestros/DatosVariablesDS"
+	xmlns:ti="http://www.agroseguro.es/ITipos" 
+	xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	
+>
+
+	<xs:import
+		namespace="http://www.agroseguro.es/ITipos" 
+		schemaLocation="../commons/Tipos.xsd"/>
+
+	<xs:complexType name="DatosVariablesDS">
+		<xs:sequence>
+			<xs:element name="FecRecol" type="FechaRecoleccion" minOccurs="0" maxOccurs="1" />
+			<xs:element name="FruCaid" type="FrutosCaidos" minOccurs="0" maxOccurs="1" />
+		</xs:sequence>	
+	</xs:complexType>
+
+	<xs:complexType name="FechaRecoleccion">
+		<xs:attribute name="valor" type="xs:date" use="required" />
+	</xs:complexType>
+
+	<xs:complexType name="FrutosCaidos">
+		<xs:attribute name="valor" type="ti:SoN" use="required" />
+	</xs:complexType>
+
+</xs:schema>

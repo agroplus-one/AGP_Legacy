@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<x:schema 
+	targetNamespace="http://www.agroseguro.es/SeguroAgrario/InfoReduccionParcelaFauna"
+	xmlns="http://www.agroseguro.es/SeguroAgrario/InfoReduccionParcelaFauna"
+	xmlns:pks="http://www.agroseguro.es/SeguroAgrario/InfoReduccionParcelaFauna"
+	xmlns:x="http://www.w3.org/2001/XMLSchema"
+	xmlns:ti="http://www.agroseguro.es/Tipos" 
+	>
+	
+	<x:import
+		namespace="http://www.agroseguro.es/Tipos"
+		schemaLocation="Tipos.xsd" />
+
+	<x:element name="InfoReduccionParcelaFauna" type="InfoReduccionParcelaFauna" />
+	
+	<x:complexType name="InfoReduccionParcelaFauna" >
+		<x:sequence>
+			<x:element name="ReduccionProduccion" type="ReduccionProduccion" minOccurs="1" maxOccurs="unbounded" />
+		</x:sequence>
+		<x:attributeGroup ref="ti:PeticionSW" />
+		<x:attribute name="plan" type="ti:Plan" use="required" />
+        <x:attribute name="linea" type="ti:Linea_Codigo" use="required" />
+		<x:attribute name="provinciaSIGPAC" type="ti:Provincia_Codigo" use="required"/>
+	   	<x:attribute name="terminoSIGPAC" type="ti:Termino_Codigo" use="required" />
+	   	<x:attribute name="agregadoSIGPAC" type="ti:SIGPAC_Agregado" use="required" />
+	   	<x:attribute name="zonaSIGPAC" type="ti:SIGPAC_Zona" use="required" />
+	   	<x:attribute name="poligonoSIGPAC" type="ti:SIGPAC_Poligono" use="required" />
+	   	<x:attribute name="parcelaSIGPAC" type="ti:SIGPAC_Parcela" use="required" />
+		<x:attribute name="recintoSIGPAC" type="ti:SIGPAC_Recinto" use="optional" />
+	</x:complexType>
+	
+	<x:complexType name="ReduccionProduccion" >
+		<x:attribute name="fechaVigor" type="x:date" />
+		<x:attribute name="enVigor" type="ti:SN" />
+		<x:attribute name="tipoReduccion" type="x:positiveInteger" />
+		<x:attribute name="reduccionProduccion" type="x:decimal" />
+		<x:attribute name="descripcion" type="x:string" />
+	</x:complexType>
+	
+</x:schema>

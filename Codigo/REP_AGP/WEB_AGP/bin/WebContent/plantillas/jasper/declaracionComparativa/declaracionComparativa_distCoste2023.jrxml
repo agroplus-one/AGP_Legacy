@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.16.0.final using JasperReports Library version 3.6.1  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="declaracionComparativa_distSeguro2023" pageWidth="550" pageHeight="595" orientation="Landscape" columnWidth="540" leftMargin="10" rightMargin="0" topMargin="0" bottomMargin="0" isIgnorePagination="true">
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="DataAdapter.xml"/>
+	<parameter name="ID" class="java.lang.Integer"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA[""]]></defaultValueExpression>
+	</parameter>
+	<parameter name="isPagoFraccionado" class="java.lang.Boolean"/>
+	<parameter name="esGanado" class="java.lang.Boolean">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="codModulo" class="java.lang.String"/>
+	<parameter name="grupoNegPrimero" class="java.lang.String"/>
+	<parameter name="grupoNegSegundo" class="java.lang.String"/>
+	<parameter name="idComparativa" class="java.math.BigDecimal"/>
+	<parameter name="pctRecargo" class="java.math.BigDecimal"/>
+	<queryString>
+		<![CDATA[select sum (nvl(c.COSTETOMADOR,0)) as COSTETOMADOR,
+					sum (nvl(c.RECARGOAVAL,0)) as RECARGOAVAL,
+					sum (nvl(c.RECARGOFRACCIONAMIENTO,0)) as RECARGOFRACCIONAMIENTO,
+					sum (nvl(c.TOTALCOSTETOMADOR,0)) as TOTALCOSTETOMADOR,
+					sum (nvl(c.IMPORTE_PAGO_FRACC,0)) as IMPORTE_PAGO_FRACC,
+					sum (nvl(c.IMPORTE_PAGO_FRACC_AGR,0)) as IMPORTE_PAGO_FRACC_AGR,
+				  	count(c.idcomparativa) as numGrusposNegocio
+				from tb_distribucion_costes_2015 c,tb_sc_c_grupos_negocio g
+				where c.codmodulo = $P{codModulo}
+				and c.grupo_negocio = g.grupo_negocio
+				and c.idcomparativa=$P{idComparativa}]]>
+	</queryString>
+	<variable name="isPagoFraccionado" class="java.lang.Boolean" resetType="Page"/>
+	<variable name="RecargoFracc" class="java.math.BigDecimal"/>
+	<variable name="recargoAval" class="java.math.BigDecimal"/>
+	<variable name="recargoFraccionamiento" class="java.math.BigDecimal"/>
+	<variable name="CosteTomador" class="java.math.BigDecimal"/>
+	<detail>
+		<band height="398" splitType="Stretch">
+			<subreport runToBottom="false">
+				<reportElement positionType="Float" x="190" y="0" width="350" height="380" isRemoveLineWhenBlank="true">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+				</reportElement>
+				<subreportParameter name="SUBREPORT_DIR">
+					<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="esGanado">
+					<subreportParameterExpression><![CDATA[$P{esGanado}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="codModulo">
+					<subreportParameterExpression><![CDATA[$P{codModulo}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="grupoNegPrimero">
+					<subreportParameterExpression><![CDATA[$P{grupoNegPrimero}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="ID">
+					<subreportParameterExpression><![CDATA[$P{ID}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="idComparativa">
+					<subreportParameterExpression><![CDATA[$P{idComparativa}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="isPagoFraccionado">
+					<subreportParameterExpression><![CDATA[$V{isPagoFraccionado}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression class="java.lang.String"><![CDATA[$P{SUBREPORT_DIR} + "declaracionComparativa_distSeguro2023.jasper"]]></subreportExpression>
+			</subreport>
+			<subreport runToBottom="false">
+				<reportElement positionType="Float" x="0" y="0" width="140" height="380" isRemoveLineWhenBlank="true">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<subreportParameter name="SUBREPORT_DIR">
+					<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="ID">
+					<subreportParameterExpression><![CDATA[$P{ID}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression class="java.lang.String"><![CDATA[$P{SUBREPORT_DIR} + "literales_distribucionSeguro_costes2023.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+</jasperReport>

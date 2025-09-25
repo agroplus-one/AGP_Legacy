@@ -1,0 +1,1006 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="SolicitudModificacionExplotaciones_Modificacion" pageWidth="555" pageHeight="802" whenNoDataType="AllSectionsNoDetail" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0">
+	<import value="com.rsi.agp.dao.tables.poliza.explotaciones.Informes.InformeAnexModExplotacion"/>
+	<import value="com.rsi.agp.dao.tables.poliza.explotaciones.Informes.InformeDatosVariables"/>
+	<style name="Estilo_org" isDefault="false" forecolor="#000000" fontSize="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false"/>
+	<style name="Estilo_Mod" isDefault="false" forecolor="#003399" isItalic="false" isUnderline="false" isStrikeThrough="false"/>
+	<style name="Crosstab Data Text" isDefault="false" hAlign="Center"/>
+	<style name="Estilo_prov" isDefault="false">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[new Boolean($F{provinciaM} != null)]]></conditionExpression>
+			<style isDefault="false" style="Estilo_prov" forecolor="#CC0000" isStrikeThrough="true"/>
+		</conditionalStyle>
+	</style>
+	<style name="Estilo_com" isDefault="false">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[new Boolean($F{comarcaM} != null)]]></conditionExpression>
+			<style isDefault="false" style="Estilo_com" forecolor="#CC0000" isStrikeThrough="true"/>
+		</conditionalStyle>
+	</style>
+	<style name="Estilo_term" isDefault="false">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[new Boolean($F{terminoM} != null)]]></conditionExpression>
+			<style isDefault="false" style="Estilo_term" forecolor="#CC0000" isStrikeThrough="true"/>
+		</conditionalStyle>
+	</style>
+	<style name="Estilo_grupo_Raza" isDefault="false">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[new Boolean($F{grupoRazaM} != null)]]></conditionExpression>
+			<style isDefault="false" style="Estilo_grupo_Raza" forecolor="#CC0000" isStrikeThrough="true"/>
+		</conditionalStyle>
+	</style>
+	<style name="Estilo_especie" isDefault="false">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[new Boolean($F{especieM} != null)]]></conditionExpression>
+			<style isDefault="false" style="Estilo_especie" forecolor="#CC0000" isStrikeThrough="true"/>
+		</conditionalStyle>
+	</style>
+	<style name="Estilo_regimen" isDefault="false">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[new Boolean($F{regimenM} != null)]]></conditionExpression>
+			<style isDefault="false" style="Estilo_regimen" forecolor="#CC0000" isStrikeThrough="true"/>
+		</conditionalStyle>
+	</style>
+	<style name="Estilo_Rega" isDefault="false">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[new Boolean($F{regaM} != null)]]></conditionExpression>
+			<style isDefault="false" style="Estilo_Rega" forecolor="#CC0000" isStrikeThrough="true"/>
+		</conditionalStyle>
+	</style>
+	<style name="Estilo_Sigla" isDefault="false">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[new Boolean($F{siglaM} != null)]]></conditionExpression>
+			<style isDefault="false" style="Estilo_Sigla" forecolor="#CC0000" isStrikeThrough="true"/>
+		</conditionalStyle>
+	</style>
+	<style name="Estilo_sub_expl" isDefault="false">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[new Boolean($F{subexplotacionM} != null)]]></conditionExpression>
+			<style isDefault="false" style="Estilo_sub_expl" forecolor="#CC0000" isStrikeThrough="true"/>
+		</conditionalStyle>
+	</style>
+	<style name="Estilo_Latitud" isDefault="false">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[new Boolean($F{latitud} != null)]]></conditionExpression>
+			<style isDefault="false" style="Estilo_Latitud" forecolor="#CC0000" isStrikeThrough="true"/>
+		</conditionalStyle>
+	</style>
+	<style name="Estilo_Longitud" isDefault="false">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[new Boolean($F{longitud} != null)]]></conditionExpression>
+			<style isDefault="false" style="Estilo_Longitud" forecolor="#CC0000" isStrikeThrough="true"/>
+		</conditionalStyle>
+	</style>
+	<style name="Estilo_tipo_cap" isDefault="false">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[new Boolean($F{tipoCapitalM} != null)]]></conditionExpression>
+			<style isDefault="false" style="Estilo_tipo_cap" forecolor="#CC0000" isStrikeThrough="true"/>
+		</conditionalStyle>
+	</style>
+	<style name="Estilo_tipo_ani" isDefault="false">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[new Boolean($F{tipoAnimalM} != null)]]></conditionExpression>
+			<style isDefault="false" style="Estilo_tipo_ani" forecolor="#CC0000" isStrikeThrough="true"/>
+		</conditionalStyle>
+	</style>
+	<style name="Estilo_num_ani" isDefault="false">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[new Boolean($F{numAnimalesM} != null)]]></conditionExpression>
+			<style isDefault="false" style="Estilo_num_ani" forecolor="#CC0000" isStrikeThrough="true"/>
+		</conditionalStyle>
+	</style>
+	<style name="Estilo_Precio" isDefault="false">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[new Boolean($F{precioM} != null)]]></conditionExpression>
+			<style isDefault="false" style="Estilo_Precio" forecolor="#CC0000" isStrikeThrough="true"/>
+		</conditionalStyle>
+	</style>
+	<style name="Estilo_DV_concepto" isDefault="false" fontName="SansSerif">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[new Boolean($F{nombreConcepto} == $F{nombreConceptoM})]]></conditionExpression>
+			<style isDefault="false" style="Estilo_DV_concepto" forecolor="#CC0000" isStrikeThrough="true"/>
+		</conditionalStyle>
+	</style>
+	<style name="Estilo_DV_valor" isDefault="false">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[new Boolean($F{valor} == $F{valorM})]]></conditionExpression>
+			<style isDefault="false" style="Estilo_DV_valor" forecolor="#CC0000" isStrikeThrough="true"/>
+		</conditionalStyle>
+	</style>
+	<subDataset name="dataset1">
+		<queryString>
+			<![CDATA[]]>
+		</queryString>
+		<field name="class" class="java.lang.Class">
+			<fieldDescription><![CDATA[class]]></fieldDescription>
+		</field>
+		<field name="codConcepto" class="java.lang.Long">
+			<fieldDescription><![CDATA[codConcepto]]></fieldDescription>
+		</field>
+		<field name="codConceptoM" class="java.lang.Long">
+			<fieldDescription><![CDATA[codConceptoM]]></fieldDescription>
+		</field>
+		<field name="descripcion" class="java.lang.String">
+			<fieldDescription><![CDATA[descripcion]]></fieldDescription>
+		</field>
+		<field name="descripcionM" class="java.lang.String">
+			<fieldDescription><![CDATA[descripcionM]]></fieldDescription>
+		</field>
+		<field name="nombreConcepto" class="java.lang.String">
+			<fieldDescription><![CDATA[nombreConcepto]]></fieldDescription>
+		</field>
+		<field name="nombreConceptoM" class="java.lang.String">
+			<fieldDescription><![CDATA[nombreConceptoM]]></fieldDescription>
+		</field>
+		<field name="valor" class="java.lang.String">
+			<fieldDescription><![CDATA[valor]]></fieldDescription>
+		</field>
+		<field name="valorM" class="java.lang.String">
+			<fieldDescription><![CDATA[valorM]]></fieldDescription>
+		</field>
+		<variable name="dv_concepto" class="java.lang.String">
+			<variableExpression><![CDATA[$F{nombreConcepto} != null ?
+    $F{nombreConcepto}+ ":  " :new String("")]]></variableExpression>
+			<initialValueExpression><![CDATA[]]></initialValueExpression>
+		</variable>
+		<variable name="dvM_concepto" class="java.lang.String">
+			<variableExpression><![CDATA[$F{nombreConceptoM} != null ?
+    $F{nombreConceptoM}+ ":  " :new String("")
+
+    ]]></variableExpression>
+			<initialValueExpression><![CDATA[]]></initialValueExpression>
+		</variable>
+		<variable name="dv_valor" class="java.lang.String">
+			<variableExpression><![CDATA[$F{valor} != null ?
+   $F{valor} + " - " + $F{descripcion} :new String("")]]></variableExpression>
+			<initialValueExpression><![CDATA[]]></initialValueExpression>
+		</variable>
+		<variable name="dvM_valor" class="java.lang.String">
+			<variableExpression><![CDATA[$F{valorM} != null ?
+   $F{valorM} + "-" + $F{descripcionM} :new String("")]]></variableExpression>
+			<initialValueExpression><![CDATA[]]></initialValueExpression>
+		</variable>
+	</subDataset>
+	<parameter name="IDPOLIZA" class="java.math.BigDecimal"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["D:\\Agroplus\\REP_AGP\\WEB_AGP\\WebContent\\plantillas\\jasper\\declaracionAnexoModificacionExplotaciones\\"]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select * from dual]]>
+	</queryString>
+	<field name="class" class="java.lang.Class">
+		<fieldDescription><![CDATA[class]]></fieldDescription>
+	</field>
+	<field name="comarca" class="java.lang.String">
+		<fieldDescription><![CDATA[comarca]]></fieldDescription>
+	</field>
+	<field name="comarcaM" class="java.lang.String">
+		<fieldDescription><![CDATA[comarcaM]]></fieldDescription>
+	</field>
+	<field name="costeTomador" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[costeTomador]]></fieldDescription>
+	</field>
+	<field name="costeTomadorM" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[costeTomadorM]]></fieldDescription>
+	</field>
+	<field name="datosVariable2" class="net.sf.jasperreports.engine.data.JRMapCollectionDataSource">
+		<fieldDescription><![CDATA[datosVariable2]]></fieldDescription>
+	</field>
+	<field name="datosVariables" class="java.util.List">
+		<fieldDescription><![CDATA[datosVariables]]></fieldDescription>
+	</field>
+	<field name="especie" class="java.lang.String">
+		<fieldDescription><![CDATA[especie]]></fieldDescription>
+	</field>
+	<field name="especieM" class="java.lang.String">
+		<fieldDescription><![CDATA[especieM]]></fieldDescription>
+	</field>
+	<field name="grupoListado" class="java.lang.String">
+		<fieldDescription><![CDATA[grupoListado]]></fieldDescription>
+	</field>
+	<field name="grupoListadoM" class="java.lang.String">
+		<fieldDescription><![CDATA[grupoListadoM]]></fieldDescription>
+	</field>
+	<field name="grupoRaza" class="java.lang.String">
+		<fieldDescription><![CDATA[grupoRaza]]></fieldDescription>
+	</field>
+	<field name="grupoRazaM" class="java.lang.String">
+		<fieldDescription><![CDATA[grupoRazaM]]></fieldDescription>
+	</field>
+	<field name="id" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[id]]></fieldDescription>
+	</field>
+	<field name="idGrupoRaza" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[idGrupoRaza]]></fieldDescription>
+	</field>
+	<field name="idGrupoRazaM" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[idGrupoRazaM]]></fieldDescription>
+	</field>
+	<field name="idM" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[idM]]></fieldDescription>
+	</field>
+	<field name="idpoliza" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[idpoliza]]></fieldDescription>
+	</field>
+	<field name="idpolizaM" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[idpolizaM]]></fieldDescription>
+	</field>
+	<field name="latitud" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[latitud]]></fieldDescription>
+	</field>
+	<field name="latitudM" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[latitudM]]></fieldDescription>
+	</field>
+	<field name="longitud" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[longitud]]></fieldDescription>
+	</field>
+	<field name="longitudM" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[longitudM]]></fieldDescription>
+	</field>
+	<field name="numAnimalesM" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[numAnimalesM]]></fieldDescription>
+	</field>
+	<field name="numanimales" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[numanimales]]></fieldDescription>
+	</field>
+	<field name="numero" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[numero]]></fieldDescription>
+	</field>
+	<field name="numeroM" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[numeroM]]></fieldDescription>
+	</field>
+	<field name="precio" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[precio]]></fieldDescription>
+	</field>
+	<field name="precioM" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[precioM]]></fieldDescription>
+	</field>
+	<field name="provincia" class="java.lang.String">
+		<fieldDescription><![CDATA[provincia]]></fieldDescription>
+	</field>
+	<field name="provinciaM" class="java.lang.String">
+		<fieldDescription><![CDATA[provinciaM]]></fieldDescription>
+	</field>
+	<field name="rega" class="java.lang.String">
+		<fieldDescription><![CDATA[rega]]></fieldDescription>
+	</field>
+	<field name="regaM" class="java.lang.String">
+		<fieldDescription><![CDATA[regaM]]></fieldDescription>
+	</field>
+	<field name="regimen" class="java.lang.String">
+		<fieldDescription><![CDATA[regimen]]></fieldDescription>
+	</field>
+	<field name="regimenM" class="java.lang.String">
+		<fieldDescription><![CDATA[regimenM]]></fieldDescription>
+	</field>
+	<field name="sigla" class="java.lang.String">
+		<fieldDescription><![CDATA[sigla]]></fieldDescription>
+	</field>
+	<field name="siglaM" class="java.lang.String">
+		<fieldDescription><![CDATA[siglaM]]></fieldDescription>
+	</field>
+	<field name="subexplotacion" class="java.lang.String">
+		<fieldDescription><![CDATA[subexplotacion]]></fieldDescription>
+	</field>
+	<field name="subexplotacionM" class="java.lang.String">
+		<fieldDescription><![CDATA[subexplotacionM]]></fieldDescription>
+	</field>
+	<field name="tasaComercial" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[tasaComercial]]></fieldDescription>
+	</field>
+	<field name="tasaComercialM" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[tasaComercialM]]></fieldDescription>
+	</field>
+	<field name="termino" class="java.lang.String">
+		<fieldDescription><![CDATA[termino]]></fieldDescription>
+	</field>
+	<field name="terminoM" class="java.lang.String">
+		<fieldDescription><![CDATA[terminoM]]></fieldDescription>
+	</field>
+	<field name="tipoAnimal" class="java.lang.String">
+		<fieldDescription><![CDATA[tipoAnimal]]></fieldDescription>
+	</field>
+	<field name="tipoAnimalM" class="java.lang.String">
+		<fieldDescription><![CDATA[tipoAnimalM]]></fieldDescription>
+	</field>
+	<field name="tipoCapital" class="java.lang.String">
+		<fieldDescription><![CDATA[tipoCapital]]></fieldDescription>
+	</field>
+	<field name="tipoCapitalM" class="java.lang.String">
+		<fieldDescription><![CDATA[tipoCapitalM]]></fieldDescription>
+	</field>
+	<field name="tipoModificacion" class="java.lang.String">
+		<fieldDescription><![CDATA[tipoModificacion]]></fieldDescription>
+	</field>
+	<field name="tipoModificacionM" class="java.lang.String">
+		<fieldDescription><![CDATA[tipoModificacionM]]></fieldDescription>
+	</field>
+	<variable name="latitud" class="java.lang.String">
+		<variableExpression><![CDATA[( $F{latitud}!=null ? $F{latitud}.toString() : "" )]]></variableExpression>
+	</variable>
+	<variable name="longitud" class="java.lang.String">
+		<variableExpression><![CDATA[( $F{longitud}!=null ? $F{longitud}.toString() : "" )]]></variableExpression>
+	</variable>
+	<variable name="latitudM" class="java.lang.String">
+		<variableExpression><![CDATA[( $F{latitudM}!=null ? $F{latitudM}.toString() : "" )]]></variableExpression>
+	</variable>
+	<variable name="longitudM" class="java.lang.String">
+		<variableExpression><![CDATA[( $F{longitudM}!=null ? $F{longitudM}.toString() : "" )]]></variableExpression>
+	</variable>
+	<variable name="sigla" class="java.lang.String">
+		<variableExpression><![CDATA[( $F{sigla}!=null ? $F{sigla} : "" )]]></variableExpression>
+	</variable>
+	<variable name="siglaM" class="java.lang.String">
+		<variableExpression><![CDATA[( $F{siglaM}!=null ? $F{siglaM} : "" )]]></variableExpression>
+	</variable>
+	<variable name="numero" class="java.lang.String">
+		<variableExpression><![CDATA[($F{numanimales}!=null ?$F{numanimales}.toString() : "")]]></variableExpression>
+	</variable>
+	<variable name="numeroM" class="java.lang.String">
+		<variableExpression><![CDATA[( $F{numAnimalesM}!=null ? $F{numAnimalesM}.toString() : "")]]></variableExpression>
+	</variable>
+	<variable name="precio" class="java.lang.String">
+		<variableExpression><![CDATA[( $F{precio}!=null? $F{precio}.toPlainString() : "" )]]></variableExpression>
+	</variable>
+	<variable name="precioM" class="java.lang.String">
+		<variableExpression><![CDATA[( $F{precioM}!=null? $F{precioM}.toPlainString() : "" )]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<detail>
+		<band height="28" splitType="Stretch">
+			<frame>
+				<reportElement stretchType="RelativeToBandHeight" mode="Opaque" x="12" y="4" width="529" height="24" backcolor="#CCCCCC"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textField isBlankWhenNull="true">
+					<reportElement positionType="Float" stretchType="RelativeToBandHeight" mode="Transparent" x="486" y="0" width="43" height="24" backcolor="#FFFFFF"/>
+					<box>
+						<pen lineWidth="0.0"/>
+						<topPen lineWidth="0.0"/>
+						<leftPen lineWidth="0.0"/>
+						<bottomPen lineWidth="0.0"/>
+						<rightPen lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="9" isBold="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{tipoModificacionM}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement stretchType="RelativeToBandHeight" mode="Transparent" x="371" y="0" width="113" height="24"/>
+					<box>
+						<pen lineWidth="0.5"/>
+						<topPen lineWidth="0.5"/>
+						<leftPen lineWidth="0.5"/>
+						<bottomPen lineWidth="0.5"/>
+						<rightPen lineWidth="0.5"/>
+					</box>
+					<textElement textAlignment="Center" markup="styled">
+						<font size="9"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[($F{regaM}!= null?
+    "<style forecolor='black'><b>REGA:</b></style>\n" +
+    "<style forecolor='red' isStrikeThrough='true'>" +$F{rega}+ "</style>" + "\n<style forecolor='blue'>"
+        + $F{regaM} + "</style>" :"<style forecolor='black'><b>REGA:</b></style>\n" + $F{rega})]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement stretchType="RelativeToBandHeight" mode="Transparent" x="227" y="0" width="144" height="24"/>
+					<box>
+						<pen lineWidth="0.5"/>
+						<topPen lineWidth="0.5"/>
+						<leftPen lineWidth="0.5"/>
+						<bottomPen lineWidth="0.5"/>
+						<rightPen lineWidth="0.5"/>
+					</box>
+					<textElement textAlignment="Center" markup="styled">
+						<font size="9"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[($F{regimenM}!= null?
+     "<style forecolor='black'><b>Régimen:</b></style>\n" +
+    "<style forecolor='red' isStrikeThrough='true'>" +$F{regimen}+ "</style>" + "\n<style forecolor='blue'>"
+        + $F{regimenM} + "</style>" : "<style forecolor='black'><b>Régimen:</b></style>\n" + $F{regimen})]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement stretchType="RelativeToBandHeight" mode="Transparent" x="0" y="0" width="69" height="24"/>
+					<box>
+						<pen lineWidth="0.5"/>
+						<topPen lineWidth="0.5"/>
+						<leftPen lineWidth="0.5"/>
+						<bottomPen lineWidth="0.5"/>
+						<rightPen lineWidth="0.5"/>
+					</box>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font size="9" isBold="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[" Nº.EXP.:   "  + $F{numero}.toString()]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement stretchType="RelativeToBandHeight" mode="Transparent" x="69" y="0" width="158" height="24"/>
+					<box>
+						<pen lineWidth="0.5"/>
+						<topPen lineWidth="0.5"/>
+						<leftPen lineWidth="0.5"/>
+						<bottomPen lineWidth="0.5"/>
+						<rightPen lineWidth="0.5"/>
+					</box>
+					<textElement textAlignment="Center" markup="styled">
+						<font size="9"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[($F{especieM}!= null?
+     "<style forecolor='black'><b>Especie:</b></style>\n" +
+    "<style forecolor='red' isStrikeThrough='true'>" +$F{especie}+ "</style>" + "\n<style forecolor='blue'>"
+        + $F{especieM} + "</style>" :  "<style forecolor='black'><b>Especie:</b></style>\n" + $F{especie})]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+		<band height="14" splitType="Stretch">
+			<frame>
+				<reportElement stretchType="RelativeToBandHeight" x="12" y="0" width="529" height="14"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<staticText>
+					<reportElement stretchType="RelativeToBandHeight" mode="Opaque" x="0" y="0" width="40" height="14" backcolor="#FFFFFF"/>
+					<box rightPadding="0">
+						<pen lineWidth="0.5"/>
+						<topPen lineWidth="0.5"/>
+						<leftPen lineWidth="0.5"/>
+						<bottomPen lineWidth="0.5"/>
+						<rightPen lineWidth="0.5"/>
+					</box>
+					<textElement verticalAlignment="Top">
+						<font size="9" isBold="true"/>
+					</textElement>
+					<text><![CDATA[ Sigla:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement stretchType="RelativeToBandHeight" mode="Opaque" x="69" y="0" width="121" height="14" backcolor="#FFFFFF"/>
+					<box rightPadding="0">
+						<pen lineWidth="0.5"/>
+						<topPen lineWidth="0.5"/>
+						<leftPen lineWidth="0.5"/>
+						<bottomPen lineWidth="0.5"/>
+						<rightPen lineWidth="0.5"/>
+					</box>
+					<textElement verticalAlignment="Top">
+						<font size="9" isBold="true"/>
+					</textElement>
+					<text><![CDATA[ Subexplotación:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement stretchType="RelativeToBandHeight" mode="Opaque" x="227" y="0" width="52" height="14" backcolor="#FFFFFF"/>
+					<box rightPadding="0">
+						<pen lineWidth="0.5"/>
+						<topPen lineWidth="0.5"/>
+						<leftPen lineWidth="0.5"/>
+						<bottomPen lineWidth="0.5"/>
+						<rightPen lineWidth="0.5"/>
+					</box>
+					<textElement verticalAlignment="Top">
+						<font size="9" isBold="true"/>
+					</textElement>
+					<text><![CDATA[ Latitud:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement stretchType="RelativeToBandHeight" mode="Opaque" x="323" y="0" width="48" height="14" backcolor="#FFFFFF"/>
+					<box rightPadding="0">
+						<pen lineWidth="0.5"/>
+						<topPen lineWidth="0.5"/>
+						<leftPen lineWidth="0.5"/>
+						<bottomPen lineWidth="0.5"/>
+						<rightPen lineWidth="0.5"/>
+					</box>
+					<textElement verticalAlignment="Top">
+						<font size="9" isBold="true"/>
+					</textElement>
+					<text><![CDATA[ Longitud:]]></text>
+				</staticText>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+					<reportElement stretchType="RelativeToBandHeight" x="39" y="0" width="26" height="14"/>
+					<textElement textAlignment="Center" markup="styled">
+						<font size="9"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[($V{siglaM}!= ""?
+    "<style forecolor='red' isStrikeThrough='true'>" +$V{sigla}+ "</style>" + "\n<style forecolor='blue'>"
+        + $V{siglaM} + "</style>" : $V{sigla})]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+					<reportElement stretchType="RelativeToBandHeight" x="193" y="0" width="24" height="14"/>
+					<textElement textAlignment="Center" markup="styled">
+						<font size="9"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[($F{subexplotacionM}!= null?
+    "<style forecolor='red' isStrikeThrough='true'>" +$F{subexplotacion}+ "</style>" + "\n<style forecolor='blue'>"
+        + $F{subexplotacionM} + "</style>" : $F{subexplotacion})]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+					<reportElement stretchType="RelativeToBandHeight" x="281" y="0" width="44" height="14"/>
+					<textElement textAlignment="Center" markup="styled">
+						<font size="9"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[($V{latitudM}!= ""?
+    "<style forecolor='red' isStrikeThrough='true'>" +
+    $V{latitud}+ "</style>" + "\n<style forecolor='blue'>"
+        + $V{latitudM} + "</style>" : $V{latitud})]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+					<reportElement stretchType="RelativeToBandHeight" x="371" y="0" width="47" height="14"/>
+					<box>
+						<pen lineWidth="0.5"/>
+						<topPen lineWidth="0.5"/>
+						<leftPen lineWidth="0.5"/>
+						<bottomPen lineWidth="0.5"/>
+						<rightPen lineWidth="0.5"/>
+					</box>
+					<textElement textAlignment="Center" markup="styled">
+						<font size="9"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[($V{longitudM}!= ""?
+    "<style forecolor='red' isStrikeThrough='true'>" +
+    $V{longitud}+ "</style>" + "\n<style forecolor='blue'>"
+        + $V{longitudM} + "</style>" : $V{longitud})]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+		<band height="41" splitType="Stretch">
+			<frame>
+				<reportElement stretchType="RelativeToBandHeight" x="12" y="0" width="529" height="41"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+					<reportElement stretchType="RelativeToBandHeight" x="161" y="26" width="211" height="15"/>
+					<box>
+						<pen lineWidth="0.5"/>
+						<topPen lineWidth="0.5"/>
+						<leftPen lineWidth="0.5"/>
+						<bottomPen lineWidth="0.5"/>
+						<rightPen lineWidth="0.5"/>
+					</box>
+					<textElement textAlignment="Center" markup="styled">
+						<font size="9"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[($F{comarcaM}!= null?
+    "<style forecolor='red' isStrikeThrough='true'>" +$F{comarca}+ "</style>" + "\n<style forecolor='blue'>"
+        + $F{comarcaM} + "</style>" : $F{comarca})]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement mode="Transparent" x="0" y="0" width="529" height="13" backcolor="#F4FFFF"/>
+					<box>
+						<pen lineWidth="0.5"/>
+						<topPen lineWidth="0.5"/>
+						<leftPen lineWidth="0.5"/>
+						<bottomPen lineWidth="0.5"/>
+						<rightPen lineWidth="0.5"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Top">
+						<font size="9"/>
+					</textElement>
+					<text><![CDATA[Ubicación]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Transparent" x="0" y="13" width="161" height="13" backcolor="#F4FFFF"/>
+					<box>
+						<pen lineWidth="0.5"/>
+						<topPen lineWidth="0.5"/>
+						<leftPen lineWidth="0.5"/>
+						<bottomPen lineWidth="0.5"/>
+						<rightPen lineWidth="0.5"/>
+					</box>
+					<textElement textAlignment="Center">
+						<font size="9"/>
+					</textElement>
+					<text><![CDATA[Provincia:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Transparent" x="161" y="13" width="211" height="13" backcolor="#F4FFFF"/>
+					<box>
+						<pen lineWidth="0.5"/>
+						<topPen lineWidth="0.5"/>
+						<leftPen lineWidth="0.5"/>
+						<bottomPen lineWidth="0.5"/>
+						<rightPen lineWidth="0.5"/>
+					</box>
+					<textElement textAlignment="Center">
+						<font size="9"/>
+					</textElement>
+					<text><![CDATA[Comarca:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Transparent" x="372" y="13" width="157" height="13" backcolor="#F4FFFF"/>
+					<box>
+						<pen lineWidth="0.5"/>
+						<topPen lineWidth="0.5"/>
+						<leftPen lineWidth="0.5"/>
+						<bottomPen lineWidth="0.5"/>
+						<rightPen lineWidth="0.5"/>
+					</box>
+					<textElement textAlignment="Center">
+						<font size="9"/>
+					</textElement>
+					<text><![CDATA[Término:]]></text>
+				</staticText>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+					<reportElement stretchType="RelativeToBandHeight" x="0" y="26" width="161" height="15"/>
+					<box>
+						<pen lineWidth="0.5"/>
+						<topPen lineWidth="0.5"/>
+						<leftPen lineWidth="0.5"/>
+						<bottomPen lineWidth="0.5"/>
+						<rightPen lineWidth="0.5"/>
+					</box>
+					<textElement textAlignment="Center" markup="styled">
+						<font size="9"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[($F{provinciaM}!= null?
+    "<style forecolor='red' isStrikeThrough='true'>" +$F{provincia}+ "</style>" + "\n<style forecolor='blue'>"
+        + $F{provinciaM} + "</style>" : $F{provincia})]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+					<reportElement stretchType="RelativeToBandHeight" x="372" y="26" width="157" height="15"/>
+					<box>
+						<pen lineWidth="0.5"/>
+						<topPen lineWidth="0.5"/>
+						<leftPen lineWidth="0.5"/>
+						<bottomPen lineWidth="0.5"/>
+						<rightPen lineWidth="0.5"/>
+					</box>
+					<textElement textAlignment="Center" markup="styled">
+						<font size="9"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[($F{terminoM}!= null?
+    "<style forecolor='red' isStrikeThrough='true'>" +$F{termino}+ "</style>" + "\n<style forecolor='blue'>"
+        + $F{terminoM} + "</style>" : $F{termino})]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+		<band height="46" splitType="Stretch">
+			<frame>
+				<reportElement stretchType="RelativeToBandHeight" x="12" y="0" width="529" height="46"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<staticText>
+					<reportElement mode="Opaque" x="0" y="0" width="529" height="13" backcolor="#F4FFFF"/>
+					<box>
+						<pen lineWidth="0.5"/>
+						<topPen lineWidth="0.5"/>
+						<leftPen lineWidth="0.5"/>
+						<bottomPen lineWidth="0.5"/>
+						<rightPen lineWidth="0.5"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="9"/>
+					</textElement>
+					<text><![CDATA[Datos variables (Explotación)]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Opaque" x="0" y="13" width="247" height="12" backcolor="#F4FFFF"/>
+					<box>
+						<pen lineWidth="0.5"/>
+						<topPen lineWidth="0.5"/>
+						<leftPen lineWidth="0.5"/>
+						<bottomPen lineWidth="0.5"/>
+						<rightPen lineWidth="0.5"/>
+					</box>
+					<textElement textAlignment="Center">
+						<font size="9"/>
+					</textElement>
+					<text><![CDATA[Concepto]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Opaque" x="247" y="13" width="237" height="12" backcolor="#F4FFFF"/>
+					<box>
+						<pen lineWidth="0.5"/>
+						<topPen lineWidth="0.5"/>
+						<leftPen lineWidth="0.5"/>
+						<bottomPen lineWidth="0.5"/>
+						<rightPen lineWidth="0.5"/>
+					</box>
+					<textElement textAlignment="Center">
+						<font size="9"/>
+					</textElement>
+					<text><![CDATA[Valor]]></text>
+				</staticText>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+					<reportElement stretchType="RelativeToBandHeight" mode="Opaque" x="484" y="13" width="45" height="33" backcolor="#CCCCCC"/>
+					<box>
+						<pen lineWidth="0.5"/>
+						<topPen lineWidth="0.5"/>
+						<leftPen lineWidth="0.5"/>
+						<bottomPen lineWidth="0.5"/>
+						<rightPen lineWidth="0.5"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="9" isBold="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{tipoModificacionM}]]></textFieldExpression>
+				</textField>
+				<componentElement>
+					<reportElement positionType="Float" stretchType="RelativeToBandHeight" mode="Transparent" x="3" y="26" width="480" height="17"/>
+					<jr:list xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" printOrder="Vertical">
+						<datasetRun subDataset="dataset1">
+							<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{datosVariables})]]></dataSourceExpression>
+						</datasetRun>
+						<jr:listContents height="17" width="480">
+							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+								<reportElement style="Estilo_org" stretchType="RelativeToTallestObject" x="6" y="0" width="235" height="17"/>
+								<textElement markup="styled">
+									<font size="9"/>
+								</textElement>
+								<textFieldExpression class="java.lang.String"><![CDATA[(!$V{dvM_concepto}.isEmpty() && !$V{dvM_concepto}.equals(":  ")?
+    "<style forecolor='red' isStrikeThrough='true'>" +$V{dv_concepto}+ "</style>\n<style forecolor='blue'>"
+     +  $V{dvM_concepto} + "</style>" :
+     $V{dvM_concepto}.equals(":  ")?
+     "<style forecolor='red' isStrikeThrough='true'>" +$V{dv_concepto} + "</style>" : $V{dv_concepto})]]></textFieldExpression>
+							</textField>
+							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+								<reportElement style="Estilo_org" stretchType="RelativeToTallestObject" x="249" y="0" width="230" height="17"/>
+								<textElement markup="styled">
+									<font size="9"/>
+								</textElement>
+								<textFieldExpression class="java.lang.String"><![CDATA[((!$V{dvM_valor}.isEmpty() && !$V{dvM_valor}.equals("-"))?
+    "<style forecolor='red' isStrikeThrough='true'>" +$V{dv_valor}+ "</style>" + "\n<style forecolor='blue'>"
+      + $V{dvM_valor} + "</style>" :
+      $V{dvM_valor}.equals("-")?
+       "<style forecolor='red' isStrikeThrough='true'>" +$V{dv_valor}+ "</style>"
+      :$V{dv_valor})]]></textFieldExpression>
+							</textField>
+						</jr:listContents>
+					</jr:list>
+				</componentElement>
+			</frame>
+		</band>
+		<band height="13" splitType="Stretch">
+			<frame>
+				<reportElement stretchType="RelativeToBandHeight" mode="Opaque" x="12" y="0" width="529" height="13" backcolor="#CCCCCC"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<staticText>
+					<reportElement stretchType="RelativeToBandHeight" mode="Transparent" x="0" y="0" width="79" height="13" backcolor="#FFFFFF"/>
+					<box>
+						<pen lineWidth="0.5"/>
+						<topPen lineWidth="0.5"/>
+						<leftPen lineWidth="0.5"/>
+						<bottomPen lineWidth="0.5"/>
+						<rightPen lineWidth="0.5"/>
+					</box>
+					<textElement>
+						<font size="9" isBold="true"/>
+					</textElement>
+					<text><![CDATA[ Grupo de raza:]]></text>
+				</staticText>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+					<reportElement stretchType="RelativeToTallestObject" x="79" y="0" width="405" height="13" forecolor="#000000"/>
+					<box>
+						<pen lineWidth="0.5"/>
+						<topPen lineWidth="0.5"/>
+						<leftPen lineWidth="0.5"/>
+						<bottomPen lineWidth="0.5"/>
+						<rightPen lineWidth="0.5"/>
+					</box>
+					<textElement textAlignment="Left" markup="styled">
+						<font size="9"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[($F{grupoRazaM}!= null?
+    "<style forecolor='red' isStrikeThrough='true'>"+ " " + $F{grupoRaza}+ "</style>" + "\n<style forecolor='blue'>"
+        + " " + $F{grupoRazaM} + "</style>" : " " + $F{grupoRaza})]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement stretchType="RelativeToBandHeight" mode="Transparent" x="484" y="0" width="45" height="13" backcolor="#FFFFFF"/>
+					<box>
+						<pen lineWidth="0.5"/>
+						<topPen lineWidth="0.5"/>
+						<leftPen lineWidth="0.5"/>
+						<bottomPen lineWidth="0.5"/>
+						<rightPen lineWidth="0.5"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="9" isBold="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{tipoModificacionM}]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+		<band height="13" splitType="Stretch">
+			<frame>
+				<reportElement stretchType="RelativeToBandHeight" mode="Opaque" x="12" y="0" width="529" height="13" backcolor="#CCCCCC"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<staticText>
+					<reportElement stretchType="RelativeToBandHeight" mode="Transparent" x="0" y="0" width="79" height="13" backcolor="#FFFFFF"/>
+					<box>
+						<pen lineWidth="0.5"/>
+						<topPen lineWidth="0.5"/>
+						<leftPen lineWidth="0.5"/>
+						<bottomPen lineWidth="0.5"/>
+						<rightPen lineWidth="0.5"/>
+					</box>
+					<textElement>
+						<font size="9" isBold="true"/>
+					</textElement>
+					<text><![CDATA[ Tipo Capital:]]></text>
+				</staticText>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+					<reportElement stretchType="RelativeToTallestObject" x="79" y="0" width="405" height="13" forecolor="#000000"/>
+					<box>
+						<pen lineWidth="0.5"/>
+						<topPen lineWidth="0.5"/>
+						<leftPen lineWidth="0.5"/>
+						<bottomPen lineWidth="0.5"/>
+						<rightPen lineWidth="0.5"/>
+					</box>
+					<textElement textAlignment="Left" markup="styled">
+						<font size="9"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[($F{tipoCapitalM}!= null?
+    "<style forecolor='red' isStrikeThrough='true'>" + " " + $F{tipoCapital}+ "</style>" + "\n<style forecolor='blue'>"
+        + " " + $F{tipoCapitalM} + "</style>" : " " + $F{tipoCapital})]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement stretchType="RelativeToBandHeight" mode="Transparent" x="484" y="0" width="45" height="13" backcolor="#FFFFFF"/>
+					<box>
+						<pen lineWidth="0.5"/>
+						<topPen lineWidth="0.5"/>
+						<leftPen lineWidth="0.5"/>
+						<bottomPen lineWidth="0.5"/>
+						<rightPen lineWidth="0.5"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="9" isBold="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{tipoModificacionM}]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+		<band height="13" splitType="Stretch">
+			<frame>
+				<reportElement stretchType="RelativeToBandHeight" mode="Opaque" x="12" y="0" width="529" height="13" backcolor="#CCCCCC"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+					<reportElement stretchType="RelativeToTallestObject" x="419" y="0" width="65" height="13" forecolor="#000000"/>
+					<box>
+						<pen lineWidth="0.0"/>
+						<topPen lineWidth="0.0"/>
+						<leftPen lineWidth="0.0"/>
+						<bottomPen lineWidth="0.0"/>
+						<rightPen lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Center" markup="styled">
+						<font size="9"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[($V{precioM}.equals("-1")?
+						"<style forecolor='red' isStrikeThrough='true'>" +$V{precio}+ "</style>"
+						 :($V{precioM}!= ""?
+						 "<style forecolor='red' isStrikeThrough='true'>" +$V{precio}+ "</style>" + "\n<style forecolor='blue'>"+ $V{precioM} + "</style>"
+						  :$V{precio}))]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement stretchType="RelativeToBandHeight" mode="Opaque" x="370" y="0" width="49" height="13" backcolor="#CCCCCC"/>
+					<box>
+						<pen lineWidth="0.5"/>
+						<topPen lineWidth="0.5"/>
+						<leftPen lineWidth="0.5"/>
+						<bottomPen lineWidth="0.5"/>
+						<rightPen lineWidth="0.5"/>
+					</box>
+					<textElement>
+						<font size="9" isBold="true"/>
+					</textElement>
+					<text><![CDATA[ Precio:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement stretchType="RelativeToBandHeight" mode="Opaque" x="278" y="0" width="47" height="13" backcolor="#CCCCCC"/>
+					<box>
+						<pen lineWidth="0.5"/>
+						<topPen lineWidth="0.5"/>
+						<leftPen lineWidth="0.5"/>
+						<bottomPen lineWidth="0.5"/>
+						<rightPen lineWidth="0.5"/>
+					</box>
+					<textElement>
+						<font size="9" isBold="true"/>
+					</textElement>
+					<text><![CDATA[ Número:]]></text>
+				</staticText>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+					<reportElement stretchType="RelativeToTallestObject" x="325" y="0" width="46" height="13" forecolor="#000000"/>
+					<box>
+						<pen lineWidth="0.0"/>
+						<topPen lineWidth="0.0"/>
+						<leftPen lineWidth="0.0"/>
+						<bottomPen lineWidth="0.0"/>
+						<rightPen lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Center" markup="styled">
+						<font size="9" isUnderline="false"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[($V{numeroM}.equals("-1")?
+						"<style forecolor='red' isStrikeThrough='true'>" +$V{numero}+ "</style>"
+						:($V{numeroM}!= ""?
+						"<style forecolor='red' isStrikeThrough='true'>" +$V{numero}+ "</style>" + "\n<style forecolor='blue'>"+ $V{numeroM} + "</style>"
+						:$V{numero}))]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement stretchType="RelativeToBandHeight" mode="Transparent" x="0" y="0" width="79" height="13" backcolor="#FFFFFF"/>
+					<box>
+						<pen lineWidth="0.5"/>
+						<topPen lineWidth="0.5"/>
+						<leftPen lineWidth="0.5"/>
+						<bottomPen lineWidth="0.5"/>
+						<rightPen lineWidth="0.5"/>
+					</box>
+					<textElement>
+						<font size="9" isBold="true"/>
+					</textElement>
+					<text><![CDATA[ Tipo de Animal:]]></text>
+				</staticText>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+					<reportElement stretchType="RelativeToTallestObject" x="79" y="0" width="199" height="13" forecolor="#000000"/>
+					<box>
+						<pen lineWidth="0.5"/>
+						<topPen lineWidth="0.5"/>
+						<leftPen lineWidth="0.5"/>
+						<bottomPen lineWidth="0.5"/>
+						<rightPen lineWidth="0.5"/>
+					</box>
+					<textElement textAlignment="Left" markup="styled">
+						<font size="9"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[($F{tipoAnimalM}!= null?
+    "<style forecolor='red' isStrikeThrough='true'>" +" " +$F{tipoAnimal}+ "</style>" + "\n<style forecolor='blue'>"
+        + " " + $F{tipoAnimalM} + "</style>" : " " +$F{tipoAnimal})]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement stretchType="RelativeToBandHeight" mode="Transparent" x="484" y="0" width="45" height="13" backcolor="#FFFFFF"/>
+					<box>
+						<pen lineWidth="0.5"/>
+						<topPen lineWidth="0.5"/>
+						<leftPen lineWidth="0.5"/>
+						<bottomPen lineWidth="0.5"/>
+						<rightPen lineWidth="0.5"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="9" isBold="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{tipoModificacionM}]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</detail>
+</jasperReport>

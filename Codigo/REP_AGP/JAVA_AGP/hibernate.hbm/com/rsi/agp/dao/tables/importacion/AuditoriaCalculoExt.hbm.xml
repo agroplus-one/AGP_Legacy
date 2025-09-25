@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping>
+	<class name="com.rsi.agp.dao.tables.importacion.AuditoriaCalculoExt"
+		table="TB_AUDIT_CALCULO_EXT">
+		<comment>Auditoría sobre las solicitudes de anexos externos</comment>
+		<id name="id" type="long">
+			<column name="ID" precision="15" scale="0" />
+			<generator class="sequence">
+				<param name="sequence">SQ_AUDIT_CALCULO_EXT</param>
+			</generator>
+		</id>
+		<property name="codigoInterno" type="string">
+			<column name="CODIGO_INTERNO" precision="12" not-null="true">
+				<comment>C&#243;digo interno</comment>
+			</column>
+		</property>
+		<property name="horaLlamada" type="java.util.Date">
+			<column name="HORA_LLAMADA" not-null="true">
+				<comment>Hora en la que se registró la llamada</comment>
+			</column>
+		</property>
+		<property name="entrada" type="clob">
+			<column name="ENTRADA" not-null="true">
+				<comment>Datos de poliza recibidos</comment>
+			</column>
+		</property>
+		<property name="acuseRecibo" type="clob">
+			<column name="ACUSE_RECIBO">
+				<comment>Acuse de Recibo del Cálculo</comment>
+			</column>
+		</property>
+		<property name="calculo" type="clob">
+			<column name="CALCULO">
+				<comment>Datos de Cálculo </comment>
+			</column>
+		</property>
+		<property name="resultado" type="java.math.BigDecimal">
+			<column name="RESULTADO" precision="1" scale="0" not-null="true">
+				<comment>Resultado obtenido de la confirmación</comment>
+			</column>
+		</property>
+		<property name="mensaje" type="string">
+			<column name="MENSAJE" precision="1000">
+				<comment>Mensaje que informa del resultado</comment>
+			</column>
+		</property>
+	</class>
+</hibernate-mapping>

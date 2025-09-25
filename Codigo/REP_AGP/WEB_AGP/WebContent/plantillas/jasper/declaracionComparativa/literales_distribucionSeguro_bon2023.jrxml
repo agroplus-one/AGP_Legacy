@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.16.0.final using JasperReports Library version 3.6.1  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="literales_distribucionSeguro_subvCCAA2023" pageWidth="372" pageHeight="30" whenNoDataType="AllSectionsNoDetail" columnWidth="372" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="DataAdapter.xml"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<parameter name="ID" class="java.lang.Integer"/>
+	<queryString>
+		<![CDATA[select descriptivo from
+(select b.codigo,br.descripcion descriptivo
+from tb_distribucion_costes_2015 c
+inner join tb_bonificacion_recargo_2015 b ON c.ID =  b.iddistcoste
+inner join tb_sc_c_bonif_recarg br ON br.cod_bon_rec = b.codigo 
+where c.idpoliza =   $P{ID} 
+order by b.codigo)]]>
+	</queryString>
+	<field name="descriptivo" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="descriptivo"/>
+		<property name="com.jaspersoft.studio.field.name" value="descriptivo"/>
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<columnHeader>
+		<band height="13">
+			<textField evaluationTime="Auto" isBlankWhenNull="false">
+				<reportElement stretchType="RelativeToBandHeight" x="10" y="0" width="160" height="13" isRemoveLineWhenBlank="true" isPrintWhenDetailOverflows="true"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" lineSpacing="Single">
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["Bonificaciones / Recargos"]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="15">
+			<textField isBlankWhenNull="true">
+				<reportElement positionType="Float" x="10" y="0" width="160" height="15" isRemoveLineWhenBlank="true" isPrintWhenDetailOverflows="true">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement lineSpacing="Single"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{descriptivo}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

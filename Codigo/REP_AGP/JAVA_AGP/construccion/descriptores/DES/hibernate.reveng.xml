@@ -1,0 +1,1351 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-reverse-engineering PUBLIC "-//Hibernate/Hibernate Reverse Engineering DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-reverse-engineering-3.0.dtd" >
+
+<hibernate-reverse-engineering>
+	<!--  Oracle Types mapping -->
+	<type-mapping>
+		<!--<sql-type jdbc-type="TIMESTAMP" hibernate-type="java.sql.Timestamp" />-->
+		<sql-type jdbc-type="INTEGER" hibernate-type="java.lang.Integer" />
+		<sql-type jdbc-type="DOUBLE" hibernate-type="java.lang.Double" />
+		<sql-type jdbc-type="NUMERIC" length="1" hibernate-type="java.lang.Integer" />
+		<sql-type jdbc-type="NUMERIC" length="2" hibernate-type="java.lang.Integer" />
+		<sql-type jdbc-type="NUMERIC" length="3" hibernate-type="java.lang.Integer" />
+		<sql-type jdbc-type="NUMERIC" length="4" hibernate-type="java.lang.Integer" />
+		<sql-type jdbc-type="NUMERIC" length="5" hibernate-type="java.lang.Integer" />
+		<sql-type jdbc-type="NUMERIC" length="6" hibernate-type="java.lang.Integer" />
+		<sql-type jdbc-type="NUMERIC" length="7" hibernate-type="java.lang.Integer" />
+		<sql-type jdbc-type="NUMERIC" hibernate-type="java.math.BigDecimal" />
+		<sql-type jdbc-type="VARCHAR" length="1" not-null="true" hibernate-type="java.lang.Character" />
+		<sql-type jdbc-type="VARCHAR" length="1" hibernate-type="java.lang.Character" />
+		<sql-type jdbc-type="VARCHAR" hibernate-type="string" />
+		<sql-type jdbc-type="DATE" hibernate-type="java.util.Date" />
+	</type-mapping>
+
+	<!-- Filters -->
+	<table-filter match-name="TB_ANEXO_MOD"/>
+	<table-filter match-name="TB_ANEXO_MOD_CAPITALES_ASEG"/>
+	<table-filter match-name="TB_ANEXO_MOD_CAPITALES_DTS_VBL"/>
+	<table-filter match-name="TB_ANEXO_MOD_COBERTURAS"/>
+	<table-filter match-name="TB_ANEXO_MOD_ESTADOS"/>
+	<table-filter match-name="TB_ANEXO_MOD_PARCELAS"/>
+	<table-filter match-name="TB_ANEXO_MOD_SUBV_DECL"/>
+	
+	<table-filter match-name="TB_ANEXO_RED"/>
+	<table-filter match-name="TB_ANEXO_RED_CAP_ASEG"/>
+	<table-filter match-name="TB_ANEXO_RED_ESTADOS"/>
+	<table-filter match-name="TB_ANEXO_RED_PARCELAS"/>
+
+	<table-filter match-name="TB_ASEGURADOS"/>
+	<table-filter match-name="TB_ASEGURADOS_SW_DAT_PER_MED"/>
+	<table-filter match-name="TB_CAMPOS_MASCARA"/>
+	<table-filter match-name="TB_CAP_ASEG_REL_MODULO"/>
+	<table-filter match-name="TB_CAPITALES_ASEGURADOS"/>
+	<table-filter match-name="TB_CLASE"/>
+	<table-filter match-name="TB_CLASE_DETALLE"/>
+	<table-filter match-name="TB_CLASE_DETALLE_GANADO"/>
+	<table-filter match-name="TB_COBERTURAS_POLIZA"/>
+	<table-filter match-name="TB_COD_ERRORES_WS"/>
+	<table-filter match-name="TB_COD_ERRORES_WS_ACCION"/>
+	<table-filter match-name="TB_COD_ERRORES_WS_TIPOS"/>
+	<table-filter match-name="TB_COLECTIVOS"/>
+	<table-filter match-name="TB_COLECTIVOS_REFERENCIAS"/>
+	<table-filter match-name="TB_COMARCAS"/>
+	<table-filter match-name="TB_COMPARATIVAS_POLIZA"/>
+	<table-filter match-name="TB_COMUNICACIONES"/>
+	<table-filter match-name="TB_COMUNIDADES"/>
+	<table-filter match-name="TB_CONFIGURACION_CAMPOS"/>
+	<table-filter match-name="TB_CONFIG_AGP"/>
+	
+	<!-- TABLAS NUEVAS PARA COMISIONES -->
+	<table-filter match-name="TB_COMS_FASE"/>
+	<table-filter match-name="TB_COMS_FICHEROS"/>
+	<table-filter match-name="TB_COMS_FICHEROS_CONTENIDO"/>
+	
+	<table-filter match-name="TB_COMS_RECIBOS_IMPAGADOS"/>
+	<table-filter match-name="TB_RGA_UNIF_COMISIONES"/>
+	
+	<table-filter match-name="VW_INFORME_IMPAGADOS"/>
+	<table-filter match-name="VW_INFORME_IMPAGADOS2015"/>
+	
+	<table-filter match-name="VW_FASES_CERRADAS"/>
+	
+	<!-- <table-filter match-name="TB_COMS_RECIBOS_COMISIONES_IMP"/>	 -->
+	
+	<table-filter match-name="TB_COMS_RECIBOS_EMITIDOS"/>
+	<table-filter match-name="TB_COMS_RECS_EMITIDOS_CCAA"/>
+	<table-filter match-name="TB_COMS_RECS_EMITIDOS_DET_COMP"/>
+	<table-filter match-name="TB_COMS_RECS_EMITIDOS_APLI"/>
+	<table-filter match-name="TB_COMS_RECS_EMI_APLI_BON_REC"/>
+	<table-filter match-name="TB_COMS_RECS_EMI_APLI_CCAA"/>
+	
+	<table-filter match-name="TB_COMS_REGLAMENTO_PROD_EMIT"/>
+	<table-filter match-name="TB_COMS_REGL_PROD_EMIT_SITUAC"/>
+	
+	
+	<!-- Pet. 57624  (Nueva transacción de taller de Mantenimiento de Comisiones de Renovables por E-S Mediador -->
+	<table-filter match-name="TB_COMS_RENOV_ESMED"/>
+	
+	<!-- <table-filter match-name="TB_COMS_FICHEROS_REGLAMENTO"/>
+	<table-filter match-name="TB_COMS_FICS_REGLAMENTO_APLI"/>
+	<table-filter match-name="TB_COMS_FICS_REGLTO_APLI_SIT"/> -->
+	
+	<table-filter match-name="TB_COMS_COMISIONES"/>
+	<table-filter match-name="TB_COMS_COMISIONES_COND_PART"/>
+	<table-filter match-name="TB_COMS_COMIS_APLICACIONES"/>
+	<table-filter match-name="TB_COMS_COMIS_APLI_COND_PART"/>
+	
+	<!-- <table-filter match-name="TB_COMS_RECIBOS_COMISIONES"/>
+	<table-filter match-name="TB_COMS_RECIBOS_COMISIONES_APL"/>
+	<table-filter match-name="TB_COMS_RECIBOS_COMS_MARCAS"/>
+	<table-filter match-name="TB_COMS_RECS_COMS_APL_MARCAS"/> -->
+
+	<table-filter match-name="TB_COMS_CIERRE"/>
+	
+	
+	<table-filter match-name="TB_COMS_CULTIVOS_ENTIDADES"/>
+	<table-filter match-name="TB_COMS_CULTIVOS_ENTS_HIST"/>
+	<table-filter match-name="TB_COMS_CULTIVOS_SUBENTIDADES"/>
+	<table-filter match-name="TB_COMS_CULTIVOS_SUBS_HIST"/>
+	
+	<table-filter match-name="TB_COMS_FICHEROS_INCIDENCIAS"/>
+						
+	<table-filter match-name="TB_COMS_GENERALES_PLAN"/>
+	<table-filter match-name="TB_COMS_GGE_ENTIDADES_HIST"/>
+	<table-filter match-name="TB_COMS_GGE_SUBENTIDADES"/>
+	<table-filter match-name="TB_COMS_GGE_SUBENTIDADES_HIST"/>	
+	
+	<table-filter match-name="TB_COMS_REGLAMENTO"/>
+	<table-filter match-name="TB_COMS_REGLAMENTO_HIST"/>
+	
+	<table-filter match-name="TB_COMS_DESCUENTOS"/>
+	<table-filter match-name="TB_COMS_DESCUENTOS_HIST"/>
+	
+
+
+	
+	
+	<table-filter match-name="TB_COPY_ASEGURADOS"/>
+	<table-filter match-name="TB_COPY_CAPITALES_ASEG"/>
+	<table-filter match-name="TB_COPY_COBERTURAS"/>
+	<table-filter match-name="TB_COPY_COLECTIVOS"/>
+	<table-filter match-name="TB_COPY_DATOS_VAR_PARC"/>
+	<table-filter match-name="TB_COPY_PAGO"/>
+	<table-filter match-name="TB_COPY_PARCELAS"/>
+	<table-filter match-name="TB_COPY_POLIZAS"/>
+	<table-filter match-name="TB_COPY_SUBV_DECLARADA"/>
+	<table-filter match-name="TB_COPY_SUBV_ENESA"/>
+	<table-filter match-name="TB_COPY_SUBV_ORGANISMOS"/>
+	
+	<table-filter match-name="TB_CORREOS"/>
+	<table-filter match-name="TB_CORREOS_GRUPOS"/>
+	
+	<table-filter match-name="TB_CUADRO_COBERTURAS"/>
+	
+	<table-filter match-name="TB_DATOS_ASEGURADOS"/>
+	<table-filter match-name="TB_DATOS_VARIABLES_DEFAULT"/>
+	<table-filter match-name="TB_DATOS_VAR_PARCELA"/>
+	<table-filter match-name="TB_DIST_COSTE_PARCELAS"/>
+	<table-filter match-name="TB_DIST_COSTE_SUBVS"/>
+	<table-filter match-name="TB_DISTRIBUCION_COSTES"/>
+	<table-filter match-name="TB_ENTIDADES"/>
+	<table-filter match-name="TB_ENTIDADES_MEDIADORAS"/>
+	<table-filter match-name="TB_ENVIOS_AGROSEGURO"/>
+	<table-filter match-name="TB_ESTADOS_POLIZA"/>
+	<table-filter match-name="TB_ESTADOS_AGROSEGURO"/>
+	<table-filter match-name="TB_RELACION_ESTADOS"/>
+	<table-filter match-name="TB_ESTADOS_SINIESTRO"/>
+	<table-filter match-name="TB_FACTORES_POR_GRUPO"/>
+	<table-filter match-name="TB_GRUPO_ENTIDADES"/>
+	<table-filter match-name="TB_GRUPOS_ASEGURADOS_CE"/>
+	<table-filter match-name="TB_GRUPOS_FACTORES"/>
+	<table-filter match-name="TB_HIST_IMPORTACIONES"/>
+	<table-filter match-name="TB_HISTORICO_COLECTIVOS"/>
+	<table-filter match-name="TB_IMPORTACION_TABLAS"/>
+	
+	
+	<table-filter match-name="TB_IMPUESTOS_CONSORCIO"/>
+	<table-filter match-name="TB_INCOMPATIBILIDAD_CLASES"/>
+	<table-filter match-name="TB_INF_MEDIADORES"/>
+	<table-filter match-name="TB_INF_MEDIADORES_MESES"/>
+	<table-filter match-name="TB_INF_MEDIADORES_SALDOS"/>
+	
+	
+	<table-filter match-name="TB_LINEAS"/>
+	<table-filter match-name="TB_LOCALIDADES"/>
+	<table-filter match-name="TB_MODULOS_COMPATIBLES_CE"/>
+	<table-filter match-name="TB_MODULOS_POLIZA"/>
+	<table-filter match-name="TB_OFICINAS"/>
+	<table-filter match-name="TB_ORIGENES_DATOS"/>
+	
+	<table-filter match-name="TB_PAC_ASEG"/>
+	<table-filter match-name="TB_PAC_ASEG_PARCELAS"/>
+	<table-filter match-name="TB_PAC_CARGAS"/>
+	
+	<table-filter match-name="TB_PAGO_ESTADOS_AGP"/>
+	<table-filter match-name="TB_PAGOS_POLIZA"/>
+	<table-filter match-name="TB_PANTALLAS"/>
+	<table-filter match-name="TB_PANTALLAS_CONFIGURABLES"/>
+	<table-filter match-name="TB_PARAMETROS"/>
+	<table-filter match-name="TB_PARCELAS"/>
+	<table-filter match-name="TB_PARCELAS_COBERTURAS"/>
+	<table-filter match-name="TB_PERFIL"/>
+	<table-filter match-name="TB_PERFILES_GRUPO_ENTIDADES"/>
+	<table-filter match-name="TB_PERIODOS_GARANTIAS_CE"/>
+	<table-filter match-name="TB_POLIZAS"/>
+	<table-filter match-name="TB_POLIZA_SOCIOS"/>
+	<table-filter match-name="TB_POLIZAS_HOJAS_CAMPO"/>
+	<table-filter match-name="TB_POLIZAS_INFO_HOJAS_CAMPO"/>
+	<table-filter match-name="TB_POLIZAS_SW_HOJAS_CAMPO"/>
+	<table-filter match-name="TB_POLIZAS_SW_ACTAS"/>
+	<table-filter match-name="TB_POLIZAS_ACTAS"/>
+	<table-filter match-name="TB_POLIZAS_INFO_ACTAS"/>
+	<table-filter match-name="TB_PROVINCIAS"/>
+	
+	<table-filter match-name="TB_RECIBO"/>
+	<table-filter match-name="TB_RECIBO_DET_COMPENSACION"/>
+	<table-filter match-name="TB_RECIBO_POLIZA"/>
+	<table-filter match-name="TB_RECIBO_POLIZA_SUBV"/>
+	<table-filter match-name="TB_RECIBO_SUBV"/>
+	
+	<table-filter match-name="TB_REFERENCIAS_AGRICOLAS"/>
+	<table-filter match-name="TB_RELACION_CAMPOS"/>
+	<table-filter match-name="TB_REL_ORGANISMOS_COMUNIDADES"/>
+	<table-filter match-name="TB_RGA_COMISIONES"/>
+	<table-filter match-name="TB_COMS_REPORT_FICHEROS_CIERRE"/>
+	
+	<!-- Tablas de sobreprecio -->
+	<table-filter match-name="TB_SBP_BASES"/>
+	<table-filter match-name="TB_SBP_ERRORES_POLIZA"/>
+	<table-filter match-name="TB_SBP_ESTADOS_POLIZA"/>
+	<table-filter match-name="TB_SBP_FECHAS_CONTRATACION"/>
+	<table-filter match-name="TB_SBP_IMPUESTOS"/>
+	<table-filter match-name="TB_SBP_MTO_IMPUESTOS"/>
+	<table-filter match-name="TB_SBP_PARCELAS"/>
+	<table-filter match-name="TB_SBP_POLIZAS"/>
+	<table-filter match-name="TB_SBP_POLIZAS_ERRORES"/>
+	<table-filter match-name="TB_SBP_PRIMA_MINIMA"/>
+	<table-filter match-name="TB_SBP_TASAS"/>
+	<table-filter match-name="TB_SBP_TIPO_ENVIO"/>
+	<table-filter match-name="TB_SBP_SOBREPRECIO"/>
+	
+	<table-filter match-name="TB_SBP_TXT_DESC_RIESGO"/>
+	<table-filter match-name="TB_SBP_TXT_RIESGO_GARANTIZADO"/>
+	<table-filter match-name="TB_SBP_TXT_PERIODO_CARENCIA"/>
+	<table-filter match-name="TB_SBP_TXT_FRANQUICIA"/>
+	<table-filter match-name="TB_SBP_TXT_PRIMA_TOTAL"/>
+	
+	<!-- Tablas de generacion de informes -->
+	<table-filter match-name="TB_MTOINF_CAMPOS_CALCULADOS"/>
+	<table-filter match-name="TB_MTOINF_CAMPOS_PERMITIDOS"/>	
+	<table-filter match-name="TB_MTOINF_CLASIF_RUPTURA_CALC"/>
+	<table-filter match-name="TB_MTOINF_CLASIF_RUPTURA_PERM"/>
+	<table-filter match-name="TB_MTOINF_CONDICION_CAM_CALC"/>
+	<table-filter match-name="TB_MTOINF_CONDICION_CAM_PERM"/>
+	<table-filter match-name="TB_MTOINF_DATOS_INFORMES"/>
+	<table-filter match-name="TB_MTOINF_INFORMES"/>
+	<table-filter match-name="TB_MTOINF_INFORMES_USUARIO"/>	
+	<table-filter match-name="TB_MTOINF_OPERADORES_CAM_CALC"/>
+	<table-filter match-name="TB_MTOINF_OPERADORES_CAM_PERM"/>
+	<table-filter match-name="TB_MTOINF_REL_VISTAS_CAMPOS"/>
+	<table-filter match-name="TB_MTOINF_VISTAS"/>
+	<table-filter match-name="TB_MTOINF_VISTAS_CAMPOS"/>
+	
+	<!-- Tablas de carga de condicionado -->
+	<table-filter match-name="TB_CARGAS_CONDICIONADO"/>
+	<table-filter match-name="TB_CARGAS_FICHEROS"/>	
+	<table-filter match-name="TB_CARGAS_TABLAS"/>
+	
+	<table-filter match-name="TB_SC_C_ALTERNATIVAS"/>
+	<table-filter match-name="TB_SC_C_AMBITOS_ASEGURABLES"/>
+	<table-filter match-name="TB_SC_C_ASEG_AUTORIZADOS"/>
+	<table-filter match-name="TB_SC_C_ASEG_NO_SUBVENCIONABLE"/>
+	<table-filter match-name="TB_SC_C_ASEG_SUBV_ADIC_ENESA"/>
+	<table-filter match-name="TB_SC_C_ATT_TIP_EXPLOTACION"/>
+	<table-filter match-name="TB_SC_C_BANCOS"/>
+	<table-filter match-name="TB_SC_C_BONIF_MED_PREVENT"/>
+	<table-filter match-name="TB_SC_C_BONIF_PROM_RENOV"/>
+	<table-filter match-name="TB_SC_C_CALC_INDEMNIZACION"/>
+	<table-filter match-name="TB_SC_C_CAPITAL_ASEG_ELEG"/>
+	<table-filter match-name="TB_SC_C_CARACT_EXPLOTACION"/>
+	<table-filter match-name="TB_SC_C_CARACT_MODULO"/>
+	<table-filter match-name="TB_SC_C_CERTIFICADO_INSTAL"/>
+	<table-filter match-name="TB_SC_C_CICLO_CULTIVO"/>
+	<table-filter match-name="TB_SC_C_COD_DENOM_ORIGEN" />
+	<table-filter match-name="TB_SC_C_COD_REDUC_RDTO"/>
+	<table-filter match-name="TB_SC_C_COMISIONES_AGR"/>
+	<table-filter match-name="TB_SC_C_CONCEPTO_CBRTO_MOD"/>
+	<table-filter match-name="TB_SC_C_CONCEPTO_PPAL_MOD"/>
+	<table-filter match-name="TB_SC_C_COND_ASOC_TIP_EXPL"/>
+	<table-filter match-name="TB_SC_C_COND_COMISIONES"/>
+	<table-filter match-name="TB_SC_C_CONDICIONES"/>
+	<table-filter match-name="TB_SC_C_CULTIVOS"/>
+	<table-filter match-name="TB_SC_C_DANIO_CUBIERTO"/>
+	<table-filter match-name="TB_SC_C_DENOM_ORIGEN"/>
+	<table-filter match-name="TB_SC_C_DESCUENTOS"/>
+	<table-filter match-name="TB_SC_C_DESTINOS"/>
+	<table-filter match-name="TB_SC_C_ESTADOS_FENOLOGICOS"/>
+	<table-filter match-name="TB_SC_C_FACTORES"/>
+	<table-filter match-name="TB_SC_C_FEC_CONTRAT_AGR"/>
+	<table-filter match-name="TB_SC_C_FECHA_FIN_GARANTIA"/>
+	<table-filter match-name="TB_SC_C_FECHA_RECOLECCION"/>
+	<table-filter match-name="TB_SC_C_FORMUL_COND_TIP_EXPL"/>
+	<table-filter match-name="TB_SC_C_GARANTIZADO"/>
+	<table-filter match-name="TB_SC_C_GASTOS_SALVAMENTO"/>
+	<table-filter match-name="TB_SC_C_GRUPO_SEGURO"/>
+	<table-filter match-name="TB_SC_C_GRUPO_TASAS"/>
+	<table-filter match-name="TB_SC_C_GRUPO_TASAS_RIESGO"/>
+	<table-filter match-name="TB_SC_C_GRUPOS_SUBV"/>
+	<table-filter match-name="TB_SC_C_HISTORIAL_ASEG"/>
+	<table-filter match-name="TB_SC_C_IGP"/>
+	<table-filter match-name="TB_SC_C_INC_CONTRATACION"/>
+	<table-filter match-name="TB_SC_C_INC_TIPO_SUBV_DECL"/>
+	<table-filter match-name="TB_SC_C_LIMITES_RDTOS"/>
+	<table-filter match-name="TB_SC_C_LINEAS"/>
+	<table-filter match-name="TB_SC_C_MARCO_PLANTACION"/>
+	<table-filter match-name="TB_SC_C_MASC_FEC_CONTRATA_AGR"/>
+	<table-filter match-name="TB_SC_C_MASC_GRUPO_TASAS"/>
+	<table-filter match-name="TB_SC_C_MASC_LIMITES_RDTOS"/>
+	<table-filter match-name="TB_SC_C_MASC_PRECIOS"/>
+	<table-filter match-name="TB_SC_C_MASC_RDTOS_CARACT_E"/>
+	<table-filter match-name="TB_SC_C_MATERIAL_CUBIERTA"/>
+	<table-filter match-name="TB_SC_C_MATERIAL_ESTRUCTURA"/>
+	<table-filter match-name="TB_SC_C_MEDIDAS"/>
+	<table-filter match-name="TB_SC_C_MEDIDAS_FRANQUICIA"/>
+	<table-filter match-name="TB_SC_C_MEDIDA_PREVENTIVA"/>
+	<table-filter match-name="TB_SC_C_MED_ASOC_HIST_ASEG"/>
+	<table-filter match-name="TB_SC_C_MIN_INDEM_ELEG"/>
+	<table-filter match-name="TB_SC_C_MODULOS"/>
+	<table-filter match-name="TB_SC_C_MODULOS_APL_MEDIDAS"/>
+	<table-filter match-name="TB_SC_C_NIVEL_RIESGO"/>
+	<table-filter match-name="TB_SC_C_NUM_ANIOS_DESCORCHE"/>
+	<table-filter match-name="TB_SC_C_NUM_ANIOS_PODA"/>
+	<table-filter match-name="TB_SC_C_ORGANISMOS"/>
+	<table-filter match-name="TB_SC_C_PCT_COMS_ESTRAT_PRIMA"/>
+	<table-filter match-name="TB_SC_C_PCT_FRANQUICIA_ELEG"/>
+	<table-filter match-name="TB_SC_C_PENDIENTE"/>
+	<table-filter match-name="TB_SC_C_PERIODO_GARANTIAS"/>
+	<table-filter match-name="TB_SC_C_PRACTICA_CULTURAL"/>
+	<table-filter match-name="TB_SC_C_PRECIOS"/>
+	<table-filter match-name="TB_SC_C_PRIMAS_RIESGO"/>
+	<table-filter match-name="TB_SC_C_PROTECCION_CULTIVO"/>
+	<table-filter match-name="TB_SC_C_PROVS_ORGANISMO"/>
+	<table-filter match-name="TB_SC_C_RDTOS_CARACT_ESP"/>
+	<table-filter match-name="TB_SC_C_REDUC_RDTOS_AMBITOS"/>
+	<table-filter match-name="TB_SC_C_REL_CBRTOS_TARIF"/>
+	<table-filter match-name="TB_SC_C_REL_ESPECIES_SC_ST"/>
+	<table-filter match-name="TB_SC_C_RIESGOS"/>
+	<table-filter match-name="TB_SC_C_RIESGOS_CUBIERTOS"/>
+	<table-filter match-name="TB_SC_C_RIESGOS_TARIFICABLES"/>
+	<table-filter match-name="TB_SC_C_RIESGOS_TASABLES"/>
+	<table-filter match-name="TB_SC_C_RIESGO_CBRTO_MOD"/>
+	<table-filter match-name="TB_SC_C_SISTEMA_CONDUCCION"/>
+	<table-filter match-name="TB_SC_C_SISTEMA_CULTIVO"/>
+	<table-filter match-name="TB_SC_C_SISTEMA_PRODUCCION"/>
+	<table-filter match-name="TB_SC_C_SISTEMA_PROTECCION"/>
+	<table-filter match-name="TB_SC_C_SIST_REDUC_SUBV_CCAA"/>
+	<table-filter match-name="TB_SC_C_SUBVS_CCAA"/>
+	<table-filter match-name="TB_SC_C_SUBVS_ENESA"/>
+	<table-filter match-name="TB_SC_C_SUBV_GRUPOS"/>
+	<table-filter match-name="TB_SC_C_SUBV_INCOMP_CAL"/>
+	<table-filter match-name="TB_SC_C_TABLAS_CONDICIONADO"/>
+	<table-filter match-name="TB_SC_C_TABLA_BONUS"/>
+	<table-filter match-name="TB_SC_C_TABLA_EXT_CULTIVO"/>
+	<table-filter match-name="TB_SC_C_TARIFAS"/>
+	<table-filter match-name="TB_SC_C_TIPO_CAPITAL"/>
+	<table-filter match-name="TB_SC_C_TIPO_FRANQUICIA"/>
+	<table-filter match-name="TB_SC_C_TIPO_INSTALACION"/>
+	<table-filter match-name="TB_SC_C_TIPO_MASA"/>
+	<table-filter match-name="TB_SC_C_TIPO_PLANTACION"/>
+	<table-filter match-name="TB_SC_C_TIPO_SUBV_CCAA"/>
+	<table-filter match-name="TB_SC_C_TIPO_SUBV_ENESA"/>
+	<table-filter match-name="TB_SC_C_TIPO_TERRENO"/>
+	<table-filter match-name="TB_SC_C_TIPOS_RDTO"/>
+	<table-filter match-name="TB_SC_C_VALORES_ESPECIE_AMBITO"/>
+	<table-filter match-name="TB_SC_C_VARIEDADES"/>
+	<table-filter match-name="TB_SC_C_VINC_VALORES_MOD"/>
+	<table-filter match-name="TB_SC_C_ZONIF_FAMILIAS"/>
+	<table-filter match-name="TB_SC_C_ZONIF_FAMILIAS_DET"/>
+	<table-filter match-name="TB_SC_C_ZONIF_GRP_CULTIVOS"/>
+	<table-filter match-name="TB_SC_C_ZONIF_GRP_CULTIVOS_DET"/>
+	<table-filter match-name="TB_SC_C_ZONIF_SIGPAC"/>
+	
+	<table-filter match-name="TB_SC_DD_DIC_DATOS"/>
+	<table-filter match-name="TB_SC_DD_FORMULARIOS"/>
+	<table-filter match-name="TB_SC_DD_NATURALEZA_ALT"/>
+	<table-filter match-name="TB_SC_DD_TIPO_NATURALEZA"/>
+	
+	<table-filter match-name="TB_SC_OI_ORG_INFO"/>
+	<table-filter match-name="TB_SC_OI_REL_USOS_TABLAS"/>
+	<table-filter match-name="TB_SC_OI_UBICACIONES"/>
+	<table-filter match-name="TB_SC_OI_USOS"/>
+	
+	<!-- Tablas de carga de condicionado para Ganado -->
+	<!-- Condicionado general -->
+	<table-filter match-name="TB_SC_C_GRUPOS_NEGOCIO"/>
+	<table-filter match-name="TB_SC_C_TIPO_CAPITAL_GRUPO_NEG"/>
+	<table-filter match-name="TB_SC_C_FACTORES_CONC_PPAL_MOD"/>
+	<table-filter match-name="TB_SC_C_ADAPTACION_RIESGO"/>
+	<table-filter match-name="TB_SC_C_CONCEPTOS_DEDUCIBLES"/>
+	<table-filter match-name="TB_SC_C_DATOS_BUZON_GENERAL"/>
+	
+
+	<!-- Condicionado plan/línea -->
+	<table-filter match-name="TB_SC_C_RIESGO_CBRTO_MOD_G"/>         <!--0400-->
+	<table-filter match-name="TB_SC_C_VINC_VALORES_MOD_G"/>         <!--0401-->
+	<table-filter match-name="TB_SC_C_FICH_VINC_EX_GRUPOS_G"/>      <!--0402--><!--Sin XML-->
+	<table-filter match-name="TB_SC_C_FICH_VINC_EX_ES_AMB"/>      	<!--0403--><!--Sin XML-->
+	<table-filter match-name="TB_SC_C_VINC_FILAS_MOD_G"/>      		<!--0404--><!--Sin XML-->
+	<table-filter match-name="TB_SC_C_VINC_EX_FILA_MOD_G"/>      	<!--0405--><!--Sin XML-->
+	<table-filter match-name="TB_SC_C_GRUPO_TASAS_G"/>			    <!--0406-->	
+	<table-filter match-name="TB_SC_C_GRUPO_TASAS_RIESGO_G"/>	    <!--406R-->
+	<table-filter match-name="TB_SC_C_MASC_GRUPO_TASAS_G"/>         <!--9406-->
+	<table-filter match-name="TB_SC_C_VAL_PERM_CONC_DED_G"/>	    <!--0407--><!--Sin XML-->
+	<table-filter match-name="TB_SC_C_REL_CONC_X_CONC_DED"/>	    <!--0408--><!--Sin XML-->
+	<table-filter match-name="TB_SC_C_MEDIDAS_G"/>				    <!--0409-->
+	<table-filter match-name="TB_SC_C_MEDIDAS_ASOC_G"/>			    <!--0410--><!--Sin XML-->
+	<table-filter match-name="TB_SC_C_ESPECIE"/>					<!--0411-->
+	<table-filter match-name="TB_SC_C_REGIMEN_MANEJO"/>				<!--0412-->
+	<table-filter match-name="TB_SC_C_GRUPOS_RAZAS"/>				<!--0413-->
+	<table-filter match-name="TB_SC_C_TIPOS_ANIMAL_GANADO"/>		<!--0414-->
+	<table-filter match-name="TB_SC_C_OBLIG_TIP_ANIMAL"/>			<!--0415-->
+	<table-filter match-name="TB_SC_C_RELACION_ANIMALES"/>			<!--0416-->
+	<table-filter match-name="TB_SC_C_NUM_MIN_ANI_COLMENAS"/>		<!--0417-->
+	<table-filter match-name="TB_SC_C_PCT_MAX_EXPLOTACION"/>		<!--0418-->
+	<table-filter match-name="TB_SC_C_DAT_VAR_TIPO"/>				<!--0419-->
+	<table-filter match-name="TB_SC_C_PCT_ADAPTACION_RIESGO"/>		<!--0420-->
+	<table-filter match-name="TB_SC_C_VALORES_ESP_AMB_G"/>          <!--0421-->
+	<table-filter match-name="TB_SC_C_AGRUPACION_EXPLOT"/>          <!--0422-->
+	<table-filter match-name="TB_SC_C_PRECIOS_GANADO"/>             <!--0423-->
+	<table-filter match-name="TB_SC_C_MASC_PRECIOS_G"/>             <!--9423-->
+	<table-filter match-name="TB_SC_C_FEC_CONTRAT_G"/>              <!--0424-->
+	<table-filter match-name="TB_SC_C_MASC_FEC_CONTRAT_G"/>			<!--9424-->
+	<table-filter match-name="TB_SC_C_ASEG_AUTO_G"/>				<!--0425--><!--Sin XML-->
+	<table-filter match-name="TB_SC_C_INC_MISMA_POL"/>              <!--0426-->
+	<table-filter match-name="TB_SC_C_INC_OTRA_POL"/>               <!--0427-->
+	<table-filter match-name="TB_SC_C_GRUPOS_INC_G"/>				<!--0428--><!--Sin XML-->
+	<table-filter match-name="TB_SC_C_ESP_AMB_GRUPO"/>				<!--0429--><!--Sin XML-->
+	<table-filter match-name="TB_SC_C_INC_FACTORES_GRUPOS"/>		<!--0430--><!--Sin XML-->
+	<table-filter match-name="TB_SC_C_PESOS_CALC_PR_ASEG"/>         <!--0431-->
+	<table-filter match-name="TB_SC_C_ELEC_GARANTIZADO"/>			<!--0432--><!--Sin XML-->
+	<table-filter match-name="TB_SC_C_CAUTELAR_CONTRAT"/>           <!--0433-->
+	<table-filter match-name="TB_SC_C_ASEG_SUBV_ADI_RENO"/>			<!--0434--><!--Sin XML-->
+	<table-filter match-name="TB_SC_C_SUBVS_ENESA_G"/>              <!--0435-->
+	<table-filter match-name="TB_SC_C_SUBVS_CCAA_G"/>               <!--0436-->
+	<table-filter match-name="TB_SC_C_COD_CONCEP_VAL_PRM"/>         <!--0437-->
+	<table-filter match-name="TB_SC_C_REDUC_ENESA_CCAA"/>           <!--0438-->
+	<table-filter match-name="TB_SC_C_REL_ESP_G_ESP_STR"/>			<!--0439--><!--PK con demasiados campos-->
+	<table-filter match-name="TB_SC_C_REL_COB_G_OPC_STR"/>			<!--0440--><!--Sin XML-->
+	<table-filter match-name="TB_SC_C_COND_FRACC"/>					
+
+
+	<table-filter match-name="TB_SECCIONES"/>
+	
+	<table-filter match-name="TB_SINIESTRO_CAP_ASEG"/>
+	<table-filter match-name="TB_SINIESTRO_CAP_ASEG_DV"/>
+	<table-filter match-name="TB_SINIESTRO_PARCELAS"/>
+	<table-filter match-name="TB_SINIESTROS"/>
+	<table-filter match-name="TB_SINIESTRO_SW_VALIDACION"/>
+	<table-filter match-name="TB_SINIESTRO_SW_CONFIRMACION"/>
+	
+	<table-filter match-name="TB_POLIZAS_INFO_HC_TIPO_HOJA"/>
+	<table-filter match-name="TB_POLIZAS_INFO_HC_TIPO_SIT_HC"/>
+	<table-filter match-name="TB_POLIZAS_INFO_HC_SITUACION"/>
+	<table-filter match-name="TB_POLIZAS_INFO_ACTAS_TIP_SIT"/>
+	<table-filter match-name="VW_POLIZAS_INFO_HC_HOJA_SITUAC"/>
+	
+	<table-filter match-name="TB_SOCIOS"/>
+	<table-filter match-name="TB_SUBENTIDADES_MEDIADORAS"/>
+	<table-filter match-name="TB_SUBVS_ASEG_CCAA"/>
+	<table-filter match-name="TB_SUBVS_ASEG_ENESA"/>
+	<table-filter match-name="TB_SUBVS_ASEG_CCAA_G"/>
+	<table-filter match-name="TB_SUBVS_ASEG_ENESA_G"/>
+	<table-filter match-name="TB_SUBV_PARCELA_CCAA"/>
+	<table-filter match-name="TB_SUBV_PARCELA_ENESA"/>
+	<table-filter match-name="TB_SUBV_EXPLOTACION_CCAA"/>
+	<table-filter match-name="TB_SUBV_EXPLOTACION_ENESA"/>
+	<table-filter match-name="TB_SUBV_ENESA_SOCIOS"/>
+	<table-filter match-name="TB_SUBV_ENESA_SOCIOS_GANADO"/>
+	<table-filter match-name="TB_TABLAS_XMLS"/>
+	<table-filter match-name="TB_TERMINOS"/>
+	<table-filter match-name="TB_TERMINOS_SIGPAC_AGRO"/>
+	<table-filter match-name="TB_TIPO_CAMPOS"/>
+	<table-filter match-name="TB_TIPOS_IMPORTACION"/>
+	<table-filter match-name="TB_TIPOS_MEDIADORES"/>
+	<table-filter match-name="TB_TOMADORES"/>
+	<table-filter match-name="TB_USUARIOS"/>
+	<table-filter match-name="TB_VIAS"/>
+	
+	<table-filter match-name="TB_CPM_TIPO_CAPITAL"/>
+	
+	<table-filter match-name="VW_DATOS_VARIABLES_PARCELA"/>
+	
+	<table-filter match-name="VW_COMPARATIVAS"/>
+	<table-filter match-name="VW_SINIESTROS_UTILIDADES"/>
+	<table-filter match-name="VW_RED_CAPITAL_UTILIDADES"/>
+	<table-filter match-name="VW_ORG_DATOS_CERTIFICADO_INST"/>
+	<table-filter match-name="VW_ORG_DATOS_COD_REDUC_RDTO"/>
+	<table-filter match-name="VW_ORG_DATOS_CPM"/>
+	<table-filter match-name="VW_ORG_DATOS_CICLO_CULTIVO"/>
+	<table-filter match-name="VW_ORG_DATOS_DENOM_ORIGEN"/>
+	<table-filter match-name="VW_ORG_DATOS_DESTINO"/>
+	<table-filter match-name="VW_ORG_DATOS_IGP"/>
+	<table-filter match-name="VW_ORG_DATOS_IGP_FACT_AMBITO"/>
+	<table-filter match-name="VW_ORG_DATOS_MARCO_PLANTACION"/>
+	<table-filter match-name="VW_ORG_DATOS_MAT_CUBIERTA"/>
+	<table-filter match-name="VW_ORG_DATOS_MAT_ESTRUCTURA"/>
+	<table-filter match-name="VW_ORG_DATOS_MED_PREVENTIVA"/>
+	<table-filter match-name="VW_ORG_DATOS_POR_FACTORES"/>
+	<table-filter match-name="VW_ORG_DATOS_PRAC_CULTURAL"/>
+	<table-filter match-name="VW_ORG_DATOS_PRAC_CULTURAL_305"/>
+	<table-filter match-name="VW_ORG_DATOS_ROTACION"/>
+	<table-filter match-name="VW_ORG_DATOS_SIST_CULT"/>
+	<table-filter match-name="VW_ORG_DATOS_SIST_CULT_312"/>
+	<table-filter match-name="VW_ORG_DATOS_SIST_PROD"/>
+	<table-filter match-name="VW_ORG_DATOS_SIST_PROT"/>
+	<table-filter match-name="VW_ORG_DATOS_TIPO_CAPITAL"/>
+	<table-filter match-name="VW_ORG_DATOS_TIPO_INSTALACION"/>
+	<table-filter match-name="VW_ORG_DATOS_TIPO_PLANTACION"/>
+	<table-filter match-name="VW_ORG_DATOS_TIPO_PLANT_309"/>
+	<table-filter match-name="VW_TERMINOS_ASEGURABLES"/>
+	<table-filter match-name="VW_TIPO_CAPITAL"/>
+	
+	<table-filter match-name="VW_MTOINF_OPERADORES"/>
+	<table-filter match-name="VW_MTOINF_CONDICIONES"/>
+	<table-filter match-name="VW_MTOINF_DATOS_INFORMES"/>
+	<table-filter match-name="VW_MTOINF_CLASIF_RUPTURA"/>
+	
+	<table-filter match-name="VW_PLZ_HOJA_CAMPO_ACTA_TASAC"/>
+	
+	<!--  Renovables de Ganado -->
+	<table-filter match-name="TB_COLECTIVOS_RENOVACION"/>
+	<table-filter match-name="TB_ESTADO_RENOVACION_AGROPLUS"/>
+	<table-filter match-name="TB_ESTADO_RENOVACION_AGROSEG"/>
+	<table-filter match-name="TB_POLIZAS_RENOVABLES"/>
+	<table-filter match-name="TB_GASTOS_RENOVACION"/>
+	<table-filter match-name="TB_PLZ_RENOV_HIST_ESTADOS"/>
+	<table-filter match-name="TB_ESTADO_RENOVACIO_ENVIO_IBAN"/>
+	<table-filter match-name="TB_PLZ_RENOV_VALIDA_ENVIO_IBAN"/>
+	<table-filter match-name="TB_PLZ_RENOV_ENV_IBAN_HIST_EST"/>
+	
+	<!-- Nuevos históricos -->
+	<table-filter match-name="TB_HIST_CAMBIO_TITULAR"/>
+	<table-filter match-name="TB_HIST_CAMBIO_IBAN"/>
+	
+	<!-- Importación de ficheros de comisiones de deuda aplazada -->
+	<table-filter match-name="TB_COMS_FICHEROS_MULT"/>
+	<table-filter match-name="TB_COMS_FICHERO_MULT_CONTENIDO"/>
+	<table-filter match-name="TB_COMS_FICHERO_MULT_INCIDENC"/>
+	<table-filter match-name="TB_COMS_FASE_MULT"/>
+	<table-filter match-name="TB_COMS_DA_DETALLE_ABONO_IND"/>
+	<table-filter match-name="TB_COMS_DA_DETALLE_ABONO_COL"/>
+	<table-filter match-name="TB_COMS_DA_DETALLE_ABONO_PLZ"/>
+	
+	<!-- Distribución de costes 2015 -->
+	<table-filter match-name="TB_DISTRIBUCION_COSTES_2015"/>
+	<table-filter match-name="TB_DIST_COSTE_SUBVS_2015"/>
+	<table-filter match-name="TB_DIST_COSTE_PARCELAS_2015"/>
+	<table-filter match-name="TB_BONIFICACION_RECARGO_2015"/>
+	<table-filter match-name="TB_DIST_COSTE_EXPLOTACIONES"/>
+	
+	<!-- Fraccionamiento del pago -->
+	<table-filter match-name="TB_IMPORTES_FRACCIONAMIENTO"/>
+	<table-filter match-name="TB_DATOS_AVAL_POLIZAS"/>
+	
+	<!-- Explotaciones de Ganado -->
+	<table-filter match-name="TB_EXPLOTACIONES"/>
+	<table-filter match-name="TB_GRUPO_RAZA_EXPLOTACION"/>
+	<table-filter match-name="TB_DATOS_VAR_EXPLOTACION"/>
+	<table-filter match-name="TB_PRECIOS_ANIMALES_MODULOS"/>
+	<table-filter match-name="TB_ANEXO_MOD_EXPLOTACIONES"/>
+	<table-filter match-name="TB_ANEXO_MOD_GRUPO_RAZA"/>
+	<table-filter match-name="TB_PRECIOS_ANIMALES_MOD_ANX"/>
+	<table-filter match-name="TB_DATOS_VAR_EXPLOT_ANX"/>
+	
+	<!-- Orígenes de datos de Ganado -->
+	<table-filter match-name="VW_ADAPTACION_RIESGO_EXPLOT"/>
+	<table-filter match-name="VW_ADAPTACION_RIESGO_GRP_RAZA"/>
+	<table-filter match-name="VW_ADAPTACION_RIESGO_TIPO_CAP"/>
+	<table-filter match-name="VW_AUTORIZACION_ESPECIAL"/>
+	<table-filter match-name="VW_SISTEMA_ALMACENAMIENTO"/>
+	<table-filter match-name="VW_CONDICIONES_PARTICULARES"/>
+	<table-filter match-name="VW_EMPRESA_GESTORA"/>
+	<table-filter match-name="VW_ALOJAMIENTO"/>
+	<table-filter match-name="VW_CALIDAD_PRODUCCION"/>
+	<table-filter match-name="VW_CALIFICACION_SANEAMIENTO"/>
+	<table-filter match-name="VW_CALIFICACION_SANITARIA"/>
+	<table-filter match-name="VW_CONTROL_OFICIAL_LECHERO"/>
+	<table-filter match-name="VW_CUENCA_HIDROGRAFICA"/>
+	<table-filter match-name="VW_DURACION_PERIODO_PRODUCTIVO"/>
+	<table-filter match-name="VW_EXCEP_CONTRATACION_EXPLOT"/>
+	<table-filter match-name="VW_EXCEP_CONTRATACION_POLIZA"/>
+	<table-filter match-name="VW_IGP_DO_GANADO"/>
+	<table-filter match-name="VW_PUREZA"/>
+	<table-filter match-name="VW_TIPO_ASEGURADO_GANADO"/>
+	<table-filter match-name="VW_TIPO_GANADERIA"/>
+	<table-filter match-name="VW_SISTEMA_PROD_GANADO"/>
+	<table-filter match-name="VW_DESTINO_GANADO"/>
+	
+	
+	
+	<table-filter match-name="TB_REL_ENT_CARGO_CUENTA"/>
+	<table-filter match-name="TB_POLIZAS_SW_FINANCIACION"/>
+	
+	<!-- Comisiones con formato unificado -->
+	<table-filter match-name="TB_COMS_UNIF_RECIBO"/>
+	<table-filter match-name="TB_COMS_UNIF_INDIVIDUAL"/>
+	<table-filter match-name="TB_COMS_UNIF_GRUPO_NEGOCIO"/>
+	<table-filter match-name="TB_COMS_UNIF_FICHERO"/>
+	<table-filter match-name="TB_COMS_UNIF_FICH_CONTENIDO"/>
+	<table-filter match-name="TB_COMS_UNIF_FASE"/>
+	<table-filter match-name="TB_COMS_UNIF_COLECTIVO"/>
+	<table-filter match-name="TB_COMS_UNIF_APLICACION"/>
+	<table-filter match-name="TB_COMS_UNIF_INDIV_COLECTIVO"/>
+	<table-filter match-name="TB_COMS_UNIF_FICH_INCIDENCIAS"/>
+	
+	<!-- Gastos Entidad Unificados -->
+	<table-filter match-name="TB_COMS_UNIF17_RECIBO"/>
+	<table-filter match-name="TB_COMS_UNIF17_POLIZA"/>
+	<table-filter match-name="TB_COMS_UNIF17_ASEGURADO"/>
+	<table-filter match-name="TB_COMS_UNIF17_GRUPO_NEGOCIO"/>
+	
+	<!-- Vistas para informes  -->
+	<table-filter match-name="VW_INFORME_COMISIONES_UNIF"/>
+	<table-filter match-name="VW_INFORME_IMPAGADOS_UNIF"/>	
+	<table-filter match-name="VW_INFORME_DEUDA_APLAZADA_UNIF"/>
+	<!--  -->
+	
+	<!-- vistas para informes comisiones unif cierre -->
+	<table-filter match-name="VW_INFORME_ENTIDADES_2015"/>
+	<table-filter match-name="VW_INFORME_DET_MEDIADOR_2015"/>
+	<table-filter match-name="VW_INFORME_TOT_MEDIADOR_2015"/>
+	<table-filter match-name="VW_INFORME_COMS_IMPAGADOS_2015"/>
+	<table-filter match-name="VW_INFORME_COMS_RGA_2015"/>
+	
+	<!-- Histórico de borrado de pólizas -->
+	<table-filter match-name="TB_POLIZAS_HISTORICO_BORRADO"/>
+	
+	<!-- Documentación de Agroseguro -->
+	<table-filter match-name="TB_DOC_AGROSEGURO_TIPO"/>
+	<table-filter match-name="TB_DOC_AGROSEGURO_EXT_PERM"/>
+	<table-filter match-name="TB_DOC_AGROSEGURO"/>
+	<table-filter match-name="TB_DOC_AGROSEGURO_FICHERO"/>
+	
+	<!-- Responsabilidad civil -->
+	<table-filter match-name="TB_RC_ESPECIES"/>
+	<table-filter match-name="TB_RC_REGIMEN"/>
+	<table-filter match-name="TB_RC_LINEAS"/>
+	<table-filter match-name="TB_RC_DATOS"/>
+	<table-filter match-name="TB_RC_SUMA_ASEGURADA"/>
+	<table-filter match-name="TB_RC_IMPUESTOS"/>	
+	<table-filter match-name="TB_RC_ERRORES"/>	
+	<table-filter match-name="TB_RC_ESTADOS"/>	
+	<table-filter match-name="TB_RC_POLIZAS"/>	
+	<table-filter match-name="TB_RC_POLIZAS_HIST_ESTADOS"/>
+	<table-filter match-name="TB_RC_PERMISOS_PERFIL"/>
+	<table-filter match-name="VW_RC_POLIZAS"/>
+	<table-filter match-name="TB_TIPOS_MEDIADORES_AGROSEGURO"/>
+	<table-filter match-name="TB_TIPO_MEDIADOR_ENTMED"/>
+	
+	<!-- Incidencias Agroseguro P50775 -->
+	<table-filter match-name="TB_INC_ASUNTOS"/>
+	<table-filter match-name="TB_INC_ESTADOS"/>
+	<table-filter match-name="TB_INC_DOCS_AFECTADOS"/>
+	<table-filter match-name="TB_INC_INCIDENCIAS"/>
+	<table-filter match-name="TB_INC_DOCUMENTOS_TIPOS"/>
+	<table-filter match-name="TB_INC_DOCUMENTOS"/>
+	<table-filter match-name="TB_INC_INCIDENCIAS_HIST"/>
+	<table-filter match-name="TB_INC_LLAMADA_WS"/>
+	<table-filter match-name="VW_INC_INCIDENCIAS_AGRO"/>
+	
+	<table-filter match-name="TB_TMP_BATCH_SEGUIMIENTO"/>
+	<table-filter match-name="TB_SW_SEGUIMIENTO_CONTR"/>
+	
+	<!--  CARGA CVS -->
+	<table-filter match-name="tb_cvs_cargas"/>
+	<table-filter match-name="tb_cvs_cargas_fichero"/>	
+	<table-filter match-name="tb_cvs_asegurados"/>
+	<table-filter match-name="tb_cvs_parcelas"/>
+	<table-filter match-name="tb_cvs_capitales_asegurados"/>	
+	<table-filter match-name="tb_cvs_datos_variables"/>
+	
+	<!--  GED -->
+	<table-filter match-name="TB_GED_CONFIG"/>
+	<table-filter match-name="TB_GED_DOC_POLIZA"/>	
+	<table-filter match-name="TB_GED_AUDIT"/>
+
+	<table name="VW_ADAPTACION_RIESGO_EXPLOT" class="com.rsi.agp.dao.tables.poliza.explotaciones.oddv.VistaAdapRiesgoEX"/>
+	<table name="VW_ADAPTACION_RIESGO_GRP_RAZA" class="com.rsi.agp.dao.tables.poliza.explotaciones.oddv.VistaAdapRiesgoGR"/>
+	<table name="VW_ADAPTACION_RIESGO_TIPO_CAP" class="com.rsi.agp.dao.tables.poliza.explotaciones.oddv.VistaAdapRiesgoTC"/>
+	<table name="VW_AUTORIZACION_ESPECIAL" class="com.rsi.agp.dao.tables.poliza.explotaciones.oddv.VistaAutorizacionEspecial"/>
+	<table name="VW_SISTEMA_ALMACENAMIENTO" class="com.rsi.agp.dao.tables.poliza.explotaciones.oddv.VistaSistemaAlmacenamiento"/>
+	<table name="VW_CONDICIONES_PARTICULARES" class="com.rsi.agp.dao.tables.poliza.explotaciones.oddv.VistaCondicionesParticulares"/>
+	<table name="VW_EMPRESA_GESTORA" class="com.rsi.agp.dao.tables.poliza.explotaciones.oddv.VistaEmpresaGestora"/>
+	<table name="VW_ALOJAMIENTO"  class="com.rsi.agp.dao.tables.poliza.explotaciones.oddv.VistaAlojamiento"/>
+	<table name="VW_CALIDAD_PRODUCCION"  class="com.rsi.agp.dao.tables.poliza.explotaciones.oddv.VistaCalidadProduccion"/>	
+	<table name="VW_CALIFICACION_SANEAMIENTO"  class="com.rsi.agp.dao.tables.poliza.explotaciones.oddv.VistaCalificacionSaneamiento"/>
+	<table name="VW_CALIFICACION_SANITARIA" class="com.rsi.agp.dao.tables.poliza.explotaciones.oddv.VistaCalificacionSanitaria"/>
+	<table name="VW_CONTROL_OFICIAL_LECHERO" class="com.rsi.agp.dao.tables.poliza.explotaciones.oddv.VistaControlOficialLechero"/>
+	<table name="VW_CUENCA_HIDROGRAFICA" class="com.rsi.agp.dao.tables.poliza.explotaciones.oddv.VistaCuencaHidrografica"/>
+	<table name="VW_DURACION_PERIODO_PRODUCTIVO" class="com.rsi.agp.dao.tables.poliza.explotaciones.oddv.VistaDuracionPeriodoProductivo"/>
+	<table name="VW_EXCEP_CONTRATACION_EXPLOT" class="com.rsi.agp.dao.tables.poliza.explotaciones.oddv.VistaExcepContratacionExplt"/>
+	<table name="VW_EXCEP_CONTRATACION_POLIZA" class="com.rsi.agp.dao.tables.poliza.explotaciones.oddv.VistaExcepContratacionPoliza"/>
+	<table name="VW_IGP_DO_GANADO" class="com.rsi.agp.dao.tables.poliza.explotaciones.oddv.VistaIgpDoGanado"/>
+	<table name="VW_PUREZA" class="com.rsi.agp.dao.tables.poliza.explotaciones.oddv.VistaPureza"/>
+	<table name="VW_TIPO_ASEGURADO_GANADO" class="com.rsi.agp.dao.tables.poliza.explotaciones.oddv.VistaTipoAseguradoGanado"/>
+	<table name="VW_TIPO_GANADERIA" class="com.rsi.agp.dao.tables.poliza.explotaciones.oddv.VistaTipoGanaderia"/>
+	<table name="VW_SISTEMA_PROD_GANADO" class="com.rsi.agp.dao.tables.poliza.explotaciones.oddv.VistaSistemaProdGanado"/>
+	<table name="VW_DESTINO_GANADO" class="com.rsi.agp.dao.tables.poliza.explotaciones.oddv.VistaDestinoGanado"/>
+
+	<!--  Tables -->
+	<table name="TB_ANEXO_MOD" class="com.rsi.agp.dao.tables.anexo.AnexoModificacion"/>
+	<table name="TB_ANEXO_MOD_CAPITALES_ASEG" class="com.rsi.agp.dao.tables.anexo.CapitalAsegurado"/>
+	<table name="TB_ANEXO_MOD_CAPITALES_DTS_VBL" class="com.rsi.agp.dao.tables.anexo.CapitalDTSVariable"/>
+	<table name="TB_ANEXO_MOD_COBERTURAS" class="com.rsi.agp.dao.tables.anexo.Cobertura"/>
+	<table name="TB_ANEXO_MOD_ESTADOS" class="com.rsi.agp.dao.tables.anexo.Estado"/>
+	<table name="TB_ANEXO_MOD_PARCELAS" class="com.rsi.agp.dao.tables.anexo.Parcela"/>
+	<table name="TB_ANEXO_MOD_SUBV_DECL" class="com.rsi.agp.dao.tables.anexo.SubvDeclarada"/>
+	
+	<table name="TB_ANEXO_RED" class="com.rsi.agp.dao.tables.reduccionCap.ReduccionCapital"/>
+	<table name="TB_ANEXO_RED_CAP_ASEG" class="com.rsi.agp.dao.tables.reduccionCap.CapitalAsegurado"/>
+	<table name="TB_ANEXO_RED_ESTADOS" class="com.rsi.agp.dao.tables.reduccionCap.Estado"/>
+	<table name="TB_ANEXO_RED_PARCELAS" class="com.rsi.agp.dao.tables.reduccionCap.Parcela"/>
+
+	<table name="TB_ASEGURADOS" class="com.rsi.agp.dao.tables.admin.Asegurado"/>
+	<table name="TB_ASEGURADOS_SW_DAT_PER_MED" class="com.rsi.agp.dao.tables.admin.AseguradoSWDatPerMed"/>
+	<table name="TB_CAMPOS_MASCARA" class="com.rsi.agp.dao.tables.masc.CampoMascara"/>
+	<table name="TB_CAP_ASEG_REL_MODULO" class="com.rsi.agp.dao.tables.poliza.CapAsegRelModulo"/>
+	<table name="TB_CAPITALES_ASEGURADOS" class="com.rsi.agp.dao.tables.poliza.CapitalAsegurado"/>
+	
+	<table name="TB_CLASE" class="com.rsi.agp.dao.tables.admin.Clase"/>
+	<table name="TB_CLASE_DETALLE" class="com.rsi.agp.dao.tables.admin.ClaseDetalle"/>
+	<table name="TB_CLASE_DETALLE_GANADO" class="com.rsi.agp.dao.tables.admin.ClaseDetalleGanado"/>
+	
+	<table name="TB_COBERTURAS_POLIZA" class="com.rsi.agp.dao.tables.poliza.CoberturaPoliza"/>
+	<table name="TB_COD_ERRORES_WS" class="com.rsi.agp.dao.tables.commons.ErrorWs"/>
+	<table name="TB_COD_ERRORES_WS_ACCION" class="com.rsi.agp.dao.tables.commons.ErrorWsAccion"/>
+	<table name="TB_COD_ERRORES_WS_TIPOS" class="com.rsi.agp.dao.tables.commons.ErrorWsTipo"/>
+	<table name="TB_COLECTIVOS" class="com.rsi.agp.dao.tables.admin.Colectivo"/>
+	<table name="TB_COLECTIVOS_REFERENCIAS" class="com.rsi.agp.dao.tables.admin.ColectivoReferencia"/>
+	<table name="TB_COMARCAS" class="com.rsi.agp.dao.tables.commons.Comarca"/>
+	<table name="TB_COMPARATIVAS_POLIZA" class="com.rsi.agp.dao.tables.poliza.ComparativaPoliza"/>
+	<table name="TB_COMUNICACIONES" class="com.rsi.agp.dao.tables.poliza.Comunicaciones"/>
+	<table name="TB_COMUNIDADES" class="com.rsi.agp.dao.tables.commons.Comunidad"/>
+	<table name="TB_CONFIGURACION_CAMPOS" class="com.rsi.agp.dao.tables.config.ConfiguracionCampo"/>
+	<table name="TB_CONFIG_AGP" class="com.rsi.agp.dao.tables.config.ConfigAgp"/>
+	
+	<!-- INICIO COMISIONES -->
+	<table name="TB_COMS_FASE" class="com.rsi.agp.dao.tables.comisiones.Fase"/>
+	<table name="TB_COMS_FICHEROS" class="com.rsi.agp.dao.tables.comisiones.Fichero"/>
+	<table name="TB_COMS_FICHEROS_CONTENIDO" class="com.rsi.agp.dao.tables.comisiones.FicheroContenido"/>
+	
+	<!-- Impagados -->
+	<table name="TB_COMS_RECIBOS_IMPAGADOS" class="com.rsi.agp.dao.tables.comisiones.impagados.ReciboImpagado"/>
+	<table name="VW_INFORME_IMPAGADOS" class="com.rsi.agp.dao.tables.comisiones.impagados.InformeImpagados"/>
+	<table name="VW_INFORME_IMPAGADOS2015" class="com.rsi.agp.dao.tables.comisiones.impagados.InformeImpagados2015"/>
+	
+	<!-- <table name="TB_COMS_RECIBOS_COMISIONES_IMP" class="com.rsi.agp.dao.tables.comisiones.ReciboComisionesImp"/> -->
+	
+	<!-- Recibos emitidos -->
+	<table name="TB_COMS_RECIBOS_EMITIDOS" class="com.rsi.agp.dao.tables.comisiones.recibosEmitidos.ReciboEmitido"/>
+	<table name="TB_COMS_RECS_EMITIDOS_CCAA" class="com.rsi.agp.dao.tables.comisiones.recibosEmitidos.ReciboEmitidoSubvCCA"/>
+	<table name="TB_COMS_RECS_EMITIDOS_DET_COMP" class="com.rsi.agp.dao.tables.comisiones.recibosEmitidos.ReciboEmitidoDetComp"/>
+	<table name="TB_COMS_RECS_EMITIDOS_APLI" class="com.rsi.agp.dao.tables.comisiones.recibosEmitidos.ReciboEmitidoAplicacion"/>
+	<table name="TB_COMS_RECS_EMI_APLI_BON_REC" class="com.rsi.agp.dao.tables.comisiones.recibosEmitidos.ReciboEmitidoApliBonRec"/>
+	<table name="TB_COMS_RECS_EMI_APLI_CCAA" class="com.rsi.agp.dao.tables.comisiones.recibosEmitidos.ReciboEmitidoApliSubvCCAA"/>
+	
+	<!-- 
+	<table name="TB_COMS_RECIBOS_EMITIDOS" class="com.rsi.agp.dao.tables.comisiones.RecibosEmitidos"/>
+	<table name="TB_COMS_RECS_EMITIDOS_CCAA" class="com.rsi.agp.dao.tables.comisiones.RecibosEmitidosSubCCA"/>
+	<table name="TB_COMS_RECS_EMITIDOS_DET_COMP" class="com.rsi.agp.dao.tables.comisiones.RecibosEmitidosDetComp"/>
+	<table name="TB_COMS_RECS_EMITIDOS_APLI" class="com.rsi.agp.dao.tables.comisiones.RecibosEmitidosAplicacion"/>
+	<table name="TB_COMS_RECS_EMI_APLI_CCAA" class="com.rsi.agp.dao.tables.comisiones.RecibosEmitiosApliSubCCAA"/>
+	 -->
+	
+	<!-- Reglamento de producción emitida -->
+	<table name="TB_COMS_REGLAMENTO_PROD_EMIT" class="com.rsi.agp.dao.tables.comisiones.reglamento.ReglamentoProduccionEmitida"/>
+	<table name="TB_COMS_REGL_PROD_EMIT_SITUAC" class="com.rsi.agp.dao.tables.comisiones.reglamento.ReglamentoProduccionEmitidaSituacion"/>
+	
+	<!-- Descuentos -->
+	<table name="TB_COMS_DESCUENTOS" class="com.rsi.agp.dao.tables.comisiones.Descuentos"/>
+	<table name="TB_COMS_DESCUENTOS_HIST" class="com.rsi.agp.dao.tables.comisiones.DescuentosHistorico"/>
+	
+	<!-- 
+	<table name="TB_COMS_FICHEROS_REGLAMENTO" class="com.rsi.agp.dao.tables.comisiones.FicheroReglamento"/>
+	<table name="TB_COMS_FICS_REGLAMENTO_APLI" class="com.rsi.agp.dao.tables.comisiones.FicheroReglamentoAplicacion"/>
+	<table name="TB_COMS_FICS_REGLTO_APLI_SIT" class="com.rsi.agp.dao.tables.comisiones.FicheroReglamentoAplicacionSituacion"/>
+	 -->
+	
+	<!-- Comisiones -->
+	<table name="TB_COMS_COMISIONES" class="com.rsi.agp.dao.tables.comisiones.comisiones.Comision"/>
+	<table name="TB_COMS_COMISIONES_COND_PART" class="com.rsi.agp.dao.tables.comisiones.comisiones.ComisionCondicionParticular"/>
+	<table name="TB_COMS_COMIS_APLICACIONES" class="com.rsi.agp.dao.tables.comisiones.comisiones.ComisionAplicacion"/>
+	<table name="TB_COMS_COMIS_APLI_COND_PART" class="com.rsi.agp.dao.tables.comisiones.comisiones.ComisionAplicacionCondicionParticular"/>
+	
+	<!-- <table name="TB_COMS_RECIBOS_COMISIONES" class="com.rsi.agp.dao.tables.comisiones.ReciboComisiones"/>
+	<table name="TB_COMS_RECIBOS_COMS_MARCAS" class="com.rsi.agp.dao.tables.comisiones.ReciboComisionesMarca"/>
+	<table name="TB_COMS_RECIBOS_COMISIONES_APL" class="com.rsi.agp.dao.tables.comisiones.ReciboComisionesAplicacion"/>
+	<table name="TB_COMS_RECS_COMS_APL_MARCAS" class="com.rsi.agp.dao.tables.comisiones.ReciboComisionesAplicacionMarca"/> -->
+	
+	<!-- Cierre -->	
+	<table name="TB_COMS_CIERRE" class="com.rsi.agp.dao.tables.comisiones.Cierre"/>
+	
+	<!-- Incidencias - validaciones de ficheros -->
+	<table name="TB_COMS_FICHEROS_INCIDENCIAS" class="com.rsi.agp.dao.tables.comisiones.FicheroIncidencia"/>
+	
+	<!-- Mantenimientos -->
+	<table name="TB_COMS_GENERALES_PLAN"  class="com.rsi.agp.dao.tables.comisiones.GGEEntidades"/>
+	<table name="TB_COMS_GGE_ENTIDADES_HIST" class="com.rsi.agp.dao.tables.comisiones.GGEEntidadesHistorico"/>
+	<table name="TB_COMS_GGE_SUBENTIDADES" class="com.rsi.agp.dao.tables.comisiones.GGESubentidades"/>
+	<table name="TB_COMS_GGE_SUBENTIDADES_HIST" class="com.rsi.agp.dao.tables.comisiones.GGESubentidadesHistorico"/>
+	<table name="TB_COMS_CULTIVOS_ENTIDADES" class="com.rsi.agp.dao.tables.comisiones.CultivosEntidades"/>
+	<table name="TB_COMS_CULTIVOS_ENTS_HIST" class="com.rsi.agp.dao.tables.comisiones.CultivosEntidadesHistorico"/>
+	<table name="TB_COMS_CULTIVOS_SUBENTIDADES" class="com.rsi.agp.dao.tables.comisiones.CultivosSubentidades"/>
+	<table name="TB_COMS_CULTIVOS_SUBS_HIST" class="com.rsi.agp.dao.tables.comisiones.CultivosSubentidadesHistorico"/>
+	<table name="TB_COMS_REGLAMENTO" class="com.rsi.agp.dao.tables.comisiones.Reglamento"/>
+	<table name="TB_COMS_REGLAMENTO_HIST" class="com.rsi.agp.dao.tables.comisiones.ReglamentoHist"/>
+	
+	<!-- Pet. 57624  (Nueva transacción de taller de Mantenimiento de Comisiones de Renovables por E-S Mediador -->
+	<table name="TB_COMS_RENOV_ESMED" class="com.rsi.agp.dao.tables.commons.ComisionesRenov"/>
+	
+	<!-- Deuda aplazada -->
+	<table name="TB_COMS_FICHEROS_MULT"  class="com.rsi.agp.dao.tables.comisiones.deudaAplazada.FicheroMult"/>
+	<table name="TB_COMS_FICHERO_MULT_CONTENIDO"  class="com.rsi.agp.dao.tables.comisiones.deudaAplazada.FicheroMultContenido"/>
+	<table name="TB_COMS_FICHERO_MULT_INCIDENC"  class="com.rsi.agp.dao.tables.comisiones.deudaAplazada.FicheroMultIncidencias"/>
+	<table name="TB_COMS_FASE_MULT"  class="com.rsi.agp.dao.tables.comisiones.deudaAplazada.FaseMult"/>
+	<table name="TB_COMS_DA_DETALLE_ABONO_IND"  class="com.rsi.agp.dao.tables.comisiones.deudaAplazada.DetalleAbonoIndividual"/>
+	<table name="TB_COMS_DA_DETALLE_ABONO_COL"  class="com.rsi.agp.dao.tables.comisiones.deudaAplazada.DetalleAbonoColectivo"/>
+	<table name="TB_COMS_DA_DETALLE_ABONO_PLZ"  class="com.rsi.agp.dao.tables.comisiones.deudaAplazada.DetalleAbonoPoliza"/>
+	
+	<!-- Gastos Entidad Unificados -->
+	<table name="TB_COMS_UNIF17_RECIBO" class="com.rsi.agp.dao.tables.comisiones.gastosentidad.ReciboUnif17"/>
+	<table name="TB_COMS_UNIF17_POLIZA" class="com.rsi.agp.dao.tables.comisiones.gastosentidad.PolizaUnif17"/>
+	<table name="TB_COMS_UNIF17_ASEGURADO" class="com.rsi.agp.dao.tables.comisiones.gastosentidad.AseguradoUnif17"/>
+	<table name="TB_COMS_UNIF17_GRUPO_NEGOCIO" class="com.rsi.agp.dao.tables.comisiones.gastosentidad.GrupoNegocioUnif17"/>
+	
+	<!-- FIN COMISIONES -->
+	
+	<table name="TB_COPY_ASEGURADOS" class="com.rsi.agp.dao.tables.copy.Asegurado"/>
+	<table name="TB_COPY_CAPITALES_ASEG" class="com.rsi.agp.dao.tables.copy.CapitalAsegurado"/>
+	<table name="TB_COPY_COBERTURAS" class="com.rsi.agp.dao.tables.copy.CoberturaPoliza"/>
+	<table name="TB_COPY_COLECTIVOS" class="com.rsi.agp.dao.tables.copy.Colectivo"/>
+	<table name="TB_COPY_DATOS_VAR_PARC" class="com.rsi.agp.dao.tables.copy.DatoVariableParcela"/>
+	<table name="TB_COPY_PAGO" class="com.rsi.agp.dao.tables.copy.PagoPoliza"/>
+	<table name="TB_COPY_PARCELAS" class="com.rsi.agp.dao.tables.copy.Parcela"/>
+	<table name="TB_COPY_POLIZAS" class="com.rsi.agp.dao.tables.copy.Poliza"/>
+	<table name="TB_COPY_SUBV_DECLARADA" class="com.rsi.agp.dao.tables.copy.SubvencionDeclarada"/>
+	<table name="TB_COPY_SUBV_ENESA" class="com.rsi.agp.dao.tables.copy.SubvencionEnesa"/>
+	<table name="TB_COPY_SUBV_ORGANISMOS" class="com.rsi.agp.dao.tables.copy.SubvencionOrganismo"/>
+	
+	<table name="TB_CORREOS" class="com.rsi.agp.dao.tables.admin.Correo"/>
+	<table name="TB_CORREOS_GRUPOS" class="com.rsi.agp.dao.tables.admin.CorreoGrupo"/>
+	
+	<table name="TB_CUADRO_COBERTURAS" class="com.rsi.agp.dao.tables.coberturas.CuadroCobertura"/>
+	
+	<table name="TB_DATOS_ASEGURADOS" class="com.rsi.agp.dao.tables.admin.DatoAsegurado"/>
+	<table name="TB_DATOS_VARIABLES_DEFAULT" class="com.rsi.agp.dao.tables.config.DatoVariableDefault"/>
+	<table name="TB_DATOS_VAR_PARCELA" class="com.rsi.agp.dao.tables.poliza.DatoVariableParcela"/>
+	<table name="TB_DIST_COSTE_PARCELAS" class="com.rsi.agp.dao.tables.poliza.DistCosteParcela"/>
+	<table name="TB_DIST_COSTE_SUBVS" class="com.rsi.agp.dao.tables.poliza.DistCosteSubvencion"/>
+	<table name="TB_DISTRIBUCION_COSTES" class="com.rsi.agp.dao.tables.poliza.DistribucionCoste"/>
+	<table name="TB_ENTIDADES" class="com.rsi.agp.dao.tables.admin.Entidad"/>
+	<table name="TB_ENTIDADES_MEDIADORAS" class="com.rsi.agp.dao.tables.admin.EntidadMediadora"/>
+	<table name="TB_ENVIOS_AGROSEGURO" class="com.rsi.agp.dao.tables.poliza.EnvioAgroseguro"/>
+	<table name="TB_ESTADOS_POLIZA" class="com.rsi.agp.dao.tables.poliza.EstadoPoliza"/>
+	<table name="TB_ESTADOS_AGROSEGURO" class="com.rsi.agp.dao.tables.poliza.EstadoAgroseguro"/>
+	<table name="TB_RELACION_ESTADOS" class="com.rsi.agp.dao.tables.poliza.RelacionEstados"/>
+	<table name="TB_ESTADOS_SINIESTRO" class="com.rsi.agp.dao.tables.siniestro.EstadoSiniestro"/>
+	<table name="TB_FACTORES_POR_GRUPO" class="com.rsi.agp.dao.tables.config.FactorGrupo"/>
+	<table name="TB_GRUPO_ENTIDADES" class="com.rsi.agp.dao.tables.commons.GrupoEntidades"/>
+	<table name="TB_GRUPOS_ASEGURADOS_CE" class="com.rsi.agp.dao.tables.cesp.GrupoAseguradoCe"/>
+	<table name="TB_GRUPOS_FACTORES" class="com.rsi.agp.dao.tables.config.GrupoFactores"/>
+	<table name="TB_HIST_IMPORTACIONES" class="com.rsi.agp.dao.tables.log.HistImportaciones"/>
+	<table name="TB_HISTORICO_COLECTIVOS" class="com.rsi.agp.dao.tables.admin.HistoricoColectivos"/>
+	<table name="TB_IMPORTACION_TABLAS" class="com.rsi.agp.dao.tables.log.ImportacionTabla"/>
+	
+	<table name="TB_IMPUESTOS_CONSORCIO" class="com.rsi.agp.dao.tables.comisiones.ImpuestoConsorcio"/>
+	
+	<table name="TB_INCOMPATIBILIDAD_CLASES" class="com.rsi.agp.dao.tables.commons.IncompatibilidadClase"/>
+	
+	<table name="TB_INF_MEDIADORES" class="com.rsi.agp.dao.tables.comisiones.InformeMediadores"/>
+	<table name="TB_INF_MEDIADORES_MESES" class="com.rsi.agp.dao.tables.comisiones.InformeMediadoresMeses"/>
+	<table name="TB_INF_MEDIADORES_SALDOS" class="com.rsi.agp.dao.tables.comisiones.InformeMediadoresSaldos"/>
+	
+	<table name="TB_LINEAS" class="com.rsi.agp.dao.tables.poliza.Linea"/>
+	<table name="TB_LOCALIDADES" class="com.rsi.agp.dao.tables.commons.Localidad"/>
+	<table name="TB_MODULOS_COMPATIBLES_CE" class="com.rsi.agp.dao.tables.cesp.ModuloCompatibleCe"/>
+	<table name="TB_MODULOS_POLIZA" class="com.rsi.agp.dao.tables.poliza.ModuloPoliza"/>
+	<table name="TB_OFICINAS" class="com.rsi.agp.dao.tables.commons.Oficina"/>
+	<table name="TB_ORIGENES_DATOS" class="com.rsi.agp.dao.tables.config.OrigenDatos"/>
+	
+	<table name="TB_PAC_ASEG" class="com.rsi.agp.dao.tables.pac.PacAseg"/>
+	<table name="TB_PAC_ASEG_PARCELAS" class="com.rsi.agp.dao.tables.pac.PacAsegParcelas"/>
+	<table name="TB_PAC_CARGAS" class="com.rsi.agp.dao.tables.pac.PacCargas"/>
+	
+	<table name="TB_PAGO_ESTADOS_AGP" class="com.rsi.agp.dao.tables.poliza.EstadoPagoAgp"/>
+	<table name="TB_PAGOS_POLIZA" class="com.rsi.agp.dao.tables.poliza.PagoPoliza"/>
+	<table name="TB_PANTALLAS" class="com.rsi.agp.dao.tables.config.Pantalla"/>
+	<table name="TB_PANTALLAS_CONFIGURABLES" class="com.rsi.agp.dao.tables.config.PantallaConfigurable"/>
+	<table name="TB_PARAMETROS" class="com.rsi.agp.dao.tables.param.Parametro"/>
+	<table name="TB_PARCELAS" class="com.rsi.agp.dao.tables.poliza.Parcela"/>
+	<table name="TB_PARCELAS_COBERTURAS" class="com.rsi.agp.dao.tables.poliza.ParcelaCobertura"/>
+	<table name="TB_PERFIL" class="com.rsi.agp.dao.tables.commons.Perfil"/>
+	<table name="TB_PERFILES_GRUPO_ENTIDADES" class="com.rsi.agp.dao.tables.commons.PerfilesGrupoEntidades"/>
+	<table name="TB_PERIODOS_GARANTIAS_CE" class="com.rsi.agp.dao.tables.cesp.PeriodoGarantiaCe"/>
+	<table name="TB_POLIZAS" class="com.rsi.agp.dao.tables.poliza.Poliza"/>
+	<table name="TB_POLIZA_SOCIOS" class="com.rsi.agp.dao.tables.poliza.PolizaSocio"/>
+	<table name="TB_POLIZAS_HOJAS_CAMPO" class="com.rsi.agp.dao.tables.poliza.PolizasHojasCampo"/>
+	<table name="TB_POLIZAS_INFO_HOJAS_CAMPO" class="com.rsi.agp.dao.tables.poliza.PolizasInfoHojasCampo"/>
+	<table name="TB_POLIZAS_SW_HOJAS_CAMPO" class="com.rsi.agp.dao.tables.poliza.PolizasSWHojasCampo"/>
+	<table name="TB_POLIZAS_SW_ACTAS" class="com.rsi.agp.dao.tables.poliza.PolizasSWActas"/>
+	<table name="TB_POLIZAS_ACTAS" class="com.rsi.agp.dao.tables.poliza.PolizasActas"/>
+	<table name="TB_POLIZAS_INFO_ACTAS" class="com.rsi.agp.dao.tables.poliza.PolizasInfoActas"/>
+	<table name="TB_POLIZAS_INFO_HC_TIPO_HOJA" class="com.rsi.agp.dao.tables.poliza.PolizasInfoHojaCampoTipoHoja"/>
+	<table name="TB_POLIZAS_INFO_HC_TIPO_SIT_HC" class="com.rsi.agp.dao.tables.poliza.PolizasInfoHojaCampoTipoSituacion"/>
+	<table name="TB_POLIZAS_INFO_HC_SITUACION" class="com.rsi.agp.dao.tables.poliza.PolizasInfoHojaCampoSituacion"/>
+	<table name="TB_POLIZAS_INFO_ACTAS_TIP_SIT" class="com.rsi.agp.dao.tables.poliza.PolizasInfoActasSituacion"/>
+	<table name="VW_POLIZAS_INFO_HC_HOJA_SITUAC" class="com.rsi.agp.dao.tables.poliza.PolizasInfoHojaCampoVistaHojaSituacion"/>
+	
+	
+	
+	<table name="TB_PROVINCIAS" class="com.rsi.agp.dao.tables.commons.Provincia"/>
+	<table name="TB_POLIZAS_SW_FINANCIACION" class="com.rsi.agp.dao.tables.poliza.PolizasSWFinanciacion"/>
+	
+	<table name="TB_RECIBO" class="com.rsi.agp.dao.tables.recibos.Recibo"/>
+	<table name="TB_RECIBO_DET_COMPENSACION" class="com.rsi.agp.dao.tables.recibos.ReciboDetCompensacion"/>
+	<table name="TB_RECIBO_POLIZA" class="com.rsi.agp.dao.tables.recibos.ReciboPoliza"/>
+	<table name="TB_RECIBO_POLIZA_SUBV" class="com.rsi.agp.dao.tables.recibos.ReciboPolizaSubv"/>
+	<table name="TB_RECIBO_SUBV" class="com.rsi.agp.dao.tables.recibos.ReciboSubv"/>
+	
+	<table name="TB_REFERENCIAS_AGRICOLAS" class="com.rsi.agp.dao.tables.ref.ReferenciaAgricola"/>
+	<table name="TB_RELACION_CAMPOS" class="com.rsi.agp.dao.tables.config.RelacionCampo"/>
+	<table name="TB_REL_ORGANISMOS_COMUNIDADES" class="com.rsi.agp.dao.tables.poliza.RelacionOrganismoComunidad"/>
+	
+	<table name="TB_RGA_COMISIONES" class="com.rsi.agp.dao.tables.comisiones.RgaComisiones"/>
+	
+	<table name="TB_RGA_COMISIONES" class="com.rsi.agp.dao.tables.comisiones.RgaComisiones"/>
+	<table name="TB_RGA_UNIF_COMISIONES" class="com.rsi.agp.dao.tables.comisiones.RgaUnifComisiones"/>
+	
+	<table name="TB_COMS_REPORT_FICHEROS_CIERRE" class="com.rsi.agp.dao.tables.comisiones.ReportCierre"/>
+	
+	<!-- Tablas de sobreprecio -->
+	<table name="TB_SBP_BASES" class="com.rsi.agp.dao.tables.sbp.BaseSbp"/>
+	<table name="TB_SBP_ERRORES_POLIZA" class="com.rsi.agp.dao.tables.sbp.ErrorSbp"/>
+	<table name="TB_SBP_ESTADOS_POLIZA" class="com.rsi.agp.dao.tables.sbp.EstadoPlzSbp"/>
+	<table name="TB_SBP_FECHAS_CONTRATACION" class="com.rsi.agp.dao.tables.sbp.FechaContratacionSbp"/>
+	<table name="TB_SBP_IMPUESTOS" class="com.rsi.agp.dao.tables.sbp.ImpuestoSbp"/>
+	<table name="TB_SBP_MTO_IMPUESTOS" class="com.rsi.agp.dao.tables.sbp.MtoImpuestoSbp"/>
+	<table name="TB_SBP_PARCELAS" class="com.rsi.agp.dao.tables.sbp.ParcelaSbp"/>
+	<table name="TB_SBP_POLIZAS" class="com.rsi.agp.dao.tables.sbp.PolizaSbp"/>
+	<table name="TB_SBP_POLIZAS_ERRORES" class="com.rsi.agp.dao.tables.sbp.ErrorPlzSbp"/>
+	<table name="TB_SBP_PRIMA_MINIMA" class="com.rsi.agp.dao.tables.sbp.PrimaMinimaSbp"/>
+	<table name="TB_SBP_TASAS" class="com.rsi.agp.dao.tables.sbp.TasasSbp"/>
+	<table name="TB_SBP_TIPO_ENVIO" class="com.rsi.agp.dao.tables.sbp.TipoEnvio"/>
+	<table name="TB_SBP_SOBREPRECIO" class="com.rsi.agp.dao.tables.sbp.Sobreprecio"/>
+	
+	<table name="TB_SBP_TXT_DESC_RIESGO" class="com.rsi.agp.dao.tables.sbp.TxtDescripcionRiesgo"/>
+	<table name="TB_SBP_TXT_RIESGO_GARANTIZADO" class="com.rsi.agp.dao.tables.sbp.TxtRiesgoGarantizado"/>
+	<table name="TB_SBP_TXT_PERIODO_CARENCIA" class="com.rsi.agp.dao.tables.sbp.TxtPeriodoCarencia"/>
+	<table name="TB_SBP_TXT_FRANQUICIA" class="com.rsi.agp.dao.tables.sbp.TxtFranquicia"/>
+	<table name="TB_SBP_TXT_PRIMA_TOTAL" class="com.rsi.agp.dao.tables.sbp.TxtPrimaTotal"/>
+	
+	<!-- Tablas de generacion de informes -->
+	<table name="TB_MTOINF_CAMPOS_CALCULADOS" class="com.rsi.agp.dao.tables.mtoinf.CamposCalculados"/>
+	<table name="TB_MTOINF_CAMPOS_PERMITIDOS" class="com.rsi.agp.dao.tables.mtoinf.CamposPermitidos"/>	
+	<table name="TB_MTOINF_CLASIF_RUPTURA_CALC" class="com.rsi.agp.dao.tables.mtoinf.ClasificacionRupturaCamposCalculados"/>
+	<table name="TB_MTOINF_CLASIF_RUPTURA_PERM" class="com.rsi.agp.dao.tables.mtoinf.ClasificacionRupturaCamposPermitidos"/>
+	<table name="TB_MTOINF_CONDICION_CAM_CALC" class="com.rsi.agp.dao.tables.mtoinf.CondicionCamposCalculados"/>
+	<table name="TB_MTOINF_CONDICION_CAM_PERM" class="com.rsi.agp.dao.tables.mtoinf.CondicionCamposPermitidos"/>
+	<table name="TB_MTOINF_DATOS_INFORMES" class="com.rsi.agp.dao.tables.mtoinf.DatoInformes"/>
+	<table name="TB_MTOINF_INFORMES" class="com.rsi.agp.dao.tables.mtoinf.Informe"/>
+	<table name="TB_MTOINF_INFORMES_USUARIO" class="com.rsi.agp.dao.tables.mtoinf.InformeUsuario"/>	
+	<table name="TB_MTOINF_OPERADORES_CAM_CALC" class="com.rsi.agp.dao.tables.mtoinf.OperadorCamposCalculados"/>
+	<table name="TB_MTOINF_OPERADORES_CAM_PERM" class="com.rsi.agp.dao.tables.mtoinf.OperadorCamposPermitido"/>
+	<table name="TB_MTOINF_REL_VISTAS_CAMPOS" class="com.rsi.agp.dao.tables.mtoinf.RelVistaCampos"/>
+	<table name="TB_MTOINF_VISTAS" class="com.rsi.agp.dao.tables.mtoinf.Vista"/>
+	<table name="TB_MTOINF_VISTAS_CAMPOS" class="com.rsi.agp.dao.tables.mtoinf.VistaCampo"/>
+	
+	<!-- Tablas de cargas de condicionado -->
+	<table name="TB_CARGAS_CONDICIONADO" class="com.rsi.agp.dao.tables.cargas.CargasCondicionado"/>
+	<table name="TB_CARGAS_FICHEROS" class="com.rsi.agp.dao.tables.cargas.CargasFicheros"/>	
+	<table name="TB_CARGAS_TABLAS" class="com.rsi.agp.dao.tables.cargas.CargasTablas"/>	
+
+	<table name="TB_SC_C_ALTERNATIVAS" class="com.rsi.agp.dao.tables.cgen.Alternativa"/>
+	<table name="TB_SC_C_AMBITOS_ASEGURABLES" class="com.rsi.agp.dao.tables.cpl.AmbitoAsegurable"/>
+	<table name="TB_SC_C_ASEG_AUTORIZADOS" class="com.rsi.agp.dao.tables.cpl.AseguradoAutorizado"/>
+	<table name="TB_SC_C_ASEG_NO_SUBVENCIONABLE" class="com.rsi.agp.dao.tables.cgen.AseguradoNoSubvencionable"/>
+	<table name="TB_SC_C_ASEG_SUBV_ADIC_ENESA" class="com.rsi.agp.dao.tables.cpl.AsegSubvAdicionalEnesa"/>
+	<table name="TB_SC_C_ATT_TIP_EXPLOTACION" class="com.rsi.agp.dao.tables.cgen.AtributoTipoExplotacion"/>
+	<table name="TB_SC_C_BANCOS" class="com.rsi.agp.dao.tables.cgen.Banco"/>
+	<table name="TB_SC_C_BONIF_MED_PREVENT" class="com.rsi.agp.dao.tables.cpl.BonificacionMedidaPreventiva"/>
+	<table name="TB_SC_C_BONIF_PROM_RENOV" class="com.rsi.agp.dao.tables.cpl.BonificacionPorRenovacion"/>
+	<table name="TB_SC_C_CALC_INDEMNIZACION" class="com.rsi.agp.dao.tables.cgen.CalculoIndemnizacion"/>
+	<table name="TB_SC_C_CAPITAL_ASEG_ELEG" class="com.rsi.agp.dao.tables.cgen.CapitalAseguradoElegible"/>
+	<table name="TB_SC_C_CARACT_EXPLOTACION" class="com.rsi.agp.dao.tables.cgen.CaracteristicaExplotacion"/>
+	<table name="TB_SC_C_CARACT_MODULO" class="com.rsi.agp.dao.tables.cpl.CaracteristicaModulo"/>
+	<table name="TB_SC_C_CERTIFICADO_INSTAL" class="com.rsi.agp.dao.tables.cgen.CertificadoInstalacion"/>
+	<table name="TB_SC_C_CICLO_CULTIVO" class="com.rsi.agp.dao.tables.cgen.CicloCultivo"/>
+	<table name="TB_SC_C_COD_DENOM_ORIGEN" class="com.rsi.agp.dao.tables.cpl.CodigoDenominacionOrigen"/>
+	<table name="TB_SC_C_COD_REDUC_RDTO" class="com.rsi.agp.dao.tables.cgen.CodigoReduccionRendimiento"/>
+	<table name="TB_SC_C_COMISIONES_AGR" class="com.rsi.agp.dao.tables.cpl.ComisionAgraria"/>
+	<table name="TB_SC_C_CONCEPTO_CBRTO_MOD" class="com.rsi.agp.dao.tables.cpl.ConceptoCubiertoModulo"/>
+	<table name="TB_SC_C_CONCEPTO_PPAL_MOD" class="com.rsi.agp.dao.tables.cgen.ConceptoPpalModulo"/>
+	<table name="TB_SC_C_COND_ASOC_TIP_EXPL" class="com.rsi.agp.dao.tables.cpl.CondicionesAsociadasTipologiaExplotacion"/>
+	<table name="TB_SC_C_COND_COMISIONES" class="com.rsi.agp.dao.tables.cpl.CondicionesComisiones"/>
+	<table name="TB_SC_C_CONDICIONES" class="com.rsi.agp.dao.tables.cgen.Condicion"/>
+	<table name="TB_SC_C_CULTIVOS" class="com.rsi.agp.dao.tables.cpl.Cultivo"/>
+	<table name="TB_SC_C_DANIO_CUBIERTO" class="com.rsi.agp.dao.tables.cgen.DanioCubierto"/>
+	<table name="TB_SC_C_DENOM_ORIGEN" class="com.rsi.agp.dao.tables.cgen.DenominacionOrigen"/>
+	<table name="TB_SC_C_DESCUENTOS" class="com.rsi.agp.dao.tables.cpl.Descuento"/>
+	<table name="TB_SC_C_DESTINOS" class="com.rsi.agp.dao.tables.cgen.Destino"/>
+	<table name="TB_SC_C_ESTADOS_FENOLOGICOS" class="com.rsi.agp.dao.tables.cpl.EstadoFenologico"/>
+	<table name="TB_SC_C_FACTORES" class="com.rsi.agp.dao.tables.cpl.Factor"/>
+	<table name="TB_SC_C_FEC_CONTRAT_AGR" class="com.rsi.agp.dao.tables.cpl.FechaContratacionAgricola"/>
+	<table name="TB_SC_C_FECHA_FIN_GARANTIA" class="com.rsi.agp.dao.tables.cpl.FechaFinGarantia"/>
+	<table name="TB_SC_C_FECHA_RECOLECCION" class="com.rsi.agp.dao.tables.cpl.FechaRecoleccion"/>
+	<table name="TB_SC_C_FORMUL_COND_TIP_EXPL" class="com.rsi.agp.dao.tables.cpl.FormulacionCondicionesTipologiaExplotacion"/>
+	<table name="TB_SC_C_GARANTIZADO" class="com.rsi.agp.dao.tables.cgen.Garantizado"/>
+	<table name="TB_SC_C_GASTOS_SALVAMENTO" class="com.rsi.agp.dao.tables.cgen.GastoSalvamento"/>
+	<table name="TB_SC_C_GRUPO_SEGURO" class="com.rsi.agp.dao.tables.cgen.GrupoSeguro"/>
+	<table name="TB_SC_C_GRUPO_TASAS_RIESGO" class="com.rsi.agp.dao.tables.cpl.GrupoTasaRiesgo"/>
+	<table name="TB_SC_C_GRUPO_TASAS" class="com.rsi.agp.dao.tables.cpl.GrupoTasas"/>
+	<table name="TB_SC_C_GRUPOS_SUBV" class="com.rsi.agp.dao.tables.cpl.GrupoSubvenciones"/>
+	<table name="TB_SC_C_HISTORIAL_ASEG" class="com.rsi.agp.dao.tables.cgen.HistorialAsegurado"/>
+	<table name="TB_SC_C_IGP" class="com.rsi.agp.dao.tables.cgen.IGP"/>
+	<table name="TB_SC_C_INC_CONTRATACION" class="com.rsi.agp.dao.tables.cpl.IncompatibilidadContratacion"/>
+	<table name="TB_SC_C_INC_TIPO_SUBV_DECL" class="com.rsi.agp.dao.tables.cpl.IncompatibilidadTipoSubvDeclarable"/>
+	<table name="TB_SC_C_LIMITES_RDTOS" class="com.rsi.agp.dao.tables.cpl.LimiteRendimiento"/>
+	<table name="TB_SC_C_LINEAS" class="com.rsi.agp.dao.tables.cgen.LineaCondicionado"/>
+	<table name="TB_SC_C_MARCO_PLANTACION" class="com.rsi.agp.dao.tables.cgen.MarcoPlantacion"/>
+	<table name="TB_SC_C_MASC_FEC_CONTRATA_AGR" class="com.rsi.agp.dao.tables.cpl.MascaraFechaContrataAgricola"/>
+	<table name="TB_SC_C_MASC_GRUPO_TASAS" class="com.rsi.agp.dao.tables.cpl.MascaraGrupoTasas"/>
+	<table name="TB_SC_C_MASC_LIMITES_RDTOS" class="com.rsi.agp.dao.tables.cpl.MascaraLimiteRendimiento"/>
+	<table name="TB_SC_C_MASC_PRECIOS" class="com.rsi.agp.dao.tables.cpl.MascaraPrecio"/>
+	<table name="TB_SC_C_MASC_RDTOS_CARACT_E" class="com.rsi.agp.dao.tables.cpl.MascaraRendimientoCaracteristicaEspecifica"/>
+	<table name="TB_SC_C_MATERIAL_CUBIERTA" class="com.rsi.agp.dao.tables.cgen.MaterialCubierta"/>
+	<table name="TB_SC_C_MATERIAL_ESTRUCTURA" class="com.rsi.agp.dao.tables.cgen.MaterialEstructura"/>
+	<table name="TB_SC_C_MED_ASOC_HIST_ASEG" class="com.rsi.agp.dao.tables.cpl.MedidasAsociadasHistorialAsegurado"/>
+	<table name="TB_SC_C_MEDIDA_PREVENTIVA" class="com.rsi.agp.dao.tables.cgen.MedidaPreventiva"/>
+	<table name="TB_SC_C_MEDIDAS" class="com.rsi.agp.dao.tables.cpl.Medida"/>
+	<table name="TB_SC_C_MEDIDAS_FRANQUICIA" class="com.rsi.agp.dao.tables.cpl.MedidaFranquicia"/>
+	<table name="TB_SC_C_MIN_INDEM_ELEG" class="com.rsi.agp.dao.tables.cgen.MinimoIndemnizableElegible"/>
+	<table name="TB_SC_C_MODULOS" class="com.rsi.agp.dao.tables.cpl.Modulo"/>
+	<table name="TB_SC_C_MODULOS_APL_MEDIDAS" class="com.rsi.agp.dao.tables.cpl.ModuloAplicableMedida"/>
+	<table name="TB_SC_C_NIVEL_RIESGO" class="com.rsi.agp.dao.tables.cgen.NivelRiesgo"/>
+	<table name="TB_SC_C_NUM_ANIOS_DESCORCHE" class="com.rsi.agp.dao.tables.cgen.NumAniosDesdeDescorche"/>
+	<table name="TB_SC_C_NUM_ANIOS_PODA" class="com.rsi.agp.dao.tables.cgen.NumAniosDesdePoda"/>
+	<table name="TB_SC_C_ORGANISMOS" class="com.rsi.agp.dao.tables.cgen.Organismo"/>
+	<table name="TB_SC_C_PCT_COMS_ESTRAT_PRIMA" class="com.rsi.agp.dao.tables.cpl.PctComisionEstratosPrima"/>
+	<table name="TB_SC_C_PCT_FRANQUICIA_ELEG" class="com.rsi.agp.dao.tables.cgen.PctFranquiciaElegible"/>
+	<table name="TB_SC_C_PENDIENTE" class="com.rsi.agp.dao.tables.cgen.Pendiente"/>
+	<table name="TB_SC_C_PERIODO_GARANTIAS" class="com.rsi.agp.dao.tables.cgen.PeriodoGarantia"/>
+	<table name="TB_SC_C_PRACTICA_CULTURAL" class="com.rsi.agp.dao.tables.cgen.PracticaCultural"/>
+	<table name="TB_SC_C_PRECIOS" class="com.rsi.agp.dao.tables.cpl.Precio"/>
+	<table name="TB_SC_C_PRIMAS_RIESGO" class="com.rsi.agp.dao.tables.cpl.PrimaRiesgo"/>
+	<table name="TB_SC_C_PROTECCION_CULTIVO" class="com.rsi.agp.dao.tables.cgen.ProteccionCultivo"/>
+	<table name="TB_SC_C_PROVS_ORGANISMO" class="com.rsi.agp.dao.tables.cgen.ProvinciaOrganismo"/>
+	<table name="TB_SC_C_RDTOS_CARACT_ESP" class="com.rsi.agp.dao.tables.cpl.RendimientoCaracteristicaEspecifica"/>
+	<table name="TB_SC_C_REDUC_RDTOS_AMBITOS" class="com.rsi.agp.dao.tables.cpl.ReduccionRdtoAmbito"/>
+	<table name="TB_SC_C_REL_CBRTOS_TARIF" class="com.rsi.agp.dao.tables.cpl.RelRiesgoCubiertoTarificable"/>
+	<table name="TB_SC_C_REL_ESPECIES_SC_ST" class="com.rsi.agp.dao.tables.cpl.RelEspeciesSCEspeciesST"/>
+	<table name="TB_SC_C_RIESGO_CBRTO_MOD" class="com.rsi.agp.dao.tables.cpl.RiesgoCubiertoModulo"/>
+	<table name="TB_SC_C_RIESGOS" class="com.rsi.agp.dao.tables.cgen.Riesgo"/>
+	<table name="TB_SC_C_RIESGOS_CUBIERTOS" class="com.rsi.agp.dao.tables.cpl.RiesgoCubierto"/>
+	<table name="TB_SC_C_RIESGOS_TARIFICABLES" class="com.rsi.agp.dao.tables.cpl.RiesgoTarificable"/>
+	<table name="TB_SC_C_RIESGOS_TASABLES" class="com.rsi.agp.dao.tables.cpl.RiesgoTasable"/>
+	<table name="TB_SC_C_SISTEMA_CONDUCCION" class="com.rsi.agp.dao.tables.cgen.SistemaConduccion"/>
+	<table name="TB_SC_C_SISTEMA_CULTIVO" class="com.rsi.agp.dao.tables.cgen.SistemaCultivo"/>
+	<table name="TB_SC_C_SISTEMA_PRODUCCION" class="com.rsi.agp.dao.tables.cgen.SistemaProduccion"/>
+	<table name="TB_SC_C_SISTEMA_PROTECCION" class="com.rsi.agp.dao.tables.cgen.SistemaProteccion"/>
+	<table name="TB_SC_C_SIST_REDUC_SUBV_CCAA" class="com.rsi.agp.dao.tables.cpl.SistemaReduccionSubvCCAA"/>
+	<table name="TB_SC_C_SUBVS_CCAA" class="com.rsi.agp.dao.tables.cpl.SubvencionCCAA"/>
+	<table name="TB_SC_C_SUBVS_ENESA" class="com.rsi.agp.dao.tables.cpl.SubvencionEnesa"/>
+	<table name="TB_SC_C_SUBV_GRUPOS" class="com.rsi.agp.dao.tables.cpl.SubvencionesGrupo"/>
+	<table name="TB_SC_C_SUBV_INCOMP_CAL" class="com.rsi.agp.dao.tables.cpl.TiposSubvIncompCalculadas"/>
+	<table name="TB_SC_C_TABLA_BONUS" class="com.rsi.agp.dao.tables.cpl.TablaBonus"/>
+	<table name="TB_SC_C_TABLA_EXT_CULTIVO" class="com.rsi.agp.dao.tables.cpl.TablaExternaCultivo"/>
+	<table name="TB_SC_C_TABLAS_CONDICIONADO" class="com.rsi.agp.dao.tables.cgen.TablaCondicionado"/>
+	<table name="TB_SC_C_TARIFAS" class="com.rsi.agp.dao.tables.cpl.Tarifa"/>
+	<table name="TB_SC_C_TIPO_CAPITAL" class="com.rsi.agp.dao.tables.cgen.TipoCapital"/>
+	<table name="TB_SC_C_TIPO_FRANQUICIA" class="com.rsi.agp.dao.tables.cgen.TipoFranquicia"/>
+	<table name="TB_SC_C_TIPO_INSTALACION" class="com.rsi.agp.dao.tables.cgen.TipoInstalacion"/>
+	<table name="TB_SC_C_TIPO_MASA" class="com.rsi.agp.dao.tables.cgen.TipoMasa"/>
+	<table name="TB_SC_C_TIPO_PLANTACION" class="com.rsi.agp.dao.tables.cgen.TipoPlantacion"/>
+	<table name="TB_SC_C_TIPOS_RDTO" class="com.rsi.agp.dao.tables.cgen.TipoRendimiento"/>
+	<table name="TB_SC_C_TIPO_SUBV_CCAA" class="com.rsi.agp.dao.tables.cgen.TipoSubvencionCCAA"/>
+	<table name="TB_SC_C_TIPO_SUBV_ENESA" class="com.rsi.agp.dao.tables.cgen.TipoSubvencionEnesa"/>
+	<table name="TB_SC_C_TIPO_TERRENO" class="com.rsi.agp.dao.tables.cgen.TipoTerreno"/>
+	<table name="TB_SC_C_VALORES_ESPECIE_AMBITO" class="com.rsi.agp.dao.tables.cpl.ValorEspecieAmbito"/>
+	<table name="TB_SC_C_VARIEDADES" class="com.rsi.agp.dao.tables.cpl.Variedad"/>
+	<table name="TB_SC_C_VINC_VALORES_MOD" class="com.rsi.agp.dao.tables.cpl.VinculacionValoresModulo"/>
+	<table name="TB_SC_C_ZONIF_FAMILIAS" class="com.rsi.agp.dao.tables.cgen.ZonificacionFamilia"/>
+	<table name="TB_SC_C_ZONIF_FAMILIAS_DET" class="com.rsi.agp.dao.tables.cgen.ZonificacionFamiliaDetalle"/>
+	<table name="TB_SC_C_ZONIF_GRP_CULTIVOS" class="com.rsi.agp.dao.tables.cgen.ZonificacionGrupoCultivo"/>
+	<table name="TB_SC_C_ZONIF_GRP_CULTIVOS_DET" class="com.rsi.agp.dao.tables.cgen.ZonificacionGrupoCultivoDetalle"/>
+	<table name="TB_SC_C_ZONIF_SIGPAC" class="com.rsi.agp.dao.tables.cgen.ZonificacionSIGPAC"/>
+	
+	<table name="TB_SC_DD_DIC_DATOS" class="com.rsi.agp.dao.tables.org.DiccionarioDatos"/>
+	<table name="TB_SC_DD_FORMULARIOS" class="com.rsi.agp.dao.tables.org.Formularios"/>
+	<table name="TB_SC_DD_NATURALEZA_ALT" class="com.rsi.agp.dao.tables.org.NaturalezaAlternativa"/>
+	<table name="TB_SC_DD_TIPO_NATURALEZA" class="com.rsi.agp.dao.tables.org.TipoNaturaleza"/>
+	
+	<table name="TB_SC_OI_ORG_INFO" class="com.rsi.agp.dao.tables.org.OrganizadorInformacion"/>
+	<table name="TB_SC_OI_REL_USOS_TABLAS" class="com.rsi.agp.dao.tables.org.RelUsoTablaCondicionado"/>
+	<table name="TB_SC_OI_UBICACIONES" class="com.rsi.agp.dao.tables.org.Ubicacion"/>
+	<table name="TB_SC_OI_USOS" class="com.rsi.agp.dao.tables.org.Uso"/>
+	
+	<!-- Tablas de carga de condicionado para Ganado -->
+	
+	<!-- Condicionado general -->
+	<table name="TB_SC_C_GRUPOS_NEGOCIO" class="com.rsi.agp.dao.tables.cgen.GruposNegocio"/>
+	<table name="TB_SC_C_TIPO_CAPITAL_GRUPO_NEG" class="com.rsi.agp.dao.tables.cgen.TipoCapitalConGrupoNegocio"/>
+	<table name="TB_SC_C_FACTORES_CONC_PPAL_MOD" class="com.rsi.agp.dao.tables.cgen.FactoresIncluidosConceptoPrincipalModulo"/>
+	<table name="TB_SC_C_ADAPTACION_RIESGO" class="com.rsi.agp.dao.tables.cgen.AdaptacionRiesgo"/>
+	<table name="TB_SC_C_CONCEPTOS_DEDUCIBLES" class="com.rsi.agp.dao.tables.cgen.ConceptosDeducibles"/>
+	<table name="TB_SC_C_DATOS_BUZON_GENERAL" class="com.rsi.agp.dao.tables.cgen.DatosBuzonGeneral"/>
+	
+	
+	<!-- Condicionado plan/línea -->
+	<table name="TB_SC_C_RIESGO_CBRTO_MOD_G" 	class="com.rsi.agp.dao.tables.cpl.gan.RiesgoCubiertoModuloGanado"/>				<!--0400-->	
+	<table name="TB_SC_C_VINC_VALORES_MOD_G" 	class="com.rsi.agp.dao.tables.cpl.gan.VinculacionValoresModuloG"/>				<!--0401-->	
+	<table name="TB_SC_C_FICH_VINC_EX_GRUPOS_G" class="com.rsi.agp.dao.tables.cpl.gan.FicheroVinculacionExternaG"/>				<!--0402-->
+	<table name="TB_SC_C_FICH_VINC_EX_ES_AMB" 	class="com.rsi.agp.dao.tables.cpl.gan.FicheroVinculacionExtEspAmbito"/>			<!--0403-->
+	<table name="TB_SC_C_VINC_FILAS_MOD_G" 		class="com.rsi.agp.dao.tables.cpl.gan.VinculacionFilasModuloG"/>         		<!--0404-->
+	<table name="TB_SC_C_VINC_EX_FILA_MOD_G" 	class="com.rsi.agp.dao.tables.cpl.gan.VinculacionExtFilasModuloG"/>         	<!--0405-->
+	<table name="TB_SC_C_GRUPO_TASAS_G" 		class="com.rsi.agp.dao.tables.cpl.gan.GrupoTasasG"/>							<!--0406-->
+	<table name="TB_SC_C_GRUPO_TASAS_RIESGO_G" 	class="com.rsi.agp.dao.tables.cpl.gan.GrupoTasaRiesgoG"/>						<!--406R-->
+	<table name="TB_SC_C_MASC_GRUPO_TASAS_G" 	class="com.rsi.agp.dao.tables.cpl.gan.MascaraGrupoTasasG"/>						<!--9406-->
+	<table name="TB_SC_C_VAL_PERM_CONC_DED_G" 	class="com.rsi.agp.dao.tables.cpl.gan.ValoresPermConceptosDeduciblesG"/>    	<!--0407-->
+	<table name="TB_SC_C_REL_CONC_X_CONC_DED" 	class="com.rsi.agp.dao.tables.cpl.gan.RelValConceptXConceptDeduciblesG"/> 	    <!--0408-->	
+	<table name="TB_SC_C_MEDIDAS_G" 			class="com.rsi.agp.dao.tables.cpl.gan.MedidaG"/>								<!--0409-->
+	<table name="TB_SC_C_MEDIDAS_ASOC_G" 		class="com.rsi.agp.dao.tables.cpl.gan.MedidaAsociadaAseguradoG"/>				<!--0410-->
+	<table name="TB_SC_C_ESPECIE" 				class="com.rsi.agp.dao.tables.cpl.gan.Especie"/>								<!--0411-->	
+	<table name="TB_SC_C_REGIMEN_MANEJO"        class="com.rsi.agp.dao.tables.cpl.gan.RegimenManejo"/>							<!--0412-->
+	<table name="TB_SC_C_GRUPOS_RAZAS"          class="com.rsi.agp.dao.tables.cpl.gan.GruposRazas"/>							<!--0413-->
+	<table name="TB_SC_C_TIPOS_ANIMAL_GANADO"   class="com.rsi.agp.dao.tables.cpl.gan.TiposAnimalGanado"/>						<!--0414-->
+	<table name="TB_SC_C_OBLIG_TIP_ANIMAL"      class="com.rsi.agp.dao.tables.cpl.gan.ObligatoriedadTiposAnimal"/>				<!--0415-->
+	<table name="TB_SC_C_RELACION_ANIMALES"     class="com.rsi.agp.dao.tables.cpl.gan.RelacionAnimales"/>						<!--0416-->
+	<table name="TB_SC_C_NUM_MIN_ANI_COLMENAS"  class="com.rsi.agp.dao.tables.cpl.gan.NumMinAnimalesColmenas"/>					<!--0417-->	
+	<table name="TB_SC_C_PCT_MAX_EXPLOTACION"   class="com.rsi.agp.dao.tables.cpl.gan.PctValorMaxExplotacion"/>					<!--0418-->
+	<table name="TB_SC_C_DAT_VAR_TIPO"          class="com.rsi.agp.dao.tables.cpl.gan.DatosVariablesTipo"/>						<!--0419-->
+	<table name="TB_SC_C_PCT_ADAPTACION_RIESGO" class="com.rsi.agp.dao.tables.cpl.gan.PctAdaptacionRiesgo"/>					<!--0420-->	
+	<table name="TB_SC_C_VALORES_ESP_AMB_G"		class="com.rsi.agp.dao.tables.cpl.gan.ValoresFactorEspecieAmbito"/>				<!--0421-->
+	<table name="TB_SC_C_AGRUPACION_EXPLOT"		class="com.rsi.agp.dao.tables.cpl.gan.AgrupacionExplotacion"/>              	<!--0422-->
+	<table name="TB_SC_C_PRECIOS_GANADO" 		class="com.rsi.agp.dao.tables.cpl.gan.PrecioGanado"/>							<!--0423-->
+	<table name="TB_SC_C_MASC_PRECIOS_G" 		class="com.rsi.agp.dao.tables.cpl.gan.MascaraPrecioGanado"/>                	<!--9423-->
+	<table name="TB_SC_C_FEC_CONTRAT_G" 		class="com.rsi.agp.dao.tables.cpl.gan.FechaContratacion"/>		            	<!--0424-->
+	<table name="TB_SC_C_MASC_FEC_CONTRAT_G" 	class="com.rsi.agp.dao.tables.cpl.gan.MascaraFechaContratacion"/>	        	<!--9424-->
+	<table name="TB_SC_C_ASEG_AUTO_G"			class="com.rsi.agp.dao.tables.cpl.gan.AseguradoAutorizadoGanado"/>				<!--0425-->
+	<table name="TB_SC_C_INC_MISMA_POL" 		class="com.rsi.agp.dao.tables.cpl.gan.IncompatibilidadMismaPoliza"/>        	<!--0426-->
+	<table name="TB_SC_C_INC_OTRA_POL" 			class="com.rsi.agp.dao.tables.cpl.gan.IncompatibilidadOtraPoliza"/>         	<!--0427-->
+	<table name="TB_SC_C_GRUPOS_INC_G"			class="com.rsi.agp.dao.tables.cpl.gan.GruposIncompatibilidad"/>					<!--0428-->
+	<table name="TB_SC_C_ESP_AMB_GRUPO"			class="com.rsi.agp.dao.tables.cpl.gan.EspeciesAmbitosGrupo"/>					<!--0429-->
+	<table name="TB_SC_C_INC_FACTORES_GRUPOS"	class="com.rsi.agp.dao.tables.cpl.gan.IncompatibilidadFactoresGrupo"/>			<!--0430-->
+	<table name="TB_SC_C_PESOS_CALC_PR_ASEG" 	class="com.rsi.agp.dao.tables.cpl.gan.PesoCalculoPrecioAseg"/>              	<!--0431-->
+	<table name="TB_SC_C_ELEC_GARANTIZADO"		class="com.rsi.agp.dao.tables.cpl.gan.EleccionesGarantizado"/>					<!--0432-->	
+	<table name="TB_SC_C_CAUTELAR_CONTRAT"		class="com.rsi.agp.dao.tables.cpl.gan.SuspensionCautelarContrato"/>         	<!--0433-->
+	<table name="TB_SC_C_ASEG_SUBV_ADI_RENO"	class="com.rsi.agp.dao.tables.cpl.gan.AseguradosSubvAdicionalRenov"/>			<!--0434-->	
+	<table name="TB_SC_C_SUBVS_ENESA_G"			class="com.rsi.agp.dao.tables.cpl.gan.SubvencionEnesaGanado"/>              	<!--0435-->
+	<table name="TB_SC_C_SUBVS_CCAA_G"			class="com.rsi.agp.dao.tables.cpl.gan.SubvencionCCAAGanado"/>               	<!--0436-->
+	<table name="TB_SC_C_COD_CONCEP_VAL_PRM"	class="com.rsi.agp.dao.tables.cpl.gan.CodConceptoValorPermitido"/>          	<!--0437-->
+	<table name="TB_SC_C_REDUC_ENESA_CCAA"		class="com.rsi.agp.dao.tables.cpl.gan.ReduccionEnesaCCAA"/>                 	<!--0438-->
+	<table name="TB_SC_C_REL_ESP_G_ESP_STR" 	class="com.rsi.agp.dao.tables.cpl.gan.RelEspeciesTradicional"/>		      		<!--0439-->
+	<table name="TB_SC_C_REL_COB_G_OPC_STR" 	class="com.rsi.agp.dao.tables.cpl.gan.RelCoberturasEspTradicional"/>	      	<!--0440-->
+	<table name="TB_SC_C_COND_FRACC" 			class="com.rsi.agp.dao.tables.cpl.CondicionesFraccionamiento"/>
+	
+	
+	<!-- Fin de tablas de carga de condicionado para Ganado-->
+	
+	<table name="TB_SECCIONES" class="com.rsi.agp.dao.tables.config.Seccion"/>
+	
+	<table name="TB_SINIESTRO_CAP_ASEG" class="com.rsi.agp.dao.tables.siniestro.CapAsegSiniestro"/>
+	<table name="TB_SINIESTRO_CAP_ASEG_DV" class="com.rsi.agp.dao.tables.siniestro.DatVarCapAsegSiniestro"/>
+	<table name="TB_SINIESTRO_PARCELAS" class="com.rsi.agp.dao.tables.siniestro.ParcelaSiniestro"/>
+	<table name="TB_SINIESTROS" class="com.rsi.agp.dao.tables.siniestro.Siniestro"/>
+	<table name="TB_SINIESTRO_SW_VALIDACION" class="com.rsi.agp.dao.tables.siniestro.SiniestroSWValidacion"/>
+	<table name="TB_SINIESTRO_SW_CONFIRMACION" class="com.rsi.agp.dao.tables.siniestro.SiniestroSWConfirmacion"/>
+	
+	<table name="TB_SOCIOS" class="com.rsi.agp.dao.tables.admin.Socio"/>
+	<table name="TB_SUBENTIDADES_MEDIADORAS" class="com.rsi.agp.dao.tables.admin.SubentidadMediadora"/>
+	<table name="TB_SUBVS_ASEG_CCAA" class="com.rsi.agp.dao.tables.poliza.SubAseguradoCCAA"/>
+	<table name="TB_SUBVS_ASEG_ENESA" class="com.rsi.agp.dao.tables.poliza.SubAseguradoENESA"/>
+	<table name="TB_SUBVS_ASEG_CCAA_G" class="com.rsi.agp.dao.tables.poliza.SubAseguradoCCAAGanado"/>
+	<table name="TB_SUBVS_ASEG_ENESA_G" class="com.rsi.agp.dao.tables.poliza.SubAseguradoENESAGanado"/>
+	<table name="TB_SUBV_PARCELA_CCAA" class="com.rsi.agp.dao.tables.poliza.SubvParcelaCCAA"/>
+	<table name="TB_SUBV_PARCELA_ENESA" class="com.rsi.agp.dao.tables.poliza.SubvParcelaENESA"/>
+	<table name="TB_SUBV_EXPLOTACION_CCAA" class="com.rsi.agp.dao.tables.poliza.SubvExplotacionCCAA"/>
+	<table name="TB_SUBV_EXPLOTACION_ENESA" class="com.rsi.agp.dao.tables.poliza.SubvExplotacionENESA"/>
+	<table name="TB_SUBV_ENESA_SOCIOS" class="com.rsi.agp.dao.tables.poliza.SubvencionSocio"/>
+	<table name="TB_SUBV_ENESA_SOCIOS_GANADO" class="com.rsi.agp.dao.tables.poliza.SubvencionSocioGanado"/>
+	<table name="TB_TABLAS_XMLS" class="com.rsi.agp.dao.tables.commons.RelacionTablaXml"/>
+	<table name="TB_TERMINOS" class="com.rsi.agp.dao.tables.commons.Termino"/>
+	<table name="TB_TERMINOS_SIGPAC_AGRO" class="com.rsi.agp.dao.tables.commons.TerminoSigpacAgro"/>
+	<table name="TB_TIPO_CAMPOS" class="com.rsi.agp.dao.tables.config.TipoCampo"/>
+	<table name="TB_TIPOS_IMPORTACION" class="com.rsi.agp.dao.tables.log.TipoImportacion"/>
+	<table name="TB_TIPOS_MEDIADORES" class="com.rsi.agp.dao.tables.admin.TipoMediador"/>
+	<table name="TB_TOMADORES" class="com.rsi.agp.dao.tables.admin.Tomador"/>
+	<table name="TB_USUARIOS" class="com.rsi.agp.dao.tables.commons.Usuario"/>
+	<table name="TB_VIAS" class="com.rsi.agp.dao.tables.commons.Via"/>
+	
+	<table name="TB_CPM_TIPO_CAPITAL" class="com.rsi.agp.dao.tables.cpm.CPMTipoCapital"/>
+	
+	<table name="VW_DATOS_VARIABLES_PARCELA" class="com.rsi.agp.dao.tables.commons.VistaDatosVariablesParcela"/>
+	
+	<table name="VW_COMPARATIVAS" class="com.rsi.agp.dao.tables.poliza.VistaComparativas"/>
+	<table name="VW_SINIESTROS_UTILIDADES" class="com.rsi.agp.dao.tables.siniestro.SiniestrosUtilidades"/>
+	<table name="VW_RED_CAPITAL_UTILIDADES" class="com.rsi.agp.dao.tables.reduccionCap.ReduccionCapitalUtilidades"/>
+	<table name="VW_ORG_DATOS_CERTIFICADO_INST" class="com.rsi.agp.dao.tables.poliza.VistaCertificadoInst"/>
+	<table name="VW_ORG_DATOS_COD_REDUC_RDTO" class="com.rsi.agp.dao.tables.orgDat.VistaCodigoReduccionRendimiento"/>
+	<table name="VW_ORG_DATOS_CPM" class="com.rsi.agp.dao.tables.orgDat.VistaConceptoPpalModulo"/>
+	<table name="VW_ORG_DATOS_CICLO_CULTIVO" class="com.rsi.agp.dao.tables.orgDat.VistaCicloCultivo"/>
+	<table name="VW_ORG_DATOS_DENOM_ORIGEN" class="com.rsi.agp.dao.tables.orgDat.VistaDenomOrigen"/>
+	<table name="VW_ORG_DATOS_DESTINO" class="com.rsi.agp.dao.tables.orgDat.VistaDestino"/>
+	<table name="VW_ORG_DATOS_IGP" class="com.rsi.agp.dao.tables.orgDat.VistaIGP"/>
+	<table name="VW_ORG_DATOS_IGP_FACT_AMBITO" class="com.rsi.agp.dao.tables.orgDat.VistaIGPFactorAmbito"/>
+	<table name="VW_ORG_DATOS_MARCO_PLANTACION" class="com.rsi.agp.dao.tables.orgDat.VistaMarcoPlantacion"/>
+	<table name="VW_ORG_DATOS_MAT_CUBIERTA" class="com.rsi.agp.dao.tables.orgDat.VistaMaterialCubierta"/>
+	<table name="VW_ORG_DATOS_MAT_ESTRUCTURA" class="com.rsi.agp.dao.tables.orgDat.VistaMaterialEstructura"/>
+	<table name="VW_ORG_DATOS_MED_PREVENTIVA" class="com.rsi.agp.dao.tables.orgDat.VistaMedidaPreventiva"/>
+	<table name="VW_ORG_DATOS_POR_FACTORES" class="com.rsi.agp.dao.tables.orgDat.VistaPorFactores"/>
+	<table name="VW_ORG_DATOS_PRAC_CULTURAL" class="com.rsi.agp.dao.tables.orgDat.VistaPracticaCultural"/>
+	<table name="VW_ORG_DATOS_PRAC_CULTURAL_305" class="com.rsi.agp.dao.tables.orgDat.VistaPracticaCultural305"/>
+	<table name="VW_ORG_DATOS_ROTACION" class="com.rsi.agp.dao.tables.orgDat.VistaRotacion"/>
+	<table name="VW_ORG_DATOS_SIST_CULT" class="com.rsi.agp.dao.tables.orgDat.VistaSistemaCultivo"/>
+	<table name="VW_ORG_DATOS_SIST_CULT_312" class="com.rsi.agp.dao.tables.orgDat.VistaSistemaCultivo312"/>
+	<table name="VW_ORG_DATOS_SIST_PROD" class="com.rsi.agp.dao.tables.orgDat.VistaSistemaProduccion"/>
+	<table name="VW_ORG_DATOS_SIST_PROT" class="com.rsi.agp.dao.tables.orgDat.VistaSistemaProteccion"/>
+	<table name="VW_ORG_DATOS_TIPO_CAPITAL" class="com.rsi.agp.dao.tables.orgDat.VistaTipoCapital"/>
+	<table name="VW_ORG_DATOS_TIPO_INSTALACION" class="com.rsi.agp.dao.tables.orgDat.VistaTipoInstalacion"/>
+	<table name="VW_ORG_DATOS_TIPO_PLANTACION" class="com.rsi.agp.dao.tables.orgDat.VistaTipoPlantacion"/>
+	<table name="VW_ORG_DATOS_TIPO_PLANT_309" class="com.rsi.agp.dao.tables.orgDat.VistaTipoPlantacion309"/>
+	<table name="VW_TERMINOS_ASEGURABLES" class="com.rsi.agp.dao.tables.commons.VistaTerminosAsegurable"/>
+	<table name="VW_TIPO_CAPITAL" class="com.rsi.agp.dao.tables.commons.VistaTipoCapital"/>
+										
+	<table name="VW_MTOINF_OPERADORES" class="com.rsi.agp.dao.tables.mtoinf.VistaMtoinfOperadores"/>
+	<table name="VW_MTOINF_CONDICIONES" class="com.rsi.agp.dao.tables.mtoinf.VistaMtoinfCondiciones"/>
+	<table name="VW_MTOINF_DATOS_INFORMES" class="com.rsi.agp.dao.tables.mtoinf.VistaMtoinfDatosInformes"/>
+	<table name="VW_MTOINF_CLASIF_RUPTURA" class="com.rsi.agp.dao.tables.mtoinf.VistaMtoinfClasificacionRuptura"/>
+	
+	<table name="VW_PLZ_HOJA_CAMPO_ACTA_TASAC" class="com.rsi.agp.dao.tables.poliza.VistaPlzHojaCampoActaTasacion"/>
+	
+	<!--  Renovables de Ganado -->
+	<table name="TB_COLECTIVOS_RENOVACION" class="com.rsi.agp.dao.tables.renovables.ColectivosRenovacion"/>
+	<table name="TB_ESTADO_RENOVACION_AGROPLUS" class="com.rsi.agp.dao.tables.renovables.EstadoRenovacionAgroplus"/>
+	<table name="TB_ESTADO_RENOVACION_AGROSEG" class="com.rsi.agp.dao.tables.renovables.EstadoRenovacionAgroseguro"/>
+	<table name="TB_POLIZAS_RENOVABLES" class="com.rsi.agp.dao.tables.renovables.PolizaRenovable"/>
+	<table name="TB_GASTOS_RENOVACION" class="com.rsi.agp.dao.tables.renovables.GastosRenovacion"/>
+	<table name="TB_PLZ_RENOV_HIST_ESTADOS" class="com.rsi.agp.dao.tables.renovables.PolizaRenovableHistoricoEstados"/>
+	
+	<!--  Renovables de Ganado - Envio IBAN Agroseguro -->
+	<table name="TB_ESTADO_RENOVACIO_ENVIO_IBAN" class="com.rsi.agp.dao.tables.renovables.PolizaRenovableEstadoEnvioIBAN"/>
+	<table name="TB_PLZ_RENOV_VALIDA_ENVIO_IBAN" class="com.rsi.agp.dao.tables.renovables.PolizaRenovableValidacionEnvioIBAN"/>
+	<table name="TB_PLZ_RENOV_ENV_IBAN_HIST_EST" class="com.rsi.agp.dao.tables.renovables.PolizaRenovableEnvioIBANHistoricoEstados"/>
+	
+	<!-- Fraccionamiento del pago -->
+	<table name="TB_IMPORTES_FRACCIONAMIENTO" class="com.rsi.agp.dao.tables.poliza.ImporteFraccionamiento"/>
+	<table name="TB_DATOS_AVAL_POLIZAS" class="com.rsi.agp.dao.tables.poliza.DatosAval"/>
+	
+	
+	<!-- Nuevos históricos -->
+	<table name="TB_HIST_CAMBIO_TITULAR" class="com.rsi.agp.dao.tables.log.HistoricoCambioTitular"/>
+	<table name="TB_HIST_CAMBIO_IBAN" class="com.rsi.agp.dao.tables.log.HistoricoCambioIBAN"/>
+
+	<!-- Explotaciones de Ganado -->
+	<table name="TB_EXPLOTACIONES" class="com.rsi.agp.dao.tables.poliza.explotaciones.Explotacion"/>
+	<table name="TB_GRUPO_RAZA_EXPLOTACION" class="com.rsi.agp.dao.tables.poliza.explotaciones.GrupoRaza"/>
+	<table name="TB_DATOS_VAR_EXPLOTACION" class="com.rsi.agp.dao.tables.poliza.explotaciones.DatosVariable"/>
+	<table name="TB_PRECIOS_ANIMALES_MODULOS" class="com.rsi.agp.dao.tables.poliza.explotaciones.PrecioAnimalesModulo"/>
+	<table name="TB_ANEXO_MOD_EXPLOTACIONES" class="com.rsi.agp.dao.tables.poliza.explotaciones.ExplotacionAnexo"/>
+	<table name="TB_ANEXO_MOD_GRUPO_RAZA" class="com.rsi.agp.dao.tables.poliza.explotaciones.GrupoRazaAnexo"/>
+	<table name="TB_PRECIOS_ANIMALES_MOD_ANX" class="com.rsi.agp.dao.tables.poliza.explotaciones.PrecioAnimalesModuloAnexo"/>
+	<table name="TB_DATOS_VAR_EXPLOT_ANX" class="com.rsi.agp.dao.tables.poliza.explotaciones.DatosVarExplotacionAnexo"/>
+	
+	<!-- Distribución de costes 2015 -->
+	<table name="TB_DISTRIBUCION_COSTES_2015" class="com.rsi.agp.dao.tables.poliza.dc2015.DistribucionCoste2015"/>
+	<table name="TB_DIST_COSTE_SUBVS_2015" class="com.rsi.agp.dao.tables.poliza.dc2015.DistCosteSubvencion2015"/>
+	<table name="TB_DIST_COSTE_PARCELAS_2015" class="com.rsi.agp.dao.tables.poliza.dc2015.DistCosteParcela2015"/>
+	<table name="TB_BONIFICACION_RECARGO_2015" class="com.rsi.agp.dao.tables.poliza.dc2015.BonificacionRecargo2015"/>
+	<table name="TB_DIST_COSTE_EXPLOTACIONES" class="com.rsi.agp.dao.tables.poliza.dc2015.DistCosteExplotaciones"/>
+	
+	<table name="TB_REL_ENT_CARGO_CUENTA" class="com.rsi.agp.dao.tables.admin.RelEntidadCargoCuenta"/>
+	
+	<!-- Comisiones con formato unificado -->	
+	<table name="TB_COMS_UNIF_RECIBO" class="com.rsi.agp.dao.tables.comisiones.unificado.ReciboUnificado"/>
+	<table name="TB_COMS_UNIF_INDIVIDUAL" class="com.rsi.agp.dao.tables.comisiones.unificado.IndividualUnificado"/>
+	<table name="TB_COMS_UNIF_GRUPO_NEGOCIO" class="com.rsi.agp.dao.tables.comisiones.unificado.GrupoNegocioUnificado"/>
+	<table name="TB_COMS_UNIF_FICHERO" class="com.rsi.agp.dao.tables.comisiones.unificado.FicheroUnificado"/>
+	<table name="TB_COMS_UNIF_FICH_CONTENIDO" class="com.rsi.agp.dao.tables.comisiones.unificado.FicheroContenidoUnificado"/>
+	<table name="TB_COMS_UNIF_FASE" class="com.rsi.agp.dao.tables.comisiones.unificado.FaseUnificado"/>
+	<table name="TB_COMS_UNIF_COLECTIVO" class="com.rsi.agp.dao.tables.comisiones.unificado.ColectivoUnificado"/>
+	<table name="TB_COMS_UNIF_APLICACION" class="com.rsi.agp.dao.tables.comisiones.unificado.AplicacionUnificado"/>
+	<table name="TB_COMS_UNIF_INDIV_COLECTIVO" class="com.rsi.agp.dao.tables.comisiones.unificado.IndividualColectivoUnificado"/>
+	<table name="TB_COMS_UNIF_FICH_INCIDENCIAS" class="com.rsi.agp.dao.tables.comisiones.unificado.FicheroIncidenciasUnificado"/>
+	<table name="TB_COMS_UNIF_GAS_ABO_DEUDA_APL" class="com.rsi.agp.dao.tables.comisiones.unificado.GastosAbonadosDeudaAplazadaUnificado"/>
+	
+	<!--  Vistas para informes-->
+	<table name="VW_INFORME_COMISIONES_UNIF" class="com.rsi.agp.dao.tables.comisiones.unificado.informes.InformeComisionesUnificado"/>
+	<table name="VW_INFORME_IMPAGADOS_UNIF" class="com.rsi.agp.dao.tables.comisiones.unificado.informes.InformeImpagadosUnificado"/>
+	<table name="VW_INFORME_DEUDA_APLAZADA_UNIF" class="com.rsi.agp.dao.tables.comisiones.unificado.informes.InformeDeudaAplazadaUnificado"/>
+	<!--  -->
+	
+	<table name="VW_INFORME_ENTIDADES_2015" class="com.rsi.agp.dao.tables.comisiones.unificado.informes.cierre.InformeEntidades2015"/>
+	<table name="VW_INFORME_DET_MEDIADOR_2015" class="com.rsi.agp.dao.tables.comisiones.unificado.informes.cierre.InformeDetMediador2015"/>
+	<table name="VW_INFORME_TOT_MEDIADOR_2015" class="com.rsi.agp.dao.tables.comisiones.unificado.informes.cierre.InformeTotMediador2015"/>
+	<table name="VW_INFORME_COMS_IMPAGADOS_2015" class="com.rsi.agp.dao.tables.comisiones.unificado.informes.cierre.InformeComsImpagados2015"/>
+	<table name="VW_INFORME_COMS_RGA_2015" class="com.rsi.agp.dao.tables.comisiones.unificado.informes.cierre.InformeComsRGA2015"/>
+	
+	<table name="VW_FASES_CERRADAS" class="com.rsi.agp.dao.tables.comisiones.unificado.FasesCerradas"/>
+	
+	<!-- Histórico de borrado de pólizas -->
+	<table name="TB_POLIZAS_HISTORICO_BORRADO" class="com.rsi.agp.dao.tables.poliza.PolizaHistoricoBorrado"/>
+	
+	<!-- Documentación de Agroseguro -->
+	<table name="TB_DOC_AGROSEGURO_TIPO" class="com.rsi.agp.dao.tables.doc.DocAgroseguroTipo"/>
+	<table name="TB_DOC_AGROSEGURO_EXT_PERM" class="com.rsi.agp.dao.tables.doc.DocAgroseguroExtPerm"/>
+	<table name="TB_DOC_AGROSEGURO" class="com.rsi.agp.dao.tables.doc.DocAgroseguro"/>
+	<table name="TB_DOC_AGROSEGURO_FICHERO" class="com.rsi.agp.dao.tables.doc.DocAgroseguroFichero"/>
+	
+	<!-- Responsabilidad Civil -->
+	<table name="TB_RC_ESPECIES" class="com.rsi.agp.dao.tables.rc.EspeciesRC"/>
+	<table name="TB_RC_REGIMEN" class="com.rsi.agp.dao.tables.rc.RegimenRC"/>
+	<table name="TB_RC_LINEAS" class="com.rsi.agp.dao.tables.rc.LineasRC"/>
+	<table name="TB_RC_DATOS" class="com.rsi.agp.dao.tables.rc.DatosRC"/>
+	<table name="TB_RC_SUMA_ASEGURADA" class="com.rsi.agp.dao.tables.rc.SumaAseguradaRC"/>
+	<table name="TB_RC_IMPUESTOS" class="com.rsi.agp.dao.tables.rc.ImpuestosRC"/>
+	<table name="TB_RC_ERRORES" class="com.rsi.agp.dao.tables.rc.ErroresRC"/>
+	<table name="TB_RC_ESTADOS" class="com.rsi.agp.dao.tables.rc.EstadosRC"/>
+	<table name="TB_RC_POLIZAS" class="com.rsi.agp.dao.tables.rc.PolizasRC"/>
+	<table name="TB_RC_POLIZAS_HIST_ESTADOS" class="com.rsi.agp.dao.tables.rc.PolizasHistEstadosRC"/>
+	<table name="TB_RC_PERMISOS_PERFIL" class="com.rsi.agp.dao.tables.rc.PermisosPerfilRC"/>
+	<table name="VW_RC_POLIZAS" class="com.rsi.agp.dao.tables.rc.VistaPolizasRC">
+	    <primary-key><key-column name="IDPOLIZA"/></primary-key>
+	</table>
+	<table name="TB_TIPOS_MEDIADORES_AGROSEGURO" class="com.rsi.agp.dao.tables.admin.TipoMediadorAgro"/>
+	<table name="TB_TIPO_MEDIADOR_ENTMED" class="com.rsi.agp.dao.tables.admin.TipoMediadorEntMed"/>
+	
+	<!-- Incidencias Agroseguro P50775 -->
+	<table name="TB_INC_ASUNTOS" class="com.rsi.agp.dao.tables.inc.AsuntosInc"/>
+	<table name="TB_INC_ESTADOS" class="com.rsi.agp.dao.tables.inc.EstadosInc"/>
+	<table name="TB_INC_DOCS_AFECTADOS" class="com.rsi.agp.dao.tables.inc.DocsAfectadosInc"/>
+	<table name="TB_INC_INCIDENCIAS" class="com.rsi.agp.dao.tables.inc.Incidencias"/>
+	<table name="TB_INC_DOCUMENTOS_TIPOS" class="com.rsi.agp.dao.tables.inc.TiposDocInc"/>
+	<table name="TB_INC_DOCUMENTOS" class="com.rsi.agp.dao.tables.inc.DocumentosInc"/>
+	<table name="TB_INC_INCIDENCIAS_HIST" class="com.rsi.agp.dao.tables.inc.IncidenciasHist"/>
+	<table name="TB_INC_LLAMADA_WS" class="com.rsi.agp.dao.tables.inc.LlamadaWSInc"/>
+	<table name="VW_INC_INCIDENCIAS_AGRO" class="com.rsi.agp.dao.tables.inc.VistaIncidenciasAgro"/>
+	
+	<table name="TB_SW_SEGUIMIENTO_CONTR" class="com.rsi.agp.dao.tables.seguimiento.SwSeguimientoContrat"/>	
+	<table name="TB_TMP_BATCH_SEGUIMIENTO" class="com.rsi.agp.batch.seguimiento.TmpBatchSeguimiento"/>	
+	
+	<!--  CARGA CVS -->
+	<table name="tb_cvs_cargas" class="com.rsi.agp.dao.tables.cvs.CvsCarga"/>	
+	<table name="tb_cvs_cargas_fichero" class="com.rsi.agp.dao.tables.cvs.CvsCargasFichero"/>
+	<table name="tb_cvs_asegurados" class="com.rsi.agp.dao.tables.cvs.CvsAsegurado"/>
+	<table name="tb_cvs_parcelas" class="com.rsi.agp.dao.tables.cvs.CvsParcela"/>
+	<table name="tb_cvs_capitales_asegurados" class="com.rsi.agp.dao.tables.cvs.CvsCapAseg"/>
+	<table name="tb_cvs_datos_variables" class="com.rsi.agp.dao.tables.cvs.CvsDatoVariable"/>
+	
+	<!--  GED -->
+	<table name="TB_GED_CONFIG" class="com.rsi.agp.dao.tables.ged.GedConfig"/>	
+	<table name="TB_GED_DOC_POLIZA" class="com.rsi.agp.dao.tables.ged.GedDocPoliza"/>
+	<table name="TB_GED_AUDIT" class="com.rsi.agp.dao.tables.ged.GedAudit"/>
+</hibernate-reverse-engineering>

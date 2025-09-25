@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="declaracionSeguro_datosTomadorAseguradoCobertura_resumenCoberturas_caract_explotacion" pageWidth="313" pageHeight="15" whenNoDataType="AllSectionsNoDetail" columnWidth="313" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="ID" class="java.lang.Integer"/>
+	<queryString>
+		<![CDATA[select cp.codconcepto,cp.descvalor,ce.codcaractexplotacion,ce.descaractexplotacion
+from tb_comparativas_poliza cp, tb_sc_c_caract_explotacion ce
+where cp.codvalor = ce.codcaractexplotacion
+and cp.codconcepto = 106
+and cp.idpoliza=$P{ID}]]>
+	</queryString>
+	
+	<field name="CODCONCEPTO" class="java.math.BigDecimal"/>
+	<field name="DESCVALOR" class="java.lang.String"/>
+	<field name="CODCARACTEXPLOTACION" class="java.math.BigDecimal"/>
+	<field name="DESCARACTEXPLOTACION" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<detail>
+		<band height="15" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="98" height="15"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Caract. de la Expl.:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="98" y="0" width="215" height="15"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{CODCARACTEXPLOTACION}.toString() + " - " + $F{DESCARACTEXPLOTACION}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

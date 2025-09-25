@@ -1,0 +1,34 @@
+<project name="DOCRGA_SRVMAESTRO" default="all">
+
+	<path id="path.classpath">
+		<pathelement location="../lib/lombok.jar"/>
+	</path>
+
+	<target name="all" depends="jar"/>
+
+	<target name="init" depends="clean">
+		<tstamp>
+			<format property="now" pattern="dd/MM/yyyy" offset="1"/>
+		</tstamp>
+		<echo message="*******************************************************"/>
+		<echo message="*************** DOCRGA SRVMAESTRO *********************"/>
+		<echo message="*******************************************************"/>
+		<mkdir dir="../construccion/dist"/>
+		<mkdir dir="../construccion/build"/>
+	</target>
+
+	<target name="compile" depends="init">
+		<!-- Compila las clases -->
+		<javac includeantruntime="false" srcdir="../src" destdir="../construccion/build" includes="**/*.java" debug="true" target="1.7" source="1.7">
+			<classpath refid="path.classpath"/>
+		</javac>
+	</target>
+
+	<target name="jar" depends="compile">
+		<jar jarfile="../construccion/dist/DOCRGA_SRVMAESTRO.jar" basedir="../construccion/build" includes="**/*.class"/>
+	</target>
+
+	<target name="clean">
+		<delete dir="../construccion/build"/>
+	</target>
+</project>

@@ -1,0 +1,141 @@
+INFORMACION DE USO RESTRINGIDO
+----------------------------------------------------------------------------------------------------------------------------
+El contenido de este documento es propiedad de AGROSEGURO, no pudiendo ser reproducido, ni comunicado total o parcialmente, 
+a personas sin la autorización expresa del propietario.
+----------------------------------------------------------------------------------------------------------------------------
+
+CARACTERISTICAEXPLOTACIONSC
+------------------------
+
+archivo				                			namespace		                      			version
+- DatosVariables.xsd                            SeguroAgrario/Contratacion/DatosVariables    	10.0
+- CostesFijos_OP								SeguroAgrario/Contratacion/OP/CostesFijos		2.0
+- RelacionSocios_OP								SeguroAgrario/Contratacion/OP/RelacionSocios	1.0
+- Tipos.xsd          		                	Tipos		                             		29.0
+- CalculoSeguroAgrario.xsd						SeguroAgrario/CalculoSeguroAgrario				1.6
+- PresupuestoContratacion.xsd					PresupuestoContratacion							1.5
+
+
+DESCRIPCION DE LOS FICHEROS
+---------------------------
+	
+- CaracteristicaExplotacion.wsdl
+
+Descriptor del servicio Web que permite obtener la característica de una Explotación.
+
+
+- CalculoSeguroAgrario.xsd
+
+Esquema entrante también utilizado en el cálculo de la Póliza del Seguro Creciente, que
+es como ContratacionSeguroAgrario.xsd pero con menos restricciones.
+
+- DatosVariables.xsd
+
+Esquema que contiene definiciones de datos variables de la Póliza
+del Seguro Creciente.
+
+- Tipos.xsd
+
+Esquema que contiene las definiciones de tipos que se emplean en 
+los registros.
+
+- AcuseRecibo.xsd
+
+Esquema saliente obtenido como respuesta a cualquier llamada y donde
+se indica el estado en el que queda el proceso.
+
+- PresupuestoContratacion.xsd
+
+Esquema unificado de póliza
+
+
+VERSIONES
+1.0.8 : 23-09-2020.
+---------------------------------------------------------------------------
+- CalculoSeguroAgrario.xsd: Se añade la etiqueta opcional CuentaCobroSiniestros
+- PresupuestoContratacion.xsd: Se añade la etiqueta opcional CuentaCobroSiniestros
+
+1.0.7 : 14-05-2020.
+---------------------------------------------------------------------------
+- Incluido WSDL con Cabeceras de Seguridad y Sin Cabeceras de Seguridad
+- Incluido xmime.xsd
+---------
+
+1.0.6 : 04-03-2020.
+---------------------------------------------------------------------------
+- PresupuestoContratacion.xsd
+	Unificación de formatos
+---------
+1.0.5 : 05-04-2018.
+---------------------------------------------------------------------------
+-ContratacionSeguroAgrario.xsd, - ContratacionSeguroAgrarioComplementario.xsd y -CalculoSeguroAgrario.xsd
+	Se añade el atributo opcional domiciliado a la etiqueta Pago
+	Se añaden los atributos opcionales destinatario y titular a la etiqueta Cuenta
+-Tipos.xsd
+	Actualización a última versión
+- InfoVersion.txt: inclusión de párrafo legal por ISO27001.
+
+1.0.4 : 29-12-2014
+---------------------------------------------------------------------------
+
+Alteraciones en los siguientes esquemas:
+
+-CalculoSeguroAgrario.xsd
+Cambia etiqueta Poliza: Desaparece CCC, Aparece nueva etiqueta DistribucionCoste1
+Cambia etiqueta Entidad: Nueva etiqueta Gastos
+Cambia etiqueta Pago: Nuevas etiquetas Cuenta y Fraccionamiento
+Cambia Etiqueta Parcela: Desaparece etiqueta IdentificacionCatastral 
+Nuevos tipos: Gastos, DistribucionCoste1, Cuenta, Fraccionamiento, Aval
+Cambia version documento incluido CostesFijos_OP a 2.0
+Cambia version documento incluido Tipos a 18.0 
+
+- CostesFijos_OP.xsd
+Ampliación del nº de campos producción de tres a cinco.
+
+- Tipos.xsd
+Nuevos tipos para formulación SAC y fraccionamiento SAECA
+
+
+
+1.0.2 : 30-05-2011.
+---------------------------------------------------------------------------
+
+Alteraciones en los siguientes esquemas:
+
+- DatosVariables.xsd
+La etiqueta Alt pasa a llamarse Rot
+
+- Tipos.xsd
+El tipo Alternativa pasa a llamarse Rotacion
+
+
+
+1.0.1 : 21-02-2011.
+---------------------------------------------------------------------------
+
+Alteraciones en los siguientes esquemas:
+
+- CostesFijos_OP.xsd
+Nuevo esquema con el anexo de la declaración de gastos fijos de la explotación agrícola en el
+seguro de Costes Fijos de OP (Organización de Productores)
+
+- RelacionSocios_OP
+Nuevo esquema con el anexo de la lista de socios que suscriben el seguro de OP (Organización de Productores)
+
+- CalculoSeguroAgrario.xsd
+Nuevas etiquetas CostesFijosOP y RelacionSociosOP
+
+- DatosVariables.xsd
+Nuevas etiquetas de datos variables CodCert, EdadCubi, EdadEstr, MatCubi, MatEstr, TipInst	
+
+- Tipos.xsd
+Valor minimo 1 para SIGPAC@parcela y SIGPAC@poligono
+Nuevos tipos para dar soporte a los Datos variables añadidos.
+
+
+
+1.0.0 : 27-12-2010.
+---------------------------------------------------------------------------
+
+Versión inicial.
+

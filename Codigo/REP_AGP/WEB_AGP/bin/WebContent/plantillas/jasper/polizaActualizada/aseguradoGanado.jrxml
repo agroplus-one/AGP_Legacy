@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="cabecera" pageWidth="555" pageHeight="802" whenNoDataType="AllSectionsNoDetail" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="linea" class="com.rsi.agp.dao.tables.poliza.Linea" isForPrompting="false"/>
+	<parameter name="idCupon" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="imprimirAnexoWsPPl" class="java.lang.Boolean" isForPrompting="false"/>
+	<parameter name="provinciaAseg" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="estadoContratacion" class="es.agroseguro.seguroAgrario.estadoContratacion.EstadoContratacionDocument">
+		<fieldDescription><![CDATA[estadoContratacion]]></fieldDescription>
+	</field>
+	<field name="polizaComplementaria" class="es.agroseguro.seguroAgrario.contratacion.complementario.PolizaDocument">
+		<fieldDescription><![CDATA[polizaComplementaria]]></fieldDescription>
+	</field>
+	<field name="polizaPrincipal" class="es.agroseguro.seguroAgrario.contratacion.PolizaDocument">
+		<fieldDescription><![CDATA[polizaPrincipal]]></fieldDescription>
+	</field>
+	<field name="polizaGanado" class="es.agroseguro.contratacion.PolizaDocument">
+		<fieldDescription><![CDATA[polizaGanado]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="67" splitType="Stretch">
+			<textField isBlankWhenNull="true">
+				<reportElement x="0" y="27" width="135" height="13"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{polizaGanado}.getPoliza().getAsegurado().getDireccion().getVia() + ", " + $F{polizaGanado}.getPoliza().getAsegurado().getDireccion().getNumero()]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="290" y="41" width="50" height="13"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{polizaGanado}.getPoliza().getAsegurado().getDatosContacto().getTelefonoMovil() + ""]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="0" y="14" width="484" height="13"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{polizaGanado}.getPoliza().getAsegurado().getRazonSocial() != null ? $F{polizaGanado}.getPoliza().getAsegurado().getRazonSocial().getRazonSocial() : $F{polizaGanado}.getPoliza().getAsegurado().getNombreApellidos().getNombre() + " " + $F{polizaGanado}.getPoliza().getAsegurado().getNombreApellidos().getApellido1() + " " + ($F{polizaGanado}.getPoliza().getAsegurado().getNombreApellidos().getApellido2() == null ? "" : $F{polizaGanado}.getPoliza().getAsegurado().getNombreApellidos().getApellido2())]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="218" y="27" width="25" height="13"/>
+				<textElement>
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Blq:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="184" y="41" width="50" height="13"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{polizaGanado}.getPoliza().getAsegurado().getDatosContacto().getTelefonoFijo() + ""]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="1" width="242" height="13"/>
+				<textElement>
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DATOS DEL ASEGURADO]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="193" y="27" width="19" height="13"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{polizaGanado}.getPoliza().getAsegurado().getDireccion().getPiso()]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="376" y="40" width="179" height="13"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{polizaGanado}.getPoliza().getAsegurado().getDatosContacto().getEmail()]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="426" y="1" width="130" height="13"/>
+				<textElement verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{polizaGanado}.getPoliza().getAsegurado().getNif()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="374" y="1" width="52" height="13"/>
+				<textElement>
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[NIF/CIF:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="234" y="41" width="56" height="13"/>
+				<textElement>
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Tfno. Móvil:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="0" y="41" width="134" height="13"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{polizaGanado}.getPoliza().getAsegurado().getDireccion().getCp()+"-"+$P{provinciaAseg}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="134" y="41" width="48" height="13"/>
+				<textElement>
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Tfno.Fijo:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="392" y="27" width="163" height="13"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{polizaGanado}.getPoliza().getAsegurado().getDireccion().getLocalidad()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="135" y="27" width="57" height="13"/>
+				<textElement>
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Piso/letra:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="290" y="27" width="24" height="13"/>
+				<textElement verticalAlignment="Middle">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Esc:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="341" y="27" width="51" height="13"/>
+				<textElement verticalAlignment="Middle">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Localidad:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="341" y="40" width="35" height="13"/>
+				<textElement verticalAlignment="Middle">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[e-mail:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="256" y="27" width="20" height="13"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{polizaGanado}.getPoliza().getAsegurado().getDireccion().getPiso()]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="317" y="27" width="23" height="13"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{polizaGanado}.getPoliza().getAsegurado().getDireccion().getEscalera()]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

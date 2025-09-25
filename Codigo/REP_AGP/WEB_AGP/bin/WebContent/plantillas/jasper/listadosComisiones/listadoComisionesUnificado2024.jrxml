@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.16.0.final using JasperReports Library version 6.16.0-48579d909b7943b64690c65c71e07e0b80981928  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Comisiones 2015 +" pageWidth="1770" pageHeight="595" orientation="Landscape" whenNoDataType="AllSectionsNoDetail" columnWidth="1730" leftMargin="20" rightMargin="20" topMargin="0" bottomMargin="20" uuid="4c55fd28-b4f3-4e5a-9dc3-824ae4bb5241">
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="3501"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="source" class="net.sf.jasperreports.engine.JRDataSource"/>
+	<parameter name="PERFIL" class="java.lang.String"/>
+	<field name="entmediadora" class="java.lang.Integer"/>
+	<field name="subentmediadora" class="java.lang.Integer"/>
+	<field name="oficina" class="java.lang.String"/>
+	<field name="plan" class="java.lang.Integer"/>
+	<field name="linea" class="java.lang.Integer"/>
+	<field name="referencia" class="java.lang.String"/>
+	<field name="fechaVigor" class="java.util.Date"/>
+	<field name="ciftomador" class="java.lang.String"/>
+	<field name="idcolectivo" class="java.lang.String"/>
+	<field name="nifcif" class="java.lang.String"/>
+	<field name="nombreAsegurado" class="java.lang.String"/>
+	<field name="fase" class="java.lang.Integer"/>
+	<field name="fechaEmisionRecibo" class="java.util.Date"/>
+	<field name="grupoNegocio" class="java.lang.Character"/>
+	<field name="primaComercialNeta" class="java.math.BigDecimal"/>
+	<field name="gdAdmin" class="java.math.BigDecimal"/>
+	<field name="gdAdq" class="java.math.BigDecimal"/>
+	<field name="gdCommedEntidad" class="java.math.BigDecimal"/>
+	<field name="gdComisionMediador" class="java.math.BigDecimal"/>
+	<field name="gaAdmin" class="java.math.BigDecimal"/>
+	<field name="gaAdq" class="java.math.BigDecimal"/>
+	<field name="gaCommedEntidad" class="java.math.BigDecimal"/>
+	<field name="gaComisionMediador" class="java.math.BigDecimal"/>
+	<field name="gpAdmin" class="java.math.BigDecimal"/>
+	<field name="gpAdq" class="java.math.BigDecimal"/>
+	<field name="gpComisionMediador" class="java.math.BigDecimal"/>
+	<field name="gpCommedEntidad" class="java.math.BigDecimal"/>
+	<field name="gpCommedEsmed" class="java.math.BigDecimal"/>
+	<title>
+		<band height="85" splitType="Stretch">
+			<staticText>
+				<reportElement x="-20" y="0" width="1840" height="52" uuid="20c487bb-d307-46e3-93f6-cd3da5700b16"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="20" isBold="true" pdfFontName="Helvetica-Bold"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[LISTADO DE COMISIONES 2015+]]></text>
+			</staticText>
+		</band>
+	</title>
+	<detail>
+		<band height="25" splitType="Stretch"/>
+	</detail>
+</jasperReport>

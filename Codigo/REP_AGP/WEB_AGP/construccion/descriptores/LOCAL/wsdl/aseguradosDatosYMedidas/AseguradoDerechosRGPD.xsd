@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<x:schema 
+	targetNamespace="http://www.agroseguro.es/SeguroAgrario/AseguradoDerechosRGPD"
+	xmlns="http://www.agroseguro.es/SeguroAgrario/AseguradoDerechosRGPD"
+	xmlns:pks="http://www.agroseguro.es/SeguroAgrario/AseguradoDerechosRGPD"
+	xmlns:x="http://www.w3.org/2001/XMLSchema"
+	xmlns:t="http://www.agroseguro.es/Tipos" >
+	
+	<x:import
+		namespace="http://www.agroseguro.es/Tipos"
+		schemaLocation="Tipos.xsd" />
+
+	<x:element name="AseguradoDerechosRGPD">
+		<x:complexType>
+			<x:sequence>
+				<x:element name="AseguradoRGPD" type="AseguradoRGPD" minOccurs="1" maxOccurs="unbounded" />
+			</x:sequence>
+			<x:attributeGroup ref="t:PeticionSW" />
+		</x:complexType>		
+	</x:element>
+
+	<x:complexType name="AseguradoRGPD">
+		<x:sequence>
+			<x:element name="DerechoRGPD" type="DerechoRGPD" minOccurs="1" maxOccurs="unbounded" />
+		</x:sequence>
+		<x:attribute name="nif" type="t:NIF" use="required" />
+	</x:complexType>
+	
+	<x:complexType name="DerechoRGPD">
+		<x:attribute name="id" type="t:Entero3Posiciones" use="required" />
+		<x:attribute name="descripcion" type="DerechoRGPD_Descripcion" use="required" />
+		<x:attribute name="fechaSolicitud" type="x:date" use="required" />
+	</x:complexType>
+	
+	<x:simpleType name="DerechoRGPD_Descripcion">
+		<x:restriction base="x:token">
+			<x:maxLength value="200" />
+		</x:restriction>
+	</x:simpleType>	
+		
+</x:schema>

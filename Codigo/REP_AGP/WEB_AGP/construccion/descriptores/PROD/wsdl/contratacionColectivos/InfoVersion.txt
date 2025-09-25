@@ -1,0 +1,57 @@
+COLECTIVOS
+----------
+
+
+archivo				                	namespace		                     			version
+--------------------------------		----------------------------------------		---------
+- Colectivos.xsd            			Colectivo										2.0
+- ListaColectivos.xsd					ListaColectivos									1.0
+- Tipos.xsd        		                Tipos		                           	   		28.0
+- AcuseRecibo.xsd        		        AcuseRecibo	                           	   		1.1
+- xmime.xsd								http://www.w3.org/2005/05/xmlmime
+- policy.xml
+
+
+DESCRIPCION DE LOS FICHEROS
+---------------------------
+	
+- ContratacionColectivos.wsdl
+Descriptor del servicio Web que incluye diversas funciones de apoyo al registro y firma de colectivos
+diseñadas para ser utilizadas desde los aplicativos de contratación de las Entidades. 
+
+- ContratacionColectivos_con_cabeceras_seguridad.wsdl
+Idem ContratacionColectivos.wsdl pero con cabecera de seguridad WS-Security, para
+manejar la seguridad a través de los bindings de XML generados en cada lenguaje
+de programación.
+
+- policy.xml
+Política de seguridad según especificación WS-SecurityPolicy con UsernameToken
+de Oasis.
+
+- AcuseRecibo.xsd
+Esquema que define la estructura del XML que se devuelve ante una petición de validación, registro,
+consulta de colectivos, o un envío de documentos de colectivo. 
+
+- ListaColectivos.xsd
+Esquema que define la estructura del XML que se devuelve ante una petición de consulta de Lista de Colectivos.
+
+- Tipos.xsd
+Esquema que contiene el diccionario de tipos común de Agroseguro.
+
+- xmime.xsd
+Esquema de validación de tipos XMLMIME de W3C
+
+
+
+VERSIONES
+---------
+
+1.0.2 : 18/02/2016
+- Colectivos.xsd: nuev etiqueta DireccionColectivo. Corrección de algunas cardinalidades por compatibilidad con colectivos antiguos.
+
+
+1.0.1 : 15/12/2015
+- Empaquetado AcuseRecibo.xsd
+
+1.0.0 : 01/12/2015
+- Versión inicial

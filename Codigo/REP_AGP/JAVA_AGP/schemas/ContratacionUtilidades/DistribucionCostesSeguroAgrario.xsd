@@ -1,0 +1,255 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<x:schema
+	targetNamespace="http://www.agroseguro.es/SeguroAgrario/DistribucionCostesSeguroAgrario"
+	xmlns="http://www.agroseguro.es/SeguroAgrario/DistribucionCostesSeguroAgrario"
+	xmlns:x="http://www.w3.org/2001/XMLSchema"
+	xmlns:ti="http://www.agroseguro.es/ITipos"
+	xmlns:dc="http://www.agroseguro.es/SeguroAgrario/DistribucionCoste">
+
+	<x:import namespace="http://www.agroseguro.es/ITipos"
+		schemaLocation="../commons/Tipos.xsd" />
+	<x:import namespace="http://www.agroseguro.es/SeguroAgrario/DistribucionCoste"
+		schemaLocation="DistribucionCoste.xsd" />
+	<x:import namespace="http://www.agroseguro.es/SeguroAgrario/DistribucionCoste/Parcela"
+		schemaLocation="../ContratacionCalcMod/CosteParcela.xsd" />
+	<x:import namespace="http://www.agroseguro.es/SeguroAgrario/DistribucionCoste/DatosAdicionalesCabecera"
+		schemaLocation="DatosAdicionalesCabecera.xsd" />
+	
+	<x:element name="Poliza" type="Poliza" />
+		
+	<x:complexType name="Poliza">
+		<x:sequence>
+			<x:element name="DatosCalculo" type="DatosCalculo"
+				maxOccurs="1" minOccurs="1" />
+			<x:element name="DatosAdicionales" type="DatosAdicionales"
+				maxOccurs="1" minOccurs="0" />
+			<x:choice minOccurs="1" maxOccurs="1">
+				<x:element name="Parcela" type="Parcela" minOccurs="1"
+					maxOccurs="unbounded" />
+				<x:element name="ObjetoAsegurado" type="ObjetoAsegurado" minOccurs="1"
+					maxOccurs="unbounded" />
+			</x:choice>		
+		</x:sequence>
+		<x:attributeGroup ref="ti:PlanLinea" />
+		<x:anyAttribute namespace="http://www.agroseguro.es/SeguroAgrario/DistribucionCoste/DatosAdicionalesCabecera" processContents="lax" />
+	</x:complexType>
+
+	<x:complexType name="DatosCalculo">
+		<x:sequence>
+			<x:choice minOccurs="1" maxOccurs="1">
+				<x:element name="DistribucionCoste" type="DistribucionCoste"
+					maxOccurs="1" minOccurs="1" />
+				<x:element name="DistribucionCoste1" type="dc:DistribucionCoste"
+					maxOccurs="1" minOccurs="1" />
+			</x:choice>
+		</x:sequence>
+		<x:attribute name="pctDescuentoColectivo" type="ti:TantoPorCien"
+			use="optional" />
+	</x:complexType>
+
+	<x:complexType name="DatosAdicionales">
+		<x:sequence>
+			<x:any minOccurs="1" maxOccurs="unbounded" namespace="http://www.agroseguro.es/SeguroAgrario/DistribucionCoste/DatosAdicionalesCabecera"
+				processContents="lax" />
+		</x:sequence>
+		<x:anyAttribute namespace="http://www.agroseguro.es/SeguroAgrario/DistribucionCoste/DatosAdicionalesCabecera" processContents="lax" />
+	</x:complexType>
+	
+	<x:complexType name="DistribucionCoste">
+		<x:sequence>
+			<x:element name="BonificacionMedidasPreventivas"
+				type="BonificacionMedidasPreventivas" minOccurs="0" maxOccurs="1" />
+			<x:choice minOccurs="0" maxOccurs="1">
+				<x:element name="BonificacionAsegurado"
+					type="BonificacionAsegurado" minOccurs="1" maxOccurs="1" />
+				<x:element name="RecargoAsegurado"
+					type="RecargoAsegurado" minOccurs="1" maxOccurs="1" />
+			</x:choice>
+			<x:element name="Descuento" type="Descuento" minOccurs="0"
+				maxOccurs="1" />
+			<x:element name="Consorcio" type="Consorcio" minOccurs="1"
+				maxOccurs="1" />
+			<x:element name="SubvencionEnesa" type="SubvencionEnesa"
+				minOccurs="0" maxOccurs="unbounded" />
+			<x:element name="SubvencionCCAA" type="SubvencionCCAA"
+				minOccurs="0" maxOccurs="unbounded" />
+		</x:sequence>
+		<x:attribute name="primaComercial" type="ti:ImportePositivo"
+			use="required" />
+		<x:attribute name="primaNeta" type="ti:ImportePositivo"
+			use="required" />
+		<x:attribute name="costeNeto" type="ti:ImportePositivo"
+			use="required" />
+		<x:attribute name="cargoTomador" type="ti:ImportePositivo"
+			use="required" />
+	</x:complexType>
+
+	<x:complexType name="ObjetoAsegurado" >
+		<x:sequence>
+			<x:any processContents="lax"  minOccurs="1" maxOccurs="unbounded"
+					namespace="http://www.agroseguro.es/SeguroAgrario/DistribucionCoste/Parcela" />
+		</x:sequence>
+		<x:anyAttribute processContents="lax" 
+				namespace="http://www.agroseguro.es/SeguroAgrario/DistribucionCoste/Parcela" />		
+	</x:complexType>
+	
+	<x:complexType name="BonificacionMedidasPreventivas">
+		<x:attribute name="bonifMedPreventivas"
+			type="ti:ImportePositivo" use="required" />
+	</x:complexType>
+
+	<x:complexType name="BonificacionAsegurado">
+		<x:attribute name="pctBonifAsegurado" type="ti:TantoPorCien"
+			use="required" />
+		<x:attribute name="bonifAsegurado" type="ti:ImportePositivo"
+			use="required" />
+	</x:complexType>
+
+	<x:complexType name="RecargoAsegurado">
+		<x:attribute name="pctRecargoAsegurado" type="ti:TantoPorCien"
+			use="required" />
+		<x:attribute name="recargoAsegurado" type="ti:ImportePositivo"
+			use="required" />
+	</x:complexType>
+
+	<x:complexType name="Descuento">
+		<x:attribute name="ventanilla" type="ti:ImportePositivo"
+			use="required" />
+		<x:attribute name="descuentoColectivo" type="ti:ImportePositivo"
+			use="required" />
+	</x:complexType>
+
+	<x:complexType name="Consorcio">
+		<x:attribute name="reaseguro" type="ti:ImportePositivo" use="required" />
+		<x:attribute name="recargo" type="ti:ImportePositivo" use="required" />
+	</x:complexType>
+
+	<x:complexType name="SubvencionEnesa">
+		<x:attribute name="tipo" type="ti:Subvencion_Tipo"
+			use="required" />
+		<x:attribute name="subvencionEnesa" type="ti:ImportePositivo"
+			use="required" />
+	</x:complexType>
+
+	<x:complexType name="SubvencionCCAA">
+		<x:attribute name="codigoOrganismo" type="ti:Organismo_Codigo"
+			use="required" />
+		<x:attribute name="tipo" type="ti:Subvencion_Tipo"
+			use="required" />
+		<x:attribute name="subvencionCA" type="ti:ImportePositivo"
+			use="required" />
+	</x:complexType>
+
+	<x:complexType name="Parcela">
+		<x:sequence>
+			<x:element name="CostesParcela" type="CostesParcela"
+				maxOccurs="1" minOccurs="1" />
+			<x:element name="Medida" type="Medida" minOccurs="0"
+				maxOccurs="unbounded" />
+			<x:element name="SubvencionParcelaEnesa"
+				type="SubvencionParcelaEnesa" minOccurs="0" maxOccurs="unbounded" />
+			<x:element name="SubvencionParcelaCCAA"
+				type="SubvencionParcelaCCAA" minOccurs="0" maxOccurs="unbounded" />
+		</x:sequence>
+		<x:attribute name="hoja" use="required" type="ti:Parcela_Hoja" />
+		<x:attribute name="numero" use="required"
+			type="ti:Parcela_Numero" />
+		<x:attribute name="tipo" use="required" type="ti:TipoCapital" />
+	</x:complexType>
+
+	<x:complexType name="CostesParcela">
+		<x:sequence>
+			<x:element name="BonificacionMedidasPreventivasParcela"
+				type="BonificacionMedidasPreventivasParcela" minOccurs="0"
+				maxOccurs="1" />
+			<x:choice maxOccurs="1" minOccurs="0">
+				<x:element name="BonificacionAseguradoParcela"
+					type="BonificacionAseguradoParcela" minOccurs="1" maxOccurs="1" />
+				<x:element name="RecargoAseguradoParcela"
+					type="RecargoAseguradoParcela" minOccurs="1" maxOccurs="1" />
+			</x:choice>
+			<x:element name="DescuentoParcela" type="DescuentoParcela"
+				minOccurs="0" maxOccurs="1" />
+			<x:element name="ConsorcioParcela" type="ConsorcioParcela"
+				minOccurs="1" maxOccurs="1" />
+		</x:sequence>
+		<x:attribute name="precio" type="ti:Precio" use="required" />
+		<x:attribute name="produccion" type="ti:ProduccionKG"
+			use="required" />
+		<x:attribute name="capitalAsegurado"
+			type="ti:ImportePositivoPreciso" use="required" />
+		<x:attribute name="tasaComercial" type="ti:TantoPorCien"
+			use="required" />
+		<x:attribute name="primaComercial" type="ti:ImportePositivoPreciso"
+			use="required" />
+		<x:attribute name="primaNeta" type="ti:ImportePositivoPreciso"
+			use="required" />
+		<x:attribute name="costeNeto" type="ti:ImportePositivoPreciso"
+			use="required" />
+	</x:complexType>
+
+	<x:complexType name="BonificacionMedidasPreventivasParcela">
+		<x:attribute name="bonifMedPrimaComercial"
+			type="ti:ImportePositivoPreciso" use="required" />
+	</x:complexType>
+
+	<x:complexType name="BonificacionAseguradoParcela">
+		<x:attribute name="bonifAsegurado" type="ti:ImportePositivoPreciso"
+			use="required" />
+	</x:complexType>
+
+	<x:complexType name="RecargoAseguradoParcela">
+		<x:attribute name="recargoAsegurado"
+			type="ti:ImportePositivoPreciso" use="required" />
+	</x:complexType>
+
+	<x:complexType name="DescuentoParcela">
+		<x:attribute name="pctDescuentoVentanilla"
+			type="ti:TantoPorCien" use="required" />
+		<x:attribute name="ventanilla" type="ti:ImportePositivoPreciso"
+			use="optional" />
+		<x:attribute name="descuentoColectivo"
+			type="ti:ImportePositivoPreciso" use="optional" />
+	</x:complexType>
+
+	<x:complexType name="ConsorcioParcela">
+		<x:attribute name="pctReaseguroConsorcio" type="ti:TantoPorCien"
+			use="required" />
+		<x:attribute name="reaseguro" type="ti:ImportePositivoPreciso" use="required" />
+		<x:attribute name="pctRecargoConsorcio" type="ti:TantoPorCien"
+			use="required" />
+		<x:attribute name="recargo" type="ti:ImportePositivoPreciso" use="required" />
+	</x:complexType>
+
+	<x:complexType name="Medida">
+		<x:attribute name="medidaPreventiva" use="required"
+			type="ti:MedidaPreventiva" />
+		<x:attribute name="pctBonifMed" use="required"
+			type="ti:TantoPorCien" />
+		<x:attribute name="primaComercial" use="required"
+			type="ti:ImportePositivoPreciso" />
+	</x:complexType>
+
+	<x:complexType name="SubvencionParcelaEnesa">
+		<x:attribute name="tipo" use="required"
+			type="ti:Subvencion_Tipo" />
+		<x:attribute name="reducida" use="required"
+			type="ti:ImportePositivoPreciso" />
+		<x:attribute name="modulada" use="required"
+			type="ti:ImportePositivoPreciso" />
+		<x:attribute name="subvencionEnesa" use="required"
+			type="ti:ImportePositivoPreciso" />
+	</x:complexType>
+
+	<x:complexType name="SubvencionParcelaCCAA">
+		<x:attribute name="codigoOrganismo" type="ti:Organismo_Codigo"
+			use="required" />
+		<x:attribute name="tipo" use="required"
+			type="ti:Subvencion_Tipo" />
+		<x:attribute name="reducida" use="required"
+			type="ti:ImportePositivoPreciso" />
+		<x:attribute name="subvencionCA" use="required"
+			type="ti:ImportePositivoPreciso" />
+	</x:complexType>
+
+</x:schema>

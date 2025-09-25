@@ -1,0 +1,181 @@
+<project name="WSDLs_AGP" default="all">
+
+	<property file="${basedir}/../../PRJ_AGP/construccion/build.general.properties" />
+	<property file="${basedir}/../../PRJ_AGP/construccion/libraries.properties" />
+	<property file="${basedir}/${path_descr_entorno}/webservices.properties" />
+	<filter filtersfile="${basedir}/../../PRJ_AGP/construccion/build.general.properties" />
+
+	<property name="wsdl_impresion" value="${basedir}/${path_descr_entorno}/${impresion.wsdl}" />
+
+	<property name="wsdl_impresion_tradicional" value="${basedir}/${path_descr_entorno}/${impresionTradicional.wsdl}" />
+
+	<property name="wsdl_utilidades" value="${basedir}/${path_descr_entorno}/${contratacion.wsdl}" />
+	<property name="wsdl_confirmacion" value="${basedir}/${path_descr_entorno}/${confirmacion.wsdl}" />
+	<property name="wsdl_seguimiento" value="${basedir}/${path_descr_entorno}/${seguimiento.wsdl}" />
+
+	<property name="wsdl_caract_explotacion" value="${basedir}/${path_descr_entorno}/${caractExpl.wsdl}" />
+
+	<property name="wsdl_anexo_modificacion" value="${basedir}/${path_descr_entorno}/${anexoReduccionCapiWS.wsdl}" />
+	<!--no existe directorio para resolver variables-->
+	<!--<property name="wsdl_anexo_modificacionUnificado" value="${basedir}/${path_descr_entorno}/${anexoModificacionUnificadoWS.wsdl}"/>-->
+	<property name="wsdl_sigpac_zonificacion" value="${basedir}/${path_descr_entorno}/${sigpacZonificacionWS.wsdl}" />
+	<property name="wsdl_rendimiento" value="${basedir}/${path_descr_entorno}/${rendimientos.wsdl}" />
+	<property name="wsdl_siniestros" value="${basedir}/${path_descr_entorno}/${siniestrosDeclaracionWS.wsdl}" />
+	<property name="wsdl_siniestros_informacion" value="${basedir}/${path_descr_entorno}/${siniestrosInformacionWS.wsdl}" />
+	<property name="wsdl_asegurados" value="${basedir}/${path_descr_entorno}/${aseguradosDatosYMedidasWS.wsdl}" />
+	<property name="wsdl_renovaciones" value="${basedir}/${path_descr_entorno}/${contratacionRenovacionesWS.wsdl}" />
+	<property name="wsdl_calculoAM" value="${basedir}/${path_descr_entorno}/${anexoReduccionCapiCalcWS.wsdl}" />
+	<property name="wsdl_ayudasContratacion" value="${basedir}/${path_descr_entorno}/${ayudasContratacion.wsdl}" />
+	<property name="wsdl_impresion_modificacion" value="${basedir}/${path_descr_entorno}/${impresionModificacionWS.wsdl}" />
+	<property name="wsdl_documentacion_ged" value="${basedir}/${path_descr_entorno}/${documentacionGedWS.wsdl}" />
+	<property name="wsdl_contratacion_colectivos" value="${basedir}/${path_descr_entorno}/${contratacion_colectivos.wsdl}" />
+
+	<setproxy proxyhost="192.168.242.18" proxyport="8080" />
+
+	<target name="all" depends="generarJar" />
+
+	<target name="init" depends="clean">
+		<echo message="*************************************************************" />
+		<echo message="** Creacion de las clases cliente los WSDLs de Agroseguro  **" />
+		<echo message="*************************************************************" />
+	</target>
+
+	<target name="clean">
+		<delete dir="${basedir}/../../${java_dir}/src/ws/main" />
+	</target>
+
+	<path id="rutaLibrerias">
+		<fileset dir="${jaxws.dir}">
+			<include name="**/*.jar" />
+		</fileset>
+	</path>
+
+	<taskdef name="wsimport" classname="com.sun.tools.ws.ant.WsImport">
+		<classpath refid="rutaLibrerias" />
+	</taskdef>
+
+	<target name="wsdl2java" depends="init" description="Crea los fuentes a partir de los wsdl">
+		<mkdir dir="${basedir}/../../${java_dir}/src/ws/main" />
+
+		<echo message="Creando los fuentes de ${wsdl_impresion}" />
+		<wsimport wsdl="${wsdl_impresion}" sourcedestdir="${basedir}/../../${java_dir}/src/ws/main" verbose="true" xnocompile="true" keep="true" xendorsed="true" />
+
+		<sleep seconds="3" />
+
+		<echo message="Creando los fuentes de ${wsdl_impresion_tradicional}" />
+		<wsimport wsdl="${wsdl_impresion_tradicional}" sourcedestdir="${basedir}/../../${java_dir}/src/ws/main" verbose="false" xnocompile="true" keep="true" xendorsed="true" />
+
+		<sleep seconds="3" />
+
+		<echo message="Creando los fuentes de ${wsdl_utilidades}" />
+		<wsimport wsdl="${wsdl_utilidades}" sourcedestdir="${basedir}/../../${java_dir}/src/ws/main" verbose="false" xnocompile="true" keep="true" xendorsed="true" />
+
+		<sleep seconds="3" />
+
+		<echo message="Creando los fuentes de ${wsdl_confirmacion}" />
+		<wsimport wsdl="${wsdl_confirmacion}" sourcedestdir="${basedir}/../../${java_dir}/src/ws/main" verbose="false" xnocompile="true" keep="true" xendorsed="true" />
+
+		<sleep seconds="3" />
+
+		<echo message="Creando los fuentes de ${wsdl_seguimiento}" />
+		<wsimport wsdl="${wsdl_seguimiento}" sourcedestdir="${basedir}/../../${java_dir}/src/ws/main" verbose="false" xnocompile="true" keep="true" xendorsed="true" />
+
+		<sleep seconds="3" />
+
+		<echo message="Creando los fuentes de ${wsdl_caract_explotacion}" />
+		<wsimport wsdl="${wsdl_caract_explotacion}" sourcedestdir="${basedir}/../../${java_dir}/src/ws/main" verbose="true" xnocompile="true" keep="true" xendorsed="true" />
+
+		<sleep seconds="3" />
+
+		<echo message="Creando los fuentes de ${wsdl_anexo_modificacion}" />
+		<wsimport wsdl="${wsdl_anexo_modificacion}" sourcedestdir="${basedir}/../../${java_dir}/src/ws/main" verbose="false" xnocompile="true" keep="true" xendorsed="true" />
+
+		<sleep seconds="3" />
+
+		<!--no existe directorio para resolver variables-->
+		<!--
+		<echo message="Creando los fuentes de ${wsdl_anexo_modificacionUnificado}" />
+		<wsimport wsdl="${wsdl_anexo_modificacionUnificado}" sourcedestdir="${basedir}/../../${java_dir}/src/ws/main" verbose="false" xnocompile="true" keep="true" xendorsed="true" />
+		-->
+
+		<echo message="Creando los fuentes de ${wsdl_impresion_modificacion}" />
+		<wsimport wsdl="${wsdl_impresion_modificacion}" sourcedestdir="${basedir}/../../${java_dir}/src/ws/main" verbose="false" xnocompile="true" keep="true" xendorsed="true" />
+
+		<sleep seconds="3" />
+
+		<echo message="Creando los fuentes de ${wsdl_sigpac_zonificacion}" />
+		<wsimport wsdl="${wsdl_sigpac_zonificacion}" sourcedestdir="${basedir}/../../${java_dir}/src/ws/main" verbose="false" xnocompile="true" keep="true" xendorsed="true" />
+
+		<sleep seconds="3" />
+
+		<echo message="Creando los fuentes de ${wsdl_rendimiento}" />
+		<wsimport wsdl="${wsdl_rendimiento}" sourcedestdir="${basedir}/../../${java_dir}/src/ws/main" verbose="true" xnocompile="true" keep="true" xendorsed="true" xdebug="true" />
+
+		<sleep seconds="3" />
+
+		<echo message="Creando los fuentes de ${wsdl_siniestros}" />
+		<wsimport wsdl="${wsdl_siniestros}" sourcedestdir="${basedir}/../../${java_dir}/src/ws/main" verbose="false" xnocompile="true" keep="true" xendorsed="true" />
+
+		<sleep seconds="3" />
+
+		<!-- cambio para seleccionar el correcto-->
+		<!--<echo message="Creando los fuentes de ${wsdl_siniestros}"/>-->
+
+		<echo message="Creando los fuentes de ${wsdl_siniestros_informacion}" />
+		<wsimport wsdl="${wsdl_siniestros_informacion}" sourcedestdir="${basedir}/../../${java_dir}/src/ws/main" verbose="false" xnocompile="true" keep="true" xendorsed="true" />
+
+		<sleep seconds="3" />
+
+		<echo message="Creando los fuentes de ${wsdl_asegurados}" />
+		<wsimport wsdl="${wsdl_asegurados}" sourcedestdir="${basedir}/../../${java_dir}/src/ws/main" verbose="false" xnocompile="true" keep="true" xendorsed="true" />
+
+		<sleep seconds="3" />
+
+		<echo message="Creando los fuentes de ${wsdl_renovaciones}" />
+		<wsimport wsdl="${wsdl_renovaciones}" sourcedestdir="${basedir}/../../${java_dir}/src/ws/main" verbose="false" xnocompile="true" keep="true" xendorsed="true" />
+
+		<sleep seconds="3" />
+
+		<echo message="Creando los fuentes de ${wsdl_calculoAM}" />
+		<wsimport wsdl="${wsdl_calculoAM}" sourcedestdir="${basedir}/../../${java_dir}/src/ws/main" verbose="false" xnocompile="true" keep="true" xendorsed="true" />
+
+		<sleep seconds="3" />
+
+		<echo message="Creando los fuentes de ${wsdl_ayudasContratacion}" />
+		<wsimport wsdl="${wsdl_ayudasContratacion}" sourcedestdir="${basedir}/../../${java_dir}/src/ws/main" verbose="true" xnocompile="true" keep="true" xendorsed="true" xdebug="true" />
+
+		<sleep seconds="3" />
+
+		<echo message="Creando los fuentes de ${wsdl_documentacion_ged}" />
+		<wsimport wsdl="${wsdl_documentacion_ged}" sourcedestdir="${basedir}/../../${java_dir}/src/ws/main" verbose="false" xnocompile="true" keep="true" xendorsed="true" />
+
+		<sleep seconds="3" />
+
+		<echo message="Creando los fuentes de ${wsdl_contratacion_colectivos}" />
+		<wsimport wsdl="${wsdl_contratacion_colectivos}" sourcedestdir="${basedir}/../../${java_dir}/src/ws/main" verbose="false" xnocompile="true" keep="true" xendorsed="true" />
+	</target>
+
+	<target name="generarJar" depends="compila">
+		<echo message="Generando JAR..." />
+		<jar destfile="${basedir}/../../${java_dir}/dist/wsAgroseguro.jar" basedir="${basedir}/../../${java_dir}/buildWS" />
+	</target>
+
+	<target name="compila" depends="wsdl2java" description="Compila los fuentes del servicio web para generar el jar">
+		<echo message="Compilando las clases..." />
+		<mkdir dir="${basedir}/../../${java_dir}/buildWS" />
+		<javac srcdir="${basedir}/../../${java_dir}/src/ws/main" target="1.7" source="1.7" destdir="${basedir}/../../${java_dir}/buildWS" includes="**/*.java" classpath="${classpath}" />
+	</target>
+
+	<!-- Generar wsAgroseguro.jar sin la dependencia de la generación de los fuentes, sólo compilando-->
+	<target name="generarJarSinWsdl2java" depends="compilaSinWsdl2java">
+		<echo message="Generando JAR..." />
+		<jar destfile="${basedir}/../../${java_dir}/dist/wsAgroseguro.jar" basedir="${basedir}/../../${java_dir}/buildWS" />
+	</target>
+
+	<target name="compilaSinWsdl2java" description="Compila los fuentes del servicio web para generar el jar">
+		<echo message="Compilando las clases..." />
+		<mkdir dir="${basedir}/../../${java_dir}/buildWS" />
+		<javac srcdir="${basedir}/../../${java_dir}/src/ws/main" target="1.7" source="1.7" destdir="${basedir}/../../${java_dir}/buildWS" includes="**/*.java" classpath="${classpath}" />
+	</target>
+
+</project>

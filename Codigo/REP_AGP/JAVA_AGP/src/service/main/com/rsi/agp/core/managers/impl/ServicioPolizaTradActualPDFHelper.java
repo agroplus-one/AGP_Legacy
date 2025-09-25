@@ -1,0 +1,87 @@
+package com.rsi.agp.core.managers.impl;
+
+import java.math.BigInteger;
+import java.net.MalformedURLException;
+import java.net.URL;
+
+import javax.xml.namespace.QName;
+import javax.xml.ws.WebServiceException;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import org.w3._2005._05.xmlmime.Base64Binary;
+
+import com.rsi.agp.core.util.WSUtils;
+
+import es.agroseguro.serviciosweb.polizapdf.ObtenerPolizaActualPDFRequest;
+import es.agroseguro.serviciosweb.polizapdf.ObtenerPolizaActualPDFResponse;
+import es.agroseguro.serviciosweb.polizapdf.PolizaPDF;
+import es.agroseguro.serviciosweb.polizapdf.PolizaPDF_Service;
+import es.agroseguro.serviciosweb.polizapdf.RefComple;
+
+
+/**
+ * 
+ * Helper para obtener un pdf con la situacion de la poliza  tradiccional 
+ * 
+ * @author U028982
+ *
+ */
+public class ServicioPolizaTradActualPDFHelper {
+
+	private static final Log logger = LogFactory.getLog(ServicioPolizaTradActualPDFHelper.class);
+	
+	//Helper para obtener un pdf con la situacion de la poliza tradicional desde el menu duplicados informaticos
+	public Base64Binary doWorkTradCopy(String CodPlan, String RefPoliza, String tipoRef,String realPath) throws Exception{		
+		URL wsdlLocation = null;
+		
+//		Establecemos proxy
+		if(WSUtils.isProxyFixed())
+			WSUtils.setProxy();		
+
+		try {
+			wsdlLocation = new URL("file:" + realPath + System.getProperty("file.separator") + WSUtils.getBundleProp("impresion.wsdl"));
+		
+		} catch (MalformedURLException e) {		
+			logger.error("Imposible recuperar el WSDL de Contratacion. Revise la Ruta: " + ((wsdlLocation != null) ? wsdlLocation.toString() : ""),e);
+			throw new WebServiceException("Imposible recuperar el WSDL de Contratacion. Revise la Ruta: " + ((wsdlLocation != null) ? wsdlLocation.toString() : ""),e);
+		}
+		
+//		Recogemos de webservice.properties los valores para el ServiceName y Port
+		String wsLocation = WSUtils.getBundleProp("impresion.location");
+		String wsPort = WSUtils.getBundleProp("impresion.port");
+		String wsService = WSUtils.getBundleProp("impresion.service");
+		
+		QName serviceName = new QName(wsLocation,wsService);
+		QName portName = new QName(wsLocation,wsPort);
+			
+		logger.debug("wsdlLocation: " + wsdlLocation.toString());
+		logger.debug("wsLocation: " + wsLocation.toString());
+		logger.debug("wsPort: " + wsPort.toString());
+		logger.debug("wsService: " + wsService.toString());
+//		Envoltorio para la llamda al servicio web de impresion
+
+		PolizaPDF_Service srv = new PolizaPDF_Service(wsdlLocation,serviceName);
+		PolizaPDF srvImpresion = srv.getPort(portName,PolizaPDF.class);
+		
+//		Cabecera de seguridad
+		WSUtils.addSecurityHeader(srvImpresion);
+
+//		Montamos el XML de envio con los parametros
+		ObtenerPolizaActualPDFRequest parameters = new ObtenerPolizaActualPDFRequest();	
+		parameters.setCodplan(new BigInteger(CodPlan));				
+		parameters.setReferencia(RefPoliza);
+		parameters.setTiporeferencia(RefComple.fromValue(tipoRef));
+		
+//		Respuesta del webService	
+		ObtenerPolizaActualPDFResponse response = null;
+
+		response = srvImpresion.obtenerPolizaActualPDF(parameters);
+		if(response!=null){
+			return response.getDocumento();		
+		}						
+		return null;
+		
+	}
+
+}

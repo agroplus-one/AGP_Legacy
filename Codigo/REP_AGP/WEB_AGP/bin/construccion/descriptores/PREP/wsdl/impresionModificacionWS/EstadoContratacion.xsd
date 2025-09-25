@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<x:schema
+	targetNamespace="http://www.agroseguro.es/SeguroAgrario/EstadoContratacion"
+	xmlns="http://www.agroseguro.es/SeguroAgrario/EstadoContratacion"
+	xmlns:x="http://www.w3.org/2001/XMLSchema"
+	xmlns:ti="http://www.agroseguro.es/Tipos"
+	xmlns:cupon="http://www.agroseguro.es/SeguroAgrario/CuponModificacion">
+
+	<x:import namespace="http://www.agroseguro.es/Tipos" schemaLocation="Tipos.xsd" />
+	<x:import namespace="http://www.agroseguro.es/SeguroAgrario/CuponModificacion" schemaLocation="CuponModificacion.xsd" />
+
+	<x:element name="EstadoContratacion" type="EstadoContratacion" />
+
+	<x:complexType name="EstadoContratacion">
+		<x:sequence>
+			<x:element name="SeguroPrincipal" type="SeguroPrincipal" minOccurs="1" maxOccurs="1" />
+			<x:element name="SeguroComplementario" type="SeguroComplementario" minOccurs="0" maxOccurs="1" />
+		</x:sequence>
+		<x:attribute name="referencia" use="required" type="ti:Poliza_Referencia_Unificada" />
+		<x:attributeGroup ref="ti:PlanLinea" />
+		<x:attributeGroup ref="ti:PeticionSW" />
+	</x:complexType>
+
+	<x:complexType name="SeguroPrincipal">
+		<x:sequence>
+			<x:element name="EstadoPoliza" type="EstadoPoliza" minOccurs="1" maxOccurs="1" />
+			<x:element name="EstadoUltimaModificacionCupon" type="EstadoUltimaModificacionCupon" minOccurs="0" maxOccurs="1" />
+		</x:sequence>
+	</x:complexType>
+	
+	<x:complexType name="SeguroComplementario">
+		<x:sequence>
+			<x:element name="EstadoPoliza" type="EstadoPoliza" minOccurs="1" maxOccurs="1" />
+			<x:element name="EstadoUltimaModificacionCupon" type="EstadoUltimaModificacionCupon" minOccurs="0" maxOccurs="1" />
+		</x:sequence>
+	</x:complexType>
+
+	<x:complexType name="EstadoPoliza">
+		<x:attribute name="estado" use="required" type="CodigoEstadoPoliza" />
+		<x:attribute name="descriptivo" use="required" type="DescriptivoEstadoPoliza" />
+		<x:attribute name="fase" use="optional" type="ti:Fase_Codigo" />
+		<x:attribute name="numeroUltimoRecibo" use="optional" type="ti:Recibo_Codigo" />
+		<x:attribute name="fechaEmisionRecibo" use="optional" type="x:date" />
+		<x:attribute name="fechaEntradaVigor"  use="required" type="x:date" />
+	</x:complexType> 
+
+	<x:simpleType name="CodigoEstadoPoliza">
+		<x:restriction base="x:positiveInteger">
+			<x:totalDigits value="2" />
+			<x:minInclusive value="1" />
+		</x:restriction>
+	</x:simpleType>
+
+	<x:simpleType name="DescriptivoEstadoPoliza">
+		<x:restriction base="x:string">
+			<x:maxLength value="30" />
+		</x:restriction>
+	</x:simpleType>
+	
+	<x:complexType name="EstadoUltimaModificacionCupon">
+		<x:attribute name="idCupon" use="required" type="cupon:idCupon" />
+		<x:attribute name="fechaHoraRecepcion" use="required" type="x:dateTime" />
+		<x:attribute name="anioIncidencia" use="required" type="AnioIncidencia" />
+		<x:attribute name="numeroIncidencia" use="required" type="NumeroIncidencia" />
+		<x:attribute name="codigoEstadoIncidencia" use="required" type="CodigoEstadoIncidencia" />
+		<x:attribute name="descriptivoEstadoIncidencia" use="required" type="DescriptivoEstadoIncidencia" />		
+		<x:attribute name="fechaEstado" use="required" type="x:date" />
+	</x:complexType>
+
+	<x:simpleType name="AnioIncidencia">
+		<x:restriction base="x:int">
+			<x:totalDigits value="4" />
+			<x:maxInclusive value="9999" />
+			<x:minInclusive value="1980" />
+		</x:restriction>
+	</x:simpleType>
+	
+	<x:simpleType name="NumeroIncidencia">
+		<x:restriction base="x:positiveInteger">
+			<x:totalDigits value="6" />
+			<x:minInclusive value="1" />
+		</x:restriction>
+	</x:simpleType>
+
+	<x:simpleType name="CodigoEstadoIncidencia">
+		<x:restriction base="x:string">
+			<x:maxLength value="1" />
+		</x:restriction>
+	</x:simpleType>
+	
+	<x:simpleType name="DescriptivoEstadoIncidencia">
+		<x:restriction base="x:string">
+			<x:maxLength value="20" />
+		</x:restriction>
+	</x:simpleType>
+	
+
+	
+</x:schema>

@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="declaracionSeguro_hojaParcelas_totalNoPlanton1" pageWidth="555" pageHeight="802" whenNoDataType="AllSectionsNoDetail" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="HOJA" class="java.math.BigDecimal"/>
+	<parameter name="IDPOLIZA" class="java.lang.Integer"/>
+	<queryString>
+		<![CDATA[SELECT SUM (NVL(REL.Produccionmodif,REL.PRODUCCION)) AS TOTALPRODUCCION,
+       SUM (NVL(REL.Preciomodif * CA.SUPERFICIE,REL.PRECIO * CA.SUPERFICIE)) AS TOTALPRECIO,
+       SUM (CA.SUPERFICIE) AS TOTALSUPERFICIE
+FROM o02agpe0.TB_PARCELAS PA, o02agpe0.TB_CAPITALES_ASEGURADOS CA, o02agpe0.TB_SC_C_TIPO_CAPITAL TC, o02agpe0.TB_CAP_ASEG_REL_MODULO REL
+WHERE CA.IDPARCELA = PA.IDPARCELA
+AND CA.CODTIPOCAPITAL = TC.CODTIPOCAPITAL
+AND CA.IDCAPITALASEGURADO = REL.IDCAPITALASEGURADO
+AND CA.CODTIPOCAPITAL != 1
+AND PA.HOJA = $P{HOJA}
+AND PA.IDPOLIZA = $P{IDPOLIZA}]]>
+	</queryString>
+	<field name="TOTALPRODUCCION" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="TOTALPRECIO" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="TOTALSUPERFICIE" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="21" splitType="Stretch">
+			<textField isBlankWhenNull="true">
+				<reportElement x="113" y="0" width="75" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{TOTALPRODUCCION}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.00" isBlankWhenNull="true">
+				<reportElement x="316" y="0" width="90" height="20"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{TOTALPRECIO}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.00" isBlankWhenNull="true">
+				<reportElement x="491" y="0" width="64" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{TOTALSUPERFICIE}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="0" width="38" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[TOTAL]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="38" y="0" width="75" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[PRODUCCION:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="196" y="0" width="120" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[VALOR ASEGURABLE:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="421" y="0" width="70" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[SUPERFICIE:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="406" y="0" width="10" height="20">
+					<printWhenExpression><![CDATA[new Boolean(($F{TOTALPRODUCCION} != null) && ($F{TOTALPRECIO} != null) && ($F{TOTALSUPERFICIE} != null))]]></printWhenExpression>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[€]]></text>
+			</staticText>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

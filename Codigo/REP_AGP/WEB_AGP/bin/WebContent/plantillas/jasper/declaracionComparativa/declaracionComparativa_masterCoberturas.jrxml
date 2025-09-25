@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.16.0.final using JasperReports Library version 3.6.1  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="declaracionComparativa" pageWidth="575" pageHeight="832" whenNoDataType="AllSectionsNoDetail" columnWidth="575" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="DataAdapter.xml"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA[""]]></defaultValueExpression>
+	</parameter>
+	<parameter name="ID" class="java.lang.Integer"/>
+	<parameter name="tablaSubreport" class="net.sf.jasperreports.engine.JasperReport" isForPrompting="false"/>
+	<parameter name="datasource" class="net.sf.jasperreports.engine.data.JRBeanCollectionDataSource" isForPrompting="false"/>
+	<parameter name="isPagoFraccionado" class="java.lang.Boolean"/>
+	<parameter name="esGanado" class="java.lang.Boolean"/>
+	<parameter name="codModulo" class="java.lang.String"/>
+	<parameter name="descripcionMod" class="java.lang.String"/>
+	<parameter name="grupoNegPrimero" class="java.lang.String"/>
+	<parameter name="grupoNegSegundo" class="java.lang.String"/>
+	<parameter name="idComparativa" class="java.math.BigDecimal"/>
+	<parameter name="pctRecargo" class="java.math.BigDecimal"/>
+	<parameter name="codplan" class="java.math.BigDecimal"/>
+	<parameter name="codlinea" class="java.math.BigDecimal"/>
+	<parameter name="nomlinea" class="java.lang.String"/>
+	<parameter name="tipoAsegurado" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[select
+				        sum (nvl(c.COSTETOMADOR,0)) as COSTETOMADOR,-- para agro
+
+				        sum (nvl(c.RECARGOAVAL,0)) as RECARGOAVAL,
+				        sum (nvl(c.RECARGOFRACCIONAMIENTO,0)) as RECARGOFRACCIONAMIENTO,
+				        sum (nvl(c.TOTALCOSTETOMADOR,0)) as TOTALCOSTETOMADOR
+
+        	from tb_distribucion_costes_2015 c,
+				     tb_sc_c_grupos_negocio g
+ 				where c.idpoliza = $P{ID}
+					and c.grupo_negocio = g.grupo_negocio]]>
+	</queryString>
+	<field name="COSTETOMADOR" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="RECARGOAVAL" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="RECARGOFRACCIONAMIENTO" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="TOTALCOSTETOMADOR" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<variable name="HEADER" class="java.lang.String">
+		<variableExpression><![CDATA[new String("NO")]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<detail>
+		<band height="150">
+			<staticText>
+				<reportElement x="36" y="34" width="240" height="15">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+				</reportElement>
+				<textElement lineSpacing="Single">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[RESUMEN DE COBERTURAS Y GARANTÍAS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="36" y="49" width="40" height="15">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle" lineSpacing="Single">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Módulo:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="76" y="49" width="321" height="15">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle" lineSpacing="Single">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{descripcionMod}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="36" y="64" width="129" height="15">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+					<printWhenExpression><![CDATA[Boolean.valueOf($P{codlinea}.toString().equals("406"))]]></printWhenExpression>
+				</reportElement>
+				<textElement verticalAlignment="Middle" lineSpacing="Single">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Tipo Asegurado Ganado:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="165" y="64" width="232" height="15">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<printWhenExpression><![CDATA[Boolean.valueOf($P{codlinea}.toString().equals("406"))]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{tipoAsegurado}]]></textFieldExpression>
+			</textField>
+			<subreport runToBottom="false">
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="10" y="82" width="490" height="25">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
+				<dataSourceExpression><![CDATA[$P{datasource}]]></dataSourceExpression>
+				<subreportExpression class="net.sf.jasperreports.engine.JasperReport"><![CDATA[$P{tablaSubreport}]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

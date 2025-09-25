@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<x:schema
+	targetNamespace="http://www.agroseguro.es/DistribucionCostesSeguro"
+	xmlns="http://www.agroseguro.es/DistribucionCostesSeguro"
+	xmlns:x="http://www.w3.org/2001/XMLSchema"
+	xmlns:ti="http://www.agroseguro.es/Tipos"
+	xmlns:cp="http://www.agroseguro.es/Contratacion/CostePoliza"
+	xmlns:dv="http://www.agroseguro.es/Contratacion/DatosVariables">
+
+	<x:import namespace="http://www.agroseguro.es/Tipos"
+		schemaLocation="Tipos.xsd" />
+	<x:import namespace="http://www.agroseguro.es/Contratacion/CostePoliza"
+		schemaLocation="CostePoliza.xsd" />
+	<x:import namespace="http://www.agroseguro.es/DistribucionCoste/DatosAdicionalesCabecera"
+		schemaLocation="DatosAdicionalesCabeceraUnificado.xsd" />
+	<x:import namespace="http://www.agroseguro.es/CostePoliza/Parcela"
+		schemaLocation="CosteParcelaUnificada.xsd" />
+	<x:import namespace="http://www.agroseguro.es/CostePoliza/Explotacion"
+		schemaLocation="CosteExplotacionUnificada.xsd" />
+	<x:import namespace="http://www.agroseguro.es/Contratacion/DatosVariables"
+		schemaLocation="DatosVariablesUnificado.xsd" />
+	
+
+	<x:element name="Poliza" type="Poliza" />
+		
+	<x:complexType name="Poliza">
+		<x:sequence>
+			<x:element name="DatosCalculo" type="DatosCalculo"
+				maxOccurs="1" minOccurs="1" />
+			<x:element name="CalculoAlternativoFinanciacion" type="CalculoAlternativoFinanciacion"
+				maxOccurs="1" minOccurs="0" />
+			<x:element name="AcumuladosCosteCoberturaRegimen" type="AcumuladosCosteCoberturaRegimen" 	
+				maxOccurs="1" minOccurs="0" />
+			<x:element name="DatosAdicionales" type="DatosAdicionales"
+				maxOccurs="1" minOccurs="0" />
+			<x:element name="ObjetoAsegurado" type="ObjetoAsegurado" minOccurs="1"
+					maxOccurs="unbounded" />
+		</x:sequence>
+		<x:attributeGroup ref="ti:PlanLinea" />
+		<x:attributeGroup ref="ti:PeticionSW" />
+		<x:anyAttribute namespace="http://www.agroseguro.es/DistribucionCoste/DatosAdicionalesCabecera" processContents="lax" />
+	</x:complexType>
+
+	<x:complexType name="DatosCalculo">
+		<x:sequence>
+			<x:element name="CostePoliza" type="cp:CostePoliza"
+					maxOccurs="1" minOccurs="1" />
+		</x:sequence>
+	</x:complexType>
+	
+	<x:complexType name="CalculoAlternativoFinanciacion">
+		<x:sequence>
+			<x:element name="CosteGrupoNegocio" type="cp:CosteGrupoNegocio"
+					maxOccurs="unbounded" minOccurs="1" />
+		</x:sequence>
+		<x:attribute name="totalCosteTomadorAFinanciar" type="ti:ImportePositivo" use="required"/>
+	</x:complexType>
+
+	<x:complexType name="DatosAdicionales">
+		<x:sequence>
+			<x:any minOccurs="1" maxOccurs="unbounded" namespace="http://www.agroseguro.es/DistribucionCoste/DatosAdicionalesCabecera"
+				processContents="lax" />
+		</x:sequence>
+		<x:anyAttribute namespace="http://www.agroseguro.es/DistribucionCoste/DatosAdicionalesCabecera" processContents="lax" />
+	</x:complexType>
+	
+	<x:complexType name="ObjetoAsegurado" >
+		<x:sequence>
+			<x:any processContents="lax"  minOccurs="1" maxOccurs="unbounded"
+					namespace="http://www.agroseguro.es/CostePoliza/Parcela			http://www.agroseguro.es/CostePoliza/Explotacion" />
+		</x:sequence>
+		<x:anyAttribute processContents="lax" 
+				namespace="http://www.agroseguro.es/CostePoliza/Parcela			http://www.agroseguro.es/CostePoliza/Explotacion" />		
+	</x:complexType>
+	
+	<x:complexType name="AcumuladosCosteCoberturaRegimen">
+		<x:sequence>
+			<x:element name="CosteCoberturaRegimen" type="CosteCoberturaRegimen" minOccurs="1" maxOccurs="unbounded" />	
+		</x:sequence>
+	</x:complexType>
+	
+	<x:complexType name="CosteCoberturaRegimen">
+		<x:sequence>
+			<x:element name="Cobertura" type="Cobertura" minOccurs="1" maxOccurs="1" />	
+			<x:element name="CosteAcumuladoCoberturaRegimen" type="cp:CosteGrupoNegocio" minOccurs="1" maxOccurs="1" />
+		</x:sequence>
+		<x:attribute name="regimen" type="ti:Regimen" use="required"/>
+		
+	</x:complexType>
+	
+	<x:complexType name="Cobertura">
+		<x:attributeGroup ref="dv:FactoresModulo" />			
+	</x:complexType>
+	
+</x:schema>

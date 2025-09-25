@@ -1,0 +1,395 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.16.0.final using JasperReports Library version 6.16.0-48579d909b7943b64690c65c71e07e0b80981928  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="declaracionComparativa2024" pageWidth="575" pageHeight="832" whenNoDataType="AllSectionsNoDetail" columnWidth="575" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" isIgnorePagination="true" uuid="79f80009-def9-4185-8c9f-ca25a15bb631">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="DataAdapter.xml"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA[""]]></defaultValueExpression>
+	</parameter>
+	<parameter name="ID" class="java.lang.Integer"/>
+	<parameter name="sourceDatosInformativos" class="net.sf.jasperreports.engine.data.JRBeanCollectionDataSource" isForPrompting="false"/>
+	<parameter name="esGanado" class="java.lang.Boolean"/>
+	<parameter name="codplan" class="java.math.BigDecimal"/>
+	<parameter name="codlinea" class="java.math.BigDecimal"/>
+	<parameter name="nomlinea" class="java.lang.String"/>
+	<parameter name="tipoAsegurado" class="java.lang.String"/>
+	<parameter name="sourceTablaCoberturas" class="net.sf.jasperreports.engine.data.JRBeanCollectionDataSource" isForPrompting="false"/>
+	<parameter name="codModulo" class="java.lang.String"/>
+	<parameter name="sourceDistribucionCostes" class="net.sf.jasperreports.engine.data.JRBeanCollectionDataSource" isForPrompting="false"/>
+	<parameter name="sourceTiposCapital" class="net.sf.jasperreports.engine.data.JRBeanCollectionDataSource" isForPrompting="false"/>
+	<parameter name="sourceLiteralesDistribucionCostesGN1" class="net.sf.jasperreports.engine.data.JRBeanCollectionDataSource" isForPrompting="false"/>
+	<parameter name="sourceImportesDistribucionCostesGN1" class="net.sf.jasperreports.engine.data.JRBeanCollectionDataSource" isForPrompting="false"/>
+	<parameter name="sourceImportesDistribucionCostesGN2" class="net.sf.jasperreports.engine.data.JRBeanCollectionDataSource" isForPrompting="false"/>
+	<parameter name="sourceLiteralesDistribucionCostesGN2" class="net.sf.jasperreports.engine.data.JRBeanCollectionDataSource" isForPrompting="false"/>
+	<queryString>
+		<![CDATA[SELECT * FROM DUAL]]>
+	</queryString>
+	<variable name="HEADER" class="java.lang.String">
+		<variableExpression><![CDATA[new String("NO")]]></variableExpression>
+	</variable>
+	<columnHeader>
+		<band height="93">
+			<staticText>
+				<reportElement x="0" y="0" width="575" height="34" uuid="9a62396d-cdf6-4c09-92fb-a7aacaa82e8a"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[COMPARATIVA IMPORTES]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="156" y="34" width="45" height="15" uuid="dd0aaf5d-06ec-4238-ba00-96533f401169"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="10" isBold="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Línea:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="156" y="51" width="45" height="15" uuid="75ce1c2c-fb70-4a62-b7e5-2701dd91a59b"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="10" isBold="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Plan:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="208" y="51" width="361" height="15" uuid="3e936f64-2816-4d23-aa66-2e65d5385385"/>
+				<textElement verticalAlignment="Middle">
+					<font size="10"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{codplan}.toString()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="208" y="34" width="361" height="15" uuid="f68d36d9-425c-40a2-ae02-e74feaa7dabc"/>
+				<textElement verticalAlignment="Middle">
+					<font size="10"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{codlinea}.toString() + " - " + $P{nomlinea}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="10" y="78" width="210" height="15" uuid="248980e0-1afa-458a-9a2a-2c9a63b6d54b">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<box>
+					<bottomPen lineWidth="2.0"/>
+				</box>
+				<textElement>
+					<font size="10" isBold="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[DISTRIBUCION DEL COSTE]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="65" splitType="Stretch">
+			<printWhenExpression><![CDATA[new Boolean($P{sourceImportesDistribucionCostesGN1}.getRecordCount() > 0)]]></printWhenExpression>
+			<subreport>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" mode="Transparent" x="225" y="26" width="320" height="30" isRemoveLineWhenBlank="true" backcolor="#E3110E" uuid="c3580c37-c19b-4752-8cd2-007338e0ae92">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
+				<subreportParameter name="SUBREPORT_DIR">
+					<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="sourceDistribucionCostes">
+					<subreportParameterExpression><![CDATA[$P{sourceDistribucionCostes}]]></subreportParameterExpression>
+				</subreportParameter>
+				<dataSourceExpression><![CDATA[$P{sourceImportesDistribucionCostesGN1}]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "importesDistribucionCosteComparativa2024.jasper"]]></subreportExpression>
+			</subreport>
+			<subreport>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" mode="Transparent" x="15" y="41" width="210" height="15" isRemoveLineWhenBlank="true" backcolor="#2AF01F" uuid="c6f72221-1b38-4b2d-8e67-7586adfb2db9">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
+				<subreportParameter name="SUBREPORT_DIR">
+					<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
+				</subreportParameter>
+				<dataSourceExpression><![CDATA[$P{sourceLiteralesDistribucionCostesGN1}]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "literalesDistribucionCosteComparativa2024.jasper"]]></subreportExpression>
+			</subreport>
+			<textField>
+				<reportElement x="254" y="3" width="55" height="15" uuid="a855e286-469a-4104-a971-5508637550b5">
+					<printWhenExpression><![CDATA[new Boolean($P{sourceImportesDistribucionCostesGN1}.getRecordCount() == 1)]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA["Resto"]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="250" y="17" width="62" height="1" uuid="60dc50de-5edb-4bde-a1d3-7d6916acd8f0">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<printWhenExpression><![CDATA[new Boolean($P{sourceImportesDistribucionCostesGN1}.getRecordCount() == 1)]]></printWhenExpression>
+				</reportElement>
+			</line>
+			<textField>
+				<reportElement x="297" y="3" width="55" height="15" uuid="674f87ef-fa6f-4a10-8f4b-20f1e72f038e">
+					<printWhenExpression><![CDATA[new Boolean($P{sourceImportesDistribucionCostesGN1}.getRecordCount() == 2)]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA["Resto"]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="250" y="17" width="149" height="1" uuid="14c63540-ae20-4676-bab8-fadc519e431f">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<printWhenExpression><![CDATA[new Boolean($P{sourceImportesDistribucionCostesGN1}.getRecordCount() == 2)]]></printWhenExpression>
+				</reportElement>
+			</line>
+			<textField>
+				<reportElement x="336" y="3" width="55" height="15" uuid="e47d2e7d-0940-47a8-b24a-c6facd2c581b">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+					<printWhenExpression><![CDATA[new Boolean($P{sourceImportesDistribucionCostesGN1}.getRecordCount() == 3)]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA["Resto"]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="250" y="17" width="227" height="1" uuid="12d80f65-7f3c-4db2-acf3-72367e918d84">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<printWhenExpression><![CDATA[new Boolean($P{sourceImportesDistribucionCostesGN1}.getRecordCount() == 3)]]></printWhenExpression>
+				</reportElement>
+			</line>
+			<textField>
+				<reportElement x="370" y="3" width="55" height="15" uuid="ee1cade9-afea-4bba-a0c1-a74ca44624cf">
+					<printWhenExpression><![CDATA[new Boolean($P{sourceImportesDistribucionCostesGN1}.getRecordCount() == 4)]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA["Resto"]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="250" y="17" width="309" height="1" uuid="85d78824-a2d8-410c-b1f3-509354fc091d">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<printWhenExpression><![CDATA[new Boolean($P{sourceImportesDistribucionCostesGN1}.getRecordCount() == 4)]]></printWhenExpression>
+				</reportElement>
+			</line>
+		</band>
+		<band height="69" splitType="Stretch">
+			<printWhenExpression><![CDATA[new Boolean($P{sourceImportesDistribucionCostesGN2}.getRecordCount() > 0)]]></printWhenExpression>
+			<subreport>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" mode="Transparent" x="225" y="30" width="320" height="30" isRemoveLineWhenBlank="true" backcolor="#2AF01F" uuid="724f8067-2379-49cb-81af-8aca564ffcc9">
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
+				<subreportParameter name="SUBREPORT_DIR">
+					<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
+				</subreportParameter>
+				<dataSourceExpression><![CDATA[$P{sourceImportesDistribucionCostesGN2}]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "importesDistribucionCosteComparativa2024.jasper"]]></subreportExpression>
+			</subreport>
+			<subreport>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" mode="Transparent" x="15" y="45" width="210" height="15" isRemoveLineWhenBlank="true" backcolor="#2AF01F" uuid="809901d4-c6ad-486a-a307-5075cb5fb95a">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
+				<subreportParameter name="SUBREPORT_DIR">
+					<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
+				</subreportParameter>
+				<dataSourceExpression><![CDATA[$P{sourceLiteralesDistribucionCostesGN2}]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "literalesDistribucionCosteComparativa2024.jasper"]]></subreportExpression>
+			</subreport>
+			<textField>
+				<reportElement x="257" y="10" width="55" height="15" uuid="1a87c6c2-4ef9-4dd9-87ab-c45868da16cd">
+					<printWhenExpression><![CDATA[new Boolean($P{sourceImportesDistribucionCostesGN2}.getRecordCount() == 1)]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA["RyD"]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="253" y="24" width="62" height="1" uuid="b3c7e5bb-7be9-4384-afab-3b1affd804bc">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<printWhenExpression><![CDATA[new Boolean($P{sourceImportesDistribucionCostesGN2}.getRecordCount() == 1)]]></printWhenExpression>
+				</reportElement>
+			</line>
+			<textField>
+				<reportElement x="300" y="10" width="55" height="15" uuid="3ff16d5c-0df2-47ab-acd5-552c0b76e45c">
+					<printWhenExpression><![CDATA[new Boolean($P{sourceImportesDistribucionCostesGN2}.getRecordCount() == 2)]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA["RyD"]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="253" y="24" width="149" height="1" uuid="f703b9aa-823e-4b9c-b438-8094fee8cfed">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<printWhenExpression><![CDATA[new Boolean($P{sourceImportesDistribucionCostesGN2}.getRecordCount() == 2)]]></printWhenExpression>
+				</reportElement>
+			</line>
+			<textField>
+				<reportElement x="339" y="10" width="55" height="15" uuid="f9e6ea37-d116-4c80-979a-73e38561b5eb">
+					<printWhenExpression><![CDATA[new Boolean($P{sourceImportesDistribucionCostesGN2}.getRecordCount() == 3)]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA["RyD"]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="253" y="24" width="227" height="1" uuid="c3f5a6f4-aea1-4929-a038-f3e364187de0">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<printWhenExpression><![CDATA[new Boolean($P{sourceImportesDistribucionCostesGN2}.getRecordCount() == 3)]]></printWhenExpression>
+				</reportElement>
+			</line>
+			<textField>
+				<reportElement x="370" y="10" width="55" height="15" uuid="b868a6e4-6b12-408d-89ad-a70f8a1b1926">
+					<printWhenExpression><![CDATA[new Boolean($P{sourceImportesDistribucionCostesGN2}.getRecordCount() == 4)]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA["RyD"]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="253" y="24" width="306" height="1" uuid="b8faed15-2b18-476e-9de3-0ce0e93c1b90">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<printWhenExpression><![CDATA[new Boolean($P{sourceImportesDistribucionCostesGN2}.getRecordCount() == 4)]]></printWhenExpression>
+				</reportElement>
+			</line>
+		</band>
+		<band height="60" splitType="Stretch">
+			<staticText>
+				<reportElement x="15" y="0" width="210" height="15" uuid="05e14161-685d-4607-9f43-a0f09f94424b">
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="10" isBold="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[DATOS INFORMATIVOS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="15" y="15" width="210" height="15" uuid="8f9989b7-927c-43df-843b-221b88ae9330">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+				</reportElement>
+				<box>
+					<rightPen lineWidth="2.0"/>
+				</box>
+				<textElement>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Permite contratar a partir del]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="15" y="30" width="210" height="15" uuid="02d6ffa1-62e6-4736-b172-93e1ba0d342c">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<box>
+					<bottomPen lineWidth="2.0"/>
+					<rightPen lineWidth="2.0"/>
+				</box>
+				<textElement>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Fecha Limite de contratación]]></text>
+			</staticText>
+			<subreport>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" isPrintRepeatedValues="false" mode="Transparent" x="225" y="15" width="320" height="30" isRemoveLineWhenBlank="true" uuid="d5e549f5-d65c-4e3c-a279-e288c1c3ae2e"/>
+				<subreportParameter name="sourceDatosInformativos">
+					<subreportParameterExpression><![CDATA[$P{sourceDatosInformativos}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="SUBREPORT_DIR">
+					<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
+				</subreportParameter>
+				<dataSourceExpression><![CDATA[$P{sourceDatosInformativos}]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "datInformativos2024.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="60" splitType="Stretch">
+			<subreport>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" mode="Transparent" x="15" y="0" width="530" height="30" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" uuid="fb3b3a0f-7d63-42af-a3c8-3e35af3364eb">
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+				</reportElement>
+				<subreportParameter name="sourceDatosInformativos">
+					<subreportParameterExpression><![CDATA[$P{sourceDatosInformativos}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="SUBREPORT_DIR">
+					<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
+				</subreportParameter>
+				<dataSourceExpression><![CDATA[$P{sourceTiposCapital}]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "tiposCapitalComparativa2024.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="60" splitType="Stretch">
+			<staticText>
+				<reportElement x="15" y="0" width="215" height="15" uuid="8291e7f8-0638-40e8-961b-1b2de8d676c4">
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="10" isBold="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[RESUMEN DE COBERTURAS Y GARANTIAS]]></text>
+			</staticText>
+			<subreport>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" mode="Transparent" x="15" y="15" width="530" height="30" isRemoveLineWhenBlank="true" uuid="c4d74a09-f821-4bd8-bc86-236d71a886d9">
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+				</reportElement>
+				<subreportParameter name="sourceDatosInformativos">
+					<subreportParameterExpression><![CDATA[$P{sourceDatosInformativos}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="SUBREPORT_DIR">
+					<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
+				</subreportParameter>
+				<dataSourceExpression><![CDATA[$P{sourceTablaCoberturas}]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "tablaCoberturas2024.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+</jasperReport>

@@ -1,0 +1,305 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="declaracionColectivoRGPD" pageWidth="595" pageHeight="842" whenNoDataType="AllSectionsNoDetail" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" isIgnorePagination="true">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="style1" isDefault="false" fill="Solid"/>
+	<parameter name="SUBREPORT_COMUN_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["."]]></defaultValueExpression>
+	</parameter>
+	<parameter name="COPIA" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<variable name="SHOW_FOOT" class="java.lang.String">
+		<variableExpression><![CDATA[new String("VACIO")]]></variableExpression>
+	</variable>
+	<title>
+		<band height="640" splitType="Stretch">
+			<staticText>
+				<reportElement x="16" y="23" width="515" height="40"/>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[El TOMADOR, al contratar por el asegurado, actúa en su nombre y representación (Artículo 12 tres.b.del R.D. 2329/1979 de 14 de septiembre. Los datos personales recabados, su tratamiento y comunicaciones, son necesarios para el normal establecimiento y desarrollo de la relación contractual del Seguro Agrario Combinado (Contrato de carácter normado), regulado por la Ley de Seguros Agrarios, su Reglamento, el Plan Anual de Seguros Agrarios aprobado por el Consejo de Ministros, las correspondientes Oredenes Ministeriales de aplicación y sus Condiciones Generales y Especiales.]]></text>
+			</staticText>
+			<frame>
+				<reportElement x="66" y="134" width="465" height="50"/>
+				<box>
+					<pen lineWidth="0.75"/>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<staticText>
+					<reportElement x="10" y="6" width="444" height="12"/>
+					<textElement>
+						<font size="7" isBold="false"/>
+					</textElement>
+					<text><![CDATA[Tramitar la formalización de la declaración del seguro colectivo.]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="10" y="19" width="444" height="20"/>
+					<textElement>
+						<font size="7" isBold="false"/>
+					</textElement>
+					<text><![CDATA[Los datos se conservarán durante el periodo de vigencia del contrato y en todo caso el tiempo necesario para el ejercicio de las acciones legales de responsabilidad que se establecen en la Ley Española.]]></text>
+				</staticText>
+			</frame>
+			<frame>
+				<reportElement x="66" y="261" width="465" height="85"/>
+				<box>
+					<pen lineWidth="0.75"/>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<staticText>
+					<reportElement x="10" y="8" width="444" height="33"/>
+					<textElement>
+						<font size="7"/>
+					</textElement>
+					<text><![CDATA[Tiene derecho a ejercer los derechos de acceso, rectificación, supresión, portabilidad, limitación y oposición presentando una solicitud a AGROSEGURO, Departamento de Producción, Calle Gobelas, 23, 28023 Madrid; o a la dirección de correo electrónico rgpd@agroseguro.es, aportando copia de su DNI o documento oficial que le acredite.]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="10" y="41" width="444" height="33"/>
+					<textElement>
+						<font size="7"/>
+					</textElement>
+					<text><![CDATA[Igualmente tiene derecho a presentar la correspondiente reclamación ante la Agencia Española de Protección de Datos a través del siguiente enlace: http://www.agpd.es]]></text>
+				</staticText>
+			</frame>
+			<frame>
+				<reportElement x="66" y="70" width="465" height="64"/>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid"/>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid"/>
+				</box>
+				<staticText>
+					<reportElement x="10" y="6" width="444" height="12"/>
+					<textElement>
+						<font size="7" isItalic="true"/>
+					</textElement>
+					<text><![CDATA[Agrupación Española de Entidades Aseguradoras de los Seguros Agrarios Combinados, S.A. (AGROSEGURO) - CIF A28637304]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="10" y="18" width="10" height="12"/>
+					<textElement>
+						<font size="7"/>
+					</textElement>
+					<text><![CDATA[-]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="21" y="17" width="203" height="12"/>
+					<textElement>
+						<font size="7"/>
+					</textElement>
+					<text><![CDATA[Dirección postal: calle Gobelas 23, 28023 MADRID]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="21" y="28" width="153" height="12"/>
+					<textElement>
+						<font size="7" isItalic="false"/>
+					</textElement>
+					<text><![CDATA[Correo Electrónico: agro@agroseguro.es]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="10" y="39" width="444" height="22"/>
+					<textElement>
+						<font size="7" isBold="false"/>
+					</textElement>
+					<text><![CDATA[Contacto del Delegado de Protección de Datos: dpd@agroseguro.es]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="10" y="28" width="10" height="12"/>
+					<textElement>
+						<font size="7"/>
+					</textElement>
+					<text><![CDATA[-]]></text>
+				</staticText>
+			</frame>
+			<frame>
+				<reportElement x="16" y="223" width="50" height="38"/>
+				<box>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="0.75"/>
+					<rightPen lineWidth="0.75"/>
+				</box>
+				<staticText>
+					<reportElement x="4" y="8" width="42" height="20"/>
+					<textElement>
+						<font size="7"/>
+					</textElement>
+					<text><![CDATA[Destinatarios]]></text>
+				</staticText>
+			</frame>
+			<frame>
+				<reportElement x="16" y="70" width="50" height="64"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="0.75"/>
+					<rightPen lineWidth="0.75"/>
+				</box>
+				<staticText>
+					<reportElement x="4" y="8" width="42" height="20"/>
+					<textElement>
+						<font size="7"/>
+					</textElement>
+					<text><![CDATA[Responsable]]></text>
+				</staticText>
+			</frame>
+			<frame>
+				<reportElement x="16" y="134" width="50" height="50"/>
+				<box>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="0.75"/>
+					<rightPen lineWidth="0.75"/>
+				</box>
+				<staticText>
+					<reportElement x="4" y="9" width="42" height="13"/>
+					<textElement>
+						<font size="7"/>
+					</textElement>
+					<text><![CDATA[Finalidad]]></text>
+				</staticText>
+			</frame>
+			<frame>
+				<reportElement x="16" y="261" width="50" height="85"/>
+				<box>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="0.75"/>
+					<rightPen lineWidth="0.75"/>
+				</box>
+				<staticText>
+					<reportElement x="4" y="8" width="42" height="20"/>
+					<textElement>
+						<font size="7"/>
+					</textElement>
+					<text><![CDATA[Derechos]]></text>
+				</staticText>
+			</frame>
+			<frame>
+				<reportElement x="66" y="223" width="465" height="38"/>
+				<box>
+					<pen lineWidth="0.75"/>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<staticText>
+					<reportElement x="10" y="6" width="444" height="12"/>
+					<textElement>
+						<font size="7"/>
+					</textElement>
+					<text><![CDATA[Se facilitarán los datos a las entidades aseguradores integrantes de la Agrupación y a los tomadores.]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="10" y="18" width="444" height="12"/>
+					<textElement>
+						<font size="7"/>
+					</textElement>
+					<text><![CDATA[No se realizarán transferencias internacionales de datos.]]></text>
+				</staticText>
+			</frame>
+			<frame>
+				<reportElement x="16" y="346" width="50" height="42"/>
+				<box>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="0.75"/>
+					<rightPen lineWidth="0.75"/>
+				</box>
+				<staticText>
+					<reportElement x="4" y="8" width="42" height="20"/>
+					<textElement>
+						<font size="7"/>
+					</textElement>
+					<text><![CDATA[Procedencia]]></text>
+				</staticText>
+			</frame>
+			<frame>
+				<reportElement x="66" y="346" width="465" height="42"/>
+				<box>
+					<pen lineWidth="0.75"/>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<staticText>
+					<reportElement x="10" y="6" width="444" height="12"/>
+					<textElement>
+						<font size="7"/>
+					</textElement>
+					<text><![CDATA[Entidades aseguradoras y el propio interesado.]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="10" y="18" width="444" height="12"/>
+					<textElement>
+						<font size="7"/>
+					</textElement>
+					<text><![CDATA[Los datos que se tratan son de carácter identificativo.]]></text>
+				</staticText>
+			</frame>
+			<frame>
+				<reportElement x="16" y="184" width="50" height="39"/>
+				<box>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="0.75"/>
+					<rightPen lineWidth="0.75"/>
+				</box>
+				<staticText>
+					<reportElement x="4" y="8" width="46" height="15"/>
+					<textElement>
+						<font size="7"/>
+					</textElement>
+					<text><![CDATA[Legitimación]]></text>
+				</staticText>
+			</frame>
+			<frame>
+				<reportElement x="66" y="184" width="465" height="39"/>
+				<box>
+					<pen lineWidth="0.75"/>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<staticText>
+					<reportElement x="10" y="6" width="444" height="27"/>
+					<textElement>
+						<font size="7"/>
+					</textElement>
+					<text><![CDATA[El tratamiento es necesario para la ejecución del contrato de seguro en el que el interesado es parte o para la aplicación a petición de este de medidas precontractuales.]]></text>
+				</staticText>
+			</frame>
+			<staticText>
+				<reportElement key="staticText-103" x="16" y="0" width="296" height="15" isPrintWhenDetailOverflows="true"/>
+				<textElement verticalAlignment="Bottom">
+					<font fontName="SansSerif" size="11" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[VI.- Información básica sobre Protección de Datos]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="4" y="26" width="8" height="130"/>
+				<textElement rotation="Left">
+					<font size="6"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{COPIA}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>
