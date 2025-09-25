@@ -1,0 +1,974 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Metrics scope="WS-AGP" type="Project" date="2024-12-16" xmlns="http://metrics.sourceforge.net/2003/Metrics-First-Flat">
+   <Cycle name="com.rsi.agp.serviciosweb.contratacionextconfirmacion et al" nodes="2" diameter="1">
+      <Package>com.rsi.agp.serviciosweb.contratacionextconfirmacion</Package>
+      <Package>com.rsi.agp.main.contratacionext</Package>
+   </Cycle>
+   <Metric id = "VG" description ="McCabe Cyclomatic Complexity" max ="10" hint ="use Extract-method to split the method up">
+      <Values per = "method" avg = "1,477" stddev = "1,874" max = "13" maxinrange="false">
+         <Value name="confirmarCupon" source ="ContratacionExtBO.java" package ="com.rsi.agp.main.contratacionext" value ="13" inrange="false"/>
+         <Value name="calcularAnexo" source ="ContratacionExtBO.java" package ="com.rsi.agp.main.contratacionext" value ="10"/>
+         <Value name="calcular" source ="ContratacionExtBO.java" package ="com.rsi.agp.main.contratacionext" value ="9"/>
+         <Value name="confirmarSiniestro" source ="ContratacionExtBO.java" package ="com.rsi.agp.main.contratacionext" value ="9"/>
+         <Value name="confirmar" source ="ContratacionExtBO.java" package ="com.rsi.agp.main.contratacionext" value ="9"/>
+         <Value name="solicitarCupon" source ="ContratacionExtBO.java" package ="com.rsi.agp.main.contratacionext" value ="8"/>
+         <Value name="validar" source ="ContratacionExtBO.java" package ="com.rsi.agp.main.contratacionext" value ="8"/>
+         <Value name="anularCupon" source ="ContratacionExtBO.java" package ="com.rsi.agp.main.contratacionext" value ="7"/>
+         <Value name="getErrors" source ="CalcularAnexoResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="2"/>
+         <Value name="getErrors" source ="CalcularResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="2"/>
+         <Value name="getErrors" source ="ConfirmarCuponResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="2"/>
+         <Value name="getErrors" source ="ConfirmarResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="2"/>
+         <Value name="getErrors" source ="ConfirmarSiniestroResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="2"/>
+         <Value name="getErrors" source ="ValidarResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="2"/>
+         <Value name="setManager" source ="ContratacionExtBO.java" package ="com.rsi.agp.main.contratacionext" value ="1"/>
+         <Value name="setServletContext" source ="ContratacionExtBO.java" package ="com.rsi.agp.main.contratacionext" value ="1"/>
+         <Value name="validarAnexo" source ="ContratacionExtBO.java" package ="com.rsi.agp.main.contratacionext" value ="1"/>
+         <Value name="getException" source ="AgpFallo.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="setException" source ="AgpFallo.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="getIdCupon" source ="AnularCuponRequest.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="setIdCupon" source ="AnularCuponRequest.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="getCodigo" source ="AnularCuponResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="getMensaje" source ="AnularCuponResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="setCodigo" source ="AnularCuponResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="setMensaje" source ="AnularCuponResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="getIdCupon" source ="CalcularAnexoRequest.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="getModificacionPoliza" source ="CalcularAnexoRequest.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="getTipoPoliza" source ="CalcularAnexoRequest.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="setIdCupon" source ="CalcularAnexoRequest.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="setModificacionPoliza" source ="CalcularAnexoRequest.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="setTipoPoliza" source ="CalcularAnexoRequest.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="getAcuseRecibo" source ="CalcularAnexoResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="getCalculoModificacion" source ="CalcularAnexoResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="getCalculoOriginal" source ="CalcularAnexoResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="getCodigo" source ="CalcularAnexoResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="getDiferenciasCoste" source ="CalcularAnexoResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="getMensaje" source ="CalcularAnexoResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="setAcuseRecibo" source ="CalcularAnexoResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="setCalculoModificacion" source ="CalcularAnexoResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="setCalculoOriginal" source ="CalcularAnexoResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="setCodigo" source ="CalcularAnexoResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="setDiferenciasCoste" source ="CalcularAnexoResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="setMensaje" source ="CalcularAnexoResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="getPoliza" source ="CalcularRequest.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="setPoliza" source ="CalcularRequest.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="getAcuseRecibo" source ="CalcularResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="getCalculo" source ="CalcularResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="getCodigo" source ="CalcularResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="getMensaje" source ="CalcularResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="setAcuseRecibo" source ="CalcularResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="setCalculo" source ="CalcularResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="setCodigo" source ="CalcularResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="setMensaje" source ="CalcularResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="getIdCupon" source ="ConfirmarCuponRequest.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="getPolizaComp" source ="ConfirmarCuponRequest.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="getPolizaPpal" source ="ConfirmarCuponRequest.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="getRevisionAdmin" source ="ConfirmarCuponRequest.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="setIdCupon" source ="ConfirmarCuponRequest.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="setPolizaComp" source ="ConfirmarCuponRequest.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="setPolizaPpal" source ="ConfirmarCuponRequest.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="setRevisionAdmin" source ="ConfirmarCuponRequest.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="getAcuseRecibo" source ="ConfirmarCuponResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="getCodigo" source ="ConfirmarCuponResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="getMensaje" source ="ConfirmarCuponResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="setAcuseRecibo" source ="ConfirmarCuponResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="setCodigo" source ="ConfirmarCuponResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="setMensaje" source ="ConfirmarCuponResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="getPoliza" source ="ConfirmarRequest.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="setPoliza" source ="ConfirmarRequest.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="getAcuseRecibo" source ="ConfirmarResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="getCodigo" source ="ConfirmarResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="getMensaje" source ="ConfirmarResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="setAcuseRecibo" source ="ConfirmarResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="setCodigo" source ="ConfirmarResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="setMensaje" source ="ConfirmarResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="getSiniestro" source ="ConfirmarSiniestroRequest.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="setSiniestro" source ="ConfirmarSiniestroRequest.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="getAcuseRecibo" source ="ConfirmarSiniestroResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="getCodigo" source ="ConfirmarSiniestroResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="getMensaje" source ="ConfirmarSiniestroResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="setAcuseRecibo" source ="ConfirmarSiniestroResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="setCodigo" source ="ConfirmarSiniestroResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="setMensaje" source ="ConfirmarSiniestroResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="getBo" source ="ContratacionExtConfirmacion.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="setBo" source ="ContratacionExtConfirmacion.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="anularCupon" source ="ContratacionExtConfirmacionImpl.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="calcularAnexo" source ="ContratacionExtConfirmacionImpl.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="calcular" source ="ContratacionExtConfirmacionImpl.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="confirmarCupon" source ="ContratacionExtConfirmacionImpl.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="confirmarSiniestro" source ="ContratacionExtConfirmacionImpl.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="confirmar" source ="ContratacionExtConfirmacionImpl.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="solicitarCupon" source ="ContratacionExtConfirmacionImpl.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="validarAnexo" source ="ContratacionExtConfirmacionImpl.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="validar" source ="ContratacionExtConfirmacionImpl.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="getCodigo" source ="Error.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="getMensaje" source ="Error.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="setCodigo" source ="Error.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="setMensaje" source ="Error.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="anularCupon" source ="IContratacionExtConfirmacion.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="calcularAnexo" source ="IContratacionExtConfirmacion.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="calcular" source ="IContratacionExtConfirmacion.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="confirmarCupon" source ="IContratacionExtConfirmacion.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="confirmarSiniestro" source ="IContratacionExtConfirmacion.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="confirmar" source ="IContratacionExtConfirmacion.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="solicitarCupon" source ="IContratacionExtConfirmacion.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="ObjectFactory" source ="ObjectFactory.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="createAgpFallo" source ="ObjectFactory.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="createConfirmarRequest" source ="ObjectFactory.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="createConfirmarResponse" source ="ObjectFactory.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="createError" source ="ObjectFactory.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="getPlan" source ="SolicitudCuponRequest.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="getReferencia" source ="SolicitudCuponRequest.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="setPlan" source ="SolicitudCuponRequest.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="setReferencia" source ="SolicitudCuponRequest.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="getCodigo" source ="SolicitudCuponResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="getCuponModificacion" source ="SolicitudCuponResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="getEstadoContratacion" source ="SolicitudCuponResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="getMensaje" source ="SolicitudCuponResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="getPoliza" source ="SolicitudCuponResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="getPolizaComp" source ="SolicitudCuponResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="getPolizaCompRC" source ="SolicitudCuponResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="getPolizaRC" source ="SolicitudCuponResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="setCodigo" source ="SolicitudCuponResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="setCuponModificacion" source ="SolicitudCuponResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="setEstadoContratacion" source ="SolicitudCuponResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="setMensaje" source ="SolicitudCuponResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="setPolizaCompRC" source ="SolicitudCuponResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="setPolizaComp" source ="SolicitudCuponResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="setPolizaRC" source ="SolicitudCuponResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="setPoliza" source ="SolicitudCuponResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="getPoliza" source ="ValidarRequest.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="setPoliza" source ="ValidarRequest.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="getAcuseRecibo" source ="ValidarResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="getCodigo" source ="ValidarResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="getMensaje" source ="ValidarResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="setAcuseRecibo" source ="ValidarResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="setCodigo" source ="ValidarResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="setMensaje" source ="ValidarResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="getContentType" source ="Base64Binary.java" package ="org.w3._2005._05.xmlmime" value ="1"/>
+         <Value name="getValue" source ="Base64Binary.java" package ="org.w3._2005._05.xmlmime" value ="1"/>
+         <Value name="setContentType" source ="Base64Binary.java" package ="org.w3._2005._05.xmlmime" value ="1"/>
+         <Value name="setValue" source ="Base64Binary.java" package ="org.w3._2005._05.xmlmime" value ="1"/>
+         <Value name="getContentType" source ="HexBinary.java" package ="org.w3._2005._05.xmlmime" value ="1"/>
+         <Value name="getValue" source ="HexBinary.java" package ="org.w3._2005._05.xmlmime" value ="1"/>
+         <Value name="setContentType" source ="HexBinary.java" package ="org.w3._2005._05.xmlmime" value ="1"/>
+         <Value name="setValue" source ="HexBinary.java" package ="org.w3._2005._05.xmlmime" value ="1"/>
+         <Value name="ObjectFactory" source ="ObjectFactory.java" package ="org.w3._2005._05.xmlmime" value ="1"/>
+         <Value name="createBase64Binary" source ="ObjectFactory.java" package ="org.w3._2005._05.xmlmime" value ="1"/>
+         <Value name="createHexBinary" source ="ObjectFactory.java" package ="org.w3._2005._05.xmlmime" value ="1"/>
+      </Values>
+   </Metric>
+   <Metric id = "PAR" description ="Number of Parameters" max ="5" hint ="Move invoked method or pass an object">
+      <Values per = "method" avg = "0,544" stddev = "0,498" max = "1">
+         <Value name="anularCupon" source ="ContratacionExtBO.java" package ="com.rsi.agp.main.contratacionext" value ="1"/>
+         <Value name="calcularAnexo" source ="ContratacionExtBO.java" package ="com.rsi.agp.main.contratacionext" value ="1"/>
+         <Value name="calcular" source ="ContratacionExtBO.java" package ="com.rsi.agp.main.contratacionext" value ="1"/>
+         <Value name="confirmarCupon" source ="ContratacionExtBO.java" package ="com.rsi.agp.main.contratacionext" value ="1"/>
+         <Value name="confirmarSiniestro" source ="ContratacionExtBO.java" package ="com.rsi.agp.main.contratacionext" value ="1"/>
+         <Value name="confirmar" source ="ContratacionExtBO.java" package ="com.rsi.agp.main.contratacionext" value ="1"/>
+         <Value name="setManager" source ="ContratacionExtBO.java" package ="com.rsi.agp.main.contratacionext" value ="1"/>
+         <Value name="setServletContext" source ="ContratacionExtBO.java" package ="com.rsi.agp.main.contratacionext" value ="1"/>
+         <Value name="solicitarCupon" source ="ContratacionExtBO.java" package ="com.rsi.agp.main.contratacionext" value ="1"/>
+         <Value name="validarAnexo" source ="ContratacionExtBO.java" package ="com.rsi.agp.main.contratacionext" value ="1"/>
+         <Value name="validar" source ="ContratacionExtBO.java" package ="com.rsi.agp.main.contratacionext" value ="1"/>
+         <Value name="setException" source ="AgpFallo.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="setIdCupon" source ="AnularCuponRequest.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="setCodigo" source ="AnularCuponResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="setMensaje" source ="AnularCuponResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="setIdCupon" source ="CalcularAnexoRequest.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="setModificacionPoliza" source ="CalcularAnexoRequest.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="setTipoPoliza" source ="CalcularAnexoRequest.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="setAcuseRecibo" source ="CalcularAnexoResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="setCalculoModificacion" source ="CalcularAnexoResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="setCalculoOriginal" source ="CalcularAnexoResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="setCodigo" source ="CalcularAnexoResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="setDiferenciasCoste" source ="CalcularAnexoResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="setMensaje" source ="CalcularAnexoResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="setPoliza" source ="CalcularRequest.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="setAcuseRecibo" source ="CalcularResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="setCalculo" source ="CalcularResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="setCodigo" source ="CalcularResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="setMensaje" source ="CalcularResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="setIdCupon" source ="ConfirmarCuponRequest.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="setPolizaComp" source ="ConfirmarCuponRequest.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="setPolizaPpal" source ="ConfirmarCuponRequest.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="setRevisionAdmin" source ="ConfirmarCuponRequest.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="setAcuseRecibo" source ="ConfirmarCuponResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="setCodigo" source ="ConfirmarCuponResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="setMensaje" source ="ConfirmarCuponResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="setPoliza" source ="ConfirmarRequest.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="setAcuseRecibo" source ="ConfirmarResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="setCodigo" source ="ConfirmarResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="setMensaje" source ="ConfirmarResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="setSiniestro" source ="ConfirmarSiniestroRequest.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="setAcuseRecibo" source ="ConfirmarSiniestroResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="setCodigo" source ="ConfirmarSiniestroResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="setMensaje" source ="ConfirmarSiniestroResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="setBo" source ="ContratacionExtConfirmacion.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="anularCupon" source ="ContratacionExtConfirmacionImpl.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="calcularAnexo" source ="ContratacionExtConfirmacionImpl.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="calcular" source ="ContratacionExtConfirmacionImpl.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="confirmarCupon" source ="ContratacionExtConfirmacionImpl.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="confirmarSiniestro" source ="ContratacionExtConfirmacionImpl.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="confirmar" source ="ContratacionExtConfirmacionImpl.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="solicitarCupon" source ="ContratacionExtConfirmacionImpl.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="validarAnexo" source ="ContratacionExtConfirmacionImpl.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="validar" source ="ContratacionExtConfirmacionImpl.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="setCodigo" source ="Error.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="setMensaje" source ="Error.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="anularCupon" source ="IContratacionExtConfirmacion.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="calcularAnexo" source ="IContratacionExtConfirmacion.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="calcular" source ="IContratacionExtConfirmacion.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="confirmarCupon" source ="IContratacionExtConfirmacion.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="confirmarSiniestro" source ="IContratacionExtConfirmacion.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="confirmar" source ="IContratacionExtConfirmacion.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="solicitarCupon" source ="IContratacionExtConfirmacion.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="setPlan" source ="SolicitudCuponRequest.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="setReferencia" source ="SolicitudCuponRequest.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="setCodigo" source ="SolicitudCuponResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="setCuponModificacion" source ="SolicitudCuponResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="setEstadoContratacion" source ="SolicitudCuponResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="setMensaje" source ="SolicitudCuponResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="setPolizaCompRC" source ="SolicitudCuponResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="setPolizaComp" source ="SolicitudCuponResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="setPolizaRC" source ="SolicitudCuponResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="setPoliza" source ="SolicitudCuponResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="setPoliza" source ="ValidarRequest.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="setAcuseRecibo" source ="ValidarResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="setCodigo" source ="ValidarResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="setMensaje" source ="ValidarResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="setContentType" source ="Base64Binary.java" package ="org.w3._2005._05.xmlmime" value ="1"/>
+         <Value name="setValue" source ="Base64Binary.java" package ="org.w3._2005._05.xmlmime" value ="1"/>
+         <Value name="setContentType" source ="HexBinary.java" package ="org.w3._2005._05.xmlmime" value ="1"/>
+         <Value name="setValue" source ="HexBinary.java" package ="org.w3._2005._05.xmlmime" value ="1"/>
+         <Value name="getException" source ="AgpFallo.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="0"/>
+         <Value name="getIdCupon" source ="AnularCuponRequest.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="0"/>
+         <Value name="getCodigo" source ="AnularCuponResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="0"/>
+         <Value name="getMensaje" source ="AnularCuponResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="0"/>
+         <Value name="getIdCupon" source ="CalcularAnexoRequest.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="0"/>
+         <Value name="getModificacionPoliza" source ="CalcularAnexoRequest.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="0"/>
+         <Value name="getTipoPoliza" source ="CalcularAnexoRequest.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="0"/>
+         <Value name="getAcuseRecibo" source ="CalcularAnexoResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="0"/>
+         <Value name="getCalculoModificacion" source ="CalcularAnexoResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="0"/>
+         <Value name="getCalculoOriginal" source ="CalcularAnexoResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="0"/>
+         <Value name="getCodigo" source ="CalcularAnexoResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="0"/>
+         <Value name="getDiferenciasCoste" source ="CalcularAnexoResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="0"/>
+         <Value name="getErrors" source ="CalcularAnexoResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="0"/>
+         <Value name="getMensaje" source ="CalcularAnexoResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="0"/>
+         <Value name="getPoliza" source ="CalcularRequest.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="0"/>
+         <Value name="getAcuseRecibo" source ="CalcularResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="0"/>
+         <Value name="getCalculo" source ="CalcularResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="0"/>
+         <Value name="getCodigo" source ="CalcularResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="0"/>
+         <Value name="getErrors" source ="CalcularResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="0"/>
+         <Value name="getMensaje" source ="CalcularResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="0"/>
+         <Value name="getIdCupon" source ="ConfirmarCuponRequest.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="0"/>
+         <Value name="getPolizaComp" source ="ConfirmarCuponRequest.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="0"/>
+         <Value name="getPolizaPpal" source ="ConfirmarCuponRequest.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="0"/>
+         <Value name="getRevisionAdmin" source ="ConfirmarCuponRequest.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="0"/>
+         <Value name="getAcuseRecibo" source ="ConfirmarCuponResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="0"/>
+         <Value name="getCodigo" source ="ConfirmarCuponResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="0"/>
+         <Value name="getErrors" source ="ConfirmarCuponResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="0"/>
+         <Value name="getMensaje" source ="ConfirmarCuponResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="0"/>
+         <Value name="getPoliza" source ="ConfirmarRequest.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="0"/>
+         <Value name="getAcuseRecibo" source ="ConfirmarResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="0"/>
+         <Value name="getCodigo" source ="ConfirmarResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="0"/>
+         <Value name="getErrors" source ="ConfirmarResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="0"/>
+         <Value name="getMensaje" source ="ConfirmarResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="0"/>
+         <Value name="getSiniestro" source ="ConfirmarSiniestroRequest.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="0"/>
+         <Value name="getAcuseRecibo" source ="ConfirmarSiniestroResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="0"/>
+         <Value name="getCodigo" source ="ConfirmarSiniestroResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="0"/>
+         <Value name="getErrors" source ="ConfirmarSiniestroResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="0"/>
+         <Value name="getMensaje" source ="ConfirmarSiniestroResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="0"/>
+         <Value name="getBo" source ="ContratacionExtConfirmacion.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="0"/>
+         <Value name="getCodigo" source ="Error.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="0"/>
+         <Value name="getMensaje" source ="Error.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="0"/>
+         <Value name="ObjectFactory" source ="ObjectFactory.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="0"/>
+         <Value name="createAgpFallo" source ="ObjectFactory.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="0"/>
+         <Value name="createConfirmarRequest" source ="ObjectFactory.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="0"/>
+         <Value name="createConfirmarResponse" source ="ObjectFactory.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="0"/>
+         <Value name="createError" source ="ObjectFactory.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="0"/>
+         <Value name="getPlan" source ="SolicitudCuponRequest.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="0"/>
+         <Value name="getReferencia" source ="SolicitudCuponRequest.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="0"/>
+         <Value name="getCodigo" source ="SolicitudCuponResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="0"/>
+         <Value name="getCuponModificacion" source ="SolicitudCuponResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="0"/>
+         <Value name="getEstadoContratacion" source ="SolicitudCuponResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="0"/>
+         <Value name="getMensaje" source ="SolicitudCuponResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="0"/>
+         <Value name="getPoliza" source ="SolicitudCuponResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="0"/>
+         <Value name="getPolizaComp" source ="SolicitudCuponResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="0"/>
+         <Value name="getPolizaCompRC" source ="SolicitudCuponResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="0"/>
+         <Value name="getPolizaRC" source ="SolicitudCuponResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="0"/>
+         <Value name="getPoliza" source ="ValidarRequest.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="0"/>
+         <Value name="getAcuseRecibo" source ="ValidarResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="0"/>
+         <Value name="getCodigo" source ="ValidarResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="0"/>
+         <Value name="getErrors" source ="ValidarResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="0"/>
+         <Value name="getMensaje" source ="ValidarResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="0"/>
+         <Value name="getContentType" source ="Base64Binary.java" package ="org.w3._2005._05.xmlmime" value ="0"/>
+         <Value name="getValue" source ="Base64Binary.java" package ="org.w3._2005._05.xmlmime" value ="0"/>
+         <Value name="getContentType" source ="HexBinary.java" package ="org.w3._2005._05.xmlmime" value ="0"/>
+         <Value name="getValue" source ="HexBinary.java" package ="org.w3._2005._05.xmlmime" value ="0"/>
+         <Value name="ObjectFactory" source ="ObjectFactory.java" package ="org.w3._2005._05.xmlmime" value ="0"/>
+         <Value name="createBase64Binary" source ="ObjectFactory.java" package ="org.w3._2005._05.xmlmime" value ="0"/>
+         <Value name="createHexBinary" source ="ObjectFactory.java" package ="org.w3._2005._05.xmlmime" value ="0"/>
+      </Values>
+   </Metric>
+   <Metric id = "NBD" description ="Nested Block Depth" max ="5" hint ="use Extract-method to split the method up">
+      <Values per = "method" avg = "1,141" stddev = "0,695" max = "4">
+         <Value name="calcularAnexo" source ="ContratacionExtBO.java" package ="com.rsi.agp.main.contratacionext" value ="4"/>
+         <Value name="calcular" source ="ContratacionExtBO.java" package ="com.rsi.agp.main.contratacionext" value ="4"/>
+         <Value name="confirmarCupon" source ="ContratacionExtBO.java" package ="com.rsi.agp.main.contratacionext" value ="4"/>
+         <Value name="confirmarSiniestro" source ="ContratacionExtBO.java" package ="com.rsi.agp.main.contratacionext" value ="4"/>
+         <Value name="confirmar" source ="ContratacionExtBO.java" package ="com.rsi.agp.main.contratacionext" value ="4"/>
+         <Value name="validar" source ="ContratacionExtBO.java" package ="com.rsi.agp.main.contratacionext" value ="4"/>
+         <Value name="anularCupon" source ="ContratacionExtBO.java" package ="com.rsi.agp.main.contratacionext" value ="3"/>
+         <Value name="solicitarCupon" source ="ContratacionExtBO.java" package ="com.rsi.agp.main.contratacionext" value ="3"/>
+         <Value name="getErrors" source ="CalcularAnexoResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="2"/>
+         <Value name="getErrors" source ="CalcularResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="2"/>
+         <Value name="getErrors" source ="ConfirmarCuponResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="2"/>
+         <Value name="getErrors" source ="ConfirmarResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="2"/>
+         <Value name="getErrors" source ="ConfirmarSiniestroResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="2"/>
+         <Value name="getErrors" source ="ValidarResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="2"/>
+         <Value name="setManager" source ="ContratacionExtBO.java" package ="com.rsi.agp.main.contratacionext" value ="1"/>
+         <Value name="setServletContext" source ="ContratacionExtBO.java" package ="com.rsi.agp.main.contratacionext" value ="1"/>
+         <Value name="validarAnexo" source ="ContratacionExtBO.java" package ="com.rsi.agp.main.contratacionext" value ="1"/>
+         <Value name="getException" source ="AgpFallo.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="setException" source ="AgpFallo.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="getIdCupon" source ="AnularCuponRequest.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="setIdCupon" source ="AnularCuponRequest.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="getCodigo" source ="AnularCuponResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="getMensaje" source ="AnularCuponResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="setCodigo" source ="AnularCuponResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="setMensaje" source ="AnularCuponResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="getIdCupon" source ="CalcularAnexoRequest.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="getModificacionPoliza" source ="CalcularAnexoRequest.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="getTipoPoliza" source ="CalcularAnexoRequest.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="setIdCupon" source ="CalcularAnexoRequest.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="setModificacionPoliza" source ="CalcularAnexoRequest.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="setTipoPoliza" source ="CalcularAnexoRequest.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="getAcuseRecibo" source ="CalcularAnexoResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="getCalculoModificacion" source ="CalcularAnexoResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="getCalculoOriginal" source ="CalcularAnexoResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="getCodigo" source ="CalcularAnexoResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="getDiferenciasCoste" source ="CalcularAnexoResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="getMensaje" source ="CalcularAnexoResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="setAcuseRecibo" source ="CalcularAnexoResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="setCalculoModificacion" source ="CalcularAnexoResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="setCalculoOriginal" source ="CalcularAnexoResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="setCodigo" source ="CalcularAnexoResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="setDiferenciasCoste" source ="CalcularAnexoResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="setMensaje" source ="CalcularAnexoResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="getPoliza" source ="CalcularRequest.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="setPoliza" source ="CalcularRequest.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="getAcuseRecibo" source ="CalcularResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="getCalculo" source ="CalcularResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="getCodigo" source ="CalcularResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="getMensaje" source ="CalcularResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="setAcuseRecibo" source ="CalcularResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="setCalculo" source ="CalcularResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="setCodigo" source ="CalcularResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="setMensaje" source ="CalcularResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="getIdCupon" source ="ConfirmarCuponRequest.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="getPolizaComp" source ="ConfirmarCuponRequest.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="getPolizaPpal" source ="ConfirmarCuponRequest.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="getRevisionAdmin" source ="ConfirmarCuponRequest.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="setIdCupon" source ="ConfirmarCuponRequest.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="setPolizaComp" source ="ConfirmarCuponRequest.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="setPolizaPpal" source ="ConfirmarCuponRequest.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="setRevisionAdmin" source ="ConfirmarCuponRequest.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="getAcuseRecibo" source ="ConfirmarCuponResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="getCodigo" source ="ConfirmarCuponResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="getMensaje" source ="ConfirmarCuponResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="setAcuseRecibo" source ="ConfirmarCuponResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="setCodigo" source ="ConfirmarCuponResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="setMensaje" source ="ConfirmarCuponResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="getPoliza" source ="ConfirmarRequest.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="setPoliza" source ="ConfirmarRequest.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="getAcuseRecibo" source ="ConfirmarResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="getCodigo" source ="ConfirmarResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="getMensaje" source ="ConfirmarResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="setAcuseRecibo" source ="ConfirmarResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="setCodigo" source ="ConfirmarResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="setMensaje" source ="ConfirmarResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="getSiniestro" source ="ConfirmarSiniestroRequest.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="setSiniestro" source ="ConfirmarSiniestroRequest.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="getAcuseRecibo" source ="ConfirmarSiniestroResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="getCodigo" source ="ConfirmarSiniestroResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="getMensaje" source ="ConfirmarSiniestroResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="setAcuseRecibo" source ="ConfirmarSiniestroResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="setCodigo" source ="ConfirmarSiniestroResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="setMensaje" source ="ConfirmarSiniestroResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="getBo" source ="ContratacionExtConfirmacion.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="setBo" source ="ContratacionExtConfirmacion.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="anularCupon" source ="ContratacionExtConfirmacionImpl.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="calcularAnexo" source ="ContratacionExtConfirmacionImpl.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="calcular" source ="ContratacionExtConfirmacionImpl.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="confirmarCupon" source ="ContratacionExtConfirmacionImpl.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="confirmarSiniestro" source ="ContratacionExtConfirmacionImpl.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="confirmar" source ="ContratacionExtConfirmacionImpl.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="solicitarCupon" source ="ContratacionExtConfirmacionImpl.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="validarAnexo" source ="ContratacionExtConfirmacionImpl.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="validar" source ="ContratacionExtConfirmacionImpl.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="getCodigo" source ="Error.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="getMensaje" source ="Error.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="setCodigo" source ="Error.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="setMensaje" source ="Error.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="ObjectFactory" source ="ObjectFactory.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="createAgpFallo" source ="ObjectFactory.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="createConfirmarRequest" source ="ObjectFactory.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="createConfirmarResponse" source ="ObjectFactory.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="createError" source ="ObjectFactory.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="getPlan" source ="SolicitudCuponRequest.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="getReferencia" source ="SolicitudCuponRequest.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="setPlan" source ="SolicitudCuponRequest.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="setReferencia" source ="SolicitudCuponRequest.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="getCodigo" source ="SolicitudCuponResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="getCuponModificacion" source ="SolicitudCuponResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="getEstadoContratacion" source ="SolicitudCuponResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="getMensaje" source ="SolicitudCuponResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="getPoliza" source ="SolicitudCuponResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="getPolizaComp" source ="SolicitudCuponResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="getPolizaCompRC" source ="SolicitudCuponResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="getPolizaRC" source ="SolicitudCuponResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="setCodigo" source ="SolicitudCuponResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="setCuponModificacion" source ="SolicitudCuponResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="setEstadoContratacion" source ="SolicitudCuponResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="setMensaje" source ="SolicitudCuponResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="setPolizaCompRC" source ="SolicitudCuponResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="setPolizaComp" source ="SolicitudCuponResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="setPolizaRC" source ="SolicitudCuponResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="setPoliza" source ="SolicitudCuponResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="getPoliza" source ="ValidarRequest.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="setPoliza" source ="ValidarRequest.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="getAcuseRecibo" source ="ValidarResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="getCodigo" source ="ValidarResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="getMensaje" source ="ValidarResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="setAcuseRecibo" source ="ValidarResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="setCodigo" source ="ValidarResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="setMensaje" source ="ValidarResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="getContentType" source ="Base64Binary.java" package ="org.w3._2005._05.xmlmime" value ="1"/>
+         <Value name="getValue" source ="Base64Binary.java" package ="org.w3._2005._05.xmlmime" value ="1"/>
+         <Value name="setContentType" source ="Base64Binary.java" package ="org.w3._2005._05.xmlmime" value ="1"/>
+         <Value name="setValue" source ="Base64Binary.java" package ="org.w3._2005._05.xmlmime" value ="1"/>
+         <Value name="getContentType" source ="HexBinary.java" package ="org.w3._2005._05.xmlmime" value ="1"/>
+         <Value name="getValue" source ="HexBinary.java" package ="org.w3._2005._05.xmlmime" value ="1"/>
+         <Value name="setContentType" source ="HexBinary.java" package ="org.w3._2005._05.xmlmime" value ="1"/>
+         <Value name="setValue" source ="HexBinary.java" package ="org.w3._2005._05.xmlmime" value ="1"/>
+         <Value name="ObjectFactory" source ="ObjectFactory.java" package ="org.w3._2005._05.xmlmime" value ="1"/>
+         <Value name="createBase64Binary" source ="ObjectFactory.java" package ="org.w3._2005._05.xmlmime" value ="1"/>
+         <Value name="createHexBinary" source ="ObjectFactory.java" package ="org.w3._2005._05.xmlmime" value ="1"/>
+         <Value name="anularCupon" source ="IContratacionExtConfirmacion.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="0"/>
+         <Value name="calcularAnexo" source ="IContratacionExtConfirmacion.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="0"/>
+         <Value name="calcular" source ="IContratacionExtConfirmacion.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="0"/>
+         <Value name="confirmarCupon" source ="IContratacionExtConfirmacion.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="0"/>
+         <Value name="confirmarSiniestro" source ="IContratacionExtConfirmacion.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="0"/>
+         <Value name="confirmar" source ="IContratacionExtConfirmacion.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="0"/>
+         <Value name="solicitarCupon" source ="IContratacionExtConfirmacion.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="0"/>
+      </Values>
+   </Metric>
+   <Metric id = "CA" description ="Afferent Coupling">
+      <Values per = "packageFragment" avg = "5,333" stddev = "6,128" max = "14">
+         <Value name="org.w3._2005._05.xmlmime" package ="org.w3._2005._05.xmlmime" value ="14"/>
+         <Value name="com.rsi.agp.main.contratacionext" package ="com.rsi.agp.main.contratacionext" value ="1"/>
+         <Value name="com.rsi.agp.serviciosweb.contratacionextconfirmacion" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+      </Values>
+   </Metric>
+   <Metric id = "CE" description ="Efferent Coupling">
+      <Values per = "packageFragment" avg = "5,333" stddev = "6,848" max = "15">
+         <Value name="com.rsi.agp.serviciosweb.contratacionextconfirmacion" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="15"/>
+         <Value name="com.rsi.agp.main.contratacionext" package ="com.rsi.agp.main.contratacionext" value ="1"/>
+         <Value name="org.w3._2005._05.xmlmime" package ="org.w3._2005._05.xmlmime" value ="0"/>
+      </Values>
+   </Metric>
+   <Metric id = "RMI" description ="Instability">
+      <Values per = "packageFragment" avg = "0,479" stddev = "0,383" max = "0,938">
+         <Value name="com.rsi.agp.serviciosweb.contratacionextconfirmacion" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="0,938"/>
+         <Value name="com.rsi.agp.main.contratacionext" package ="com.rsi.agp.main.contratacionext" value ="0,5"/>
+         <Value name="org.w3._2005._05.xmlmime" package ="org.w3._2005._05.xmlmime" value ="0"/>
+      </Values>
+   </Metric>
+   <Metric id = "RMA" description ="Abstractness">
+      <Values per = "packageFragment" avg = "0,03" stddev = "0,043" max = "0,091">
+         <Value name="com.rsi.agp.serviciosweb.contratacionextconfirmacion" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="0,091"/>
+         <Value name="com.rsi.agp.main.contratacionext" package ="com.rsi.agp.main.contratacionext" value ="0"/>
+         <Value name="org.w3._2005._05.xmlmime" package ="org.w3._2005._05.xmlmime" value ="0"/>
+      </Values>
+   </Metric>
+   <Metric id = "RMD" description ="Normalized Distance">
+      <Values per = "packageFragment" avg = "0,509" stddev = "0,397" max = "1">
+         <Value name="org.w3._2005._05.xmlmime" package ="org.w3._2005._05.xmlmime" value ="1"/>
+         <Value name="com.rsi.agp.main.contratacionext" package ="com.rsi.agp.main.contratacionext" value ="0,5"/>
+         <Value name="com.rsi.agp.serviciosweb.contratacionextconfirmacion" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="0,028"/>
+      </Values>
+   </Metric>
+   <Metric id = "DIT" description ="Depth of Inheritance Tree">
+      <Values per = "type" avg = "1" stddev = "0,277" max = "2">
+         <Value name="ContratacionExtConfirmacionImpl" source ="ContratacionExtConfirmacionImpl.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="2"/>
+         <Value name="ContratacionExtBO" source ="ContratacionExtBO.java" package ="com.rsi.agp.main.contratacionext" value ="1"/>
+         <Value name="AgpFallo" source ="AgpFallo.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="AnularCuponRequest" source ="AnularCuponRequest.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="AnularCuponResponse" source ="AnularCuponResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="CalcularAnexoRequest" source ="CalcularAnexoRequest.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="CalcularAnexoResponse" source ="CalcularAnexoResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="CalcularRequest" source ="CalcularRequest.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="CalcularResponse" source ="CalcularResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="ConfirmarCuponRequest" source ="ConfirmarCuponRequest.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="ConfirmarCuponResponse" source ="ConfirmarCuponResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="ConfirmarRequest" source ="ConfirmarRequest.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="ConfirmarResponse" source ="ConfirmarResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="ConfirmarSiniestroRequest" source ="ConfirmarSiniestroRequest.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="ConfirmarSiniestroResponse" source ="ConfirmarSiniestroResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="ContratacionExtConfirmacion" source ="ContratacionExtConfirmacion.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="Error" source ="Error.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="ObjectFactory" source ="ObjectFactory.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="SolicitudCuponRequest" source ="SolicitudCuponRequest.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="SolicitudCuponResponse" source ="SolicitudCuponResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="ValidarRequest" source ="ValidarRequest.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="ValidarResponse" source ="ValidarResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="Base64Binary" source ="Base64Binary.java" package ="org.w3._2005._05.xmlmime" value ="1"/>
+         <Value name="HexBinary" source ="HexBinary.java" package ="org.w3._2005._05.xmlmime" value ="1"/>
+         <Value name="ObjectFactory" source ="ObjectFactory.java" package ="org.w3._2005._05.xmlmime" value ="1"/>
+         <Value name="IContratacionExtConfirmacion" source ="IContratacionExtConfirmacion.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="0"/>
+      </Values>
+   </Metric>
+   <Metric id = "WMC" description ="Weighted methods per Class">
+      <Values per = "type" total = "220" avg = "8,462" stddev = "13,998" max = "76">
+         <Value name="ContratacionExtBO" source ="ContratacionExtBO.java" package ="com.rsi.agp.main.contratacionext" value ="76"/>
+         <Value name="SolicitudCuponResponse" source ="SolicitudCuponResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="16"/>
+         <Value name="CalcularAnexoResponse" source ="CalcularAnexoResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="14"/>
+         <Value name="CalcularResponse" source ="CalcularResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="10"/>
+         <Value name="ContratacionExtConfirmacionImpl" source ="ContratacionExtConfirmacionImpl.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="9"/>
+         <Value name="ConfirmarCuponRequest" source ="ConfirmarCuponRequest.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="8"/>
+         <Value name="ConfirmarCuponResponse" source ="ConfirmarCuponResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="8"/>
+         <Value name="ConfirmarResponse" source ="ConfirmarResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="8"/>
+         <Value name="ConfirmarSiniestroResponse" source ="ConfirmarSiniestroResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="8"/>
+         <Value name="ValidarResponse" source ="ValidarResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="8"/>
+         <Value name="IContratacionExtConfirmacion" source ="IContratacionExtConfirmacion.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="7"/>
+         <Value name="CalcularAnexoRequest" source ="CalcularAnexoRequest.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="6"/>
+         <Value name="ObjectFactory" source ="ObjectFactory.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="5"/>
+         <Value name="AnularCuponResponse" source ="AnularCuponResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="4"/>
+         <Value name="Error" source ="Error.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="4"/>
+         <Value name="SolicitudCuponRequest" source ="SolicitudCuponRequest.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="4"/>
+         <Value name="Base64Binary" source ="Base64Binary.java" package ="org.w3._2005._05.xmlmime" value ="4"/>
+         <Value name="HexBinary" source ="HexBinary.java" package ="org.w3._2005._05.xmlmime" value ="4"/>
+         <Value name="ObjectFactory" source ="ObjectFactory.java" package ="org.w3._2005._05.xmlmime" value ="3"/>
+         <Value name="AgpFallo" source ="AgpFallo.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="2"/>
+         <Value name="AnularCuponRequest" source ="AnularCuponRequest.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="2"/>
+         <Value name="CalcularRequest" source ="CalcularRequest.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="2"/>
+         <Value name="ConfirmarRequest" source ="ConfirmarRequest.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="2"/>
+         <Value name="ConfirmarSiniestroRequest" source ="ConfirmarSiniestroRequest.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="2"/>
+         <Value name="ContratacionExtConfirmacion" source ="ContratacionExtConfirmacion.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="2"/>
+         <Value name="ValidarRequest" source ="ValidarRequest.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="2"/>
+      </Values>
+   </Metric>
+   <Metric id = "NSC" description ="Number of Children">
+      <Values per = "type" total = "2" avg = "0,077" stddev = "0,266" max = "1">
+         <Value name="ContratacionExtConfirmacion" source ="ContratacionExtConfirmacion.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="IContratacionExtConfirmacion" source ="IContratacionExtConfirmacion.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="ContratacionExtBO" source ="ContratacionExtBO.java" package ="com.rsi.agp.main.contratacionext" value ="0"/>
+         <Value name="AgpFallo" source ="AgpFallo.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="0"/>
+         <Value name="AnularCuponRequest" source ="AnularCuponRequest.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="0"/>
+         <Value name="AnularCuponResponse" source ="AnularCuponResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="0"/>
+         <Value name="CalcularAnexoRequest" source ="CalcularAnexoRequest.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="0"/>
+         <Value name="CalcularAnexoResponse" source ="CalcularAnexoResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="0"/>
+         <Value name="CalcularRequest" source ="CalcularRequest.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="0"/>
+         <Value name="CalcularResponse" source ="CalcularResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="0"/>
+         <Value name="ConfirmarCuponRequest" source ="ConfirmarCuponRequest.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="0"/>
+         <Value name="ConfirmarCuponResponse" source ="ConfirmarCuponResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="0"/>
+         <Value name="ConfirmarRequest" source ="ConfirmarRequest.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="0"/>
+         <Value name="ConfirmarResponse" source ="ConfirmarResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="0"/>
+         <Value name="ConfirmarSiniestroRequest" source ="ConfirmarSiniestroRequest.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="0"/>
+         <Value name="ConfirmarSiniestroResponse" source ="ConfirmarSiniestroResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="0"/>
+         <Value name="ContratacionExtConfirmacionImpl" source ="ContratacionExtConfirmacionImpl.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="0"/>
+         <Value name="Error" source ="Error.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="0"/>
+         <Value name="ObjectFactory" source ="ObjectFactory.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="0"/>
+         <Value name="SolicitudCuponRequest" source ="SolicitudCuponRequest.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="0"/>
+         <Value name="SolicitudCuponResponse" source ="SolicitudCuponResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="0"/>
+         <Value name="ValidarRequest" source ="ValidarRequest.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="0"/>
+         <Value name="ValidarResponse" source ="ValidarResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="0"/>
+         <Value name="Base64Binary" source ="Base64Binary.java" package ="org.w3._2005._05.xmlmime" value ="0"/>
+         <Value name="HexBinary" source ="HexBinary.java" package ="org.w3._2005._05.xmlmime" value ="0"/>
+         <Value name="ObjectFactory" source ="ObjectFactory.java" package ="org.w3._2005._05.xmlmime" value ="0"/>
+      </Values>
+   </Metric>
+   <Metric id = "NORM" description ="Number of Overridden Methods">
+      <Values per = "type" total = "0" avg = "0" stddev = "0" max = "0">
+         <Value name="ContratacionExtBO" source ="ContratacionExtBO.java" package ="com.rsi.agp.main.contratacionext" value ="0"/>
+         <Value name="AgpFallo" source ="AgpFallo.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="0"/>
+         <Value name="AnularCuponRequest" source ="AnularCuponRequest.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="0"/>
+         <Value name="AnularCuponResponse" source ="AnularCuponResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="0"/>
+         <Value name="CalcularAnexoRequest" source ="CalcularAnexoRequest.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="0"/>
+         <Value name="CalcularAnexoResponse" source ="CalcularAnexoResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="0"/>
+         <Value name="CalcularRequest" source ="CalcularRequest.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="0"/>
+         <Value name="CalcularResponse" source ="CalcularResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="0"/>
+         <Value name="ConfirmarCuponRequest" source ="ConfirmarCuponRequest.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="0"/>
+         <Value name="ConfirmarCuponResponse" source ="ConfirmarCuponResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="0"/>
+         <Value name="ConfirmarRequest" source ="ConfirmarRequest.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="0"/>
+         <Value name="ConfirmarResponse" source ="ConfirmarResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="0"/>
+         <Value name="ConfirmarSiniestroRequest" source ="ConfirmarSiniestroRequest.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="0"/>
+         <Value name="ConfirmarSiniestroResponse" source ="ConfirmarSiniestroResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="0"/>
+         <Value name="ContratacionExtConfirmacion" source ="ContratacionExtConfirmacion.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="0"/>
+         <Value name="ContratacionExtConfirmacionImpl" source ="ContratacionExtConfirmacionImpl.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="0"/>
+         <Value name="Error" source ="Error.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="0"/>
+         <Value name="IContratacionExtConfirmacion" source ="IContratacionExtConfirmacion.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="0"/>
+         <Value name="ObjectFactory" source ="ObjectFactory.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="0"/>
+         <Value name="SolicitudCuponRequest" source ="SolicitudCuponRequest.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="0"/>
+         <Value name="SolicitudCuponResponse" source ="SolicitudCuponResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="0"/>
+         <Value name="ValidarRequest" source ="ValidarRequest.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="0"/>
+         <Value name="ValidarResponse" source ="ValidarResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="0"/>
+         <Value name="Base64Binary" source ="Base64Binary.java" package ="org.w3._2005._05.xmlmime" value ="0"/>
+         <Value name="HexBinary" source ="HexBinary.java" package ="org.w3._2005._05.xmlmime" value ="0"/>
+         <Value name="ObjectFactory" source ="ObjectFactory.java" package ="org.w3._2005._05.xmlmime" value ="0"/>
+      </Values>
+   </Metric>
+   <Metric id = "LCOM" description ="Lack of Cohesion of Methods">
+      <Values per = "type" avg = "0,424" stddev = "0,399" max = "0,933">
+         <Value name="SolicitudCuponResponse" source ="SolicitudCuponResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="0,933"/>
+         <Value name="CalcularAnexoResponse" source ="CalcularAnexoResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="0,929"/>
+         <Value name="CalcularResponse" source ="CalcularResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="0,9"/>
+         <Value name="ConfirmarCuponResponse" source ="ConfirmarCuponResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="0,875"/>
+         <Value name="ConfirmarResponse" source ="ConfirmarResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="0,875"/>
+         <Value name="ConfirmarSiniestroResponse" source ="ConfirmarSiniestroResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="0,875"/>
+         <Value name="ValidarResponse" source ="ValidarResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="0,875"/>
+         <Value name="ConfirmarCuponRequest" source ="ConfirmarCuponRequest.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="0,857"/>
+         <Value name="CalcularAnexoRequest" source ="CalcularAnexoRequest.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="0,8"/>
+         <Value name="AnularCuponResponse" source ="AnularCuponResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="0,667"/>
+         <Value name="Error" source ="Error.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="0,667"/>
+         <Value name="SolicitudCuponRequest" source ="SolicitudCuponRequest.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="0,667"/>
+         <Value name="Base64Binary" source ="Base64Binary.java" package ="org.w3._2005._05.xmlmime" value ="0,5"/>
+         <Value name="HexBinary" source ="HexBinary.java" package ="org.w3._2005._05.xmlmime" value ="0,5"/>
+         <Value name="ContratacionExtBO" source ="ContratacionExtBO.java" package ="com.rsi.agp.main.contratacionext" value ="0,111"/>
+         <Value name="AgpFallo" source ="AgpFallo.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="0"/>
+         <Value name="AnularCuponRequest" source ="AnularCuponRequest.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="0"/>
+         <Value name="CalcularRequest" source ="CalcularRequest.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="0"/>
+         <Value name="ConfirmarRequest" source ="ConfirmarRequest.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="0"/>
+         <Value name="ConfirmarSiniestroRequest" source ="ConfirmarSiniestroRequest.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="0"/>
+         <Value name="ContratacionExtConfirmacion" source ="ContratacionExtConfirmacion.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="0"/>
+         <Value name="ContratacionExtConfirmacionImpl" source ="ContratacionExtConfirmacionImpl.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="0"/>
+         <Value name="IContratacionExtConfirmacion" source ="IContratacionExtConfirmacion.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="0"/>
+         <Value name="ObjectFactory" source ="ObjectFactory.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="0"/>
+         <Value name="ValidarRequest" source ="ValidarRequest.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="0"/>
+         <Value name="ObjectFactory" source ="ObjectFactory.java" package ="org.w3._2005._05.xmlmime" value ="0"/>
+      </Values>
+   </Metric>
+   <Metric id = "NOF" description ="Number of Attributes">
+      <Values per = "type" total = "62" avg = "2,385" stddev = "2,058" max = "8">
+         <Value name="SolicitudCuponResponse" source ="SolicitudCuponResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="8"/>
+         <Value name="CalcularAnexoResponse" source ="CalcularAnexoResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="7"/>
+         <Value name="CalcularResponse" source ="CalcularResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="5"/>
+         <Value name="ConfirmarCuponRequest" source ="ConfirmarCuponRequest.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="4"/>
+         <Value name="ConfirmarCuponResponse" source ="ConfirmarCuponResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="4"/>
+         <Value name="ConfirmarResponse" source ="ConfirmarResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="4"/>
+         <Value name="ConfirmarSiniestroResponse" source ="ConfirmarSiniestroResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="4"/>
+         <Value name="ValidarResponse" source ="ValidarResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="4"/>
+         <Value name="CalcularAnexoRequest" source ="CalcularAnexoRequest.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="3"/>
+         <Value name="ContratacionExtBO" source ="ContratacionExtBO.java" package ="com.rsi.agp.main.contratacionext" value ="2"/>
+         <Value name="AnularCuponResponse" source ="AnularCuponResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="2"/>
+         <Value name="Error" source ="Error.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="2"/>
+         <Value name="SolicitudCuponRequest" source ="SolicitudCuponRequest.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="2"/>
+         <Value name="Base64Binary" source ="Base64Binary.java" package ="org.w3._2005._05.xmlmime" value ="2"/>
+         <Value name="HexBinary" source ="HexBinary.java" package ="org.w3._2005._05.xmlmime" value ="2"/>
+         <Value name="AgpFallo" source ="AgpFallo.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="AnularCuponRequest" source ="AnularCuponRequest.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="CalcularRequest" source ="CalcularRequest.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="ConfirmarRequest" source ="ConfirmarRequest.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="ConfirmarSiniestroRequest" source ="ConfirmarSiniestroRequest.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="ContratacionExtConfirmacion" source ="ContratacionExtConfirmacion.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="ValidarRequest" source ="ValidarRequest.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="ContratacionExtConfirmacionImpl" source ="ContratacionExtConfirmacionImpl.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="0"/>
+         <Value name="IContratacionExtConfirmacion" source ="IContratacionExtConfirmacion.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="0"/>
+         <Value name="ObjectFactory" source ="ObjectFactory.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="0"/>
+         <Value name="ObjectFactory" source ="ObjectFactory.java" package ="org.w3._2005._05.xmlmime" value ="0"/>
+      </Values>
+   </Metric>
+   <Metric id = "NSF" description ="Number of Static Attributes">
+      <Values per = "type" total = "1" avg = "0,038" stddev = "0,192" max = "1">
+         <Value name="ContratacionExtBO" source ="ContratacionExtBO.java" package ="com.rsi.agp.main.contratacionext" value ="1"/>
+         <Value name="AgpFallo" source ="AgpFallo.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="0"/>
+         <Value name="AnularCuponRequest" source ="AnularCuponRequest.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="0"/>
+         <Value name="AnularCuponResponse" source ="AnularCuponResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="0"/>
+         <Value name="CalcularAnexoRequest" source ="CalcularAnexoRequest.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="0"/>
+         <Value name="CalcularAnexoResponse" source ="CalcularAnexoResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="0"/>
+         <Value name="CalcularRequest" source ="CalcularRequest.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="0"/>
+         <Value name="CalcularResponse" source ="CalcularResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="0"/>
+         <Value name="ConfirmarCuponRequest" source ="ConfirmarCuponRequest.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="0"/>
+         <Value name="ConfirmarCuponResponse" source ="ConfirmarCuponResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="0"/>
+         <Value name="ConfirmarRequest" source ="ConfirmarRequest.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="0"/>
+         <Value name="ConfirmarResponse" source ="ConfirmarResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="0"/>
+         <Value name="ConfirmarSiniestroRequest" source ="ConfirmarSiniestroRequest.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="0"/>
+         <Value name="ConfirmarSiniestroResponse" source ="ConfirmarSiniestroResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="0"/>
+         <Value name="ContratacionExtConfirmacion" source ="ContratacionExtConfirmacion.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="0"/>
+         <Value name="ContratacionExtConfirmacionImpl" source ="ContratacionExtConfirmacionImpl.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="0"/>
+         <Value name="Error" source ="Error.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="0"/>
+         <Value name="IContratacionExtConfirmacion" source ="IContratacionExtConfirmacion.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="0"/>
+         <Value name="ObjectFactory" source ="ObjectFactory.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="0"/>
+         <Value name="SolicitudCuponRequest" source ="SolicitudCuponRequest.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="0"/>
+         <Value name="SolicitudCuponResponse" source ="SolicitudCuponResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="0"/>
+         <Value name="ValidarRequest" source ="ValidarRequest.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="0"/>
+         <Value name="ValidarResponse" source ="ValidarResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="0"/>
+         <Value name="Base64Binary" source ="Base64Binary.java" package ="org.w3._2005._05.xmlmime" value ="0"/>
+         <Value name="HexBinary" source ="HexBinary.java" package ="org.w3._2005._05.xmlmime" value ="0"/>
+         <Value name="ObjectFactory" source ="ObjectFactory.java" package ="org.w3._2005._05.xmlmime" value ="0"/>
+      </Values>
+   </Metric>
+   <Metric id = "NOM" description ="Number of Methods">
+      <Values per = "type" total = "149" avg = "5,731" stddev = "3,622" max = "16">
+         <Value name="SolicitudCuponResponse" source ="SolicitudCuponResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="16"/>
+         <Value name="CalcularAnexoResponse" source ="CalcularAnexoResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="13"/>
+         <Value name="ContratacionExtBO" source ="ContratacionExtBO.java" package ="com.rsi.agp.main.contratacionext" value ="11"/>
+         <Value name="CalcularResponse" source ="CalcularResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="9"/>
+         <Value name="ContratacionExtConfirmacionImpl" source ="ContratacionExtConfirmacionImpl.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="9"/>
+         <Value name="ConfirmarCuponRequest" source ="ConfirmarCuponRequest.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="8"/>
+         <Value name="ConfirmarCuponResponse" source ="ConfirmarCuponResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="7"/>
+         <Value name="ConfirmarResponse" source ="ConfirmarResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="7"/>
+         <Value name="ConfirmarSiniestroResponse" source ="ConfirmarSiniestroResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="7"/>
+         <Value name="IContratacionExtConfirmacion" source ="IContratacionExtConfirmacion.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="7"/>
+         <Value name="ValidarResponse" source ="ValidarResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="7"/>
+         <Value name="CalcularAnexoRequest" source ="CalcularAnexoRequest.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="6"/>
+         <Value name="ObjectFactory" source ="ObjectFactory.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="5"/>
+         <Value name="AnularCuponResponse" source ="AnularCuponResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="4"/>
+         <Value name="Error" source ="Error.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="4"/>
+         <Value name="SolicitudCuponRequest" source ="SolicitudCuponRequest.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="4"/>
+         <Value name="Base64Binary" source ="Base64Binary.java" package ="org.w3._2005._05.xmlmime" value ="4"/>
+         <Value name="HexBinary" source ="HexBinary.java" package ="org.w3._2005._05.xmlmime" value ="4"/>
+         <Value name="ObjectFactory" source ="ObjectFactory.java" package ="org.w3._2005._05.xmlmime" value ="3"/>
+         <Value name="AgpFallo" source ="AgpFallo.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="2"/>
+         <Value name="AnularCuponRequest" source ="AnularCuponRequest.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="2"/>
+         <Value name="CalcularRequest" source ="CalcularRequest.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="2"/>
+         <Value name="ConfirmarRequest" source ="ConfirmarRequest.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="2"/>
+         <Value name="ConfirmarSiniestroRequest" source ="ConfirmarSiniestroRequest.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="2"/>
+         <Value name="ContratacionExtConfirmacion" source ="ContratacionExtConfirmacion.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="2"/>
+         <Value name="ValidarRequest" source ="ValidarRequest.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="2"/>
+      </Values>
+   </Metric>
+   <Metric id = "NSM" description ="Number of Static Methods">
+      <Values per = "type" total = "0" avg = "0" stddev = "0" max = "0">
+         <Value name="ContratacionExtBO" source ="ContratacionExtBO.java" package ="com.rsi.agp.main.contratacionext" value ="0"/>
+         <Value name="AgpFallo" source ="AgpFallo.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="0"/>
+         <Value name="AnularCuponRequest" source ="AnularCuponRequest.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="0"/>
+         <Value name="AnularCuponResponse" source ="AnularCuponResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="0"/>
+         <Value name="CalcularAnexoRequest" source ="CalcularAnexoRequest.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="0"/>
+         <Value name="CalcularAnexoResponse" source ="CalcularAnexoResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="0"/>
+         <Value name="CalcularRequest" source ="CalcularRequest.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="0"/>
+         <Value name="CalcularResponse" source ="CalcularResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="0"/>
+         <Value name="ConfirmarCuponRequest" source ="ConfirmarCuponRequest.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="0"/>
+         <Value name="ConfirmarCuponResponse" source ="ConfirmarCuponResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="0"/>
+         <Value name="ConfirmarRequest" source ="ConfirmarRequest.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="0"/>
+         <Value name="ConfirmarResponse" source ="ConfirmarResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="0"/>
+         <Value name="ConfirmarSiniestroRequest" source ="ConfirmarSiniestroRequest.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="0"/>
+         <Value name="ConfirmarSiniestroResponse" source ="ConfirmarSiniestroResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="0"/>
+         <Value name="ContratacionExtConfirmacion" source ="ContratacionExtConfirmacion.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="0"/>
+         <Value name="ContratacionExtConfirmacionImpl" source ="ContratacionExtConfirmacionImpl.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="0"/>
+         <Value name="Error" source ="Error.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="0"/>
+         <Value name="IContratacionExtConfirmacion" source ="IContratacionExtConfirmacion.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="0"/>
+         <Value name="ObjectFactory" source ="ObjectFactory.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="0"/>
+         <Value name="SolicitudCuponRequest" source ="SolicitudCuponRequest.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="0"/>
+         <Value name="SolicitudCuponResponse" source ="SolicitudCuponResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="0"/>
+         <Value name="ValidarRequest" source ="ValidarRequest.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="0"/>
+         <Value name="ValidarResponse" source ="ValidarResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="0"/>
+         <Value name="Base64Binary" source ="Base64Binary.java" package ="org.w3._2005._05.xmlmime" value ="0"/>
+         <Value name="HexBinary" source ="HexBinary.java" package ="org.w3._2005._05.xmlmime" value ="0"/>
+         <Value name="ObjectFactory" source ="ObjectFactory.java" package ="org.w3._2005._05.xmlmime" value ="0"/>
+      </Values>
+   </Metric>
+   <Metric id = "SIX" description ="Specialization Index">
+      <Values per = "type" avg = "0" stddev = "0" max = "0">
+         <Value name="ContratacionExtBO" source ="ContratacionExtBO.java" package ="com.rsi.agp.main.contratacionext" value ="0"/>
+         <Value name="AgpFallo" source ="AgpFallo.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="0"/>
+         <Value name="AnularCuponRequest" source ="AnularCuponRequest.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="0"/>
+         <Value name="AnularCuponResponse" source ="AnularCuponResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="0"/>
+         <Value name="CalcularAnexoRequest" source ="CalcularAnexoRequest.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="0"/>
+         <Value name="CalcularAnexoResponse" source ="CalcularAnexoResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="0"/>
+         <Value name="CalcularRequest" source ="CalcularRequest.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="0"/>
+         <Value name="CalcularResponse" source ="CalcularResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="0"/>
+         <Value name="ConfirmarCuponRequest" source ="ConfirmarCuponRequest.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="0"/>
+         <Value name="ConfirmarCuponResponse" source ="ConfirmarCuponResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="0"/>
+         <Value name="ConfirmarRequest" source ="ConfirmarRequest.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="0"/>
+         <Value name="ConfirmarResponse" source ="ConfirmarResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="0"/>
+         <Value name="ConfirmarSiniestroRequest" source ="ConfirmarSiniestroRequest.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="0"/>
+         <Value name="ConfirmarSiniestroResponse" source ="ConfirmarSiniestroResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="0"/>
+         <Value name="ContratacionExtConfirmacion" source ="ContratacionExtConfirmacion.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="0"/>
+         <Value name="ContratacionExtConfirmacionImpl" source ="ContratacionExtConfirmacionImpl.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="0"/>
+         <Value name="Error" source ="Error.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="0"/>
+         <Value name="IContratacionExtConfirmacion" source ="IContratacionExtConfirmacion.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="0"/>
+         <Value name="ObjectFactory" source ="ObjectFactory.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="0"/>
+         <Value name="SolicitudCuponRequest" source ="SolicitudCuponRequest.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="0"/>
+         <Value name="SolicitudCuponResponse" source ="SolicitudCuponResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="0"/>
+         <Value name="ValidarRequest" source ="ValidarRequest.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="0"/>
+         <Value name="ValidarResponse" source ="ValidarResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="0"/>
+         <Value name="Base64Binary" source ="Base64Binary.java" package ="org.w3._2005._05.xmlmime" value ="0"/>
+         <Value name="HexBinary" source ="HexBinary.java" package ="org.w3._2005._05.xmlmime" value ="0"/>
+         <Value name="ObjectFactory" source ="ObjectFactory.java" package ="org.w3._2005._05.xmlmime" value ="0"/>
+      </Values>
+   </Metric>
+   <Metric id = "NOC" description ="Number of Classes">
+      <Values per = "packageFragment" total = "26" avg = "8,667" stddev = "9,463" max = "22">
+         <Value name="com.rsi.agp.serviciosweb.contratacionextconfirmacion" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="22"/>
+         <Value name="org.w3._2005._05.xmlmime" package ="org.w3._2005._05.xmlmime" value ="3"/>
+         <Value name="com.rsi.agp.main.contratacionext" package ="com.rsi.agp.main.contratacionext" value ="1"/>
+      </Values>
+   </Metric>
+   <Metric id = "NOI" description ="Number of Interfaces">
+      <Values per = "packageFragment" total = "1" avg = "0,333" stddev = "0,471" max = "1">
+         <Value name="com.rsi.agp.serviciosweb.contratacionextconfirmacion" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="com.rsi.agp.main.contratacionext" package ="com.rsi.agp.main.contratacionext" value ="0"/>
+         <Value name="org.w3._2005._05.xmlmime" package ="org.w3._2005._05.xmlmime" value ="0"/>
+      </Values>
+   </Metric>
+   <Metric id = "NOP" description ="Number of Packages">
+      <Value value="3"/>
+   </Metric>
+   <Metric id = "TLOC" description ="Total Lines of Code">
+      <Value value="1351"/>
+   </Metric>
+   <Metric id = "MLOC" description ="Method Lines of Code">
+      <Values per = "method" total = "1017" avg = "6,826" stddev = "10,56" max = "55">
+         <Value name="confirmarCupon" source ="ContratacionExtBO.java" package ="com.rsi.agp.main.contratacionext" value ="55"/>
+         <Value name="calcularAnexo" source ="ContratacionExtBO.java" package ="com.rsi.agp.main.contratacionext" value ="53"/>
+         <Value name="confirmar" source ="ContratacionExtBO.java" package ="com.rsi.agp.main.contratacionext" value ="53"/>
+         <Value name="calcular" source ="ContratacionExtBO.java" package ="com.rsi.agp.main.contratacionext" value ="52"/>
+         <Value name="confirmarSiniestro" source ="ContratacionExtBO.java" package ="com.rsi.agp.main.contratacionext" value ="51"/>
+         <Value name="validar" source ="ContratacionExtBO.java" package ="com.rsi.agp.main.contratacionext" value ="50"/>
+         <Value name="solicitarCupon" source ="ContratacionExtBO.java" package ="com.rsi.agp.main.contratacionext" value ="47"/>
+         <Value name="anularCupon" source ="ContratacionExtBO.java" package ="com.rsi.agp.main.contratacionext" value ="41"/>
+         <Value name="getErrors" source ="CalcularAnexoResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="9"/>
+         <Value name="getErrors" source ="CalcularResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="9"/>
+         <Value name="getErrors" source ="ConfirmarCuponResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="9"/>
+         <Value name="getErrors" source ="ConfirmarResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="9"/>
+         <Value name="getErrors" source ="ConfirmarSiniestroResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="9"/>
+         <Value name="getErrors" source ="ValidarResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="9"/>
+         <Value name="getException" source ="AgpFallo.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="5"/>
+         <Value name="setException" source ="AgpFallo.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="5"/>
+         <Value name="getIdCupon" source ="AnularCuponRequest.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="5"/>
+         <Value name="setIdCupon" source ="AnularCuponRequest.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="5"/>
+         <Value name="getCodigo" source ="AnularCuponResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="5"/>
+         <Value name="getMensaje" source ="AnularCuponResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="5"/>
+         <Value name="setCodigo" source ="AnularCuponResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="5"/>
+         <Value name="setMensaje" source ="AnularCuponResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="5"/>
+         <Value name="getIdCupon" source ="CalcularAnexoRequest.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="5"/>
+         <Value name="getModificacionPoliza" source ="CalcularAnexoRequest.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="5"/>
+         <Value name="getTipoPoliza" source ="CalcularAnexoRequest.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="5"/>
+         <Value name="setIdCupon" source ="CalcularAnexoRequest.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="5"/>
+         <Value name="setModificacionPoliza" source ="CalcularAnexoRequest.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="5"/>
+         <Value name="setTipoPoliza" source ="CalcularAnexoRequest.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="5"/>
+         <Value name="getAcuseRecibo" source ="CalcularAnexoResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="5"/>
+         <Value name="getCalculoModificacion" source ="CalcularAnexoResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="5"/>
+         <Value name="getCalculoOriginal" source ="CalcularAnexoResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="5"/>
+         <Value name="getCodigo" source ="CalcularAnexoResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="5"/>
+         <Value name="getDiferenciasCoste" source ="CalcularAnexoResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="5"/>
+         <Value name="getMensaje" source ="CalcularAnexoResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="5"/>
+         <Value name="setAcuseRecibo" source ="CalcularAnexoResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="5"/>
+         <Value name="setCalculoModificacion" source ="CalcularAnexoResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="5"/>
+         <Value name="setCalculoOriginal" source ="CalcularAnexoResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="5"/>
+         <Value name="setCodigo" source ="CalcularAnexoResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="5"/>
+         <Value name="setDiferenciasCoste" source ="CalcularAnexoResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="5"/>
+         <Value name="setMensaje" source ="CalcularAnexoResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="5"/>
+         <Value name="getPoliza" source ="CalcularRequest.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="5"/>
+         <Value name="setPoliza" source ="CalcularRequest.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="5"/>
+         <Value name="getAcuseRecibo" source ="CalcularResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="5"/>
+         <Value name="getCalculo" source ="CalcularResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="5"/>
+         <Value name="getCodigo" source ="CalcularResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="5"/>
+         <Value name="getMensaje" source ="CalcularResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="5"/>
+         <Value name="setAcuseRecibo" source ="CalcularResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="5"/>
+         <Value name="setCalculo" source ="CalcularResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="5"/>
+         <Value name="setCodigo" source ="CalcularResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="5"/>
+         <Value name="setMensaje" source ="CalcularResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="5"/>
+         <Value name="getIdCupon" source ="ConfirmarCuponRequest.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="5"/>
+         <Value name="getPolizaComp" source ="ConfirmarCuponRequest.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="5"/>
+         <Value name="getPolizaPpal" source ="ConfirmarCuponRequest.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="5"/>
+         <Value name="getRevisionAdmin" source ="ConfirmarCuponRequest.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="5"/>
+         <Value name="setIdCupon" source ="ConfirmarCuponRequest.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="5"/>
+         <Value name="setPolizaComp" source ="ConfirmarCuponRequest.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="5"/>
+         <Value name="setPolizaPpal" source ="ConfirmarCuponRequest.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="5"/>
+         <Value name="setRevisionAdmin" source ="ConfirmarCuponRequest.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="5"/>
+         <Value name="getAcuseRecibo" source ="ConfirmarCuponResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="5"/>
+         <Value name="getCodigo" source ="ConfirmarCuponResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="5"/>
+         <Value name="getMensaje" source ="ConfirmarCuponResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="5"/>
+         <Value name="setAcuseRecibo" source ="ConfirmarCuponResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="5"/>
+         <Value name="setCodigo" source ="ConfirmarCuponResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="5"/>
+         <Value name="setMensaje" source ="ConfirmarCuponResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="5"/>
+         <Value name="getPoliza" source ="ConfirmarRequest.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="5"/>
+         <Value name="setPoliza" source ="ConfirmarRequest.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="5"/>
+         <Value name="getAcuseRecibo" source ="ConfirmarResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="5"/>
+         <Value name="getCodigo" source ="ConfirmarResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="5"/>
+         <Value name="getMensaje" source ="ConfirmarResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="5"/>
+         <Value name="setAcuseRecibo" source ="ConfirmarResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="5"/>
+         <Value name="setCodigo" source ="ConfirmarResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="5"/>
+         <Value name="setMensaje" source ="ConfirmarResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="5"/>
+         <Value name="getSiniestro" source ="ConfirmarSiniestroRequest.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="5"/>
+         <Value name="setSiniestro" source ="ConfirmarSiniestroRequest.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="5"/>
+         <Value name="getAcuseRecibo" source ="ConfirmarSiniestroResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="5"/>
+         <Value name="getCodigo" source ="ConfirmarSiniestroResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="5"/>
+         <Value name="getMensaje" source ="ConfirmarSiniestroResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="5"/>
+         <Value name="setAcuseRecibo" source ="ConfirmarSiniestroResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="5"/>
+         <Value name="setCodigo" source ="ConfirmarSiniestroResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="5"/>
+         <Value name="setMensaje" source ="ConfirmarSiniestroResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="5"/>
+         <Value name="getMensaje" source ="Error.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="5"/>
+         <Value name="setMensaje" source ="Error.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="5"/>
+         <Value name="createAgpFallo" source ="ObjectFactory.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="5"/>
+         <Value name="createConfirmarRequest" source ="ObjectFactory.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="5"/>
+         <Value name="createConfirmarResponse" source ="ObjectFactory.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="5"/>
+         <Value name="createError" source ="ObjectFactory.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="5"/>
+         <Value name="getPlan" source ="SolicitudCuponRequest.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="5"/>
+         <Value name="getReferencia" source ="SolicitudCuponRequest.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="5"/>
+         <Value name="setPlan" source ="SolicitudCuponRequest.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="5"/>
+         <Value name="setReferencia" source ="SolicitudCuponRequest.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="5"/>
+         <Value name="getCodigo" source ="SolicitudCuponResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="5"/>
+         <Value name="getCuponModificacion" source ="SolicitudCuponResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="5"/>
+         <Value name="getEstadoContratacion" source ="SolicitudCuponResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="5"/>
+         <Value name="getMensaje" source ="SolicitudCuponResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="5"/>
+         <Value name="getPoliza" source ="SolicitudCuponResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="5"/>
+         <Value name="getPolizaComp" source ="SolicitudCuponResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="5"/>
+         <Value name="getPolizaCompRC" source ="SolicitudCuponResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="5"/>
+         <Value name="getPolizaRC" source ="SolicitudCuponResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="5"/>
+         <Value name="setCodigo" source ="SolicitudCuponResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="5"/>
+         <Value name="setCuponModificacion" source ="SolicitudCuponResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="5"/>
+         <Value name="setEstadoContratacion" source ="SolicitudCuponResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="5"/>
+         <Value name="setMensaje" source ="SolicitudCuponResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="5"/>
+         <Value name="setPolizaCompRC" source ="SolicitudCuponResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="5"/>
+         <Value name="setPolizaComp" source ="SolicitudCuponResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="5"/>
+         <Value name="setPolizaRC" source ="SolicitudCuponResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="5"/>
+         <Value name="setPoliza" source ="SolicitudCuponResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="5"/>
+         <Value name="getPoliza" source ="ValidarRequest.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="5"/>
+         <Value name="setPoliza" source ="ValidarRequest.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="5"/>
+         <Value name="getAcuseRecibo" source ="ValidarResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="5"/>
+         <Value name="getCodigo" source ="ValidarResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="5"/>
+         <Value name="getMensaje" source ="ValidarResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="5"/>
+         <Value name="setAcuseRecibo" source ="ValidarResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="5"/>
+         <Value name="setCodigo" source ="ValidarResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="5"/>
+         <Value name="setMensaje" source ="ValidarResponse.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="5"/>
+         <Value name="getContentType" source ="Base64Binary.java" package ="org.w3._2005._05.xmlmime" value ="5"/>
+         <Value name="setContentType" source ="Base64Binary.java" package ="org.w3._2005._05.xmlmime" value ="5"/>
+         <Value name="getContentType" source ="HexBinary.java" package ="org.w3._2005._05.xmlmime" value ="5"/>
+         <Value name="getValue" source ="HexBinary.java" package ="org.w3._2005._05.xmlmime" value ="5"/>
+         <Value name="setContentType" source ="HexBinary.java" package ="org.w3._2005._05.xmlmime" value ="5"/>
+         <Value name="setValue" source ="HexBinary.java" package ="org.w3._2005._05.xmlmime" value ="5"/>
+         <Value name="createBase64Binary" source ="ObjectFactory.java" package ="org.w3._2005._05.xmlmime" value ="5"/>
+         <Value name="createHexBinary" source ="ObjectFactory.java" package ="org.w3._2005._05.xmlmime" value ="5"/>
+         <Value name="validarAnexo" source ="ContratacionExtBO.java" package ="com.rsi.agp.main.contratacionext" value ="4"/>
+         <Value name="setManager" source ="ContratacionExtBO.java" package ="com.rsi.agp.main.contratacionext" value ="1"/>
+         <Value name="setServletContext" source ="ContratacionExtBO.java" package ="com.rsi.agp.main.contratacionext" value ="1"/>
+         <Value name="getBo" source ="ContratacionExtConfirmacion.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="setBo" source ="ContratacionExtConfirmacion.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="anularCupon" source ="ContratacionExtConfirmacionImpl.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="calcularAnexo" source ="ContratacionExtConfirmacionImpl.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="calcular" source ="ContratacionExtConfirmacionImpl.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="confirmarCupon" source ="ContratacionExtConfirmacionImpl.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="confirmarSiniestro" source ="ContratacionExtConfirmacionImpl.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="confirmar" source ="ContratacionExtConfirmacionImpl.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="solicitarCupon" source ="ContratacionExtConfirmacionImpl.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="validarAnexo" source ="ContratacionExtConfirmacionImpl.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="validar" source ="ContratacionExtConfirmacionImpl.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="getCodigo" source ="Error.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="setCodigo" source ="Error.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="1"/>
+         <Value name="getValue" source ="Base64Binary.java" package ="org.w3._2005._05.xmlmime" value ="1"/>
+         <Value name="setValue" source ="Base64Binary.java" package ="org.w3._2005._05.xmlmime" value ="1"/>
+         <Value name="anularCupon" source ="IContratacionExtConfirmacion.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="0"/>
+         <Value name="calcularAnexo" source ="IContratacionExtConfirmacion.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="0"/>
+         <Value name="calcular" source ="IContratacionExtConfirmacion.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="0"/>
+         <Value name="confirmarCupon" source ="IContratacionExtConfirmacion.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="0"/>
+         <Value name="confirmarSiniestro" source ="IContratacionExtConfirmacion.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="0"/>
+         <Value name="confirmar" source ="IContratacionExtConfirmacion.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="0"/>
+         <Value name="solicitarCupon" source ="IContratacionExtConfirmacion.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="0"/>
+         <Value name="ObjectFactory" source ="ObjectFactory.java" package ="com.rsi.agp.serviciosweb.contratacionextconfirmacion" value ="0"/>
+         <Value name="ObjectFactory" source ="ObjectFactory.java" package ="org.w3._2005._05.xmlmime" value ="0"/>
+      </Values>
+   </Metric>
+   </Metrics>
